@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>240B800BAA8</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>240B800BABC</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>240B800BAD0</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"自动汇编脚本"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Dust-Win64-Shipping.exe
+  Version: 
+  Date   : 2024-03-10
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Dust-Win64-Shipping.exe,C0 89 02 48 83 C4 20) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rdx],#999
+  add rsp,20
+  jmp return
+
+code:
+  mov [rdx],eax
+  add rsp,20
+  jmp return
+
+INJECT+01:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+01:
+  db 89 02 48 83 C4 20
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Dust-Win64-Shipping.exe+F6627E
+
+Dust-Win64-Shipping.exe+F66258: 48 8B 5C 24 38  - mov rbx,[rsp+38]
+Dust-Win64-Shipping.exe+F6625D: 48 8B 74 24 48  - mov rsi,[rsp+48]
+Dust-Win64-Shipping.exe+F66262: 48 83 C4 20     - add rsp,20
+Dust-Win64-Shipping.exe+F66266: 5F              - pop rdi
+Dust-Win64-Shipping.exe+F66267: C3              - ret 
+Dust-Win64-Shipping.exe+F66268: 48 8B 5C 24 38  - mov rbx,[rsp+38]
+Dust-Win64-Shipping.exe+F6626D: B8 E7 03 00 00  - mov eax,000003E7
+Dust-Win64-Shipping.exe+F66272: 48 8B 74 24 48  - mov rsi,[rsp+48]
+Dust-Win64-Shipping.exe+F66277: 44 3B C0        - cmp r8d,eax
+Dust-Win64-Shipping.exe+F6627A: 41 0F 4C C0     - cmovl eax,r8d
+// ---------- INJECTING HERE ----------
+Dust-Win64-Shipping.exe+F6627E: 89 02           - mov [rdx],eax
+// ---------- DONE INJECTING  ----------
+Dust-Win64-Shipping.exe+F66280: 48 83 C4 20     - add rsp,20
+Dust-Win64-Shipping.exe+F66284: 5F              - pop rdi
+Dust-Win64-Shipping.exe+F66285: C3              - ret 
+Dust-Win64-Shipping.exe+F66286: CC              - int 3 
+Dust-Win64-Shipping.exe+F66287: CC              - int 3 
+Dust-Win64-Shipping.exe+F66288: CC              - int 3 
+Dust-Win64-Shipping.exe+F66289: CC              - int 3 
+Dust-Win64-Shipping.exe+F6628A: CC              - int 3 
+Dust-Win64-Shipping.exe+F6628B: CC              - int 3 
+Dust-Win64-Shipping.exe+F6628C: CC              - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

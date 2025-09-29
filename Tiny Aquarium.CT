@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"金钱"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>8 Bytes</VariableType>
+      <Address>"GameAssembly.dll"+02CD8C50</Address>
+      <Offsets>
+        <Offset>100</Offset>
+        <Offset>48</Offset>
+        <Offset>A0</Offset>
+        <Offset>B8</Offset>
+        <Offset>408</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>10</ID>
+      <Description>"星星（钱-90）"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>8 Bytes</VariableType>
+      <Address>"GameAssembly.dll"+02CD8C50</Address>
+      <Offsets>
+        <Offset>100-90</Offset>
+        <Offset>48</Offset>
+        <Offset>A0</Offset>
+        <Offset>B8</Offset>
+        <Offset>408</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>11</ID>
+      <Description>"星星（钱-90）"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>8 Bytes</VariableType>
+      <Address>"GameAssembly.dll"+02CD8C50</Address>
+      <Offsets>
+        <Offset>100-90-90</Offset>
+        <Offset>48</Offset>
+        <Offset>A0</Offset>
+        <Offset>B8</Offset>
+        <Offset>408</Offset>
+      </Offsets>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>星星增加 代码 :mov [rcx+10],edx</Description>
+      <AddressString>GameAssembly.dll+41E14D</AddressString>
+      <Before>
+        <Byte>D1</Byte>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>41</Byte>
+        <Byte>20</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>51</Byte>
+        <Byte>10</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>85</Byte>
+        <Byte>C0</Byte>
+        <Byte>74</Byte>
+        <Byte>1E</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>铜币变化 代码 :mov [rcx+10],edx</Description>
+      <AddressString>GameAssembly.dll+42CE3C</AddressString>
+      <Before>
+        <Byte>D0</Byte>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>41</Byte>
+        <Byte>20</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>51</Byte>
+        <Byte>10</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>85</Byte>
+        <Byte>C0</Byte>
+        <Byte>74</Byte>
+        <Byte>1E</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+  <Structures StructVersion="2">
+    <Structure Name="Stat" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="16" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000010" Description="currentValue" DisplayMethod="unsigned integer"/>
+        <Element Offset="20" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000014" Description="minValue" DisplayMethod="unsigned integer"/>
+        <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="maxValue" DisplayMethod="unsigned integer"/>
+        <Element Offset="32" Vartype="Pointer" Bytesize="8" OffsetHex="00000020" Description="OnValueChanged" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+  </Structures>
+</CheatTable>

@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>18</ID>
+      <Description>"减少"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Like a Dragon: Ishin!  
+  Version: 
+  Date   : 2023-10-20
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LikeaDragonIshin-WinGDK-Shipping.exe,06 B0 01 89 8B D4 03 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [rbx+000003D4],ecx
+  jmp return
+
+INJECT+03:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+03:
+  db 89 8B D4 03 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LikeaDragonIshin-WinGDK-Shipping.exe+BFC047
+
+LikeaDragonIshin-WinGDK-Shipping.exe+BFC01E: 85 C0                    - test eax,eax
+LikeaDragonIshin-WinGDK-Shipping.exe+BFC020: 74 3B                    - je LikeaDragonIshin-WinGDK-Shipping.exe+BFC05D
+LikeaDragonIshin-WinGDK-Shipping.exe+BFC022: 45 33 C9                 - xor r9d,r9d
+LikeaDragonIshin-WinGDK-Shipping.exe+BFC025: C7 44 24 20 01 00 00 00  - mov [rsp+20],00000001
+LikeaDragonIshin-WinGDK-Shipping.exe+BFC02D: 48 8D 0D AC B8 55 05     - lea rcx,[LikeaDragonIshin-WinGDK-Shipping.exe+61578E0]
+LikeaDragonIshin-WinGDK-Shipping.exe+BFC034: 41 8D 51 01              - lea edx,[r9+01]
+LikeaDragonIshin-WinGDK-Shipping.exe+BFC038: 45 8D 41 03              - lea r8d,[r9+03]
+LikeaDragonIshin-WinGDK-Shipping.exe+BFC03C: E8 4F 1A 77 00           - call LikeaDragonIshin-WinGDK-Shipping.exe+136DA90
+LikeaDragonIshin-WinGDK-Shipping.exe+BFC041: 0F B7 48 06              - movzx ecx,word ptr [rax+06]
+LikeaDragonIshin-WinGDK-Shipping.exe+BFC045: B0 01                    - mov al,01
+// ---------- INJECTING HERE ----------
+LikeaDragonIshin-WinGDK-Shipping.exe+BFC047: 89 8B D4 03 00 00        - mov [rbx+000003D4],ecx
+// ---------- DONE INJECTING  ----------
+LikeaDragonIshin-WinGDK-Shipping.exe+BFC04D: 48 8B 5C 24 68           - mov rbx,[rsp+68]
+LikeaDragonIshin-WinGDK-Shipping.exe+BFC052: 48 8B 74 24 70           - mov rsi,[rsp+70]
+LikeaDragonIshin-WinGDK-Shipping.exe+BFC057: 48 83 C4 50              - add rsp,50
+LikeaDragonIshin-WinGDK-Shipping.exe+BFC05B: 5F                       - pop rdi
+LikeaDragonIshin-WinGDK-Shipping.exe+BFC05C: C3                       - ret 
+LikeaDragonIshin-WinGDK-Shipping.exe+BFC05D: B9 FF FF FF FF           - mov ecx,FFFFFFFF
+LikeaDragonIshin-WinGDK-Shipping.exe+BFC062: B0 01                    - mov al,01
+LikeaDragonIshin-WinGDK-Shipping.exe+BFC064: 89 8B D4 03 00 00        - mov [rbx+000003D4],ecx
+LikeaDragonIshin-WinGDK-Shipping.exe+BFC06A: 48 8B 5C 24 68           - mov rbx,[rsp+68]
+LikeaDragonIshin-WinGDK-Shipping.exe+BFC06F: 48 8B 74 24 70           - mov rsi,[rsp+70]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>25</ID>
+      <Description>"卖东西"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Like a Dragon: Ishin!  
+  Version: 
+  Date   : 2023-10-20
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LikeaDragonIshin-WinGDK-Shipping.exe,66 44 89 43 06 66 45 85 C0 75 27) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [rbx+06],r8w
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 66 44 89 43 06
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LikeaDragonIshin-WinGDK-Shipping.exe+136D865
+
+LikeaDragonIshin-WinGDK-Shipping.exe+136D84B: 33 C0                 - xor eax,eax
+LikeaDragonIshin-WinGDK-Shipping.exe+136D84D: EB 4A                 - jmp LikeaDragonIshin-WinGDK-Shipping.exe+136D899
+LikeaDragonIshin-WinGDK-Shipping.exe+136D84F: 03 C7                 - add eax,edi
+LikeaDragonIshin-WinGDK-Shipping.exe+136D851: 33 D2                 - xor edx,edx
+LikeaDragonIshin-WinGDK-Shipping.exe+136D853: 85 C0                 - test eax,eax
+LikeaDragonIshin-WinGDK-Shipping.exe+136D855: 8B CA                 - mov ecx,edx
+LikeaDragonIshin-WinGDK-Shipping.exe+136D857: 0F 4F C8              - cmovg ecx,eax
+LikeaDragonIshin-WinGDK-Shipping.exe+136D85A: 41 0F B7 C0           - movzx eax,r8w
+LikeaDragonIshin-WinGDK-Shipping.exe+136D85E: 3B C8                 - cmp ecx,eax
+LikeaDragonIshin-WinGDK-Shipping.exe+136D860: 66 44 0F 4C C1        - cmovl r8w,cx
+// ---------- INJECTING HERE ----------
+LikeaDragonIshin-WinGDK-Shipping.exe+136D865: 66 44 89 43 06        - mov [rbx+06],r8w
+// ---------- DONE INJECTING  ----------
+LikeaDragonIshin-WinGDK-Shipping.exe+136D86A: 66 45 85 C0           - test r8w,r8w
+LikeaDragonIshin-WinGDK-Shipping.exe+136D86E: 75 27                 - jne LikeaDragonIshin-WinGDK-Shipping.exe+136D897
+LikeaDragonIshin-WinGDK-Shipping.exe+136D870: 85 F6                 - test esi,esi
+LikeaDragonIshin-WinGDK-Shipping.exe+136D872: 74 23                 - je LikeaDragonIshin-WinGDK-Shipping.exe+136D897
+LikeaDragonIshin-WinGDK-Shipping.exe+136D874: 0F B7 05 7D 97 E9 04  - movzx eax,word ptr [LikeaDragonIshin-WinGDK-Shipping.exe+6206FF8]
+LikeaDragonIshin-WinGDK-Shipping.exe+136D87B: 33 C9                 - xor ecx,ecx
+LikeaDragonIshin-WinGDK-Shipping.exe+136D87D: 66 89 03              - mov [rbx],ax
+LikeaDragonIshin-WinGDK-Shipping.exe+136D880: 48 89 53 02           - mov [rbx+02],rdx
+LikeaDragonIshin-WinGDK-Shipping.exe+136D884: 48 89 4B 0A           - mov [rbx+0A],rcx
+LikeaDragonIshin-WinGDK-Shipping.exe+136D888: 89 4B 12              - mov [rbx+12],ecx
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>9</ID>
+      <Description>"自动汇编脚本"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Like a Dragon: Ishin!  
+  Version: 
+  Date   : 2023-10-17
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LikeaDragonIshin-WinGDK-Shipping.exe,44 89 82 68 78 01 00) // should be unique
+alloc(newmem,$1000,INJECT)
+alloc(bal,8)
+registersymbol(bal)
+label(code)
+label(return)
+
+ball:
+  dd 0
+newmem:
+
+code:
+  mov [bal],rdx
+  mov [rdx+00017868],r8d
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 44 89 82 68 78 01 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+unregistersymbol(bal)
+dealloc(bal)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LikeaDragonIshin-WinGDK-Shipping.exe+137303E
+
+LikeaDragonIshin-WinGDK-Shipping.exe+137301A: 41 8B C6              - mov eax,r14d
+LikeaDragonIshin-WinGDK-Shipping.exe+137301D: 44 8B 04 B9           - mov r8d,[rcx+rdi*4]
+LikeaDragonIshin-WinGDK-Shipping.exe+1373021: 48 8D 14 BE           - lea rdx,[rsi+rdi*4]
+LikeaDragonIshin-WinGDK-Shipping.exe+1373025: 8B 8A 68 78 01 00     - mov ecx,[rdx+00017868]
+LikeaDragonIshin-WinGDK-Shipping.exe+137302B: BD FF C9 9A 3B        - mov ebp,3B9AC9FF
+LikeaDragonIshin-WinGDK-Shipping.exe+1373030: 03 CB                 - add ecx,ebx
+LikeaDragonIshin-WinGDK-Shipping.exe+1373032: 85 C9                 - test ecx,ecx
+LikeaDragonIshin-WinGDK-Shipping.exe+1373034: 0F 4F C1              - cmovg eax,ecx
+LikeaDragonIshin-WinGDK-Shipping.exe+1373037: 41 3B C0              - cmp eax,r8d
+LikeaDragonIshin-WinGDK-Shipping.exe+137303A: 44 0F 4C C0           - cmovl r8d,eax
+// ---------- INJECTING HERE ----------
+LikeaDragonIshin-WinGDK-Shipping.exe+137303E: 44 89 82 68 78 01 00  - mov [rdx+00017868],r8d
+// ---------- DONE INJECTING  ----------
+LikeaDragonIshin-WinGDK-Shipping.exe+1373045: 85 FF                 - test edi,edi
+LikeaDragonIshin-WinGDK-Shipping.exe+1373047: 75 24                 - jne LikeaDragonIshin-WinGDK-Shipping.exe+137306D
+LikeaDragonIshin-WinGDK-Shipping.exe+1373049: 85 DB                 - test ebx,ebx
+LikeaDragonIshin-WinGDK-Shipping.exe+137304B: 79 20                 - jns LikeaDragonIshin-WinGDK-Shipping.exe+137306D
+LikeaDragonIshin-WinGDK-Shipping.exe+137304D: 8B C3                 - mov eax,ebx
+LikeaDragonIshin-WinGDK-Shipping.exe+137304F: 41 8B CE              - mov ecx,r14d
+LikeaDragonIshin-WinGDK-Shipping.exe+1373052: 99                    - cdq 
+LikeaDragonIshin-WinGDK-Shipping.exe+1373053: 33 C2                 - xor eax,edx
+LikeaDragonIshin-WinGDK-Shipping.exe+1373055: 2B C2                 - sub eax,edx
+LikeaDragonIshin-WinGDK-Shipping.exe+1373057: 03 86 70 96 01 00     - add eax,[rsi+00019670]
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>10</ID>
+          <Description>"无描述"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>[bal]+00017868</Address>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"珠子"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Byte</VariableType>
+      <Address>14615EE68</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"珠子"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Byte</VariableType>
+      <Address>14615EE69</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"珠子"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Byte</VariableType>
+      <Address>14615EE6A</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"珠子"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Byte</VariableType>
+      <Address>14615EE6B</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"珠子"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Byte</VariableType>
+      <Address>"LikeaDragonIshin-WinGDK-Shipping.exe"+615EE6C</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>22</ID>
+      <Description>"加强子弹"</Description>
+      <VariableType>2 Bytes</VariableType>
+      <Address>1461655B2</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>21</ID>
+      <Description>"蔬菜相关（白萝卜"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>2 Bytes</VariableType>
+      <Address>"LikeaDragonIshin-WinGDK-Shipping.exe"+616A0CA</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>7</ID>
+      <Description>"银子"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"LikeaDragonIshin-WinGDK-Shipping.exe"+616F148</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>26</ID>
+      <Description>"筹码"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"LikeaDragonIshin-WinGDK-Shipping.exe"+616F158</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>27</ID>
+      <Description>"麻将点棒"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>14616F160</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>28</ID>
+      <Description>"无描述"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>14616F168</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>19</ID>
+      <Description>"斗玉"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"LikeaDragonIshin-WinGDK-Shipping.exe"+616F170</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>15</ID>
+      <Description>"德"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"LikeaDragonIshin-WinGDK-Shipping.exe"+616F178</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>29</ID>
+      <Description>"奖券"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>14616F184</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>30</ID>
+      <Description>"铁匠经验"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>14616F1A8</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>31</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>132F11E38</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>32</ID>
+      <Description>"物品栏第一格"</Description>
+      <VariableType>2 Bytes</VariableType>
+      <Address>14615F14A</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

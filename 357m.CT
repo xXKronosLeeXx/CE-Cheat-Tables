@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"无描述"</Description>
+      <LastState Value="1" RealAddress="342A2AD0"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>342A2AD0</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"无描述"</Description>
+      <LastState Value="80" RealAddress="1915F828"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>1915F828</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"无描述"</Description>
+      <LastState Value="80" RealAddress="1290B564"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>1290B564</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"读取就999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : WILD HEARTS
+  Version: 
+  Date   : 2023-12-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,WILD HEARTS.exe,8B 43 54 3B C1 73 06 44 89 7B 54 EB 05 2B C1) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov eax,#999
+  cmp eax,ecx
+  jae "WILD HEARTS.exe"+412ED30
+  mov [rbx+54],r15d
+  jmp "WILD HEARTS.exe"+412ED35
+  sub eax,ecx
+  jmp return
+
+code:
+  mov eax,[rbx+54]
+  cmp eax,ecx
+  jae "WILD HEARTS.exe"+412ED30
+  mov [rbx+54],r15d
+  jmp "WILD HEARTS.exe"+412ED35
+  sub eax,ecx
+  jmp return
+
+INJECT:
+  jmp far newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 8B 43 54 3B C1 73 06 44 89 7B 54 EB 05 2B C1
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: WILD HEARTS.exe+412ED23
+
+WILD HEARTS.exe+412ECF3: 81 38 C7 00 00 00     - cmp [rax],000000C7
+WILD HEARTS.exe+412ECF9: 76 0D                 - jna "WILD HEARTS.exe"+412ED08
+WILD HEARTS.exe+412ECFB: 81 78 04 58 02 00 00  - cmp [rax+04],00000258
+WILD HEARTS.exe+412ED02: 0F 87 5D 06 00 00     - ja "WILD HEARTS.exe"+412F365
+WILD HEARTS.exe+412ED08: 48 8B D6              - mov rdx,rsi
+WILD HEARTS.exe+412ED0B: 48 8D 4D B0           - lea rcx,[rbp-50]
+WILD HEARTS.exe+412ED0F: E8 6C FC FF FF        - call "WILD HEARTS.exe"+412E980
+WILD HEARTS.exe+412ED14: 81 38 2D 01 00 00     - cmp [rax],0000012D
+WILD HEARTS.exe+412ED1A: 0F 85 45 06 00 00     - jne "WILD HEARTS.exe"+412F365
+WILD HEARTS.exe+412ED20: 8B 4F 0C              - mov ecx,[rdi+0C]
+// ---------- INJECTING HERE ----------
+WILD HEARTS.exe+412ED23: 8B 43 54              - mov eax,[rbx+54]
+// ---------- DONE INJECTING  ----------
+WILD HEARTS.exe+412ED26: 3B C1                 - cmp eax,ecx
+WILD HEARTS.exe+412ED28: 73 06                 - jae "WILD HEARTS.exe"+412ED30
+WILD HEARTS.exe+412ED2A: 44 89 7B 54           - mov [rbx+54],r15d
+WILD HEARTS.exe+412ED2E: EB 05                 - jmp "WILD HEARTS.exe"+412ED35
+WILD HEARTS.exe+412ED30: 2B C1                 - sub eax,ecx
+WILD HEARTS.exe+412ED32: 89 43 54              - mov [rbx+54],eax
+WILD HEARTS.exe+412ED35: 48 63 06              - movsxd  rax,dword ptr [rsi]
+WILD HEARTS.exe+412ED38: 3D 2B 01 00 00        - cmp eax,0000012B
+WILD HEARTS.exe+412ED3D: 77 2D                 - ja "WILD HEARTS.exe"+412ED6C
+WILD HEARTS.exe+412ED3F: 48 8B D0              - mov rdx,rax
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"只增不减"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : WILD HEARTS
+  Version: 
+  Date   : 2023-12-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,WILD HEARTS.exe,89 43 54 48 63 06 3D 2B 01 00 00 77 2D 48 8B D0) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [rbx+54],eax
+  jb code
+//  cmp [rbx+54],#9999
+//  jae code
+  mov [rbx+54],#9999
+  movsxd  rax,dword ptr [rsi]
+  cmp eax,0000012B
+  ja "WILD HEARTS.exe"+412ED6C
+  mov rdx,rax
+  jmp return
+
+code:
+  mov [rbx+54],eax
+  movsxd  rax,dword ptr [rsi]
+  cmp eax,0000012B
+  ja "WILD HEARTS.exe"+412ED6C
+  mov rdx,rax
+  jmp return
+
+INJECT:
+  jmp far newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 43 54 48 63 06 3D 2B 01 00 00 77 2D 48 8B D0
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: WILD HEARTS.exe+412ED32
+
+WILD HEARTS.exe+412ED0F: E8 6C FC FF FF           - call "WILD HEARTS.exe"+412E980
+WILD HEARTS.exe+412ED14: 81 38 2D 01 00 00        - cmp [rax],0000012D
+WILD HEARTS.exe+412ED1A: 0F 85 45 06 00 00        - jne "WILD HEARTS.exe"+412F365
+WILD HEARTS.exe+412ED20: 8B 4F 0C                 - mov ecx,[rdi+0C]
+WILD HEARTS.exe+412ED23: 8B 43 54                 - mov eax,[rbx+54]
+WILD HEARTS.exe+412ED26: 3B C1                    - cmp eax,ecx
+WILD HEARTS.exe+412ED28: 73 06                    - jae "WILD HEARTS.exe"+412ED30
+WILD HEARTS.exe+412ED2A: 44 89 7B 54              - mov [rbx+54],r15d
+WILD HEARTS.exe+412ED2E: EB 05                    - jmp "WILD HEARTS.exe"+412ED35
+WILD HEARTS.exe+412ED30: 2B C1                    - sub eax,ecx
+// ---------- INJECTING HERE ----------
+WILD HEARTS.exe+412ED32: 89 43 54                 - mov [rbx+54],eax
+// ---------- DONE INJECTING  ----------
+WILD HEARTS.exe+412ED35: 48 63 06                 - movsxd  rax,dword ptr [rsi]
+WILD HEARTS.exe+412ED38: 3D 2B 01 00 00           - cmp eax,0000012B
+WILD HEARTS.exe+412ED3D: 77 2D                    - ja "WILD HEARTS.exe"+412ED6C
+WILD HEARTS.exe+412ED3F: 48 8B D0                 - mov rdx,rax
+WILD HEARTS.exe+412ED42: 48 3D 2C 01 00 00        - cmp rax,0000012C
+WILD HEARTS.exe+412ED48: 0F 83 3B 06 00 00        - jae "WILD HEARTS.exe"+412F389
+WILD HEARTS.exe+412ED4E: 48 8B C8                 - mov rcx,rax
+WILD HEARTS.exe+412ED51: 48 C1 E9 06              - shr rcx,06
+WILD HEARTS.exe+412ED55: 83 E2 3F                 - and edx,3F
+WILD HEARTS.exe+412ED58: 48 8B 84 CB B8 4E 10 00  - mov rax,[rbx+rcx*8+00104EB8]
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

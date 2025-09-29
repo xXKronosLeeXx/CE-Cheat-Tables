@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"零件9999（界面）"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048,Currency:AddTechpoints+4b) 
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+mov [rax+10],#9999
+test edi,edi
+jmp exit
+
+originalcode:
+mov [rax+10],ecx
+test edi,edi
+
+exit:
+jmp returnhere
+
+Currency:AddTechpoints+4b:
+jmp newmem
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+Currency:AddTechpoints+4b:
+db 89 48 10 85 FF
+//mov [rax+10],ecx
+//test edi,edi
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>7</ID>
+      <Description>"能量不减（战斗）"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048,SpaceRush.Accumulator:Increase+62) 
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+nop //movss xmm0,[rsi+14]
+jmp exit
+
+originalcode:
+movss xmm0,[rsi+14]
+
+exit:
+jmp returnhere
+
+SpaceRush.Accumulator:Increase+62:
+jmp newmem
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+SpaceRush.Accumulator:Increase+62:
+db F3 0F 10 46 14
+//movss xmm0,[rsi+14]
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>替换了 mov eax,[rbx]</Description>
+      <AddressString>mono-2.0-bdwgc.dll+B5D01</AddressString>
+      <Before>
+        <Byte>48</Byte>
+        <Byte>85</Byte>
+        <Byte>DB</Byte>
+        <Byte>74</Byte>
+        <Byte>06</Byte>
+      </Before>
+      <Actual>
+        <Byte>8B</Byte>
+        <Byte>03</Byte>
+      </Actual>
+      <After>
+        <Byte>89</Byte>
+        <Byte>07</Byte>
+        <Byte>EB</Byte>
+        <Byte>A2</Byte>
+        <Byte>33</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>替换了 mov [rdi],eax</Description>
+      <AddressString>mono-2.0-bdwgc.dll+B5D03</AddressString>
+      <Before>
+        <Byte>DB</Byte>
+        <Byte>74</Byte>
+        <Byte>06</Byte>
+        <Byte>8B</Byte>
+        <Byte>03</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>07</Byte>
+      </Actual>
+      <After>
+        <Byte>EB</Byte>
+        <Byte>A2</Byte>
+        <Byte>33</Byte>
+        <Byte>C0</Byte>
+        <Byte>89</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>替换了 movss xmm0,[rsi+14]</Description>
+      <AddressString>18403EDA9F2</AddressString>
+      <Before>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>11</Byte>
+        <Byte>6E</Byte>
+        <Byte>14</Byte>
+      </Before>
+      <Actual>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>10</Byte>
+        <Byte>46</Byte>
+        <Byte>14</Byte>
+      </Actual>
+      <After>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>5A</Byte>
+        <Byte>C0</Byte>
+        <Byte>F3</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>

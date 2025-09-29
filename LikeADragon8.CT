@@ -1,0 +1,1218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>54</ID>
+      <Description>"春日数据"</Description>
+      <Options moManualExpandCollapse="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <Color>0000FF</Color>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>32</ID>
+          <Description>"春日HP"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"LikeADragon8.exe"+038E6340</Address>
+          <Offsets>
+            <Offset>3B8-10</Offset>
+            <Offset>8</Offset>
+            <Offset>250</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>31</ID>
+          <Description>"春日上限"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"LikeADragon8.exe"+038E6340</Address>
+          <Offsets>
+            <Offset>3B8-8</Offset>
+            <Offset>8</Offset>
+            <Offset>250</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>28</ID>
+          <Description>"春日MP"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"LikeADragon8.exe"+038C8750</Address>
+          <Offsets>
+            <Offset>3B8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>29</ID>
+          <Description>"春日MP上限"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"LikeADragon8.exe"+038E29A0</Address>
+          <Offsets>
+            <Offset>3B8+4</Offset>
+            <Offset>8</Offset>
+            <Offset>250</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>44</ID>
+      <Description>"配送小游戏功能"</Description>
+      <Options moManualExpandCollapse="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <Color>0000FF</Color>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>42</ID>
+          <Description>"加钱1"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : LikeADragon8.exe
+  Version: 
+  Date   : 2024-10-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LikeADragon8.exe,20 6E FF 90 01 AF D4 00 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [rdi+000000D4],#99999
+  jmp return
+
+code:
+  add [rdi+000000D4],ebp
+  jmp return
+
+INJECT+04:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+04:
+  db 01 AF D4 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LikeADragon8.exe+DB64C4
+
+LikeADragon8.exe+DB649A: 48 8B F9              - mov rdi,rcx
+LikeADragon8.exe+DB649D: 8B 81 F8 01 00 00     - mov eax,[rcx+000001F8]
+LikeADragon8.exe+DB64A3: 83 E8 03              - sub eax,03
+LikeADragon8.exe+DB64A6: 83 F8 01              - cmp eax,01
+LikeADragon8.exe+DB64A9: 0F 87 27 01 00 00     - ja LikeADragon8.exe+DB65D6
+LikeADragon8.exe+DB64AF: 48 8D 99 70 01 00 00  - lea rbx,[rcx+00000170]
+LikeADragon8.exe+DB64B6: 48 89 5C 24 30        - mov [rsp+30],rbx
+LikeADragon8.exe+DB64BB: 48 8B CB              - mov rcx,rbx
+LikeADragon8.exe+DB64BE: E8 5D 20 6E FF        - call LikeADragon8.exe+498520
+LikeADragon8.exe+DB64C3: 90                    - nop 
+// ---------- INJECTING HERE ----------
+LikeADragon8.exe+DB64C4: 01 AF D4 00 00 00     - add [rdi+000000D4],ebp
+// ---------- DONE INJECTING  ----------
+LikeADragon8.exe+DB64CA: 48 8B B7 F0 00 00 00  - mov rsi,[rdi+000000F0]
+LikeADragon8.exe+DB64D1: 45 33 F6              - xor r14d,r14d
+LikeADragon8.exe+DB64D4: 85 ED                 - test ebp,ebp
+LikeADragon8.exe+DB64D6: 0F 84 F4 00 00 00     - je LikeADragon8.exe+DB65D0
+LikeADragon8.exe+DB64DC: 8B 46 20              - mov eax,[rsi+20]
+LikeADragon8.exe+DB64DF: 89 44 24 28           - mov [rsp+28],eax
+LikeADragon8.exe+DB64E3: 4C 8B C5              - mov r8,rbp
+LikeADragon8.exe+DB64E6: 41 B1 01              - mov r9b,01
+LikeADragon8.exe+DB64E9: 48 8D 54 24 28        - lea rdx,[rsp+28]
+LikeADragon8.exe+DB64EE: 48 8D 4C 24 20        - lea rcx,[rsp+20]
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>43</ID>
+          <Description>"加钱2"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : LikeADragon8.exe
+  Version: 
+  Date   : 2024-10-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LikeADragon8.exe,01 B7 D4 00 00 00 0F AE F0 C7) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [rdi+000000D4],#88888
+  jmp return
+
+code:
+  add [rdi+000000D4],esi
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 01 B7 D4 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LikeADragon8.exe+DD90EB
+
+LikeADragon8.exe+DD90BF: 66 42 83 7C 20 0C 03              - cmp word ptr [rax+r12+0C],03
+LikeADragon8.exe+DD90C6: 0F 85 83 00 00 00                 - jne LikeADragon8.exe+DD914F
+LikeADragon8.exe+DD90CC: 4E 8B 2C 20                       - mov r13,[rax+r12]
+LikeADragon8.exe+DD90D0: 4D 85 ED                          - test r13,r13
+LikeADragon8.exe+DD90D3: 74 7A                             - je LikeADragon8.exe+DD914F
+LikeADragon8.exe+DD90D5: 49 8B CE                          - mov rcx,r14
+LikeADragon8.exe+DD90D8: E8 D3 EA FF FF                    - call LikeADragon8.exe+DD7BB0
+LikeADragon8.exe+DD90DD: 8B F0                             - mov esi,eax
+LikeADragon8.exe+DD90DF: 48 8D 8F 70 01 00 00              - lea rcx,[rdi+00000170]
+LikeADragon8.exe+DD90E6: E8 35 F4 6B FF                    - call LikeADragon8.exe+498520
+// ---------- INJECTING HERE ----------
+LikeADragon8.exe+DD90EB: 01 B7 D4 00 00 00                 - add [rdi+000000D4],esi
+// ---------- DONE INJECTING  ----------
+LikeADragon8.exe+DD90F1: 0F AE                             - mfence 
+LikeADragon8.exe+DD90F3: F0 C7 87 70 01 00 00 00 00 00 00  - lock mov [rdi+00000170],00000000
+LikeADragon8.exe+DD90FE: 49 8B B5 20 01 00 00              - mov rsi,[r13+00000120]
+LikeADragon8.exe+DD9105: 49 8B CD                          - mov rcx,r13
+LikeADragon8.exe+DD9108: E8 03 C4 01 00                    - call LikeADragon8.exe+DF5510
+LikeADragon8.exe+DD910D: 8B E8                             - mov ebp,eax
+LikeADragon8.exe+DD910F: 49 8B CD                          - mov rcx,r13
+LikeADragon8.exe+DD9112: E8 59 C3 01 00                    - call LikeADragon8.exe+DF5470
+LikeADragon8.exe+DD9117: 89 44 24 70                       - mov [rsp+70],eax
+LikeADragon8.exe+DD911B: 48 8D 5E 04                       - lea rbx,[rsi+04]
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>38</ID>
+      <Description>"恋爱软件"</Description>
+      <Options moManualExpandCollapse="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+      <LastState Value="" Activated="1" RealAddress="00000000"/>
+      <Color>0000FF</Color>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>36</ID>
+          <Description>"恋爱软件好感+99"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : LikeADragon8.exe
+  Version: 
+  Date   : 2024-10-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LikeADragon8.exe,01 58 04 48 8B 57 78) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [rax+04],#99
+  mov rdx,[rdi+78]
+  jmp return
+
+code:
+  add [rax+04],ebx
+  mov rdx,[rdi+78]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 01 58 04 48 8B 57 78
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LikeADragon8.exe+2583B80
+
+LikeADragon8.exe+2583B56: 48 83 EC 20           - sub rsp,20
+LikeADragon8.exe+2583B5A: 48 8B 41 78           - mov rax,[rcx+78]
+LikeADragon8.exe+2583B5E: 4C 8D 4C 24 38        - lea r9,[rsp+38]
+LikeADragon8.exe+2583B63: 4C 8D 44 24 40        - lea r8,[rsp+40]
+LikeADragon8.exe+2583B68: 48 8B F9              - mov rdi,rcx
+LikeADragon8.exe+2583B6B: 48 8D 54 24 30        - lea rdx,[rsp+30]
+LikeADragon8.exe+2583B70: 8B 58 08              - mov ebx,[rax+08]
+LikeADragon8.exe+2583B73: E8 C8 00 00 00        - call LikeADragon8.exe+2583C40
+LikeADragon8.exe+2583B78: 48 8B 47 78           - mov rax,[rdi+78]
+LikeADragon8.exe+2583B7C: 8B 4C 24 30           - mov ecx,[rsp+30]
+// ---------- INJECTING HERE ----------
+LikeADragon8.exe+2583B80: 01 58 04              - add [rax+04],ebx
+// ---------- DONE INJECTING  ----------
+LikeADragon8.exe+2583B83: 48 8B 57 78           - mov rdx,[rdi+78]
+LikeADragon8.exe+2583B87: 8B 44 24 38           - mov eax,[rsp+38]
+LikeADragon8.exe+2583B8B: 48 8B 5C 24 48        - mov rbx,[rsp+48]
+LikeADragon8.exe+2583B90: 39 4A 04              - cmp [rdx+04],ecx
+LikeADragon8.exe+2583B93: 0F 47 4A 04           - cmova ecx,[rdx+04]
+LikeADragon8.exe+2583B97: 3B C8                 - cmp ecx,eax
+LikeADragon8.exe+2583B99: 0F 42 C1              - cmovb eax,ecx
+LikeADragon8.exe+2583B9C: 89 42 04              - mov [rdx+04],eax
+LikeADragon8.exe+2583B9F: 48 8B 47 78           - mov rax,[rdi+78]
+LikeADragon8.exe+2583BA3: C7 40 08 00 00 00 00  - mov [rax+08],00000000
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>37</ID>
+          <Description>"恋爱软件好感不减"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : LikeADragon8.exe
+  Version: 
+  Date   : 2024-10-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LikeADragon8.exe,29 70 04 48 8B 57 78) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop//  sub [rax+04],esi
+  mov rdx,[rdi+78]
+  jmp return
+
+code:
+  sub [rax+04],esi
+  mov rdx,[rdi+78]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 29 70 04 48 8B 57 78
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LikeADragon8.exe+25A65DC
+
+LikeADragon8.exe+25A65B2: 77 09                 - ja LikeADragon8.exe+25A65BD
+LikeADragon8.exe+25A65B4: C7 40 04 00 00 00 00  - mov [rax+04],00000000
+LikeADragon8.exe+25A65BB: EB 39                 - jmp LikeADragon8.exe+25A65F6
+LikeADragon8.exe+25A65BD: 4C 8D 4C 24 48        - lea r9,[rsp+48]
+LikeADragon8.exe+25A65C2: 48 8B CF              - mov rcx,rdi
+LikeADragon8.exe+25A65C5: 4C 8D 44 24 50        - lea r8,[rsp+50]
+LikeADragon8.exe+25A65CA: 48 8D 54 24 40        - lea rdx,[rsp+40]
+LikeADragon8.exe+25A65CF: E8 6C D6 FD FF        - call LikeADragon8.exe+2583C40
+LikeADragon8.exe+25A65D4: 48 8B 47 78           - mov rax,[rdi+78]
+LikeADragon8.exe+25A65D8: 8B 4C 24 40           - mov ecx,[rsp+40]
+// ---------- INJECTING HERE ----------
+LikeADragon8.exe+25A65DC: 29 70 04              - sub [rax+04],esi
+// ---------- DONE INJECTING  ----------
+LikeADragon8.exe+25A65DF: 48 8B 57 78           - mov rdx,[rdi+78]
+LikeADragon8.exe+25A65E3: 8B 44 24 48           - mov eax,[rsp+48]
+LikeADragon8.exe+25A65E7: 39 4A 04              - cmp [rdx+04],ecx
+LikeADragon8.exe+25A65EA: 0F 47 4A 04           - cmova ecx,[rdx+04]
+LikeADragon8.exe+25A65EE: 3B C8                 - cmp ecx,eax
+LikeADragon8.exe+25A65F0: 0F 42 C1              - cmovb eax,ecx
+LikeADragon8.exe+25A65F3: 89 42 04              - mov [rdx+04],eax
+LikeADragon8.exe+25A65F6: 48 8B 47 78           - mov rax,[rdi+78]
+LikeADragon8.exe+25A65FA: 48 8B 74 24 20        - mov rsi,[rsp+20]
+LikeADragon8.exe+25A65FF: C7 40 0C 00 00 00 00  - mov [rax+0C],00000000
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>59</ID>
+      <Description>"太鼓岛相关"</Description>
+      <Options moManualExpandCollapse="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <Color>0000FF</Color>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>71</ID>
+          <Description>"M币增加999999"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : LikeADragon8.exe
+  Version: 
+  Date   : 2024-10-07
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LikeADragon8.exe,49 01 70 18 49 8B 58 18) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [r8+18],#9999999
+  mov rbx,[r8+18]
+  jmp return
+
+code:
+  add [r8+18],rsi
+  mov rbx,[r8+18]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 49 01 70 18 49 8B 58 18
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LikeADragon8.exe+1C87E43
+
+LikeADragon8.exe+1C87E1A: 48 89 74 24 18        - mov [rsp+18],rsi
+LikeADragon8.exe+1C87E1F: 57                    - push rdi
+LikeADragon8.exe+1C87E20: 48 83 EC 20           - sub rsp,20
+LikeADragon8.exe+1C87E24: 48 8B E9              - mov rbp,rcx
+LikeADragon8.exe+1C87E27: 48 8B F2              - mov rsi,rdx
+LikeADragon8.exe+1C87E2A: B9 1B 00 00 00        - mov ecx,0000001B
+LikeADragon8.exe+1C87E2F: E8 DC 90 6F FF        - call LikeADragon8.exe+1380F10
+LikeADragon8.exe+1C87E34: B9 03 00 00 00        - mov ecx,00000003
+LikeADragon8.exe+1C87E39: 48 8B F8              - mov rdi,rax
+LikeADragon8.exe+1C87E3C: 4C 8B 80 98 00 00 00  - mov r8,[rax+00000098]
+// ---------- INJECTING HERE ----------
+LikeADragon8.exe+1C87E43: 49 01 70 18           - add [r8+18],rsi
+// ---------- DONE INJECTING  ----------
+LikeADragon8.exe+1C87E47: 49 8B 58 18           - mov rbx,[r8+18]
+LikeADragon8.exe+1C87E4B: E8 40 08 02 FF        - call LikeADragon8.exe+CA8690
+LikeADragon8.exe+1C87E50: 48 8B 8F 98 00 00 00  - mov rcx,[rdi+00000098]
+LikeADragon8.exe+1C87E57: 48 3B D8              - cmp rbx,rax
+LikeADragon8.exe+1C87E5A: 48 0F 42 C3           - cmovb rax,rbx
+LikeADragon8.exe+1C87E5E: 48 89 41 18           - mov [rcx+18],rax
+LikeADragon8.exe+1C87E62: B8 FF E0 F5 05        - mov eax,05F5E0FF
+LikeADragon8.exe+1C87E67: 8B 4D 10              - mov ecx,[rbp+10]
+LikeADragon8.exe+1C87E6A: 03 CE                 - add ecx,esi
+LikeADragon8.exe+1C87E6C: 3B C8                 - cmp ecx,eax
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>66</ID>
+          <Description>"制作伴手礼材料不减反增"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : LikeADragon8.exe
+  Version: 
+  Date   : 2024-10-06
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LikeADragon8.exe,2B FD 89 7B 10) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  add edi,ebp
+  mov [rbx+10],edi
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 2B FD 89 7B 10
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LikeADragon8.exe+1C758DD
+
+LikeADragon8.exe+1C758C0: 01 28                 - add [rax],ebp
+LikeADragon8.exe+1C758C2: E8 39 EE 08 FF        - call LikeADragon8.exe+D04700
+LikeADragon8.exe+1C758C7: 39 03                 - cmp [rbx],eax
+LikeADragon8.exe+1C758C9: 0F 42 03              - cmovb eax,[rbx]
+LikeADragon8.exe+1C758CC: 89 03                 - mov [rbx],eax
+LikeADragon8.exe+1C758CE: EB 12                 - jmp LikeADragon8.exe+1C758E2
+LikeADragon8.exe+1C758D0: 3B FD                 - cmp edi,ebp
+LikeADragon8.exe+1C758D2: 73 09                 - jae LikeADragon8.exe+1C758DD
+LikeADragon8.exe+1C758D4: C7 43 10 00 00 00 00  - mov [rbx+10],00000000
+LikeADragon8.exe+1C758DB: EB 05                 - jmp LikeADragon8.exe+1C758E2
+// ---------- INJECTING HERE ----------
+LikeADragon8.exe+1C758DD: 2B FD                 - sub edi,ebp
+// ---------- DONE INJECTING  ----------
+LikeADragon8.exe+1C758DF: 89 7B 10              - mov [rbx+10],edi
+LikeADragon8.exe+1C758E2: 48 8B 5C 24 30        - mov rbx,[rsp+30]
+LikeADragon8.exe+1C758E7: 48 8B 6C 24 38        - mov rbp,[rsp+38]
+LikeADragon8.exe+1C758EC: 48 8B 74 24 40        - mov rsi,[rsp+40]
+LikeADragon8.exe+1C758F1: 48 83 C4 20           - add rsp,20
+LikeADragon8.exe+1C758F5: 5F                    - pop rdi
+LikeADragon8.exe+1C758F6: C3                    - ret 
+LikeADragon8.exe+1C758F7: CC                    - int 3 
+LikeADragon8.exe+1C758F8: CC                    - int 3 
+LikeADragon8.exe+1C758F9: CC                    - int 3 
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>53</ID>
+          <Description>"太鼓岛泽尼money+999999"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : LikeADragon8.exe
+  Version: 
+  Date   : 2024-10-05
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LikeADragon8.exe,48 89 42 08 48 8B CD) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [rdx+08],#999999
+  mov rcx,rbp
+  jmp return
+
+code:
+  mov [rdx+08],rax
+  mov rcx,rbp
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 48 89 42 08 48 8B CD
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LikeADragon8.exe+1C88C4F
+
+LikeADragon8.exe+1C88C2A: 49 8B D8              - mov rbx,r8
+LikeADragon8.exe+1C88C2D: 48 2B DF              - sub rbx,rdi
+LikeADragon8.exe+1C88C30: 33 C0                 - xor eax,eax
+LikeADragon8.exe+1C88C32: 4C 3B C7              - cmp r8,rdi
+LikeADragon8.exe+1C88C35: 48 0F 46 D8           - cmovbe rbx,rax
+LikeADragon8.exe+1C88C39: 8D 48 01              - lea ecx,[rax+01]
+LikeADragon8.exe+1C88C3C: E8 4F FA 01 FF        - call LikeADragon8.exe+CA8690
+LikeADragon8.exe+1C88C41: 48 3B D8              - cmp rbx,rax
+LikeADragon8.exe+1C88C44: 48 0F 42 C3           - cmovb rax,rbx
+LikeADragon8.exe+1C88C48: 48 8B 96 98 00 00 00  - mov rdx,[rsi+00000098]
+// ---------- INJECTING HERE ----------
+LikeADragon8.exe+1C88C4F: 48 89 42 08           - mov [rdx+08],rax
+// ---------- DONE INJECTING  ----------
+LikeADragon8.exe+1C88C53: 48 8B CD              - mov rcx,rbp
+LikeADragon8.exe+1C88C56: E8 15 F8 80 FE        - call LikeADragon8.exe+498470
+LikeADragon8.exe+1C88C5B: 90                    - nop 
+LikeADragon8.exe+1C88C5C: 48 8B 5C 24 38        - mov rbx,[rsp+38]
+LikeADragon8.exe+1C88C61: 48 8B 6C 24 40        - mov rbp,[rsp+40]
+LikeADragon8.exe+1C88C66: 48 8B 74 24 48        - mov rsi,[rsp+48]
+LikeADragon8.exe+1C88C6B: 48 83 C4 20           - add rsp,20
+LikeADragon8.exe+1C88C6F: 5F                    - pop rdi
+LikeADragon8.exe+1C88C70: C3                    - ret 
+LikeADragon8.exe+1C88C71: CC                    - int 3 
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>56</ID>
+          <Description>"制作材料使用不减"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : LikeADragon8.exe
+  Version: 
+  Date   : 2024-10-05
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LikeADragon8.exe,42 29 1C B8 EB 0C) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+nop//  sub [rax+r15*4],ebx
+  jmp LikeADragon8.exe+1C8A5FD
+  jmp return
+
+
+code:
+  sub [rax+r15*4],ebx
+  jmp LikeADragon8.exe+1C8A5FD
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 42 29 1C B8 EB 0C
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LikeADragon8.exe+1C8A5EB
+
+LikeADragon8.exe+1C8A5D0: 39 06                    - cmp [rsi],eax
+LikeADragon8.exe+1C8A5D2: 0F 42 06                 - cmovb eax,[rsi]
+LikeADragon8.exe+1C8A5D5: 89 06                    - mov [rsi],eax
+LikeADragon8.exe+1C8A5D7: EB 24                    - jmp LikeADragon8.exe+1C8A5FD
+LikeADragon8.exe+1C8A5D9: E8 22 A1 07 FF           - call LikeADragon8.exe+D04700
+LikeADragon8.exe+1C8A5DE: 89 06                    - mov [rsi],eax
+LikeADragon8.exe+1C8A5E0: 41 2B DC                 - sub ebx,r12d
+LikeADragon8.exe+1C8A5E3: 85 DB                    - test ebx,ebx
+LikeADragon8.exe+1C8A5E5: 74 16                    - je LikeADragon8.exe+1C8A5FD
+LikeADragon8.exe+1C8A5E7: 49 8B 46 38              - mov rax,[r14+38]
+// ---------- INJECTING HERE ----------
+LikeADragon8.exe+1C8A5EB: 42 29 1C B8              - sub [rax+r15*4],ebx
+// ---------- DONE INJECTING  ----------
+LikeADragon8.exe+1C8A5EF: EB 0C                    - jmp LikeADragon8.exe+1C8A5FD
+LikeADragon8.exe+1C8A5F1: 49 8B 46 38              - mov rax,[r14+38]
+LikeADragon8.exe+1C8A5F5: 42 C7 04 B8 00 00 00 00  - mov [rax+r15*4],00000000
+LikeADragon8.exe+1C8A5FD: 8B B4 24 80 00 00 00     - mov esi,[rsp+00000080]
+LikeADragon8.exe+1C8A604: 48 83 C7 08              - add rdi,08
+LikeADragon8.exe+1C8A608: 49 83 ED 01              - sub r13,01
+LikeADragon8.exe+1C8A60C: 0F 85 FE FE FF FF        - jne LikeADragon8.exe+1C8A510
+LikeADragon8.exe+1C8A612: 48 8B 54 24 78           - mov rdx,[rsp+78]
+LikeADragon8.exe+1C8A617: 8B 8C 24 88 00 00 00     - mov ecx,[rsp+00000088]
+LikeADragon8.exe+1C8A61E: 85 C9                    - test ecx,ecx
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>58</ID>
+          <Description>"拾取制作材料增加77"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : LikeADragon8.exe
+  Version: 
+  Date   : 2024-10-05
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LikeADragon8.exe,30 89 04 0F 48 83 C4 20 5F C3 CC CC CC CC CC CC CC) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [rdi+rcx],#77
+  add rsp,20
+  jmp return
+
+code:
+  mov [rdi+rcx],eax
+  add rsp,20
+  jmp return
+
+INJECT+01:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+01:
+  db 89 04 0F 48 83 C4 20
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LikeADragon8.exe+1C88EFA
+
+LikeADragon8.exe+1C88ECE: B9 0D 00 00 00           - mov ecx,0000000D
+LikeADragon8.exe+1C88ED3: 48 8D 3C 85 00 00 00 00  - lea rdi,[rax*4+00000000]
+LikeADragon8.exe+1C88EDB: 48 8B 46 38              - mov rax,[rsi+38]
+LikeADragon8.exe+1C88EDF: 03 1C 38                 - add ebx,[rax+rdi]
+LikeADragon8.exe+1C88EE2: E8 89 D6 01 FF           - call LikeADragon8.exe+CA6570
+LikeADragon8.exe+1C88EE7: 48 8B 4E 38              - mov rcx,[rsi+38]
+LikeADragon8.exe+1C88EEB: 3B D8                    - cmp ebx,eax
+LikeADragon8.exe+1C88EED: 48 8B 74 24 38           - mov rsi,[rsp+38]
+LikeADragon8.exe+1C88EF2: 0F 42 C3                 - cmovb eax,ebx
+LikeADragon8.exe+1C88EF5: 48 8B 5C 24 30           - mov rbx,[rsp+30]
+// ---------- INJECTING HERE ----------
+LikeADragon8.exe+1C88EFA: 89 04 0F                 - mov [rdi+rcx],eax
+// ---------- DONE INJECTING  ----------
+LikeADragon8.exe+1C88EFD: 48 83 C4 20              - add rsp,20
+LikeADragon8.exe+1C88F01: 5F                       - pop rdi
+LikeADragon8.exe+1C88F02: C3                       - ret 
+LikeADragon8.exe+1C88F03: CC                       - int 3 
+LikeADragon8.exe+1C88F04: CC                       - int 3 
+LikeADragon8.exe+1C88F05: CC                       - int 3 
+LikeADragon8.exe+1C88F06: CC                       - int 3 
+LikeADragon8.exe+1C88F07: CC                       - int 3 
+LikeADragon8.exe+1C88F08: CC                       - int 3 
+LikeADragon8.exe+1C88F09: CC                       - int 3 
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"money"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>1D3E00008</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"money"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>1D3E04088</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>61</ID>
+      <Description>"EXP满级"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : LikeADragon8.exe
+  Version: 
+  Date   : 2024-10-06
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LikeADragon8.exe,48 89 01 C3 CC CC CC CC CC CC CC 0F) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [rcx],#2899999999
+  ret
+  int 3
+  jmp return
+
+code:
+  mov [rcx],rax
+  ret 
+  int 3 
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 48 89 01 C3 CC
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LikeADragon8.exe+14DB6A5
+
+LikeADragon8.exe+14DB67F: CC                             - int 3 
+LikeADragon8.exe+14DB680: 48 8B 01                       - mov rax,[rcx]
+LikeADragon8.exe+14DB683: 48 89 41 10                    - mov [rcx+10],rax
+LikeADragon8.exe+14DB687: 4C 8D 04 10                    - lea r8,[rax+rdx]
+LikeADragon8.exe+14DB68B: 33 D2                          - xor edx,edx
+LikeADragon8.exe+14DB68D: 4D 85 C0                       - test r8,r8
+LikeADragon8.exe+14DB690: 48 B8 FF E3 0B 54 02 00 00 00  - mov rax,00000002540BE3FF
+LikeADragon8.exe+14DB69A: 49 0F 4F D0                    - cmovg rdx,r8
+LikeADragon8.exe+14DB69E: 48 3B D0                       - cmp rdx,rax
+LikeADragon8.exe+14DB6A1: 48 0F 4C C2                    - cmovl rax,rdx
+// ---------- INJECTING HERE ----------
+LikeADragon8.exe+14DB6A5: 48 89 01                       - mov [rcx],rax
+// ---------- DONE INJECTING  ----------
+LikeADragon8.exe+14DB6A8: C3                             - ret 
+LikeADragon8.exe+14DB6A9: CC                             - int 3 
+LikeADragon8.exe+14DB6AA: CC                             - int 3 
+LikeADragon8.exe+14DB6AB: CC                             - int 3 
+LikeADragon8.exe+14DB6AC: CC                             - int 3 
+LikeADragon8.exe+14DB6AD: CC                             - int 3 
+LikeADragon8.exe+14DB6AE: CC                             - int 3 
+LikeADragon8.exe+14DB6AF: CC                             - int 3 
+LikeADragon8.exe+14DB6B0: 0F B6 41 08                    - movzx eax,byte ptr [rcx+08]
+LikeADragon8.exe+14DB6B4: 41 B8 01 00 00 00              - mov r8d,00000001
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>46</ID>
+      <Description>"职业经验值EXP满级"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : LikeADragon8.exe
+  Version: 
+  Date   : 2024-10-05
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LikeADragon8.exe,89 41 04 C3 66 2E 0F 1F 84 00 00 00 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [rcx+04],#299999999
+  ret
+  nop word ptr cs:[rax+rax+00000000]
+  jmp return
+
+
+code:
+  mov [rcx+04],eax
+  ret 
+  nop word ptr cs:[rax+rax+00000000]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 9
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 41 04 C3 66 2E 0F 1F 84 00 00 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LikeADragon8.exe+BE67DD2
+
+LikeADragon8.exe+BE67DAE: 5D                                            - pop rbp
+LikeADragon8.exe+BE67DAF: D6                                            - db D6
+LikeADragon8.exe+BE67DB0: 1F                                            - pop ds
+LikeADragon8.exe+BE67DB1: 66 66 66 66 66 66 2E 0F 1F 84 00 00 00 00 00  - nop word ptr cs:[rax+rax+00000000]
+LikeADragon8.exe+BE67DC0: 8B 41 04                                      - mov eax,[rcx+04]
+LikeADragon8.exe+BE67DC3: 01 C2                                         - add edx,eax
+LikeADragon8.exe+BE67DC5: 89 41 0C                                      - mov [rcx+0C],eax
+LikeADragon8.exe+BE67DC8: B8 FF C9 9A 3B                                - mov eax,3B9AC9FF
+LikeADragon8.exe+BE67DCD: 39 C2                                         - cmp edx,eax
+LikeADragon8.exe+BE67DCF: 0F 4C C2                                      - cmovl eax,edx
+// ---------- INJECTING HERE ----------
+LikeADragon8.exe+BE67DD2: 89 41 04                                      - mov [rcx+04],eax
+// ---------- DONE INJECTING  ----------
+LikeADragon8.exe+BE67DD5: C3                                            - ret 
+LikeADragon8.exe+BE67DD6: 66 2E 0F 1F 84 00 00 00 00 00                 - nop word ptr cs:[rax+rax+00000000]
+LikeADragon8.exe+BE67DE0: 44 00 65 00                                   - add [rbp+00],r12b
+LikeADragon8.exe+BE67DE4: 72 00                                         - jb LikeADragon8.exe+BE67DE6
+LikeADragon8.exe+BE67DE6: 20 00                                         - and [rax],al
+LikeADragon8.exe+BE67DE8: 53                                            - push rbx
+LikeADragon8.exe+BE67DE9: 00 65 00                                      - add [rbp+00],ah
+LikeADragon8.exe+BE67DEC: 72 00                                         - jb LikeADragon8.exe+BE67DEE
+LikeADragon8.exe+BE67DEE: 76 00                                         - jna LikeADragon8.exe+BE67DF0
+LikeADragon8.exe+BE67DF0: 65 00 72 00                                   - add gs:[rdx+00],dh
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>64</ID>
+      <Description>"用体力增强药后角色属性直接全9999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : LikeADragon8.exe
+  Version: 
+  Date   : 2024-10-06
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LikeADragon8.exe,66 89 0B 66 85 C9) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [rbx],#19999
+  add [rbx+2],#19999
+  add [rbx+4],#19999
+  add [rbx+6],#19999
+  add [rbx+8],#19999
+  add [rbx+a],#19999
+  add [rbx+c],#19999
+  add [rbx+e],#19999
+  test cx,cx
+  jmp return
+
+
+code:
+  mov [rbx],cx
+  test cx,cx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 66 89 0B 66 85 C9
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LikeADragon8.exe+14DE58F
+
+LikeADragon8.exe+14DE570: 48 83 C3 0E     - add rbx,0E
+LikeADragon8.exe+14DE574: EB 04           - jmp LikeADragon8.exe+14DE57A
+LikeADragon8.exe+14DE576: 48 83 C3 0C     - add rbx,0C
+LikeADragon8.exe+14DE57A: 48 85 DB        - test rbx,rbx
+LikeADragon8.exe+14DE57D: 74 1D           - je LikeADragon8.exe+14DE59C
+LikeADragon8.exe+14DE57F: 0F BF 03        - movsx eax,word ptr [rbx]
+LikeADragon8.exe+14DE582: B9 0F 27 00 00  - mov ecx,0000270F
+LikeADragon8.exe+14DE587: 03 C5           - add eax,ebp
+LikeADragon8.exe+14DE589: 3B C1           - cmp eax,ecx
+LikeADragon8.exe+14DE58B: 66 0F 4C C8     - cmovl cx,ax
+// ---------- INJECTING HERE ----------
+LikeADragon8.exe+14DE58F: 66 89 0B        - mov [rbx],cx
+// ---------- DONE INJECTING  ----------
+LikeADragon8.exe+14DE592: 66 85 C9        - test cx,cx
+LikeADragon8.exe+14DE595: 79 05           - jns LikeADragon8.exe+14DE59C
+LikeADragon8.exe+14DE597: 33 C0           - xor eax,eax
+LikeADragon8.exe+14DE599: 66 89 03        - mov [rbx],ax
+LikeADragon8.exe+14DE59C: 48 8B 5C 24 30  - mov rbx,[rsp+30]
+LikeADragon8.exe+14DE5A1: 41 0F B6 C2     - movzx eax,r10b
+LikeADragon8.exe+14DE5A5: 48 8B 6C 24 38  - mov rbp,[rsp+38]
+LikeADragon8.exe+14DE5AA: 48 8B 74 24 40  - mov rsi,[rsp+40]
+LikeADragon8.exe+14DE5AF: 48 83 C4 20     - add rsp,20
+LikeADragon8.exe+14DE5B3: 5F              - pop rdi
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"***增长逻辑+999999（影响很多地方）建议常驻***"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : LikeADragon8.exe
+  Version: 
+  Date   : 2024-09-21
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LikeADragon8.exe,48 89 3C D8 48 8B 5C 24 60) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [rax+rbx*8],#999999
+  mov rbx,[rsp+60]
+  jmp return
+
+code:
+  mov [rax+rbx*8],rdi
+  mov rbx,[rsp+60]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 4
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 48 89 3C D8 48 8B 5C 24 60
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LikeADragon8.exe+BE9A764
+
+LikeADragon8.exe+BE9A73C: 41 B8 03 00 00 00  - mov r8d,00000003
+LikeADragon8.exe+BE9A742: 48 8D 4C 24 30     - lea rcx,[rsp+30]
+LikeADragon8.exe+BE9A747: 89 C2              - mov edx,eax
+LikeADragon8.exe+BE9A749: E8 52 AC 4C F5     - call LikeADragon8.exe+13653A0
+LikeADragon8.exe+BE9A74E: 48 39 C6           - cmp rsi,rax
+LikeADragon8.exe+BE9A751: 48 0F 4F C6        - cmovg rax,rsi
+LikeADragon8.exe+BE9A755: 48 8B 74 24 68     - mov rsi,[rsp+68]
+LikeADragon8.exe+BE9A75A: 48 39 F8           - cmp rax,rdi
+LikeADragon8.exe+BE9A75D: 48 0F 4C F8        - cmovl rdi,rax
+LikeADragon8.exe+BE9A761: 49 8B 06           - mov rax,[r14]
+// ---------- INJECTING HERE ----------
+LikeADragon8.exe+BE9A764: 48 89 3C D8        - mov [rax+rbx*8],rdi
+// ---------- DONE INJECTING  ----------
+LikeADragon8.exe+BE9A768: 48 8B 5C 24 60     - mov rbx,[rsp+60]
+LikeADragon8.exe+BE9A76D: 48 8B 7C 24 70     - mov rdi,[rsp+70]
+LikeADragon8.exe+BE9A772: 48 83 C4 50        - add rsp,50
+LikeADragon8.exe+BE9A776: 41 5E              - pop r14
+LikeADragon8.exe+BE9A778: C3                 - ret 
+LikeADragon8.exe+BE9A779: CC                 - int 3 
+LikeADragon8.exe+BE9A77A: 66 90              - nop 2
+LikeADragon8.exe+BE9A77C: 0F 01 D0           - xgetbv 
+LikeADragon8.exe+BE9A77F: C3                 - ret 
+LikeADragon8.exe+BE9A780: 61                 - popad (invalid) 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>20</ID>
+      <Description>"开道具界面，所有道具999（没获得的没有"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : LikeADragon8.exe
+  Version: 
+  Date   : 2024-10-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LikeADragon8.exe,37 8B 43 04 85 C0) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rbx+04],#999
+  mov eax,[rbx+04]
+  test eax,eax
+  jmp return
+
+code:
+  mov eax,[rbx+04]
+  test eax,eax
+  jmp return
+
+INJECT+01:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+01:
+  db 8B 43 04 85 C0
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LikeADragon8.exe+14E4788
+
+LikeADragon8.exe+14E476A: 75 C9           - jne LikeADragon8.exe+14E4735
+LikeADragon8.exe+14E476C: EB 51           - jmp LikeADragon8.exe+14E47BF
+LikeADragon8.exe+14E476E: 48 8B 0F        - mov rcx,[rdi]
+LikeADragon8.exe+14E4771: 8B 5F 0C        - mov ebx,[rdi+0C]
+LikeADragon8.exe+14E4774: 48 C1 E3 04     - shl rbx,04
+LikeADragon8.exe+14E4778: 48 83 C3 F0     - add rbx,-10
+LikeADragon8.exe+14E477C: 48 03 D9        - add rbx,rcx
+LikeADragon8.exe+14E477F: 48 8D 41 F0     - lea rax,[rcx-10]
+LikeADragon8.exe+14E4783: 48 3B D8        - cmp rbx,rax
+LikeADragon8.exe+14E4786: 74 37           - je LikeADragon8.exe+14E47BF
+// ---------- INJECTING HERE ----------
+LikeADragon8.exe+14E4788: 8B 43 04        - mov eax,[rbx+04]
+// ---------- DONE INJECTING  ----------
+LikeADragon8.exe+14E478B: 85 C0           - test eax,eax
+LikeADragon8.exe+14E478D: 74 20           - je LikeADragon8.exe+14E47AF
+LikeADragon8.exe+14E478F: 89 44 24 60     - mov [rsp+60],eax
+LikeADragon8.exe+14E4793: 8B 03           - mov eax,[rbx]
+LikeADragon8.exe+14E4795: 89 44 24 68     - mov [rsp+68],eax
+LikeADragon8.exe+14E4799: 48 8B 06        - mov rax,[rsi]
+LikeADragon8.exe+14E479C: 4C 8D 44 24 60  - lea r8,[rsp+60]
+LikeADragon8.exe+14E47A1: 48 8D 54 24 68  - lea rdx,[rsp+68]
+LikeADragon8.exe+14E47A6: 48 8B CE        - mov rcx,rsi
+LikeADragon8.exe+14E47A9: FF 10           - call qword ptr [rax]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>19</ID>
+      <Description>"物品使用不减 建议常驻"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : LikeADragon8.exe
+  Version: 
+  Date   : 2024-10-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LikeADragon8.exe,44 89 70 04 B0 01) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop//mov [rax+04],r14d
+  mov al,01
+  jmp return
+
+code:
+  mov [rax+04],r14d
+  mov al,01
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 44 89 70 04 B0 01
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LikeADragon8.exe+BEC5A4E
+
+LikeADragon8.exe+BEC5A35: 5D                    - pop rbp
+LikeADragon8.exe+BEC5A36: C3                    - ret 
+LikeADragon8.exe+BEC5A37: C7 40 04 00 00 00 00  - mov [rax+04],00000000
+LikeADragon8.exe+BEC5A3E: B0 01                 - mov al,01
+LikeADragon8.exe+BEC5A40: 48 8B 5C 24 50        - mov rbx,[rsp+50]
+LikeADragon8.exe+BEC5A45: 48 83 C4 20           - add rsp,20
+LikeADragon8.exe+BEC5A49: 41 5E                 - pop r14
+LikeADragon8.exe+BEC5A4B: 5F                    - pop rdi
+LikeADragon8.exe+BEC5A4C: 5D                    - pop rbp
+LikeADragon8.exe+BEC5A4D: C3                    - ret 
+// ---------- INJECTING HERE ----------
+LikeADragon8.exe+BEC5A4E: 44 89 70 04           - mov [rax+04],r14d
+// ---------- DONE INJECTING  ----------
+LikeADragon8.exe+BEC5A52: B0 01                 - mov al,01
+LikeADragon8.exe+BEC5A54: 48 8B 5C 24 50        - mov rbx,[rsp+50]
+LikeADragon8.exe+BEC5A59: 48 83 C4 20           - add rsp,20
+LikeADragon8.exe+BEC5A5D: 41 5E                 - pop r14
+LikeADragon8.exe+BEC5A5F: 5F                    - pop rdi
+LikeADragon8.exe+BEC5A60: 5D                    - pop rbp
+LikeADragon8.exe+BEC5A61: C3                    - ret 
+LikeADragon8.exe+BEC5A62: 48 89 D6              - mov rsi,rdx
+LikeADragon8.exe+BEC5A65: 48 C1 E7 04           - shl rdi,04
+LikeADragon8.exe+BEC5A69: 48 01 F7              - add rdi,rsi
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

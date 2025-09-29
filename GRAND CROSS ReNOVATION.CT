@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>0F37DA80</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>8</ID>
+      <Description>"3号机HP"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : GRAND CROSS ReNOVATION.EXE
+  Version: 
+  Date   : 2024-08-25
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GRAND CROSS ReNOVATION.EXE,89 14 81 B8 03 00 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  add [ecx+eax*4],1
+  mov eax,00000003
+  jmp return
+
+code:
+  mov [ecx+eax*4],edx
+  mov eax,00000003
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 14 81 B8 03 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GRAND CROSS ReNOVATION.EXE+258DC
+
+GRAND CROSS ReNOVATION.EXE+258AD: 85 C0                 - test eax,eax
+GRAND CROSS ReNOVATION.EXE+258AF: 0F 8C 45 02 00 00     - jl "GRAND CROSS ReNOVATION.EXE"+25AFA
+GRAND CROSS ReNOVATION.EXE+258B5: 3D 00 01 00 00        - cmp eax,00000100
+GRAND CROSS ReNOVATION.EXE+258BA: 0F 8D 3A 02 00 00     - jnl "GRAND CROSS ReNOVATION.EXE"+25AFA
+GRAND CROSS ReNOVATION.EXE+258C0: 83 7A 18 00           - cmp dword ptr [edx+18],00
+GRAND CROSS ReNOVATION.EXE+258C4: 8B 52 14              - mov edx,[edx+14]
+GRAND CROSS ReNOVATION.EXE+258C7: 74 23                 - je "GRAND CROSS ReNOVATION.EXE"+258EC
+GRAND CROSS ReNOVATION.EXE+258C9: 8B B1 74 11 00 00     - mov esi,[ecx+00001174]
+GRAND CROSS ReNOVATION.EXE+258CF: 8B 89 78 11 00 00     - mov ecx,[ecx+00001178]
+GRAND CROSS ReNOVATION.EXE+258D5: 8B 94 96 30 01 00 00  - mov edx,[esi+edx*4+00000130]
+// ---------- INJECTING HERE ----------
+GRAND CROSS ReNOVATION.EXE+258DC: 89 14 81              - mov [ecx+eax*4],edx
+// ---------- DONE INJECTING  ----------
+GRAND CROSS ReNOVATION.EXE+258DF: B8 03 00 00 00        - mov eax,00000003
+GRAND CROSS ReNOVATION.EXE+258E4: 5F                    - pop edi
+GRAND CROSS ReNOVATION.EXE+258E5: 5E                    - pop esi
+GRAND CROSS ReNOVATION.EXE+258E6: 83 C4 08              - add esp,08
+GRAND CROSS ReNOVATION.EXE+258E9: C2 08 00              - ret 0008
+GRAND CROSS ReNOVATION.EXE+258EC: 8B B1 78 11 00 00     - mov esi,[ecx+00001178]
+GRAND CROSS ReNOVATION.EXE+258F2: 8B 04 86              - mov eax,[esi+eax*4]
+GRAND CROSS ReNOVATION.EXE+258F5: E9 F3 01 00 00        - jmp "GRAND CROSS ReNOVATION.EXE"+25AED
+GRAND CROSS ReNOVATION.EXE+258FA: 8B 42 10              - mov eax,[edx+10]
+GRAND CROSS ReNOVATION.EXE+258FD: 85 C0                 - test eax,eax
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>9</ID>
+      <Description>"指针扫描结果"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"GRAND CROSS ReNOVATION.EXE"+0005C528</Address>
+      <Offsets>
+        <Offset>10</Offset>
+        <Offset>70</Offset>
+        <Offset>0</Offset>
+        <Offset>20</Offset>
+        <Offset>50</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>10</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>0F38DA74</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>11</ID>
+      <Description>"无描述"</Description>
+      <VariableType>8 Bytes</VariableType>
+      <Address>3DCEB960</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>12</ID>
+      <Description>"无描述"</Description>
+      <VariableType>8 Bytes</VariableType>
+      <Address>2D958BDC</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>13</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>3DCEBBDC</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>14</ID>
+      <Description>"3号机雷电能量"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : GRAND CROSS ReNOVATION.EXE
+  Version: 
+  Date   : 2024-08-25
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GRAND CROSS ReNOVATION.EXE,89 94 88 B4 13 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  nop
+  jmp return
+
+code:
+  mov [eax+ecx*4+000013B4],edx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 94 88 B4 13 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GRAND CROSS ReNOVATION.EXE+25E29
+
+GRAND CROSS ReNOVATION.EXE+25DFF: 8B 4E 10              - mov ecx,[esi+10]
+GRAND CROSS ReNOVATION.EXE+25E02: 85 C9                 - test ecx,ecx
+GRAND CROSS ReNOVATION.EXE+25E04: 0F 8C 03 08 00 00     - jl "GRAND CROSS ReNOVATION.EXE"+2660D
+GRAND CROSS ReNOVATION.EXE+25E0A: 83 F9 03              - cmp ecx,03
+GRAND CROSS ReNOVATION.EXE+25E0D: 0F 8D FA 07 00 00     - jnl "GRAND CROSS ReNOVATION.EXE"+2660D
+GRAND CROSS ReNOVATION.EXE+25E13: 8B 56 14              - mov edx,[esi+14]
+GRAND CROSS ReNOVATION.EXE+25E16: 83 7E 18 00           - cmp dword ptr [esi+18],00
+GRAND CROSS ReNOVATION.EXE+25E1A: 8B B7 74 11 00 00     - mov esi,[edi+00001174]
+GRAND CROSS ReNOVATION.EXE+25E20: 74 1C                 - je "GRAND CROSS ReNOVATION.EXE"+25E3E
+GRAND CROSS ReNOVATION.EXE+25E22: 8B 94 96 30 01 00 00  - mov edx,[esi+edx*4+00000130]
+// ---------- INJECTING HERE ----------
+GRAND CROSS ReNOVATION.EXE+25E29: 89 94 88 B4 13 00 00  - mov [eax+ecx*4+000013B4],edx
+// ---------- DONE INJECTING  ----------
+GRAND CROSS ReNOVATION.EXE+25E30: B8 03 00 00 00        - mov eax,00000003
+GRAND CROSS ReNOVATION.EXE+25E35: 5F                    - pop edi
+GRAND CROSS ReNOVATION.EXE+25E36: 5E                    - pop esi
+GRAND CROSS ReNOVATION.EXE+25E37: 5B                    - pop ebx
+GRAND CROSS ReNOVATION.EXE+25E38: 8B E5                 - mov esp,ebp
+GRAND CROSS ReNOVATION.EXE+25E3A: 5D                    - pop ebp
+GRAND CROSS ReNOVATION.EXE+25E3B: C2 08 00              - ret 0008
+GRAND CROSS ReNOVATION.EXE+25E3E: 8B 84 88 B4 13 00 00  - mov eax,[eax+ecx*4+000013B4]
+GRAND CROSS ReNOVATION.EXE+25E45: 89 84 96 30 01 00 00  - mov [esi+edx*4+00000130],eax
+GRAND CROSS ReNOVATION.EXE+25E4C: B8 03 00 00 00        - mov eax,00000003
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

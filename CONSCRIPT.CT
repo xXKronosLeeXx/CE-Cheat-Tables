@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"无描述"</Description>
+      <VariableType>Double</VariableType>
+      <Address>23E181C71D0</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"自动汇编脚本"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : CONSCRIPT.exe
+  Version: 
+  Date   : 2025-08-26
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,CONSCRIPT.exe,48 89 03 48 8B 9C 24 90 00 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rbx],8
+  mov rbx,[rsp+00000090]
+  jmp return
+
+code:
+  mov [rbx],rax
+  mov rbx,[rsp+00000090]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 6
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 48 89 03 48 8B 9C 24 90 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: CONSCRIPT.exe+11DC7E3
+
+CONSCRIPT.exe+11DC7C3: 74 1B                    - je CONSCRIPT.exe+11DC7E0
+CONSCRIPT.exe+11DC7C5: 48 8B D7                 - mov rdx,rdi
+CONSCRIPT.exe+11DC7C8: 48 8B CB                 - mov rcx,rbx
+CONSCRIPT.exe+11DC7CB: 48 8B 9C 24 90 00 00 00  - mov rbx,[rsp+00000090]
+CONSCRIPT.exe+11DC7D3: 48 83 C4 60              - add rsp,60
+CONSCRIPT.exe+11DC7D7: 41 5F                    - pop r15
+CONSCRIPT.exe+11DC7D9: 5F                       - pop rdi
+CONSCRIPT.exe+11DC7DA: 5E                       - pop rsi
+CONSCRIPT.exe+11DC7DB: E9 40 DA FF FF           - jmp CONSCRIPT.exe+11DA220
+CONSCRIPT.exe+11DC7E0: 48 8B 07                 - mov rax,[rdi]
+// ---------- INJECTING HERE ----------
+CONSCRIPT.exe+11DC7E3: 48 89 03                 - mov [rbx],rax
+// ---------- DONE INJECTING  ----------
+CONSCRIPT.exe+11DC7E6: 48 8B 9C 24 90 00 00 00  - mov rbx,[rsp+00000090]
+CONSCRIPT.exe+11DC7EE: 48 83 C4 60              - add rsp,60
+CONSCRIPT.exe+11DC7F2: 41 5F                    - pop r15
+CONSCRIPT.exe+11DC7F4: 5F                       - pop rdi
+CONSCRIPT.exe+11DC7F5: 5E                       - pop rsi
+CONSCRIPT.exe+11DC7F6: C3                       - ret 
+CONSCRIPT.exe+11DC7F7: CC                       - int 3 
+CONSCRIPT.exe+11DC7F8: CC                       - int 3 
+CONSCRIPT.exe+11DC7F9: CC                       - int 3 
+CONSCRIPT.exe+11DC7FA: CC                       - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>子弹减少代码 :mov [rbx],rax</Description>
+      <AddressString>CONSCRIPT.exe+11DC7E3</AddressString>
+      <Before>
+        <Byte>FF</Byte>
+        <Byte>FF</Byte>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>07</Byte>
+      </Before>
+      <Actual>
+        <Byte>48</Byte>
+        <Byte>89</Byte>
+        <Byte>03</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>9C</Byte>
+        <Byte>24</Byte>
+        <Byte>90</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>

@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>105</ID>
+      <Description>"难度"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>METAPHOR.exe+2EFC5CC+a8</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>68</ID>
+      <Description>"MAG"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>METAPHOR.exe+2EFC5CC</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>69</ID>
+      <Description>"Money"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>METAPHOR.exe+2EFBE28</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>81</ID>
+      <Description>"物品第一个（字节，往后每1个一物品）"</Description>
+      <VariableType>Byte</VariableType>
+      <Address>METAPHOR.exe+2EF6729</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>90</ID>
+      <Description>"黄金虫"</Description>
+      <VariableType>Byte</VariableType>
+      <Address>METAPHOR.exe+2EF69D7</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>89</ID>
+      <Description>"物品 英雄宝玉ArrmorEXP+3000"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>METAPHOR.exe+2EF6729+7b</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>76</ID>
+      <Description>"PlayerEXP+20W（战斗后）"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : METAPHOR.exe
+  Version: 
+  Date   : 2025-05-31
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,METAPHOR.exe,89 58 24 0F 86 CD 00 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  add [rax+24],#200000
+  jbe METAPHOR.exe+44D876E
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 4
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 58 24 0F 86 CD 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: METAPHOR.exe+44D8698
+
+METAPHOR.exe+44D8670: 48 8D 4C 24 20           - lea rcx,[rsp+20]
+METAPHOR.exe+44D8675: 03 58 24                 - add ebx,[rax+24]
+METAPHOR.exe+44D8678: E8 83 06 EE FB           - call METAPHOR.exe+3B8D00
+METAPHOR.exe+44D867D: 8B 4C 24 78              - mov ecx,[rsp+78]
+METAPHOR.exe+44D8681: 84 C0                    - test al,al
+METAPHOR.exe+44D8683: 74 09                    - je METAPHOR.exe+44D868E
+METAPHOR.exe+44D8685: 39 5C 24 20              - cmp [rsp+20],ebx
+METAPHOR.exe+44D8689: 0F 42 5C 24 20           - cmovb ebx,[rsp+20]
+METAPHOR.exe+44D868E: E8 BD 84 ED FB           - call METAPHOR.exe+3B0B50
+METAPHOR.exe+44D8693: 80 7C 24 30 00           - cmp byte ptr [rsp+30],00
+// ---------- INJECTING HERE ----------
+METAPHOR.exe+44D8698: 89 58 24                 - mov [rax+24],ebx
+// ---------- DONE INJECTING  ----------
+METAPHOR.exe+44D869B: 0F 86 CD 00 00 00        - jbe METAPHOR.exe+44D876E
+METAPHOR.exe+44D86A1: 48 89 74 24 70           - mov [rsp+70],rsi
+METAPHOR.exe+44D86A6: 44 89 F1                 - mov ecx,r14d
+METAPHOR.exe+44D86A9: 48 89 BC 24 80 00 00 00  - mov [rsp+00000080],rdi
+METAPHOR.exe+44D86B1: E8 9A 84 ED FB           - call METAPHOR.exe+3B0B50
+METAPHOR.exe+44D86B6: 0F B6 54 24 30           - movzx edx,byte ptr [rsp+30]
+METAPHOR.exe+44D86BB: 48 89 C1                 - mov rcx,rax
+METAPHOR.exe+44D86BE: 48 89 C6                 - mov rsi,rax
+METAPHOR.exe+44D86C1: 66 03 50 20              - add dx,[rax+20]
+METAPHOR.exe+44D86C5: E8 F6 FF F0 FB           - call METAPHOR.exe+3E86C0
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>78</ID>
+      <Description>"Point=989"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : METAPHOR.exe
+  Version: 
+  Date   : 2025-05-31
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,METAPHOR.exe,42 89 94 80 F4 33 02 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rax+r8*4+000233F4],#989
+  jmp return
+
+code:
+  mov [rax+r8*4+000233F4],edx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 42 89 94 80 F4 33 02 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: METAPHOR.exe+406754A
+
+METAPHOR.exe+406751F: 48 83 EC F8                 - sub rsp,-08
+METAPHOR.exe+4067523: 9D                          - popfq 
+METAPHOR.exe+4067524: 48 8D 64 24 F8              - lea rsp,[rsp-08]
+METAPHOR.exe+4067529: 4C 89 14 24                 - mov [rsp],r10
+METAPHOR.exe+406752D: 4C 8D 15 2B C2 F7 08        - lea r10,[METAPHOR.exe+CFE375F]
+METAPHOR.exe+4067534: 4D 8D 92 EB 73 EE 05        - lea r10,[r10+05EE73EB]
+METAPHOR.exe+406753B: 4C 87 14 24                 - xchg [rsp],r10
+METAPHOR.exe+406753F: C3                          - ret 
+METAPHOR.exe+4067540: 48 8B 05 C9 DD 8D FE        - mov rax,[METAPHOR.exe+2945310]
+METAPHOR.exe+4067547: 4C 63 C1                    - movsxd  r8,ecx
+// ---------- INJECTING HERE ----------
+METAPHOR.exe+406754A: 42 89 94 80 F4 33 02 00     - mov [rax+r8*4+000233F4],edx
+// ---------- DONE INJECTING  ----------
+METAPHOR.exe+4067552: C3                          - ret 
+METAPHOR.exe+4067553: A0 3B 82 FD DE D0 65 28 E9  - mov al,[E92865D0DEFD823B]
+METAPHOR.exe+406755C: 5E                          - pop rsi
+METAPHOR.exe+406755D: 11 F6                       - adc esi,esi
+METAPHOR.exe+406755F: B7 CB                       - mov bh,-35
+METAPHOR.exe+4067561: 84 57 01                    - test [rdi+01],dl
+METAPHOR.exe+4067564: 00 00                       - add [rax],al
+METAPHOR.exe+4067566: 00 7A F9                    - add [rdx-07],bh
+METAPHOR.exe+4067569: AD                          - lodsd 
+METAPHOR.exe+406756A: 3C 01                       - cmp al,01
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>67</ID>
+      <Description>"GOD MOD HP变化联动全属性MAX(999 or 99)"</Description>
+      <LastState Activated="1"/>
+      <Color>0000FF</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : METAPHOR.exe
+  Version: 
+  Date   : 2025-05-31
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,METAPHOR.exe,89 5F 0C 8B C3) // should be unique
+alloc(newmem,$1000,INJECT)
+alloc(enemy,$4,INJECT)
+
+label(code)
+label(return)
+
+
+enemy:
+  cmp ebx,1
+  je code
+  mov [rdi+0C],1
+  mov eax,ebx
+  jmp return
+
+newmem:
+  cmp [rdi+04],1
+  jne enemy
+  mov [rdi+0C],#999
+  mov [rdi+0C+4],#999
+  mov [rdi+0C+4+4],#999
+  mov [rdi+0C+4+4+4],#999
+  mov [rdi+0C+4+4+4+12],#99
+  mov [rdi+0C+4+4+4+12+1],#99
+  mov [rdi+0C+4+4+4+12+1+1],#99
+  mov [rdi+0C+4+4+4+12+1+1+1],#99
+  mov [rdi+0C+4+4+4+12+1+1+1+1],#99
+  mov eax,ebx
+  jmp return
+
+code:
+  mov [rdi+0C],0
+  mov eax,ebx
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 5F 0C 8B C3
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+dealloc(enemy)
+
+{
+// ORIGINAL CODE - INJECTION POINT: METAPHOR.exe+3E388F
+
+METAPHOR.exe+3E3870: 48 89 5C 24 08        - mov [rsp+08],rbx
+METAPHOR.exe+3E3875: 57                    - push rdi
+METAPHOR.exe+3E3876: 48 83 EC 20           - sub rsp,20
+METAPHOR.exe+3E387A: 33 DB                 - xor ebx,ebx
+METAPHOR.exe+3E387C: 48 8B F9              - mov rdi,rcx
+METAPHOR.exe+3E387F: 03 51 0C              - add edx,[rcx+0C]
+METAPHOR.exe+3E3882: 0F 49 DA              - cmovns ebx,edx
+METAPHOR.exe+3E3885: E8 06 27 00 00        - call METAPHOR.exe+3E5F90
+METAPHOR.exe+3E388A: 3B D8                 - cmp ebx,eax
+METAPHOR.exe+3E388C: 0F 4F D8              - cmovg ebx,eax
+// ---------- INJECTING HERE ----------
+METAPHOR.exe+3E388F: 89 5F 0C              - mov [rdi+0C],ebx
+// ---------- DONE INJECTING  ----------
+METAPHOR.exe+3E3892: 8B C3                 - mov eax,ebx
+METAPHOR.exe+3E3894: 48 8B 5C 24 30        - mov rbx,[rsp+30]
+METAPHOR.exe+3E3899: 48 83 C4 20           - add rsp,20
+METAPHOR.exe+3E389D: 5F                    - pop rdi
+METAPHOR.exe+3E389E: C3                    - ret 
+METAPHOR.exe+3E389F: CC                    - int 3 
+METAPHOR.exe+3E38A0: 66 01 91 48 16 00 00  - add [rcx+00001648],dx
+METAPHOR.exe+3E38A7: C3                    - ret 
+METAPHOR.exe+3E38A8: CC                    - int 3 
+METAPHOR.exe+3E38A9: CC                    - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>96</ID>
+      <Description>"Player1 主角"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>66</ID>
+          <Description>"Player1HP"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>METAPHOR.exe+2EDAAAC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>73</ID>
+          <Description>"Player1EXP"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>METAPHOR.exe+2EDAAC4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>70</ID>
+          <Description>"Player1ArrmorEXP"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>METAPHOR.exe+2EDABA0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>77</ID>
+          <Description>"Player1Point"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>METAPHOR.exe+2EFC828</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>80</ID>
+          <Description>"Player1力"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>Byte</VariableType>
+          <Address>METAPHOR.exe+2EDAAAC+4+4+4+12</Address>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>97</ID>
+      <Description>"Player2 斯特罗尔"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>99</ID>
+          <Description>"斯特罗尔HP"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>METAPHOR.exe+2EDD894-98-16a8</Address>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>98</ID>
+      <Description>"Player3 侯根堡"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>94</ID>
+          <Description>"侯根堡HP"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>METAPHOR.exe+2EDD894-98</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>83</ID>
+          <Description>"侯根堡arromrEXP"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>METAPHOR.exe+2EDD894</Address>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>101</ID>
+      <Description>"Player4 羽伊邪命"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>100</ID>
+          <Description>"羽伊邪命HP"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>METAPHOR.exe+2EDD894-98+16a8</Address>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>102</ID>
+      <Description>"Player5 朱娜HP"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>METAPHOR.exe+2EDD894-98+16a8+16a8</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>103</ID>
+      <Description>"Player6 悠法HP"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>METAPHOR.exe+2EDD894-98+16a8+16a8+16a8</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>104</ID>
+      <Description>"Player7 巴吉利欧HP"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>METAPHOR.exe+2EDD894-98+16a8+16a8+16a8+16a8+16a8</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>arromorEXP</Description>
+      <AddressString>METAPHOR.exe+3C784DA</AddressString>
+      <Before>
+        <Byte>C1</Byte>
+        <Byte>44</Byte>
+        <Byte>0F</Byte>
+        <Byte>46</Byte>
+        <Byte>C1</Byte>
+      </Before>
+      <Actual>
+        <Byte>44</Byte>
+        <Byte>89</Byte>
+        <Byte>43</Byte>
+        <Byte>0C</Byte>
+      </Actual>
+      <After>
+        <Byte>4C</Byte>
+        <Byte>8B</Byte>
+        <Byte>B4</Byte>
+        <Byte>24</Byte>
+        <Byte>60</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+  <Structures StructVersion="2">
+    <Structure Name="未命名的结构" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="0" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000000" DisplayMethod="hexadecimal"/>
+        <Element Offset="4" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="00000004" DisplayMethod="unsigned integer"/>
+        <Element Offset="40" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000028" DisplayMethod="hexadecimal"/>
+        <Element Offset="48" Vartype="4 Bytes" Bytesize="4" RLECount="20" OffsetHex="00000030" DisplayMethod="unsigned integer"/>
+        <Element Offset="128" Vartype="Double" Bytesize="8" OffsetHex="00000080" DisplayMethod="unsigned integer"/>
+        <Element Offset="136" Vartype="Float" Bytesize="4" RLECount="3" OffsetHex="00000088" DisplayMethod="unsigned integer"/>
+        <Element Offset="148" Vartype="4 Bytes" Bytesize="4" RLECount="987" OffsetHex="00000094" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="未命名的结构" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="0" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000000" DisplayMethod="hexadecimal"/>
+        <Element Offset="4" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="00000004" DisplayMethod="unsigned integer"/>
+        <Element Offset="40" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000028" DisplayMethod="hexadecimal"/>
+        <Element Offset="48" Vartype="4 Bytes" Bytesize="4" RLECount="20" OffsetHex="00000030" DisplayMethod="unsigned integer"/>
+        <Element Offset="128" Vartype="Double" Bytesize="8" OffsetHex="00000080" DisplayMethod="unsigned integer"/>
+        <Element Offset="136" Vartype="Float" Bytesize="4" RLECount="3" OffsetHex="00000088" DisplayMethod="unsigned integer"/>
+        <Element Offset="148" Vartype="4 Bytes" Bytesize="4" RLECount="987" OffsetHex="00000094" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+  </Structures>
+  <Comments>player     Enemy   
+0004     1         2
+0098     1         0
+00A0     1         0
+00F0     1         0
+</Comments>
+</CheatTable>

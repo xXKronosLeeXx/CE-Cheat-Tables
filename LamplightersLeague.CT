@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"sub money OLD"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : LamplightersLeague
+  Version: 
+  Date   : 2023-10-06
+  Author : krono
+
+  This script does blah blah blah
+}
+
+define(address,"GameAssembly.dll"+2D02F60)
+define(bytes,29 51 10 C3 CC)
+
+[ENABLE]
+
+assert(address,bytes)
+alloc(newmem,$1000,"GameAssembly.dll"+2D02F60)
+
+label(code)
+label(return)
+
+newmem:
+  add [rcx+10],edx
+  ret
+  int 3
+  jmp return
+
+code:
+  sub [rcx+10],edx
+  ret 
+  int 3 
+  jmp return
+
+address:
+  jmp newmem
+return:
+
+[DISABLE]
+
+address:
+  db bytes
+  // sub [rcx+10],edx
+  // ret 
+  // int 3 
+
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+2D02F60
+
+GameAssembly.dll+2D02F50: 45 33 C0        - xor r8d,r8d
+GameAssembly.dll+2D02F53: E9 38 1F 00 00  - jmp GameAssembly.dll+2D04E90
+GameAssembly.dll+2D02F58: CC              - int 3 
+GameAssembly.dll+2D02F59: CC              - int 3 
+GameAssembly.dll+2D02F5A: CC              - int 3 
+GameAssembly.dll+2D02F5B: CC              - int 3 
+GameAssembly.dll+2D02F5C: CC              - int 3 
+GameAssembly.dll+2D02F5D: CC              - int 3 
+GameAssembly.dll+2D02F5E: CC              - int 3 
+GameAssembly.dll+2D02F5F: CC              - int 3 
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+2D02F60: 29 51 10        - sub [rcx+10],edx
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+2D02F63: C3              - ret 
+GameAssembly.dll+2D02F64: CC              - int 3 
+GameAssembly.dll+2D02F65: CC              - int 3 
+GameAssembly.dll+2D02F66: CC              - int 3 
+GameAssembly.dll+2D02F67: CC              - int 3 
+GameAssembly.dll+2D02F68: CC              - int 3 
+GameAssembly.dll+2D02F69: CC              - int 3 
+GameAssembly.dll+2D02F6A: CC              - int 3 
+GameAssembly.dll+2D02F6B: CC              - int 3 
+GameAssembly.dll+2D02F6C: CC              - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"sub 改add"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : LamplightersLeague
+  Version: 
+  Date   : 2023-10-06
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(sub,GameAssembly.dll,29 51 10 C3 CC) // should be unique
+alloc(newmem,$1000,sub)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  add [rcx+10],edx
+  ret 
+  int 3 
+  jmp return
+
+sub:
+  jmp newmem
+return:
+registersymbol(sub)
+
+[DISABLE]
+
+sub:
+  db 29 51 10 C3 CC
+
+unregistersymbol(sub)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+2D03000
+
+GameAssembly.dll+2D02FF0: 45 33 C0        - xor r8d,r8d
+GameAssembly.dll+2D02FF3: E9 38 1F 00 00  - jmp GameAssembly.dll+2D04F30
+GameAssembly.dll+2D02FF8: CC              - int 3 
+GameAssembly.dll+2D02FF9: CC              - int 3 
+GameAssembly.dll+2D02FFA: CC              - int 3 
+GameAssembly.dll+2D02FFB: CC              - int 3 
+GameAssembly.dll+2D02FFC: CC              - int 3 
+GameAssembly.dll+2D02FFD: CC              - int 3 
+GameAssembly.dll+2D02FFE: CC              - int 3 
+GameAssembly.dll+2D02FFF: CC              - int 3 
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+2D03000: 29 51 10        - sub [rcx+10],edx
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+2D03003: C3              - ret 
+GameAssembly.dll+2D03004: CC              - int 3 
+GameAssembly.dll+2D03005: CC              - int 3 
+GameAssembly.dll+2D03006: CC              - int 3 
+GameAssembly.dll+2D03007: CC              - int 3 
+GameAssembly.dll+2D03008: CC              - int 3 
+GameAssembly.dll+2D03009: CC              - int 3 
+GameAssembly.dll+2D0300A: CC              - int 3 
+GameAssembly.dll+2D0300B: CC              - int 3 
+GameAssembly.dll+2D0300C: CC              - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

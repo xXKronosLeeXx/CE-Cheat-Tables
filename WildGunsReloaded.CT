@@ -1,0 +1,1151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>11</ID>
+      <Description>"Ggun"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+nop //dec ecx
+mov [eax+2C],ecx
+jmp wgObjPlayer:StepShotSub+803
+jmp exit
+
+originalcode:
+dec ecx
+mov [eax+2C],ecx
+jmp wgObjPlayer:StepShotSub+803
+
+exit:
+jmp returnhere
+
+wgObjPlayer:StepShotSub+6b1:
+jmp newmem
+nop 4
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+wgObjPlayer:StepShotSub+6b1:
+db 49 89 48 2C E9 49 01 00 00
+//dec ecx
+//mov [eax+2C],ecx
+//jmp wgObjPlayer:StepShotSub+803
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>14</ID>
+      <Description>"Lgun"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+
+nop //dec ecx
+mov [eax+2C],ecx
+jmp wgObjPlayer:StepShotSub+803
+jmp exit
+
+
+originalcode:
+dec ecx
+mov [eax+2C],ecx
+jmp wgObjPlayer:StepShotSub+803
+
+exit:
+jmp returnhere
+
+wgObjPlayer:StepShotSub+75c:
+jmp newmem
+nop 4
+returnhere:
+
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+wgObjPlayer:StepShotSub+75c:
+db 49 89 48 2C E9 9E 00 00 00
+//dec ecx
+//mov [eax+2C],ecx
+//jmp wgObjPlayer:StepShotSub+803
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>44</ID>
+      <Description>"Mgun"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+nop //mov [eax+2C],ecx
+jmp wgObjPlayer:StepShotSub+6ef
+jmp exit
+
+originalcode:
+mov [eax+2C],ecx
+jmp wgObjPlayer:StepShotSub+6ef
+
+exit:
+jmp returnhere
+
+wgObjPlayer:StepShotSub+6e0:
+jmp newmem
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+wgObjPlayer:StepShotSub+6e0:
+db 89 48 2C EB 0A
+//mov [eax+2C],ecx
+//jmp wgObjPlayer:StepShotSub+6ef
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>47</ID>
+      <Description>"Sgun"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+nop //dec ecx
+mov [eax+2C],ecx
+jmp wgObjPlayer:StepShotSub+803
+jmp exit
+
+originalcode:
+dec ecx
+mov [eax+2C],ecx
+jmp wgObjPlayer:StepShotSub+803
+
+exit:
+jmp returnhere
+
+wgObjPlayer:StepShotSub+65b:
+jmp newmem
+nop 4
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+wgObjPlayer:StepShotSub+65b:
+db 49 89 48 2C E9 9F 01 00 00
+//dec ecx
+//mov [eax+2C],ecx
+//jmp wgObjPlayer:StepShotSub+803
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>50</ID>
+      <Description>"Pgun"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+nop //dec ecx
+mov [eax+2C],ecx
+jmp wgObjPlayer:StepShotSub+803
+jmp exit
+
+originalcode:
+dec ecx
+mov [eax+2C],ecx
+jmp wgObjPlayer:StepShotSub+803
+
+exit:
+jmp returnhere
+
+wgObjPlayer:StepShotSub+7c1:
+jmp newmem
+nop
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+wgObjPlayer:StepShotSub+7c1:
+db 49 89 48 2C EB 3C
+//dec ecx
+//mov [eax+2C],ecx
+//jmp wgObjPlayer:StepShotSub+803
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>28</ID>
+      <Description>"Boom"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+nop //dec ecx
+mov [eax+1C],5
+mov eax,00000001
+jmp exit
+
+originalcode:
+dec ecx
+mov [eax+1C],ecx
+mov eax,00000001
+
+exit:
+jmp returnhere
+
+GameMain+PlayerInfo:DecBomber+16:
+jmp newmem
+nop 4
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+GameMain+PlayerInfo:DecBomber+16:
+db 49 89 48 1C B8 01 00 00 00
+//dec ecx
+//mov [eax+1C],ecx
+//mov eax,00000001
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>41</ID>
+      <Description>"Time"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+nop
+jmp exit
+
+originalcode:
+fld dword ptr [edi+00000120]
+
+exit:
+jmp returnhere
+
+GameMain:_Step+c4:
+jmp newmem
+nop
+returnhere:
+
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+GameMain:_Step+c4:
+db D9 87 20 01 00 00
+//fld dword ptr [edi+00000120]
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>30</ID>
+      <Description>"Life"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+
+originalcode:
+mov eax,8
+mov edi,eax
+cmp eax,edi
+je BarPlayer:RefleshZanki+2e
+mov eax,[ebp+08]
+
+exit:
+jmp returnhere
+
+BarPlayer:RefleshZanki+10:
+jmp newmem
+nop 2
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+BarPlayer:RefleshZanki+10:
+db 3B C7 74 1A 8B 45 08
+//cmp eax,edi
+//je BarPlayer:RefleshZanki+2e
+//mov eax,[ebp+08]
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>替换了 sub esp,04</Description>
+      <AddressString>09603CAC</AddressString>
+      <Before>
+        <Byte>00</Byte>
+        <Byte>55</Byte>
+        <Byte>8B</Byte>
+        <Byte>EC</Byte>
+        <Byte>57</Byte>
+      </Before>
+      <Actual>
+        <Byte>83</Byte>
+        <Byte>EC</Byte>
+        <Byte>04</Byte>
+      </Actual>
+      <After>
+        <Byte>8B</Byte>
+        <Byte>7D</Byte>
+        <Byte>0C</Byte>
+        <Byte>8B</Byte>
+        <Byte>45</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>替换了 mov ebp,esp</Description>
+      <AddressString>09603CA9</AddressString>
+      <Before>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>55</Byte>
+      </Before>
+      <Actual>
+        <Byte>8B</Byte>
+        <Byte>EC</Byte>
+      </Actual>
+      <After>
+        <Byte>57</Byte>
+        <Byte>83</Byte>
+        <Byte>EC</Byte>
+        <Byte>04</Byte>
+        <Byte>8B</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>替换了 mov edi,[ebp+0C]</Description>
+      <AddressString>09603CAF</AddressString>
+      <Before>
+        <Byte>EC</Byte>
+        <Byte>57</Byte>
+        <Byte>83</Byte>
+        <Byte>EC</Byte>
+        <Byte>04</Byte>
+      </Before>
+      <Actual>
+        <Byte>8B</Byte>
+        <Byte>7D</Byte>
+        <Byte>0C</Byte>
+      </Actual>
+      <After>
+        <Byte>8B</Byte>
+        <Byte>45</Byte>
+        <Byte>08</Byte>
+        <Byte>8B</Byte>
+        <Byte>40</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>替换了 cmp eax,edi</Description>
+      <AddressString>0961C5B0</AddressString>
+      <Before>
+        <Byte>45</Byte>
+        <Byte>08</Byte>
+        <Byte>8B</Byte>
+        <Byte>40</Byte>
+        <Byte>48</Byte>
+      </Before>
+      <Actual>
+        <Byte>3B</Byte>
+        <Byte>C7</Byte>
+      </Actual>
+      <After>
+        <Byte>74</Byte>
+        <Byte>1A</Byte>
+        <Byte>8B</Byte>
+        <Byte>45</Byte>
+        <Byte>08</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+  <Structures StructVersion="2">
+    <Structure Name="BarPlayer" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" Description="m_CachedPtr" DisplayMethod="unsigned integer"/>
+        <Element Offset="12" Vartype="Pointer" Bytesize="4" OffsetHex="0000000C" Description="m_SprWindow" DisplayMethod="unsigned integer"/>
+        <Element Offset="16" Vartype="Pointer" Bytesize="4" OffsetHex="00000010" Description="m_GunWindow" DisplayMethod="unsigned integer">
+          <Structure Name="SFCGSpriteRenderer" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+            <Elements>
+              <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" Description="m_CachedPtr" DisplayMethod="unsigned integer"/>
+              <Element Offset="12" Vartype="Pointer" Bytesize="4" OffsetHex="0000000C" Description="m_SpriteArray" DisplayMethod="unsigned integer"/>
+              <Element Offset="16" Vartype="Pointer" Bytesize="4" OffsetHex="00000010" Description="m_Renderer" DisplayMethod="unsigned integer"/>
+              <Element Offset="20" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000014" Description="m_SpriteNum" DisplayMethod="unsigned integer"/>
+              <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="m_OldSpriteNum" DisplayMethod="unsigned integer"/>
+              <Element Offset="28" Vartype="Byte" Bytesize="1" OffsetHex="0000001C" Description="m_HRev" DisplayMethod="unsigned integer"/>
+              <Element Offset="29" Vartype="Byte" Bytesize="1" OffsetHex="0000001D" Description="m_OldHRev" DisplayMethod="unsigned integer"/>
+              <Element Offset="32" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000020" Description="m_Atb" DisplayMethod="unsigned integer"/>
+              <Element Offset="36" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000024" Description="m_OldAtb" DisplayMethod="unsigned integer"/>
+              <Element Offset="40" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000028" Description="m_AtbBank" DisplayMethod="unsigned integer"/>
+              <Element Offset="44" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000002C" Description="m_OldAtbBank" DisplayMethod="unsigned integer"/>
+              <Element Offset="48" Vartype="Float" Bytesize="4" OffsetHex="00000030" Description="m_Dmg" DisplayMethod="unsigned integer"/>
+              <Element Offset="52" Vartype="Float" Bytesize="4" OffsetHex="00000034" Description="m_OldDmg" DisplayMethod="unsigned integer"/>
+              <Element Offset="56" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000038" Description="m_DmgPos" DisplayMethod="unsigned integer"/>
+              <Element Offset="68" Vartype="Float" Bytesize="4" OffsetHex="00000044" Description="m_Dying" DisplayMethod="unsigned integer"/>
+              <Element Offset="72" Vartype="Float" Bytesize="4" OffsetHex="00000048" Description="m_OldDying" DisplayMethod="unsigned integer"/>
+              <Element Offset="76" Vartype="Float" Bytesize="4" OffsetHex="0000004C" Description="m_Shibire" DisplayMethod="unsigned integer"/>
+              <Element Offset="80" Vartype="Float" Bytesize="4" OffsetHex="00000050" Description="m_OldShibire" DisplayMethod="unsigned integer"/>
+              <Element Offset="84" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000054" Description="m_SpriteNumOfs" DisplayMethod="unsigned integer"/>
+            </Elements>
+          </Structure>
+        </Element>
+        <Element Offset="20" Vartype="Pointer" Bytesize="4" OffsetHex="00000014" Description="m_Bullet10" DisplayMethod="unsigned integer">
+          <Structure Name="SFCGSpriteRenderer" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+            <Elements>
+              <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" Description="m_CachedPtr" DisplayMethod="unsigned integer"/>
+              <Element Offset="12" Vartype="Pointer" Bytesize="4" OffsetHex="0000000C" Description="m_SpriteArray" DisplayMethod="unsigned integer"/>
+              <Element Offset="16" Vartype="Pointer" Bytesize="4" OffsetHex="00000010" Description="m_Renderer" DisplayMethod="unsigned integer"/>
+              <Element Offset="20" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000014" Description="m_SpriteNum" DisplayMethod="unsigned integer"/>
+              <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="m_OldSpriteNum" DisplayMethod="unsigned integer"/>
+              <Element Offset="28" Vartype="Byte" Bytesize="1" OffsetHex="0000001C" Description="m_HRev" DisplayMethod="unsigned integer"/>
+              <Element Offset="29" Vartype="Byte" Bytesize="1" OffsetHex="0000001D" Description="m_OldHRev" DisplayMethod="unsigned integer"/>
+              <Element Offset="32" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000020" Description="m_Atb" DisplayMethod="unsigned integer"/>
+              <Element Offset="36" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000024" Description="m_OldAtb" DisplayMethod="unsigned integer"/>
+              <Element Offset="40" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000028" Description="m_AtbBank" DisplayMethod="unsigned integer"/>
+              <Element Offset="44" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000002C" Description="m_OldAtbBank" DisplayMethod="unsigned integer"/>
+              <Element Offset="48" Vartype="Float" Bytesize="4" OffsetHex="00000030" Description="m_Dmg" DisplayMethod="unsigned integer"/>
+              <Element Offset="52" Vartype="Float" Bytesize="4" OffsetHex="00000034" Description="m_OldDmg" DisplayMethod="unsigned integer"/>
+              <Element Offset="56" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000038" Description="m_DmgPos" DisplayMethod="unsigned integer"/>
+              <Element Offset="68" Vartype="Float" Bytesize="4" OffsetHex="00000044" Description="m_Dying" DisplayMethod="unsigned integer"/>
+              <Element Offset="72" Vartype="Float" Bytesize="4" OffsetHex="00000048" Description="m_OldDying" DisplayMethod="unsigned integer"/>
+              <Element Offset="76" Vartype="Float" Bytesize="4" OffsetHex="0000004C" Description="m_Shibire" DisplayMethod="unsigned integer"/>
+              <Element Offset="80" Vartype="Float" Bytesize="4" OffsetHex="00000050" Description="m_OldShibire" DisplayMethod="unsigned integer"/>
+              <Element Offset="84" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000054" Description="m_SpriteNumOfs" DisplayMethod="unsigned integer"/>
+            </Elements>
+          </Structure>
+        </Element>
+        <Element Offset="24" Vartype="Pointer" Bytesize="4" OffsetHex="00000018" Description="m_Bullet01" DisplayMethod="unsigned integer">
+          <Structure Name="SFCGSpriteRenderer" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+            <Elements>
+              <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" Description="m_CachedPtr" DisplayMethod="unsigned integer"/>
+              <Element Offset="12" Vartype="Pointer" Bytesize="4" OffsetHex="0000000C" Description="m_SpriteArray" DisplayMethod="unsigned integer"/>
+              <Element Offset="16" Vartype="Pointer" Bytesize="4" OffsetHex="00000010" Description="m_Renderer" DisplayMethod="unsigned integer"/>
+              <Element Offset="20" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000014" Description="m_SpriteNum" DisplayMethod="unsigned integer"/>
+              <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="m_OldSpriteNum" DisplayMethod="unsigned integer"/>
+              <Element Offset="28" Vartype="Byte" Bytesize="1" OffsetHex="0000001C" Description="m_HRev" DisplayMethod="unsigned integer"/>
+              <Element Offset="29" Vartype="Byte" Bytesize="1" OffsetHex="0000001D" Description="m_OldHRev" DisplayMethod="unsigned integer"/>
+              <Element Offset="32" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000020" Description="m_Atb" DisplayMethod="unsigned integer"/>
+              <Element Offset="36" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000024" Description="m_OldAtb" DisplayMethod="unsigned integer"/>
+              <Element Offset="40" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000028" Description="m_AtbBank" DisplayMethod="unsigned integer"/>
+              <Element Offset="44" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000002C" Description="m_OldAtbBank" DisplayMethod="unsigned integer"/>
+              <Element Offset="48" Vartype="Float" Bytesize="4" OffsetHex="00000030" Description="m_Dmg" DisplayMethod="unsigned integer"/>
+              <Element Offset="52" Vartype="Float" Bytesize="4" OffsetHex="00000034" Description="m_OldDmg" DisplayMethod="unsigned integer"/>
+              <Element Offset="56" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000038" Description="m_DmgPos" DisplayMethod="unsigned integer"/>
+              <Element Offset="68" Vartype="Float" Bytesize="4" OffsetHex="00000044" Description="m_Dying" DisplayMethod="unsigned integer"/>
+              <Element Offset="72" Vartype="Float" Bytesize="4" OffsetHex="00000048" Description="m_OldDying" DisplayMethod="unsigned integer"/>
+              <Element Offset="76" Vartype="Float" Bytesize="4" OffsetHex="0000004C" Description="m_Shibire" DisplayMethod="unsigned integer"/>
+              <Element Offset="80" Vartype="Float" Bytesize="4" OffsetHex="00000050" Description="m_OldShibire" DisplayMethod="unsigned integer"/>
+              <Element Offset="84" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000054" Description="m_SpriteNumOfs" DisplayMethod="unsigned integer"/>
+            </Elements>
+          </Structure>
+        </Element>
+        <Element Offset="28" Vartype="Pointer" Bytesize="4" OffsetHex="0000001C" Description="m_SprPlIndex" DisplayMethod="unsigned integer"/>
+        <Element Offset="32" Vartype="Pointer" Bytesize="4" OffsetHex="00000020" Description="m_SprPlNum" DisplayMethod="unsigned integer"/>
+        <Element Offset="36" Vartype="Pointer" Bytesize="4" OffsetHex="00000024" Description="m_SprGatlingIcon" DisplayMethod="unsigned integer"/>
+        <Element Offset="40" Vartype="Pointer" Bytesize="4" OffsetHex="00000028" Description="m_SprGatlingGauge" DisplayMethod="unsigned integer"/>
+        <Element Offset="44" Vartype="Pointer" Bytesize="4" OffsetHex="0000002C" Description="m_TexScore" DisplayMethod="unsigned integer">
+          <Structure Name="SFCGAsciiRenderer" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+            <Elements>
+              <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" Description="m_CachedPtr" DisplayMethod="unsigned integer"/>
+              <Element Offset="12" Vartype="String" Bytesize="1" OffsetHex="0000000C" Description="m_Text" DisplayMethod="unsigned integer"/>
+              <Element Offset="16" Vartype="String" Bytesize="1" OffsetHex="00000010" Description="m_TextOld" DisplayMethod="unsigned integer"/>
+              <Element Offset="20" Vartype="Pointer" Bytesize="4" OffsetHex="00000014" Description="m_Renderer" DisplayMethod="unsigned integer"/>
+              <Element Offset="24" Vartype="Float" Bytesize="4" OffsetHex="00000018" Description="m_TextW" DisplayMethod="unsigned integer"/>
+              <Element Offset="28" Vartype="Float" Bytesize="4" OffsetHex="0000001C" Description="m_TextWOld" DisplayMethod="unsigned integer"/>
+              <Element Offset="32" Vartype="Float" Bytesize="4" OffsetHex="00000020" Description="m_TextH" DisplayMethod="unsigned integer"/>
+              <Element Offset="36" Vartype="Float" Bytesize="4" OffsetHex="00000024" Description="m_TextHOld" DisplayMethod="unsigned integer"/>
+              <Element Offset="40" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000028" Description="m_AlignmentX" DisplayMethod="unsigned integer"/>
+              <Element Offset="44" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000002C" Description="m_AlignmentXOld" DisplayMethod="unsigned integer"/>
+              <Element Offset="48" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000030" Description="m_AlignmentY" DisplayMethod="unsigned integer"/>
+              <Element Offset="52" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000034" Description="m_AlignmentYOld" DisplayMethod="unsigned integer"/>
+              <Element Offset="56" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000038" Description="m_Ofs" DisplayMethod="unsigned integer"/>
+              <Element Offset="64" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000040" Description="m_OfsOld" DisplayMethod="unsigned integer"/>
+              <Element Offset="72" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000048" Description="m_UVOfs" DisplayMethod="unsigned integer"/>
+              <Element Offset="80" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000050" Description="m_UVOfsOld" DisplayMethod="unsigned integer"/>
+              <Element Offset="88" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000058" Description="m_UVScale" DisplayMethod="unsigned integer"/>
+              <Element Offset="96" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000060" Description="m_UVScaleOld" DisplayMethod="unsigned integer"/>
+              <Element Offset="104" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000068" Description="m_Atb" DisplayMethod="unsigned integer"/>
+              <Element Offset="108" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000006C" Description="m_OldAtb" DisplayMethod="unsigned integer"/>
+              <Element Offset="112" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000070" Description="m_AtbBank" DisplayMethod="unsigned integer"/>
+              <Element Offset="116" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000074" Description="m_OldAtbBank" DisplayMethod="unsigned integer"/>
+            </Elements>
+          </Structure>
+        </Element>
+        <Element Offset="48" Vartype="Pointer" Bytesize="4" OffsetHex="00000030" Description="m_7KetaZero" DisplayMethod="unsigned integer">
+          <Structure Name="SFCGSpriteRenderer" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+            <Elements>
+              <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" Description="m_CachedPtr" DisplayMethod="unsigned integer"/>
+              <Element Offset="12" Vartype="Pointer" Bytesize="4" OffsetHex="0000000C" Description="m_SpriteArray" DisplayMethod="unsigned integer"/>
+              <Element Offset="16" Vartype="Pointer" Bytesize="4" OffsetHex="00000010" Description="m_Renderer" DisplayMethod="unsigned integer"/>
+              <Element Offset="20" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000014" Description="m_SpriteNum" DisplayMethod="unsigned integer"/>
+              <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="m_OldSpriteNum" DisplayMethod="unsigned integer"/>
+              <Element Offset="28" Vartype="Byte" Bytesize="1" OffsetHex="0000001C" Description="m_HRev" DisplayMethod="unsigned integer"/>
+              <Element Offset="29" Vartype="Byte" Bytesize="1" OffsetHex="0000001D" Description="m_OldHRev" DisplayMethod="unsigned integer"/>
+              <Element Offset="32" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000020" Description="m_Atb" DisplayMethod="unsigned integer"/>
+              <Element Offset="36" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000024" Description="m_OldAtb" DisplayMethod="unsigned integer"/>
+              <Element Offset="40" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000028" Description="m_AtbBank" DisplayMethod="unsigned integer"/>
+              <Element Offset="44" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000002C" Description="m_OldAtbBank" DisplayMethod="unsigned integer"/>
+              <Element Offset="48" Vartype="Float" Bytesize="4" OffsetHex="00000030" Description="m_Dmg" DisplayMethod="unsigned integer"/>
+              <Element Offset="52" Vartype="Float" Bytesize="4" OffsetHex="00000034" Description="m_OldDmg" DisplayMethod="unsigned integer"/>
+              <Element Offset="56" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000038" Description="m_DmgPos" DisplayMethod="unsigned integer"/>
+              <Element Offset="68" Vartype="Float" Bytesize="4" OffsetHex="00000044" Description="m_Dying" DisplayMethod="unsigned integer"/>
+              <Element Offset="72" Vartype="Float" Bytesize="4" OffsetHex="00000048" Description="m_OldDying" DisplayMethod="unsigned integer"/>
+              <Element Offset="76" Vartype="Float" Bytesize="4" OffsetHex="0000004C" Description="m_Shibire" DisplayMethod="unsigned integer"/>
+              <Element Offset="80" Vartype="Float" Bytesize="4" OffsetHex="00000050" Description="m_OldShibire" DisplayMethod="unsigned integer"/>
+              <Element Offset="84" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000054" Description="m_SpriteNumOfs" DisplayMethod="unsigned integer"/>
+            </Elements>
+          </Structure>
+        </Element>
+        <Element Offset="52" Vartype="Pointer" Bytesize="4" OffsetHex="00000034" Description="m_SprScore" DisplayMethod="unsigned integer">
+          <Structure Name="SFCGSpriteRenderer[]" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+            <Elements>
+              <Element Offset="12" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000000C" Description="Count" DisplayMethod="unsigned integer"/>
+              <Element Offset="16" Vartype="Pointer" Bytesize="4" OffsetHex="00000010" Description="Item[0]" DisplayMethod="unsigned integer">
+                <Structure Name="SFCGSpriteRenderer" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+                  <Elements>
+                    <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" Description="m_CachedPtr" DisplayMethod="unsigned integer"/>
+                    <Element Offset="12" Vartype="Pointer" Bytesize="4" OffsetHex="0000000C" Description="m_SpriteArray" DisplayMethod="unsigned integer"/>
+                    <Element Offset="16" Vartype="Pointer" Bytesize="4" OffsetHex="00000010" Description="m_Renderer" DisplayMethod="unsigned integer"/>
+                    <Element Offset="20" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000014" Description="m_SpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="m_OldSpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="28" Vartype="Byte" Bytesize="1" OffsetHex="0000001C" Description="m_HRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="29" Vartype="Byte" Bytesize="1" OffsetHex="0000001D" Description="m_OldHRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="32" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000020" Description="m_Atb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="36" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000024" Description="m_OldAtb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="40" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000028" Description="m_AtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="44" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000002C" Description="m_OldAtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="48" Vartype="Float" Bytesize="4" OffsetHex="00000030" Description="m_Dmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="52" Vartype="Float" Bytesize="4" OffsetHex="00000034" Description="m_OldDmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="56" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000038" Description="m_DmgPos" DisplayMethod="unsigned integer"/>
+                    <Element Offset="68" Vartype="Float" Bytesize="4" OffsetHex="00000044" Description="m_Dying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="72" Vartype="Float" Bytesize="4" OffsetHex="00000048" Description="m_OldDying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="76" Vartype="Float" Bytesize="4" OffsetHex="0000004C" Description="m_Shibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="80" Vartype="Float" Bytesize="4" OffsetHex="00000050" Description="m_OldShibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="84" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000054" Description="m_SpriteNumOfs" DisplayMethod="unsigned integer"/>
+                  </Elements>
+                </Structure>
+              </Element>
+              <Element Offset="20" Vartype="Pointer" Bytesize="4" OffsetHex="00000014" Description="Item[1]" DisplayMethod="unsigned integer">
+                <Structure Name="SFCGSpriteRenderer" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+                  <Elements>
+                    <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" Description="m_CachedPtr" DisplayMethod="unsigned integer"/>
+                    <Element Offset="12" Vartype="Pointer" Bytesize="4" OffsetHex="0000000C" Description="m_SpriteArray" DisplayMethod="unsigned integer"/>
+                    <Element Offset="16" Vartype="Pointer" Bytesize="4" OffsetHex="00000010" Description="m_Renderer" DisplayMethod="unsigned integer"/>
+                    <Element Offset="20" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000014" Description="m_SpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="m_OldSpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="28" Vartype="Byte" Bytesize="1" OffsetHex="0000001C" Description="m_HRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="29" Vartype="Byte" Bytesize="1" OffsetHex="0000001D" Description="m_OldHRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="32" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000020" Description="m_Atb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="36" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000024" Description="m_OldAtb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="40" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000028" Description="m_AtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="44" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000002C" Description="m_OldAtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="48" Vartype="Float" Bytesize="4" OffsetHex="00000030" Description="m_Dmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="52" Vartype="Float" Bytesize="4" OffsetHex="00000034" Description="m_OldDmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="56" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000038" Description="m_DmgPos" DisplayMethod="unsigned integer"/>
+                    <Element Offset="68" Vartype="Float" Bytesize="4" OffsetHex="00000044" Description="m_Dying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="72" Vartype="Float" Bytesize="4" OffsetHex="00000048" Description="m_OldDying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="76" Vartype="Float" Bytesize="4" OffsetHex="0000004C" Description="m_Shibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="80" Vartype="Float" Bytesize="4" OffsetHex="00000050" Description="m_OldShibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="84" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000054" Description="m_SpriteNumOfs" DisplayMethod="unsigned integer"/>
+                  </Elements>
+                </Structure>
+              </Element>
+              <Element Offset="24" Vartype="Pointer" Bytesize="4" OffsetHex="00000018" Description="Item[2]" DisplayMethod="unsigned integer">
+                <Structure Name="SFCGSpriteRenderer" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+                  <Elements>
+                    <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" Description="m_CachedPtr" DisplayMethod="unsigned integer"/>
+                    <Element Offset="12" Vartype="Pointer" Bytesize="4" OffsetHex="0000000C" Description="m_SpriteArray" DisplayMethod="unsigned integer"/>
+                    <Element Offset="16" Vartype="Pointer" Bytesize="4" OffsetHex="00000010" Description="m_Renderer" DisplayMethod="unsigned integer"/>
+                    <Element Offset="20" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000014" Description="m_SpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="m_OldSpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="28" Vartype="Byte" Bytesize="1" OffsetHex="0000001C" Description="m_HRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="29" Vartype="Byte" Bytesize="1" OffsetHex="0000001D" Description="m_OldHRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="32" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000020" Description="m_Atb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="36" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000024" Description="m_OldAtb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="40" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000028" Description="m_AtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="44" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000002C" Description="m_OldAtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="48" Vartype="Float" Bytesize="4" OffsetHex="00000030" Description="m_Dmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="52" Vartype="Float" Bytesize="4" OffsetHex="00000034" Description="m_OldDmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="56" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000038" Description="m_DmgPos" DisplayMethod="unsigned integer"/>
+                    <Element Offset="68" Vartype="Float" Bytesize="4" OffsetHex="00000044" Description="m_Dying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="72" Vartype="Float" Bytesize="4" OffsetHex="00000048" Description="m_OldDying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="76" Vartype="Float" Bytesize="4" OffsetHex="0000004C" Description="m_Shibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="80" Vartype="Float" Bytesize="4" OffsetHex="00000050" Description="m_OldShibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="84" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000054" Description="m_SpriteNumOfs" DisplayMethod="unsigned integer"/>
+                  </Elements>
+                </Structure>
+              </Element>
+              <Element Offset="28" Vartype="Pointer" Bytesize="4" OffsetHex="0000001C" Description="Item[3]" DisplayMethod="unsigned integer">
+                <Structure Name="SFCGSpriteRenderer" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+                  <Elements>
+                    <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" Description="m_CachedPtr" DisplayMethod="unsigned integer"/>
+                    <Element Offset="12" Vartype="Pointer" Bytesize="4" OffsetHex="0000000C" Description="m_SpriteArray" DisplayMethod="unsigned integer"/>
+                    <Element Offset="16" Vartype="Pointer" Bytesize="4" OffsetHex="00000010" Description="m_Renderer" DisplayMethod="unsigned integer"/>
+                    <Element Offset="20" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000014" Description="m_SpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="m_OldSpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="28" Vartype="Byte" Bytesize="1" OffsetHex="0000001C" Description="m_HRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="29" Vartype="Byte" Bytesize="1" OffsetHex="0000001D" Description="m_OldHRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="32" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000020" Description="m_Atb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="36" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000024" Description="m_OldAtb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="40" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000028" Description="m_AtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="44" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000002C" Description="m_OldAtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="48" Vartype="Float" Bytesize="4" OffsetHex="00000030" Description="m_Dmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="52" Vartype="Float" Bytesize="4" OffsetHex="00000034" Description="m_OldDmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="56" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000038" Description="m_DmgPos" DisplayMethod="unsigned integer"/>
+                    <Element Offset="68" Vartype="Float" Bytesize="4" OffsetHex="00000044" Description="m_Dying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="72" Vartype="Float" Bytesize="4" OffsetHex="00000048" Description="m_OldDying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="76" Vartype="Float" Bytesize="4" OffsetHex="0000004C" Description="m_Shibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="80" Vartype="Float" Bytesize="4" OffsetHex="00000050" Description="m_OldShibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="84" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000054" Description="m_SpriteNumOfs" DisplayMethod="unsigned integer"/>
+                  </Elements>
+                </Structure>
+              </Element>
+              <Element Offset="32" Vartype="Pointer" Bytesize="4" OffsetHex="00000020" Description="Item[4]" DisplayMethod="unsigned integer">
+                <Structure Name="SFCGSpriteRenderer" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+                  <Elements>
+                    <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" Description="m_CachedPtr" DisplayMethod="unsigned integer"/>
+                    <Element Offset="12" Vartype="Pointer" Bytesize="4" OffsetHex="0000000C" Description="m_SpriteArray" DisplayMethod="unsigned integer"/>
+                    <Element Offset="16" Vartype="Pointer" Bytesize="4" OffsetHex="00000010" Description="m_Renderer" DisplayMethod="unsigned integer"/>
+                    <Element Offset="20" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000014" Description="m_SpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="m_OldSpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="28" Vartype="Byte" Bytesize="1" OffsetHex="0000001C" Description="m_HRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="29" Vartype="Byte" Bytesize="1" OffsetHex="0000001D" Description="m_OldHRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="32" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000020" Description="m_Atb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="36" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000024" Description="m_OldAtb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="40" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000028" Description="m_AtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="44" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000002C" Description="m_OldAtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="48" Vartype="Float" Bytesize="4" OffsetHex="00000030" Description="m_Dmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="52" Vartype="Float" Bytesize="4" OffsetHex="00000034" Description="m_OldDmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="56" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000038" Description="m_DmgPos" DisplayMethod="unsigned integer"/>
+                    <Element Offset="68" Vartype="Float" Bytesize="4" OffsetHex="00000044" Description="m_Dying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="72" Vartype="Float" Bytesize="4" OffsetHex="00000048" Description="m_OldDying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="76" Vartype="Float" Bytesize="4" OffsetHex="0000004C" Description="m_Shibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="80" Vartype="Float" Bytesize="4" OffsetHex="00000050" Description="m_OldShibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="84" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000054" Description="m_SpriteNumOfs" DisplayMethod="unsigned integer"/>
+                  </Elements>
+                </Structure>
+              </Element>
+              <Element Offset="36" Vartype="Pointer" Bytesize="4" OffsetHex="00000024" Description="Item[5]" DisplayMethod="unsigned integer">
+                <Structure Name="SFCGSpriteRenderer" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+                  <Elements>
+                    <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" Description="m_CachedPtr" DisplayMethod="unsigned integer"/>
+                    <Element Offset="12" Vartype="Pointer" Bytesize="4" OffsetHex="0000000C" Description="m_SpriteArray" DisplayMethod="unsigned integer"/>
+                    <Element Offset="16" Vartype="Pointer" Bytesize="4" OffsetHex="00000010" Description="m_Renderer" DisplayMethod="unsigned integer"/>
+                    <Element Offset="20" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000014" Description="m_SpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="m_OldSpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="28" Vartype="Byte" Bytesize="1" OffsetHex="0000001C" Description="m_HRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="29" Vartype="Byte" Bytesize="1" OffsetHex="0000001D" Description="m_OldHRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="32" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000020" Description="m_Atb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="36" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000024" Description="m_OldAtb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="40" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000028" Description="m_AtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="44" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000002C" Description="m_OldAtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="48" Vartype="Float" Bytesize="4" OffsetHex="00000030" Description="m_Dmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="52" Vartype="Float" Bytesize="4" OffsetHex="00000034" Description="m_OldDmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="56" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000038" Description="m_DmgPos" DisplayMethod="unsigned integer"/>
+                    <Element Offset="68" Vartype="Float" Bytesize="4" OffsetHex="00000044" Description="m_Dying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="72" Vartype="Float" Bytesize="4" OffsetHex="00000048" Description="m_OldDying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="76" Vartype="Float" Bytesize="4" OffsetHex="0000004C" Description="m_Shibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="80" Vartype="Float" Bytesize="4" OffsetHex="00000050" Description="m_OldShibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="84" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000054" Description="m_SpriteNumOfs" DisplayMethod="unsigned integer"/>
+                  </Elements>
+                </Structure>
+              </Element>
+              <Element Offset="40" Vartype="Pointer" Bytesize="4" OffsetHex="00000028" Description="Item[6]" DisplayMethod="unsigned integer">
+                <Structure Name="SFCGSpriteRenderer" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+                  <Elements>
+                    <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" Description="m_CachedPtr" DisplayMethod="unsigned integer"/>
+                    <Element Offset="12" Vartype="Pointer" Bytesize="4" OffsetHex="0000000C" Description="m_SpriteArray" DisplayMethod="unsigned integer"/>
+                    <Element Offset="16" Vartype="Pointer" Bytesize="4" OffsetHex="00000010" Description="m_Renderer" DisplayMethod="unsigned integer"/>
+                    <Element Offset="20" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000014" Description="m_SpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="m_OldSpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="28" Vartype="Byte" Bytesize="1" OffsetHex="0000001C" Description="m_HRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="29" Vartype="Byte" Bytesize="1" OffsetHex="0000001D" Description="m_OldHRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="32" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000020" Description="m_Atb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="36" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000024" Description="m_OldAtb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="40" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000028" Description="m_AtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="44" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000002C" Description="m_OldAtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="48" Vartype="Float" Bytesize="4" OffsetHex="00000030" Description="m_Dmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="52" Vartype="Float" Bytesize="4" OffsetHex="00000034" Description="m_OldDmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="56" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000038" Description="m_DmgPos" DisplayMethod="unsigned integer"/>
+                    <Element Offset="68" Vartype="Float" Bytesize="4" OffsetHex="00000044" Description="m_Dying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="72" Vartype="Float" Bytesize="4" OffsetHex="00000048" Description="m_OldDying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="76" Vartype="Float" Bytesize="4" OffsetHex="0000004C" Description="m_Shibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="80" Vartype="Float" Bytesize="4" OffsetHex="00000050" Description="m_OldShibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="84" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000054" Description="m_SpriteNumOfs" DisplayMethod="unsigned integer"/>
+                  </Elements>
+                </Structure>
+              </Element>
+              <Element Offset="44" Vartype="Pointer" Bytesize="4" OffsetHex="0000002C" Description="Item[7]" DisplayMethod="unsigned integer">
+                <Structure Name="SFCGSpriteRenderer" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+                  <Elements>
+                    <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" Description="m_CachedPtr" DisplayMethod="unsigned integer"/>
+                    <Element Offset="12" Vartype="Pointer" Bytesize="4" OffsetHex="0000000C" Description="m_SpriteArray" DisplayMethod="unsigned integer"/>
+                    <Element Offset="16" Vartype="Pointer" Bytesize="4" OffsetHex="00000010" Description="m_Renderer" DisplayMethod="unsigned integer"/>
+                    <Element Offset="20" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000014" Description="m_SpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="m_OldSpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="28" Vartype="Byte" Bytesize="1" OffsetHex="0000001C" Description="m_HRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="29" Vartype="Byte" Bytesize="1" OffsetHex="0000001D" Description="m_OldHRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="32" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000020" Description="m_Atb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="36" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000024" Description="m_OldAtb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="40" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000028" Description="m_AtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="44" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000002C" Description="m_OldAtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="48" Vartype="Float" Bytesize="4" OffsetHex="00000030" Description="m_Dmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="52" Vartype="Float" Bytesize="4" OffsetHex="00000034" Description="m_OldDmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="56" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000038" Description="m_DmgPos" DisplayMethod="unsigned integer"/>
+                    <Element Offset="68" Vartype="Float" Bytesize="4" OffsetHex="00000044" Description="m_Dying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="72" Vartype="Float" Bytesize="4" OffsetHex="00000048" Description="m_OldDying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="76" Vartype="Float" Bytesize="4" OffsetHex="0000004C" Description="m_Shibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="80" Vartype="Float" Bytesize="4" OffsetHex="00000050" Description="m_OldShibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="84" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000054" Description="m_SpriteNumOfs" DisplayMethod="unsigned integer"/>
+                  </Elements>
+                </Structure>
+              </Element>
+              <Element Offset="48" Vartype="Pointer" Bytesize="4" OffsetHex="00000030" Description="Item[8]" DisplayMethod="unsigned integer">
+                <Structure Name="SFCGSpriteRenderer" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+                  <Elements>
+                    <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" Description="m_CachedPtr" DisplayMethod="unsigned integer"/>
+                    <Element Offset="12" Vartype="Pointer" Bytesize="4" OffsetHex="0000000C" Description="m_SpriteArray" DisplayMethod="unsigned integer"/>
+                    <Element Offset="16" Vartype="Pointer" Bytesize="4" OffsetHex="00000010" Description="m_Renderer" DisplayMethod="unsigned integer"/>
+                    <Element Offset="20" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000014" Description="m_SpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="m_OldSpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="28" Vartype="Byte" Bytesize="1" OffsetHex="0000001C" Description="m_HRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="29" Vartype="Byte" Bytesize="1" OffsetHex="0000001D" Description="m_OldHRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="32" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000020" Description="m_Atb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="36" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000024" Description="m_OldAtb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="40" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000028" Description="m_AtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="44" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000002C" Description="m_OldAtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="48" Vartype="Float" Bytesize="4" OffsetHex="00000030" Description="m_Dmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="52" Vartype="Float" Bytesize="4" OffsetHex="00000034" Description="m_OldDmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="56" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000038" Description="m_DmgPos" DisplayMethod="unsigned integer"/>
+                    <Element Offset="68" Vartype="Float" Bytesize="4" OffsetHex="00000044" Description="m_Dying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="72" Vartype="Float" Bytesize="4" OffsetHex="00000048" Description="m_OldDying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="76" Vartype="Float" Bytesize="4" OffsetHex="0000004C" Description="m_Shibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="80" Vartype="Float" Bytesize="4" OffsetHex="00000050" Description="m_OldShibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="84" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000054" Description="m_SpriteNumOfs" DisplayMethod="unsigned integer"/>
+                  </Elements>
+                </Structure>
+              </Element>
+              <Element Offset="52" Vartype="Pointer" Bytesize="4" OffsetHex="00000034" Description="Item[9]" DisplayMethod="unsigned integer">
+                <Structure Name="SFCGSpriteRenderer" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+                  <Elements>
+                    <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" Description="m_CachedPtr" DisplayMethod="unsigned integer"/>
+                    <Element Offset="12" Vartype="Pointer" Bytesize="4" OffsetHex="0000000C" Description="m_SpriteArray" DisplayMethod="unsigned integer"/>
+                    <Element Offset="16" Vartype="Pointer" Bytesize="4" OffsetHex="00000010" Description="m_Renderer" DisplayMethod="unsigned integer"/>
+                    <Element Offset="20" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000014" Description="m_SpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="m_OldSpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="28" Vartype="Byte" Bytesize="1" OffsetHex="0000001C" Description="m_HRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="29" Vartype="Byte" Bytesize="1" OffsetHex="0000001D" Description="m_OldHRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="32" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000020" Description="m_Atb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="36" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000024" Description="m_OldAtb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="40" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000028" Description="m_AtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="44" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000002C" Description="m_OldAtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="48" Vartype="Float" Bytesize="4" OffsetHex="00000030" Description="m_Dmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="52" Vartype="Float" Bytesize="4" OffsetHex="00000034" Description="m_OldDmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="56" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000038" Description="m_DmgPos" DisplayMethod="unsigned integer"/>
+                    <Element Offset="68" Vartype="Float" Bytesize="4" OffsetHex="00000044" Description="m_Dying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="72" Vartype="Float" Bytesize="4" OffsetHex="00000048" Description="m_OldDying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="76" Vartype="Float" Bytesize="4" OffsetHex="0000004C" Description="m_Shibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="80" Vartype="Float" Bytesize="4" OffsetHex="00000050" Description="m_OldShibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="84" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000054" Description="m_SpriteNumOfs" DisplayMethod="unsigned integer"/>
+                  </Elements>
+                </Structure>
+              </Element>
+            </Elements>
+          </Structure>
+        </Element>
+        <Element Offset="56" Vartype="Pointer" Bytesize="4" OffsetHex="00000038" Description="m_SprBomb" DisplayMethod="unsigned integer">
+          <Structure Name="SFCGSpriteRenderer[]" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+            <Elements>
+              <Element Offset="12" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000000C" Description="Count" DisplayMethod="unsigned integer"/>
+              <Element Offset="16" Vartype="Pointer" Bytesize="4" OffsetHex="00000010" Description="Item[0]" DisplayMethod="unsigned integer">
+                <Structure Name="SFCGSpriteRenderer" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+                  <Elements>
+                    <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" Description="m_CachedPtr" DisplayMethod="unsigned integer"/>
+                    <Element Offset="12" Vartype="Pointer" Bytesize="4" OffsetHex="0000000C" Description="m_SpriteArray" DisplayMethod="unsigned integer"/>
+                    <Element Offset="16" Vartype="Pointer" Bytesize="4" OffsetHex="00000010" Description="m_Renderer" DisplayMethod="unsigned integer"/>
+                    <Element Offset="20" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000014" Description="m_SpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="m_OldSpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="28" Vartype="Byte" Bytesize="1" OffsetHex="0000001C" Description="m_HRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="29" Vartype="Byte" Bytesize="1" OffsetHex="0000001D" Description="m_OldHRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="32" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000020" Description="m_Atb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="36" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000024" Description="m_OldAtb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="40" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000028" Description="m_AtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="44" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000002C" Description="m_OldAtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="48" Vartype="Float" Bytesize="4" OffsetHex="00000030" Description="m_Dmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="52" Vartype="Float" Bytesize="4" OffsetHex="00000034" Description="m_OldDmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="56" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000038" Description="m_DmgPos" DisplayMethod="unsigned integer"/>
+                    <Element Offset="68" Vartype="Float" Bytesize="4" OffsetHex="00000044" Description="m_Dying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="72" Vartype="Float" Bytesize="4" OffsetHex="00000048" Description="m_OldDying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="76" Vartype="Float" Bytesize="4" OffsetHex="0000004C" Description="m_Shibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="80" Vartype="Float" Bytesize="4" OffsetHex="00000050" Description="m_OldShibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="84" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000054" Description="m_SpriteNumOfs" DisplayMethod="unsigned integer"/>
+                  </Elements>
+                </Structure>
+              </Element>
+              <Element Offset="20" Vartype="Pointer" Bytesize="4" OffsetHex="00000014" Description="Item[1]" DisplayMethod="unsigned integer">
+                <Structure Name="SFCGSpriteRenderer" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+                  <Elements>
+                    <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" Description="m_CachedPtr" DisplayMethod="unsigned integer"/>
+                    <Element Offset="12" Vartype="Pointer" Bytesize="4" OffsetHex="0000000C" Description="m_SpriteArray" DisplayMethod="unsigned integer"/>
+                    <Element Offset="16" Vartype="Pointer" Bytesize="4" OffsetHex="00000010" Description="m_Renderer" DisplayMethod="unsigned integer"/>
+                    <Element Offset="20" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000014" Description="m_SpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="m_OldSpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="28" Vartype="Byte" Bytesize="1" OffsetHex="0000001C" Description="m_HRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="29" Vartype="Byte" Bytesize="1" OffsetHex="0000001D" Description="m_OldHRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="32" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000020" Description="m_Atb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="36" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000024" Description="m_OldAtb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="40" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000028" Description="m_AtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="44" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000002C" Description="m_OldAtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="48" Vartype="Float" Bytesize="4" OffsetHex="00000030" Description="m_Dmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="52" Vartype="Float" Bytesize="4" OffsetHex="00000034" Description="m_OldDmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="56" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000038" Description="m_DmgPos" DisplayMethod="unsigned integer"/>
+                    <Element Offset="68" Vartype="Float" Bytesize="4" OffsetHex="00000044" Description="m_Dying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="72" Vartype="Float" Bytesize="4" OffsetHex="00000048" Description="m_OldDying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="76" Vartype="Float" Bytesize="4" OffsetHex="0000004C" Description="m_Shibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="80" Vartype="Float" Bytesize="4" OffsetHex="00000050" Description="m_OldShibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="84" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000054" Description="m_SpriteNumOfs" DisplayMethod="unsigned integer"/>
+                  </Elements>
+                </Structure>
+              </Element>
+              <Element Offset="24" Vartype="Pointer" Bytesize="4" OffsetHex="00000018" Description="Item[2]" DisplayMethod="unsigned integer">
+                <Structure Name="SFCGSpriteRenderer" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+                  <Elements>
+                    <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" Description="m_CachedPtr" DisplayMethod="unsigned integer"/>
+                    <Element Offset="12" Vartype="Pointer" Bytesize="4" OffsetHex="0000000C" Description="m_SpriteArray" DisplayMethod="unsigned integer"/>
+                    <Element Offset="16" Vartype="Pointer" Bytesize="4" OffsetHex="00000010" Description="m_Renderer" DisplayMethod="unsigned integer"/>
+                    <Element Offset="20" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000014" Description="m_SpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="m_OldSpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="28" Vartype="Byte" Bytesize="1" OffsetHex="0000001C" Description="m_HRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="29" Vartype="Byte" Bytesize="1" OffsetHex="0000001D" Description="m_OldHRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="32" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000020" Description="m_Atb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="36" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000024" Description="m_OldAtb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="40" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000028" Description="m_AtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="44" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000002C" Description="m_OldAtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="48" Vartype="Float" Bytesize="4" OffsetHex="00000030" Description="m_Dmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="52" Vartype="Float" Bytesize="4" OffsetHex="00000034" Description="m_OldDmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="56" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000038" Description="m_DmgPos" DisplayMethod="unsigned integer"/>
+                    <Element Offset="68" Vartype="Float" Bytesize="4" OffsetHex="00000044" Description="m_Dying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="72" Vartype="Float" Bytesize="4" OffsetHex="00000048" Description="m_OldDying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="76" Vartype="Float" Bytesize="4" OffsetHex="0000004C" Description="m_Shibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="80" Vartype="Float" Bytesize="4" OffsetHex="00000050" Description="m_OldShibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="84" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000054" Description="m_SpriteNumOfs" DisplayMethod="unsigned integer"/>
+                  </Elements>
+                </Structure>
+              </Element>
+              <Element Offset="28" Vartype="Pointer" Bytesize="4" OffsetHex="0000001C" Description="Item[3]" DisplayMethod="unsigned integer">
+                <Structure Name="SFCGSpriteRenderer" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+                  <Elements>
+                    <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" Description="m_CachedPtr" DisplayMethod="unsigned integer"/>
+                    <Element Offset="12" Vartype="Pointer" Bytesize="4" OffsetHex="0000000C" Description="m_SpriteArray" DisplayMethod="unsigned integer"/>
+                    <Element Offset="16" Vartype="Pointer" Bytesize="4" OffsetHex="00000010" Description="m_Renderer" DisplayMethod="unsigned integer"/>
+                    <Element Offset="20" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000014" Description="m_SpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="m_OldSpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="28" Vartype="Byte" Bytesize="1" OffsetHex="0000001C" Description="m_HRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="29" Vartype="Byte" Bytesize="1" OffsetHex="0000001D" Description="m_OldHRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="32" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000020" Description="m_Atb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="36" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000024" Description="m_OldAtb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="40" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000028" Description="m_AtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="44" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000002C" Description="m_OldAtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="48" Vartype="Float" Bytesize="4" OffsetHex="00000030" Description="m_Dmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="52" Vartype="Float" Bytesize="4" OffsetHex="00000034" Description="m_OldDmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="56" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000038" Description="m_DmgPos" DisplayMethod="unsigned integer"/>
+                    <Element Offset="68" Vartype="Float" Bytesize="4" OffsetHex="00000044" Description="m_Dying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="72" Vartype="Float" Bytesize="4" OffsetHex="00000048" Description="m_OldDying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="76" Vartype="Float" Bytesize="4" OffsetHex="0000004C" Description="m_Shibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="80" Vartype="Float" Bytesize="4" OffsetHex="00000050" Description="m_OldShibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="84" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000054" Description="m_SpriteNumOfs" DisplayMethod="unsigned integer"/>
+                  </Elements>
+                </Structure>
+              </Element>
+              <Element Offset="32" Vartype="Pointer" Bytesize="4" OffsetHex="00000020" Description="Item[4]" DisplayMethod="unsigned integer">
+                <Structure Name="SFCGSpriteRenderer" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+                  <Elements>
+                    <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" Description="m_CachedPtr" DisplayMethod="unsigned integer"/>
+                    <Element Offset="12" Vartype="Pointer" Bytesize="4" OffsetHex="0000000C" Description="m_SpriteArray" DisplayMethod="unsigned integer"/>
+                    <Element Offset="16" Vartype="Pointer" Bytesize="4" OffsetHex="00000010" Description="m_Renderer" DisplayMethod="unsigned integer"/>
+                    <Element Offset="20" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000014" Description="m_SpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="m_OldSpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="28" Vartype="Byte" Bytesize="1" OffsetHex="0000001C" Description="m_HRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="29" Vartype="Byte" Bytesize="1" OffsetHex="0000001D" Description="m_OldHRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="32" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000020" Description="m_Atb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="36" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000024" Description="m_OldAtb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="40" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000028" Description="m_AtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="44" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000002C" Description="m_OldAtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="48" Vartype="Float" Bytesize="4" OffsetHex="00000030" Description="m_Dmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="52" Vartype="Float" Bytesize="4" OffsetHex="00000034" Description="m_OldDmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="56" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000038" Description="m_DmgPos" DisplayMethod="unsigned integer"/>
+                    <Element Offset="68" Vartype="Float" Bytesize="4" OffsetHex="00000044" Description="m_Dying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="72" Vartype="Float" Bytesize="4" OffsetHex="00000048" Description="m_OldDying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="76" Vartype="Float" Bytesize="4" OffsetHex="0000004C" Description="m_Shibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="80" Vartype="Float" Bytesize="4" OffsetHex="00000050" Description="m_OldShibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="84" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000054" Description="m_SpriteNumOfs" DisplayMethod="unsigned integer"/>
+                  </Elements>
+                </Structure>
+              </Element>
+              <Element Offset="36" Vartype="Pointer" Bytesize="4" OffsetHex="00000024" Description="Item[5]" DisplayMethod="unsigned integer">
+                <Structure Name="SFCGSpriteRenderer" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+                  <Elements>
+                    <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" Description="m_CachedPtr" DisplayMethod="unsigned integer"/>
+                    <Element Offset="12" Vartype="Pointer" Bytesize="4" OffsetHex="0000000C" Description="m_SpriteArray" DisplayMethod="unsigned integer"/>
+                    <Element Offset="16" Vartype="Pointer" Bytesize="4" OffsetHex="00000010" Description="m_Renderer" DisplayMethod="unsigned integer"/>
+                    <Element Offset="20" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000014" Description="m_SpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="m_OldSpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="28" Vartype="Byte" Bytesize="1" OffsetHex="0000001C" Description="m_HRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="29" Vartype="Byte" Bytesize="1" OffsetHex="0000001D" Description="m_OldHRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="32" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000020" Description="m_Atb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="36" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000024" Description="m_OldAtb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="40" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000028" Description="m_AtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="44" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000002C" Description="m_OldAtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="48" Vartype="Float" Bytesize="4" OffsetHex="00000030" Description="m_Dmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="52" Vartype="Float" Bytesize="4" OffsetHex="00000034" Description="m_OldDmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="56" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000038" Description="m_DmgPos" DisplayMethod="unsigned integer"/>
+                    <Element Offset="68" Vartype="Float" Bytesize="4" OffsetHex="00000044" Description="m_Dying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="72" Vartype="Float" Bytesize="4" OffsetHex="00000048" Description="m_OldDying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="76" Vartype="Float" Bytesize="4" OffsetHex="0000004C" Description="m_Shibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="80" Vartype="Float" Bytesize="4" OffsetHex="00000050" Description="m_OldShibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="84" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000054" Description="m_SpriteNumOfs" DisplayMethod="unsigned integer"/>
+                  </Elements>
+                </Structure>
+              </Element>
+              <Element Offset="40" Vartype="Pointer" Bytesize="4" OffsetHex="00000028" Description="Item[6]" DisplayMethod="unsigned integer">
+                <Structure Name="SFCGSpriteRenderer" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+                  <Elements>
+                    <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" Description="m_CachedPtr" DisplayMethod="unsigned integer"/>
+                    <Element Offset="12" Vartype="Pointer" Bytesize="4" OffsetHex="0000000C" Description="m_SpriteArray" DisplayMethod="unsigned integer"/>
+                    <Element Offset="16" Vartype="Pointer" Bytesize="4" OffsetHex="00000010" Description="m_Renderer" DisplayMethod="unsigned integer"/>
+                    <Element Offset="20" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000014" Description="m_SpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="m_OldSpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="28" Vartype="Byte" Bytesize="1" OffsetHex="0000001C" Description="m_HRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="29" Vartype="Byte" Bytesize="1" OffsetHex="0000001D" Description="m_OldHRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="32" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000020" Description="m_Atb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="36" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000024" Description="m_OldAtb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="40" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000028" Description="m_AtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="44" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000002C" Description="m_OldAtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="48" Vartype="Float" Bytesize="4" OffsetHex="00000030" Description="m_Dmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="52" Vartype="Float" Bytesize="4" OffsetHex="00000034" Description="m_OldDmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="56" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000038" Description="m_DmgPos" DisplayMethod="unsigned integer"/>
+                    <Element Offset="68" Vartype="Float" Bytesize="4" OffsetHex="00000044" Description="m_Dying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="72" Vartype="Float" Bytesize="4" OffsetHex="00000048" Description="m_OldDying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="76" Vartype="Float" Bytesize="4" OffsetHex="0000004C" Description="m_Shibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="80" Vartype="Float" Bytesize="4" OffsetHex="00000050" Description="m_OldShibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="84" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000054" Description="m_SpriteNumOfs" DisplayMethod="unsigned integer"/>
+                  </Elements>
+                </Structure>
+              </Element>
+              <Element Offset="44" Vartype="Pointer" Bytesize="4" OffsetHex="0000002C" Description="Item[7]" DisplayMethod="unsigned integer">
+                <Structure Name="SFCGSpriteRenderer" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+                  <Elements>
+                    <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" Description="m_CachedPtr" DisplayMethod="unsigned integer"/>
+                    <Element Offset="12" Vartype="Pointer" Bytesize="4" OffsetHex="0000000C" Description="m_SpriteArray" DisplayMethod="unsigned integer"/>
+                    <Element Offset="16" Vartype="Pointer" Bytesize="4" OffsetHex="00000010" Description="m_Renderer" DisplayMethod="unsigned integer"/>
+                    <Element Offset="20" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000014" Description="m_SpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="m_OldSpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="28" Vartype="Byte" Bytesize="1" OffsetHex="0000001C" Description="m_HRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="29" Vartype="Byte" Bytesize="1" OffsetHex="0000001D" Description="m_OldHRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="32" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000020" Description="m_Atb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="36" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000024" Description="m_OldAtb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="40" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000028" Description="m_AtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="44" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000002C" Description="m_OldAtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="48" Vartype="Float" Bytesize="4" OffsetHex="00000030" Description="m_Dmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="52" Vartype="Float" Bytesize="4" OffsetHex="00000034" Description="m_OldDmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="56" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000038" Description="m_DmgPos" DisplayMethod="unsigned integer"/>
+                    <Element Offset="68" Vartype="Float" Bytesize="4" OffsetHex="00000044" Description="m_Dying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="72" Vartype="Float" Bytesize="4" OffsetHex="00000048" Description="m_OldDying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="76" Vartype="Float" Bytesize="4" OffsetHex="0000004C" Description="m_Shibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="80" Vartype="Float" Bytesize="4" OffsetHex="00000050" Description="m_OldShibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="84" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000054" Description="m_SpriteNumOfs" DisplayMethod="unsigned integer"/>
+                  </Elements>
+                </Structure>
+              </Element>
+              <Element Offset="48" Vartype="Pointer" Bytesize="4" OffsetHex="00000030" Description="Item[8]" DisplayMethod="unsigned integer">
+                <Structure Name="SFCGSpriteRenderer" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+                  <Elements>
+                    <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" Description="m_CachedPtr" DisplayMethod="unsigned integer"/>
+                    <Element Offset="12" Vartype="Pointer" Bytesize="4" OffsetHex="0000000C" Description="m_SpriteArray" DisplayMethod="unsigned integer"/>
+                    <Element Offset="16" Vartype="Pointer" Bytesize="4" OffsetHex="00000010" Description="m_Renderer" DisplayMethod="unsigned integer"/>
+                    <Element Offset="20" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000014" Description="m_SpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="m_OldSpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="28" Vartype="Byte" Bytesize="1" OffsetHex="0000001C" Description="m_HRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="29" Vartype="Byte" Bytesize="1" OffsetHex="0000001D" Description="m_OldHRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="32" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000020" Description="m_Atb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="36" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000024" Description="m_OldAtb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="40" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000028" Description="m_AtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="44" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000002C" Description="m_OldAtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="48" Vartype="Float" Bytesize="4" OffsetHex="00000030" Description="m_Dmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="52" Vartype="Float" Bytesize="4" OffsetHex="00000034" Description="m_OldDmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="56" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000038" Description="m_DmgPos" DisplayMethod="unsigned integer"/>
+                    <Element Offset="68" Vartype="Float" Bytesize="4" OffsetHex="00000044" Description="m_Dying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="72" Vartype="Float" Bytesize="4" OffsetHex="00000048" Description="m_OldDying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="76" Vartype="Float" Bytesize="4" OffsetHex="0000004C" Description="m_Shibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="80" Vartype="Float" Bytesize="4" OffsetHex="00000050" Description="m_OldShibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="84" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000054" Description="m_SpriteNumOfs" DisplayMethod="unsigned integer"/>
+                  </Elements>
+                </Structure>
+              </Element>
+              <Element Offset="52" Vartype="Pointer" Bytesize="4" OffsetHex="00000034" Description="Item[9]" DisplayMethod="unsigned integer">
+                <Structure Name="SFCGSpriteRenderer" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+                  <Elements>
+                    <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" Description="m_CachedPtr" DisplayMethod="unsigned integer"/>
+                    <Element Offset="12" Vartype="Pointer" Bytesize="4" OffsetHex="0000000C" Description="m_SpriteArray" DisplayMethod="unsigned integer"/>
+                    <Element Offset="16" Vartype="Pointer" Bytesize="4" OffsetHex="00000010" Description="m_Renderer" DisplayMethod="unsigned integer"/>
+                    <Element Offset="20" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000014" Description="m_SpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="m_OldSpriteNum" DisplayMethod="unsigned integer"/>
+                    <Element Offset="28" Vartype="Byte" Bytesize="1" OffsetHex="0000001C" Description="m_HRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="29" Vartype="Byte" Bytesize="1" OffsetHex="0000001D" Description="m_OldHRev" DisplayMethod="unsigned integer"/>
+                    <Element Offset="32" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000020" Description="m_Atb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="36" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000024" Description="m_OldAtb" DisplayMethod="unsigned integer"/>
+                    <Element Offset="40" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000028" Description="m_AtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="44" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000002C" Description="m_OldAtbBank" DisplayMethod="unsigned integer"/>
+                    <Element Offset="48" Vartype="Float" Bytesize="4" OffsetHex="00000030" Description="m_Dmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="52" Vartype="Float" Bytesize="4" OffsetHex="00000034" Description="m_OldDmg" DisplayMethod="unsigned integer"/>
+                    <Element Offset="56" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000038" Description="m_DmgPos" DisplayMethod="unsigned integer"/>
+                    <Element Offset="68" Vartype="Float" Bytesize="4" OffsetHex="00000044" Description="m_Dying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="72" Vartype="Float" Bytesize="4" OffsetHex="00000048" Description="m_OldDying" DisplayMethod="unsigned integer"/>
+                    <Element Offset="76" Vartype="Float" Bytesize="4" OffsetHex="0000004C" Description="m_Shibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="80" Vartype="Float" Bytesize="4" OffsetHex="00000050" Description="m_OldShibire" DisplayMethod="unsigned integer"/>
+                    <Element Offset="84" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000054" Description="m_SpriteNumOfs" DisplayMethod="unsigned integer"/>
+                  </Elements>
+                </Structure>
+              </Element>
+            </Elements>
+          </Structure>
+        </Element>
+        <Element Offset="60" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000003C" Description="m_PlIndex" DisplayMethod="unsigned integer"/>
+        <Element Offset="64" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000040" Description="m_PlCharacter" DisplayMethod="unsigned integer"/>
+        <Element Offset="68" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000044" Description="m_PlColor" DisplayMethod="unsigned integer"/>
+        <Element Offset="72" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000048" Description="m_ZankiOld" DisplayMethod="unsigned integer"/>
+        <Element Offset="76" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000004C" Description="m_ScoreOld" DisplayMethod="unsigned integer"/>
+        <Element Offset="80" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000050" Description="m_BombOld" DisplayMethod="unsigned integer"/>
+        <Element Offset="84" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000054" Description="m_WindowType" DisplayMethod="unsigned integer"/>
+        <Element Offset="88" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000058" Description="m_WindowTypeOld" DisplayMethod="unsigned integer"/>
+        <Element Offset="92" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000005C" Description="m_Bullet" DisplayMethod="unsigned integer"/>
+        <Element Offset="96" Vartype="Float" Bytesize="4" OffsetHex="00000060" Description="m_GatlingOld" DisplayMethod="unsigned integer"/>
+        <Element Offset="100" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000064" Description="m_GameOverTimer" DisplayMethod="unsigned integer"/>
+        <Element Offset="104" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000068" Description="m_GameOverStep" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="BarPlayer" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" Description="m_CachedPtr" DisplayMethod="unsigned integer"/>
+        <Element Offset="12" Vartype="Pointer" Bytesize="4" OffsetHex="0000000C" Description="m_SprWindow" DisplayMethod="unsigned integer"/>
+        <Element Offset="16" Vartype="Pointer" Bytesize="4" OffsetHex="00000010" Description="m_GunWindow" DisplayMethod="unsigned integer"/>
+        <Element Offset="20" Vartype="Pointer" Bytesize="4" OffsetHex="00000014" Description="m_Bullet10" DisplayMethod="unsigned integer"/>
+        <Element Offset="24" Vartype="Pointer" Bytesize="4" OffsetHex="00000018" Description="m_Bullet01" DisplayMethod="unsigned integer"/>
+        <Element Offset="28" Vartype="Pointer" Bytesize="4" OffsetHex="0000001C" Description="m_SprPlIndex" DisplayMethod="unsigned integer"/>
+        <Element Offset="32" Vartype="Pointer" Bytesize="4" OffsetHex="00000020" Description="m_SprPlNum" DisplayMethod="unsigned integer"/>
+        <Element Offset="36" Vartype="Pointer" Bytesize="4" OffsetHex="00000024" Description="m_SprGatlingIcon" DisplayMethod="unsigned integer"/>
+        <Element Offset="40" Vartype="Pointer" Bytesize="4" OffsetHex="00000028" Description="m_SprGatlingGauge" DisplayMethod="unsigned integer"/>
+        <Element Offset="44" Vartype="Pointer" Bytesize="4" OffsetHex="0000002C" Description="m_TexScore" DisplayMethod="unsigned integer"/>
+        <Element Offset="48" Vartype="Pointer" Bytesize="4" OffsetHex="00000030" Description="m_7KetaZero" DisplayMethod="unsigned integer"/>
+        <Element Offset="52" Vartype="Pointer" Bytesize="4" OffsetHex="00000034" Description="m_SprScore" DisplayMethod="unsigned integer"/>
+        <Element Offset="56" Vartype="Pointer" Bytesize="4" OffsetHex="00000038" Description="m_SprBomb" DisplayMethod="unsigned integer"/>
+        <Element Offset="60" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000003C" Description="m_PlIndex" DisplayMethod="unsigned integer"/>
+        <Element Offset="64" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000040" Description="m_PlCharacter" DisplayMethod="unsigned integer"/>
+        <Element Offset="68" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000044" Description="m_PlColor" DisplayMethod="unsigned integer"/>
+        <Element Offset="72" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000048" Description="m_ZankiOld" DisplayMethod="unsigned integer"/>
+        <Element Offset="76" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000004C" Description="m_ScoreOld" DisplayMethod="unsigned integer"/>
+        <Element Offset="80" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000050" Description="m_BombOld" DisplayMethod="unsigned integer"/>
+        <Element Offset="84" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000054" Description="m_WindowType" DisplayMethod="unsigned integer"/>
+        <Element Offset="88" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000058" Description="m_WindowTypeOld" DisplayMethod="unsigned integer"/>
+        <Element Offset="92" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000005C" Description="m_Bullet" DisplayMethod="unsigned integer"/>
+        <Element Offset="96" Vartype="Float" Bytesize="4" OffsetHex="00000060" Description="m_GatlingOld" DisplayMethod="unsigned integer"/>
+        <Element Offset="100" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000064" Description="m_GameOverTimer" DisplayMethod="unsigned integer"/>
+        <Element Offset="104" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000068" Description="m_GameOverStep" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="String" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" Description="Length" DisplayMethod="unsigned integer"/>
+        <Element Offset="12" Vartype="Unicode String" Bytesize="128" OffsetHex="0000000C" Description="Value" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+  </Structures>
+</CheatTable>

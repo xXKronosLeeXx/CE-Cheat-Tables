@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>211FF8EB914</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"受伤不掉"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : SonicSuperstars.exe
+  Version: 
+  Date   : 2024-08-28
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,C7 42 14 00 00 00 00 48 83) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop//mov [rdx+14],00000000
+  jmp return
+
+code:
+  mov [rdx+14],00000000
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db C7 42 14 00 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+D4D809
+
+GameAssembly.dll+D4D7F9: CC                    - int 3 
+GameAssembly.dll+D4D7FA: CC                    - int 3 
+GameAssembly.dll+D4D7FB: CC                    - int 3 
+GameAssembly.dll+D4D7FC: CC                    - int 3 
+GameAssembly.dll+D4D7FD: CC                    - int 3 
+GameAssembly.dll+D4D7FE: CC                    - int 3 
+GameAssembly.dll+D4D7FF: CC                    - int 3 
+GameAssembly.dll+D4D800: 48 83 EC 28           - sub rsp,28
+GameAssembly.dll+D4D804: 48 85 D2              - test rdx,rdx
+GameAssembly.dll+D4D807: 74 0C                 - je GameAssembly.dll+D4D815
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+D4D809: C7 42 14 00 00 00 00  - mov [rdx+14],00000000
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+D4D810: 48 83 C4 28           - add rsp,28
+GameAssembly.dll+D4D814: C3                    - ret 
+GameAssembly.dll+D4D815: E8 36 4B 90 FF        - call GameAssembly.dll+652350
+GameAssembly.dll+D4D81A: CC                    - int 3 
+GameAssembly.dll+D4D81B: CC                    - int 3 
+GameAssembly.dll+D4D81C: CC                    - int 3 
+GameAssembly.dll+D4D81D: CC                    - int 3 
+GameAssembly.dll+D4D81E: CC                    - int 3 
+GameAssembly.dll+D4D81F: CC                    - int 3 
+GameAssembly.dll+D4D820: 48 83 EC 28           - sub rsp,28
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"金环+99"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : SonicSuperstars.exe
+  Version: 
+  Date   : 2024-08-28
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,01 70 14 80 3D BC F1 B0 FC 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [rax+14],63
+  cmp byte ptr [GameAssembly.dll+6260A26],00
+  jmp return
+
+code:
+  add [rax+14],esi
+  cmp byte ptr [GameAssembly.dll+6260A26],00
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 5
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 01 70 14 80 3D BC F1 B0 FC 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+9751860
+
+GameAssembly.dll+9751842: 84 C0                 - test al,al
+GameAssembly.dll+9751844: 74 0E                 - je GameAssembly.dll+9751854
+GameAssembly.dll+9751846: 48 85 FF              - test rdi,rdi
+GameAssembly.dll+9751849: 74 74                 - je GameAssembly.dll+97518BF
+GameAssembly.dll+975184B: 48 8B 5F 40           - mov rbx,[rdi+40]
+GameAssembly.dll+975184F: 48 85 DB              - test rbx,rbx
+GameAssembly.dll+9751852: 74 6B                 - je GameAssembly.dll+97518BF
+GameAssembly.dll+9751854: 48 8B 83 60 01 00 00  - mov rax,[rbx+00000160]
+GameAssembly.dll+975185B: 48 85 C0              - test rax,rax
+GameAssembly.dll+975185E: 74 5F                 - je GameAssembly.dll+97518BF
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+9751860: 01 70 14              - add [rax+14],esi
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+9751863: 80 3D BC F1 B0 FC 00  - cmp byte ptr [GameAssembly.dll+6260A26],00
+GameAssembly.dll+975186A: 75 13                 - jne GameAssembly.dll+975187F
+GameAssembly.dll+975186C: 48 8D 0D 05 01 83 FC  - lea rcx,[GameAssembly.dll+5F81978]
+GameAssembly.dll+9751873: E8 F8 72 E9 F6        - call GameAssembly.dll+5E8B70
+GameAssembly.dll+9751878: C6 05 A7 F1 B0 FC 01  - mov byte ptr [GameAssembly.dll+6260A26],01
+GameAssembly.dll+975187F: 48 8B 0D F2 00 83 FC  - mov rcx,[GameAssembly.dll+5F81978]
+GameAssembly.dll+9751886: E8 C5 5C 6E F8        - call GameAssembly.dll+1E37550
+GameAssembly.dll+975188B: 84 C0                 - test al,al
+GameAssembly.dll+975188D: 74 20                 - je GameAssembly.dll+97518AF
+GameAssembly.dll+975188F: 31 C9                 - xor ecx,ecx
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>212025A83A4</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

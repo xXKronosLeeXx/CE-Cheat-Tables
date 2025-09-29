@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"道具60"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Ultros.exe
+  Version: 
+  Date   : 2024-09-10
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,D9 89 91 88 00 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rcx+00000088],#60
+  jmp return
+
+code:
+  mov [rcx+00000088],edx
+  jmp return
+
+INJECT+01:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+01:
+  db 89 91 88 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+4C6E41
+
+GameAssembly.dll+4C6E2B: CC                    - int 3 
+GameAssembly.dll+4C6E2C: CC                    - int 3 
+GameAssembly.dll+4C6E2D: CC                    - int 3 
+GameAssembly.dll+4C6E2E: CC                    - int 3 
+GameAssembly.dll+4C6E2F: CC                    - int 3 
+GameAssembly.dll+4C6E30: 48 89 5C 24 08        - mov [rsp+08],rbx
+GameAssembly.dll+4C6E35: 57                    - push rdi
+GameAssembly.dll+4C6E36: 48 83 EC 20           - sub rsp,20
+GameAssembly.dll+4C6E3A: 48 8B 79 58           - mov rdi,[rcx+58]
+GameAssembly.dll+4C6E3E: 48 8B D9              - mov rbx,rcx
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+4C6E41: 89 91 88 00 00 00     - mov [rcx+00000088],edx
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+4C6E47: 48 81 C1 88 00 00 00  - add rcx,00000088
+GameAssembly.dll+4C6E4E: 33 D2                 - xor edx,edx
+GameAssembly.dll+4C6E50: E8 BB 2F 0B 01        - call GameAssembly.dll+1579E10
+GameAssembly.dll+4C6E55: 48 85 FF              - test rdi,rdi
+GameAssembly.dll+4C6E58: 74 4B                 - je GameAssembly.dll+4C6EA5
+GameAssembly.dll+4C6E5A: 4C 8B 0F              - mov r9,[rdi]
+GameAssembly.dll+4C6E5D: 48 8B D0              - mov rdx,rax
+GameAssembly.dll+4C6E60: 48 8B CF              - mov rcx,rdi
+GameAssembly.dll+4C6E63: 4D 8B 81 60 05 00 00  - mov r8,[r9+00000560]
+GameAssembly.dll+4C6E6A: 41 FF 91 58 05 00 00  - call qword ptr [r9+00000558]
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

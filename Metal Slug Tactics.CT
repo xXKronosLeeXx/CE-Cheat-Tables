@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>22</ID>
+      <Description>"金钱增加=99999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Metal Slug Tactics.exe
+  Version: 
+  Date   : 2024-11-08
+  Author : lixiang
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,2B 4D F0 89 48 18) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  sub ecx,[rbp-10]
+  mov [rax+18],#99999
+  jmp return
+
+code:
+  sub ecx,[rbp-10]
+  mov [rax+18],ecx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 2B 4D F0 89 48 18
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 1FC1F2F6D5A
+
+1FC1F2F6D31: 48 8B EC                       - mov rbp,rsp
+1FC1F2F6D34: 48 83 EC 40                    - sub rsp,40
+1FC1F2F6D38: 48 89 7D F8                    - mov [rbp-08],rdi
+1FC1F2F6D3C: 48 8B F9                       - mov rdi,rcx
+1FC1F2F6D3F: 48 89 55 F0                    - mov [rbp-10],rdx
+1FC1F2F6D43: 66 66 90                       - nop 3
+1FC1F2F6D46: 49 BB D0 B6 BD 1F FC 01 00 00  - mov r11,000001FC1FBDB6D0
+1FC1F2F6D50: 41 FF D3                       - call r11
+1FC1F2F6D53: 48 8B D0                       - mov rdx,rax
+1FC1F2F6D56: 48 63 48 18                    - movsxd  rcx,dword ptr [rax+18]
+// ---------- INJECTING HERE ----------
+1FC1F2F6D5A: 2B 4D F0                       - sub ecx,[rbp-10]
+// ---------- DONE INJECTING  ----------
+1FC1F2F6D5D: 89 48 18                       - mov [rax+18],ecx
+1FC1F2F6D60: 48 8B CF                       - mov rcx,rdi
+1FC1F2F6D63: 66 66 90                       - nop 3
+1FC1F2F6D66: 49 BB D0 B6 BD 1F FC 01 00 00  - mov r11,000001FC1FBDB6D0
+1FC1F2F6D70: 41 FF D3                       - call r11
+1FC1F2F6D73: 48 89 45 E8                    - mov [rbp-18],rax
+1FC1F2F6D77: 48 8B CF                       - mov rcx,rdi
+1FC1F2F6D7A: 48 8D 6D 00                    - lea rbp,[rbp+00]
+1FC1F2F6D7E: 49 BB D0 B6 BD 1F FC 01 00 00  - mov r11,000001FC1FBDB6D0
+1FC1F2F6D88: 41 FF D3                       - call r11
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>46</ID>
+      <Description>"$=99999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Metal Slug Tactics.exe
+  Version: 
+  Date   : 2024-11-08
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,89 48 48 48 8B CF 48 8D 64 24 00 90 49 BB 80) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rax+48],#99999
+  mov rcx,rdi
+  jmp return
+
+code:
+  mov [rax+48],ecx
+  mov rcx,rdi
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 48 48 48 8B CF
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 29F062C3612
+
+29F062C35ED: 90                             - nop 
+29F062C35EE: 49 BB 80 CE CB 05 9F 02 00 00  - mov r11,0000029F05CBCE80
+29F062C35F8: 41 FF D3                       - call r11
+29F062C35FB: 48 8B D0                       - mov rdx,rax
+29F062C35FE: 83 38 00                       - cmp dword ptr [rax],00
+29F062C3601: 48 63 48 48                    - movsxd  rcx,dword ptr [rax+48]
+29F062C3605: 4C 8B 45 C8                    - mov r8,[rbp-38]
+29F062C3609: 4D 63 00                       - movsxd  r8,dword ptr [r8]
+29F062C360C: 41 2B C8                       - sub ecx,r8d
+29F062C360F: 83 3A 00                       - cmp dword ptr [rdx],00
+// ---------- INJECTING HERE ----------
+29F062C3612: 89 48 48                       - mov [rax+48],ecx
+// ---------- DONE INJECTING  ----------
+29F062C3615: 48 8B CF                       - mov rcx,rdi
+29F062C3618: 48 8D 64 24 00                 - lea rsp,[rsp+00]
+29F062C361D: 90                             - nop 
+29F062C361E: 49 BB 80 CE CB 05 9F 02 00 00  - mov r11,0000029F05CBCE80
+29F062C3628: 41 FF D3                       - call r11
+29F062C362B: 48 8B C8                       - mov rcx,rax
+29F062C362E: 48 8B D6                       - mov rdx,rsi
+29F062C3631: 83 38 00                       - cmp dword ptr [rax],00
+29F062C3634: 66 90                          - nop 2
+29F062C3636: 49 BB F0 CE CB 05 9F 02 00 00  - mov r11,0000029F05CBCEF0
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>7</ID>
+      <Description>"秒杀Boss"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Metal Slug Tactics.exe
+  Version: 
+  Date   : 2024-11-08
+  Author : lixiang
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,89 87 9C 00 00 00 48 8B 75 F0 48) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rdi+0000009C],0
+  jmp return
+
+code:
+  mov [rdi+0000009C],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 87 9C 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 2829C911B59
+
+2829C911B30: 41 FF D3                       - call r11
+2829C911B33: 48 8B D0                       - mov rdx,rax
+2829C911B36: 48 8B 4D C8                    - mov rcx,[rbp-38]
+2829C911B3A: 48 8D 6D 00                    - lea rbp,[rbp+00]
+2829C911B3E: 49 BB C0 12 66 6E 82 02 00 00  - mov r11,000002826E6612C0
+2829C911B48: 41 FF D3                       - call r11
+2829C911B4B: 48 8B CF                       - mov rcx,rdi
+2829C911B4E: 48 8B 07                       - mov rax,[rdi]
+2829C911B51: FF 90 40 01 00 00              - call qword ptr [rax+00000140]
+2829C911B57: 2B C6                          - sub eax,esi
+// ---------- INJECTING HERE ----------
+2829C911B59: 89 87 9C 00 00 00              - mov [rdi+0000009C],eax
+// ---------- DONE INJECTING  ----------
+2829C911B5F: 48 8B 75 F0                    - mov rsi,[rbp-10]
+2829C911B63: 48 8B 7D F8                    - mov rdi,[rbp-08]
+2829C911B67: 48 8D 65 00                    - lea rsp,[rbp+00]
+2829C911B6B: 5D                             - pop rbp
+2829C911B6C: C3                             - ret 
+2829C911B6D: 00 00                          - add [rax],al
+2829C911B6F: 00 01                          - add [rcx],al
+2829C911B71: 04 02                          - add al,02
+2829C911B73: 05 04 03 01 50                 - add eax,50010304
+2829C911B78: 00 00                          - add [rax],al
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>18</ID>
+      <Description>"特殊子弹不减"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Metal Slug Tactics.exe
+  Version: 
+  Date   : 2024-11-08
+  Author : lixiang
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,2B C7 41 89 85 B0 00 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop // sub eax,edi
+  mov [r13+000000B0],eax
+  jmp return
+
+code:
+  sub eax,edi
+  mov [r13+000000B0],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 4
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 2B C7 41 89 85 B0 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 1FC1FC1F791
+
+1FC1FC1F75E: 89 85 68 FF FF FF              - mov [rbp-00000098],eax
+1FC1FC1F764: 41 89 85 C0 00 00 00           - mov [r13+000000C0],eax
+1FC1FC1F76B: 41 C6 85 BC 00 00 00 01        - mov byte ptr [r13+000000BC],01
+1FC1FC1F773: 49 8B CD                       - mov rcx,r13
+1FC1FC1F776: 49 BB A0 72 9C 1F FC 01 00 00  - mov r11,000001FC1F9C72A0
+1FC1FC1F780: 41 FF D3                       - call r11
+1FC1FC1F783: 48 8B F8                       - mov rdi,rax
+1FC1FC1F786: 85 C0                          - test eax,eax
+1FC1FC1F788: 7E 10                          - jle 1FC1FC1F79A
+1FC1FC1F78A: 49 63 85 B0 00 00 00           - movsxd  rax,dword ptr [r13+000000B0]
+// ---------- INJECTING HERE ----------
+1FC1FC1F791: 2B C7                          - sub eax,edi
+// ---------- DONE INJECTING  ----------
+1FC1FC1F793: 41 89 85 B0 00 00 00           - mov [r13+000000B0],eax
+1FC1FC1F79A: 48 85 F6                       - test rsi,rsi
+1FC1FC1F79D: 0F 84 E0 00 00 00              - je 1FC1FC1F883
+1FC1FC1F7A3: 48 8D 46 18                    - lea rax,[rsi+18]
+1FC1FC1F7A7: 48 8B 08                       - mov rcx,[rax]
+1FC1FC1F7AA: 48 89 8D 70 FF FF FF           - mov [rbp-00000090],rcx
+1FC1FC1F7B1: 48 8B 48 08                    - mov rcx,[rax+08]
+1FC1FC1F7B5: 48 89 8D 78 FF FF FF           - mov [rbp-00000088],rcx
+1FC1FC1F7BC: 48 8B 48 10                    - mov rcx,[rax+10]
+1FC1FC1F7C0: 48 89 4D 80                    - mov [rbp-80],rcx
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>26</ID>
+      <Description>"肾上腺素=20"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Metal Slug Tactics.exe
+  Version: 
+  Date   : 2024-11-08
+  Author : lixiang
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,89 87 1C 01 00 00 48 8B CF) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rdi+0000011C],#20
+  jmp return
+
+
+code:
+  mov [rdi+0000011C],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 87 1C 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 1FC1FC6417D
+
+1FC1FC6415D: 00 00                          - add [rax],al
+1FC1FC6415F: 00 55 48                       - add [rbp+48],dl
+1FC1FC64162: 8B EC                          - mov ebp,esp
+1FC1FC64164: 48 83 EC 30                    - sub rsp,30
+1FC1FC64168: 48 89 7D F8                    - mov [rbp-08],rdi
+1FC1FC6416C: 48 8B F9                       - mov rdi,rcx
+1FC1FC6416F: 48 89 55 F0                    - mov [rbp-10],rdx
+1FC1FC64173: 48 63 87 1C 01 00 00           - movsxd  rax,dword ptr [rdi+0000011C]
+1FC1FC6417A: 03 45 F0                       - add eax,[rbp-10]
+1FC1FC6417D: 89 87 1C 01 00 00              - mov [rdi+0000011C],eax
+// ---------- INJECTING HERE ----------
+1FC1FC64183: 48 8B CF                       - mov rcx,rdi
+// ---------- DONE INJECTING  ----------
+1FC1FC64186: 49 BB 90 51 9C 1F FC 01 00 00  - mov r11,000001FC1F9C5190
+1FC1FC64190: 41 FF D3                       - call r11
+1FC1FC64193: 48 8B 7D F8                    - mov rdi,[rbp-08]
+1FC1FC64197: 48 8D 65 00                    - lea rsp,[rbp+00]
+1FC1FC6419B: 5D                             - pop rbp
+1FC1FC6419C: C3                             - ret 
+1FC1FC6419D: 00 00                          - add [rax],al
+1FC1FC6419F: 00 01                          - add [rcx],al
+1FC1FC641A1: 04 02                          - add al,02
+1FC1FC641A3: 05 04 03 01 50                 - add eax,50010304
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>37</ID>
+      <Description>"自己无敌+秒敌人"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Metal Slug Tactics.exe
+  Version: 
+  Date   : 2024-11-08
+  Author : lixiang
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,89 87 24 01 00 00 48 8B 87 F0) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [rdi+00000128],0
+  jne code
+  //  mov [rdi+0000011c],20  // 这是肾上腺素
+  nop //mov [rdi+00000124],eax
+  jmp return
+
+code:
+  mov [rdi+00000124],0
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 87 24 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Leikir.MetalSlug.TacticMap.CharacterInstance:TakeDamage+29
+
+Leikir.MetalSlug.TacticMap.CharacterInstance:TakeDamage+8: 48 89 75 F0                    - mov [rbp-10],rsi
+Leikir.MetalSlug.TacticMap.CharacterInstance:TakeDamage+c: 48 89 7D F8                    - mov [rbp-08],rdi
+Leikir.MetalSlug.TacticMap.CharacterInstance:TakeDamage+10: 48 8B F9                       - mov rdi,rcx
+Leikir.MetalSlug.TacticMap.CharacterInstance:TakeDamage+13: 48 8B F2                       - mov rsi,rdx
+Leikir.MetalSlug.TacticMap.CharacterInstance:TakeDamage+16: 48 63 87 24 01 00 00           - movsxd  rax,dword ptr [rdi+00000124]
+Leikir.MetalSlug.TacticMap.CharacterInstance:TakeDamage+1d: 2B C6                          - sub eax,esi
+Leikir.MetalSlug.TacticMap.CharacterInstance:TakeDamage+1f: 33 D2                          - xor edx,edx
+Leikir.MetalSlug.TacticMap.CharacterInstance:TakeDamage+21: 33 C9                          - xor ecx,ecx
+Leikir.MetalSlug.TacticMap.CharacterInstance:TakeDamage+23: 3B D0                          - cmp edx,eax
+Leikir.MetalSlug.TacticMap.CharacterInstance:TakeDamage+25: 48 0F 4F C1                    - cmovg rax,rcx
+// ---------- INJECTING HERE ----------
+Leikir.MetalSlug.TacticMap.CharacterInstance:TakeDamage+29: 89 87 24 01 00 00              - mov [rdi+00000124],eax
+// ---------- DONE INJECTING  ----------
+Leikir.MetalSlug.TacticMap.CharacterInstance:TakeDamage+2f: 48 8B 87 F0 00 00 00           - mov rax,[rdi+000000F0]
+Leikir.MetalSlug.TacticMap.CharacterInstance:TakeDamage+36: 48 89 45 C0                    - mov [rbp-40],rax
+Leikir.MetalSlug.TacticMap.CharacterInstance:TakeDamage+3a: 48 B9 E8 D6 10 71 A8 01 00 00  - mov rcx,000001A87110D6E8
+Leikir.MetalSlug.TacticMap.CharacterInstance:TakeDamage+44: 66 90                          - nop 2
+Leikir.MetalSlug.TacticMap.CharacterInstance:TakeDamage+46: 49 BB 60 2F F6 08 A8 01 00 00  - mov r11,System.Object:__icall_wrapper_ves_icall_object_new_specific
+Leikir.MetalSlug.TacticMap.CharacterInstance:TakeDamage+50: 41 FF D3                       - call r11
+Leikir.MetalSlug.TacticMap.CharacterInstance:TakeDamage+53: 4C 8B C0                       - mov r8,rax
+Leikir.MetalSlug.TacticMap.CharacterInstance:TakeDamage+56: 48 8B 55 C0                    - mov rdx,[rbp-40]
+Leikir.MetalSlug.TacticMap.CharacterInstance:TakeDamage+5a: 41 89 70 10                    - mov [r8+10],esi
+Leikir.MetalSlug.TacticMap.CharacterInstance:TakeDamage+5e: 48 B9 60 54 39 7A A9 01 00 00  - mov rcx,000001A97A395460
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>40</ID>
+      <Description>"合金弹头弹药不减"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Metal Slug Tactics.exe
+  Version: 
+  Date   : 2024-11-08
+  Author : lixiang
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,01 00 00 41 FF D3 48 8B C8 48 8B 45 E8 2B C1 89 86 E8 00 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop//  mov [rsi+000000E8],eax
+  jmp return
+
+
+
+code:
+  mov [rsi+000000E8],eax
+  jmp return
+
+INJECT+0F:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+0F:
+  db 89 86 E8 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Leikir.MetalSlug.TacticMap.VehicleInstance:AfterAttack+4c
+
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterAttack+24: 48 8B 40 48                    - mov rax,[rax+48]
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterAttack+28: 48 8B 56 78                    - mov rdx,[rsi+78]
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterAttack+2c: 4C 8B 46 40                    - mov r8,[rsi+40]
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterAttack+30: 48 8B C8                       - mov rcx,rax
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterAttack+33: 83 38 00                       - cmp dword ptr [rax],00
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterAttack+36: 49 BB 40 23 72 03 A9 01 00 00  - mov r11,Leikir.MetalSlug.TacticMap.WeaponInstance:GetValue
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterAttack+40: 41 FF D3                       - call r11
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterAttack+43: 48 8B C8                       - mov rcx,rax
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterAttack+46: 48 8B 45 E8                    - mov rax,[rbp-18]
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterAttack+4a: 2B C1                          - sub eax,ecx
+// ---------- INJECTING HERE ----------
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterAttack+4c: 89 86 E8 00 00 00              - mov [rsi+000000E8],eax
+// ---------- DONE INJECTING  ----------
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterAttack+52: 48 8B 46 28                    - mov rax,[rsi+28]
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterAttack+56: 48 8B C8                       - mov rcx,rax
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterAttack+59: 83 39 00                       - cmp dword ptr [rcx],00
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterAttack+5c: 48 8B 40 48                    - mov rax,[rax+48]
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterAttack+60: 48 8B C8                       - mov rcx,rax
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterAttack+63: 83 38 00                       - cmp dword ptr [rax],00
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterAttack+66: 49 BB E0 1B EC 09 A9 01 00 00  - mov r11,Leikir.MetalSlug.TacticMap.WeaponInstance:LockUntilNewTurn
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterAttack+70: 41 FF D3                       - call r11
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterAttack+73: 48 8B CE                       - mov rcx,rsi
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterAttack+76: 49 BB F0 DA EA 09 A9 01 00 00  - mov r11,Leikir.MetalSlug.TacticMap.VehicleInstance:CallUpdateCallback
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>41</ID>
+      <Description>"合金弹头不费油"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Metal Slug Tactics.exe
+  Version: 
+  Date   : 2024-11-08
+  Author : lixiang
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,89 87 E8 00 00 00 48 8B CF 48 8D) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop//mov [rdi+000000E8],eax
+  jmp return
+
+code:
+  mov [rdi+000000E8],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 87 E8 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Leikir.MetalSlug.TacticMap.VehicleInstance:AfterMovement+67
+
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterMovement+40: 41 FF D3                       - call r11
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterMovement+43: 48 63 87 E8 00 00 00           - movsxd  rax,dword ptr [rdi+000000E8]
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterMovement+4a: 48 89 45 E8                    - mov [rbp-18],rax
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterMovement+4e: 48 8B CF                       - mov rcx,rdi
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterMovement+51: 48 8B 55 F0                    - mov rdx,[rbp-10]
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterMovement+55: 48 8B 07                       - mov rax,[rdi]
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterMovement+58: FF 90 C8 00 00 00              - call qword ptr [rax+000000C8]
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterMovement+5e: 48 8B C8                       - mov rcx,rax
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterMovement+61: 48 8B 45 E8                    - mov rax,[rbp-18]
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterMovement+65: 2B C1                          - sub eax,ecx
+// ---------- INJECTING HERE ----------
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterMovement+67: 89 87 E8 00 00 00              - mov [rdi+000000E8],eax
+// ---------- DONE INJECTING  ----------
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterMovement+6d: 48 8B CF                       - mov rcx,rdi
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterMovement+70: 48 8D 64 24 00                 - lea rsp,[rsp+00]
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterMovement+75: 90                             - nop 
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterMovement+76: 49 BB F0 DA EA 09 A9 01 00 00  - mov r11,Leikir.MetalSlug.TacticMap.VehicleInstance:CallUpdateCallback
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterMovement+80: 41 FF D3                       - call r11
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterMovement+83: 48 8B CF                       - mov rcx,rdi
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterMovement+86: 49 BB 30 1C EC 09 A9 01 00 00  - mov r11,Leikir.MetalSlug.TacticMap.VehicleInstance:CallUpdateCallbackOnWeapons
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterMovement+90: 41 FF D3                       - call r11
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterMovement+93: 48 8B 7D F8                    - mov rdi,[rbp-08]
+Leikir.MetalSlug.TacticMap.VehicleInstance:AfterMovement+97: 48 8D 65 00                    - lea rsp,[rbp+00]
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <Structures StructVersion="2">
+    <Structure Name="String" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="16" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000010" Description="Length" DisplayMethod="unsigned integer"/>
+        <Element Offset="20" Vartype="Unicode String" Bytesize="128" OffsetHex="00000014" Description="Value" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="CharacterInstance" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="16" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000010" Description="m_CachedPtr" DisplayMethod="unsigned integer"/>
+        <Element Offset="24" Vartype="Pointer" Bytesize="8" OffsetHex="00000018" Description="m_CancellationTokenSource" DisplayMethod="unsigned integer"/>
+        <Element Offset="32" Vartype="Pointer" Bytesize="8" OffsetHex="00000020" Description="_movementModule" DisplayMethod="unsigned integer"/>
+        <Element Offset="40" Vartype="Pointer" Bytesize="8" OffsetHex="00000028" Description="_attackModule" DisplayMethod="unsigned integer"/>
+        <Element Offset="48" Vartype="Pointer" Bytesize="8" OffsetHex="00000030" Description="_statusesModule" DisplayMethod="unsigned integer"/>
+        <Element Offset="56" Vartype="Pointer" Bytesize="8" OffsetHex="00000038" Description="_controller" DisplayMethod="unsigned integer"/>
+        <Element Offset="64" Vartype="Pointer" Bytesize="8" OffsetHex="00000040" Description="_view" DisplayMethod="unsigned integer"/>
+        <Element Offset="72" Vartype="Pointer" Bytesize="8" OffsetHex="00000048" Description="_movement" DisplayMethod="unsigned integer"/>
+        <Element Offset="80" Vartype="Pointer" Bytesize="8" OffsetHex="00000050" Description="_movementAction" DisplayMethod="unsigned integer"/>
+        <Element Offset="88" Vartype="Pointer" Bytesize="8" OffsetHex="00000058" Description="_attackAction" DisplayMethod="unsigned integer"/>
+        <Element Offset="96" Vartype="Pointer" Bytesize="8" OffsetHex="00000060" Description="_range" DisplayMethod="unsigned integer"/>
+        <Element Offset="104" Vartype="Pointer" Bytesize="8" OffsetHex="00000068" Description="_minimumRange" DisplayMethod="unsigned integer"/>
+        <Element Offset="112" Vartype="Pointer" Bytesize="8" OffsetHex="00000070" Description="_health" DisplayMethod="unsigned integer"/>
+        <Element Offset="120" Vartype="Pointer" Bytesize="8" OffsetHex="00000078" Description="_mummyStatus" DisplayMethod="unsigned integer"/>
+        <Element Offset="128" Vartype="Pointer" Bytesize="8" OffsetHex="00000080" Description="_playerMoveConfig" DisplayMethod="unsigned integer"/>
+        <Element Offset="136" Vartype="Pointer" Bytesize="8" OffsetHex="00000088" Description="_enemyMoveConfig" DisplayMethod="unsigned integer"/>
+        <Element Offset="144" Vartype="Pointer" Bytesize="8" OffsetHex="00000090" Description="_modifiers" DisplayMethod="unsigned integer"/>
+        <Element Offset="152" Vartype="Pointer" Bytesize="8" OffsetHex="00000098" Description="_abilities" DisplayMethod="unsigned integer"/>
+        <Element Offset="160" Vartype="Pointer" Bytesize="8" OffsetHex="000000A0" Description="_cancelledAbilities" DisplayMethod="unsigned integer"/>
+        <Element Offset="168" Vartype="Pointer" Bytesize="8" OffsetHex="000000A8" Description="_addedAbilities" DisplayMethod="unsigned integer"/>
+        <Element Offset="176" Vartype="Pointer" Bytesize="8" OffsetHex="000000B0" Description="_onUpdatedCallback" DisplayMethod="unsigned integer"/>
+        <Element Offset="184" Vartype="Pointer" Bytesize="8" OffsetHex="000000B8" Description="_overridenWeapon" DisplayMethod="unsigned integer"/>
+        <Element Offset="192" Vartype="Pointer" Bytesize="8" OffsetHex="000000C0" Description="_portaitLoadOperation" DisplayMethod="unsigned integer"/>
+        <Element Offset="224" Vartype="Pointer" Bytesize="8" OffsetHex="000000E0" Description="_portrait" DisplayMethod="unsigned integer"/>
+        <Element Offset="232" Vartype="Pointer" Bytesize="8" OffsetHex="000000E8" Description="&lt;Sheet&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+        <Element Offset="240" Vartype="String" Bytesize="1" OffsetHex="000000F0" Description="&lt;UniqueId&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+        <Element Offset="248" Vartype="Pointer" Bytesize="8" OffsetHex="000000F8" Description="&lt;PreviousNode&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+        <Element Offset="256" Vartype="Pointer" Bytesize="8" OffsetHex="00000100" Description="&lt;EnemySheet&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+        <Element Offset="264" Vartype="Pointer" Bytesize="8" OffsetHex="00000108" Description="&lt;Vehicle&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+        <Element Offset="272" Vartype="String" Bytesize="1" OffsetHex="00000110" Description="&lt;RoomPoolId&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+        <Element Offset="280" Vartype="Byte" Bytesize="1" OffsetHex="00000118" Description="&lt;Initialized&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+        <Element Offset="281" Vartype="Byte" Bytesize="1" OffsetHex="00000119" Description="_hasPortraitLoadOperation" DisplayMethod="unsigned integer"/>
+        <Element Offset="284" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000011C" Description="&lt;Adrenaline&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+        <Element Offset="288" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000120" Description="&lt;Surge&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+        <Element Offset="292" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000124" Description="&lt;HP&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+        <Element Offset="296" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000128" Description="&lt;EnemyLevel&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+        <Element Offset="300" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000012C" Description="&lt;Xp&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+        <Element Offset="304" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000130" Description="&lt;RoomIndex&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+        <Element Offset="308" Vartype="Byte" Bytesize="1" OffsetHex="00000134" Description="&lt;DisabledAbilities&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="CharacterInstance" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="16" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000010" Description="m_CachedPtr" DisplayMethod="unsigned integer"/>
+        <Element Offset="24" Vartype="Pointer" Bytesize="8" OffsetHex="00000018" Description="m_CancellationTokenSource" DisplayMethod="unsigned integer"/>
+        <Element Offset="32" Vartype="Pointer" Bytesize="8" OffsetHex="00000020" Description="_movementModule" DisplayMethod="unsigned integer"/>
+        <Element Offset="40" Vartype="Pointer" Bytesize="8" OffsetHex="00000028" Description="_attackModule" DisplayMethod="unsigned integer"/>
+        <Element Offset="48" Vartype="Pointer" Bytesize="8" OffsetHex="00000030" Description="_statusesModule" DisplayMethod="unsigned integer"/>
+        <Element Offset="56" Vartype="Pointer" Bytesize="8" OffsetHex="00000038" Description="_controller" DisplayMethod="unsigned integer"/>
+        <Element Offset="64" Vartype="Pointer" Bytesize="8" OffsetHex="00000040" Description="_view" DisplayMethod="unsigned integer"/>
+        <Element Offset="72" Vartype="Pointer" Bytesize="8" OffsetHex="00000048" Description="_movement" DisplayMethod="unsigned integer"/>
+        <Element Offset="80" Vartype="Pointer" Bytesize="8" OffsetHex="00000050" Description="_movementAction" DisplayMethod="unsigned integer"/>
+        <Element Offset="88" Vartype="Pointer" Bytesize="8" OffsetHex="00000058" Description="_attackAction" DisplayMethod="unsigned integer"/>
+        <Element Offset="96" Vartype="Pointer" Bytesize="8" OffsetHex="00000060" Description="_range" DisplayMethod="unsigned integer"/>
+        <Element Offset="104" Vartype="Pointer" Bytesize="8" OffsetHex="00000068" Description="_minimumRange" DisplayMethod="unsigned integer"/>
+        <Element Offset="112" Vartype="Pointer" Bytesize="8" OffsetHex="00000070" Description="_health" DisplayMethod="unsigned integer"/>
+        <Element Offset="120" Vartype="Pointer" Bytesize="8" OffsetHex="00000078" Description="_mummyStatus" DisplayMethod="unsigned integer"/>
+        <Element Offset="128" Vartype="Pointer" Bytesize="8" OffsetHex="00000080" Description="_playerMoveConfig" DisplayMethod="unsigned integer"/>
+        <Element Offset="136" Vartype="Pointer" Bytesize="8" OffsetHex="00000088" Description="_enemyMoveConfig" DisplayMethod="unsigned integer"/>
+        <Element Offset="144" Vartype="Pointer" Bytesize="8" OffsetHex="00000090" Description="_modifiers" DisplayMethod="unsigned integer"/>
+        <Element Offset="152" Vartype="Pointer" Bytesize="8" OffsetHex="00000098" Description="_abilities" DisplayMethod="unsigned integer"/>
+        <Element Offset="160" Vartype="Pointer" Bytesize="8" OffsetHex="000000A0" Description="_cancelledAbilities" DisplayMethod="unsigned integer"/>
+        <Element Offset="168" Vartype="Pointer" Bytesize="8" OffsetHex="000000A8" Description="_addedAbilities" DisplayMethod="unsigned integer"/>
+        <Element Offset="176" Vartype="Pointer" Bytesize="8" OffsetHex="000000B0" Description="_onUpdatedCallback" DisplayMethod="unsigned integer"/>
+        <Element Offset="184" Vartype="Pointer" Bytesize="8" OffsetHex="000000B8" Description="_overridenWeapon" DisplayMethod="unsigned integer"/>
+        <Element Offset="192" Vartype="Pointer" Bytesize="8" OffsetHex="000000C0" Description="_portaitLoadOperation" DisplayMethod="unsigned integer"/>
+        <Element Offset="224" Vartype="Pointer" Bytesize="8" OffsetHex="000000E0" Description="_portrait" DisplayMethod="unsigned integer"/>
+        <Element Offset="232" Vartype="Pointer" Bytesize="8" OffsetHex="000000E8" Description="&lt;Sheet&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+        <Element Offset="240" Vartype="String" Bytesize="1" OffsetHex="000000F0" Description="&lt;UniqueId&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+        <Element Offset="248" Vartype="Pointer" Bytesize="8" OffsetHex="000000F8" Description="&lt;PreviousNode&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+        <Element Offset="256" Vartype="Pointer" Bytesize="8" OffsetHex="00000100" Description="&lt;EnemySheet&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+        <Element Offset="264" Vartype="Pointer" Bytesize="8" OffsetHex="00000108" Description="&lt;Vehicle&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+        <Element Offset="272" Vartype="String" Bytesize="1" OffsetHex="00000110" Description="&lt;RoomPoolId&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+        <Element Offset="280" Vartype="Byte" Bytesize="1" OffsetHex="00000118" Description="&lt;Initialized&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+        <Element Offset="281" Vartype="Byte" Bytesize="1" OffsetHex="00000119" Description="_hasPortraitLoadOperation" DisplayMethod="unsigned integer"/>
+        <Element Offset="284" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000011C" Description="&lt;Adrenaline&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+        <Element Offset="288" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000120" Description="&lt;Surge&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+        <Element Offset="292" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000124" Description="&lt;HP&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+        <Element Offset="296" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000128" Description="&lt;EnemyLevel&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+        <Element Offset="300" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000012C" Description="&lt;Xp&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+        <Element Offset="304" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000130" Description="&lt;RoomIndex&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+        <Element Offset="308" Vartype="Byte" Bytesize="1" OffsetHex="00000134" Description="&lt;DisabledAbilities&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+  </Structures>
+  <Comments>HP地址-8   是肾上腺素
+</Comments>
+</CheatTable>

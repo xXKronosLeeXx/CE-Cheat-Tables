@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"Gold max"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Langrisser I &amp; II.exe
+  Version: 
+  Date   : 2024-03-31
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,89 88 94 00 00 00 48 B8) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov ecx,#9999999
+  mov [rax+00000094],ecx
+  jmp return
+
+code:
+  mov [rax+00000094],ecx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 88 94 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 16ECDE9959F
+
+16ECDE99579: 00 00                          - add [rax],al
+16ECDE9957B: 00 00                          - add [rax],al
+16ECDE9957D: 00 00                          - add [rax],al
+16ECDE9957F: 00 48 83                       - add [rax-7D],cl
+16ECDE99582: EC                             - in al,dx
+16ECDE99583: 08 48 89                       - or [rax-77],cl
+16ECDE99586: 0C 24                          - or al,24
+16ECDE99588: 48 B8 50 5F 87 C4 6E 01 00 00  - mov rax,0000016EC4875F50
+16ECDE99592: 48 8B 00                       - mov rax,[rax]
+16ECDE99595: 48 63 88 94 00 00 00           - movsxd  rcx,dword ptr [rax+00000094]
+// ---------- INJECTING HERE ----------
+16ECDE9959C: 03 0C 24                       - add ecx,[rsp]
+// ---------- DONE INJECTING  ----------
+16ECDE9959F: 89 88 94 00 00 00              - mov [rax+00000094],ecx
+16ECDE995A5: 48 B8 50 5F 87 C4 6E 01 00 00  - mov rax,0000016EC4875F50
+16ECDE995AF: 48 8B 00                       - mov rax,[rax]
+16ECDE995B2: 48 63 80 94 00 00 00           - movsxd  rax,dword ptr [rax+00000094]
+16ECDE995B9: 3D 80 96 98 00                 - cmp eax,00989680
+16ECDE995BE: 7C 17                          - jl 16ECDE995D7
+16ECDE995C0: 48 B8 50 5F 87 C4 6E 01 00 00  - mov rax,0000016EC4875F50
+16ECDE995CA: 48 8B 00                       - mov rax,[rax]
+16ECDE995CD: C7 80 94 00 00 00 7F 96 98 00  - mov [rax+00000094],0098967F
+16ECDE995D7: 48 B8 50 5F 87 C4 6E 01 00 00  - mov rax,0000016EC4875F50
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"EXP 90W"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Langrisser I &amp; II.exe
+  Version: 
+  Date   : 2024-03-31
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,89 70 5C 49 8B 47 10) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov esi,#999990
+  mov [rax+5C],esi
+  mov rax,[r15+10]
+  jmp return
+
+code:
+  mov [rax+5C],esi
+  mov rax,[r15+10]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 70 5C 49 8B 47 10
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 16ECDE8C641
+
+16ECDE8C61E: 7F 0C                          - jg 16ECDE8C62C
+16ECDE8C620: 41 FF C6                       - inc r14d
+16ECDE8C623: 41 FF C5                       - inc r13d
+16ECDE8C626: 41 83 FD 63                    - cmp r13d,63
+16ECDE8C62A: 7C D4                          - jl 16ECDE8C600
+16ECDE8C62C: 83 FF 01                       - cmp edi,01
+16ECDE8C62F: 0F 85 41 00 00 00              - jne 16ECDE8C676
+16ECDE8C635: 49 8B 47 18                    - mov rax,[r15+18]
+16ECDE8C639: 44 89 70 58                    - mov [rax+58],r14d
+16ECDE8C63D: 49 8B 47 18                    - mov rax,[r15+18]
+// ---------- INJECTING HERE ----------
+16ECDE8C641: 89 70 5C                       - mov [rax+5C],esi
+// ---------- DONE INJECTING  ----------
+16ECDE8C644: 49 8B 47 10                    - mov rax,[r15+10]
+16ECDE8C648: 49 8B 4F 18                    - mov rcx,[r15+18]
+16ECDE8C64C: 48 63 91 98 00 00 00           - movsxd  rdx,dword ptr [rcx+00000098]
+16ECDE8C653: 49 8B 4F 18                    - mov rcx,[r15+18]
+16ECDE8C657: 4C 63 41 58                    - movsxd  r8,dword ptr [rcx+58]
+16ECDE8C65B: 48 8B C8                       - mov rcx,rax
+16ECDE8C65E: 48 83 EC 20                    - sub rsp,20
+16ECDE8C662: 83 38 00                       - cmp dword ptr [rax],00
+16ECDE8C665: 49 BB D0 C6 E8 CD 6E 01 00 00  - mov r11,0000016ECDE8C6D0
+16ECDE8C66F: 41 FF D3                       - call r11
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>17</ID>
+          <Description>"EXP获取满级"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Langrisser I &amp; II.exe
+  Version: 
+  Date   : 2024-03-31
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,82 00 00 89 48 20 48 8B 86 F8 00 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov ecx,#900000
+  mov [rax+20],ecx
+  mov rax,[rsi+000000F8]
+  jmp return
+
+code:
+  mov [rax+20],ecx
+  mov rax,[rsi+000000F8]
+  jmp return
+
+INJECT+03:
+  jmp newmem
+  nop 5
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+03:
+  db 89 48 20 48 8B 86 F8 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 16ECDEC6D46
+
+16ECDEC6D17: 48 8B CE                       - mov rcx,rsi
+16ECDEC6D1A: 45 33 C9                       - xor r9d,r9d
+16ECDEC6D1D: 48 83 EC 20                    - sub rsp,20
+16ECDEC6D21: 49 BB F0 C3 82 90 6E 01 00 00  - mov r11,0000016E9082C3F0
+16ECDEC6D2B: 41 FF D3                       - call r11
+16ECDEC6D2E: 48 83 C4 20                    - add rsp,20
+16ECDEC6D32: 48 8B C8                       - mov rcx,rax
+16ECDEC6D35: 48 8B 85 30 FF FF FF           - mov rax,[rbp-000000D0]
+16ECDEC6D3C: 83 78 18 00                    - cmp dword ptr [rax+18],00
+16ECDEC6D40: 0F 86 14 82 00 00              - jbe 16ECDECEF5A
+// ---------- INJECTING HERE ----------
+16ECDEC6D46: 89 48 20                       - mov [rax+20],ecx
+// ---------- DONE INJECTING  ----------
+16ECDEC6D49: 48 8B 86 F8 00 00 00           - mov rax,[rsi+000000F8]
+16ECDEC6D50: 48 8B C8                       - mov rcx,rax
+16ECDEC6D53: 83 39 00                       - cmp dword ptr [rcx],00
+16ECDEC6D56: 48 8B 40 18                    - mov rax,[rax+18]
+16ECDEC6D5A: 4C 63 78 58                    - movsxd  r15,dword ptr [rax+58]
+16ECDEC6D5E: 49 8B C7                       - mov rax,r15
+16ECDEC6D61: 83 F8 63                       - cmp eax,63
+16ECDEC6D64: 7C 1F                          - jl 16ECDEC6D85
+16ECDEC6D66: 48 8B 86 50 01 00 00           - mov rax,[rsi+00000150]
+16ECDEC6D6D: 48 8B 80 90 00 00 00           - mov rax,[rax+00000090]
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>7</ID>
+      <Description>"CP999"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Langrisser I &amp; II.exe
+  Version: 
+  Date   : 2024-03-31
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,89 48 68 48 8B 47 18 48 63) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov ecx,#999
+  mov [rax+68],ecx
+  mov rax,[rdi+18]
+  jmp return
+
+code:
+  mov [rax+68],ecx
+  mov rax,[rdi+18]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 48 68 48 8B 47 18
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 16ECDE8CE2C
+
+16ECDE8CE0B: 00 00                 - add [rax],al
+16ECDE8CE0D: 00 00                 - add [rax],al
+16ECDE8CE0F: 00 48 83              - add [rax-7D],cl
+16ECDE8CE12: EC                    - in al,dx
+16ECDE8CE13: 18 48 89              - sbb [rax-77],cl
+16ECDE8CE16: 3C 24                 - cmp al,24
+16ECDE8CE18: 48 8B F9              - mov rdi,rcx
+16ECDE8CE1B: 48 89 54 24 08        - mov [rsp+08],rdx
+16ECDE8CE20: 48 8B 47 18           - mov rax,[rdi+18]
+16ECDE8CE24: 48 63 48 68           - movsxd  rcx,dword ptr [rax+68]
+// ---------- INJECTING HERE ----------
+16ECDE8CE28: 03 4C 24 08           - add ecx,[rsp+08]
+// ---------- DONE INJECTING  ----------
+16ECDE8CE2C: 89 48 68              - mov [rax+68],ecx
+16ECDE8CE2F: 48 8B 47 18           - mov rax,[rdi+18]
+16ECDE8CE33: 48 63 40 68           - movsxd  rax,dword ptr [rax+68]
+16ECDE8CE37: 3D 10 27 00 00        - cmp eax,00002710
+16ECDE8CE3C: 7C 0B                 - jl 16ECDE8CE49
+16ECDE8CE3E: 48 8B 47 18           - mov rax,[rdi+18]
+16ECDE8CE42: C7 40 68 0F 27 00 00  - mov [rax+68],0000270F
+16ECDE8CE49: 48 8B 47 18           - mov rax,[rdi+18]
+16ECDE8CE4D: 48 63 40 68           - movsxd  rax,dword ptr [rax+68]
+16ECDE8CE51: 83 F8 FF              - cmp eax,-01
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>19</ID>
+      <Description>"MP不减"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Langrisser I &amp; II.exe
+  Version: 
+  Date   : 2024-03-31
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,03 4D E8 89 48 64 48 8B 47 18) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rax+64],#199
+  mov rax,[rdi+18]
+  jmp return
+
+code:
+  mov [rax+64],ecx
+  mov rax,[rdi+18]
+  jmp return
+
+INJECT+03:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+03:
+  db 89 48 64 48 8B 47 18
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 16E9084DA0A
+
+16E9084D9DE: 48 89 55 E8                    - mov [rbp-18],rdx
+16E9084D9E2: BA 01 00 00 00                 - mov edx,00000001
+16E9084D9E7: 48 83 EC 20                    - sub rsp,20
+16E9084D9EB: 49 BB D0 C1 E8 CD 6E 01 00 00  - mov r11,0000016ECDE8C1D0
+16E9084D9F5: 41 FF D3                       - call r11
+16E9084D9F8: 48 83 C4 20                    - add rsp,20
+16E9084D9FC: 4C 8B F8                       - mov r15,rax
+16E9084D9FF: 48 8B 47 18                    - mov rax,[rdi+18]
+16E9084DA03: 48 63 48 64                    - movsxd  rcx,dword ptr [rax+64]
+16E9084DA07: 03 4D E8                       - add ecx,[rbp-18]
+// ---------- INJECTING HERE ----------
+16E9084DA0A: 89 48 64                       - mov [rax+64],ecx
+// ---------- DONE INJECTING  ----------
+16E9084DA0D: 48 8B 47 18                    - mov rax,[rdi+18]
+16E9084DA11: 48 63 40 64                    - movsxd  rax,dword ptr [rax+64]
+16E9084DA15: 83 F8 FF                       - cmp eax,-01
+16E9084DA18: 7F 0B                          - jg 16E9084DA25
+16E9084DA1A: 48 8B 47 18                    - mov rax,[rdi+18]
+16E9084DA1E: C7 40 64 00 00 00 00           - mov [rax+64],00000000
+16E9084DA25: 48 8B 47 18                    - mov rax,[rdi+18]
+16E9084DA29: 48 63 40 64                    - movsxd  rax,dword ptr [rax+64]
+16E9084DA2D: 41 3B C7                       - cmp eax,r15d
+16E9084DA30: 7E 08                          - jle 16E9084DA3A
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>24</ID>
+      <Description>"无限行动（结束回合就AI无限动）"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Langrisser I &amp; II.exe
+  Version: 
+  Date   : 2024-03-31
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,89 70 48 83 FE 03) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+
+newmem:
+  cmp [rax+3c],0  // [rax+3c]0是自己，2是敌人；[rax+58]这是级别，自己人都是99，所以也安全。除非敌人也99
+  jne gpt
+  mov [rax+48],0
+  cmp esi,03
+  jmp return
+
+gpt:
+  mov [rax+48],esi
+  cmp esi,03
+  jmp return
+
+code:
+  mov [rax+48],esi
+  cmp esi,03
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 70 48 83 FE 03
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 16ECDEB94E0
+
+16ECDEB94CB: 00 00                          - add [rax],al
+16ECDEB94CD: 00 00                          - add [rax],al
+16ECDEB94CF: 00 55 48                       - add [rbp+48],dl
+16ECDEB94D2: 8B EC                          - mov ebp,esp
+16ECDEB94D4: 56                             - push rsi
+16ECDEB94D5: 57                             - push rdi
+16ECDEB94D6: 48 8B F9                       - mov rdi,rcx
+16ECDEB94D9: 48 8B F2                       - mov rsi,rdx
+16ECDEB94DC: 48 8B 47 18                    - mov rax,[rdi+18]
+16ECDEB94E0: 89 70 48                       - mov [rax+48],esi
+// ---------- INJECTING HERE ----------
+16ECDEB94E3: 83 FE 03                       - cmp esi,03
+// ---------- DONE INJECTING  ----------
+16ECDEB94E6: 75 1F                          - jne 16ECDEB9507
+16ECDEB94E8: 48 8B CF                       - mov rcx,rdi
+16ECDEB94EB: BA 01 00 00 00                 - mov edx,00000001
+16ECDEB94F0: 48 83 EC 20                    - sub rsp,20
+16ECDEB94F4: 49 BB 20 E9 E8 CD 6E 01 00 00  - mov r11,0000016ECDE8E920
+16ECDEB94FE: 41 FF D3                       - call r11
+16ECDEB9501: 48 83 C4 20                    - add rsp,20
+16ECDEB9505: EB 1A                          - jmp 16ECDEB9521
+16ECDEB9507: 48 8B CF                       - mov rcx,rdi
+16ECDEB950A: 33 D2                          - xor edx,edx
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <Structures StructVersion="2">
+    <Structure Name="未命名的结构" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="0" Vartype="Pointer" Bytesize="8" OffsetHex="00000000" DisplayMethod="unsigned integer"/>
+        <Element Offset="8" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000008" DisplayMethod="unsigned integer"/>
+        <Element Offset="16" Vartype="Pointer" Bytesize="8" RLECount="5" OffsetHex="00000010" DisplayMethod="unsigned integer"/>
+        <Element Offset="56" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="00000038" DisplayMethod="unsigned integer"/>
+        <Element Offset="92" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000005C" DisplayMethod="hexadecimal"/>
+        <Element Offset="96" Vartype="4 Bytes" Bytesize="4" RLECount="32" OffsetHex="00000060" DisplayMethod="unsigned integer"/>
+        <Element Offset="224" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000000E0" DisplayMethod="hexadecimal"/>
+        <Element Offset="232" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000000E8" DisplayMethod="unsigned integer"/>
+        <Element Offset="240" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000000F0" DisplayMethod="hexadecimal"/>
+        <Element Offset="248" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000000F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="256" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000100" DisplayMethod="hexadecimal"/>
+        <Element Offset="264" Vartype="4 Bytes" Bytesize="4" RLECount="11" OffsetHex="00000108" DisplayMethod="unsigned integer"/>
+        <Element Offset="308" Vartype="Double" Bytesize="8" OffsetHex="00000134" DisplayMethod="unsigned integer"/>
+        <Element Offset="316" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="0000013C" DisplayMethod="unsigned integer"/>
+        <Element Offset="328" Vartype="Pointer" Bytesize="8" RLECount="5" OffsetHex="00000148" DisplayMethod="unsigned integer"/>
+        <Element Offset="368" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="00000170" DisplayMethod="unsigned integer"/>
+        <Element Offset="404" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000194" DisplayMethod="hexadecimal"/>
+        <Element Offset="408" Vartype="4 Bytes" Bytesize="4" RLECount="32" OffsetHex="00000198" DisplayMethod="unsigned integer"/>
+        <Element Offset="536" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000218" DisplayMethod="hexadecimal"/>
+        <Element Offset="544" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000220" DisplayMethod="unsigned integer"/>
+        <Element Offset="552" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000228" DisplayMethod="hexadecimal"/>
+        <Element Offset="560" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000230" DisplayMethod="unsigned integer"/>
+        <Element Offset="568" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000238" DisplayMethod="hexadecimal"/>
+        <Element Offset="576" Vartype="4 Bytes" Bytesize="4" RLECount="11" OffsetHex="00000240" DisplayMethod="unsigned integer"/>
+        <Element Offset="620" Vartype="Double" Bytesize="8" OffsetHex="0000026C" DisplayMethod="unsigned integer"/>
+        <Element Offset="628" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000274" DisplayMethod="unsigned integer"/>
+        <Element Offset="640" Vartype="Pointer" Bytesize="8" RLECount="5" OffsetHex="00000280" DisplayMethod="unsigned integer"/>
+        <Element Offset="680" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="000002A8" DisplayMethod="unsigned integer"/>
+        <Element Offset="716" Vartype="4 Bytes" Bytesize="4" OffsetHex="000002CC" DisplayMethod="hexadecimal"/>
+        <Element Offset="720" Vartype="4 Bytes" Bytesize="4" RLECount="30" OffsetHex="000002D0" DisplayMethod="unsigned integer"/>
+        <Element Offset="840" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000348" DisplayMethod="hexadecimal"/>
+        <Element Offset="844" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000034C" DisplayMethod="unsigned integer"/>
+        <Element Offset="848" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000350" DisplayMethod="hexadecimal"/>
+        <Element Offset="856" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000358" DisplayMethod="unsigned integer"/>
+        <Element Offset="864" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000360" DisplayMethod="hexadecimal"/>
+        <Element Offset="872" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000368" DisplayMethod="unsigned integer"/>
+        <Element Offset="880" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000370" DisplayMethod="hexadecimal"/>
+        <Element Offset="888" Vartype="4 Bytes" Bytesize="4" RLECount="22" OffsetHex="00000378" DisplayMethod="unsigned integer"/>
+        <Element Offset="976" Vartype="Pointer" Bytesize="8" OffsetHex="000003D0" DisplayMethod="unsigned integer"/>
+        <Element Offset="984" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="000003D8" DisplayMethod="unsigned integer"/>
+        <Element Offset="996" Vartype="4 Bytes" Bytesize="4" RLECount="282" OffsetHex="000003E4" DisplayMethod="hexadecimal"/>
+        <Element Offset="2124" Vartype="Unicode String" Bytesize="72" OffsetHex="0000084C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2196" Vartype="Unicode String" Bytesize="36" OffsetHex="00000894" DisplayMethod="unsigned integer"/>
+        <Element Offset="2232" Vartype="Unicode String" Bytesize="18" OffsetHex="000008B8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2250" Vartype="Unicode String" Bytesize="9" OffsetHex="000008CA" DisplayMethod="unsigned integer"/>
+        <Element Offset="2259" Vartype="Byte" Bytesize="1" OffsetHex="000008D3" DisplayMethod="unsigned integer"/>
+        <Element Offset="2260" Vartype="Unicode String" Bytesize="4" OffsetHex="000008D4" DisplayMethod="unsigned integer"/>
+        <Element Offset="2264" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000008D8" DisplayMethod="hexadecimal"/>
+        <Element Offset="2272" Vartype="Unicode String" Bytesize="32" OffsetHex="000008E0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2304" Vartype="Unicode String" Bytesize="16" OffsetHex="00000900" DisplayMethod="unsigned integer"/>
+        <Element Offset="2320" Vartype="Unicode String" Bytesize="8" OffsetHex="00000910" DisplayMethod="unsigned integer"/>
+        <Element Offset="2328" Vartype="Unicode String" Bytesize="4" OffsetHex="00000918" DisplayMethod="unsigned integer"/>
+        <Element Offset="2332" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000091C" DisplayMethod="hexadecimal"/>
+        <Element Offset="2336" Vartype="Pointer" Bytesize="8" OffsetHex="00000920" DisplayMethod="unsigned integer"/>
+        <Element Offset="2344" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000928" DisplayMethod="unsigned integer"/>
+        <Element Offset="2356" Vartype="4 Bytes" Bytesize="4" RLECount="280" OffsetHex="00000934" DisplayMethod="hexadecimal"/>
+        <Element Offset="3476" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000D94" DisplayMethod="unsigned integer"/>
+        <Element Offset="3480" Vartype="4 Bytes" Bytesize="4" RLECount="54" OffsetHex="00000D98" DisplayMethod="hexadecimal"/>
+        <Element Offset="3696" Vartype="Pointer" Bytesize="8" OffsetHex="00000E70" DisplayMethod="unsigned integer"/>
+        <Element Offset="3704" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000E78" DisplayMethod="unsigned integer"/>
+        <Element Offset="3716" Vartype="4 Bytes" Bytesize="4" RLECount="95" OffsetHex="00000E84" DisplayMethod="hexadecimal"/>
+      </Elements>
+    </Structure>
+  </Structures>
+</CheatTable>

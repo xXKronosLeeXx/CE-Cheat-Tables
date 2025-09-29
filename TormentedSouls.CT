@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>22E7AFE7B40</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"bullet"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : TormentedSouls.exe
+  Version: 
+  Date   : 2025-06-09
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,89 78 50 48 83 C4 20 5F C3 E8 8C) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop//  mov [rax+50],edi
+  add rsp,20
+  jmp return
+
+code:
+  mov [rax+50],edi
+  add rsp,20
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 78 50 48 83 C4 20
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+45E166
+
+GameAssembly.dll+45E141: 48 8B 4B 38           - mov rcx,[rbx+38]
+GameAssembly.dll+45E145: 48 85 C9              - test rcx,rcx
+GameAssembly.dll+45E148: 74 0E                 - je GameAssembly.dll+45E158
+GameAssembly.dll+45E14A: 4C 8B 05 87 01 06 02  - mov r8,[GameAssembly.dll+24BE2D8]
+GameAssembly.dll+45E151: 8B D7                 - mov edx,edi
+GameAssembly.dll+45E153: E8 A8 0F 4E 00        - call GameAssembly.dll+93F100
+GameAssembly.dll+45E158: 48 8B 43 20           - mov rax,[rbx+20]
+GameAssembly.dll+45E15C: 48 85 C0              - test rax,rax
+GameAssembly.dll+45E15F: 74 0E                 - je GameAssembly.dll+45E16F
+GameAssembly.dll+45E161: 48 8B 5C 24 30        - mov rbx,[rsp+30]
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+45E166: 89 78 50              - mov [rax+50],edi
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+45E169: 48 83 C4 20           - add rsp,20
+GameAssembly.dll+45E16D: 5F                    - pop rdi
+GameAssembly.dll+45E16E: C3                    - ret 
+GameAssembly.dll+45E16F: E8 8C F6 D1 FF        - call GameAssembly.dll+17D800
+GameAssembly.dll+45E174: CC                    - int 3 
+GameAssembly.dll+45E175: CC                    - int 3 
+GameAssembly.dll+45E176: CC                    - int 3 
+GameAssembly.dll+45E177: CC                    - int 3 
+GameAssembly.dll+45E178: CC                    - int 3 
+GameAssembly.dll+45E179: CC                    - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"无描述"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>22E7AFE7B3C</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"light"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : TormentedSouls.exe
+  Version: 
+  Date   : 2025-06-09
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,40 88 78 4C 40 84 FF) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rax+4C],1
+  test dil,dil
+  jmp return
+
+code:
+  mov [rax+4C],dil
+  test dil,dil
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 40 88 78 4C 40 84 FF
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+5AC4C7
+
+GameAssembly.dll+5AC4A9: 4A 39 54 C0 F8        - cmp [rax+r8*8-08],rdx
+GameAssembly.dll+5AC4AE: 75 04                 - jne GameAssembly.dll+5AC4B4
+GameAssembly.dll+5AC4B0: B1 01                 - mov cl,01
+GameAssembly.dll+5AC4B2: EB 02                 - jmp GameAssembly.dll+5AC4B6
+GameAssembly.dll+5AC4B4: 32 C9                 - xor cl,cl
+GameAssembly.dll+5AC4B6: 33 C0                 - xor eax,eax
+GameAssembly.dll+5AC4B8: 84 C9                 - test cl,cl
+GameAssembly.dll+5AC4BA: 48 0F 45 C3           - cmovne rax,rbx
+GameAssembly.dll+5AC4BE: 48 85 C0              - test rax,rax
+GameAssembly.dll+5AC4C1: 0F 84 AF 00 00 00     - je GameAssembly.dll+5AC576
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+5AC4C7: 40 88 78 4C           - mov [rax+4C],dil
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+5AC4CB: 40 84 FF              - test dil,dil
+GameAssembly.dll+5AC4CE: 74 5E                 - je GameAssembly.dll+5AC52E
+GameAssembly.dll+5AC4D0: 48 85 DB              - test rbx,rbx
+GameAssembly.dll+5AC4D3: 74 59                 - je GameAssembly.dll+5AC52E
+GameAssembly.dll+5AC4D5: 48 8B 53 18           - mov rdx,[rbx+18]
+GameAssembly.dll+5AC4D9: 45 33 C0              - xor r8d,r8d
+GameAssembly.dll+5AC4DC: 48 8B 0D ED 4C F1 01  - mov rcx,[GameAssembly.dll+24C11D0]
+GameAssembly.dll+5AC4E3: E8 08 76 62 01        - call GameAssembly.dll+1BD3AF0
+GameAssembly.dll+5AC4E8: 48 8B 0D 61 10 F5 01  - mov rcx,[GameAssembly.dll+24FD550]
+GameAssembly.dll+5AC4EF: 48 8B F8              - mov rdi,rax
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"无描述"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>22E5D31AA5C</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>bullet代码 :mov [rax+50],edi</Description>
+      <AddressString>GameAssembly.dll+45E166</AddressString>
+      <Before>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>5C</Byte>
+        <Byte>24</Byte>
+        <Byte>30</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>78</Byte>
+        <Byte>50</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>83</Byte>
+        <Byte>C4</Byte>
+        <Byte>20</Byte>
+        <Byte>5F</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>

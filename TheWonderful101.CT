@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"Gold"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : TheWonderful101.exe
+  Version: 
+  Date   : 2025-07-05
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,TheWonderful101.exe,29 BE 70 01 00 00 E8) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov edi,#8999999
+  mov [esi+00000170],edi
+  jmp return
+
+code:
+  sub [esi+00000170],edi
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 29 BE 70 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TheWonderful101.exe+C811E6
+
+TheWonderful101.exe+C811CF: CC                             - int 3 
+TheWonderful101.exe+C811D0: 56                             - push esi
+TheWonderful101.exe+C811D1: 8B F1                          - mov esi,ecx
+TheWonderful101.exe+C811D3: 57                             - push edi
+TheWonderful101.exe+C811D4: 8B BE 74 01 00 00              - mov edi,[esi+00000174]
+TheWonderful101.exe+C811DA: 85 FF                          - test edi,edi
+TheWonderful101.exe+C811DC: 7E 32                          - jle TheWonderful101.exe+C81210
+TheWonderful101.exe+C811DE: 83 FF 04                       - cmp edi,04
+TheWonderful101.exe+C811E1: 7E 03                          - jle TheWonderful101.exe+C811E6
+TheWonderful101.exe+C811E3: C1 FF 02                       - sar edi,02
+// ---------- INJECTING HERE ----------
+TheWonderful101.exe+C811E6: 29 BE 70 01 00 00              - sub [esi+00000170],edi
+// ---------- DONE INJECTING  ----------
+TheWonderful101.exe+C811EC: E8 7F FC FF FF                 - call TheWonderful101.exe+C80E70
+TheWonderful101.exe+C811F1: 29 BE 74 01 00 00              - sub [esi+00000174],edi
+TheWonderful101.exe+C811F7: 83 BE 74 01 00 00 00           - cmp dword ptr [esi+00000174],00
+TheWonderful101.exe+C811FE: 7F 10                          - jg TheWonderful101.exe+C81210
+TheWonderful101.exe+C81200: FF 86 64 01 00 00              - inc [esi+00000164]
+TheWonderful101.exe+C81206: C7 86 7C 01 00 00 00 00 00 00  - mov [esi+0000017C],00000000
+TheWonderful101.exe+C81210: 5F                             - pop edi
+TheWonderful101.exe+C81211: 5E                             - pop esi
+TheWonderful101.exe+C81212: C3                             - ret 
+TheWonderful101.exe+C81213: CC                             - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>替换了 sub [esi+00000170],edi</Description>
+      <AddressString>TheWonderful101.exe+C811E6</AddressString>
+      <Before>
+        <Byte>7E</Byte>
+        <Byte>03</Byte>
+        <Byte>C1</Byte>
+        <Byte>FF</Byte>
+        <Byte>02</Byte>
+      </Before>
+      <Actual>
+        <Byte>29</Byte>
+        <Byte>BE</Byte>
+        <Byte>70</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>E8</Byte>
+        <Byte>7F</Byte>
+        <Byte>FC</Byte>
+        <Byte>FF</Byte>
+        <Byte>FF</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>

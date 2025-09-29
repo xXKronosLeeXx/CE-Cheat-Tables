@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>14</ID>
+      <Description>"EXP=999999"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : RiverCityGirls.exe
+  Version: 
+  Date   : 2025-04-11
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,89 48 3C 49 8B CE) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [rax+3C],#999999
+  mov rcx,r14
+  jmp return
+
+
+code:
+  mov [rax+3C],ecx
+  mov rcx,r14
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 48 3C 49 8B CE
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: RCG.PlayerAttributes:GainXP+c3
+
+RCG.PlayerAttributes:GainXP+9d: E9 31 01 00 00                 - jmp RCG.PlayerAttributes:GainXP+1d3
+RCG.PlayerAttributes:GainXP+a2: 49 8B 46 20                    - mov rax,[r14+20]
+RCG.PlayerAttributes:GainXP+a6: 49 63 CF                       - movsxd  rcx,r15d
+RCG.PlayerAttributes:GainXP+a9: 39 48 18                       - cmp [rax+18],ecx
+RCG.PlayerAttributes:GainXP+ac: 0F 86 60 01 00 00              - jbe RCG.PlayerAttributes:GainXP+212
+RCG.PlayerAttributes:GainXP+b2: 48 8D 44 C8 20                 - lea rax,[rax+rcx*8+20]
+RCG.PlayerAttributes:GainXP+b7: 48 8B 00                       - mov rax,[rax]
+RCG.PlayerAttributes:GainXP+ba: 48 8B D0                       - mov rdx,rax
+RCG.PlayerAttributes:GainXP+bd: 48 63 48 3C                    - movsxd  rcx,dword ptr [rax+3C]
+RCG.PlayerAttributes:GainXP+c1: 03 CF                          - add ecx,edi
+// ---------- INJECTING HERE ----------
+RCG.PlayerAttributes:GainXP+c3: 89 48 3C                       - mov [rax+3C],ecx
+// ---------- DONE INJECTING  ----------
+RCG.PlayerAttributes:GainXP+c6: 49 8B CE                       - mov rcx,r14
+RCG.PlayerAttributes:GainXP+c9: 49 8B D7                       - mov rdx,r15
+RCG.PlayerAttributes:GainXP+cc: 66 90                          - nop 2
+RCG.PlayerAttributes:GainXP+ce: 49 BB D0 98 75 E1 C1 01 00 00  - mov r11,RCG.PlayerAttributes:XPLeftToLevel
+RCG.PlayerAttributes:GainXP+d8: 41 FF D3                       - call r11
+RCG.PlayerAttributes:GainXP+db: 4C 8B E8                       - mov r13,rax
+RCG.PlayerAttributes:GainXP+de: 49 8B CE                       - mov rcx,r14
+RCG.PlayerAttributes:GainXP+e1: 49 8B D7                       - mov rdx,r15
+RCG.PlayerAttributes:GainXP+e4: 66 90                          - nop 2
+RCG.PlayerAttributes:GainXP+e6: 49 BB 50 99 75 E1 C1 01 00 00  - mov r11,RCG.PlayerAttributes:RequiredXPToLevel
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>17</ID>
+      <Description>"money"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : RiverCityGirls.exe
+  Version: 
+  Date   : 2025-05-10
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,F3 0F 11 68 2C 48 8B 86 D0) // should be unique
+alloc(newmem,$1000,INJECT)
+alloc(gold,$4,INJECT)
+
+label(code)
+label(return)
+
+gold:
+dd (float)99999
+
+
+newmem:
+  movss xmm5,[gold]
+  movss [rax+2C],xmm5
+  jmp return
+
+code:
+  movss [rax+2C],xmm5
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 68 2C
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+dealloc(gold)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 18FB76479E7
+
+18FB76479BB: 48 8B 80 90 00 00 00           - mov rax,[rax+00000090]
+18FB76479C2: 48 8B 56 48                    - mov rdx,[rsi+48]
+18FB76479C6: 48 8B C8                       - mov rcx,rax
+18FB76479C9: 83 38 00                       - cmp dword ptr [rax],00
+18FB76479CC: 66 90                          - nop 2
+18FB76479CE: 49 BB C0 84 5F B7 8F 01 00 00  - mov r11,0000018FB75F84C0
+18FB76479D8: 41 FF D3                       - call r11
+18FB76479DB: F3 0F 5A C0                    - cvtss2sd xmm0,xmm0
+18FB76479DF: 48 8B 45 B0                    - mov rax,[rbp-50]
+18FB76479E3: F2 0F 5A E8                    - cvtsd2ss xmm5,xmm0
+// ---------- INJECTING HERE ----------
+18FB76479E7: F3 0F 11 68 2C                 - movss [rax+2C],xmm5
+// ---------- DONE INJECTING  ----------
+18FB76479EC: 48 8B 86 D0 04 00 00           - mov rax,[rsi+000004D0]
+18FB76479F3: 48 89 45 B8                    - mov [rbp-48],rax
+18FB76479F7: 48 8D AD 00 00 00 00           - lea rbp,[rbp+00000000]
+18FB76479FE: 49 BB 60 37 01 80 8F 01 00 00  - mov r11,0000018F80013760
+18FB7647A08: 41 FF D3                       - call r11
+18FB7647A0B: 48 8B 80 A8 00 00 00           - mov rax,[rax+000000A8]
+18FB7647A12: 4C 8B 46 48                    - mov r8,[rsi+48]
+18FB7647A16: 48 8B D5                       - mov rdx,rbp
+18FB7647A19: 48 83 C2 C0                    - add rdx,-40
+18FB7647A1D: 48 8B C8                       - mov rcx,rax
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>45</ID>
+      <Description>"HP"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : RiverCityGirls.exe
+  Version: 
+  Date   : 2025-05-10
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,F3 0F 11 6E 2C 66 0F 57 C0 F2 0F 5A E8 F3 0F 11 6E 34) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  movss xmm5,[rsi+2C-4]
+  movss [rsi+2C],xmm5
+  jmp return
+
+code:
+  movss [rsi+2C],xmm5
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 6E 2C
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 18FB7649D03
+
+18FB7649CD8: F3 0F 5A D2                    - cvtss2sd xmm2,xmm2
+18FB7649CDC: F2 0F 5A D2                    - cvtsd2ss xmm2,xmm2
+18FB7649CE0: F2 0F 5A C9                    - cvtsd2ss xmm1,xmm1
+18FB7649CE4: F2 0F 5A C0                    - cvtsd2ss xmm0,xmm0
+18FB7649CE8: 48 8D 64 24 00                 - lea rsp,[rsp+00]
+18FB7649CED: 90                             - nop 
+18FB7649CEE: 49 BB 70 91 DC 7F 8F 01 00 00  - mov r11,0000018F7FDC9170
+18FB7649CF8: 41 FF D3                       - call r11
+18FB7649CFB: F3 0F 5A C0                    - cvtss2sd xmm0,xmm0
+18FB7649CFF: F2 0F 5A E8                    - cvtsd2ss xmm5,xmm0
+// ---------- INJECTING HERE ----------
+18FB7649D03: F3 0F 11 6E 2C                 - movss [rsi+2C],xmm5
+// ---------- DONE INJECTING  ----------
+18FB7649D08: 66 0F 57 C0                    - xorpd xmm0,xmm0
+18FB7649D0C: F2 0F 5A E8                    - cvtsd2ss xmm5,xmm0
+18FB7649D10: F3 0F 11 6E 34                 - movss [rsi+34],xmm5
+18FB7649D15: 48 8B 75 F8                    - mov rsi,[rbp-08]
+18FB7649D19: 48 8D 65 00                    - lea rsp,[rbp+00]
+18FB7649D1D: 5D                             - pop rbp
+18FB7649D1E: C3                             - ret 
+18FB7649D1F: 00 01                          - add [rcx],al
+18FB7649D21: 04 02                          - add al,02
+18FB7649D23: 05 04 03 01 50                 - add eax,50010304
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

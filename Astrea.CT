@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"KO"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048,194084C86A6) 
+label(returnhere)
+label(originalcode)
+label(exit)
+alloc(keou,4,194084C86A6)
+keou:
+dd (float)0
+
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+movss xmm5,[keou]
+movss [r15+0000009C],xmm5
+jmp exit
+
+
+originalcode:
+movss [r15+0000009C],xmm5
+
+exit:
+jmp returnhere
+
+194084C86A6:
+jmp newmem
+nop 4
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+194084C86A6:
+db F3 41 0F 11 AF 9C 00 00 00
+//movss [r15+0000009C],xmm5
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"恒星碎片999"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048,193F8D7DB22) 
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+mov eax,#999
+mov [rdi+00000098],eax
+jmp exit
+
+
+originalcode:
+mov eax,#999
+mov [rdi+00000098],eax
+
+exit:
+jmp returnhere
+
+193F8D7DB22:
+jmp newmem
+nop 3
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+193F8D7DB22:
+db 03 C6 89 87 98 00 00 00
+//add eax,esi
+//mov [rdi+00000098],eax
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

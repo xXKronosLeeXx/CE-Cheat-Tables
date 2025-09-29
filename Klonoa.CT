@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>12</ID>
+      <Description>"1代"</Description>
+      <Options moManualExpandCollapse="1" moAllowManualCollapseAndExpand="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>3</ID>
+          <Description>"1分1命"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Klonoa.exe
+  Version: 
+  Date   : 2024-07-06
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,89 47 60 8B 47 68 03) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [rdi+60],64
+  mov eax,[rdi+68]
+  //mov [rdi+68],#150
+  jmp return
+
+code:
+  mov [rdi+60],eax
+  mov eax,[rdi+68]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 47 60 8B 47 68
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 26384155B79
+
+26384155B54: 4C 89 75 F8                    - mov [rbp-08],r14
+26384155B58: 48 8B F9                       - mov rdi,rcx
+26384155B5B: 48 8B F2                       - mov rsi,rdx
+26384155B5E: 48 B8 37 BE E2 E7 65 02 00 00  - mov rax,00000265E7E2BE37
+26384155B68: 0F B6 00                       - movzx eax,byte ptr [rax]
+26384155B6B: 85 C0                          - test eax,eax
+26384155B6D: 74 05                          - je 26384155B74
+26384155B6F: BE 64 00 00 00                 - mov esi,00000064
+26384155B74: 8B 47 60                       - mov eax,[rdi+60]
+26384155B77: 03 C6                          - add eax,esi
+// ---------- INJECTING HERE ----------
+26384155B79: 89 47 60                       - mov [rdi+60],eax
+// ---------- DONE INJECTING  ----------
+26384155B7C: 8B 47 68                       - mov eax,[rdi+68]
+26384155B7F: 03 C6                          - add eax,esi
+26384155B81: 89 47 68                       - mov [rdi+68],eax
+26384155B84: 8B 47 60                       - mov eax,[rdi+60]
+26384155B87: 83 F8 64                       - cmp eax,64
+26384155B8A: 0F 82 73 00 00 00              - jb 26384155C03
+26384155B90: 8B 47 60                       - mov eax,[rdi+60]
+26384155B93: 83 E8 64                       - sub eax,64
+26384155B96: 89 47 60                       - mov [rdi+60],eax
+26384155B99: 49 BA F0 7B 35 EC 65 02 00 00  - mov r10,00000265EC357BF0
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>11</ID>
+          <Description>"每关收集150"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Klonoa.exe
+  Version: 
+  Date   : 2024-07-06
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,89 47 68 8B 47 60) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rdi+68],#150
+  mov eax,[rdi+60]
+  jmp return
+
+code:
+  mov [rdi+68],eax
+  mov eax,[rdi+60]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 47 68 8B 47 60
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 29227149FB1
+
+29227149F8E: 48 B8 37 3E 8A E4 91 02 00 00  - mov rax,00000291E48A3E37
+29227149F98: 0F B6 00                       - movzx eax,byte ptr [rax]
+29227149F9B: 85 C0                          - test eax,eax
+29227149F9D: 74 05                          - je 29227149FA4
+29227149F9F: BE 64 00 00 00                 - mov esi,00000064
+29227149FA4: 8B 47 60                       - mov eax,[rdi+60]
+29227149FA7: 03 C6                          - add eax,esi
+29227149FA9: 89 47 60                       - mov [rdi+60],eax
+29227149FAC: 8B 47 68                       - mov eax,[rdi+68]
+29227149FAF: 03 C6                          - add eax,esi
+// ---------- INJECTING HERE ----------
+29227149FB1: 89 47 68                       - mov [rdi+68],eax
+// ---------- DONE INJECTING  ----------
+29227149FB4: 8B 47 60                       - mov eax,[rdi+60]
+29227149FB7: 83 F8 64                       - cmp eax,64
+29227149FBA: 0F 82 73 00 00 00              - jb 2922714A033
+29227149FC0: 8B 47 60                       - mov eax,[rdi+60]
+29227149FC3: 83 E8 64                       - sub eax,64
+29227149FC6: 89 47 60                       - mov [rdi+60],eax
+29227149FC9: 49 BA E8 AB E1 E9 91 02 00 00  - mov r10,00000291E9E1ABE8
+29227149FD3: 66 66 90                       - nop 3
+29227149FD6: 49 BB 40 7E CF EA 91 02 00 00  - mov r11,00000291EACF7E40
+29227149FE0: 41 FF D3                       - call r11
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>25</ID>
+      <Description>"2代"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>19</ID>
+          <Description>"水晶"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Klonoa.exe
+  Version: 
+  Date   : 2024-07-06
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,ERROR: 无法找到独特的 AOB, 代码可靠吗 "89 08 48 B8 F0 A5 90 FD 42 01 00 00") // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rax],ecx
+  mov [rax+4],FF
+  mov rax,00000142FD90A5F0
+  jmp return
+
+code:
+  mov [rax],ecx
+  mov rax,00000142FD90A5F0
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 7
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 08 48 B8 F0 A5 90 FD 42 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 142B7B238DC
+
+142B7B238A6: 48 8B 80 A8 00 00 00           - mov rax,[rax+000000A8]
+142B7B238AD: 48 8B C8                       - mov rcx,rax
+142B7B238B0: 83 38 00                       - cmp dword ptr [rax],00
+142B7B238B3: 66 66 90                       - nop 3
+142B7B238B6: 49 BB D0 17 8A AB 42 01 00 00  - mov r11,00000142AB8A17D0
+142B7B238C0: 41 FF D3                       - call r11
+142B7B238C3: 48 B8 EC A5 90 FD 42 01 00 00  - mov rax,00000142FD90A5EC
+142B7B238CD: 48 63 08                       - movsxd  rcx,dword ptr [rax]
+142B7B238D0: FF C1                          - inc ecx
+142B7B238D2: 48 B8 EC A5 90 FD 42 01 00 00  - mov rax,00000142FD90A5EC
+// ---------- INJECTING HERE ----------
+142B7B238DC: 89 08                          - mov [rax],ecx
+// ---------- DONE INJECTING  ----------
+142B7B238DE: 48 B8 F0 A5 90 FD 42 01 00 00  - mov rax,00000142FD90A5F0
+142B7B238E8: 48 63 08                       - movsxd  rcx,dword ptr [rax]
+142B7B238EB: FF C1                          - inc ecx
+142B7B238ED: 48 B8 F0 A5 90 FD 42 01 00 00  - mov rax,00000142FD90A5F0
+142B7B238F7: 89 08                          - mov [rax],ecx
+142B7B238F9: 48 B8 00 A6 90 FD 42 01 00 00  - mov rax,00000142FD90A600
+142B7B23903: C7 00 01 00 00 00              - mov [rax],00000001
+142B7B23909: 41 83 FF 64                    - cmp r15d,64
+142B7B2390D: 7D 12                          - jnl 142B7B23921
+142B7B2390F: 48 B8 EC A5 90 FD 42 01 00 00  - mov rax,00000142FD90A5EC
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>24</ID>
+          <Description>"每关收集"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Klonoa.exe
+  Version: 
+  Date   : 2024-07-06
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,C1 48 B8 F0 A5 90 FD 42 01 00 00 89 08 48 B8 00 A6 90 FD 42 01 00 00 C7 00 01 00 00 00 41) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rax],ecx
+  mov rax,00000142FD90A600
+  jmp return
+
+code:
+  mov [rax],ecx
+  mov rax,00000142FD90A600
+  jmp return
+
+INJECT+0B:
+  jmp newmem
+  nop 7
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+0B:
+  db 89 08 48 B8 00 A6 90 FD 42 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 142B7B238F7
+
+142B7B238C0: 41 FF D3                       - call r11
+142B7B238C3: 48 B8 EC A5 90 FD 42 01 00 00  - mov rax,00000142FD90A5EC
+142B7B238CD: 48 63 08                       - movsxd  rcx,dword ptr [rax]
+142B7B238D0: FF C1                          - inc ecx
+142B7B238D2: 48 B8 EC A5 90 FD 42 01 00 00  - mov rax,00000142FD90A5EC
+142B7B238DC: 89 08                          - mov [rax],ecx
+142B7B238DE: 48 B8 F0 A5 90 FD 42 01 00 00  - mov rax,00000142FD90A5F0
+142B7B238E8: 48 63 08                       - movsxd  rcx,dword ptr [rax]
+142B7B238EB: FF C1                          - inc ecx
+142B7B238ED: 48 B8 F0 A5 90 FD 42 01 00 00  - mov rax,00000142FD90A5F0
+// ---------- INJECTING HERE ----------
+142B7B238F7: 89 08                          - mov [rax],ecx
+// ---------- DONE INJECTING  ----------
+142B7B238F9: 48 B8 00 A6 90 FD 42 01 00 00  - mov rax,00000142FD90A600
+142B7B23903: C7 00 01 00 00 00              - mov [rax],00000001
+142B7B23909: 41 83 FF 64                    - cmp r15d,64
+142B7B2390D: 7D 12                          - jnl 142B7B23921
+142B7B2390F: 48 B8 EC A5 90 FD 42 01 00 00  - mov rax,00000142FD90A5EC
+142B7B23919: 48 63 00                       - movsxd  rax,dword ptr [rax]
+142B7B2391C: 83 F8 64                       - cmp eax,64
+142B7B2391F: 7D 25                          - jnl 142B7B23946
+142B7B23921: 41 81 FF C8 00 00 00           - cmp r15d,000000C8
+142B7B23928: 0F 8D FD 00 00 00              - jnl 142B7B23A2B
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <Structures StructVersion="2">
+    <Structure Name="tStatus" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="16" Vartype="Pointer" Bytesize="8" OffsetHex="00000010" Description="m_ContinuePoint" DisplayMethod="unsigned integer">
+          <Structure Name="tContinuePoint" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+            <Elements>
+              <Element Offset="16" Vartype="Pointer" Bytesize="8" OffsetHex="00000010" Description="m_Position" DisplayMethod="unsigned integer">
+                <Structure Name="CVector" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+                  <Elements>
+                    <Element Offset="16" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000010" Description="m_Value" DisplayMethod="unsigned integer"/>
+                  </Elements>
+                </Structure>
+              </Element>
+              <Element Offset="24" Vartype="Byte" Bytesize="1" OffsetHex="00000018" Description="m_Enabled" DisplayMethod="unsigned integer"/>
+              <Element Offset="28" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000001C" Description="m_Direction" DisplayMethod="unsigned integer"/>
+              <Element Offset="32" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000020" Description="m_FieldNumber" DisplayMethod="unsigned integer"/>
+              <Element Offset="36" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000024" Description="m_PortalNumber" DisplayMethod="unsigned integer"/>
+            </Elements>
+          </Structure>
+        </Element>
+        <Element Offset="24" Vartype="Pointer" Bytesize="8" OffsetHex="00000018" Description="m_Item" DisplayMethod="unsigned integer">
+          <Structure Name="Dictionary`2" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+            <Elements>
+              <Element Offset="16" Vartype="Pointer" Bytesize="8" OffsetHex="00000010" Description="buckets" DisplayMethod="unsigned integer"/>
+              <Element Offset="24" Vartype="Pointer" Bytesize="8" OffsetHex="00000018" Description="entries" DisplayMethod="unsigned integer"/>
+              <Element Offset="32" Vartype="Pointer" Bytesize="8" OffsetHex="00000020" Description="comparer" DisplayMethod="unsigned integer"/>
+              <Element Offset="40" Vartype="Pointer" Bytesize="8" OffsetHex="00000028" Description="keys" DisplayMethod="unsigned integer"/>
+              <Element Offset="48" Vartype="Pointer" Bytesize="8" OffsetHex="00000030" Description="values" DisplayMethod="unsigned integer"/>
+              <Element Offset="56" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000038" Description="_syncRoot" DisplayMethod="unsigned integer"/>
+              <Element Offset="64" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000040" Description="count" DisplayMethod="unsigned integer"/>
+              <Element Offset="68" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000044" Description="version" DisplayMethod="unsigned integer"/>
+              <Element Offset="72" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000048" Description="freeList" DisplayMethod="unsigned integer"/>
+              <Element Offset="76" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000004C" Description="freeCount" DisplayMethod="unsigned integer"/>
+            </Elements>
+          </Structure>
+        </Element>
+        <Element Offset="32" Vartype="Pointer" Bytesize="8" OffsetHex="00000020" Description="m_Demo" DisplayMethod="unsigned integer"/>
+        <Element Offset="40" Vartype="Pointer" Bytesize="8" OffsetHex="00000028" Description="m_Gimmick" DisplayMethod="unsigned integer"/>
+        <Element Offset="48" Vartype="Pointer" Bytesize="8" OffsetHex="00000030" Description="m_GimmickInRecord" DisplayMethod="unsigned integer"/>
+        <Element Offset="56" Vartype="Pointer" Bytesize="8" OffsetHex="00000038" Description="m_Rescued" DisplayMethod="unsigned integer"/>
+        <Element Offset="64" Vartype="Pointer" Bytesize="8" OffsetHex="00000040" Description="m_RescuedInRecord" DisplayMethod="unsigned integer"/>
+        <Element Offset="72" Vartype="Pointer" Bytesize="8" OffsetHex="00000048" Description="m_HaveGoldenMedal" DisplayMethod="unsigned integer"/>
+        <Element Offset="80" Vartype="Pointer" Bytesize="8" OffsetHex="00000050" Description="m_HaveGoldenMedalInRecord" DisplayMethod="unsigned integer">
+          <Structure Name="Boolean[]" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+            <Elements>
+              <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="Count" DisplayMethod="unsigned integer"/>
+              <Element Offset="32" Vartype="Pointer" Bytesize="8" OffsetHex="00000020" Description="Item[0]" DisplayMethod="unsigned integer">
+                <Structure Name="System.Boolean" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+                  <Elements>
+                    <Element Offset="16" Vartype="Byte" Bytesize="1" OffsetHex="00000010" Description="m_value" DisplayMethod="unsigned integer"/>
+                  </Elements>
+                </Structure>
+              </Element>
+              <Element Offset="40" Vartype="Pointer" Bytesize="8" OffsetHex="00000028" Description="Item[1]" DisplayMethod="unsigned integer">
+                <Structure Name="System.Boolean" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+                  <Elements>
+                    <Element Offset="16" Vartype="Byte" Bytesize="1" OffsetHex="00000010" Description="m_value" DisplayMethod="unsigned integer"/>
+                  </Elements>
+                </Structure>
+              </Element>
+              <Element Offset="48" Vartype="Pointer" Bytesize="8" OffsetHex="00000030" Description="Item[2]" DisplayMethod="unsigned integer">
+                <Structure Name="System.Boolean" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+                  <Elements>
+                    <Element Offset="16" Vartype="Byte" Bytesize="1" OffsetHex="00000010" Description="m_value" DisplayMethod="unsigned integer"/>
+                  </Elements>
+                </Structure>
+              </Element>
+              <Element Offset="56" Vartype="Pointer" Bytesize="8" OffsetHex="00000038" Description="Item[3]" DisplayMethod="unsigned integer">
+                <Structure Name="System.Boolean" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+                  <Elements>
+                    <Element Offset="16" Vartype="Byte" Bytesize="1" OffsetHex="00000010" Description="m_value" DisplayMethod="unsigned integer"/>
+                  </Elements>
+                </Structure>
+              </Element>
+              <Element Offset="64" Vartype="Pointer" Bytesize="8" OffsetHex="00000040" Description="Item[4]" DisplayMethod="unsigned integer">
+                <Structure Name="System.Boolean" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+                  <Elements>
+                    <Element Offset="16" Vartype="Byte" Bytesize="1" OffsetHex="00000010" Description="m_value" DisplayMethod="unsigned integer"/>
+                  </Elements>
+                </Structure>
+              </Element>
+              <Element Offset="72" Vartype="Pointer" Bytesize="8" OffsetHex="00000048" Description="Item[5]" DisplayMethod="unsigned integer">
+                <Structure Name="System.Boolean" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+                  <Elements>
+                    <Element Offset="16" Vartype="Byte" Bytesize="1" OffsetHex="00000010" Description="m_value" DisplayMethod="unsigned integer"/>
+                  </Elements>
+                </Structure>
+              </Element>
+              <Element Offset="80" Vartype="Pointer" Bytesize="8" OffsetHex="00000050" Description="Item[6]" DisplayMethod="unsigned integer">
+                <Structure Name="System.Boolean" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+                  <Elements>
+                    <Element Offset="16" Vartype="Byte" Bytesize="1" OffsetHex="00000010" Description="m_value" DisplayMethod="unsigned integer"/>
+                  </Elements>
+                </Structure>
+              </Element>
+              <Element Offset="88" Vartype="Pointer" Bytesize="8" OffsetHex="00000058" Description="Item[7]" DisplayMethod="unsigned integer">
+                <Structure Name="System.Boolean" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+                  <Elements>
+                    <Element Offset="16" Vartype="Byte" Bytesize="1" OffsetHex="00000010" Description="m_value" DisplayMethod="unsigned integer"/>
+                  </Elements>
+                </Structure>
+              </Element>
+              <Element Offset="96" Vartype="Pointer" Bytesize="8" OffsetHex="00000060" Description="Item[8]" DisplayMethod="unsigned integer">
+                <Structure Name="System.Boolean" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+                  <Elements>
+                    <Element Offset="16" Vartype="Byte" Bytesize="1" OffsetHex="00000010" Description="m_value" DisplayMethod="unsigned integer"/>
+                  </Elements>
+                </Structure>
+              </Element>
+              <Element Offset="104" Vartype="Pointer" Bytesize="8" OffsetHex="00000068" Description="Item[9]" DisplayMethod="unsigned integer">
+                <Structure Name="System.Boolean" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+                  <Elements>
+                    <Element Offset="16" Vartype="Byte" Bytesize="1" OffsetHex="00000010" Description="m_value" DisplayMethod="unsigned integer"/>
+                  </Elements>
+                </Structure>
+              </Element>
+            </Elements>
+          </Structure>
+        </Element>
+        <Element Offset="88" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000058" Description="m_HitPoint" DisplayMethod="unsigned integer"/>
+        <Element Offset="92" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000005C" Description="m_NumContinue" DisplayMethod="unsigned integer"/>
+        <Element Offset="96" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000060" Description="m_NumPieces" DisplayMethod="unsigned integer"/>
+        <Element Offset="100" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000064" Description="m_NumPiecesInRecord" DisplayMethod="unsigned integer"/>
+        <Element Offset="104" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000068" Description="m_CountOfPieces" DisplayMethod="unsigned integer"/>
+        <Element Offset="108" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000006C" Description="m_CountOfPiecesInRecord" DisplayMethod="unsigned integer"/>
+        <Element Offset="112" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000070" Description="m_AttachedObjectNumber" DisplayMethod="unsigned integer"/>
+        <Element Offset="116" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000074" Description="m_AttachedObjectNumberInRecord" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+  </Structures>
+</CheatTable>

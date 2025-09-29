@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>8</ID>
+      <Description>"子弹"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Typing of the Dead Overkill
+  Version: 
+  Date   : 2024-01-21
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,HOTD_NG.exe,89 86 60 07 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  nop
+  jmp return
+
+code:
+  mov [esi+00000760],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 86 60 07 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: HOTD_NG.exe+12B218
+
+HOTD_NG.exe+12B1F5: 8B 86 08 08 00 00  - mov eax,[esi+00000808]
+HOTD_NG.exe+12B1FB: 3B C3              - cmp eax,ebx
+HOTD_NG.exe+12B1FD: 74 04              - je HOTD_NG.exe+12B203
+HOTD_NG.exe+12B1FF: 0F B6 48 1C        - movzx ecx,byte ptr [eax+1C]
+HOTD_NG.exe+12B203: 8B 86 60 07 00 00  - mov eax,[esi+00000760]
+HOTD_NG.exe+12B209: 3B C1              - cmp eax,ecx
+HOTD_NG.exe+12B20B: 0F 94 45 D3        - sete byte ptr [ebp-2D]
+HOTD_NG.exe+12B20F: 38 9E A0 07 00 00  - cmp [esi+000007A0],bl
+HOTD_NG.exe+12B215: 75 07              - jne HOTD_NG.exe+12B21E
+HOTD_NG.exe+12B217: 48                 - dec eax
+// ---------- INJECTING HERE ----------
+HOTD_NG.exe+12B218: 89 86 60 07 00 00  - mov [esi+00000760],eax
+// ---------- DONE INJECTING  ----------
+HOTD_NG.exe+12B21E: D9 EE              - fldz 
+HOTD_NG.exe+12B220: D9 9E 58 07 00 00  - fstp dword ptr [esi+00000758]
+HOTD_NG.exe+12B226: 38 9E 11 08 00 00  - cmp [esi+00000811],bl
+HOTD_NG.exe+12B22C: 74 3E              - je HOTD_NG.exe+12B26C
+HOTD_NG.exe+12B22E: FE 86 0F 08 00 00  - inc byte ptr [esi+0000080F]
+HOTD_NG.exe+12B234: 39 9E D4 07 00 00  - cmp [esi+000007D4],ebx
+HOTD_NG.exe+12B23A: 76 0E              - jna HOTD_NG.exe+12B24A
+HOTD_NG.exe+12B23C: 89 9E D4 07 00 00  - mov [esi+000007D4],ebx
+HOTD_NG.exe+12B242: 88 9E 10 08 00 00  - mov [esi+00000810],bl
+HOTD_NG.exe+12B248: EB 22              - jmp HOTD_NG.exe+12B26C
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>9</ID>
+      <Description>"分数"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Typing of the Dead Overkill
+  Version: 
+  Date   : 2024-01-21
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,HOTD_NG.exe,89 86 44 02 00 00 8B 0D) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov [esi+00000244],#9999999
+  jmp return
+
+code:
+  mov [esi+00000244],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 86 44 02 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: HOTD_NG.exe+18EBD3
+
+HOTD_NG.exe+18EBAF: 01 BC 0E 4C 02 00 00  - add [esi+ecx+0000024C],edi
+HOTD_NG.exe+18EBB6: 03 F1                 - add esi,ecx
+HOTD_NG.exe+18EBB8: 8B 0D 04 B7 EC 00     - mov ecx,[HOTD_NG.exe+59B704]
+HOTD_NG.exe+18EBBE: E8 9D 08 ED FF        - call HOTD_NG.exe+5F460
+HOTD_NG.exe+18EBC3: 3B C3                 - cmp eax,ebx
+HOTD_NG.exe+18EBC5: 75 67                 - jne HOTD_NG.exe+18EC2E
+HOTD_NG.exe+18EBC7: 8B 86 44 02 00 00     - mov eax,[esi+00000244]
+HOTD_NG.exe+18EBCD: 03 C7                 - add eax,edi
+HOTD_NG.exe+18EBCF: 79 02                 - jns HOTD_NG.exe+18EBD3
+HOTD_NG.exe+18EBD1: 33 C0                 - xor eax,eax
+// ---------- INJECTING HERE ----------
+HOTD_NG.exe+18EBD3: 89 86 44 02 00 00     - mov [esi+00000244],eax
+// ---------- DONE INJECTING  ----------
+HOTD_NG.exe+18EBD9: 8B 0D 08 B7 EC 00     - mov ecx,[HOTD_NG.exe+59B708]
+HOTD_NG.exe+18EBDF: 8B 4C 99 24           - mov ecx,[ecx+ebx*4+24]
+HOTD_NG.exe+18EBE3: 85 C9                 - test ecx,ecx
+HOTD_NG.exe+18EBE5: 74 08                 - je HOTD_NG.exe+18EBEF
+HOTD_NG.exe+18EBE7: 50                    - push eax
+HOTD_NG.exe+18EBE8: E8 43 C9 FC FF        - call HOTD_NG.exe+15B530
+HOTD_NG.exe+18EBED: EB 02                 - jmp HOTD_NG.exe+18EBF1
+HOTD_NG.exe+18EBEF: 33 C0                 - xor eax,eax
+HOTD_NG.exe+18EBF1: 89 86 48 02 00 00     - mov [esi+00000248],eax
+HOTD_NG.exe+18EBF7: 8B B6 44 02 00 00     - mov esi,[esi+00000244]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>11</ID>
+      <Description>"HP"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Typing of the Dead Overkill : 1920 x 1080 (Hold "Shift" to resize to any aspect ratio)
+  Version: 
+  Date   : 2024-01-21
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,HOTD_NG.exe,89 BE 0C 02 00 00 E8) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  nop
+  jmp return
+
+code:
+  mov [esi+0000020C],edi
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 BE 0C 02 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: HOTD_NG.exe+A3FD9
+
+HOTD_NG.exe+A3FC3: FF D2              - call edx
+HOTD_NG.exe+A3FC5: 8B 06              - mov eax,[esi]
+HOTD_NG.exe+A3FC7: 8B 90 AC 01 00 00  - mov edx,[eax+000001AC]
+HOTD_NG.exe+A3FCD: 57                 - push edi
+HOTD_NG.exe+A3FCE: 8B CE              - mov ecx,esi
+HOTD_NG.exe+A3FD0: FF D2              - call edx
+HOTD_NG.exe+A3FD2: 3B DF              - cmp ebx,edi
+HOTD_NG.exe+A3FD4: 5B                 - pop ebx
+HOTD_NG.exe+A3FD5: 74 0D              - je HOTD_NG.exe+A3FE4
+HOTD_NG.exe+A3FD7: 8B CE              - mov ecx,esi
+// ---------- INJECTING HERE ----------
+HOTD_NG.exe+A3FD9: 89 BE 0C 02 00 00  - mov [esi+0000020C],edi
+// ---------- DONE INJECTING  ----------
+HOTD_NG.exe+A3FDF: E8 4C 82 0E 00     - call HOTD_NG.exe+18C230
+HOTD_NG.exe+A3FE4: 5F                 - pop edi
+HOTD_NG.exe+A3FE5: 5E                 - pop esi
+HOTD_NG.exe+A3FE6: 5D                 - pop ebp
+HOTD_NG.exe+A3FE7: C2 04 00           - ret 0004
+HOTD_NG.exe+A3FEA: CC                 - int 3 
+HOTD_NG.exe+A3FEB: CC                 - int 3 
+HOTD_NG.exe+A3FEC: CC                 - int 3 
+HOTD_NG.exe+A3FED: CC                 - int 3 
+HOTD_NG.exe+A3FEE: CC                 - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>15</ID>
+      <Description>"combo 不断"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Typing of the Dead Overkill
+  Version: 
+  Date   : 2024-01-21
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,HOTD_NG.exe,C7 84 30 34 02 00 00 00 00 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  nop
+  jmp return
+
+code:
+  mov [eax+esi+00000234],00000000
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 6
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db C7 84 30 34 02 00 00 00 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: HOTD_NG.exe+193C7C
+
+HOTD_NG.exe+193C5C: E8 1F C5 F1 FF                    - call HOTD_NG.exe+B0180
+HOTD_NG.exe+193C61: 84 C0                             - test al,al
+HOTD_NG.exe+193C63: 74 27                             - je HOTD_NG.exe+193C8C
+HOTD_NG.exe+193C65: 8B 4D 08                          - mov ecx,[ebp+08]
+HOTD_NG.exe+193C68: D9 EE                             - fldz 
+HOTD_NG.exe+193C6A: 8B C1                             - mov eax,ecx
+HOTD_NG.exe+193C6C: 69 C0 B8 00 00 00                 - imul eax,eax,000000B8
+HOTD_NG.exe+193C72: 51                                - push ecx
+HOTD_NG.exe+193C73: 8B CE                             - mov ecx,esi
+HOTD_NG.exe+193C75: D9 9C 30 3C 02 00 00              - fstp dword ptr [eax+esi+0000023C]
+// ---------- INJECTING HERE ----------
+HOTD_NG.exe+193C7C: C7 84 30 34 02 00 00 00 00 00 00  - mov [eax+esi+00000234],00000000
+// ---------- DONE INJECTING  ----------
+HOTD_NG.exe+193C87: E8 84 82 00 00                    - call HOTD_NG.exe+19BF10
+HOTD_NG.exe+193C8C: 5E                                - pop esi
+HOTD_NG.exe+193C8D: 5D                                - pop ebp
+HOTD_NG.exe+193C8E: C2 04 00                          - ret 0004
+HOTD_NG.exe+193C91: CC                                - int 3 
+HOTD_NG.exe+193C92: CC                                - int 3 
+HOTD_NG.exe+193C93: CC                                - int 3 
+HOTD_NG.exe+193C94: CC                                - int 3 
+HOTD_NG.exe+193C95: CC                                - int 3 
+HOTD_NG.exe+193C96: CC                                - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>20</ID>
+      <Description>"手雷一次拿满"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Typing of the Dead Overkill
+  Version: 
+  Date   : 2024-01-21
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,HOTD_NG.exe,8B 86 10 02 00 00 83) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov [esi+00000210],3
+  mov eax,[esi+00000210]
+  jmp return
+
+code:
+  mov eax,[esi+00000210]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 8B 86 10 02 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: HOTD_NG.exe+181745
+
+HOTD_NG.exe+18172A: 72 05              - jb HOTD_NG.exe+181731
+HOTD_NG.exe+18172C: B8 0A 00 00 00     - mov eax,0000000A
+HOTD_NG.exe+181731: 8B CE              - mov ecx,esi
+HOTD_NG.exe+181733: 89 86 0C 02 00 00  - mov [esi+0000020C],eax
+HOTD_NG.exe+181739: E8 F2 AA 00 00     - call HOTD_NG.exe+18C230
+HOTD_NG.exe+18173E: 5F                 - pop edi
+HOTD_NG.exe+18173F: 5E                 - pop esi
+HOTD_NG.exe+181740: 5B                 - pop ebx
+HOTD_NG.exe+181741: 5D                 - pop ebp
+HOTD_NG.exe+181742: C2 0C 00           - ret 000C
+// ---------- INJECTING HERE ----------
+HOTD_NG.exe+181745: 8B 86 10 02 00 00  - mov eax,[esi+00000210]
+// ---------- DONE INJECTING  ----------
+HOTD_NG.exe+18174B: 83 F8 03           - cmp eax,03
+HOTD_NG.exe+18174E: 73 49              - jae HOTD_NG.exe+181799
+HOTD_NG.exe+181750: 40                 - inc eax
+HOTD_NG.exe+181751: 5F                 - pop edi
+HOTD_NG.exe+181752: 89 86 10 02 00 00  - mov [esi+00000210],eax
+HOTD_NG.exe+181758: 5E                 - pop esi
+HOTD_NG.exe+181759: 5B                 - pop ebx
+HOTD_NG.exe+18175A: 5D                 - pop ebp
+HOTD_NG.exe+18175B: C2 0C 00           - ret 000C
+HOTD_NG.exe+18175E: A1 00 B7 EC 00     - mov eax,[HOTD_NG.exe+59B700]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>21</ID>
+      <Description>"手雷不减"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Typing of the Dead Overkill
+  Version: 
+  Date   : 2024-01-21
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,HOTD_NG.exe,8B 88 10 02 00 00 85 C9 74 07) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  nop
+  jmp return
+
+code:
+  mov ecx,[eax+00000210]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 8B 88 10 02 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: HOTD_NG.exe+191430
+
+HOTD_NG.exe+191413: 53                 - push ebx
+HOTD_NG.exe+191414: 57                 - push edi
+HOTD_NG.exe+191415: E8 C6 3B 02 00     - call HOTD_NG.exe+1B4FE0
+HOTD_NG.exe+19141A: D9 05 50 0B F2 00  - fld dword ptr [HOTD_NG.exe+5F0B50]
+HOTD_NG.exe+191420: 5B                 - pop ebx
+HOTD_NG.exe+191421: D9 9E 5C 07 00 00  - fstp dword ptr [esi+0000075C]
+HOTD_NG.exe+191427: 5F                 - pop edi
+HOTD_NG.exe+191428: 5E                 - pop esi
+HOTD_NG.exe+191429: C3                 - ret 
+HOTD_NG.exe+19142A: 8B 86 94 07 00 00  - mov eax,[esi+00000794]
+// ---------- INJECTING HERE ----------
+HOTD_NG.exe+191430: 8B 88 10 02 00 00  - mov ecx,[eax+00000210]
+// ---------- DONE INJECTING  ----------
+HOTD_NG.exe+191436: 85 C9              - test ecx,ecx
+HOTD_NG.exe+191438: 74 07              - je HOTD_NG.exe+191441
+HOTD_NG.exe+19143A: 49                 - dec ecx
+HOTD_NG.exe+19143B: 89 88 10 02 00 00  - mov [eax+00000210],ecx
+HOTD_NG.exe+191441: D9 05 50 0B F2 00  - fld dword ptr [HOTD_NG.exe+5F0B50]
+HOTD_NG.exe+191447: 5F                 - pop edi
+HOTD_NG.exe+191448: D9 9E 5C 07 00 00  - fstp dword ptr [esi+0000075C]
+HOTD_NG.exe+19144E: 5E                 - pop esi
+HOTD_NG.exe+19144F: C3                 - ret 
+HOTD_NG.exe+191450: B8 74 18 D1 00     - mov eax,HOTD_NG.exe+3E1874
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

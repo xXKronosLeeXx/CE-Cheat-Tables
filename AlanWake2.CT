@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>16</ID>
+      <Description>"V1.2.8 AlanWake2"</Description>
+      <GroupHeader>1</GroupHeader>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"手枪子弹"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : AlanWake2.exe
+  Version: 
+  Date   : 2025-09-21
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,AlanWake2.exe,89 48 58 41 C6 45 5C 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop //  mov [rax+58],ecx
+  mov byte ptr [r13+5C],00
+  jmp return
+
+code:
+  mov [rax+58],ecx
+  mov byte ptr [r13+5C],00
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 48 58 41 C6 45 5C 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: AlanWake2.exe+1870635
+
+AlanWake2.exe+1870615: 48 05 F0 00 00 00     - add rax,000000F0
+AlanWake2.exe+187061B: 49 3B C2              - cmp rax,r10
+AlanWake2.exe+187061E: 75 F0                 - jne AlanWake2.exe+1870610
+AlanWake2.exe+1870620: EB 16                 - jmp AlanWake2.exe+1870638
+AlanWake2.exe+1870622: 44 8B 41 58           - mov r8d,[rcx+58]
+AlanWake2.exe+1870626: 41 FF C8              - dec r8d
+AlanWake2.exe+1870629: 41 8B CF              - mov ecx,r15d
+AlanWake2.exe+187062C: 45 85 C0              - test r8d,r8d
+AlanWake2.exe+187062F: 41 0F 4F C8           - cmovg ecx,r8d
+AlanWake2.exe+1870633: EB DB                 - jmp AlanWake2.exe+1870610
+// ---------- INJECTING HERE ----------
+AlanWake2.exe+1870635: 89 48 58              - mov [rax+58],ecx
+// ---------- DONE INJECTING  ----------
+AlanWake2.exe+1870638: 41 C6 45 5C 00        - mov byte ptr [r13+5C],00
+AlanWake2.exe+187063D: C4 C1 7A 10 75 24     - vmovss xmm6,[r13+24]
+AlanWake2.exe+1870643: 4C 8B 9D 88 02 00 00  - mov r11,[rbp+00000288]
+AlanWake2.exe+187064A: 41 8B 53 10           - mov edx,[r11+10]
+AlanWake2.exe+187064E: 41 B8 AD EA 51 7C     - mov r8d,7C51EAAD
+AlanWake2.exe+1870654: 49 8B 4B 08           - mov rcx,[r11+08]
+AlanWake2.exe+1870658: E8 F3 74 BE 00        - call AlanWake2.exe+2457B50
+AlanWake2.exe+187065D: 83 F8 FF              - cmp eax,-01
+AlanWake2.exe+1870660: 74 1C                 - je AlanWake2.exe+187067E
+AlanWake2.exe+1870662: B9 FF FF 00 00        - mov ecx,0000FFFF
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>7</ID>
+      <Description>"物品数量（包括血瓶/笔记碎片）"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : AlanWake2.exe
+  Version: 
+  Date   : 2025-09-21
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,AlanWake2.exe,89 43 54 E8 0C C0 8E FE) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop //  mov [rbx+54],eax
+  call AlanWake2.exe+2BA8C0
+  jmp return
+
+code:
+  mov [rbx+54],eax
+  call AlanWake2.exe+2BA8C0
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 43 54 E8 0C C0 8E FE
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: AlanWake2.exe+19CE8AC
+
+AlanWake2.exe+19CE894: 8B 43 54           - mov eax,[rbx+54]
+AlanWake2.exe+19CE897: 49 8D 4D 10        - lea rcx,[r13+10]
+AlanWake2.exe+19CE89B: 3B C6              - cmp eax,esi
+AlanWake2.exe+19CE89D: 7C 06              - jl AlanWake2.exe+19CE8A5
+AlanWake2.exe+19CE89F: 2B C6              - sub eax,esi
+AlanWake2.exe+19CE8A1: 33 F6              - xor esi,esi
+AlanWake2.exe+19CE8A3: EB 04              - jmp AlanWake2.exe+19CE8A9
+AlanWake2.exe+19CE8A5: 2B F0              - sub esi,eax
+AlanWake2.exe+19CE8A7: 33 C0              - xor eax,eax
+AlanWake2.exe+19CE8A9: 48 8B D3           - mov rdx,rbx
+// ---------- INJECTING HERE ----------
+AlanWake2.exe+19CE8AC: 89 43 54           - mov [rbx+54],eax
+// ---------- DONE INJECTING  ----------
+AlanWake2.exe+19CE8AF: E8 0C C0 8E FE     - call AlanWake2.exe+2BA8C0
+AlanWake2.exe+19CE8B4: 83 7B 54 00        - cmp dword ptr [rbx+54],00
+AlanWake2.exe+19CE8B8: 75 27              - jne AlanWake2.exe+19CE8E1
+AlanWake2.exe+19CE8BA: C4 C1 7C 10 06     - vmovups ymm0,[r14]
+AlanWake2.exe+19CE8BF: C4 C1 7B 10 4E 20  - vmovsd xmm1,[r14+20]
+AlanWake2.exe+19CE8C5: 8B 53 4C           - mov edx,[rbx+4C]
+AlanWake2.exe+19CE8C8: 48 8D 4C 24 20     - lea rcx,[rsp+20]
+AlanWake2.exe+19CE8CD: C5 FC 11 44 24 20  - vmovups [rsp+20],ymm0
+AlanWake2.exe+19CE8D3: C5 FB 11 4C 24 40  - vmovsd [rsp+40],xmm1
+AlanWake2.exe+19CE8D9: C5 F8 77           - vzeroupper 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>15</ID>
+      <Description>"灯光不减"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : AlanWake2.exe
+  Version: 
+  Date   : 2025-09-22
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,AlanWake2.exe,43 FF 0C 37 43 88 5C 37 19) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop //  dec [r15+r14]
+  mov [r15+r14+19],bl
+  jmp return
+
+code:
+  dec [r15+r14]
+  mov [r15+r14+19],bl
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 4
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 43 FF 0C 37 43 88 5C 37 19
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: AlanWake2.exe+1A429B3
+
+AlanWake2.exe+1A42981: 43 89 5C 37 04           - mov [r15+r14+04],ebx
+AlanWake2.exe+1A42986: C4 81 78 2F 7C 37 04     - vcomiss xmm7,[r15+r14+04]
+AlanWake2.exe+1A4298D: 0F 82 56 02 00 00        - jb AlanWake2.exe+1A42BE9
+AlanWake2.exe+1A42993: 48 8B 7C 24 20           - mov rdi,[rsp+20]
+AlanWake2.exe+1A42998: 4D 8B CD                 - mov r9,r13
+AlanWake2.exe+1A4299B: 48 8B B4 24 10 01 00 00  - mov rsi,[rsp+00000110]
+AlanWake2.exe+1A429A3: 4C 8B C7                 - mov r8,rdi
+AlanWake2.exe+1A429A6: 48 8B CE                 - mov rcx,rsi
+AlanWake2.exe+1A429A9: BA 21 00 00 00           - mov edx,00000021
+AlanWake2.exe+1A429AE: E8 AD FC A7 FE           - call AlanWake2.exe+4C2660
+// ---------- INJECTING HERE ----------
+AlanWake2.exe+1A429B3: 43 FF 0C 37              - dec [r15+r14]
+// ---------- DONE INJECTING  ----------
+AlanWake2.exe+1A429B7: 43 88 5C 37 19           - mov [r15+r14+19],bl
+AlanWake2.exe+1A429BC: 43 39 1C 37              - cmp [r15+r14],ebx
+AlanWake2.exe+1A429C0: 0F 8F 7B 01 00 00        - jg AlanWake2.exe+1A42B41
+AlanWake2.exe+1A429C6: 4D 8B CD                 - mov r9,r13
+AlanWake2.exe+1A429C9: 4C 8B C7                 - mov r8,rdi
+AlanWake2.exe+1A429CC: BA 22 00 00 00           - mov edx,00000022
+AlanWake2.exe+1A429D1: 48 8B CE                 - mov rcx,rsi
+AlanWake2.exe+1A429D4: E8 87 FC A7 FE           - call AlanWake2.exe+4C2660
+AlanWake2.exe+1A429D9: 4C 8B 94 24 28 01 00 00  - mov r10,[rsp+00000128]
+AlanWake2.exe+1A429E1: 4C 8B 44 24 40           - mov r8,[rsp+40]
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>子弹减少 代码 :mov [rax+58],ecx</Description>
+      <AddressString>AlanWake2.exe+1870635</AddressString>
+      <Before>
+        <Byte>0F</Byte>
+        <Byte>4F</Byte>
+        <Byte>C8</Byte>
+        <Byte>EB</Byte>
+        <Byte>DB</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>48</Byte>
+        <Byte>58</Byte>
+      </Actual>
+      <After>
+        <Byte>41</Byte>
+        <Byte>C6</Byte>
+        <Byte>45</Byte>
+        <Byte>5C</Byte>
+        <Byte>00</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>reload 代码 :mov [rax+58],edi</Description>
+      <AddressString>AlanWake2.exe+1872092</AddressString>
+      <Before>
+        <Byte>C1</Byte>
+        <Byte>75</Byte>
+        <Byte>F0</Byte>
+        <Byte>EB</Byte>
+        <Byte>03</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>78</Byte>
+        <Byte>58</Byte>
+      </Actual>
+      <After>
+        <Byte>3B</Byte>
+        <Byte>BC</Byte>
+        <Byte>24</Byte>
+        <Byte>D0</Byte>
+        <Byte>00</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>HP轮询  代码 :vmovss [rax],xmm9</Description>
+      <AddressString>AlanWake2.exe+1AF04D5</AddressString>
+      <Before>
+        <Byte>78</Byte>
+        <Byte>10</Byte>
+        <Byte>01</Byte>
+        <Byte>75</Byte>
+        <Byte>06</Byte>
+      </Before>
+      <Actual>
+        <Byte>C5</Byte>
+        <Byte>7A</Byte>
+        <Byte>11</Byte>
+        <Byte>08</Byte>
+      </Actual>
+      <After>
+        <Byte>EB</Byte>
+        <Byte>0C</Byte>
+        <Byte>C6</Byte>
+        <Byte>40</Byte>
+        <Byte>10</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>灯光减少 代码 :dec [r15+r14]</Description>
+      <AddressString>AlanWake2.exe+1A429B3</AddressString>
+      <Before>
+        <Byte>E8</Byte>
+        <Byte>AD</Byte>
+        <Byte>FC</Byte>
+        <Byte>A7</Byte>
+        <Byte>FE</Byte>
+      </Before>
+      <Actual>
+        <Byte>43</Byte>
+        <Byte>FF</Byte>
+        <Byte>0C</Byte>
+        <Byte>37</Byte>
+      </Actual>
+      <After>
+        <Byte>43</Byte>
+        <Byte>88</Byte>
+        <Byte>5C</Byte>
+        <Byte>37</Byte>
+        <Byte>19</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>

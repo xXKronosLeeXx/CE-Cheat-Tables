@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"bullet"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Crow Country.exe
+  Version: 
+  Date   : 2024-05-18
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,89 48 30 48 8B 75 E8 4C 8B 75 F0 4C 8B 7D F8) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+//  mov ecx,8
+//  mov [rax+30],ecx
+  nop
+  mov rsi,[rbp-18]
+  mov r14,[rbp-10]
+  mov r15,[rbp-08]
+  jmp return
+
+
+code:
+  mov [rax+30],ecx
+  mov rsi,[rbp-18]
+  mov r14,[rbp-10]
+  mov r15,[rbp-08]
+  jmp return
+
+INJECT:
+  jmp far newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 48 30 48 8B 75 E8 4C 8B 75 F0 4C 8B 7D F8
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 184B77D364B
+
+184B77D3623: 48 8B C8                       - mov rcx,rax
+184B77D3626: 83 38 00                       - cmp dword ptr [rax],00
+184B77D3629: 48 8D 64 24 00                 - lea rsp,[rsp+00]
+184B77D362E: 49 BB 30 BF F3 1C 85 01 00 00  - mov r11,000001851CF3BF30
+184B77D3638: 41 FF D3                       - call r11
+184B77D363B: 48 8B D0                       - mov rdx,rax
+184B77D363E: 48 8B 45 C8                    - mov rax,[rbp-38]
+184B77D3642: 48 8B 4D C0                    - mov rcx,[rbp-40]
+184B77D3646: 2B CA                          - sub ecx,edx
+184B77D3648: 83 38 00                       - cmp dword ptr [rax],00
+// ---------- INJECTING HERE ----------
+184B77D364B: 89 48 30                       - mov [rax+30],ecx
+// ---------- DONE INJECTING  ----------
+184B77D364E: 48 8B 75 E8                    - mov rsi,[rbp-18]
+184B77D3652: 4C 8B 75 F0                    - mov r14,[rbp-10]
+184B77D3656: 4C 8B 7D F8                    - mov r15,[rbp-08]
+184B77D365A: 48 8D 65 00                    - lea rsp,[rbp+00]
+184B77D365E: 5D                             - pop rbp
+184B77D365F: C3                             - ret 
+184B77D3660: 01 04 02                       - add [rdx+rax],eax
+184B77D3663: 05 04 03 01 50                 - add eax,50010304
+184B77D3668: 00 00                          - add [rax],al
+184B77D366A: 00 00                          - add [rax],al
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>23</ID>
+      <Description>"HP"</Description>
+      <Options moManualExpandCollapse="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>26</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>Float</VariableType>
+          <Address>"Sakuna.exe"+006BF0F8</Address>
+          <Offsets>
+            <Offset>C</Offset>
+            <Offset>18</Offset>
+            <Offset>30</Offset>
+            <Offset>0</Offset>
+            <Offset>28</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>27</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>Float</VariableType>
+          <Address>"Sakuna.exe"+006BF0F8</Address>
+          <Offsets>
+            <Offset>C</Offset>
+            <Offset>18</Offset>
+            <Offset>40</Offset>
+            <Offset>0</Offset>
+            <Offset>28</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>29</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>Float</VariableType>
+          <Address>"Sakuna.exe"+006BF0F8</Address>
+          <Offsets>
+            <Offset>C</Offset>
+            <Offset>0</Offset>
+            <Offset>28</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>30</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>Float</VariableType>
+          <Address>"Sakuna.exe"+006BF0F8</Address>
+          <Offsets>
+            <Offset>C</Offset>
+            <Offset>18</Offset>
+            <Offset>38</Offset>
+            <Offset>0</Offset>
+            <Offset>28</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"HP不减"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Sakuna.exe
+  Version: 
+  Date   : 2024-04-20
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Sakuna.exe,F3 0F 11 46 0C 48) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop //  movss [rsi+0C],xmm0
+  jmp return
+
+code:
+  movss [rsi+0C],xmm0
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 46 0C
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Sakuna.exe+225D8D
+
+Sakuna.exe+225D62: 8B 48 08              - mov ecx,[rax+08]
+Sakuna.exe+225D65: 89 8E 38 01 00 00     - mov [rsi+00000138],ecx
+Sakuna.exe+225D6B: 0F B7 40 0C           - movzx eax,word ptr [rax+0C]
+Sakuna.exe+225D6F: 66 89 86 3C 01 00 00  - mov [rsi+0000013C],ax
+Sakuna.exe+225D76: 48 8B CE              - mov rcx,rsi
+Sakuna.exe+225D79: E8 72 DC FF FF        - call Sakuna.exe+2239F0
+Sakuna.exe+225D7E: 8B C0                 - mov eax,eax
+Sakuna.exe+225D80: 0F 57 C0              - xorps xmm0,xmm0
+Sakuna.exe+225D83: F3 48 0F 2A C0        - cvtsi2ss xmm0,rax
+Sakuna.exe+225D88: F3 0F 5D 46 0C        - minss xmm0,[rsi+0C]
+// ---------- INJECTING HERE ----------
+Sakuna.exe+225D8D: F3 0F 11 46 0C        - movss [rsi+0C],xmm0
+// ---------- DONE INJECTING  ----------
+Sakuna.exe+225D92: 48 8D 05 6F CD 38 00  - lea rax,[Sakuna.exe+5B2B08]
+Sakuna.exe+225D99: 48 89 45 C0           - mov [rbp-40],rax
+Sakuna.exe+225D9D: 48 8B 05 54 93 49 00  - mov rax,[Sakuna.exe+6BF0F8]
+Sakuna.exe+225DA4: 48 8D 55 C0           - lea rdx,[rbp-40]
+Sakuna.exe+225DA8: 48 8B 48 48           - mov rcx,[rax+48]
+Sakuna.exe+225DAC: E8 BF 38 03 00        - call Sakuna.exe+259670
+Sakuna.exe+225DB1: 90                    - nop 
+Sakuna.exe+225DB2: 48 8D 4D A0           - lea rcx,[rbp-60]
+Sakuna.exe+225DB6: E8 35 7A DF FF        - call Sakuna.exe+1D7F0
+Sakuna.exe+225DBB: 48 8B 4D F0           - mov rcx,[rbp-10]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>22</ID>
+      <Description>"技能增长 99999"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Sakuna.exe
+  Version: 
+  Date   : 2024-04-20
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Sakuna.exe,89 5F 44 32 C9) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rdi+44],#99999
+  xor cl,cl
+  jmp return
+
+code:
+  mov [rdi+44],ebx
+  xor cl,cl
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 5F 44 32 C9
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Sakuna.exe+247692
+
+Sakuna.exe+247667: F3 48 0F 2A C0        - cvtsi2ss xmm0,rax
+Sakuna.exe+24766C: F3 0F 58 C6           - addss xmm0,xmm6
+Sakuna.exe+247670: F3 0F 2C C8           - cvttss2si ecx,xmm0
+Sakuna.exe+247674: 85 C9                 - test ecx,ecx
+Sakuna.exe+247676: 78 0F                 - js Sakuna.exe+247687
+Sakuna.exe+247678: 3B 0D CA BF 47 00     - cmp ecx,[Sakuna.exe+6C3648]
+Sakuna.exe+24767E: 8B D9                 - mov ebx,ecx
+Sakuna.exe+247680: 0F 4F 1D C1 BF 47 00  - cmovg ebx,[Sakuna.exe+6C3648]
+Sakuna.exe+247687: 0F B6 77 38           - movzx esi,byte ptr [rdi+38]
+Sakuna.exe+24768B: 48 8D 15 82 BF 47 00  - lea rdx,[Sakuna.exe+6C3614]
+// ---------- INJECTING HERE ----------
+Sakuna.exe+247692: 89 5F 44              - mov [rdi+44],ebx
+// ---------- DONE INJECTING  ----------
+Sakuna.exe+247695: 32 C9                 - xor cl,cl
+Sakuna.exe+247697: 0F B6 C1              - movzx eax,cl
+Sakuna.exe+24769A: 3B 1C 82              - cmp ebx,[rdx+rax*4]
+Sakuna.exe+24769D: 72 09                 - jb Sakuna.exe+2476A8
+Sakuna.exe+24769F: FE C1                 - inc cl
+Sakuna.exe+2476A1: 80 F9 0E              - cmp cl,0E
+Sakuna.exe+2476A4: 72 F1                 - jb Sakuna.exe+247697
+Sakuna.exe+2476A6: B1 0E                 - mov cl,0E
+Sakuna.exe+2476A8: 88 4F 38              - mov [rdi+38],cl
+Sakuna.exe+2476AB: 48 8B 0D 66 93 47 00  - mov rcx,[Sakuna.exe+6C0A18]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>33</ID>
+      <Description>"获得物品 99"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Sakuna.exe
+  Version: 
+  Date   : 2024-04-21
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Sakuna.exe,89 41 14 C3 CC) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rcx+14],#99
+  ret
+  int 3
+  jmp return
+
+code:
+  mov [rcx+14],eax
+  ret 
+  int 3 
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 41 14 C3 CC
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Sakuna.exe+22D2DA
+
+Sakuna.exe+22D2C9: CC              - int 3 
+Sakuna.exe+22D2CA: CC              - int 3 
+Sakuna.exe+22D2CB: CC              - int 3 
+Sakuna.exe+22D2CC: CC              - int 3 
+Sakuna.exe+22D2CD: CC              - int 3 
+Sakuna.exe+22D2CE: CC              - int 3 
+Sakuna.exe+22D2CF: CC              - int 3 
+Sakuna.exe+22D2D0: B8 E7 03 00 00  - mov eax,000003E7
+Sakuna.exe+22D2D5: 3B D0           - cmp edx,eax
+Sakuna.exe+22D2D7: 0F 4E C2        - cmovle eax,edx
+// ---------- INJECTING HERE ----------
+Sakuna.exe+22D2DA: 89 41 14        - mov [rcx+14],eax
+// ---------- DONE INJECTING  ----------
+Sakuna.exe+22D2DD: C3              - ret 
+Sakuna.exe+22D2DE: CC              - int 3 
+Sakuna.exe+22D2DF: CC              - int 3 
+Sakuna.exe+22D2E0: 48 89 5C 24 08  - mov [rsp+08],rbx
+Sakuna.exe+22D2E5: 57              - push rdi
+Sakuna.exe+22D2E6: 48 83 EC 20     - sub rsp,20
+Sakuna.exe+22D2EA: 8B DA           - mov ebx,edx
+Sakuna.exe+22D2EC: 48 8B F9        - mov rdi,rcx
+Sakuna.exe+22D2EF: E8 FC 06 00 00  - call Sakuna.exe+22D9F0
+Sakuna.exe+22D2F4: F6 C3 01        - test bl,01
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>35</ID>
+      <Description>"木叶99999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Sakuna.exe
+  Version: 
+  Date   : 2024-04-21
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Sakuna.exe,44 87 89 80 03 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rcx+00000380],#99999
+  jmp return
+
+code:
+  xchg [rcx+00000380],r9d
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 44 87 89 80 03 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Sakuna.exe+232033
+
+Sakuna.exe+23200F: 48 89 5C 24 58                 - mov [rsp+58],rbx
+Sakuna.exe+232014: 8B FA                          - mov edi,edx
+Sakuna.exe+232016: 44 8B 89 80 03 00 00           - mov r9d,[rcx+00000380]
+Sakuna.exe+23201D: 44 03 CA                       - add r9d,edx
+Sakuna.exe+232020: 79 05                          - jns Sakuna.exe+232027
+Sakuna.exe+232022: 45 33 C9                       - xor r9d,r9d
+Sakuna.exe+232025: EB 0C                          - jmp Sakuna.exe+232033
+Sakuna.exe+232027: B8 FF C9 9A 3B                 - mov eax,3B9AC9FF
+Sakuna.exe+23202C: 44 3B C8                       - cmp r9d,eax
+Sakuna.exe+23202F: 44 0F 4F C8                    - cmovg r9d,eax
+// ---------- INJECTING HERE ----------
+Sakuna.exe+232033: 44 87 89 80 03 00 00           - xchg [rcx+00000380],r9d
+// ---------- DONE INJECTING  ----------
+Sakuna.exe+23203A: 45 84 C0                       - test r8b,r8b
+Sakuna.exe+23203D: 74 21                          - je Sakuna.exe+232060
+Sakuna.exe+23203F: 48 8B 05 3A D1 48 00           - mov rax,[Sakuna.exe+6BF180]
+Sakuna.exe+232046: F6 40 10 02                    - test byte ptr [rax+10],02
+Sakuna.exe+23204A: 75 14                          - jne Sakuna.exe+232060
+Sakuna.exe+23204C: 8B C7                          - mov eax,edi
+Sakuna.exe+23204E: F0 0F C1 81 84 03 00 00        - lock xadd [rcx+00000384],eax
+Sakuna.exe+232056: C7 81 88 03 00 00 00 00 70 43  - mov [rcx+00000388],43700000
+Sakuna.exe+232060: 85 FF                          - test edi,edi
+Sakuna.exe+232062: 7E 4E                          - jle Sakuna.exe+2320B2
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>38</ID>
+      <Description>"木叶"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"Sakuna.exe"+006BF0F8</Address>
+      <Offsets>
+        <Offset>380</Offset>
+        <Offset>18</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>41</ID>
+      <Description>"香气1 往前4个地址是其他属性"</Description>
+      <VariableType>Double</VariableType>
+      <Address>"Sakuna.exe"+006BF0F8</Address>
+      <Offsets>
+        <Offset>4E8</Offset>
+        <Offset>80</Offset>
+        <Offset>50</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>42</ID>
+      <Description>"香气2"</Description>
+      <VariableType>Double</VariableType>
+      <Address>"Sakuna.exe"+006BF0F8</Address>
+      <Offsets>
+        <Offset>4E8</Offset>
+        <Offset>10</Offset>
+        <Offset>0</Offset>
+        <Offset>20</Offset>
+        <Offset>50</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>44</ID>
+      <Description>"无描述"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Double</VariableType>
+      <Address>1DBCCA8BB40</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>45</ID>
+      <Description>"无描述"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Double</VariableType>
+      <Address>1DBCCA8BB48</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>46</ID>
+      <Description>"无描述"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Double</VariableType>
+      <Address>1DBCCA8BB28</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>47</ID>
+      <Description>"无描述"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Double</VariableType>
+      <Address>1DBCCA8BB20</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>48</ID>
+      <Description>"无描述"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Double</VariableType>
+      <Address>1DBCCA8BB38</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"Gold"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>SKBurstReNewal.exe+BEA698</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"飞鸟EXP"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>SKBurstReNewal.exe+BEA6B0</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>8</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>SKBurstReNewal.exe+BEC620</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>9</ID>
+      <Description>"EXP 吃药"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : SKBurstReNewal.exe
+  Version: 
+  Date   : 2025-03-15
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,SKBurstReNewal.exe,43 89 94 3A B0 A6 BE 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [r10+r15+00BEA6B0],#19999999
+  jmp return
+
+code:
+  mov [r10+r15+00BEA6B0],edx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 43 89 94 3A B0 A6 BE 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: SKBurstReNewal.exe+1C93E6
+
+SKBurstReNewal.exe+1C93B3: 44 8B 9F BC 32 00 00     - mov r11d,[rdi+000032BC]
+SKBurstReNewal.exe+1C93BA: 4C 8B D6                 - mov r10,rsi
+SKBurstReNewal.exe+1C93BD: 4D 69 D2 70 1F 00 00     - imul r10,r10,00001F70
+SKBurstReNewal.exe+1C93C4: 41 8B D3                 - mov edx,r11d
+SKBurstReNewal.exe+1C93C7: 69 D2 10 27 00 00        - imul edx,edx,00002710
+SKBurstReNewal.exe+1C93CD: 4C 8D 3D 2C 6C E3 FF     - lea r15,[SKBurstReNewal.exe]
+SKBurstReNewal.exe+1C93D4: 43 03 94 3A B0 A6 BE 00  - add edx,[r10+r15+00BEA6B0]
+SKBurstReNewal.exe+1C93DC: B8 FF E0 F5 05           - mov eax,05F5E0FF
+SKBurstReNewal.exe+1C93E1: 3B D0                    - cmp edx,eax
+SKBurstReNewal.exe+1C93E3: 0F 47 D0                 - cmova edx,eax
+// ---------- INJECTING HERE ----------
+SKBurstReNewal.exe+1C93E6: 43 89 94 3A B0 A6 BE 00  - mov [r10+r15+00BEA6B0],edx
+// ---------- DONE INJECTING  ----------
+SKBurstReNewal.exe+1C93EE: 8B CE                    - mov ecx,esi
+SKBurstReNewal.exe+1C93F0: E8 EB C7 ED FF           - call SKBurstReNewal.exe+A5BE0
+SKBurstReNewal.exe+1C93F5: 43 89 84 3A B4 A6 BE 00  - mov [r10+r15+00BEA6B4],eax
+SKBurstReNewal.exe+1C93FD: 8B 0D 99 12 A2 00        - mov ecx,[SKBurstReNewal.exe+BEA69C]
+SKBurstReNewal.exe+1C9403: 41 2B CB                 - sub ecx,r11d
+SKBurstReNewal.exe+1C9406: 85 C9                    - test ecx,ecx
+SKBurstReNewal.exe+1C9408: 0F 4E CB                 - cmovle ecx,ebx
+SKBurstReNewal.exe+1C940B: 89 0D 8B 12 A2 00        - mov [SKBurstReNewal.exe+BEA69C],ecx
+SKBurstReNewal.exe+1C9411: 44 8B C0                 - mov r8d,eax
+SKBurstReNewal.exe+1C9414: 8B D6                    - mov edx,esi
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

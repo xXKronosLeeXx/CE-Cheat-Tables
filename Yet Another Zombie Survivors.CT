@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>2202CE93810</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>2202CE93818</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"EXP"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Yet Another Zombie Survivors.exe
+  Version: 
+  Date   : 2024-11-23
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,48 01 7B 18 0F 28 74 24 20) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [rbx+18],#99999
+  movaps xmm6,[rsp+20]
+  jmp return
+
+code:
+  add [rbx+18],rdi
+  movaps xmm6,[rsp+20]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 4
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 48 01 7B 18 0F 28 74 24 20
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.ExperienceProgress_CollectXP_mCB558FB72ADC56B601B69E29A2804CEDF3D2260D+FC
+
+GameAssembly.ExperienceProgress_CollectXP_mCB558FB72ADC56B601B69E29A2804CEDF3D2260D+DA: 74 3D           - je GameAssembly.ExperienceProgress_CollectXP_mCB558FB72ADC56B601B69E29A2804CEDF3D2260D+119
+GameAssembly.ExperienceProgress_CollectXP_mCB558FB72ADC56B601B69E29A2804CEDF3D2260D+DC: 48 8B 40 48     - mov rax,[rax+48]
+GameAssembly.ExperienceProgress_CollectXP_mCB558FB72ADC56B601B69E29A2804CEDF3D2260D+E0: 48 85 C0        - test rax,rax
+GameAssembly.ExperienceProgress_CollectXP_mCB558FB72ADC56B601B69E29A2804CEDF3D2260D+E3: 74 34           - je GameAssembly.ExperienceProgress_CollectXP_mCB558FB72ADC56B601B69E29A2804CEDF3D2260D+119
+GameAssembly.ExperienceProgress_CollectXP_mCB558FB72ADC56B601B69E29A2804CEDF3D2260D+E5: 0F 57 C0        - xorps xmm0,xmm0
+GameAssembly.ExperienceProgress_CollectXP_mCB558FB72ADC56B601B69E29A2804CEDF3D2260D+E8: 33 D2           - xor edx,edx
+GameAssembly.ExperienceProgress_CollectXP_mCB558FB72ADC56B601B69E29A2804CEDF3D2260D+EA: F3 48 0F 2A C7  - cvtsi2ss xmm0,rdi
+GameAssembly.ExperienceProgress_CollectXP_mCB558FB72ADC56B601B69E29A2804CEDF3D2260D+EF: 48 8B CB        - mov rcx,rbx
+GameAssembly.ExperienceProgress_CollectXP_mCB558FB72ADC56B601B69E29A2804CEDF3D2260D+F2: F3 0F 58 40 20  - addss xmm0,[rax+20]
+GameAssembly.ExperienceProgress_CollectXP_mCB558FB72ADC56B601B69E29A2804CEDF3D2260D+F7: F3 0F 11 40 20  - movss [rax+20],xmm0
+// ---------- INJECTING HERE ----------
+GameAssembly.ExperienceProgress_CollectXP_mCB558FB72ADC56B601B69E29A2804CEDF3D2260D+FC: 48 01 7B 18     - add [rbx+18],rdi
+// ---------- DONE INJECTING  ----------
+GameAssembly.ExperienceProgress_CollectXP_mCB558FB72ADC56B601B69E29A2804CEDF3D2260D+100: 0F 28 74 24 20  - movaps xmm6,[rsp+20]
+GameAssembly.ExperienceProgress_CollectXP_mCB558FB72ADC56B601B69E29A2804CEDF3D2260D+105: 48 8B 5C 24 40  - mov rbx,[rsp+40]
+GameAssembly.ExperienceProgress_CollectXP_mCB558FB72ADC56B601B69E29A2804CEDF3D2260D+10A: 48 8B 74 24 48  - mov rsi,[rsp+48]
+GameAssembly.ExperienceProgress_CollectXP_mCB558FB72ADC56B601B69E29A2804CEDF3D2260D+10F: 48 83 C4 30     - add rsp,30
+GameAssembly.ExperienceProgress_CollectXP_mCB558FB72ADC56B601B69E29A2804CEDF3D2260D+113: 5F              - pop rdi
+GameAssembly.ExperienceProgress_CollectXP_mCB558FB72ADC56B601B69E29A2804CEDF3D2260D+114: E9 07 00 00 00  - jmp GameAssembly.ExperienceProgress_CheckForLevelUp_m37E783B07A67BDC40158AC007351F9BC89E28E36
+GameAssembly.ExperienceProgress_CollectXP_mCB558FB72ADC56B601B69E29A2804CEDF3D2260D+119: E8 32 6D D6 FF  - call GameAssembly.il2cpp_codegen_raise_null_reference_exception
+GameAssembly.ExperienceProgress_CollectXP_mCB558FB72ADC56B601B69E29A2804CEDF3D2260D+11E: CC              - int 3 
+GameAssembly.ExperienceProgress_CollectXP_mCB558FB72ADC56B601B69E29A2804CEDF3D2260D+11F: CC              - int 3 
+GameAssembly.ExperienceProgress_CheckForLevelUp_m37E783B07A67BDC40158AC007351F9BC89E28E36: 40 53           - push rbx
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"自动汇编脚本"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Yet Another Zombie Survivors.exe
+  Version: 
+  Date   : 2024-11-23
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,F3 0F 11 7B 24 F3) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+//  movss [rbx+24],xmm7
+  jmp return
+code:
+  movss [rbx+24],xmm7
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 7B 24
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.Health_Update_m404DDAF676CD7C4E0CA907413998FF927E62346E+25E
+
+GameAssembly.Health_Update_m404DDAF676CD7C4E0CA907413998FF927E62346E+234: F3 0F 10 73 24                 - movss xmm6,[rbx+24]
+GameAssembly.Health_Update_m404DDAF676CD7C4E0CA907413998FF927E62346E+239: 33 D2                          - xor edx,edx
+GameAssembly.Health_Update_m404DDAF676CD7C4E0CA907413998FF927E62346E+23B: 48 8B CB                       - mov rcx,rbx
+GameAssembly.Health_Update_m404DDAF676CD7C4E0CA907413998FF927E62346E+23E: E8 7D 21 00 00                 - call GameAssembly.Health_GetMaxHealth_mB17CAB3D8C04B39E87872A692F83EC15061D3363
+GameAssembly.Health_Update_m404DDAF676CD7C4E0CA907413998FF927E62346E+243: 66 0F 6E C0                    - movd xmm0,eax
+GameAssembly.Health_Update_m404DDAF676CD7C4E0CA907413998FF927E62346E+247: 0F 5B C0                       - cvtdq2ps xmm0,xmm0
+GameAssembly.Health_Update_m404DDAF676CD7C4E0CA907413998FF927E62346E+24A: 0F 2F C6                       - comiss xmm0,xmm6
+GameAssembly.Health_Update_m404DDAF676CD7C4E0CA907413998FF927E62346E+24D: 76 14                          - jna GameAssembly.Health_Update_m404DDAF676CD7C4E0CA907413998FF927E62346E+263
+GameAssembly.Health_Update_m404DDAF676CD7C4E0CA907413998FF927E62346E+24F: F3 0F 58 7B 24                 - addss xmm7,[rbx+24]
+GameAssembly.Health_Update_m404DDAF676CD7C4E0CA907413998FF927E62346E+254: C7 83 B0 00 00 00 00 00 00 00  - mov [rbx+000000B0],00000000
+// ---------- INJECTING HERE ----------
+GameAssembly.Health_Update_m404DDAF676CD7C4E0CA907413998FF927E62346E+25E: F3 0F 11 7B 24                 - movss [rbx+24],xmm7
+// ---------- DONE INJECTING  ----------
+GameAssembly.Health_Update_m404DDAF676CD7C4E0CA907413998FF927E62346E+263: F3 0F 10 73 24                 - movss xmm6,[rbx+24]
+GameAssembly.Health_Update_m404DDAF676CD7C4E0CA907413998FF927E62346E+268: 33 D2                          - xor edx,edx
+GameAssembly.Health_Update_m404DDAF676CD7C4E0CA907413998FF927E62346E+26A: 48 8B CB                       - mov rcx,rbx
+GameAssembly.Health_Update_m404DDAF676CD7C4E0CA907413998FF927E62346E+26D: E8 4E 21 00 00                 - call GameAssembly.Health_GetMaxHealth_mB17CAB3D8C04B39E87872A692F83EC15061D3363
+GameAssembly.Health_Update_m404DDAF676CD7C4E0CA907413998FF927E62346E+272: 44 0F 2F C6                    - comiss xmm8,xmm6
+GameAssembly.Health_Update_m404DDAF676CD7C4E0CA907413998FF927E62346E+276: 66 0F 6E C0                    - movd xmm0,eax
+GameAssembly.Health_Update_m404DDAF676CD7C4E0CA907413998FF927E62346E+27A: 0F 5B C0                       - cvtdq2ps xmm0,xmm0
+GameAssembly.Health_Update_m404DDAF676CD7C4E0CA907413998FF927E62346E+27D: 77 0A                          - ja GameAssembly.Health_Update_m404DDAF676CD7C4E0CA907413998FF927E62346E+289
+GameAssembly.Health_Update_m404DDAF676CD7C4E0CA907413998FF927E62346E+27F: 0F 2F F0                       - comiss xmm6,xmm0
+GameAssembly.Health_Update_m404DDAF676CD7C4E0CA907413998FF927E62346E+282: 76 08                          - jna GameAssembly.Health_Update_m404DDAF676CD7C4E0CA907413998FF927E62346E+28C
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"自动汇编脚本"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Yet Another Zombie Survivors.exe
+  Version: 
+  Date   : 2024-11-23
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,F3 0F 11 43 24 F3) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+//  movss [rbx+24],xmm0
+  jmp return
+
+code:
+  movss [rbx+24],xmm0
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 43 24
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.Health_BaseOnDamage_m130DCD642B33B577B6734B4C87AA56C7A3F5D070+D7E
+
+GameAssembly.Health_BaseOnDamage_m130DCD642B33B577B6734B4C87AA56C7A3F5D070+D49: 33 C9                       - xor ecx,ecx
+GameAssembly.Health_BaseOnDamage_m130DCD642B33B577B6734B4C87AA56C7A3F5D070+D4B: E8 10 AB 05 00              - call GameAssembly.ItemJewelOfLife_Activate_mC746E2ABF54431D1C5AC9B74A112519676151BD6
+GameAssembly.Health_BaseOnDamage_m130DCD642B33B577B6734B4C87AA56C7A3F5D070+D50: 48 8B 05 69 4F 76 02        - mov rax,[GameAssembly.ItemJewelOfLife_tBB97162AE1D635B88F6DA73905BD46A592CD0C09_il2cpp_TypeInfo_var]
+GameAssembly.Health_BaseOnDamage_m130DCD642B33B577B6734B4C87AA56C7A3F5D070+D57: 48 8B 88 B8 00 00 00        - mov rcx,[rax+000000B8]
+GameAssembly.Health_BaseOnDamage_m130DCD642B33B577B6734B4C87AA56C7A3F5D070+D5E: 8B 41 04                    - mov eax,[rcx+04]
+GameAssembly.Health_BaseOnDamage_m130DCD642B33B577B6734B4C87AA56C7A3F5D070+D61: 89 83 98 00 00 00           - mov [rbx+00000098],eax
+GameAssembly.Health_BaseOnDamage_m130DCD642B33B577B6734B4C87AA56C7A3F5D070+D67: E9 C5 F7 FF FF              - jmp GameAssembly.Health_BaseOnDamage_m130DCD642B33B577B6734B4C87AA56C7A3F5D070+531
+GameAssembly.Health_BaseOnDamage_m130DCD642B33B577B6734B4C87AA56C7A3F5D070+D6C: F3 44 0F 10 0D A3 28 44 02  - movss xmm9,[GameAssembly.dll+2C44A48]
+GameAssembly.Health_BaseOnDamage_m130DCD642B33B577B6734B4C87AA56C7A3F5D070+D75: F3 0F 10 43 24              - movss xmm0,[rbx+24]
+GameAssembly.Health_BaseOnDamage_m130DCD642B33B577B6734B4C87AA56C7A3F5D070+D7A: F3 0F 5C C7                 - subss xmm0,xmm7
+// ---------- INJECTING HERE ----------
+GameAssembly.Health_BaseOnDamage_m130DCD642B33B577B6734B4C87AA56C7A3F5D070+D7E: F3 0F 11 43 24              - movss [rbx+24],xmm0
+// ---------- DONE INJECTING  ----------
+GameAssembly.Health_BaseOnDamage_m130DCD642B33B577B6734B4C87AA56C7A3F5D070+D83: F3 0F 10 4B 3C              - movss xmm1,[rbx+3C]
+GameAssembly.Health_BaseOnDamage_m130DCD642B33B577B6734B4C87AA56C7A3F5D070+D88: F3 0F 58 CF                 - addss xmm1,xmm7
+GameAssembly.Health_BaseOnDamage_m130DCD642B33B577B6734B4C87AA56C7A3F5D070+D8C: F3 0F 11 4B 3C              - movss [rbx+3C],xmm1
+GameAssembly.Health_BaseOnDamage_m130DCD642B33B577B6734B4C87AA56C7A3F5D070+D91: 48 8B 4B 58                 - mov rcx,[rbx+58]
+GameAssembly.Health_BaseOnDamage_m130DCD642B33B577B6734B4C87AA56C7A3F5D070+D95: 48 85 C9                    - test rcx,rcx
+GameAssembly.Health_BaseOnDamage_m130DCD642B33B577B6734B4C87AA56C7A3F5D070+D98: 74 54                       - je GameAssembly.Health_BaseOnDamage_m130DCD642B33B577B6734B4C87AA56C7A3F5D070+DEE
+GameAssembly.Health_BaseOnDamage_m130DCD642B33B577B6734B4C87AA56C7A3F5D070+D9A: 4C 8B 51 18                 - mov r10,[rcx+18]
+GameAssembly.Health_BaseOnDamage_m130DCD642B33B577B6734B4C87AA56C7A3F5D070+D9E: F2 41 0F 10 04 24           - movsd xmm0,[r12]
+GameAssembly.Health_BaseOnDamage_m130DCD642B33B577B6734B4C87AA56C7A3F5D070+DA4: F2 0F 11 44 24 60           - movsd [rsp+60],xmm0
+GameAssembly.Health_BaseOnDamage_m130DCD642B33B577B6734B4C87AA56C7A3F5D070+DAA: 41 8B 44 24 08              - mov eax,[r12+08]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"无描述"</Description>
+      <VariableType>Float</VariableType>
+      <Address>2202AA29B10</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"Point99"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Yet Another Zombie Survivors.exe
+  Version: 
+  Date   : 2024-11-23
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,F3 0F 11 4A 20 48 8B) // should be unique
+alloc(newmem,$1000,INJECT)
+alloc(mypoint,$4,INJECT)
+label(code)
+label(return)
+
+mypoint:
+db (float)9
+
+newmem:
+  movss xmm1,[mypoint]
+  movss [rdx+20],xmm1
+  jmp return
+
+
+code:
+  movss [rdx+20],xmm1
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 4A 20
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+dealloc(mypoint)
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+163
+
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+142: 74 4A                 - je GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+18E
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+144: 48 63 43 28           - movsxd  rax,dword ptr [rbx+28]
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+148: 3B 41 18              - cmp eax,[rcx+18]
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+14B: 73 47                 - jae GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+194
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+14D: 8B 4C 81 20           - mov ecx,[rcx+rax*4+20]
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+151: EB 05                 - jmp GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+158
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+153: B9 FF FF FF FF        - mov ecx,FFFFFFFF
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+158: 66 0F 6E C1           - movd xmm0,ecx
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+15C: 0F 5B C0              - cvtdq2ps xmm0,xmm0
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+15F: F3 0F 5C C8           - subss xmm1,xmm0
+// ---------- INJECTING HERE ----------
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+163: F3 0F 11 4A 20        - movss [rdx+20],xmm1
+// ---------- DONE INJECTING  ----------
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+168: 48 8B 03              - mov rax,[rbx]
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+16B: BA 01 00 00 00        - mov edx,00000001
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+170: FF 43 28              - inc [rbx+28]
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+173: 48 8B CB              - mov rcx,rbx
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+176: 4C 8B 80 A0 01 00 00  - mov r8,[rax+000001A0]
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+17D: FF 90 98 01 00 00     - call qword ptr [rax+00000198]
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+183: 48 8B 7C 24 30        - mov rdi,[rsp+30]
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+188: 48 83 C4 20           - add rsp,20
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+18C: 5B                    - pop rbx
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+18D: C3                    - ret 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>8</ID>
+      <Description>"自动汇编脚本"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Yet Another Zombie Survivors.exe
+  Version: 
+  Date   : 2024-11-23
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,F3 0F 5C C8 F3 0F 11 4A 20) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+alloc(mypoint,$4,INJECT)
+mypoint:
+db (float)9
+
+
+newmem:
+  movss xmm1,[mypoint]
+  addss xmm1,xmm0
+  movss [rdx+20],xmm1
+  jmp return
+
+code:
+  subss xmm1,xmm0
+  movss [rdx+20],xmm1
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 4
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 5C C8 F3 0F 11 4A 20
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+dealloc(mypoint)
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+15F
+
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+13F: 48 85 C9              - test rcx,rcx
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+142: 74 4A                 - je GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+18E
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+144: 48 63 43 28           - movsxd  rax,dword ptr [rbx+28]
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+148: 3B 41 18              - cmp eax,[rcx+18]
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+14B: 73 47                 - jae GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+194
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+14D: 8B 4C 81 20           - mov ecx,[rcx+rax*4+20]
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+151: EB 05                 - jmp GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+158
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+153: B9 FF FF FF FF        - mov ecx,FFFFFFFF
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+158: 66 0F 6E C1           - movd xmm0,ecx
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+15C: 0F 5B C0              - cvtdq2ps xmm0,xmm0
+// ---------- INJECTING HERE ----------
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+15F: F3 0F 5C C8           - subss xmm1,xmm0
+// ---------- DONE INJECTING  ----------
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+163: F3 0F 11 4A 20        - movss [rdx+20],xmm1
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+168: 48 8B 03              - mov rax,[rbx]
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+16B: BA 01 00 00 00        - mov edx,00000001
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+170: FF 43 28              - inc [rbx+28]
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+173: 48 8B CB              - mov rcx,rbx
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+176: 4C 8B 80 A0 01 00 00  - mov r8,[rax+000001A0]
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+17D: FF 90 98 01 00 00     - call qword ptr [rax+00000198]
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+183: 48 8B 7C 24 30        - mov rdi,[rsp+30]
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+188: 48 83 C4 20           - add rsp,20
+GameAssembly.SkillTreeUpgradeBase_Upgrade_m4B6AC564EF247C7E9CC7CD8D96B99E8842EBF938+18C: 5B                    - pop rbx
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>9</ID>
+      <Description>"HP"</Description>
+      <VariableType>Double</VariableType>
+      <Address>"Blazing Chrome.exe"+017EFEE0</Address>
+      <Offsets>
+        <Offset>6C0</Offset>
+        <Offset>C</Offset>
+        <Offset>4</Offset>
+        <Offset>0</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>10</ID>
+      <Description>"无描述"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Double</VariableType>
+      <Address>14455900</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>11</ID>
+      <Description>"自动汇编脚本"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Blazing Chrome.exe
+  Version: 
+  Date   : 2024-01-24
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Blazing Chrome.exe,C7 46 04 00 00 F0 BF C7 06 00 00 00 00 C7 84 24 30 02 00 00 0E) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  nop
+  jmp return
+
+code:
+  mov [esi+04],BFF00000
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db C7 46 04 00 00 F0 BF
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Blazing Chrome.exe+6ABCB2
+
+Blazing Chrome.exe+6ABC8A: 89 04 24                          - mov [esp],eax
+Blazing Chrome.exe+6ABC8D: E8 0E 7A A3 00                    - call "Blazing Chrome.exe"+10E36A0
+Blazing Chrome.exe+6ABC92: 89 C6                             - mov esi,eax
+Blazing Chrome.exe+6ABC94: B8 FF FF FF 00                    - mov eax,"Blazing Chrome.exe"+7DFFFF
+Blazing Chrome.exe+6ABC99: 03 46 0C                          - add eax,[esi+0C]
+Blazing Chrome.exe+6ABC9C: A9 FC FF FF 00                    - test eax,"Blazing Chrome.exe"+7DFFFC
+Blazing Chrome.exe+6ABCA1: 75 08                             - jne "Blazing Chrome.exe"+6ABCAB
+Blazing Chrome.exe+6ABCA3: 89 34 24                          - mov [esp],esi
+Blazing Chrome.exe+6ABCA6: E8 C5 53 95 FF                    - call "Blazing Chrome.exe"+1070
+Blazing Chrome.exe+6ABCAB: C7 46 0C 00 00 00 00              - mov [esi+0C],00000000
+// ---------- INJECTING HERE ----------
+Blazing Chrome.exe+6ABCB2: C7 46 04 00 00 F0 BF              - mov [esi+04],BFF00000
+// ---------- DONE INJECTING  ----------
+Blazing Chrome.exe+6ABCB9: C7 06 00 00 00 00                 - mov [esi],00000000
+Blazing Chrome.exe+6ABCBF: C7 84 24 30 02 00 00 0E 00 00 00  - mov [esp+00000230],0000000E
+Blazing Chrome.exe+6ABCCA: 8B 8C 24 38 02 00 00              - mov ecx,[esp+00000238]
+Blazing Chrome.exe+6ABCD1: 8B 41 04                          - mov eax,[ecx+04]
+Blazing Chrome.exe+6ABCD4: 85 C0                             - test eax,eax
+Blazing Chrome.exe+6ABCD6: 74 07                             - je "Blazing Chrome.exe"+6ABCDF
+Blazing Chrome.exe+6ABCD8: 05 80 6A 00 00                    - add eax,00006A80
+Blazing Chrome.exe+6ABCDD: EB 0F                             - jmp "Blazing Chrome.exe"+6ABCEE
+Blazing Chrome.exe+6ABCDF: 8B 01                             - mov eax,[ecx]
+Blazing Chrome.exe+6ABCE1: C7 04 24 A8 06 00 00              - mov [esp],000006A8
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

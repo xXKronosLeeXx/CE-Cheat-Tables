@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"无描述"</Description>
+      <LastState Value="907158" RealAddress="1F7A28E687C"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>1F7A28E687C</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"金钱不减"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : FRONT MISSION 1st Remake.exe
+  Version: 
+  Date   : 2024-08-10
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,89 47 3C 48 8B 34 24) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+//  mov [rdi+3C],eax
+//  mov rsi,[rsp]
+  nop
+  jmp return
+
+code:
+  mov [rdi+3C],eax
+  mov rsi,[rsp]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 47 3C 48 8B 34 24
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Walker.MissionInfo:SubMoney+2a
+
+Walker.MissionInfo:SubMoney+8: 48 89 7C 24 08        - mov [rsp+08],rdi
+Walker.MissionInfo:SubMoney+d: 48 8B F9              - mov rdi,rcx
+Walker.MissionInfo:SubMoney+10: 48 8B F2              - mov rsi,rdx
+Walker.MissionInfo:SubMoney+13: 48 63 47 3C           - movsxd  rax,dword ptr [rdi+3C]
+Walker.MissionInfo:SubMoney+17: 3B C6                 - cmp eax,esi
+Walker.MissionInfo:SubMoney+19: 7D 09                 - jnl Walker.MissionInfo:SubMoney+24
+Walker.MissionInfo:SubMoney+1b: C7 47 3C 00 00 00 00  - mov [rdi+3C],00000000
+Walker.MissionInfo:SubMoney+22: EB 09                 - jmp Walker.MissionInfo:SubMoney+2d
+Walker.MissionInfo:SubMoney+24: 48 63 47 3C           - movsxd  rax,dword ptr [rdi+3C]
+Walker.MissionInfo:SubMoney+28: 2B C6                 - sub eax,esi
+// ---------- INJECTING HERE ----------
+Walker.MissionInfo:SubMoney+2a: 89 47 3C              - mov [rdi+3C],eax
+// ---------- DONE INJECTING  ----------
+Walker.MissionInfo:SubMoney+2d: 48 8B 34 24           - mov rsi,[rsp]
+Walker.MissionInfo:SubMoney+31: 48 8B 7C 24 08        - mov rdi,[rsp+08]
+Walker.MissionInfo:SubMoney+36: 48 83 C4 18           - add rsp,18
+Walker.MissionInfo:SubMoney+3a: C3                    - ret 
+1FA2324B6FB: 00 00                 - add [rax],al
+1FA2324B6FD: 00 00                 - add [rax],al
+1FA2324B6FF: 00 01                 - add [rcx],al
+1FA2324B701: 04 01                 - add al,01
+1FA2324B703: 00 04 22              - add [rdx],al
+1FA2324B706: 00 00                 - add [rax],al
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"无描述"</Description>
+      <LastState Value="8" RealAddress="1F9EA82B3E0"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>1F9EA82B3E0</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"无描述"</Description>
+      <LastState Value="651" RealAddress="1FA9AD46CD4"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>1FA9AD46CD4</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"经验值脚本"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : FRONT MISSION 1st Remake.exe
+  Version: 
+  Date   : 2024-08-10
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,41 89 8D A4 00 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [r13+000000A4],ff
+//  add [r13+000000A8],ff
+//  add [r13+000000Ac],ff
+//  add [r13+000000B0],ff
+  jmp return
+
+code:
+  mov [r13+000000A4],ecx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 41 89 8D A4 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Walker.CombatReverse.CombatReverse:TransferDataBackToWanzer+48
+
+Walker.CombatReverse.CombatReverse:TransferDataBackToWanzer+1f: 4C 89 75 F0           - mov [rbp-10],r14
+Walker.CombatReverse.CombatReverse:TransferDataBackToWanzer+23: 4C 89 7D F8           - mov [rbp-08],r15
+Walker.CombatReverse.CombatReverse:TransferDataBackToWanzer+27: 48 89 4D B8           - mov [rbp-48],rcx
+Walker.CombatReverse.CombatReverse:TransferDataBackToWanzer+2b: 48 89 55 B0           - mov [rbp-50],rdx
+Walker.CombatReverse.CombatReverse:TransferDataBackToWanzer+2f: 48 8B C2              - mov rax,rdx
+Walker.CombatReverse.CombatReverse:TransferDataBackToWanzer+32: 4C 8B 68 60           - mov r13,[rax+60]
+Walker.CombatReverse.CombatReverse:TransferDataBackToWanzer+36: 48 8B 48 48           - mov rcx,[rax+48]
+Walker.CombatReverse.CombatReverse:TransferDataBackToWanzer+3a: 48 8B 49 18           - mov rcx,[rcx+18]
+Walker.CombatReverse.CombatReverse:TransferDataBackToWanzer+3e: 4C 8B 61 18           - mov r12,[rcx+18]
+Walker.CombatReverse.CombatReverse:TransferDataBackToWanzer+42: 41 0F B7 4C 24 20     - movzx ecx,word ptr [r12+20]
+// ---------- INJECTING HERE ----------
+Walker.CombatReverse.CombatReverse:TransferDataBackToWanzer+48: 41 89 8D A4 00 00 00  - mov [r13+000000A4],ecx
+// ---------- DONE INJECTING  ----------
+Walker.CombatReverse.CombatReverse:TransferDataBackToWanzer+4f: 41 0F B7 4C 24 22     - movzx ecx,word ptr [r12+22]
+Walker.CombatReverse.CombatReverse:TransferDataBackToWanzer+55: 41 89 8D A8 00 00 00  - mov [r13+000000A8],ecx
+Walker.CombatReverse.CombatReverse:TransferDataBackToWanzer+5c: 41 0F B7 4C 24 24     - movzx ecx,word ptr [r12+24]
+Walker.CombatReverse.CombatReverse:TransferDataBackToWanzer+62: 41 89 8D AC 00 00 00  - mov [r13+000000AC],ecx
+Walker.CombatReverse.CombatReverse:TransferDataBackToWanzer+69: 41 0F B7 4C 24 26     - movzx ecx,word ptr [r12+26]
+Walker.CombatReverse.CombatReverse:TransferDataBackToWanzer+6f: 41 89 8D B0 00 00 00  - mov [r13+000000B0],ecx
+Walker.CombatReverse.CombatReverse:TransferDataBackToWanzer+76: 48 63 88 C8 00 00 00  - movsxd  rcx,dword ptr [rax+000000C8]
+Walker.CombatReverse.CombatReverse:TransferDataBackToWanzer+7d: 81 E1 F9 FD FF FF     - and ecx,FFFFFDF9
+Walker.CombatReverse.CombatReverse:TransferDataBackToWanzer+83: 41 83 7D 00 00        - cmp dword ptr [r13+00],00
+Walker.CombatReverse.CombatReverse:TransferDataBackToWanzer+88: 41 89 8D CC 00 00 00  - mov [r13+000000CC],ecx
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"无描述"</Description>
+      <LastState Value="149" RealAddress="1FA9AD46CD8"/>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Byte</VariableType>
+      <Address>1FA9AD46CD8</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

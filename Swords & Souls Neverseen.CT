@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"gold（240红宝石）"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Swords &amp; Souls Neverseen.exe
+  Version: 
+  Date   : 2025-05-11
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,5C C1 F2 0F 5A E8 F3 0F 11 6E 30) // should be unique
+alloc(newmem,$1000,INJECT)
+alloc(gold,$4,INJECT)
+
+label(code)
+label(return)
+
+gold:
+  dd (float)245699999967889889999
+
+newmem:
+  movss xmm5,[gold]
+  movss [rsi+30],xmm5
+  jmp return
+
+code:
+  movss [rsi+30],xmm5
+  jmp return
+
+INJECT+06:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+06:
+  db F3 0F 11 6E 30
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+dealloc(gold)
+
+{
+// ORIGINAL CODE - INJECTION POINT: SGlibrary.Resource:Decrease+2b
+
+SGlibrary.Resource:Decrease+4: 56              - push rsi
+SGlibrary.Resource:Decrease+5: 48 83 EC 08     - sub rsp,08
+SGlibrary.Resource:Decrease+9: 48 8B F1        - mov rsi,rcx
+SGlibrary.Resource:Decrease+c: F3 0F 11 4D F0  - movss [rbp-10],xmm1
+SGlibrary.Resource:Decrease+11: F3 0F 10 46 30  - movss xmm0,[rsi+30]
+SGlibrary.Resource:Decrease+16: F3 0F 5A C0     - cvtss2sd xmm0,xmm0
+SGlibrary.Resource:Decrease+1a: F3 0F 10 4D F0  - movss xmm1,[rbp-10]
+SGlibrary.Resource:Decrease+1f: F3 0F 5A C9     - cvtss2sd xmm1,xmm1
+SGlibrary.Resource:Decrease+23: F2 0F 5C C1     - subsd xmm0,xmm1
+SGlibrary.Resource:Decrease+27: F2 0F 5A E8     - cvtsd2ss xmm5,xmm0
+// ---------- INJECTING HERE ----------
+SGlibrary.Resource:Decrease+2b: F3 0F 11 6E 30  - movss [rsi+30],xmm5
+// ---------- DONE INJECTING  ----------
+SGlibrary.Resource:Decrease+30: 48 8B 46 10     - mov rax,[rsi+10]
+SGlibrary.Resource:Decrease+34: 48 85 C0        - test rax,rax
+SGlibrary.Resource:Decrease+37: 74 15           - je SGlibrary.Resource:Decrease+4e
+SGlibrary.Resource:Decrease+39: 48 8B 46 10     - mov rax,[rsi+10]
+SGlibrary.Resource:Decrease+3d: 48 8B C8        - mov rcx,rax
+SGlibrary.Resource:Decrease+40: 48 83 EC 20     - sub rsp,20
+SGlibrary.Resource:Decrease+44: 90              - nop 
+SGlibrary.Resource:Decrease+45: 90              - nop 
+SGlibrary.Resource:Decrease+46: 90              - nop 
+SGlibrary.Resource:Decrease+47: FF 50 18        - call qword ptr [rax+18]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"属性池子8889"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Swords &amp; Souls Neverseen.exe
+  Version: 
+  Date   : 2025-05-11
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,F3 0F 11 68 18 F3 0F 10 45) // should be unique
+alloc(newmem,$1000,INJECT)
+alloc(shuxing,$4,INJECT)
+
+label(code)
+label(return)
+shuxing:
+  dd (float)8889
+
+newmem:
+  movss xmm5,[shuxing]
+  movss [rax+18],xmm5
+  jmp return
+
+code:
+  movss [rax+18],xmm5
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 68 18
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+dealloc(shuxing)
+{
+// ORIGINAL CODE - INJECTION POINT: Hero.HeroStats:TryUseStatsPoint+b2
+
+Hero.HeroStats:TryUseStatsPoint+88: F3 0F 5A C0     - cvtss2sd xmm0,xmm0
+Hero.HeroStats:TryUseStatsPoint+8c: F3 0F 10 4D F4  - movss xmm1,[rbp-0C]
+Hero.HeroStats:TryUseStatsPoint+91: F3 0F 5A C9     - cvtss2sd xmm1,xmm1
+Hero.HeroStats:TryUseStatsPoint+95: F2 0F 5C C1     - subsd xmm0,xmm1
+Hero.HeroStats:TryUseStatsPoint+99: F2 0F 5A E8     - cvtsd2ss xmm5,xmm0
+Hero.HeroStats:TryUseStatsPoint+9d: F3 0F 11 6D F0  - movss [rbp-10],xmm5
+Hero.HeroStats:TryUseStatsPoint+a2: 83 38 00        - cmp dword ptr [rax],00
+Hero.HeroStats:TryUseStatsPoint+a5: F3 0F 10 45 F0  - movss xmm0,[rbp-10]
+Hero.HeroStats:TryUseStatsPoint+aa: F3 0F 5A C0     - cvtss2sd xmm0,xmm0
+Hero.HeroStats:TryUseStatsPoint+ae: F2 0F 5A E8     - cvtsd2ss xmm5,xmm0
+// ---------- INJECTING HERE ----------
+Hero.HeroStats:TryUseStatsPoint+b2: F3 0F 11 68 18  - movss [rax+18],xmm5
+// ---------- DONE INJECTING  ----------
+Hero.HeroStats:TryUseStatsPoint+b7: F3 0F 10 45 F4  - movss xmm0,[rbp-0C]
+Hero.HeroStats:TryUseStatsPoint+bc: F3 0F 5A C0     - cvtss2sd xmm0,xmm0
+Hero.HeroStats:TryUseStatsPoint+c0: F2 0F 5A C0     - cvtsd2ss xmm0,xmm0
+Hero.HeroStats:TryUseStatsPoint+c4: 48 8B 75 F8     - mov rsi,[rbp-08]
+Hero.HeroStats:TryUseStatsPoint+c8: C9              - leave 
+Hero.HeroStats:TryUseStatsPoint+c9: C3              - ret 
+1C700A6355A: 00 00           - add [rax],al
+1C700A6355C: 00 00           - add [rax],al
+1C700A6355E: 00 00           - add [rax],al
+1C700A63560: 00 00           - add [rax],al
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"技能点899"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Swords &amp; Souls Neverseen.exe
+  Version: 
+  Date   : 2025-05-11
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,89 48 20 48 8B 47 78) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rax+20],#899
+  mov rax,[rdi+78]
+  jmp return
+
+code:
+  mov [rax+20],ecx
+  mov rax,[rdi+78]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 48 20 48 8B 47 78
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: heroMenu.TabSkills:onClickSkill+31a
+
+heroMenu.TabSkills:onClickSkill+2f1: 49 BB 70 F6 A9 00 C7 01 00 00  - mov r11,UIAnimation:RequirementMsg
+heroMenu.TabSkills:onClickSkill+2fb: 41 FF D3                       - call r11
+heroMenu.TabSkills:onClickSkill+2fe: 48 83 C4 20                    - add rsp,20
+heroMenu.TabSkills:onClickSkill+302: E9 67 02 00 00                 - jmp heroMenu.TabSkills:onClickSkill+56e
+heroMenu.TabSkills:onClickSkill+307: 48 8B 4F 78                    - mov rcx,[rdi+78]
+heroMenu.TabSkills:onClickSkill+30b: 48 8B C1                       - mov rax,rcx
+heroMenu.TabSkills:onClickSkill+30e: 83 39 00                       - cmp dword ptr [rcx],00
+heroMenu.TabSkills:onClickSkill+311: 48 63 49 20                    - movsxd  rcx,dword ptr [rcx+20]
+heroMenu.TabSkills:onClickSkill+315: FF C9                          - dec ecx
+heroMenu.TabSkills:onClickSkill+317: 83 38 00                       - cmp dword ptr [rax],00
+// ---------- INJECTING HERE ----------
+heroMenu.TabSkills:onClickSkill+31a: 89 48 20                       - mov [rax+20],ecx
+// ---------- DONE INJECTING  ----------
+heroMenu.TabSkills:onClickSkill+31d: 48 8B 47 78                    - mov rax,[rdi+78]
+heroMenu.TabSkills:onClickSkill+321: 49 8B 4E 10                    - mov rcx,[r14+10]
+heroMenu.TabSkills:onClickSkill+325: 48 8B D1                       - mov rdx,rcx
+heroMenu.TabSkills:onClickSkill+328: 83 3A 00                       - cmp dword ptr [rdx],00
+heroMenu.TabSkills:onClickSkill+32b: 48 63 91 60 01 00 00           - movsxd  rdx,dword ptr [rcx+00000160]
+heroMenu.TabSkills:onClickSkill+332: 48 8B C8                       - mov rcx,rax
+heroMenu.TabSkills:onClickSkill+335: 48 83 EC 20                    - sub rsp,20
+heroMenu.TabSkills:onClickSkill+339: 83 38 00                       - cmp dword ptr [rax],00
+heroMenu.TabSkills:onClickSkill+33c: 49 BB 60 34 A7 00 C7 01 00 00  - mov r11,Hero.SkillState:Get
+heroMenu.TabSkills:onClickSkill+346: 41 FF D3                       - call r11
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>18</ID>
+      <Description>"四叶草899"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Swords &amp; Souls Neverseen.exe
+  Version: 
+  Date   : 2025-05-11
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,ERROR: 无法找到独特的 AOB, 代码可靠吗 "89 08 49 63 47 50") // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rax],#899
+  movsxd  rax,dword ptr [r15+50]
+  jmp return
+
+code:
+  mov [rax],ecx
+  movsxd  rax,dword ptr [r15+50]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 08 49 63 47 50
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 231AE68F45B
+
+231AE68F432: 39 50 18           - cmp [rax+18],edx
+231AE68F435: 0F 86 9A 00 00 00  - jbe 231AE68F4D5
+231AE68F43B: 48 8D 44 90 20     - lea rax,[rax+rdx*4+20]
+231AE68F440: 89 08              - mov [rax],ecx
+231AE68F442: 49 8B 47 28        - mov rax,[r15+28]
+231AE68F446: 49 63 CC           - movsxd  rcx,r12d
+231AE68F449: 39 48 18           - cmp [rax+18],ecx
+231AE68F44C: 0F 86 6C 00 00 00  - jbe 231AE68F4BE
+231AE68F452: 48 8D 44 88 20     - lea rax,[rax+rcx*4+20]
+231AE68F457: 48 63 4D C0        - movsxd  rcx,dword ptr [rbp-40]
+// ---------- INJECTING HERE ----------
+231AE68F45B: 89 08              - mov [rax],ecx
+// ---------- DONE INJECTING  ----------
+231AE68F45D: 49 63 47 50        - movsxd  rax,dword ptr [r15+50]
+231AE68F461: FF C0              - inc eax
+231AE68F463: 41 89 47 50        - mov [r15+50],eax
+231AE68F467: 48 8D 65 D0        - lea rsp,[rbp-30]
+231AE68F46B: 41 5F              - pop r15
+231AE68F46D: 41 5E              - pop r14
+231AE68F46F: 41 5D              - pop r13
+231AE68F471: 41 5C              - pop r12
+231AE68F473: 5F                 - pop rdi
+231AE68F474: 5B                 - pop rbx
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>20</ID>
+      <Description>"技能增长2.9W（训练所专用）"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Swords &amp; Souls Neverseen.exe
+  Version: 
+  Date   : 2025-05-11
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,6D 00 00 00 48 8D 44 88 20 F2 0F 5A E8 F3 0F 11 28 48 63 47 50) // should be unique
+alloc(newmem,$1000,INJECT)
+alloc(skill,$4,INJECT)
+
+label(code)
+label(return)
+skill:
+  dd (float)299999
+
+newmem:
+  movss xmm5,[skill]
+  movss [rax],xmm5
+  movsxd  rax,dword ptr [rdi+50]
+  jmp return
+
+
+code:
+  movss [rax],xmm5
+  movsxd  rax,dword ptr [rdi+50]
+  jmp return
+
+INJECT+0D:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+0D:
+  db F3 0F 11 28 48 63 47 50
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+dealloc(skill)
+
+
+{
+// ORIGINAL CODE - INJECTION POINT: 2098FB671F0
+
+2098FB671C7: 48 8D 44 90 20     - lea rax,[rax+rdx*4+20]
+2098FB671CC: 89 08              - mov [rax],ecx
+2098FB671CE: 48 8B 47 28        - mov rax,[rdi+28]
+2098FB671D2: F3 0F 10 45 C0     - movss xmm0,[rbp-40]
+2098FB671D7: F3 0F 5A C0        - cvtss2sd xmm0,xmm0
+2098FB671DB: 49 63 CD           - movsxd  rcx,r13d
+2098FB671DE: 39 48 18           - cmp [rax+18],ecx
+2098FB671E1: 0F 86 6D 00 00 00  - jbe 2098FB67254
+2098FB671E7: 48 8D 44 88 20     - lea rax,[rax+rcx*4+20]
+2098FB671EC: F2 0F 5A E8        - cvtsd2ss xmm5,xmm0
+// ---------- INJECTING HERE ----------
+2098FB671F0: F3 0F 11 28        - movss [rax],xmm5
+// ---------- DONE INJECTING  ----------
+2098FB671F4: 48 63 47 50        - movsxd  rax,dword ptr [rdi+50]
+2098FB671F8: FF C0              - inc eax
+2098FB671FA: 89 47 50           - mov [rdi+50],eax
+2098FB671FD: 48 8D 65 D0        - lea rsp,[rbp-30]
+2098FB67201: 41 5F              - pop r15
+2098FB67203: 41 5E              - pop r14
+2098FB67205: 41 5D              - pop r13
+2098FB67207: 41 5C              - pop r12
+2098FB67209: 5F                 - pop rdi
+2098FB6720A: 5E                 - pop rsi
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <Structures StructVersion="2">
+    <Structure Name="ResourcePool" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="16" Vartype="Pointer" Bytesize="8" OffsetHex="00000010" Description="OnZero" DisplayMethod="unsigned integer"/>
+        <Element Offset="24" Vartype="Pointer" Bytesize="8" OffsetHex="00000018" Description="OnMax" DisplayMethod="unsigned integer"/>
+        <Element Offset="32" Vartype="Pointer" Bytesize="8" OffsetHex="00000020" Description="bar" DisplayMethod="unsigned integer"/>
+        <Element Offset="40" Vartype="Float" Bytesize="4" OffsetHex="00000028" Description="curr" DisplayMethod="unsigned integer"/>
+        <Element Offset="44" Vartype="Float" Bytesize="4" OffsetHex="0000002C" Description="&lt;Max&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="ResourcePool" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="16" Vartype="Pointer" Bytesize="8" OffsetHex="00000010" Description="OnZero" DisplayMethod="unsigned integer"/>
+        <Element Offset="24" Vartype="Pointer" Bytesize="8" OffsetHex="00000018" Description="OnMax" DisplayMethod="unsigned integer"/>
+        <Element Offset="32" Vartype="Pointer" Bytesize="8" OffsetHex="00000020" Description="bar" DisplayMethod="unsigned integer"/>
+        <Element Offset="40" Vartype="Float" Bytesize="4" OffsetHex="00000028" Description="curr" DisplayMethod="unsigned integer"/>
+        <Element Offset="44" Vartype="Float" Bytesize="4" OffsetHex="0000002C" Description="&lt;Max&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="ResourcePool" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements/>
+    </Structure>
+    <Structure Name="ResourcePool" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="16" Vartype="Pointer" Bytesize="8" OffsetHex="00000010" Description="OnZero" DisplayMethod="unsigned integer"/>
+        <Element Offset="24" Vartype="Pointer" Bytesize="8" OffsetHex="00000018" Description="OnMax" DisplayMethod="unsigned integer"/>
+        <Element Offset="32" Vartype="Pointer" Bytesize="8" OffsetHex="00000020" Description="bar" DisplayMethod="unsigned integer"/>
+        <Element Offset="40" Vartype="Float" Bytesize="4" OffsetHex="00000028" Description="curr" DisplayMethod="unsigned integer"/>
+        <Element Offset="44" Vartype="Float" Bytesize="4" OffsetHex="0000002C" Description="&lt;Max&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="ResourcePool" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="16" Vartype="Pointer" Bytesize="8" OffsetHex="00000010" Description="OnZero" DisplayMethod="unsigned integer"/>
+        <Element Offset="24" Vartype="Pointer" Bytesize="8" OffsetHex="00000018" Description="OnMax" DisplayMethod="unsigned integer"/>
+        <Element Offset="32" Vartype="Pointer" Bytesize="8" OffsetHex="00000020" Description="bar" DisplayMethod="unsigned integer"/>
+        <Element Offset="40" Vartype="Float" Bytesize="4" OffsetHex="00000028" Description="curr" DisplayMethod="unsigned integer"/>
+        <Element Offset="44" Vartype="Float" Bytesize="4" OffsetHex="0000002C" Description="&lt;Max&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="ResourcePool" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="16" Vartype="Pointer" Bytesize="8" OffsetHex="00000010" Description="OnZero" DisplayMethod="unsigned integer"/>
+        <Element Offset="24" Vartype="Pointer" Bytesize="8" OffsetHex="00000018" Description="OnMax" DisplayMethod="unsigned integer"/>
+        <Element Offset="32" Vartype="Pointer" Bytesize="8" OffsetHex="00000020" Description="bar" DisplayMethod="unsigned integer">
+          <Structure Name="Bar" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+            <Elements>
+              <Element Offset="16" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000010" Description="m_CachedPtr" DisplayMethod="unsigned integer"/>
+              <Element Offset="24" Vartype="Pointer" Bytesize="8" OffsetHex="00000018" Description="&lt;Canvas&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+              <Element Offset="32" Vartype="Pointer" Bytesize="8" OffsetHex="00000020" Description="&lt;CanvasGroup&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+              <Element Offset="40" Vartype="Pointer" Bytesize="8" OffsetHex="00000028" Description="&lt;Rect&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+              <Element Offset="48" Vartype="Pointer" Bytesize="8" OffsetHex="00000030" Description="&lt;Display&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+              <Element Offset="56" Vartype="Pointer" Bytesize="8" OffsetHex="00000038" Description="&lt;Image&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+              <Element Offset="64" Vartype="Pointer" Bytesize="8" OffsetHex="00000040" Description="&lt;Text&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+              <Element Offset="72" Vartype="Pointer" Bytesize="8" OffsetHex="00000048" Description="spriteRenderer" DisplayMethod="unsigned integer"/>
+              <Element Offset="80" Vartype="Pointer" Bytesize="8" OffsetHex="00000050" Description="&lt;Images&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+              <Element Offset="88" Vartype="Pointer" Bytesize="8" OffsetHex="00000058" Description="&lt;Sprites&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+              <Element Offset="96" Vartype="Pointer" Bytesize="8" OffsetHex="00000060" Description="&lt;Texts&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+              <Element Offset="104" Vartype="Byte" Bytesize="1" OffsetHex="00000068" Description="&lt;Visible&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+              <Element Offset="105" Vartype="Byte" Bytesize="1" OffsetHex="00000069" Description="&lt;Awaken&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+              <Element Offset="112" Vartype="Pointer" Bytesize="8" OffsetHex="00000070" Description="bar" DisplayMethod="unsigned integer"/>
+              <Element Offset="120" Vartype="Pointer" Bytesize="8" OffsetHex="00000078" Description="textBar" DisplayMethod="unsigned integer"/>
+              <Element Offset="128" Vartype="String" Bytesize="1" OffsetHex="00000080" Description="prefix" DisplayMethod="unsigned integer"/>
+              <Element Offset="136" Vartype="String" Bytesize="1" OffsetHex="00000088" Description="suffix" DisplayMethod="unsigned integer"/>
+              <Element Offset="144" Vartype="String" Bytesize="1" OffsetHex="00000090" Description="tweenBar" DisplayMethod="unsigned integer"/>
+              <Element Offset="152" Vartype="String" Bytesize="1" OffsetHex="00000098" Description="tweenColorId" DisplayMethod="unsigned integer"/>
+              <Element Offset="160" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000A0" Description="barFillMode" DisplayMethod="unsigned integer"/>
+              <Element Offset="164" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000A4" Description="smoothEase" DisplayMethod="unsigned integer"/>
+              <Element Offset="168" Vartype="Float" Bytesize="4" OffsetHex="000000A8" Description="smoothDuration" DisplayMethod="unsigned integer"/>
+              <Element Offset="172" Vartype="Byte" Bytesize="1" OffsetHex="000000AC" Description="smoothBackToZero" DisplayMethod="unsigned integer"/>
+              <Element Offset="173" Vartype="Byte" Bytesize="1" OffsetHex="000000AD" Description="reversedFill" DisplayMethod="unsigned integer"/>
+              <Element Offset="176" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000B0" Description="restrictFillAmount" DisplayMethod="unsigned integer"/>
+              <Element Offset="184" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000B8" Description="textDisplayMode" DisplayMethod="unsigned integer"/>
+              <Element Offset="188" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000BC" Description="nbDecimal" DisplayMethod="unsigned integer"/>
+              <Element Offset="192" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000C0" Description="roundMode" DisplayMethod="unsigned integer"/>
+              <Element Offset="196" Vartype="Float" Bytesize="4" OffsetHex="000000C4" Description="curr" DisplayMethod="unsigned integer"/>
+              <Element Offset="200" Vartype="Float" Bytesize="4" OffsetHex="000000C8" Description="max" DisplayMethod="unsigned integer"/>
+              <Element Offset="204" Vartype="Float" Bytesize="4" OffsetHex="000000CC" Description="barWidthBase" DisplayMethod="unsigned integer"/>
+            </Elements>
+          </Structure>
+        </Element>
+        <Element Offset="40" Vartype="Float" Bytesize="4" OffsetHex="00000028" Description="curr" DisplayMethod="unsigned integer"/>
+        <Element Offset="44" Vartype="Float" Bytesize="4" OffsetHex="0000002C" Description="&lt;Max&gt;k__BackingField" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="String" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="16" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000010" Description="Length" DisplayMethod="unsigned integer"/>
+        <Element Offset="20" Vartype="Unicode String" Bytesize="128" OffsetHex="00000014" Description="Value" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+  </Structures>
+</CheatTable>

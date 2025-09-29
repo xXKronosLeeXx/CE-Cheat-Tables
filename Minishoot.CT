@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"水晶999"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Minishoot.exe
+  Version: 
+  Date   : 2024-04-06
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,89 08 48 B8 F8 DC B1 61 4B 02 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rax],#999
+  mov rax,0000024B61B1DCF8
+  jmp return
+
+code:
+  mov [rax],ecx
+  mov rax,0000024B61B1DCF8
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 7
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 08 48 B8 F8 DC B1 61 4B 02 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: PlayerState:SetStatsPoint+28
+
+24C405A0DEE: 00 00                          - add [rax],al
+PlayerState:SetStatsPoint: 55                             - push rbp
+PlayerState:SetStatsPoint+1: 48 8B EC                       - mov rbp,rsp
+PlayerState:SetStatsPoint+4: 48 83 EC 30                    - sub rsp,30
+PlayerState:SetStatsPoint+8: 48 89 75 F8                    - mov [rbp-08],rsi
+PlayerState:SetStatsPoint+c: 48 8B F1                       - mov rsi,rcx
+PlayerState:SetStatsPoint+f: 48 B8 28 DD B1 61 4B 02 00 00  - mov rax,0000024B61B1DD28
+PlayerState:SetStatsPoint+19: 48 63 08                       - movsxd  rcx,dword ptr [rax]
+PlayerState:SetStatsPoint+1c: 03 CE                          - add ecx,esi
+PlayerState:SetStatsPoint+1e: 48 B8 28 DD B1 61 4B 02 00 00  - mov rax,0000024B61B1DD28
+// ---------- INJECTING HERE ----------
+PlayerState:SetStatsPoint+28: 89 08                          - mov [rax],ecx
+// ---------- DONE INJECTING  ----------
+PlayerState:SetStatsPoint+2a: 48 B8 F8 DC B1 61 4B 02 00 00  - mov rax,0000024B61B1DCF8
+PlayerState:SetStatsPoint+34: 48 8B 00                       - mov rax,[rax]
+PlayerState:SetStatsPoint+37: 48 8B C8                       - mov rcx,rax
+PlayerState:SetStatsPoint+3a: 48 8B F1                       - mov rsi,rcx
+PlayerState:SetStatsPoint+3d: 48 85 C0                       - test rax,rax
+PlayerState:SetStatsPoint+40: 75 02                          - jne PlayerState:SetStatsPoint+44
+PlayerState:SetStatsPoint+42: EB 06                          - jmp PlayerState:SetStatsPoint+4a
+PlayerState:SetStatsPoint+44: 48 8B CE                       - mov rcx,rsi
+PlayerState:SetStatsPoint+47: FF 56 18                       - call qword ptr [rsi+18]
+PlayerState:SetStatsPoint+4a: 33 C9                          - xor ecx,ecx
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"水晶"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>24B61B1DD28</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>24CAD4ED15C</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"零件999"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Minishoot.exe
+  Version: 
+  Date   : 2024-04-06
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,ERROR: 无法找到独特的 AOB, 代码可靠吗 "89 48 0C B8 01 00 00 00") // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rax+0C],#999
+  mov eax,00000001
+  jmp return
+
+code:
+  mov [rax+0C],ecx
+  mov eax,00000001
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 48 0C B8 01 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: System.Collections.Generic.Dictionary`2[Currency,System.Int32]:TryInsert+222
+
+System.Collections.Generic.Dictionary`2[Currency,System.Int32]:TryInsert+1fb: 83 F8 01              - cmp eax,01
+System.Collections.Generic.Dictionary`2[Currency,System.Int32]:TryInsert+1fe: 75 2F                 - jne System.Collections.Generic.Dictionary`2[Currency,System.Int32]:TryInsert+22f
+System.Collections.Generic.Dictionary`2[Currency,System.Int32]:TryInsert+200: 48 63 CF              - movsxd  rcx,edi
+System.Collections.Generic.Dictionary`2[Currency,System.Int32]:TryInsert+203: 41 39 4D 18           - cmp [r13+18],ecx
+System.Collections.Generic.Dictionary`2[Currency,System.Int32]:TryInsert+207: 0F 86 D4 05 00 00     - jbe System.Collections.Generic.Dictionary`2[Currency,System.Int32]:TryInsert+7e1
+System.Collections.Generic.Dictionary`2[Currency,System.Int32]:TryInsert+20d: 48 C1 E1 04           - shl rcx,04
+System.Collections.Generic.Dictionary`2[Currency,System.Int32]:TryInsert+211: 49 8B C5              - mov rax,r13
+System.Collections.Generic.Dictionary`2[Currency,System.Int32]:TryInsert+214: 48 03 C1              - add rax,rcx
+System.Collections.Generic.Dictionary`2[Currency,System.Int32]:TryInsert+217: 48 83 C0 20           - add rax,20
+System.Collections.Generic.Dictionary`2[Currency,System.Int32]:TryInsert+21b: 48 63 8D 58 FF FF FF  - movsxd  rcx,dword ptr [rbp-000000A8]
+// ---------- INJECTING HERE ----------
+System.Collections.Generic.Dictionary`2[Currency,System.Int32]:TryInsert+222: 89 48 0C              - mov [rax+0C],ecx
+// ---------- DONE INJECTING  ----------
+System.Collections.Generic.Dictionary`2[Currency,System.Int32]:TryInsert+225: B8 01 00 00 00        - mov eax,00000001
+System.Collections.Generic.Dictionary`2[Currency,System.Int32]:TryInsert+22a: E9 FB 03 00 00        - jmp System.Collections.Generic.Dictionary`2[Currency,System.Int32]:TryInsert+62a
+System.Collections.Generic.Dictionary`2[Currency,System.Int32]:TryInsert+22f: 0F B6 85 50 FF FF FF  - movzx eax,byte ptr [rbp-000000B0]
+System.Collections.Generic.Dictionary`2[Currency,System.Int32]:TryInsert+236: 83 F8 02              - cmp eax,02
+System.Collections.Generic.Dictionary`2[Currency,System.Int32]:TryInsert+239: 0F 84 0D 04 00 00     - je System.Collections.Generic.Dictionary`2[Currency,System.Int32]:TryInsert+64c
+System.Collections.Generic.Dictionary`2[Currency,System.Int32]:TryInsert+23f: 33 C0                 - xor eax,eax
+System.Collections.Generic.Dictionary`2[Currency,System.Int32]:TryInsert+241: E9 E4 03 00 00        - jmp System.Collections.Generic.Dictionary`2[Currency,System.Int32]:TryInsert+62a
+System.Collections.Generic.Dictionary`2[Currency,System.Int32]:TryInsert+246: 48 63 CF              - movsxd  rcx,edi
+System.Collections.Generic.Dictionary`2[Currency,System.Int32]:TryInsert+249: 41 39 4D 18           - cmp [r13+18],ecx
+System.Collections.Generic.Dictionary`2[Currency,System.Int32]:TryInsert+24d: 0F 86 87 05 00 00     - jbe System.Collections.Generic.Dictionary`2[Currency,System.Int32]:TryInsert+7da
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>24CAD133E4C</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>7</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>24CAD133E5C</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>8</ID>
+      <Description>"无描述"</Description>
+      <VariableType>Float</VariableType>
+      <Address>24B61D981EC</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <Structures StructVersion="2">
+    <Structure Name="String" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="16" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000010" Description="_stringLength" DisplayMethod="unsigned integer"/>
+        <Element Offset="20" Vartype="String" Bytesize="1" OffsetHex="00000014" Description="_firstChar" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+  </Structures>
+</CheatTable>

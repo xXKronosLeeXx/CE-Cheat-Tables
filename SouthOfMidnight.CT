@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"织线99999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : SouthOfMidnight.exe
+  Version: 
+  Date   : 2025-05-10
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,SouthOfMidnight.exe,89 86 C8 00 00 00 E8 B7) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rsi+000000C8],#99999
+  jmp return
+
+code:
+  mov [rsi+000000C8],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 86 C8 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: SouthOfMidnight.exe+1AEF21E
+
+SouthOfMidnight.exe+1AEF1F1: 8B 4C 24 30           - mov ecx,[rsp+30]
+SouthOfMidnight.exe+1AEF1F5: 85 C9                 - test ecx,ecx
+SouthOfMidnight.exe+1AEF1F7: 0F 84 6C 03 00 00     - je SouthOfMidnight.exe+1AEF569
+SouthOfMidnight.exe+1AEF1FD: 8B 86 C8 00 00 00     - mov eax,[rsi+000000C8]
+SouthOfMidnight.exe+1AEF203: 89 87 2C 01 00 00     - mov [rdi+0000012C],eax
+SouthOfMidnight.exe+1AEF209: 41 8B C7              - mov eax,r15d
+SouthOfMidnight.exe+1AEF20C: 89 8F 30 01 00 00     - mov [rdi+00000130],ecx
+SouthOfMidnight.exe+1AEF212: 03 8E C8 00 00 00     - add ecx,[rsi+000000C8]
+SouthOfMidnight.exe+1AEF218: 0F 49 C1              - cmovns eax,ecx
+SouthOfMidnight.exe+1AEF21B: 48 8B CE              - mov rcx,rsi
+// ---------- INJECTING HERE ----------
+SouthOfMidnight.exe+1AEF21E: 89 86 C8 00 00 00     - mov [rsi+000000C8],eax
+// ---------- DONE INJECTING  ----------
+SouthOfMidnight.exe+1AEF224: E8 B7 EC E9 FF        - call SouthOfMidnight.exe+198DEE0
+SouthOfMidnight.exe+1AEF229: 88 87 34 01 00 00     - mov [rdi+00000134],al
+SouthOfMidnight.exe+1AEF22F: 48 8B CE              - mov rcx,rsi
+SouthOfMidnight.exe+1AEF232: 48 8B 06              - mov rax,[rsi]
+SouthOfMidnight.exe+1AEF235: FF 90 60 01 00 00     - call qword ptr [rax+00000160]
+SouthOfMidnight.exe+1AEF23B: 4C 8B C7              - mov r8,rdi
+SouthOfMidnight.exe+1AEF23E: B2 01                 - mov dl,01
+SouthOfMidnight.exe+1AEF240: 48 8B C8              - mov rcx,rax
+SouthOfMidnight.exe+1AEF243: E8 28 91 F2 FF        - call SouthOfMidnight.exe+1A18370
+SouthOfMidnight.exe+1AEF248: 4C 39 BE 38 01 00 00  - cmp [rsi+00000138],r15
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

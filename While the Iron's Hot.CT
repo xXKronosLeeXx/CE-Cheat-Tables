@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"HP不减"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : While the Iron's Hot
+  Version: 
+  Date   : 2023-12-10
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,C1 F2 0F 5A E8 F3 0F 11 6E 14 F3) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop
+  jmp return
+
+code:
+  movss [rsi+14],xmm5
+  jmp return
+
+INJECT+05:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+05:
+  db F3 0F 11 6E 14
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 17ED8AB3216
+
+17ED8AB31E8: 48 89 7C 24 08     - mov [rsp+08],rdi
+17ED8AB31ED: 4C 89 7C 24 10     - mov [rsp+10],r15
+17ED8AB31F2: 48 8B F1           - mov rsi,rcx
+17ED8AB31F5: F3 0F 11 4C 24 20  - movss [rsp+20],xmm1
+17ED8AB31FB: F3 0F 10 46 14     - movss xmm0,[rsi+14]
+17ED8AB3200: F3 0F 5A C0        - cvtss2sd xmm0,xmm0
+17ED8AB3204: F3 0F 10 4C 24 20  - movss xmm1,[rsp+20]
+17ED8AB320A: F3 0F 5A C9        - cvtss2sd xmm1,xmm1
+17ED8AB320E: F2 0F 58 C1        - addsd xmm0,xmm1
+17ED8AB3212: F2 0F 5A E8        - cvtsd2ss xmm5,xmm0
+// ---------- INJECTING HERE ----------
+17ED8AB3216: F3 0F 11 6E 14     - movss [rsi+14],xmm5
+// ---------- DONE INJECTING  ----------
+17ED8AB321B: F3 0F 10 46 14     - movss xmm0,[rsi+14]
+17ED8AB3220: F3 0F 5A C0        - cvtss2sd xmm0,xmm0
+17ED8AB3224: 66 0F 57 C9        - xorpd xmm1,xmm1
+17ED8AB3228: 66 0F 2F C8        - comisd xmm1,xmm0
+17ED8AB322C: 76 0F              - jna 17ED8AB323D
+17ED8AB322E: 66 0F 57 C0        - xorpd xmm0,xmm0
+17ED8AB3232: F2 0F 5A E8        - cvtsd2ss xmm5,xmm0
+17ED8AB3236: F3 0F 11 6E 14     - movss [rsi+14],xmm5
+17ED8AB323B: EB 2C              - jmp 17ED8AB3269
+17ED8AB323D: F3 0F 10 46 14     - movss xmm0,[rsi+14]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>8</ID>
+      <Description>"money"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : While the Iron's Hot
+  Version: 
+  Date   : 2023-12-10
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,41 89 47 68 48 63 45 B0) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [r15+68],#15000
+  ja code
+  mov [r15+68],#15000
+  movsxd  rax,dword ptr [rbp-50]
+  jmp return
+
+code:
+  mov [r15+68],eax
+  movsxd  rax,dword ptr [rbp-50]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 41 89 47 68 48 63 45 B0
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 1D4D7F41D60
+
+1D4D7F41D3C: 85 FF                          - test edi,edi
+1D4D7F41D3E: 74 16                          - je 1D4D7F41D56
+1D4D7F41D40: 48 63 4D B0                    - movsxd  rcx,dword ptr [rbp-50]
+1D4D7F41D44: 66 90                          - nop 2
+1D4D7F41D46: 49 BB D0 1E F4 D7 D4 01 00 00  - mov r11,000001D4D7F41ED0
+1D4D7F41D50: 41 FF D3                       - call r11
+1D4D7F41D53: 89 45 B0                       - mov [rbp-50],eax
+1D4D7F41D56: 49 63 47 68                    - movsxd  rax,dword ptr [r15+68]
+1D4D7F41D5A: 48 63 4D B0                    - movsxd  rcx,dword ptr [rbp-50]
+1D4D7F41D5E: 03 C1                          - add eax,ecx
+// ---------- INJECTING HERE ----------
+1D4D7F41D60: 41 89 47 68                    - mov [r15+68],eax
+// ---------- DONE INJECTING  ----------
+1D4D7F41D64: 48 63 45 B0                    - movsxd  rax,dword ptr [rbp-50]
+1D4D7F41D68: 85 C0                          - test eax,eax
+1D4D7F41D6A: 7F 2F                          - jg 1D4D7F41D9B
+1D4D7F41D6C: 48 8B CD                       - mov rcx,rbp
+1D4D7F41D6F: 48 83 C1 B0                    - add rcx,-50
+1D4D7F41D73: 66 66 90                       - nop 3
+1D4D7F41D76: 49 BB F0 58 3A FC D4 01 00 00  - mov r11,000001D4FC3A58F0
+1D4D7F41D80: 41 FF D3                       - call r11
+1D4D7F41D83: 48 8B F8                       - mov rdi,rax
+1D4D7F41D86: 48 85 C0                       - test rax,rax
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"铁矿99"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : While the Iron's Hot
+  Version: 
+  Date   : 2023-12-10
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,C6 89 47 18 48 8B 7D E8) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [rdi+18],#99
+  jb code
+  mov [rdi+18],#99
+  mov rdi,[rbp-18]
+  jmp return
+
+code:
+  mov [rdi+18],eax
+  mov rdi,[rbp-18]
+  jmp return
+
+INJECT+01:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+01:
+  db 89 47 18 48 8B 7D E8
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 17ED8B0931A
+
+17ED8B092F3: 48 8B C8                       - mov rcx,rax
+17ED8B092F6: 4D 8B C6                       - mov r8,r14
+17ED8B092F9: 45 33 C9                       - xor r9d,r9d
+17ED8B092FC: 66 90                          - nop 2
+17ED8B092FE: 49 BB 00 4E A8 D8 7E 01 00 00  - mov r11,0000017ED8A84E00
+17ED8B09308: 41 FF D3                       - call r11
+17ED8B0930B: 48 8B 45 D8                    - mov rax,[rbp-28]
+17ED8B0930F: 49 89 47 68                    - mov [r15+68],rax
+17ED8B09313: 48 63 47 18                    - movsxd  rax,dword ptr [rdi+18]
+17ED8B09317: 41 2B C6                       - sub eax,r14d
+// ---------- INJECTING HERE ----------
+17ED8B0931A: 89 47 18                       - mov [rdi+18],eax
+// ---------- DONE INJECTING  ----------
+17ED8B0931D: 48 8B 7D E8                    - mov rdi,[rbp-18]
+17ED8B09321: 4C 8B 75 F0                    - mov r14,[rbp-10]
+17ED8B09325: 4C 8B 7D F8                    - mov r15,[rbp-08]
+17ED8B09329: 48 8D 65 00                    - lea rsp,[rbp+00]
+17ED8B0932D: 5D                             - pop rbp
+17ED8B0932E: C3                             - ret 
+17ED8B0932F: 49 00 00                       - add [r8],al
+17ED8B09332: 80 BF 00 00 00 00 01           - cmp byte ptr [rdi+00000000],01
+17ED8B09339: 04 02                          - add al,02
+17ED8B0933B: 05 04 03 01 50                 - add eax,50010304
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>10</ID>
+      <Description>"铁锭99"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : While the Iron's Hot
+  Version: 
+  Date   : 2023-12-10
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,41 89 44 24 18 44) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [r12+18],#99
+  ja code
+  mov [r12+18],#99
+  jmp return
+
+code:
+  mov [r12+18],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 41 89 44 24 18
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 1D4D832F467
+
+1D4D832F43E: 49 BB 20 C1 75 73 D5 01 00 00  - mov r11,000001D57375C120
+1D4D832F448: 41 FF D3                       - call r11
+1D4D832F44B: 4C 8B E0                       - mov r12,rax
+1D4D832F44E: 48 85 C0                       - test rax,rax
+1D4D832F451: 0F 84 40 00 00 00              - je 1D4D832F497
+1D4D832F457: 49 63 44 24 18                 - movsxd  rax,dword ptr [r12+18]
+1D4D832F45C: 3B C6                          - cmp eax,esi
+1D4D832F45E: 7C 13                          - jl 1D4D832F473
+1D4D832F460: 49 63 44 24 18                 - movsxd  rax,dword ptr [r12+18]
+1D4D832F465: 2B C6                          - sub eax,esi
+// ---------- INJECTING HERE ----------
+1D4D832F467: 41 89 44 24 18                 - mov [r12+18],eax
+// ---------- DONE INJECTING  ----------
+1D4D832F46C: 44 03 EE                       - add r13d,esi
+1D4D832F46F: 33 F6                          - xor esi,esi
+1D4D832F471: EB 18                          - jmp 1D4D832F48B
+1D4D832F473: 49 63 44 24 18                 - movsxd  rax,dword ptr [r12+18]
+1D4D832F478: 44 03 E8                       - add r13d,eax
+1D4D832F47B: 49 63 44 24 18                 - movsxd  rax,dword ptr [r12+18]
+1D4D832F480: 2B F0                          - sub esi,eax
+1D4D832F482: 41 C7 44 24 18 00 00 00 00     - mov [r12+18],00000000
+1D4D832F48B: 85 F6                          - test esi,esi
+1D4D832F48D: 7E 08                          - jle 1D4D832F497
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"物品获得99"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : While the Iron's Hot
+  Version: 
+  Date   : 2023-12-10
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,89 4E 18 01 45 98) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+
+newmem:
+  mov [rsi+18],#99
+  mov [rbp-68],#99
+  jmp return
+
+code:
+  mov [rsi+18],ecx
+  add [rbp-68],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 4E 18 01 45 98
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 1D4D82CC510
+
+1D4D82CC4F0: 48 63 40 78     - movsxd  rax,dword ptr [rax+78]
+1D4D82CC4F4: 48 63 4E 18     - movsxd  rcx,dword ptr [rsi+18]
+1D4D82CC4F8: 48 8B F8        - mov rdi,rax
+1D4D82CC4FB: 2B F9           - sub edi,ecx
+1D4D82CC4FD: 44 3B FF        - cmp r15d,edi
+1D4D82CC500: 49 8B C7        - mov rax,r15
+1D4D82CC503: 48 0F 4F C7     - cmovg rax,rdi
+1D4D82CC507: 89 45 B8        - mov [rbp-48],eax
+1D4D82CC50A: 48 63 4E 18     - movsxd  rcx,dword ptr [rsi+18]
+1D4D82CC50E: 03 C8           - add ecx,eax
+// ---------- INJECTING HERE ----------
+1D4D82CC510: 89 4E 18        - mov [rsi+18],ecx
+// ---------- DONE INJECTING  ----------
+1D4D82CC513: 01 45 98        - add [rbp-68],eax
+1D4D82CC516: 44 2B F8        - sub r15d,eax
+1D4D82CC519: 48 63 45 90     - movsxd  rax,dword ptr [rbp-70]
+1D4D82CC51D: 39 45 98        - cmp [rbp-68],eax
+1D4D82CC520: 7C 09           - jl 1D4D82CC52B
+1D4D82CC522: 48 63 45 98     - movsxd  rax,dword ptr [rbp-68]
+1D4D82CC526: E9 E1 01 00 00  - jmp 1D4D82CC70C
+1D4D82CC52B: 83 45 88 01     - add dword ptr [rbp-78],01
+1D4D82CC52F: 41 83 3C 24 00  - cmp dword ptr [r12],00
+1D4D82CC534: 49 63 44 24 18  - movsxd  rax,dword ptr [r12+18]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>12</ID>
+      <Description>"物品不减99"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : While the Iron's Hot
+  Version: 
+  Date   : 2023-12-10
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,CC 48 18 48 8B CF) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop
+  mov rcx,rdi
+  jmp return
+
+code:
+  mov [rax+18],ecx
+  mov rcx,rdi
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db CC 48 18 48 8B CF
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 1D4D80B33CB
+
+1D4D80B33A4: F3 0F 11 6D E4                 - movss [rbp-1C],xmm5
+1D4D80B33A9: 83 3F 00                       - cmp dword ptr [rdi],00
+1D4D80B33AC: 48 8B 47 30                    - mov rax,[rdi+30]
+1D4D80B33B0: 0F B6 40 30                    - movzx eax,byte ptr [rax+30]
+1D4D80B33B4: 40 88 85 78 FF FF FF           - mov [rbp-00000088],al
+1D4D80B33BB: 83 3F 00                       - cmp dword ptr [rdi],00
+1D4D80B33BE: 48 8B 47 30                    - mov rax,[rdi+30]
+1D4D80B33C2: 48 8B D0                       - mov rdx,rax
+1D4D80B33C5: 48 63 48 18                    - movsxd  rcx,dword ptr [rax+18]
+1D4D80B33C9: 2B CE                          - sub ecx,esi
+// ---------- INJECTING HERE ----------
+1D4D80B33CB: 89 48 18                       - mov [rax+18],ecx
+// ---------- DONE INJECTING  ----------
+1D4D80B33CE: 48 8B CF                       - mov rcx,rdi
+1D4D80B33D1: 83 3F 00                       - cmp dword ptr [rdi],00
+1D4D80B33D4: 66 90                          - nop 2
+1D4D80B33D6: 49 BB E0 F5 F3 D7 D4 01 00 00  - mov r11,000001D4D7F3F5E0
+1D4D80B33E0: 41 FF D3                       - call r11
+1D4D80B33E3: 83 3F 00                       - cmp dword ptr [rdi],00
+1D4D80B33E6: 48 8B 47 30                    - mov rax,[rdi+30]
+1D4D80B33EA: 48 63 40 18                    - movsxd  rax,dword ptr [rax+18]
+1D4D80B33EE: 85 C0                          - test eax,eax
+1D4D80B33F0: 0F 8F AD 00 00 00              - jg 1D4D80B34A3
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

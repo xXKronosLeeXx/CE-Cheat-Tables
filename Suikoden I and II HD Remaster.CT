@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>2990FC49CC4</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"Gold=89999"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+
+alloc(newmem,2048,"GameAssembly.dll"+125398D) 
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+mov [rbx+44],#899999
+mov ebx,[rbx+44]
+test dil,dil
+jmp returnhere
+
+originalcode:
+mov ebx,[rbx+44]
+test dil,dil
+
+exit:
+jmp returnhere
+
+"GameAssembly.dll"+125398D:
+jmp newmem
+nop
+returnhere:
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>gold 查询代码 :mov ebx,[rbx+44]</Description>
+      <AddressString>GameAssembly.dll+125398D</AddressString>
+      <Before>
+        <Byte>48</Byte>
+        <Byte>85</Byte>
+        <Byte>DB</Byte>
+        <Byte>74</Byte>
+        <Byte>62</Byte>
+      </Before>
+      <Actual>
+        <Byte>8B</Byte>
+        <Byte>5B</Byte>
+        <Byte>44</Byte>
+      </Actual>
+      <After>
+        <Byte>40</Byte>
+        <Byte>84</Byte>
+        <Byte>FF</Byte>
+        <Byte>74</Byte>
+        <Byte>4D</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>

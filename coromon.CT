@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"自动汇编脚本"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : coromon.exe
+  Version: 
+  Date   : 2025-03-15
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,lua.dll,08 89 01 8B 46 04) // should be unique
+alloc(newmem,$1000)
+alloc(gold,$4)
+
+
+label(code)
+label(return)
+
+gold:
+  dq (float)999999
+
+newmem:
+  mov eax,[gold]
+  mov [ecx],eax
+  mov eax,[esi+04]
+  jmp return
+
+code:
+  mov [ecx],eax
+  mov eax,[esi+04]
+  jmp return
+
+INJECT+01:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+01:
+  db 89 01 8B 46 04
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+dealloc(gold)
+
+{
+// ORIGINAL CODE - INJECTION POINT: lua.dll+2623E
+
+lua.dll+2620B: 8D 94 24 E8 00 00 00              - lea edx,[esp+000000E8]
+lua.dll+26212: 89 84 24 E8 00 00 00              - mov [esp+000000E8],eax
+lua.dll+26219: C7 84 24 F0 00 00 00 05 00 00 00  - mov [esp+000000F0],00000005
+lua.dll+26224: E8 B7 F0 FF FF                    - call lua.dll+252E0
+lua.dll+26229: E9 5F FF FF FF                    - jmp lua.dll+2618D
+lua.dll+2622E: 8B 44 24 64                       - mov eax,[esp+64]
+lua.dll+26232: C1 EA 17                          - shr edx,17
+lua.dll+26235: 8B 54 90 14                       - mov edx,[eax+edx*4+14]
+lua.dll+26239: 8B 06                             - mov eax,[esi]
+lua.dll+2623B: 8B 4A 08                          - mov ecx,[edx+08]
+// ---------- INJECTING HERE ----------
+lua.dll+2623E: 89 01                             - mov [ecx],eax
+// ---------- DONE INJECTING  ----------
+lua.dll+26240: 8B 46 04                          - mov eax,[esi+04]
+lua.dll+26243: 89 41 04                          - mov [ecx+04],eax
+lua.dll+26246: 8B 46 08                          - mov eax,[esi+08]
+lua.dll+26249: 89 41 08                          - mov [ecx+08],eax
+lua.dll+2624C: 83 7E 08 04                       - cmp dword ptr [esi+08],04
+lua.dll+26250: 8B 4C 24 18                       - mov ecx,[esp+18]
+lua.dll+26254: 0F 8C 0B FD FF FF                 - jl lua.dll+25F65
+lua.dll+2625A: 8B 06                             - mov eax,[esi]
+lua.dll+2625C: 8B 74 24 14                       - mov esi,[esp+14]
+lua.dll+26260: 89 44 24 30                       - mov [esp+30],eax
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"减少逻辑"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : coromon.exe
+  Version: 
+  Date   : 2025-03-15
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,lua.dll,55 0C 8B 02 89 01 8B 42 04) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov [ecx],eax
+  mov eax,[edx+04]
+  jmp return
+
+code:
+  mov [ecx],eax
+  mov eax,[edx+04]
+  jmp return
+
+INJECT+04:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+04:
+  db 89 01 8B 42 04
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: lua.dll+2542C
+
+lua.dll+25419: 83 C4 08           - add esp,08
+lua.dll+2541C: 5F                 - pop edi
+lua.dll+2541D: 5E                 - pop esi
+lua.dll+2541E: 5B                 - pop ebx
+lua.dll+2541F: 8B E5              - mov esp,ebp
+lua.dll+25421: 5D                 - pop ebp
+lua.dll+25422: C3                 - ret 
+lua.dll+25423: 8B 4C 24 14        - mov ecx,[esp+14]
+lua.dll+25427: 8B 55 0C           - mov edx,[ebp+0C]
+lua.dll+2542A: 8B 02              - mov eax,[edx]
+// ---------- INJECTING HERE ----------
+lua.dll+2542C: 89 01              - mov [ecx],eax
+// ---------- DONE INJECTING  ----------
+lua.dll+2542E: 8B 42 04           - mov eax,[edx+04]
+lua.dll+25431: 89 41 04           - mov [ecx+04],eax
+lua.dll+25434: 8B 42 08           - mov eax,[edx+08]
+lua.dll+25437: 89 41 08           - mov [ecx+08],eax
+lua.dll+2543A: C6 43 06 00        - mov byte ptr [ebx+06],00
+lua.dll+2543E: 83 7A 08 04        - cmp dword ptr [edx+08],04
+lua.dll+25442: 0F 8C B8 00 00 00  - jl lua.dll+25500
+lua.dll+25448: 8B 02              - mov eax,[edx]
+lua.dll+2544A: F6 40 05 03        - test byte ptr [eax+05],03
+lua.dll+2544E: 0F 84 AC 00 00 00  - je lua.dll+25500
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

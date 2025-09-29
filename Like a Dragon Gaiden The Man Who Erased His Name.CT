@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"情报点数"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>1D4402A78</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"gold"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>1D44019C8</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"gold+情报逻辑"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Like a Dragon Gaiden: The Man Who Erased His Name
+  Version: 
+  Date   : 2023-11-09
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LikeaDragonGaiden.exe,48 89 34 F8 E8 1A 83 D1 F2) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [rax+rdi*8],rsi
+  jb code
+  nop
+  call LikeaDragonGaiden.exe+11FE5A0
+  jmp return
+
+
+code:
+  mov [rax+rdi*8],rsi
+  call LikeaDragonGaiden.exe+11FE5A0
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 4
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 48 89 34 F8 E8 1A 83 D1 F2
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LikeaDragonGaiden.exe+E4E627D
+
+LikeaDragonGaiden.exe+E4E6256: EB 0F                 - jmp LikeaDragonGaiden.exe+E4E6267
+LikeaDragonGaiden.exe+E4E6258: 41 B8 05 00 00 00     - mov r8d,00000005
+LikeaDragonGaiden.exe+E4E625E: 48 8D 4D C0           - lea rcx,[rbp-40]
+LikeaDragonGaiden.exe+E4E6262: E8 B9 52 D1 F2        - call LikeaDragonGaiden.exe+11FB520
+LikeaDragonGaiden.exe+E4E6267: 49 39 C5              - cmp r13,rax
+LikeaDragonGaiden.exe+E4E626A: B9 24 02 00 00        - mov ecx,00000224
+LikeaDragonGaiden.exe+E4E626F: 49 0F 4F C5           - cmovg rax,r13
+LikeaDragonGaiden.exe+E4E6273: 48 39 F0              - cmp rax,rsi
+LikeaDragonGaiden.exe+E4E6276: 48 0F 4C F0           - cmovl rsi,rax
+LikeaDragonGaiden.exe+E4E627A: 49 8B 06              - mov rax,[r14]
+// ---------- INJECTING HERE ----------
+LikeaDragonGaiden.exe+E4E627D: 48 89 34 F8           - mov [rax+rdi*8],rsi
+// ---------- DONE INJECTING  ----------
+LikeaDragonGaiden.exe+E4E6281: E8 1A 83 D1 F2        - call LikeaDragonGaiden.exe+11FE5A0
+LikeaDragonGaiden.exe+E4E6286: 49 89 C0              - mov r8,rax
+LikeaDragonGaiden.exe+E4E6289: 48 85 C0              - test rax,rax
+LikeaDragonGaiden.exe+E4E628C: 74 23                 - je LikeaDragonGaiden.exe+E4E62B1
+LikeaDragonGaiden.exe+E4E628E: 8B 50 10              - mov edx,[rax+10]
+LikeaDragonGaiden.exe+E4E6291: 48 01 C2              - add rdx,rax
+LikeaDragonGaiden.exe+E4E6294: 74 2C                 - je LikeaDragonGaiden.exe+E4E62C2
+LikeaDragonGaiden.exe+E4E6296: 3B 3A                 - cmp edi,[rdx]
+LikeaDragonGaiden.exe+E4E6298: 73 28                 - jae LikeaDragonGaiden.exe+E4E62C2
+LikeaDragonGaiden.exe+E4E629A: F7 42 20 00 00 00 40  - test [rdx+20],40000000
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"道具"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Like a Dragon Gaiden: The Man Who Erased His Name
+  Version: 
+  Date   : 2023-11-09
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LikeaDragonGaiden.exe,44 89 70 04 B0 01) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [rax+04],r14d
+  jb code
+  nop
+  mov al,01
+  jmp return
+
+code:
+  mov [rax+04],r14d
+  mov al,01
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 44 89 70 04 B0 01
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LikeaDragonGaiden.exe+E4F8CAE
+
+LikeaDragonGaiden.exe+E4F8C95: 5D                    - pop rbp
+LikeaDragonGaiden.exe+E4F8C96: C3                    - ret 
+LikeaDragonGaiden.exe+E4F8C97: C7 40 04 00 00 00 00  - mov [rax+04],00000000
+LikeaDragonGaiden.exe+E4F8C9E: B0 01                 - mov al,01
+LikeaDragonGaiden.exe+E4F8CA0: 48 8B 5C 24 50        - mov rbx,[rsp+50]
+LikeaDragonGaiden.exe+E4F8CA5: 48 83 C4 20           - add rsp,20
+LikeaDragonGaiden.exe+E4F8CA9: 41 5E                 - pop r14
+LikeaDragonGaiden.exe+E4F8CAB: 5F                    - pop rdi
+LikeaDragonGaiden.exe+E4F8CAC: 5D                    - pop rbp
+LikeaDragonGaiden.exe+E4F8CAD: C3                    - ret 
+// ---------- INJECTING HERE ----------
+LikeaDragonGaiden.exe+E4F8CAE: 44 89 70 04           - mov [rax+04],r14d
+// ---------- DONE INJECTING  ----------
+LikeaDragonGaiden.exe+E4F8CB2: B0 01                 - mov al,01
+LikeaDragonGaiden.exe+E4F8CB4: 48 8B 5C 24 50        - mov rbx,[rsp+50]
+LikeaDragonGaiden.exe+E4F8CB9: 48 83 C4 20           - add rsp,20
+LikeaDragonGaiden.exe+E4F8CBD: 41 5E                 - pop r14
+LikeaDragonGaiden.exe+E4F8CBF: 5F                    - pop rdi
+LikeaDragonGaiden.exe+E4F8CC0: 5D                    - pop rbp
+LikeaDragonGaiden.exe+E4F8CC1: C3                    - ret 
+LikeaDragonGaiden.exe+E4F8CC2: 48 89 D6              - mov rsi,rdx
+LikeaDragonGaiden.exe+E4F8CC5: 48 C1 E7 04           - shl rdi,04
+LikeaDragonGaiden.exe+E4F8CC9: 48 01 F7              - add rdi,rsi
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"无描述"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Byte</VariableType>
+      <Address>FBACA382</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

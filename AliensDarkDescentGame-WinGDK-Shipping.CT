@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"子弹"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : AliensDarkDescentGame-WinGDK-Shipping.exe
+  Version: 
+  Date   : 2024-12-08
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,AliensDarkDescentGame-WinGDK-Shipping.exe,89 91 D8 03 00 00 48 8B) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop//  mov [rcx+000003D8],edx
+  jmp return
+
+code:
+  mov [rcx+000003D8],edx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 91 D8 03 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: AliensDarkDescentGame-WinGDK-Shipping.exe+103CF06
+
+AliensDarkDescentGame-WinGDK-Shipping.exe+103CEF8: CC                    - int 3 
+AliensDarkDescentGame-WinGDK-Shipping.exe+103CEF9: CC                    - int 3 
+AliensDarkDescentGame-WinGDK-Shipping.exe+103CEFA: CC                    - int 3 
+AliensDarkDescentGame-WinGDK-Shipping.exe+103CEFB: CC                    - int 3 
+AliensDarkDescentGame-WinGDK-Shipping.exe+103CEFC: CC                    - int 3 
+AliensDarkDescentGame-WinGDK-Shipping.exe+103CEFD: CC                    - int 3 
+AliensDarkDescentGame-WinGDK-Shipping.exe+103CEFE: CC                    - int 3 
+AliensDarkDescentGame-WinGDK-Shipping.exe+103CEFF: CC                    - int 3 
+AliensDarkDescentGame-WinGDK-Shipping.exe+103CF00: 40 53                 - push rbx
+AliensDarkDescentGame-WinGDK-Shipping.exe+103CF02: 48 83 EC 30           - sub rsp,30
+// ---------- INJECTING HERE ----------
+AliensDarkDescentGame-WinGDK-Shipping.exe+103CF06: 89 91 D8 03 00 00     - mov [rcx+000003D8],edx
+// ---------- DONE INJECTING  ----------
+AliensDarkDescentGame-WinGDK-Shipping.exe+103CF0C: 48 8B D9              - mov rbx,rcx
+AliensDarkDescentGame-WinGDK-Shipping.exe+103CF0F: 85 D2                 - test edx,edx
+AliensDarkDescentGame-WinGDK-Shipping.exe+103CF11: 75 1C                 - jne AliensDarkDescentGame-WinGDK-Shipping.exe+103CF2F
+AliensDarkDescentGame-WinGDK-Shipping.exe+103CF13: 48 89 4C 24 40        - mov [rsp+40],rcx
+AliensDarkDescentGame-WinGDK-Shipping.exe+103CF18: 48 8D 54 24 40        - lea rdx,[rsp+40]
+AliensDarkDescentGame-WinGDK-Shipping.exe+103CF1D: 48 81 C1 E8 02 00 00  - add rcx,000002E8
+AliensDarkDescentGame-WinGDK-Shipping.exe+103CF24: E8 47 81 75 FF        - call AliensDarkDescentGame-WinGDK-Shipping.exe+795070
+AliensDarkDescentGame-WinGDK-Shipping.exe+103CF29: 8B 93 D8 03 00 00     - mov edx,[rbx+000003D8]
+AliensDarkDescentGame-WinGDK-Shipping.exe+103CF2F: 89 54 24 28           - mov [rsp+28],edx
+AliensDarkDescentGame-WinGDK-Shipping.exe+103CF33: 48 8D 8B E0 03 00 00  - lea rcx,[rbx+000003E0]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>2658C2BDED8</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>7</ID>
+      <Description>"无描述"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>2659F77F86C</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>8</ID>
+      <Description>"无描述"</Description>
+      <VariableType>8 Bytes</VariableType>
+      <Address>26586DE6E78</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>9</ID>
+      <Description>"无描述"</Description>
+      <VariableType>8 Bytes</VariableType>
+      <Address>2661C9F2DA0</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>10</ID>
+      <Description>"自动汇编脚本"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : AliensDarkDescentGame-WinGDK-Shipping.exe
+  Version: 
+  Date   : 2024-12-08
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,VCRUNTIME140.dll,89 08 C3 90 49 83 F8 20) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop//  mov [rax],ecx
+  ret
+  nop
+  cmp r8,20
+  jmp return
+
+code:
+  mov [rax],ecx
+  ret 
+  nop 
+  cmp r8,20
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 08 C3 90 49 83 F8 20
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: VCRUNTIME140.memmove+11C
+
+VCRUNTIME140.memmove+106: 89 08                 - mov [rax],ecx
+VCRUNTIME140.memmove+108: 44 88 40 04           - mov [rax+04],r8b
+VCRUNTIME140.memmove+10C: C3                    - ret 
+VCRUNTIME140.memmove+10D: 48 8B 0A              - mov rcx,[rdx]
+VCRUNTIME140.memmove+110: 48 89 08              - mov [rax],rcx
+VCRUNTIME140.memmove+113: C3                    - ret 
+VCRUNTIME140.memmove+114: 0F B6 0A              - movzx ecx,byte ptr [rdx]
+VCRUNTIME140.memmove+117: 88 08                 - mov [rax],cl
+VCRUNTIME140.memmove+119: C3                    - ret 
+VCRUNTIME140.memmove+11A: 8B 0A                 - mov ecx,[rdx]
+// ---------- INJECTING HERE ----------
+VCRUNTIME140.memmove+11C: 89 08                 - mov [rax],ecx
+// ---------- DONE INJECTING  ----------
+VCRUNTIME140.memmove+11E: C3                    - ret 
+VCRUNTIME140.memmove+11F: 90                    - nop 
+VCRUNTIME140.memmove+120: 49 83 F8 20           - cmp r8,20
+VCRUNTIME140.memmove+124: 77 17                 - ja VCRUNTIME140.memmove+13D
+VCRUNTIME140.memmove+126: F3 0F 6F 0A           - movdqu xmm1,[rdx]
+VCRUNTIME140.memmove+12A: F3 42 0F 6F 54 02 F0  - movdqu xmm2,[rdx+r8-10]
+VCRUNTIME140.memmove+131: F3 0F 7F 09           - movdqu [rcx],xmm1
+VCRUNTIME140.memmove+135: F3 42 0F 7F 54 01 F0  - movdqu [rcx+r8-10],xmm2
+VCRUNTIME140.memmove+13C: C3                    - ret 
+VCRUNTIME140.memmove+13D: 4E 8D 0C 02           - lea r9,[rdx+r8]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>11</ID>
+      <Description>"无描述"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>2661C9F2D9C</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>12</ID>
+      <Description>"自动汇编脚本"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : AliensDarkDescentGame-WinGDK-Shipping.exe
+  Version: 
+  Date   : 2024-12-08
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,VCRUNTIME140.dll,8B 0A 89 08 C3) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov ecx,[rax]
+  mov [rax],ecx
+  ret
+  jmp return
+
+code:
+  mov ecx,[rdx]
+  mov [rax],ecx
+  ret 
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 8B 0A 89 08 C3
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: VCRUNTIME140.memmove+11A
+
+VCRUNTIME140.memmove+101: 44 0F B6 42 04        - movzx r8d,byte ptr [rdx+04]
+VCRUNTIME140.memmove+106: 89 08                 - mov [rax],ecx
+VCRUNTIME140.memmove+108: 44 88 40 04           - mov [rax+04],r8b
+VCRUNTIME140.memmove+10C: C3                    - ret 
+VCRUNTIME140.memmove+10D: 48 8B 0A              - mov rcx,[rdx]
+VCRUNTIME140.memmove+110: 48 89 08              - mov [rax],rcx
+VCRUNTIME140.memmove+113: C3                    - ret 
+VCRUNTIME140.memmove+114: 0F B6 0A              - movzx ecx,byte ptr [rdx]
+VCRUNTIME140.memmove+117: 88 08                 - mov [rax],cl
+VCRUNTIME140.memmove+119: C3                    - ret 
+// ---------- INJECTING HERE ----------
+VCRUNTIME140.memmove+11A: 8B 0A                 - mov ecx,[rdx]
+// ---------- DONE INJECTING  ----------
+VCRUNTIME140.memmove+11C: 89 08                 - mov [rax],ecx
+VCRUNTIME140.memmove+11E: C3                    - ret 
+VCRUNTIME140.memmove+11F: 90                    - nop 
+VCRUNTIME140.memmove+120: 49 83 F8 20           - cmp r8,20
+VCRUNTIME140.memmove+124: 77 17                 - ja VCRUNTIME140.memmove+13D
+VCRUNTIME140.memmove+126: F3 0F 6F 0A           - movdqu xmm1,[rdx]
+VCRUNTIME140.memmove+12A: F3 42 0F 6F 54 02 F0  - movdqu xmm2,[rdx+r8-10]
+VCRUNTIME140.memmove+131: F3 0F 7F 09           - movdqu [rcx],xmm1
+VCRUNTIME140.memmove+135: F3 42 0F 7F 54 01 F0  - movdqu [rcx+r8-10],xmm2
+VCRUNTIME140.memmove+13C: C3                    - ret 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>13</ID>
+      <Description>"无描述"</Description>
+      <VariableType>Byte</VariableType>
+      <Address>26586DE6E78</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>14</ID>
+      <Description>"无描述"</Description>
+      <VariableType>Byte</VariableType>
+      <Address>2661C9F2DA0</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

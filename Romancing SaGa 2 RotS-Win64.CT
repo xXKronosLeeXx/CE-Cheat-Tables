@@ -1,0 +1,648 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"Gold"</Description>
+      <LastState/>
+      <Color>0000FF</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Romancing SaGa 2 RotS-Win64.exe
+  Version: 
+  Date   : 2025-03-22
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Romancing SaGa 2 RotS-Win64.exe,44 89 41 78 C3) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rcx+78],#892948400
+  ret
+  jmp return
+
+code:
+  mov [rcx+78],r8d
+  ret 
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 44 89 41 78 C3
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Romancing SaGa 2 RotS-Win64.exe+102D90FF
+
+Romancing SaGa 2 RotS-Win64.exe+102D90DF: FF 1E                    - call qword ptr [rsi]
+Romancing SaGa 2 RotS-Win64.exe+102D90E1: 75 F0                    - jne "Romancing SaGa 2 RotS-Win64.exe"+102D90D3
+Romancing SaGa 2 RotS-Win64.exe+102D90E3: 5D                       - pop rbp
+Romancing SaGa 2 RotS-Win64.exe+102D90E4: 00 00                    - add [rax],al
+Romancing SaGa 2 RotS-Win64.exe+102D90E6: 00 00                    - add [rax],al
+Romancing SaGa 2 RotS-Win64.exe+102D90E8: 0F 1F 84 00 00 00 00 00  - nop dword ptr [rax+rax+00000000]
+Romancing SaGa 2 RotS-Win64.exe+102D90F0: 48 8B 41 48              - mov rax,[rcx+48]
+Romancing SaGa 2 RotS-Win64.exe+102D90F4: 44 8B 40 44              - mov r8d,[rax+44]
+Romancing SaGa 2 RotS-Win64.exe+102D90F8: 44 39 C2                 - cmp edx,r8d
+Romancing SaGa 2 RotS-Win64.exe+102D90FB: 44 0F 4E C2              - cmovle r8d,edx
+// ---------- INJECTING HERE ----------
+Romancing SaGa 2 RotS-Win64.exe+102D90FF: 44 89 41 78              - mov [rcx+78],r8d
+// ---------- DONE INJECTING  ----------
+Romancing SaGa 2 RotS-Win64.exe+102D9103: C3                       - ret 
+Romancing SaGa 2 RotS-Win64.exe+102D9104: 53                       - push rbx
+Romancing SaGa 2 RotS-Win64.exe+102D9105: 53                       - push rbx
+Romancing SaGa 2 RotS-Win64.exe+102D9106: 54                       - push rsp
+Romancing SaGa 2 RotS-Win64.exe+102D9107: 04 00                    - add al,00
+Romancing SaGa 2 RotS-Win64.exe+102D9109: 00 00                    - add [rax],al
+Romancing SaGa 2 RotS-Win64.exe+102D910B: 00 A8 00 00 00 00        - add [rax+00000000],ch
+Romancing SaGa 2 RotS-Win64.exe+102D9111: 00 00                    - add [rax],al
+Romancing SaGa 2 RotS-Win64.exe+102D9113: 00 F1                    - add cl,dh
+Romancing SaGa 2 RotS-Win64.exe+102D9115: 00 00                    - add [rax],al
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>32</ID>
+      <Description>"战斗胜利次数"</Description>
+      <LastState/>
+      <Color>0000FF</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Romancing SaGa 2 RotS-Win64.exe
+  Version: 
+  Date   : 2025-03-22
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Romancing SaGa 2 RotS-Win64.exe,41 89 46 08 4C 8B 75 6F) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [r14+08],#99
+  mov r14,[rbp+6F]
+  jmp return
+
+code:
+  mov [r14+08],eax
+  mov r14,[rbp+6F]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 41 89 46 08 4C 8B 75 6F
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Romancing SaGa 2 RotS-Win64.exe+1481D08
+
+Romancing SaGa 2 RotS-Win64.exe+1481CEA: 4C 8B 75 77              - mov r14,[rbp+77]
+Romancing SaGa 2 RotS-Win64.exe+1481CEE: 41 8B 4E 08              - mov ecx,[r14+08]
+Romancing SaGa 2 RotS-Win64.exe+1481CF2: 03 CE                    - add ecx,esi
+Romancing SaGa 2 RotS-Win64.exe+1481CF4: 79 04                    - jns "Romancing SaGa 2 RotS-Win64.exe"+1481CFA
+Romancing SaGa 2 RotS-Win64.exe+1481CF6: 33 C0                    - xor eax,eax
+Romancing SaGa 2 RotS-Win64.exe+1481CF8: EB 09                    - jmp "Romancing SaGa 2 RotS-Win64.exe"+1481D03
+Romancing SaGa 2 RotS-Win64.exe+1481CFA: 41 8B 45 08              - mov eax,[r13+08]
+Romancing SaGa 2 RotS-Win64.exe+1481CFE: 3B C8                    - cmp ecx,eax
+Romancing SaGa 2 RotS-Win64.exe+1481D00: 0F 4C C1                 - cmovl eax,ecx
+Romancing SaGa 2 RotS-Win64.exe+1481D03: 48 8B 74 24 48           - mov rsi,[rsp+48]
+// ---------- INJECTING HERE ----------
+Romancing SaGa 2 RotS-Win64.exe+1481D08: 41 89 46 08              - mov [r14+08],eax
+// ---------- DONE INJECTING  ----------
+Romancing SaGa 2 RotS-Win64.exe+1481D0C: 4C 8B 75 6F              - mov r14,[rbp+6F]
+Romancing SaGa 2 RotS-Win64.exe+1481D10: 8B 45 DB                 - mov eax,[rbp-25]
+Romancing SaGa 2 RotS-Win64.exe+1481D13: 48 8D 4D D7              - lea rcx,[rbp-29]
+Romancing SaGa 2 RotS-Win64.exe+1481D17: F7 D0                    - not eax
+Romancing SaGa 2 RotS-Win64.exe+1481D19: 21 45 E7                 - and [rbp-19],eax
+Romancing SaGa 2 RotS-Win64.exe+1481D1C: E8 8F F5 48 FF           - call "Romancing SaGa 2 RotS-Win64.exe"+9112B0
+Romancing SaGa 2 RotS-Win64.exe+1481D21: 48 8B 55 7F              - mov rdx,[rbp+7F]
+Romancing SaGa 2 RotS-Win64.exe+1481D25: E9 57 FD FF FF           - jmp "Romancing SaGa 2 RotS-Win64.exe"+1481A81
+Romancing SaGa 2 RotS-Win64.exe+1481D2A: 48 8B 9C 24 30 01 00 00  - mov rbx,[rsp+00000130]
+Romancing SaGa 2 RotS-Win64.exe+1481D32: 48 81 C4 F0 00 00 00     - add rsp,000000F0
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>10</ID>
+      <Description>"BP nuke"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Romancing SaGa 2 RotS-Win64.exe
+  Version: 
+  Date   : 2025-03-22
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Romancing SaGa 2 RotS-Win64.exe,41 89 B5 B8 04 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov esi,[r13+000004BC]
+  mov [r13+000004B8],esi
+  jmp return
+
+code:
+  mov [r13+000004B8],esi
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 41 89 B5 B8 04 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Romancing SaGa 2 RotS-Win64.exe+13508E4
+
+Romancing SaGa 2 RotS-Win64.exe+13508A5: 48 81 C1 B0 04 00 00  - add rcx,000004B0
+Romancing SaGa 2 RotS-Win64.exe+13508AC: E8 0F AB FF FF        - call "Romancing SaGa 2 RotS-Win64.exe"+134B3C0
+Romancing SaGa 2 RotS-Win64.exe+13508B1: 41 8B 9D C8 05 00 00  - mov ebx,[r13+000005C8]
+Romancing SaGa 2 RotS-Win64.exe+13508B8: 49 8D 95 98 03 00 00  - lea rdx,[r13+00000398]
+Romancing SaGa 2 RotS-Win64.exe+13508BF: 49 8D 8D C8 05 00 00  - lea rcx,[r13+000005C8]
+Romancing SaGa 2 RotS-Win64.exe+13508C6: E8 F5 AA FF FF        - call "Romancing SaGa 2 RotS-Win64.exe"+134B3C0
+Romancing SaGa 2 RotS-Win64.exe+13508CB: 48 8D 4D 40           - lea rcx,[rbp+40]
+Romancing SaGa 2 RotS-Win64.exe+13508CF: 41 89 9D C8 05 00 00  - mov [r13+000005C8],ebx
+Romancing SaGa 2 RotS-Win64.exe+13508D6: 45 89 BD B0 04 00 00  - mov [r13+000004B0],r15d
+Romancing SaGa 2 RotS-Win64.exe+13508DD: 45 89 B5 B4 04 00 00  - mov [r13+000004B4],r14d
+// ---------- INJECTING HERE ----------
+Romancing SaGa 2 RotS-Win64.exe+13508E4: 41 89 B5 B8 04 00 00  - mov [r13+000004B8],esi
+// ---------- DONE INJECTING  ----------
+Romancing SaGa 2 RotS-Win64.exe+13508EB: E8 A0 A9 FF FF        - call "Romancing SaGa 2 RotS-Win64.exe"+134B290
+Romancing SaGa 2 RotS-Win64.exe+13508F0: 49 8B CD              - mov rcx,r13
+Romancing SaGa 2 RotS-Win64.exe+13508F3: E8 E8 C4 FF FF        - call "Romancing SaGa 2 RotS-Win64.exe"+134CDE0
+Romancing SaGa 2 RotS-Win64.exe+13508F8: 4C 8D 4D 40           - lea r9,[rbp+40]
+Romancing SaGa 2 RotS-Win64.exe+13508FC: 49 8B D5              - mov rdx,r13
+Romancing SaGa 2 RotS-Win64.exe+13508FF: 4C 8D 85 F0 01 00 00  - lea r8,[rbp+000001F0]
+Romancing SaGa 2 RotS-Win64.exe+1350906: 48 8B C8              - mov rcx,rax
+Romancing SaGa 2 RotS-Win64.exe+1350909: E8 62 27 06 00        - call "Romancing SaGa 2 RotS-Win64.exe"+13B3070
+Romancing SaGa 2 RotS-Win64.exe+135090E: 80 BD F0 01 00 00 00  - cmp byte ptr [rbp+000001F0],00
+Romancing SaGa 2 RotS-Win64.exe+1350915: 74 11                 - je "Romancing SaGa 2 RotS-Win64.exe"+1350928
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>21</ID>
+      <Description>"BP1"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Romancing SaGa 2 RotS-Win64.exe
+  Version: 
+  Date   : 2025-03-22
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Romancing SaGa 2 RotS-Win64.exe,41 89 B5 B8 04 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [r13+000004B8],esi
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 41 89 B5 B8 04 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Romancing SaGa 2 RotS-Win64.exe+13508E4
+
+Romancing SaGa 2 RotS-Win64.exe+13508A5: 48 81 C1 B0 04 00 00  - add rcx,000004B0
+Romancing SaGa 2 RotS-Win64.exe+13508AC: E8 0F AB FF FF        - call "Romancing SaGa 2 RotS-Win64.exe"+134B3C0
+Romancing SaGa 2 RotS-Win64.exe+13508B1: 41 8B 9D C8 05 00 00  - mov ebx,[r13+000005C8]
+Romancing SaGa 2 RotS-Win64.exe+13508B8: 49 8D 95 98 03 00 00  - lea rdx,[r13+00000398]
+Romancing SaGa 2 RotS-Win64.exe+13508BF: 49 8D 8D C8 05 00 00  - lea rcx,[r13+000005C8]
+Romancing SaGa 2 RotS-Win64.exe+13508C6: E8 F5 AA FF FF        - call "Romancing SaGa 2 RotS-Win64.exe"+134B3C0
+Romancing SaGa 2 RotS-Win64.exe+13508CB: 48 8D 4D 40           - lea rcx,[rbp+40]
+Romancing SaGa 2 RotS-Win64.exe+13508CF: 41 89 9D C8 05 00 00  - mov [r13+000005C8],ebx
+Romancing SaGa 2 RotS-Win64.exe+13508D6: 45 89 BD B0 04 00 00  - mov [r13+000004B0],r15d
+Romancing SaGa 2 RotS-Win64.exe+13508DD: 45 89 B5 B4 04 00 00  - mov [r13+000004B4],r14d
+// ---------- INJECTING HERE ----------
+Romancing SaGa 2 RotS-Win64.exe+13508E4: 41 89 B5 B8 04 00 00  - mov [r13+000004B8],esi
+// ---------- DONE INJECTING  ----------
+Romancing SaGa 2 RotS-Win64.exe+13508EB: E8 A0 A9 FF FF        - call "Romancing SaGa 2 RotS-Win64.exe"+134B290
+Romancing SaGa 2 RotS-Win64.exe+13508F0: 49 8B CD              - mov rcx,r13
+Romancing SaGa 2 RotS-Win64.exe+13508F3: E8 E8 C4 FF FF        - call "Romancing SaGa 2 RotS-Win64.exe"+134CDE0
+Romancing SaGa 2 RotS-Win64.exe+13508F8: 4C 8D 4D 40           - lea r9,[rbp+40]
+Romancing SaGa 2 RotS-Win64.exe+13508FC: 49 8B D5              - mov rdx,r13
+Romancing SaGa 2 RotS-Win64.exe+13508FF: 4C 8D 85 F0 01 00 00  - lea r8,[rbp+000001F0]
+Romancing SaGa 2 RotS-Win64.exe+1350906: 48 8B C8              - mov rcx,rax
+Romancing SaGa 2 RotS-Win64.exe+1350909: E8 62 27 06 00        - call "Romancing SaGa 2 RotS-Win64.exe"+13B3070
+Romancing SaGa 2 RotS-Win64.exe+135090E: 80 BD F0 01 00 00 00  - cmp byte ptr [rbp+000001F0],00
+Romancing SaGa 2 RotS-Win64.exe+1350915: 74 11                 - je "Romancing SaGa 2 RotS-Win64.exe"+1350928
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>22</ID>
+      <Description>"数字变化逻辑"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Romancing SaGa 2 RotS-Win64.exe
+  Version: 
+  Date   : 2025-03-22
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Romancing SaGa 2 RotS-Win64.exe,EA 48 8B F9 0F 11 01 0F 10 4A 10) // should be unique
+alloc(newmem,$1000,INJECT)
+alloc(BPtemp,$4,INJECT)
+
+label(code)
+label(return)
+
+BPtemp:
+  dd (float)57
+
+newmem:
+  movups xmm0,[BPtemp]
+  movups [rcx],xmm0
+  movups xmm1,[rdx+10]
+  jmp return
+
+
+code:
+  movups [rcx],xmm0
+  movups xmm1,[rdx+10]
+  jmp return
+
+INJECT+04:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+04:
+  db 0F 11 01 0F 10 4A 10
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+dealloc(BPtemp)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Romancing SaGa 2 RotS-Win64.exe+134B3E4
+
+Romancing SaGa 2 RotS-Win64.exe+134B3BF: CC                    - int 3 
+Romancing SaGa 2 RotS-Win64.exe+134B3C0: 48 89 5C 24 10        - mov [rsp+10],rbx
+Romancing SaGa 2 RotS-Win64.exe+134B3C5: 48 89 6C 24 18        - mov [rsp+18],rbp
+Romancing SaGa 2 RotS-Win64.exe+134B3CA: 48 89 74 24 20        - mov [rsp+20],rsi
+Romancing SaGa 2 RotS-Win64.exe+134B3CF: 57                    - push rdi
+Romancing SaGa 2 RotS-Win64.exe+134B3D0: 48 83 EC 20           - sub rsp,20
+Romancing SaGa 2 RotS-Win64.exe+134B3D4: 0F 10 02              - movups xmm0,[rdx]
+Romancing SaGa 2 RotS-Win64.exe+134B3D7: 48 8D 99 F8 00 00 00  - lea rbx,[rcx+000000F8]
+Romancing SaGa 2 RotS-Win64.exe+134B3DE: 48 8B EA              - mov rbp,rdx
+Romancing SaGa 2 RotS-Win64.exe+134B3E1: 48 8B F9              - mov rdi,rcx
+// ---------- INJECTING HERE ----------
+Romancing SaGa 2 RotS-Win64.exe+134B3E4: 0F 11 01              - movups [rcx],xmm0
+// ---------- DONE INJECTING  ----------
+Romancing SaGa 2 RotS-Win64.exe+134B3E7: 0F 10 4A 10           - movups xmm1,[rdx+10]
+Romancing SaGa 2 RotS-Win64.exe+134B3EB: 0F 11 49 10           - movups [rcx+10],xmm1
+Romancing SaGa 2 RotS-Win64.exe+134B3EF: F2 0F 10 42 20        - movsd xmm0,[rdx+20]
+Romancing SaGa 2 RotS-Win64.exe+134B3F4: F2 0F 11 41 20        - movsd [rcx+20],xmm0
+Romancing SaGa 2 RotS-Win64.exe+134B3F9: 8B 42 28              - mov eax,[rdx+28]
+Romancing SaGa 2 RotS-Win64.exe+134B3FC: 89 41 28              - mov [rcx+28],eax
+Romancing SaGa 2 RotS-Win64.exe+134B3FF: 0F 10 42 2C           - movups xmm0,[rdx+2C]
+Romancing SaGa 2 RotS-Win64.exe+134B403: 0F 11 41 2C           - movups [rcx+2C],xmm0
+Romancing SaGa 2 RotS-Win64.exe+134B407: 0F 10 4A 3C           - movups xmm1,[rdx+3C]
+Romancing SaGa 2 RotS-Win64.exe+134B40B: 0F 11 49 3C           - movups [rcx+3C],xmm1
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>29</ID>
+      <Description>"EXP"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Romancing SaGa 2 RotS-Win64.exe
+  Version: 
+  Date   : 2025-03-22
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Romancing SaGa 2 RotS-Win64.exe,F1 89 06 48 8B 5C 24 50) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rsi],#9999
+  mov rbx,[rsp+50]
+  jmp return
+
+code:
+  mov [rsi],eax
+  mov rbx,[rsp+50]
+  jmp return
+
+INJECT+01:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+01:
+  db 89 06 48 8B 5C 24 50
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Romancing SaGa 2 RotS-Win64.exe+FA22C6E
+
+Romancing SaGa 2 RotS-Win64.exe+FA22C47: 48 8B 49 30     - mov rcx,[rcx+30]
+Romancing SaGa 2 RotS-Win64.exe+FA22C4B: 48 39 04 D1     - cmp [rcx+rdx*8],rax
+Romancing SaGa 2 RotS-Win64.exe+FA22C4F: 75 1F           - jne "Romancing SaGa 2 RotS-Win64.exe"+FA22C70
+Romancing SaGa 2 RotS-Win64.exe+FA22C51: 0F B6 44 24 70  - movzx eax,byte ptr [rsp+70]
+Romancing SaGa 2 RotS-Win64.exe+FA22C56: 44 0F B6 CD     - movzx r9d,bpl
+Romancing SaGa 2 RotS-Win64.exe+FA22C5A: 45 0F B6 C6     - movzx r8d,r14b
+Romancing SaGa 2 RotS-Win64.exe+FA22C5E: 88 44 24 20     - mov [rsp+20],al
+Romancing SaGa 2 RotS-Win64.exe+FA22C62: 41 0F B6 D7     - movzx edx,r15b
+Romancing SaGa 2 RotS-Win64.exe+FA22C66: 48 89 D9        - mov rcx,rbx
+Romancing SaGa 2 RotS-Win64.exe+FA22C69: E8 E2 B7 9C F1  - call "Romancing SaGa 2 RotS-Win64.exe"+13EE450
+// ---------- INJECTING HERE ----------
+Romancing SaGa 2 RotS-Win64.exe+FA22C6E: 89 06           - mov [rsi],eax
+// ---------- DONE INJECTING  ----------
+Romancing SaGa 2 RotS-Win64.exe+FA22C70: 48 8B 5C 24 50  - mov rbx,[rsp+50]
+Romancing SaGa 2 RotS-Win64.exe+FA22C75: 48 8B 6C 24 58  - mov rbp,[rsp+58]
+Romancing SaGa 2 RotS-Win64.exe+FA22C7A: 48 8B 74 24 60  - mov rsi,[rsp+60]
+Romancing SaGa 2 RotS-Win64.exe+FA22C7F: 48 83 C4 30     - add rsp,30
+Romancing SaGa 2 RotS-Win64.exe+FA22C83: 41 5F           - pop r15
+Romancing SaGa 2 RotS-Win64.exe+FA22C85: 41 5E           - pop r14
+Romancing SaGa 2 RotS-Win64.exe+FA22C87: 5F              - pop rdi
+Romancing SaGa 2 RotS-Win64.exe+FA22C88: C3              - ret 
+Romancing SaGa 2 RotS-Win64.exe+FA22C89: CC              - int 3 
+Romancing SaGa 2 RotS-Win64.exe+FA22C8A: 4C 31 D8        - xor rax,r11
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>30</ID>
+      <Description>"自动汇编脚本"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Romancing SaGa 2 RotS-Win64.exe
+  Version: 
+  Date   : 2025-03-22
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Romancing SaGa 2 RotS-Win64.exe,89 3E E8 6E 3B FF F0) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rsi],#9999
+  call "Romancing SaGa 2 RotS-Win64.exe"+A16710
+  jmp return
+
+code:
+  mov [rsi],edi
+  call "Romancing SaGa 2 RotS-Win64.exe"+A16710
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 3E E8 6E 3B FF F0
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Romancing SaGa 2 RotS-Win64.exe+FA22B9B
+
+Romancing SaGa 2 RotS-Win64.exe+FA22B7A: 48 89 74 24 18     - mov [rsp+18],rsi
+Romancing SaGa 2 RotS-Win64.exe+FA22B7F: 57                 - push rdi
+Romancing SaGa 2 RotS-Win64.exe+FA22B80: 41 56              - push r14
+Romancing SaGa 2 RotS-Win64.exe+FA22B82: 41 57              - push r15
+Romancing SaGa 2 RotS-Win64.exe+FA22B84: 48 83 EC 30        - sub rsp,30
+Romancing SaGa 2 RotS-Win64.exe+FA22B88: 48 8B 74 24 78     - mov rsi,[rsp+78]
+Romancing SaGa 2 RotS-Win64.exe+FA22B8D: 31 FF              - xor edi,edi
+Romancing SaGa 2 RotS-Win64.exe+FA22B8F: 41 0F B6 E9        - movzx ebp,r9b
+Romancing SaGa 2 RotS-Win64.exe+FA22B93: 45 0F B6 F0        - movzx r14d,r8b
+Romancing SaGa 2 RotS-Win64.exe+FA22B97: 44 0F B6 FA        - movzx r15d,dl
+// ---------- INJECTING HERE ----------
+Romancing SaGa 2 RotS-Win64.exe+FA22B9B: 89 3E              - mov [rsi],edi
+// ---------- DONE INJECTING  ----------
+Romancing SaGa 2 RotS-Win64.exe+FA22B9D: E8 6E 3B FF F0     - call "Romancing SaGa 2 RotS-Win64.exe"+A16710
+Romancing SaGa 2 RotS-Win64.exe+FA22BA2: 48 89 C3           - mov rbx,rax
+Romancing SaGa 2 RotS-Win64.exe+FA22BA5: 48 85 C0           - test rax,rax
+Romancing SaGa 2 RotS-Win64.exe+FA22BA8: 0F 84 C2 00 00 00  - je "Romancing SaGa 2 RotS-Win64.exe"+FA22C70
+Romancing SaGa 2 RotS-Win64.exe+FA22BAE: E8 ED 93 C6 F1     - call "Romancing SaGa 2 RotS-Win64.exe"+168BFA0
+Romancing SaGa 2 RotS-Win64.exe+FA22BB3: 48 8B 4B 10        - mov rcx,[rbx+10]
+Romancing SaGa 2 RotS-Win64.exe+FA22BB7: 48 83 C0 30        - add rax,30
+Romancing SaGa 2 RotS-Win64.exe+FA22BBB: 48 63 50 08        - movsxd  rdx,dword ptr [rax+08]
+Romancing SaGa 2 RotS-Win64.exe+FA22BBF: 3B 51 38           - cmp edx,[rcx+38]
+Romancing SaGa 2 RotS-Win64.exe+FA22BC2: 0F 8F A8 00 00 00  - jg "Romancing SaGa 2 RotS-Win64.exe"+FA22C70
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>31</ID>
+      <Description>"无描述"</Description>
+      <LastState Value="99" RealAddress="1224552D8"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>1224552D8</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>33</ID>
+      <Description>"HP"</Description>
+      <LastState Value="185" RealAddress="676F7958"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"Romancing SaGa 2 RotS-Win64.exe"+17563DF8</Address>
+      <Offsets>
+        <Offset>328</Offset>
+        <Offset>330</Offset>
+        <Offset>420</Offset>
+        <Offset>170</Offset>
+        <Offset>E8</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>34</ID>
+      <Description>"无描述"</Description>
+      <LastState Value="199" RealAddress="111C14F68"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>111C14F68</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>35</ID>
+      <Description>"BP"</Description>
+      <LastState Value="87" RealAddress="676F7964"/>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"Romancing SaGa 2 RotS-Win64.exe"+17563DF8</Address>
+      <Offsets>
+        <Offset>328+C</Offset>
+        <Offset>330</Offset>
+        <Offset>420</Offset>
+        <Offset>170</Offset>
+        <Offset>E8</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>36</ID>
+      <Description>"HP初始化"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Romancing SaGa 2 RotS-Win64.exe
+  Version: 
+  Date   : 2025-03-22
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Romancing SaGa 2 RotS-Win64.exe,F3 0F 11 87 18 03 00 00 F3) // should be unique
+alloc(newmem,$1000,INJECT)
+alloc(HPtemp,$4,INJECT)
+
+label(code)
+label(return)
+
+HPtemp:
+  dd (float)999
+
+newmem:
+  movss xmm0,[HPtemp]
+  movss [rdi+00000318],xmm0
+  jmp return
+
+
+code:
+  movss [rdi+00000318],xmm0
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 87 18 03 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+dealloc(HPtemp)
+{
+// ORIGINAL CODE - INJECTION POINT: Romancing SaGa 2 RotS-Win64.exe+1D25664
+
+Romancing SaGa 2 RotS-Win64.exe+1D2561E: F3 0F 11 87 E8 02 00 00  - movss [rdi+000002E8],xmm0
+Romancing SaGa 2 RotS-Win64.exe+1D25626: F3 0F 10 05 8A DD C1 02  - movss xmm0,["Romancing SaGa 2 RotS-Win64.exe"+49433B8]
+Romancing SaGa 2 RotS-Win64.exe+1D2562E: 88 8F 04 03 00 00        - mov [rdi+00000304],cl
+Romancing SaGa 2 RotS-Win64.exe+1D25634: 48 89 8F 08 03 00 00     - mov [rdi+00000308],rcx
+Romancing SaGa 2 RotS-Win64.exe+1D2563B: 89 8F 10 03 00 00        - mov [rdi+00000310],ecx
+Romancing SaGa 2 RotS-Win64.exe+1D25641: F3 0F 11 87 00 03 00 00  - movss [rdi+00000300],xmm0
+Romancing SaGa 2 RotS-Win64.exe+1D25649: F3 0F 10 05 67 DD C1 02  - movss xmm0,["Romancing SaGa 2 RotS-Win64.exe"+49433B8]
+Romancing SaGa 2 RotS-Win64.exe+1D25651: 88 8F 1C 03 00 00        - mov [rdi+0000031C],cl
+Romancing SaGa 2 RotS-Win64.exe+1D25657: 48 89 8F 20 03 00 00     - mov [rdi+00000320],rcx
+Romancing SaGa 2 RotS-Win64.exe+1D2565E: 89 8F 28 03 00 00        - mov [rdi+00000328],ecx
+// ---------- INJECTING HERE ----------
+Romancing SaGa 2 RotS-Win64.exe+1D25664: F3 0F 11 87 18 03 00 00  - movss [rdi+00000318],xmm0
+// ---------- DONE INJECTING  ----------
+Romancing SaGa 2 RotS-Win64.exe+1D2566C: F3 0F 10 05 44 DD C1 02  - movss xmm0,["Romancing SaGa 2 RotS-Win64.exe"+49433B8]
+Romancing SaGa 2 RotS-Win64.exe+1D25674: 88 8F 34 03 00 00        - mov [rdi+00000334],cl
+Romancing SaGa 2 RotS-Win64.exe+1D2567A: 48 89 8F 38 03 00 00     - mov [rdi+00000338],rcx
+Romancing SaGa 2 RotS-Win64.exe+1D25681: 89 8F 40 03 00 00        - mov [rdi+00000340],ecx
+Romancing SaGa 2 RotS-Win64.exe+1D25687: F3 0F 11 87 30 03 00 00  - movss [rdi+00000330],xmm0
+Romancing SaGa 2 RotS-Win64.exe+1D2568F: F3 0F 10 05 21 DD C1 02  - movss xmm0,["Romancing SaGa 2 RotS-Win64.exe"+49433B8]
+Romancing SaGa 2 RotS-Win64.exe+1D25697: 88 8F 4C 03 00 00        - mov [rdi+0000034C],cl
+Romancing SaGa 2 RotS-Win64.exe+1D2569D: 48 89 8F 50 03 00 00     - mov [rdi+00000350],rcx
+Romancing SaGa 2 RotS-Win64.exe+1D256A4: 89 8F 58 03 00 00        - mov [rdi+00000358],ecx
+Romancing SaGa 2 RotS-Win64.exe+1D256AA: F3 0F 11 87 48 03 00 00  - movss [rdi+00000348],xmm0
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

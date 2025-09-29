@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>26EA0EB8960</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>26EA0EB8DA0</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>7</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>26EA0EB8E00</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>8</ID>
+      <Description>"资源"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : The Wandering Village
+  Version: 
+  Date   : 2024-01-01
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,20 45 2B CA 41 03 D1 89 11 48 8B 4E 10) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [rcx],#999
+  ja code
+  mov [rcx],#1000
+  cmp [rcx],edx
+  jb code
+  mov rcx,[rsi+10]
+  jmp return
+
+code:
+  mov [rcx],edx
+  mov rcx,[rsi+10]
+  jmp return
+
+INJECT+07:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+07:
+  db 89 11 48 8B 4E 10
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 26EF644835C
+
+26EF6448326: 49 BB 90 80 44 F6 6E 02 00 00  - mov r11,0000026EF6448090
+26EF6448330: 41 FF D3                       - call r11
+26EF6448333: 4C 8B C8                       - mov r9,rax
+26EF6448336: 48 8B 85 20 FF FF FF           - mov rax,[rbp-000000E0]
+26EF644833D: 48 8B 8D 18 FF FF FF           - mov rcx,[rbp-000000E8]
+26EF6448344: 48 8B 95 10 FF FF FF           - mov rdx,[rbp-000000F0]
+26EF644834B: 4C 8B 85 08 FF FF FF           - mov r8,[rbp-000000F8]
+26EF6448352: 4C 63 56 20                    - movsxd  r10,dword ptr [rsi+20]
+26EF6448356: 45 2B CA                       - sub r9d,r10d
+26EF6448359: 41 03 D1                       - add edx,r9d
+// ---------- INJECTING HERE ----------
+26EF644835C: 89 11                          - mov [rcx],edx
+// ---------- DONE INJECTING  ----------
+26EF644835E: 48 8B 4E 10                    - mov rcx,[rsi+10]
+26EF6448362: 48 8B 49 28                    - mov rcx,[rcx+28]
+26EF6448366: 48 0F BF 10                    - movsx rdx,word ptr [rax]
+26EF644836A: 48 63 D2                       - movsxd  rdx,edx
+26EF644836D: 39 51 18                       - cmp [rcx+18],edx
+26EF6448370: 0F 86 22 04 00 00              - jbe 26EF6448798
+26EF6448376: 48 C1 E2 05                    - shl rdx,05
+26EF644837A: 48 03 CA                       - add rcx,rdx
+26EF644837D: 48 83 C1 20                    - add rcx,20
+26EF6448381: 48 83 C1 04                    - add rcx,04
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

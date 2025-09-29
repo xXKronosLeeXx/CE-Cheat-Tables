@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>54</ID>
+      <Description>"机甲HP"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : DOOMTheDarkAges.exe
+  Version: 
+  Date   : 2025-05-26
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,DOOMTheDarkAges.exe,F3 0F 10 44 24 4C F3 0F 11 44 1E 3C 80 7C 24 54 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  movss xmm0,[rsp+4C]
+  movss xmm0,[rsi+rbx+3C]
+  movss [rsi+rbx+3C],xmm0
+  cmp byte ptr [rsp+54],00
+  jmp return
+
+code:
+  movss xmm0,[rsp+4C]
+  movss [rsi+rbx+3C],xmm0
+  cmp byte ptr [rsp+54],00
+  jmp return
+
+INJECT:
+  jmp far newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 10 44 24 4C F3 0F 11 44 1E 3C 80 7C 24 54 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: DOOMTheDarkAges.exe+175D7F8
+
+DOOMTheDarkAges.exe+175D7C7: 48 69 F7 A8 00 00 00     - imul rsi,rdi,000000A8
+DOOMTheDarkAges.exe+175D7CE: F3 44 0F 11 44 24 20     - movss [rsp+20],xmm8
+DOOMTheDarkAges.exe+175D7D5: F3 0F 10 5C 0E 3C        - movss xmm3,[rsi+rcx+3C]
+DOOMTheDarkAges.exe+175D7DB: E8 E0 FC FF FF           - call DOOMTheDarkAges.exe+175D4C0
+DOOMTheDarkAges.exe+175D7E0: F3 0F 10 7C 24 50        - movss xmm7,[rsp+50]
+DOOMTheDarkAges.exe+175D7E6: 48 8B CB                 - mov rcx,rbx
+DOOMTheDarkAges.exe+175D7E9: 0F 28 CF                 - movaps xmm1,xmm7
+DOOMTheDarkAges.exe+175D7EC: E8 4F FB FF FF           - call DOOMTheDarkAges.exe+175D340
+DOOMTheDarkAges.exe+175D7F1: 80 7C 24 56 00           - cmp byte ptr [rsp+56],00
+DOOMTheDarkAges.exe+175D7F6: 75 0C                    - jne DOOMTheDarkAges.exe+175D804
+// ---------- INJECTING HERE ----------
+DOOMTheDarkAges.exe+175D7F8: F3 0F 10 44 24 4C        - movss xmm0,[rsp+4C]
+// ---------- DONE INJECTING  ----------
+DOOMTheDarkAges.exe+175D7FE: F3 0F 11 44 1E 3C        - movss [rsi+rbx+3C],xmm0
+DOOMTheDarkAges.exe+175D804: 80 7C 24 54 00           - cmp byte ptr [rsp+54],00
+DOOMTheDarkAges.exe+175D809: 48 8B B4 24 E8 00 00 00  - mov rsi,[rsp+000000E8]
+DOOMTheDarkAges.exe+175D811: F3 0F 10 74 24 48        - movss xmm6,[rsp+48]
+DOOMTheDarkAges.exe+175D817: F3 0F 11 36              - movss [rsi],xmm6
+DOOMTheDarkAges.exe+175D81B: 0F 84 0E 01 00 00        - je DOOMTheDarkAges.exe+175D92F
+DOOMTheDarkAges.exe+175D821: 48 8B 03                 - mov rax,[rbx]
+DOOMTheDarkAges.exe+175D824: 41 0F 28 C8              - movaps xmm1,xmm8
+DOOMTheDarkAges.exe+175D828: 48 8B CB                 - mov rcx,rbx
+DOOMTheDarkAges.exe+175D82B: FF 90 A0 01 00 00        - call qword ptr [rax+000001A0]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>44</ID>
+      <Description>"Gold+红宝石+幽灵石=+2000"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : DOOMTheDarkAges.exe
+  Version: 
+  Date   : 2025-05-25
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,DOOMTheDarkAges.exe,44 01 5B 14 44 01 5B 24 44 01 5B 1C 44 01 5B 2C) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  add [rbx+14],#2000
+  add [rbx+24],r11d
+  add [rbx+1C],r11d
+  add [rbx+2C],r11d
+  jmp return
+
+code:
+  add [rbx+14],r11d
+  add [rbx+24],r11d
+  add [rbx+1C],r11d
+  add [rbx+2C],r11d
+  jmp return
+
+INJECT:
+  jmp far newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 44 01 5B 14 44 01 5B 24 44 01 5B 1C 44 01 5B 2C
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: DOOMTheDarkAges.exe+1F74854
+
+DOOMTheDarkAges.exe+1F7482D: 90                    - nop 
+DOOMTheDarkAges.exe+1F7482E: 48 8B 8F 80 00 00 00  - mov rcx,[rdi+00000080]
+DOOMTheDarkAges.exe+1F74835: 41 8B C7              - mov eax,r15d
+DOOMTheDarkAges.exe+1F74838: 87 44 D1 04           - xchg [rcx+rdx*8+04],eax
+DOOMTheDarkAges.exe+1F7483C: 48 8B 8F 80 00 00 00  - mov rcx,[rdi+00000080]
+DOOMTheDarkAges.exe+1F74843: 48 63 04 D1           - movsxd  rax,dword ptr [rcx+rdx*8]
+DOOMTheDarkAges.exe+1F74847: 83 F8 04              - cmp eax,04
+DOOMTheDarkAges.exe+1F7484A: 75 22                 - jne DOOMTheDarkAges.exe+1F7486E
+DOOMTheDarkAges.exe+1F7484C: 44 01 5B 10           - add [rbx+10],r11d
+DOOMTheDarkAges.exe+1F74850: 44 01 5B 20           - add [rbx+20],r11d
+// ---------- INJECTING HERE ----------
+DOOMTheDarkAges.exe+1F74854: 44 01 5B 14           - add [rbx+14],r11d
+// ---------- DONE INJECTING  ----------
+DOOMTheDarkAges.exe+1F74858: 44 01 5B 24           - add [rbx+24],r11d
+DOOMTheDarkAges.exe+1F7485C: 44 01 5B 1C           - add [rbx+1C],r11d
+DOOMTheDarkAges.exe+1F74860: 44 01 5B 2C           - add [rbx+2C],r11d
+DOOMTheDarkAges.exe+1F74864: 44 01 5B 18           - add [rbx+18],r11d
+DOOMTheDarkAges.exe+1F74868: 44 01 5B 28           - add [rbx+28],r11d
+DOOMTheDarkAges.exe+1F7486C: EB 0A                 - jmp DOOMTheDarkAges.exe+1F74878
+DOOMTheDarkAges.exe+1F7486E: 44 01 5C 83 10        - add [rbx+rax*4+10],r11d
+DOOMTheDarkAges.exe+1F74873: 44 01 5C 83 20        - add [rbx+rax*4+20],r11d
+DOOMTheDarkAges.exe+1F74878: 83 7B 10 00           - cmp dword ptr [rbx+10],00
+DOOMTheDarkAges.exe+1F7487C: 7D 08                 - jnl DOOMTheDarkAges.exe+1F74886
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>35</ID>
+      <Description>"bullet"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : DOOMTheDarkAges.exe
+  Version: 
+  Date   : 2025-05-25
+  Author : krono
+
+  This script does blah blah blah
+}
+
+define(address,"DOOMTheDarkAges.exe"+14C6D85E)
+define(bytes,4C 89 F5 8D 3C 16 41 89 3E 45 84 C0 74 18)
+
+[ENABLE]
+
+assert(address,bytes)
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov rbp,r14
+  lea edi,[rsi+rdx]
+  mov edi,[r14]
+  mov [r14],edi
+  test r8b,r8b
+  je DOOMTheDarkAges.exe+14C6D884
+  jmp return
+
+code:
+  mov rbp,r14
+  lea edi,[rsi+rdx]
+  mov [r14],edi
+  test r8b,r8b
+  je DOOMTheDarkAges.exe+14C6D884
+  jmp return
+
+address:
+  jmp far newmem
+return:
+
+[DISABLE]
+
+address:
+  db bytes
+  // mov rbp,r14
+  // lea edi,[rsi+rdx]
+  // mov [r14],edi
+  // test r8b,r8b
+  // je DOOMTheDarkAges.exe+14C6D884
+
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: DOOMTheDarkAges.exe+14C6D85E
+
+DOOMTheDarkAges.exe+14C6D83D: 35 B1 48 8D A4     - xor eax,A48D48B1
+DOOMTheDarkAges.exe+14C6D842: 4C 8D 34 01        - lea r14,[rcx+rax]
+DOOMTheDarkAges.exe+14C6D846: 89 59 60           - mov [rcx+60],ebx
+DOOMTheDarkAges.exe+14C6D849: 41 8B 36           - mov esi,[r14]
+DOOMTheDarkAges.exe+14C6D84C: 4C 89 F5           - mov rbp,r14
+DOOMTheDarkAges.exe+14C6D84F: 8D 3C 32           - lea edi,[rdx+rsi]
+DOOMTheDarkAges.exe+14C6D852: 41 89 3E           - mov [r14],edi
+DOOMTheDarkAges.exe+14C6D855: EB 15              - jmp DOOMTheDarkAges.exe+14C6D86C
+DOOMTheDarkAges.exe+14C6D857: 8B 71 60           - mov esi,[rcx+60]
+DOOMTheDarkAges.exe+14C6D85A: 4C 8D 71 60        - lea r14,[rcx+60]
+// ---------- INJECTING HERE ----------
+DOOMTheDarkAges.exe+14C6D85E: 4C 89 F5           - mov rbp,r14
+// ---------- DONE INJECTING  ----------
+DOOMTheDarkAges.exe+14C6D861: 8D 3C 16           - lea edi,[rsi+rdx]
+DOOMTheDarkAges.exe+14C6D864: 41 89 3E           - mov [r14],edi
+DOOMTheDarkAges.exe+14C6D867: 45 84 C0           - test r8b,r8b
+DOOMTheDarkAges.exe+14C6D86A: 74 18              - je DOOMTheDarkAges.exe+14C6D884
+DOOMTheDarkAges.exe+14C6D86C: 48 8B 01           - mov rax,[rcx]
+DOOMTheDarkAges.exe+14C6D86F: FF 90 68 01 00 00  - call qword ptr [rax+00000168]
+DOOMTheDarkAges.exe+14C6D875: 85 FF              - test edi,edi
+DOOMTheDarkAges.exe+14C6D877: 79 04              - jns DOOMTheDarkAges.exe+14C6D87D
+DOOMTheDarkAges.exe+14C6D879: 89 DF              - mov edi,ebx
+DOOMTheDarkAges.exe+14C6D87B: EB 10              - jmp DOOMTheDarkAges.exe+14C6D88D
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>52</ID>
+      <Description>"盾牌+HP"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : DOOMTheDarkAges.exe
+  Version: 
+  Date   : 2025-05-26
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,DOOMTheDarkAges.exe,49 FF FF 80 7C 24 56 00 75 0C F3 0F 10 44 24 4C F3 0F 11 44 1F 3C 80 7C 24 54 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  movss xmm0,[rsp+4C]
+  movss xmm0,[rdi+rbx+3C]
+  movss [rdi+rbx+3C],xmm0
+  cmp byte ptr [rsp+54],00
+  jmp return
+
+code:
+  movss xmm0,[rsp+4C]
+  movss [rdi+rbx+3C],xmm0
+  cmp byte ptr [rsp+54],00
+  jmp return
+
+INJECT+0A:
+  jmp far newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+0A:
+  db F3 0F 10 44 24 4C F3 0F 11 44 1F 3C 80 7C 24 54 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: DOOMTheDarkAges.exe+215E3E8
+
+DOOMTheDarkAges.exe+215E3B7: 48 69 FE A8 00 00 00     - imul rdi,rsi,000000A8
+DOOMTheDarkAges.exe+215E3BE: F3 44 0F 11 44 24 20     - movss [rsp+20],xmm8
+DOOMTheDarkAges.exe+215E3C5: F3 0F 10 5C 0F 3C        - movss xmm3,[rdi+rcx+3C]
+DOOMTheDarkAges.exe+215E3CB: E8 B0 98 FF FF           - call DOOMTheDarkAges.exe+2157C80
+DOOMTheDarkAges.exe+215E3D0: F3 0F 10 7C 24 50        - movss xmm7,[rsp+50]
+DOOMTheDarkAges.exe+215E3D6: 48 8B CB                 - mov rcx,rbx
+DOOMTheDarkAges.exe+215E3D9: 0F 28 CF                 - movaps xmm1,xmm7
+DOOMTheDarkAges.exe+215E3DC: E8 2F 49 FF FF           - call DOOMTheDarkAges.exe+2152D10
+DOOMTheDarkAges.exe+215E3E1: 80 7C 24 56 00           - cmp byte ptr [rsp+56],00
+DOOMTheDarkAges.exe+215E3E6: 75 0C                    - jne DOOMTheDarkAges.exe+215E3F4
+// ---------- INJECTING HERE ----------
+DOOMTheDarkAges.exe+215E3E8: F3 0F 10 44 24 4C        - movss xmm0,[rsp+4C]
+// ---------- DONE INJECTING  ----------
+DOOMTheDarkAges.exe+215E3EE: F3 0F 11 44 1F 3C        - movss [rdi+rbx+3C],xmm0
+DOOMTheDarkAges.exe+215E3F4: 80 7C 24 54 00           - cmp byte ptr [rsp+54],00
+DOOMTheDarkAges.exe+215E3F9: 48 8B BC 24 E8 00 00 00  - mov rdi,[rsp+000000E8]
+DOOMTheDarkAges.exe+215E401: F3 0F 10 74 24 48        - movss xmm6,[rsp+48]
+DOOMTheDarkAges.exe+215E407: F3 0F 11 37              - movss [rdi],xmm6
+DOOMTheDarkAges.exe+215E40B: 0F 84 6D 01 00 00        - je DOOMTheDarkAges.exe+215E57E
+DOOMTheDarkAges.exe+215E411: 48 8B 03                 - mov rax,[rbx]
+DOOMTheDarkAges.exe+215E414: 41 0F 28 C8              - movaps xmm1,xmm8
+DOOMTheDarkAges.exe+215E418: 48 8B CB                 - mov rcx,rbx
+DOOMTheDarkAges.exe+215E41B: FF 90 A0 01 00 00        - call qword ptr [rax+000001A0]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>56</ID>
+      <Description>"近战不减"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : DOOMTheDarkAges.exe
+  Version: 
+  Date   : 2025-05-27
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,DOOMTheDarkAges.exe,F3 0F 11 4B 08 FF 50 58 0F 28 74 24 30 B0 01 0F 28 7C 24 20 48 83 C4 40 5B C3 CC 4C) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  nop//  movss [rbx+08],xmm1
+  call qword ptr [rax+58]
+  movaps xmm6,[rsp+30]
+  mov al,01
+  jmp return
+
+
+code:
+  movss [rbx+08],xmm1
+  call qword ptr [rax+58]
+  movaps xmm6,[rsp+30]
+  mov al,01
+  jmp return
+
+INJECT:
+  jmp far newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 4B 08 FF 50 58 0F 28 74 24 30 B0 01
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: DOOMTheDarkAges.exe+134AF9EA
+
+DOOMTheDarkAges.exe+134AF9C6: 48 8B 03        - mov rax,[rbx]
+DOOMTheDarkAges.exe+134AF9C9: F3 0F 5C F7     - subss xmm6,xmm7
+DOOMTheDarkAges.exe+134AF9CD: 0F 57 D2        - xorps xmm2,xmm2
+DOOMTheDarkAges.exe+134AF9D0: 48 89 D9        - mov rcx,rbx
+DOOMTheDarkAges.exe+134AF9D3: F3 0F 10 D0     - movss xmm2,xmm0
+DOOMTheDarkAges.exe+134AF9D7: 0F 57 C0        - xorps xmm0,xmm0
+DOOMTheDarkAges.exe+134AF9DA: 0F 28 CE        - movaps xmm1,xmm6
+DOOMTheDarkAges.exe+134AF9DD: F3 0F 5D CA     - minss xmm1,xmm2
+DOOMTheDarkAges.exe+134AF9E1: F3 0F 10 53 0C  - movss xmm2,[rbx+0C]
+DOOMTheDarkAges.exe+134AF9E6: F3 0F 5F C8     - maxss xmm1,xmm0
+// ---------- INJECTING HERE ----------
+DOOMTheDarkAges.exe+134AF9EA: F3 0F 11 4B 08  - movss [rbx+08],xmm1
+// ---------- DONE INJECTING  ----------
+DOOMTheDarkAges.exe+134AF9EF: FF 50 58        - call qword ptr [rax+58]
+DOOMTheDarkAges.exe+134AF9F2: 0F 28 74 24 30  - movaps xmm6,[rsp+30]
+DOOMTheDarkAges.exe+134AF9F7: B0 01           - mov al,01
+DOOMTheDarkAges.exe+134AF9F9: 0F 28 7C 24 20  - movaps xmm7,[rsp+20]
+DOOMTheDarkAges.exe+134AF9FE: 48 83 C4 40     - add rsp,40
+DOOMTheDarkAges.exe+134AFA02: 5B              - pop rbx
+DOOMTheDarkAges.exe+134AFA03: C3              - ret 
+DOOMTheDarkAges.exe+134AFA04: CC              - int 3 
+DOOMTheDarkAges.exe+134AFA05: 4C 8B 34 24     - mov r14,[rsp]
+DOOMTheDarkAges.exe+134AFA09: 48 89 0C 24     - mov [rsp],rcx
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>子弹1</Description>
+      <AddressString>DOOMTheDarkAges.exe+14C6D864</AddressString>
+      <Before>
+        <Byte>89</Byte>
+        <Byte>F5</Byte>
+        <Byte>8D</Byte>
+        <Byte>3C</Byte>
+        <Byte>16</Byte>
+      </Before>
+      <Actual>
+        <Byte>41</Byte>
+        <Byte>89</Byte>
+        <Byte>3E</Byte>
+      </Actual>
+      <After>
+        <Byte>45</Byte>
+        <Byte>84</Byte>
+        <Byte>C0</Byte>
+        <Byte>74</Byte>
+        <Byte>18</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>子弹2</Description>
+      <AddressString>DOOMTheDarkAges.exe+14C6D88D</AddressString>
+      <Before>
+        <Byte>0F</Byte>
+        <Byte>49</Byte>
+        <Byte>C7</Byte>
+        <Byte>89</Byte>
+        <Byte>C7</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>7D</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>49</Byte>
+        <Byte>8B</Byte>
+        <Byte>6F</Byte>
+        <Byte>58</Byte>
+        <Byte>39</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>护盾+HP逻辑</Description>
+      <AddressString>DOOMTheDarkAges.exe+215E3EE</AddressString>
+      <Before>
+        <Byte>0F</Byte>
+        <Byte>10</Byte>
+        <Byte>44</Byte>
+        <Byte>24</Byte>
+        <Byte>4C</Byte>
+      </Before>
+      <Actual>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>11</Byte>
+        <Byte>44</Byte>
+        <Byte>1F</Byte>
+        <Byte>3C</Byte>
+      </Actual>
+      <After>
+        <Byte>80</Byte>
+        <Byte>7C</Byte>
+        <Byte>24</Byte>
+        <Byte>54</Byte>
+        <Byte>00</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>金块增加逻辑</Description>
+      <AddressString>DOOMTheDarkAges.exe+1F74854</AddressString>
+      <Before>
+        <Byte>10</Byte>
+        <Byte>44</Byte>
+        <Byte>01</Byte>
+        <Byte>5B</Byte>
+        <Byte>20</Byte>
+      </Before>
+      <Actual>
+        <Byte>44</Byte>
+        <Byte>01</Byte>
+        <Byte>5B</Byte>
+        <Byte>14</Byte>
+      </Actual>
+      <After>
+        <Byte>44</Byte>
+        <Byte>01</Byte>
+        <Byte>5B</Byte>
+        <Byte>24</Byte>
+        <Byte>44</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>拳头增加</Description>
+      <AddressString>DOOMTheDarkAges.exe+201246F</AddressString>
+      <Before>
+        <Byte>5F</Byte>
+        <Byte>C7</Byte>
+        <Byte>0F</Byte>
+        <Byte>28</Byte>
+        <Byte>C8</Byte>
+      </Before>
+      <Actual>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>11</Byte>
+        <Byte>47</Byte>
+        <Byte>08</Byte>
+      </Actual>
+      <After>
+        <Byte>FF</Byte>
+        <Byte>50</Byte>
+        <Byte>58</Byte>
+        <Byte>0F</Byte>
+        <Byte>28</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>拳头减少</Description>
+      <AddressString>DOOMTheDarkAges.exe+134AF9EA</AddressString>
+      <Before>
+        <Byte>0C</Byte>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>5F</Byte>
+        <Byte>C8</Byte>
+      </Before>
+      <Actual>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>11</Byte>
+        <Byte>4B</Byte>
+        <Byte>08</Byte>
+      </Actual>
+      <After>
+        <Byte>FF</Byte>
+        <Byte>50</Byte>
+        <Byte>58</Byte>
+        <Byte>0F</Byte>
+        <Byte>28</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>机甲HP</Description>
+      <AddressString>DOOMTheDarkAges.exe+175D7FE</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>

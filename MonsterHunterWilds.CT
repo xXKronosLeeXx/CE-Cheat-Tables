@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"卖物品+1998"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : MonsterHunterWilds.exe
+  Version: 
+  Date   : 2025-03-01
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,MonsterHunterWilds.exe,66 41 03 75 12) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [r13+12],#1998
+  add si,[r13+12]
+  jmp return
+
+code:
+  add si,[r13+12]
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 66 41 03 75 12
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MonsterHunterWilds.exe+47868F6
+
+MonsterHunterWilds.exe+47868CE: 74 4D                          - je MonsterHunterWilds.exe+478691D
+MonsterHunterWilds.exe+47868D0: 8B 44 24 3C                    - mov eax,[rsp+3C]
+MonsterHunterWilds.exe+47868D4: 48 B9 FC FF FF FF FF FF FF 7F  - mov rcx,7FFFFFFFFFFFFFFC
+MonsterHunterWilds.exe+47868DE: 48 8D 54 24 38                 - lea rdx,[rsp+38]
+MonsterHunterWilds.exe+47868E3: 48 21 D1                       - and rcx,rdx
+MonsterHunterWilds.exe+47868E6: 89 01                          - mov [rcx],eax
+MonsterHunterWilds.exe+47868E8: 0F B7 02                       - movzx eax,word ptr [rdx]
+MonsterHunterWilds.exe+47868EB: 66 89 46 10                    - mov [rsi+10],ax
+MonsterHunterWilds.exe+47868EF: EB 44                          - jmp MonsterHunterWilds.exe+4786935
+MonsterHunterWilds.exe+47868F1: 48 8B 74 24 20                 - mov rsi,[rsp+20]
+// ---------- INJECTING HERE ----------
+MonsterHunterWilds.exe+47868F6: 66 41 03 75 12                 - add si,[r13+12]
+// ---------- DONE INJECTING  ----------
+MonsterHunterWilds.exe+47868FB: 66 41 89 75 12                 - mov [r13+12],si
+MonsterHunterWilds.exe+4786900: 78 3C                          - js MonsterHunterWilds.exe+478693E
+MonsterHunterWilds.exe+4786902: 0F B7 C6                       - movzx eax,si
+MonsterHunterWilds.exe+4786905: 3D 10 27 00 00                 - cmp eax,00002710
+MonsterHunterWilds.exe+478690A: 73 3C                          - jae MonsterHunterWilds.exe+4786948
+MonsterHunterWilds.exe+478690C: 66 85 F6                       - test si,si
+MonsterHunterWilds.exe+478690F: 75 08                          - jne MonsterHunterWilds.exe+4786919
+MonsterHunterWilds.exe+4786911: 41 C7 45 10 00 00 00 00        - mov [r13+10],00000000
+MonsterHunterWilds.exe+4786919: 31 F6                          - xor esi,esi
+MonsterHunterWilds.exe+478691B: EB 38                          - jmp MonsterHunterWilds.exe+4786955
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>9</ID>
+      <Description>"读取扫描"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : MonsterHunterWilds.exe
+  Version: 
+  Date   : 2025-03-01
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,MonsterHunterWilds.exe,0F B7 58 12 EB 74) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  movzx ebx,word ptr [rax+12]
+  mov ebx,#1998
+  jmp MonsterHunterWilds.exe+3873762
+  jmp return
+
+code:
+  movzx ebx,word ptr [rax+12]
+  jmp MonsterHunterWilds.exe+3873762
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 0F B7 58 12 EB 74
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MonsterHunterWilds.exe+38736E8
+
+MonsterHunterWilds.exe+38736BD: 48 8B 88 80 00 00 00  - mov rcx,[rax+00000080]
+MonsterHunterWilds.exe+38736C4: 48 8B 49 10           - mov rcx,[rcx+10]
+MonsterHunterWilds.exe+38736C8: 48 63 80 D8 00 00 00  - movsxd  rax,dword ptr [rax+000000D8]
+MonsterHunterWilds.exe+38736CF: 48 8B 44 C1 20        - mov rax,[rcx+rax*8+20]
+MonsterHunterWilds.exe+38736D4: 48 8B 50 30           - mov rdx,[rax+30]
+MonsterHunterWilds.exe+38736D8: 48 89 F9              - mov rcx,rdi
+MonsterHunterWilds.exe+38736DB: 41 89 F0              - mov r8d,esi
+MonsterHunterWilds.exe+38736DE: E8 DD 40 F1 00        - call MonsterHunterWilds.exe+47877C0
+MonsterHunterWilds.exe+38736E3: 48 85 C0              - test rax,rax
+MonsterHunterWilds.exe+38736E6: 74 3E                 - je MonsterHunterWilds.exe+3873726
+// ---------- INJECTING HERE ----------
+MonsterHunterWilds.exe+38736E8: 0F B7 58 12           - movzx ebx,word ptr [rax+12]
+// ---------- DONE INJECTING  ----------
+MonsterHunterWilds.exe+38736EC: EB 74                 - jmp MonsterHunterWilds.exe+3873762
+MonsterHunterWilds.exe+38736EE: 48 8B 05 0B 21 AF 0F  - mov rax,[MonsterHunterWilds.exe+13365800]
+MonsterHunterWilds.exe+38736F5: 48 8B 88 80 00 00 00  - mov rcx,[rax+00000080]
+MonsterHunterWilds.exe+38736FC: 48 8B 49 10           - mov rcx,[rcx+10]
+MonsterHunterWilds.exe+3873700: 48 63 80 D8 00 00 00  - movsxd  rax,dword ptr [rax+000000D8]
+MonsterHunterWilds.exe+3873707: 48 8B 44 C1 20        - mov rax,[rcx+rax*8+20]
+MonsterHunterWilds.exe+387370C: 48 8B 50 30           - mov rdx,[rax+30]
+MonsterHunterWilds.exe+3873710: 48 89 F9              - mov rcx,rdi
+MonsterHunterWilds.exe+3873713: 41 89 F0              - mov r8d,esi
+MonsterHunterWilds.exe+3873716: E8 05 3A F1 00        - call MonsterHunterWilds.exe+4787120
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>11</ID>
+      <Description>"龙都鬼灯"</Description>
+      <VariableType>2 Bytes</VariableType>
+      <Address>2ACB5BA62</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <Comments>龙都鬼灯
+</Comments>
+</CheatTable>

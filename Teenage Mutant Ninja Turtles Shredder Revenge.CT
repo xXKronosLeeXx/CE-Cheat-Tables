@@ -1,0 +1,698 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>70</ID>
+      <Description>"Enery"</Description>
+      <Options moManualExpandCollapse="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>51</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000F70</Address>
+          <Offsets>
+            <Offset>234</Offset>
+            <Offset>F8</Offset>
+            <Offset>80</Offset>
+            <Offset>150</Offset>
+            <Offset>30</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>52</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000F58</Address>
+          <Offsets>
+            <Offset>234</Offset>
+            <Offset>F8</Offset>
+            <Offset>80</Offset>
+            <Offset>150</Offset>
+            <Offset>D0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>53</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000F18</Address>
+          <Offsets>
+            <Offset>234</Offset>
+            <Offset>F8</Offset>
+            <Offset>80</Offset>
+            <Offset>150</Offset>
+            <Offset>D0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>54</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000EE8</Address>
+          <Offsets>
+            <Offset>234</Offset>
+            <Offset>F8</Offset>
+            <Offset>80</Offset>
+            <Offset>150</Offset>
+            <Offset>D0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>55</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000F78</Address>
+          <Offsets>
+            <Offset>234</Offset>
+            <Offset>F8</Offset>
+            <Offset>F0</Offset>
+            <Offset>148</Offset>
+            <Offset>30</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>56</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000F70</Address>
+          <Offsets>
+            <Offset>234</Offset>
+            <Offset>F8</Offset>
+            <Offset>F0</Offset>
+            <Offset>148</Offset>
+            <Offset>30</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>57</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000F58</Address>
+          <Offsets>
+            <Offset>234</Offset>
+            <Offset>F8</Offset>
+            <Offset>F0</Offset>
+            <Offset>148</Offset>
+            <Offset>D0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>58</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000F18</Address>
+          <Offsets>
+            <Offset>234</Offset>
+            <Offset>F8</Offset>
+            <Offset>F0</Offset>
+            <Offset>148</Offset>
+            <Offset>D0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>59</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000F78</Address>
+          <Offsets>
+            <Offset>13C</Offset>
+            <Offset>100</Offset>
+            <Offset>80</Offset>
+            <Offset>150</Offset>
+            <Offset>30</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>60</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000EE8</Address>
+          <Offsets>
+            <Offset>234</Offset>
+            <Offset>F8</Offset>
+            <Offset>F0</Offset>
+            <Offset>148</Offset>
+            <Offset>D0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>61</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000F70</Address>
+          <Offsets>
+            <Offset>13C</Offset>
+            <Offset>100</Offset>
+            <Offset>80</Offset>
+            <Offset>150</Offset>
+            <Offset>30</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>62</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000F58</Address>
+          <Offsets>
+            <Offset>13C</Offset>
+            <Offset>100</Offset>
+            <Offset>80</Offset>
+            <Offset>150</Offset>
+            <Offset>D0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>63</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000F18</Address>
+          <Offsets>
+            <Offset>13C</Offset>
+            <Offset>100</Offset>
+            <Offset>80</Offset>
+            <Offset>150</Offset>
+            <Offset>D0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>64</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000EE8</Address>
+          <Offsets>
+            <Offset>13C</Offset>
+            <Offset>100</Offset>
+            <Offset>80</Offset>
+            <Offset>150</Offset>
+            <Offset>D0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>65</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000F78</Address>
+          <Offsets>
+            <Offset>13C</Offset>
+            <Offset>100</Offset>
+            <Offset>F0</Offset>
+            <Offset>148</Offset>
+            <Offset>30</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>66</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000F70</Address>
+          <Offsets>
+            <Offset>13C</Offset>
+            <Offset>100</Offset>
+            <Offset>F0</Offset>
+            <Offset>148</Offset>
+            <Offset>30</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>67</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000F58</Address>
+          <Offsets>
+            <Offset>13C</Offset>
+            <Offset>100</Offset>
+            <Offset>F0</Offset>
+            <Offset>148</Offset>
+            <Offset>D0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>68</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000F18</Address>
+          <Offsets>
+            <Offset>13C</Offset>
+            <Offset>100</Offset>
+            <Offset>F0</Offset>
+            <Offset>148</Offset>
+            <Offset>D0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>69</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000EE8</Address>
+          <Offsets>
+            <Offset>13C</Offset>
+            <Offset>100</Offset>
+            <Offset>F0</Offset>
+            <Offset>148</Offset>
+            <Offset>D0</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>91</ID>
+      <Description>"HP"</Description>
+      <Options moManualExpandCollapse="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>71</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000F78</Address>
+          <Offsets>
+            <Offset>224</Offset>
+            <Offset>F8</Offset>
+            <Offset>80</Offset>
+            <Offset>150</Offset>
+            <Offset>30</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>72</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000F70</Address>
+          <Offsets>
+            <Offset>224</Offset>
+            <Offset>F8</Offset>
+            <Offset>80</Offset>
+            <Offset>150</Offset>
+            <Offset>30</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>73</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000F58</Address>
+          <Offsets>
+            <Offset>224</Offset>
+            <Offset>F8</Offset>
+            <Offset>80</Offset>
+            <Offset>150</Offset>
+            <Offset>D0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>74</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000F18</Address>
+          <Offsets>
+            <Offset>224</Offset>
+            <Offset>F8</Offset>
+            <Offset>80</Offset>
+            <Offset>150</Offset>
+            <Offset>D0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>75</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000EE8</Address>
+          <Offsets>
+            <Offset>224</Offset>
+            <Offset>F8</Offset>
+            <Offset>80</Offset>
+            <Offset>150</Offset>
+            <Offset>D0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>76</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000F78</Address>
+          <Offsets>
+            <Offset>224</Offset>
+            <Offset>F8</Offset>
+            <Offset>F0</Offset>
+            <Offset>148</Offset>
+            <Offset>30</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>77</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000F70</Address>
+          <Offsets>
+            <Offset>224</Offset>
+            <Offset>F8</Offset>
+            <Offset>F0</Offset>
+            <Offset>148</Offset>
+            <Offset>30</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>78</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000F58</Address>
+          <Offsets>
+            <Offset>224</Offset>
+            <Offset>F8</Offset>
+            <Offset>F0</Offset>
+            <Offset>148</Offset>
+            <Offset>D0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>79</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000F18</Address>
+          <Offsets>
+            <Offset>224</Offset>
+            <Offset>F8</Offset>
+            <Offset>F0</Offset>
+            <Offset>148</Offset>
+            <Offset>D0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>80</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000EE8</Address>
+          <Offsets>
+            <Offset>224</Offset>
+            <Offset>F8</Offset>
+            <Offset>F0</Offset>
+            <Offset>148</Offset>
+            <Offset>D0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>81</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000F78</Address>
+          <Offsets>
+            <Offset>12C</Offset>
+            <Offset>100</Offset>
+            <Offset>80</Offset>
+            <Offset>150</Offset>
+            <Offset>30</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>82</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000F70</Address>
+          <Offsets>
+            <Offset>12C</Offset>
+            <Offset>100</Offset>
+            <Offset>80</Offset>
+            <Offset>150</Offset>
+            <Offset>30</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>83</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000F58</Address>
+          <Offsets>
+            <Offset>12C</Offset>
+            <Offset>100</Offset>
+            <Offset>80</Offset>
+            <Offset>150</Offset>
+            <Offset>D0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>84</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000F18</Address>
+          <Offsets>
+            <Offset>12C</Offset>
+            <Offset>100</Offset>
+            <Offset>80</Offset>
+            <Offset>150</Offset>
+            <Offset>D0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>85</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000EE8</Address>
+          <Offsets>
+            <Offset>12C</Offset>
+            <Offset>100</Offset>
+            <Offset>80</Offset>
+            <Offset>150</Offset>
+            <Offset>D0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>86</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000F78</Address>
+          <Offsets>
+            <Offset>12C</Offset>
+            <Offset>100</Offset>
+            <Offset>F0</Offset>
+            <Offset>148</Offset>
+            <Offset>30</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>87</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000F70</Address>
+          <Offsets>
+            <Offset>12C</Offset>
+            <Offset>100</Offset>
+            <Offset>F0</Offset>
+            <Offset>148</Offset>
+            <Offset>30</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>88</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000F58</Address>
+          <Offsets>
+            <Offset>12C</Offset>
+            <Offset>100</Offset>
+            <Offset>F0</Offset>
+            <Offset>148</Offset>
+            <Offset>D0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>89</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000F18</Address>
+          <Offsets>
+            <Offset>12C</Offset>
+            <Offset>100</Offset>
+            <Offset>F0</Offset>
+            <Offset>148</Offset>
+            <Offset>D0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>90</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>"THREADSTACK0"-00000EE8</Address>
+          <Offsets>
+            <Offset>12C</Offset>
+            <Offset>100</Offset>
+            <Offset>F0</Offset>
+            <Offset>148</Offset>
+            <Offset>D0</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>94</ID>
+      <Description>"1击满级"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Teenage Mutant Ninja Turtles: Shredder's Revenge
+  Version: 
+  Date   : 2023-10-24
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,89 79 20 48 83 C4 28) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [rcx+20],#3000
+  add rsp,28
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 79 20 48 83 C4 28
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Paris.Game.System.GamePlayerInfo::set_Score+9E
+
+Paris.Game.System.GamePlayerInfo::set_Score+75: 3B 73 18           - cmp esi,[rbx+18]
+Paris.Game.System.GamePlayerInfo::set_Score+78: 72 0F              - jb Paris.Game.System.GamePlayerInfo::set_Score+89
+Paris.Game.System.GamePlayerInfo::set_Score+7A: B9 0D 00 00 00     - mov ecx,0000000D
+Paris.Game.System.GamePlayerInfo::set_Score+7F: BA 16 00 00 00     - mov edx,00000016
+Paris.Game.System.GamePlayerInfo::set_Score+84: E8 07 D6 39 5C     - call System.ThrowHelper::ThrowArgumentOutOfRangeException
+Paris.Game.System.GamePlayerInfo::set_Score+89: 48 8B 4B 08        - mov rcx,[rbx+08]
+Paris.Game.System.GamePlayerInfo::set_Score+8D: 3B 71 08           - cmp esi,[rcx+08]
+Paris.Game.System.GamePlayerInfo::set_Score+90: 0F 83 06 01 00 00  - jae Paris.Game.System.GamePlayerInfo::set_Score+19C
+Paris.Game.System.GamePlayerInfo::set_Score+96: 48 63 D6           - movsxd  rdx,esi
+Paris.Game.System.GamePlayerInfo::set_Score+99: 48 8B 4C D1 10     - mov rcx,[rcx+rdx*8+10]
+// ---------- INJECTING HERE ----------
+Paris.Game.System.GamePlayerInfo::set_Score+9E: 89 79 20           - mov [rcx+20],edi
+// ---------- DONE INJECTING  ----------
+Paris.Game.System.GamePlayerInfo::set_Score+A1: 48 83 C4 28        - add rsp,28
+Paris.Game.System.GamePlayerInfo::set_Score+A5: 5B                 - pop rbx
+Paris.Game.System.GamePlayerInfo::set_Score+A6: 5D                 - pop rbp
+Paris.Game.System.GamePlayerInfo::set_Score+A7: 5E                 - pop rsi
+Paris.Game.System.GamePlayerInfo::set_Score+A8: 5F                 - pop rdi
+Paris.Game.System.GamePlayerInfo::set_Score+A9: C3                 - ret 
+Paris.Game.System.GamePlayerInfo::set_Score+AA: 48 8B 56 10        - mov rdx,[rsi+10]
+Paris.Game.System.GamePlayerInfo::set_Score+AE: 48 8B DA           - mov rbx,rdx
+Paris.Game.System.GamePlayerInfo::set_Score+B1: 48 85 DB           - test rbx,rbx
+Paris.Game.System.GamePlayerInfo::set_Score+B4: 74 17              - je Paris.Game.System.GamePlayerInfo::set_Score+CD
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>98</ID>
+      <Description>"1击满级"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Teenage Mutant Ninja Turtles: Shredder's Revenge
+  Version: 
+  Date   : 2023-10-25
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,89 79 20 48 83 C4 28) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [rcx+20],3000
+  add rsp,28
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 79 20 48 83 C4 28
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 7FF9B0BC87AE
+
+7FF9B0BC8785: 3B 73 18           - cmp esi,[rbx+18]
+7FF9B0BC8788: 72 0F              - jb 7FF9B0BC8799
+7FF9B0BC878A: B9 0D 00 00 00     - mov ecx,0000000D
+7FF9B0BC878F: BA 16 00 00 00     - mov edx,00000016
+7FF9B0BC8794: E8 07 BC EF 5A     - call System.ThrowHelper::ThrowArgumentOutOfRangeException
+7FF9B0BC8799: 48 8B 4B 08        - mov rcx,[rbx+08]
+7FF9B0BC879D: 3B 71 08           - cmp esi,[rcx+08]
+7FF9B0BC87A0: 0F 83 06 01 00 00  - jae 7FF9B0BC88AC
+7FF9B0BC87A6: 48 63 D6           - movsxd  rdx,esi
+7FF9B0BC87A9: 48 8B 4C D1 10     - mov rcx,[rcx+rdx*8+10]
+// ---------- INJECTING HERE ----------
+7FF9B0BC87AE: 89 79 20           - mov [rcx+20],edi
+// ---------- DONE INJECTING  ----------
+7FF9B0BC87B1: 48 83 C4 28        - add rsp,28
+7FF9B0BC87B5: 5B                 - pop rbx
+7FF9B0BC87B6: 5D                 - pop rbp
+7FF9B0BC87B7: 5E                 - pop rsi
+7FF9B0BC87B8: 5F                 - pop rdi
+7FF9B0BC87B9: C3                 - ret 
+7FF9B0BC87BA: 48 8B 56 10        - mov rdx,[rsi+10]
+7FF9B0BC87BE: 48 8B DA           - mov rbx,rdx
+7FF9B0BC87C1: 48 85 DB           - test rbx,rbx
+7FF9B0BC87C4: 74 17              - je 7FF9B0BC87DD
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>代码 :mov [rdi+3C],eax</Description>
+      <AddressString>7FF9B0B95AB5</AddressString>
+      <Before>
+        <Byte>E8</Byte>
+        <Byte>FB</Byte>
+        <Byte>AB</Byte>
+        <Byte>C9</Byte>
+        <Byte>FF</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>47</Byte>
+        <Byte>3C</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>83</Byte>
+        <Byte>C4</Byte>
+        <Byte>28</Byte>
+        <Byte>5E</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>

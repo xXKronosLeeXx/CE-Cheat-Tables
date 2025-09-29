@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>9</ID>
+      <Description>"血晶"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : InsectSwarm.exe
+  Version: 
+  Date   : 2024-09-15
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,48 89 48 40 49 8B 87 98 00 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rax+40],#1200000000
+  mov rax,[r15+00000098]
+  jmp return
+
+code:
+  mov [rax+40],rcx
+  mov rax,[r15+00000098]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 6
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 48 89 48 40 49 8B 87 98 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 25C7EA369CE
+
+25C7EA369A2: 4C 63 CF                       - movsxd  r9,edi
+25C7EA369A5: 4D 0F AF C1                    - imul r8,r9
+25C7EA369A9: 49 B9 90 4B 61 B2 5B 02 00 00  - mov r9,0000025BB2614B90
+25C7EA369B3: 4D 8B 09                       - mov r9,[r9]
+25C7EA369B6: 4D 8B 49 18                    - mov r9,[r9+18]
+25C7EA369BA: 41 83 39 00                    - cmp dword ptr [r9],00
+25C7EA369BE: 4C 8B CE                       - mov r9,rsi
+25C7EA369C1: 4D 69 C9 2C 01 00 00           - imul r9,r9,0000012C
+25C7EA369C8: 4D 03 C1                       - add r8,r9
+25C7EA369CB: 49 2B C8                       - sub rcx,r8
+// ---------- INJECTING HERE ----------
+25C7EA369CE: 48 89 48 40                    - mov [rax+40],rcx
+// ---------- DONE INJECTING  ----------
+25C7EA369D2: 49 8B 87 98 00 00 00           - mov rax,[r15+00000098]
+25C7EA369D9: 48 8B D0                       - mov rdx,rax
+25C7EA369DC: 48 8B 48 38                    - mov rcx,[rax+38]
+25C7EA369E0: 4C 63 C7                       - movsxd  r8,edi
+25C7EA369E3: 49 03 C8                       - add rcx,r8
+25C7EA369E6: 48 89 48 38                    - mov [rax+38],rcx
+25C7EA369EA: 49 8B 87 98 00 00 00           - mov rax,[r15+00000098]
+25C7EA369F1: 48 63 70 20                    - movsxd  rsi,dword ptr [rax+20]
+25C7EA369F5: 83 FE 06                       - cmp esi,06
+25C7EA369F8: 0F 83 27 01 00 00              - jae 25C7EA36B25
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>7</ID>
+      <Description>"飞机副武器reload"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : InsectSwarm.exe
+  Version: 
+  Date   : 2024-09-15
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,89 48 18 48 63 46 38) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop//  mov [rax+18],ecx
+  movsxd  rax,dword ptr [rsi+38]
+  jmp return
+
+code:
+  mov [rax+18],ecx
+  movsxd  rax,dword ptr [rsi+38]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 48 18 48 63 46 38
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 25AC07DC7E5
+
+25AC07DC7B7: F2 0F 10 45 D8                 - movsd xmm0,[rbp-28]
+25AC07DC7BC: 66 0F 2F C8                    - comisd xmm1,xmm0
+25AC07DC7C0: 0F 86 1D 01 00 00              - jbe 25AC07DC8E3
+25AC07DC7C6: 48 B8 90 4B 61 B2 5B 02 00 00  - mov rax,0000025BB2614B90
+25AC07DC7D0: 48 8B 00                       - mov rax,[rax]
+25AC07DC7D3: 48 8B 40 18                    - mov rax,[rax+18]
+25AC07DC7D7: 48 8B D0                       - mov rdx,rax
+25AC07DC7DA: 48 63 48 18                    - movsxd  rcx,dword ptr [rax+18]
+25AC07DC7DE: 4C 63 46 40                    - movsxd  r8,dword ptr [rsi+40]
+25AC07DC7E2: 41 2B C8                       - sub ecx,r8d
+// ---------- INJECTING HERE ----------
+25AC07DC7E5: 89 48 18                       - mov [rax+18],ecx
+// ---------- DONE INJECTING  ----------
+25AC07DC7E8: 48 63 46 38                    - movsxd  rax,dword ptr [rsi+38]
+25AC07DC7EC: 83 F8 01                       - cmp eax,01
+25AC07DC7EF: 0F 85 27 00 00 00              - jne 25AC07DC81C
+25AC07DC7F5: 90                             - nop 
+25AC07DC7F6: 49 BB 92 3D B9 E0 5C 02 00 00  - mov r11,0000025CE0B93D92
+25AC07DC800: 41 FF D3                       - call r11
+25AC07DC803: F3 0F 5A C0                    - cvtss2sd xmm0,xmm0
+25AC07DC807: F2 0F 5A E8                    - cvtsd2ss xmm5,xmm0
+25AC07DC80B: F3 0F 11 6E 44                 - movss [rsi+44],xmm5
+25AC07DC810: C7 46 48 08 00 00 00           - mov [rsi+48],00000008
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>11</ID>
+      <Description>"机甲副武器"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : InsectSwarm.exe
+  Version: 
+  Date   : 2024-09-15
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,89 48 18 48 8B CE 90) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rax+18],9
+  mov rcx,rsi
+  jmp return
+
+code:
+  mov [rax+18],ecx
+  mov rcx,rsi
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 48 18 48 8B CE
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 25CE6F925B7
+
+25CE6F9258C: F3 0F 5A C9                    - cvtss2sd xmm1,xmm1
+25CE6F92590: F2 0F 58 C1                    - addsd xmm0,xmm1
+25CE6F92594: F2 0F 5A E8                    - cvtsd2ss xmm5,xmm0
+25CE6F92598: F3 0F 11 6E 28                 - movss [rsi+28],xmm5
+25CE6F9259D: 48 B8 90 4B 61 B2 5B 02 00 00  - mov rax,0000025BB2614B90
+25CE6F925A7: 48 8B 00                       - mov rax,[rax]
+25CE6F925AA: 48 8B 40 18                    - mov rax,[rax+18]
+25CE6F925AE: 48 8B D0                       - mov rdx,rax
+25CE6F925B1: 48 63 48 18                    - movsxd  rcx,dword ptr [rax+18]
+25CE6F925B5: FF C9                          - dec ecx
+// ---------- INJECTING HERE ----------
+25CE6F925B7: 89 48 18                       - mov [rax+18],ecx
+// ---------- DONE INJECTING  ----------
+25CE6F925BA: 48 8B CE                       - mov rcx,rsi
+25CE6F925BD: 90                             - nop 
+25CE6F925BE: 49 BB F0 AB B9 E0 5C 02 00 00  - mov r11,0000025CE0B9ABF0
+25CE6F925C8: 41 FF D3                       - call r11
+25CE6F925CB: 48 89 85 00 FF FF FF           - mov [rbp-00000100],rax
+25CE6F925D2: 48 8B CE                       - mov rcx,rsi
+25CE6F925D5: 90                             - nop 
+25CE6F925D6: 49 BB F0 AB B9 E0 5C 02 00 00  - mov r11,0000025CE0B9ABF0
+25CE6F925E0: 41 FF D3                       - call r11
+25CE6F925E3: 48 8B D5                       - mov rdx,rbp
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>12</ID>
+      <Description>"50W kill"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : InsectSwarm.exe
+  Version: 
+  Date   : 2024-09-15
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,48 89 48 50 48 8B CE) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rax+50],#1000001
+  mov rcx,rsi
+  jmp return
+
+code:
+  mov [rax+50],rcx
+  mov rcx,rsi
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 48 89 48 50 48 8B CE
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 1C66B44043F
+
+1C66B44040E: 48 8D 10                       - lea rdx,[rax]
+1C66B440411: 48 8D 64 24 00                 - lea rsp,[rsp+00]
+1C66B440416: 49 BB 30 3E 43 6B C6 01 00 00  - mov r11,000001C66B433E30
+1C66B440420: 41 FF D3                       - call r11
+1C66B440423: 48 B8 90 4B A3 2B C5 01 00 00  - mov rax,000001C52BA34B90
+1C66B44042D: 48 8B 00                       - mov rax,[rax]
+1C66B440430: 48 8B 40 18                    - mov rax,[rax+18]
+1C66B440434: 48 8B D0                       - mov rdx,rax
+1C66B440437: 48 8B 48 50                    - mov rcx,[rax+50]
+1C66B44043B: 48 83 C1 01                    - add rcx,01
+// ---------- INJECTING HERE ----------
+1C66B44043F: 48 89 48 50                    - mov [rax+50],rcx
+// ---------- DONE INJECTING  ----------
+1C66B440443: 48 8B CE                       - mov rcx,rsi
+1C66B440446: 49 BB 20 1C 02 5A C6 01 00 00  - mov r11,000001C65A021C20
+1C66B440450: 41 FF D3                       - call r11
+1C66B440453: 48 8B C8                       - mov rcx,rax
+1C66B440456: 49 BB 40 80 54 B4 C6 01 00 00  - mov r11,000001C6B4548040
+1C66B440460: 41 FF D3                       - call r11
+1C66B440463: F3 0F 10 86 D4 00 00 00        - movss xmm0,[rsi+000000D4]
+1C66B44046B: F3 0F 5A C0                    - cvtss2sd xmm0,xmm0
+1C66B44046F: F3 0F 10 0D 29 01 00 00        - movss xmm1,[1C66B4405A0]
+1C66B440477: F3 0F 5A C9                    - cvtss2sd xmm1,xmm1
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

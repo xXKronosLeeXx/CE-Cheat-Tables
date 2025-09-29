@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"无描述"</Description>
+      <LastState Value="6" RealAddress="1FC9BD48330"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>1FC9BD48330</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"自动汇编脚本"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Fobia-Win64-Shipping.exe
+  Version: 
+  Date   : 2024-12-01
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,VCRUNTIME140.dll,ERROR: 无法找到独特的 AOB, 代码可靠吗 "8B 0A 89 08 C3") // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov ecx,[rdx]
+  mov [rax],7
+  ret
+  jmp return
+
+code:
+  mov ecx,[rdx]
+  mov [rax],ecx
+  ret 
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 8B 0A 89 08 C3
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: VCRUNTIME140.memmove+11A
+
+VCRUNTIME140.memmove+101: 44 0F B6 42 04        - movzx r8d,byte ptr [rdx+04]
+VCRUNTIME140.memmove+106: 89 08                 - mov [rax],ecx
+VCRUNTIME140.memmove+108: 44 88 40 04           - mov [rax+04],r8b
+VCRUNTIME140.memmove+10C: C3                    - ret 
+VCRUNTIME140.memmove+10D: 48 8B 0A              - mov rcx,[rdx]
+VCRUNTIME140.memmove+110: 48 89 08              - mov [rax],rcx
+VCRUNTIME140.memmove+113: C3                    - ret 
+VCRUNTIME140.memmove+114: 0F B6 0A              - movzx ecx,byte ptr [rdx]
+VCRUNTIME140.memmove+117: 88 08                 - mov [rax],cl
+VCRUNTIME140.memmove+119: C3                    - ret 
+// ---------- INJECTING HERE ----------
+VCRUNTIME140.memmove+11A: 8B 0A                 - mov ecx,[rdx]
+// ---------- DONE INJECTING  ----------
+VCRUNTIME140.memmove+11C: 89 08                 - mov [rax],ecx
+VCRUNTIME140.memmove+11E: C3                    - ret 
+VCRUNTIME140.memmove+11F: 90                    - nop 
+VCRUNTIME140.memmove+120: 49 83 F8 20           - cmp r8,20
+VCRUNTIME140.memmove+124: 77 17                 - ja VCRUNTIME140.memmove+13D
+VCRUNTIME140.memmove+126: F3 0F 6F 0A           - movdqu xmm1,[rdx]
+VCRUNTIME140.memmove+12A: F3 42 0F 6F 54 02 F0  - movdqu xmm2,[rdx+r8-10]
+VCRUNTIME140.memmove+131: F3 0F 7F 09           - movdqu [rcx],xmm1
+VCRUNTIME140.memmove+135: F3 42 0F 7F 54 01 F0  - movdqu [rcx+r8-10],xmm2
+VCRUNTIME140.memmove+13C: C3                    - ret 
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

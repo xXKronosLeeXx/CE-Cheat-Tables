@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"180E(doubl)"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : STONKS-9800.exe
+  Version: 
+  Date   : 2025-08-27
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,STONKS-9800.exe,48 89 03 4C 8D 5C 24 60) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov rax,#8800000
+  mov [rbx],rax
+  lea r11,[rsp+60]
+  jmp return
+
+code:
+  mov [rbx],rax
+  lea r11,[rsp+60]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 48 89 03 4C 8D 5C 24 60
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: STONKS-9800.exe+27051D
+
+STONKS-9800.exe+2704FC: 74 1C              - je STONKS-9800.exe+27051A
+STONKS-9800.exe+2704FE: 48 8B 03           - mov rax,[rbx]
+STONKS-9800.exe+270501: 48 85 C0           - test rax,rax
+STONKS-9800.exe+270504: 74 14              - je STONKS-9800.exe+27051A
+STONKS-9800.exe+270506: 8B 48 70           - mov ecx,[rax+70]
+STONKS-9800.exe+270509: 8B 05 81 A4 46 00  - mov eax,[STONKS-9800.exe+6DA990]
+STONKS-9800.exe+27050F: 3B C1              - cmp eax,ecx
+STONKS-9800.exe+270511: 0F 4E C1           - cmovle eax,ecx
+STONKS-9800.exe+270514: 89 05 76 A4 46 00  - mov [STONKS-9800.exe+6DA990],eax
+STONKS-9800.exe+27051A: 48 8B 06           - mov rax,[rsi]
+// ---------- INJECTING HERE ----------
+STONKS-9800.exe+27051D: 48 89 03           - mov [rbx],rax
+// ---------- DONE INJECTING  ----------
+STONKS-9800.exe+270520: 4C 8D 5C 24 60     - lea r11,[rsp+60]
+STONKS-9800.exe+270525: 49 8B 5B 28        - mov rbx,[r11+28]
+STONKS-9800.exe+270529: 49 8B 6B 30        - mov rbp,[r11+30]
+STONKS-9800.exe+27052D: 49 8B E3           - mov rsp,r11
+STONKS-9800.exe+270530: 41 5F              - pop r15
+STONKS-9800.exe+270532: 5F                 - pop rdi
+STONKS-9800.exe+270533: 5E                 - pop rsi
+STONKS-9800.exe+270534: C3                 - ret 
+STONKS-9800.exe+270535: CC                 - int 3 
+STONKS-9800.exe+270536: CC                 - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"无描述"</Description>
+      <VariableType>Double</VariableType>
+      <Address>13732A00</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"无描述"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>0014ED90</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"指针扫描结果"</Description>
+      <VariableType>Double</VariableType>
+      <Address>"STONKS-9800.exe"+0073E790</Address>
+      <Offsets>
+        <Offset>470</Offset>
+        <Offset>F0</Offset>
+        <Offset>30</Offset>
+        <Offset>148</Offset>
+        <Offset>420</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>7</ID>
+      <Description>"指针扫描结果"</Description>
+      <VariableType>Double</VariableType>
+      <Address>"STONKS-9800.exe"+0073DC60</Address>
+      <Offsets>
+        <Offset>470</Offset>
+        <Offset>F0</Offset>
+        <Offset>30</Offset>
+        <Offset>448</Offset>
+        <Offset>790</Offset>
+      </Offsets>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>金钱变动 代码 :mov [rbx],rax</Description>
+      <AddressString>STONKS-9800.exe+27051D</AddressString>
+      <Before>
+        <Byte>46</Byte>
+        <Byte>00</Byte>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>06</Byte>
+      </Before>
+      <Actual>
+        <Byte>48</Byte>
+        <Byte>89</Byte>
+        <Byte>03</Byte>
+      </Actual>
+      <After>
+        <Byte>4C</Byte>
+        <Byte>8D</Byte>
+        <Byte>5C</Byte>
+        <Byte>24</Byte>
+        <Byte>60</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>代码 :mov rax,[rsi]</Description>
+      <AddressString>STONKS-9800.exe+27051A</AddressString>
+      <Before>
+        <Byte>05</Byte>
+        <Byte>76</Byte>
+        <Byte>A4</Byte>
+        <Byte>46</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>06</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>89</Byte>
+        <Byte>03</Byte>
+        <Byte>4C</Byte>
+        <Byte>8D</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>

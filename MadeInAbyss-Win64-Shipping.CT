@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>9</ID>
+      <Description>"HP(单浮点)"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : MadeInAbyss-Win64-Shipping.exe
+  Version: 
+  Date   : 2025-01-19
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,MadeInAbyss-Win64-Shipping.exe,F3 0F 11 B1 00 02 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  movss xmm6,[rcx+00000210]
+  movss [rcx+00000200],xmm6
+  jmp return
+
+code:
+  movss [rcx+00000200],xmm6
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 B1 00 02 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MadeInAbyss-Win64-Shipping.exe+DD8DF9
+
+MadeInAbyss-Win64-Shipping.exe+DD8DD0: 40 53                    - push rbx
+MadeInAbyss-Win64-Shipping.exe+DD8DD2: 48 83 EC 40              - sub rsp,40
+MadeInAbyss-Win64-Shipping.exe+DD8DD6: 0F 29 74 24 30           - movaps [rsp+30],xmm6
+MadeInAbyss-Win64-Shipping.exe+DD8DDB: 48 8B D9                 - mov rbx,rcx
+MadeInAbyss-Win64-Shipping.exe+DD8DDE: F3 0F 10 B1 00 02 00 00  - movss xmm6,[rcx+00000200]
+MadeInAbyss-Win64-Shipping.exe+DD8DE6: F3 0F 5C F1              - subss xmm6,xmm1
+MadeInAbyss-Win64-Shipping.exe+DD8DEA: 0F 29 7C 24 20           - movaps [rsp+20],xmm7
+MadeInAbyss-Win64-Shipping.exe+DD8DEF: 0F 57 FF                 - xorps xmm7,xmm7
+MadeInAbyss-Win64-Shipping.exe+DD8DF2: 0F 2F CF                 - comiss xmm1,xmm7
+MadeInAbyss-Win64-Shipping.exe+DD8DF5: F3 0F 5F F7              - maxss xmm6,xmm7
+// ---------- INJECTING HERE ----------
+MadeInAbyss-Win64-Shipping.exe+DD8DF9: F3 0F 11 B1 00 02 00 00  - movss [rcx+00000200],xmm6
+// ---------- DONE INJECTING  ----------
+MadeInAbyss-Win64-Shipping.exe+DD8E01: 76 5B                    - jna MadeInAbyss-Win64-Shipping.exe+DD8E5E
+MadeInAbyss-Win64-Shipping.exe+DD8E03: E8 F8 D1 F7 FF           - call MadeInAbyss-Win64-Shipping.exe+D56000
+MadeInAbyss-Win64-Shipping.exe+DD8E08: 48 85 C0                 - test rax,rax
+MadeInAbyss-Win64-Shipping.exe+DD8E0B: 74 51                    - je MadeInAbyss-Win64-Shipping.exe+DD8E5E
+MadeInAbyss-Win64-Shipping.exe+DD8E0D: BA CD 01 00 00           - mov edx,000001CD
+MadeInAbyss-Win64-Shipping.exe+DD8E12: 48 8B C8                 - mov rcx,rax
+MadeInAbyss-Win64-Shipping.exe+DD8E15: E8 D6 EB F7 FF           - call MadeInAbyss-Win64-Shipping.exe+D579F0
+MadeInAbyss-Win64-Shipping.exe+DD8E1A: 84 C0                    - test al,al
+MadeInAbyss-Win64-Shipping.exe+DD8E1C: 75 40                    - jne MadeInAbyss-Win64-Shipping.exe+DD8E5E
+MadeInAbyss-Win64-Shipping.exe+DD8E1E: 0F 2F F7                 - comiss xmm6,xmm7
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>11</ID>
+      <Description>"饱腹度"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : MadeInAbyss-Win64-Shipping.exe
+  Version: 
+  Date   : 2025-01-19
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,MadeInAbyss-Win64-Shipping.exe,F3 0F 11 93 2C 02 00 00 E8 A5) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  movss xmm2,[rbx+00000230]
+  movss [rbx+0000022C],xmm2
+  jmp return
+
+code:
+  movss [rbx+0000022C],xmm2
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 93 2C 02 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MadeInAbyss-Win64-Shipping.exe+DD992E
+
+MadeInAbyss-Win64-Shipping.exe+DD98FD: 0F 86 AD 00 00 00        - jbe MadeInAbyss-Win64-Shipping.exe+DD99B0
+MadeInAbyss-Win64-Shipping.exe+DD9903: F3 0F 10 93 2C 02 00 00  - movss xmm2,[rbx+0000022C]
+MadeInAbyss-Win64-Shipping.exe+DD990B: 41 B1 01                 - mov r9b,01
+MadeInAbyss-Win64-Shipping.exe+DD990E: F3 0F 59 8B A0 03 00 00  - mulss xmm1,[rbx+000003A0]
+MadeInAbyss-Win64-Shipping.exe+DD9916: 33 D2                    - xor edx,edx
+MadeInAbyss-Win64-Shipping.exe+DD9918: 48 8B 83 68 02 00 00     - mov rax,[rbx+00000268]
+MadeInAbyss-Win64-Shipping.exe+DD991F: 48 8B CB                 - mov rcx,rbx
+MadeInAbyss-Win64-Shipping.exe+DD9922: F3 0F 59 08              - mulss xmm1,[rax]
+MadeInAbyss-Win64-Shipping.exe+DD9926: F3 0F 5C D1              - subss xmm2,xmm1
+MadeInAbyss-Win64-Shipping.exe+DD992A: F3 0F 5F D6              - maxss xmm2,xmm6
+// ---------- INJECTING HERE ----------
+MadeInAbyss-Win64-Shipping.exe+DD992E: F3 0F 11 93 2C 02 00 00  - movss [rbx+0000022C],xmm2
+// ---------- DONE INJECTING  ----------
+MadeInAbyss-Win64-Shipping.exe+DD9936: E8 A5 C2 FF FF           - call MadeInAbyss-Win64-Shipping.exe+DD5BE0
+MadeInAbyss-Win64-Shipping.exe+DD993B: F3 0F 10 BB 2C 02 00 00  - movss xmm7,[rbx+0000022C]
+MadeInAbyss-Win64-Shipping.exe+DD9943: E8 B8 C6 F7 FF           - call MadeInAbyss-Win64-Shipping.exe+D56000
+MadeInAbyss-Win64-Shipping.exe+DD9948: 48 85 C0                 - test rax,rax
+MadeInAbyss-Win64-Shipping.exe+DD994B: 74 39                    - je MadeInAbyss-Win64-Shipping.exe+DD9986
+MadeInAbyss-Win64-Shipping.exe+DD994D: BA 8D 00 00 00           - mov edx,0000008D
+MadeInAbyss-Win64-Shipping.exe+DD9952: 48 8B C8                 - mov rcx,rax
+MadeInAbyss-Win64-Shipping.exe+DD9955: E8 96 E0 F7 FF           - call MadeInAbyss-Win64-Shipping.exe+D579F0
+MadeInAbyss-Win64-Shipping.exe+DD995A: 84 C0                    - test al,al
+MadeInAbyss-Win64-Shipping.exe+DD995C: 75 28                    - jne MadeInAbyss-Win64-Shipping.exe+DD9986
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>13</ID>
+      <Description>"体力"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : MadeInAbyss-Win64-Shipping.exe
+  Version: 
+  Date   : 2025-01-19
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,MadeInAbyss-Win64-Shipping.exe,F3 0F 11 83 30 02 00 00 7E 4A) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop//  movss [rbx+00000230],xmm0
+  jmp return
+
+code:
+  movss [rbx+00000230],xmm0
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 83 30 02 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MadeInAbyss-Win64-Shipping.exe+DD636C
+
+MadeInAbyss-Win64-Shipping.exe+DD6339: 0F 85 81 00 00 00        - jne MadeInAbyss-Win64-Shipping.exe+DD63C0
+MadeInAbyss-Win64-Shipping.exe+DD633F: F3 0F 10 83 30 02 00 00  - movss xmm0,[rbx+00000230]
+MadeInAbyss-Win64-Shipping.exe+DD6347: 0F 57 F6                 - xorps xmm6,xmm6
+MadeInAbyss-Win64-Shipping.exe+DD634A: 48 8B 83 68 02 00 00     - mov rax,[rbx+00000268]
+MadeInAbyss-Win64-Shipping.exe+DD6351: 0F 2F C6                 - comiss xmm0,xmm6
+MadeInAbyss-Win64-Shipping.exe+DD6354: F3 0F 59 78 04           - mulss xmm7,[rax+04]
+MadeInAbyss-Win64-Shipping.exe+DD6359: 40 0F 97 C6              - seta sil
+MadeInAbyss-Win64-Shipping.exe+DD635D: 83 BB 38 03 00 00 01     - cmp dword ptr [rbx+00000338],01
+MadeInAbyss-Win64-Shipping.exe+DD6364: F3 0F 5C C7              - subss xmm0,xmm7
+MadeInAbyss-Win64-Shipping.exe+DD6368: F3 0F 5F C6              - maxss xmm0,xmm6
+// ---------- INJECTING HERE ----------
+MadeInAbyss-Win64-Shipping.exe+DD636C: F3 0F 11 83 30 02 00 00  - movss [rbx+00000230],xmm0
+// ---------- DONE INJECTING  ----------
+MadeInAbyss-Win64-Shipping.exe+DD6374: 7E 4A                    - jle MadeInAbyss-Win64-Shipping.exe+DD63C0
+MadeInAbyss-Win64-Shipping.exe+DD6376: 0F 2F C6                 - comiss xmm0,xmm6
+MadeInAbyss-Win64-Shipping.exe+DD6379: 76 0B                    - jna MadeInAbyss-Win64-Shipping.exe+DD6386
+MadeInAbyss-Win64-Shipping.exe+DD637B: 0F 28 F0                 - movaps xmm6,xmm0
+MadeInAbyss-Win64-Shipping.exe+DD637E: F3 0F 59 35 F6 2B 58 02  - mulss xmm6,[MadeInAbyss-Win64-Shipping.exe+3358F7C]
+MadeInAbyss-Win64-Shipping.exe+DD6386: 48 8B 8B 30 03 00 00     - mov rcx,[rbx+00000330]
+MadeInAbyss-Win64-Shipping.exe+DD638D: 0F 2E 41 0C              - ucomiss xmm0,[rcx+0C]
+MadeInAbyss-Win64-Shipping.exe+DD6391: 74 28                    - je MadeInAbyss-Win64-Shipping.exe+DD63BB
+MadeInAbyss-Win64-Shipping.exe+DD6393: F3 0F 11 41 0C           - movss [rcx+0C],xmm0
+MadeInAbyss-Win64-Shipping.exe+DD6398: 48 8D 54 24 50           - lea rdx,[rsp+50]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>16</ID>
+      <Description>"Gold"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : MadeInAbyss-Win64-Shipping.exe
+  Version: 
+  Date   : 2025-01-19
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,MadeInAbyss-Win64-Shipping.exe,89 81 28 03 00 00 C3 CC) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rcx+00000328],#9999999
+  jmp return
+
+code:
+  mov [rcx+00000328],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 81 28 03 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MadeInAbyss-Win64-Shipping.exe+D547E1
+
+MadeInAbyss-Win64-Shipping.exe+D547BF: CC                    - int 3 
+MadeInAbyss-Win64-Shipping.exe+D547C0: 44 8B 81 28 03 00 00  - mov r8d,[rcx+00000328]
+MadeInAbyss-Win64-Shipping.exe+D547C7: 44 03 C2              - add r8d,edx
+MadeInAbyss-Win64-Shipping.exe+D547CA: 79 09                 - jns MadeInAbyss-Win64-Shipping.exe+D547D5
+MadeInAbyss-Win64-Shipping.exe+D547CC: 33 C0                 - xor eax,eax
+MadeInAbyss-Win64-Shipping.exe+D547CE: 89 81 28 03 00 00     - mov [rcx+00000328],eax
+MadeInAbyss-Win64-Shipping.exe+D547D4: C3                    - ret 
+MadeInAbyss-Win64-Shipping.exe+D547D5: B8 7F 96 98 00        - mov eax,0098967F
+MadeInAbyss-Win64-Shipping.exe+D547DA: 44 3B C0              - cmp r8d,eax
+MadeInAbyss-Win64-Shipping.exe+D547DD: 41 0F 4C C0           - cmovl eax,r8d
+// ---------- INJECTING HERE ----------
+MadeInAbyss-Win64-Shipping.exe+D547E1: 89 81 28 03 00 00     - mov [rcx+00000328],eax
+// ---------- DONE INJECTING  ----------
+MadeInAbyss-Win64-Shipping.exe+D547E7: C3                    - ret 
+MadeInAbyss-Win64-Shipping.exe+D547E8: CC                    - int 3 
+MadeInAbyss-Win64-Shipping.exe+D547E9: CC                    - int 3 
+MadeInAbyss-Win64-Shipping.exe+D547EA: CC                    - int 3 
+MadeInAbyss-Win64-Shipping.exe+D547EB: CC                    - int 3 
+MadeInAbyss-Win64-Shipping.exe+D547EC: CC                    - int 3 
+MadeInAbyss-Win64-Shipping.exe+D547ED: CC                    - int 3 
+MadeInAbyss-Win64-Shipping.exe+D547EE: CC                    - int 3 
+MadeInAbyss-Win64-Shipping.exe+D547EF: CC                    - int 3 
+MadeInAbyss-Win64-Shipping.exe+D547F0: 48 81 C1 B0 03 00 00  - add rcx,000003B0
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>18</ID>
+      <Description>"物品减少"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : MadeInAbyss-Win64-Shipping.exe
+  Version: 
+  Date   : 2025-01-19
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,MadeInAbyss-Win64-Shipping.exe,29 44 D1 04 41 2B 28) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop//  sub [rcx+rdx*8+04],eax
+  nop//  sub ebp,[r8]
+  jmp return
+
+
+code:
+  sub [rcx+rdx*8+04],eax
+  sub ebp,[r8]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 29 44 D1 04 41 2B 28
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MadeInAbyss-Win64-Shipping.exe+DD0FEE
+
+MadeInAbyss-Win64-Shipping.exe+DD0FC2: 0F 8E D0 00 00 00        - jng MadeInAbyss-Win64-Shipping.exe+DD1098
+MadeInAbyss-Win64-Shipping.exe+DD0FC8: 4C 89 74 24 78           - mov [rsp+78],r14
+MadeInAbyss-Win64-Shipping.exe+DD0FCD: 4D 8D 45 04              - lea r8,[r13+04]
+MadeInAbyss-Win64-Shipping.exe+DD0FD1: 44 8B C8                 - mov r9d,eax
+MadeInAbyss-Win64-Shipping.exe+DD0FD4: 0F 1F 40 00              - nop dword ptr [rax+00]
+MadeInAbyss-Win64-Shipping.exe+DD0FD8: 0F 1F 84 00 00 00 00 00  - nop dword ptr [rax+rax+00000000]
+MadeInAbyss-Win64-Shipping.exe+DD0FE0: 41 8B 00                 - mov eax,[r8]
+MadeInAbyss-Win64-Shipping.exe+DD0FE3: 49 63 50 FC              - movsxd  rdx,dword ptr [r8-04]
+MadeInAbyss-Win64-Shipping.exe+DD0FE7: 49 8B 4F 08              - mov rcx,[r15+08]
+MadeInAbyss-Win64-Shipping.exe+DD0FEB: 48 03 D2                 - add rdx,rdx
+// ---------- INJECTING HERE ----------
+MadeInAbyss-Win64-Shipping.exe+DD0FEE: 29 44 D1 04              - sub [rcx+rdx*8+04],eax
+// ---------- DONE INJECTING  ----------
+MadeInAbyss-Win64-Shipping.exe+DD0FF2: 41 2B 28                 - sub ebp,[r8]
+MadeInAbyss-Win64-Shipping.exe+DD0FF5: 8B C5                    - mov eax,ebp
+MadeInAbyss-Win64-Shipping.exe+DD0FF7: 8B EB                    - mov ebp,ebx
+MadeInAbyss-Win64-Shipping.exe+DD0FF9: 0F 49 E8                 - cmovns ebp,eax
+MadeInAbyss-Win64-Shipping.exe+DD0FFC: 49 8B 47 08              - mov rax,[r15+08]
+MadeInAbyss-Win64-Shipping.exe+DD1000: 39 5C D0 04              - cmp [rax+rdx*8+04],ebx
+MadeInAbyss-Win64-Shipping.exe+DD1004: 7F 05                    - jg MadeInAbyss-Win64-Shipping.exe+DD100B
+MadeInAbyss-Win64-Shipping.exe+DD1006: 41 B2 01                 - mov r10b,01
+MadeInAbyss-Win64-Shipping.exe+DD1009: EB 09                    - jmp MadeInAbyss-Win64-Shipping.exe+DD1014
+MadeInAbyss-Win64-Shipping.exe+DD100B: 83 FF FF                 - cmp edi,-01
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>20</ID>
+      <Description>"装备寿命减少"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : MadeInAbyss-Win64-Shipping.exe
+  Version: 
+  Date   : 2025-01-19
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,MadeInAbyss-Win64-Shipping.exe,29 4C F8 08 48 8B 06) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop//sub [rax+rdi*8+08],ecx
+  mov rax,[rsi]
+  jmp return
+
+code:
+  sub [rax+rdi*8+08],ecx
+  mov rax,[rsi]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 29 4C F8 08 48 8B 06
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MadeInAbyss-Win64-Shipping.exe+DCEB61
+
+MadeInAbyss-Win64-Shipping.exe+DCEB35: 0F 88 C0 00 00 00        - js MadeInAbyss-Win64-Shipping.exe+DCEBFB
+MadeInAbyss-Win64-Shipping.exe+DCEB3B: 41 3B DA                 - cmp ebx,r10d
+MadeInAbyss-Win64-Shipping.exe+DCEB3E: 0F 8D B7 00 00 00        - jnl MadeInAbyss-Win64-Shipping.exe+DCEBFB
+MadeInAbyss-Win64-Shipping.exe+DCEB44: F3 0F 59 15 F4 89 57 02  - mulss xmm2,[MadeInAbyss-Win64-Shipping.exe+3347540]
+MadeInAbyss-Win64-Shipping.exe+DCEB4C: 0F 28 C2                 - movaps xmm0,xmm2
+MadeInAbyss-Win64-Shipping.exe+DCEB4F: E8 EC 0E 1F 00           - call MadeInAbyss-Win64-Shipping.exe+FBFA40
+MadeInAbyss-Win64-Shipping.exe+DCEB54: 48 8B 06                 - mov rax,[rsi]
+MadeInAbyss-Win64-Shipping.exe+DCEB57: F3 0F 2C C8              - cvttss2si ecx,xmm0
+MadeInAbyss-Win64-Shipping.exe+DCEB5B: 48 63 FB                 - movsxd  rdi,ebx
+MadeInAbyss-Win64-Shipping.exe+DCEB5E: 48 03 FF                 - add rdi,rdi
+// ---------- INJECTING HERE ----------
+MadeInAbyss-Win64-Shipping.exe+DCEB61: 29 4C F8 08              - sub [rax+rdi*8+08],ecx
+// ---------- DONE INJECTING  ----------
+MadeInAbyss-Win64-Shipping.exe+DCEB65: 48 8B 06                 - mov rax,[rsi]
+MadeInAbyss-Win64-Shipping.exe+DCEB68: 83 7C F8 08 00           - cmp dword ptr [rax+rdi*8+08],00
+MadeInAbyss-Win64-Shipping.exe+DCEB6D: 0F 8F 88 00 00 00        - jg MadeInAbyss-Win64-Shipping.exe+DCEBFB
+MadeInAbyss-Win64-Shipping.exe+DCEB73: FF 4C F8 04              - dec [rax+rdi*8+04]
+MadeInAbyss-Win64-Shipping.exe+DCEB77: 4C 8B 0E                 - mov r9,[rsi]
+MadeInAbyss-Win64-Shipping.exe+DCEB7A: 41 83 7C F9 04 00        - cmp dword ptr [r9+rdi*8+04],00
+MadeInAbyss-Win64-Shipping.exe+DCEB80: 49 8D 0C F9              - lea rcx,[r9+rdi*8]
+MadeInAbyss-Win64-Shipping.exe+DCEB84: 7F 48                    - jg MadeInAbyss-Win64-Shipping.exe+DCEBCE
+MadeInAbyss-Win64-Shipping.exe+DCEB86: 8B 56 08                 - mov edx,[rsi+08]
+MadeInAbyss-Win64-Shipping.exe+DCEB89: 8B C2                    - mov eax,edx
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>24</ID>
+      <Description>"EXP+99999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : MadeInAbyss-Win64-Shipping.exe
+  Version: 
+  Date   : 2025-01-19
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,MadeInAbyss-Win64-Shipping.exe,01 53 04 48 89 7C 24 30) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [rbx+04],#99999
+  mov [rsp+30],rdi
+  jmp return
+
+
+code:
+  add [rbx+04],edx
+  mov [rsp+30],rdi
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 01 53 04 48 89 7C 24 30
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MadeInAbyss-Win64-Shipping.exe+DDD570
+
+MadeInAbyss-Win64-Shipping.exe+DDD55C: CC              - int 3 
+MadeInAbyss-Win64-Shipping.exe+DDD55D: CC              - int 3 
+MadeInAbyss-Win64-Shipping.exe+DDD55E: CC              - int 3 
+MadeInAbyss-Win64-Shipping.exe+DDD55F: CC              - int 3 
+MadeInAbyss-Win64-Shipping.exe+DDD560: 40 53           - push rbx
+MadeInAbyss-Win64-Shipping.exe+DDD562: 48 83 EC 20     - sub rsp,20
+MadeInAbyss-Win64-Shipping.exe+DDD566: 48 8B D9        - mov rbx,rcx
+MadeInAbyss-Win64-Shipping.exe+DDD569: 8B 09           - mov ecx,[rcx]
+MadeInAbyss-Win64-Shipping.exe+DDD56B: 83 F9 63        - cmp ecx,63
+MadeInAbyss-Win64-Shipping.exe+DDD56E: 7D 64           - jnl MadeInAbyss-Win64-Shipping.exe+DDD5D4
+// ---------- INJECTING HERE ----------
+MadeInAbyss-Win64-Shipping.exe+DDD570: 01 53 04        - add [rbx+04],edx
+// ---------- DONE INJECTING  ----------
+MadeInAbyss-Win64-Shipping.exe+DDD573: 48 89 7C 24 30  - mov [rsp+30],rdi
+MadeInAbyss-Win64-Shipping.exe+DDD578: 40 32 FF        - xor dil,dil
+MadeInAbyss-Win64-Shipping.exe+DDD57B: E8 30 E3 F9 FF  - call MadeInAbyss-Win64-Shipping.exe+D7B8B0
+MadeInAbyss-Win64-Shipping.exe+DDD580: 48 8B D0        - mov rdx,rax
+MadeInAbyss-Win64-Shipping.exe+DDD583: 48 85 C0        - test rax,rax
+MadeInAbyss-Win64-Shipping.exe+DDD586: 74 3D           - je MadeInAbyss-Win64-Shipping.exe+DDD5C5
+MadeInAbyss-Win64-Shipping.exe+DDD588: 8B 43 04        - mov eax,[rbx+04]
+MadeInAbyss-Win64-Shipping.exe+DDD58B: 3B 42 14        - cmp eax,[rdx+14]
+MadeInAbyss-Win64-Shipping.exe+DDD58E: 7C 35           - jl MadeInAbyss-Win64-Shipping.exe+DDD5C5
+MadeInAbyss-Win64-Shipping.exe+DDD590: FF 03           - inc [rbx]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>28</ID>
+      <Description>"技能点"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : MadeInAbyss-Win64-Shipping.exe
+  Version: 
+  Date   : 2025-01-19
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,MadeInAbyss-Win64-Shipping.exe,C0 89 41 30 C3 CC) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rcx+30],55
+  ret
+  int 3
+  jmp return
+
+code:
+  mov [rcx+30],eax
+  ret 
+  int 3 
+  jmp return
+
+INJECT+01:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+01:
+  db 89 41 30 C3 CC
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MadeInAbyss-Win64-Shipping.exe+DDDC2D
+
+MadeInAbyss-Win64-Shipping.exe+DDDC0E: CC                    - int 3 
+MadeInAbyss-Win64-Shipping.exe+DDDC0F: CC                    - int 3 
+MadeInAbyss-Win64-Shipping.exe+DDDC10: 44 8B 41 30           - mov r8d,[rcx+30]
+MadeInAbyss-Win64-Shipping.exe+DDDC14: 44 03 C2              - add r8d,edx
+MadeInAbyss-Win64-Shipping.exe+DDDC17: 79 08                 - jns MadeInAbyss-Win64-Shipping.exe+DDDC21
+MadeInAbyss-Win64-Shipping.exe+DDDC19: C7 41 30 00 00 00 00  - mov [rcx+30],00000000
+MadeInAbyss-Win64-Shipping.exe+DDDC20: C3                    - ret 
+MadeInAbyss-Win64-Shipping.exe+DDDC21: B8 E7 03 00 00        - mov eax,000003E7
+MadeInAbyss-Win64-Shipping.exe+DDDC26: 44 3B C0              - cmp r8d,eax
+MadeInAbyss-Win64-Shipping.exe+DDDC29: 41 0F 4C C0           - cmovl eax,r8d
+// ---------- INJECTING HERE ----------
+MadeInAbyss-Win64-Shipping.exe+DDDC2D: 89 41 30              - mov [rcx+30],eax
+// ---------- DONE INJECTING  ----------
+MadeInAbyss-Win64-Shipping.exe+DDDC30: C3                    - ret 
+MadeInAbyss-Win64-Shipping.exe+DDDC31: CC                    - int 3 
+MadeInAbyss-Win64-Shipping.exe+DDDC32: CC                    - int 3 
+MadeInAbyss-Win64-Shipping.exe+DDDC33: CC                    - int 3 
+MadeInAbyss-Win64-Shipping.exe+DDDC34: CC                    - int 3 
+MadeInAbyss-Win64-Shipping.exe+DDDC35: CC                    - int 3 
+MadeInAbyss-Win64-Shipping.exe+DDDC36: CC                    - int 3 
+MadeInAbyss-Win64-Shipping.exe+DDDC37: CC                    - int 3 
+MadeInAbyss-Win64-Shipping.exe+DDDC38: CC                    - int 3 
+MadeInAbyss-Win64-Shipping.exe+DDDC39: CC                    - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>32</ID>
+      <Description>"区域采集50次"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : MadeInAbyss-Win64-Shipping.exe
+  Version: 
+  Date   : 2025-01-19
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,MadeInAbyss-Win64-Shipping.exe,FF 00 48 8B 4C 1E 10) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rax],#49
+  inc [rax]
+  mov rcx,[rsi+rbx+10]
+  jmp return
+
+code:
+  inc [rax]
+  mov rcx,[rsi+rbx+10]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db FF 00 48 8B 4C 1E 10
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MadeInAbyss-Win64-Shipping.exe+D352DF
+
+MadeInAbyss-Win64-Shipping.exe+D352BF: 75 34           - jne MadeInAbyss-Win64-Shipping.exe+D352F5
+MadeInAbyss-Win64-Shipping.exe+D352C1: 8B 0C 1E        - mov ecx,[rsi+rbx]
+MadeInAbyss-Win64-Shipping.exe+D352C4: E8 F7 81 04 00  - call MadeInAbyss-Win64-Shipping.exe+D7D4C0
+MadeInAbyss-Win64-Shipping.exe+D352C9: 48 8B D0        - mov rdx,rax
+MadeInAbyss-Win64-Shipping.exe+D352CC: 48 85 C0        - test rax,rax
+MadeInAbyss-Win64-Shipping.exe+D352CF: 74 24           - je MadeInAbyss-Win64-Shipping.exe+D352F5
+MadeInAbyss-Win64-Shipping.exe+D352D1: 41 6B C7 64     - imul eax,r15d,64
+MadeInAbyss-Win64-Shipping.exe+D352D5: 39 42 58        - cmp [rdx+58],eax
+MadeInAbyss-Win64-Shipping.exe+D352D8: 75 1B           - jne MadeInAbyss-Win64-Shipping.exe+D352F5
+MadeInAbyss-Win64-Shipping.exe+D352DA: 48 8B 44 1E 10  - mov rax,[rsi+rbx+10]
+// ---------- INJECTING HERE ----------
+MadeInAbyss-Win64-Shipping.exe+D352DF: FF 00           - inc [rax]
+// ---------- DONE INJECTING  ----------
+MadeInAbyss-Win64-Shipping.exe+D352E1: 48 8B 4C 1E 10  - mov rcx,[rsi+rbx+10]
+MadeInAbyss-Win64-Shipping.exe+D352E6: 8B 42 5C        - mov eax,[rdx+5C]
+MadeInAbyss-Win64-Shipping.exe+D352E9: 39 01           - cmp [rcx],eax
+MadeInAbyss-Win64-Shipping.exe+D352EB: 7C 08           - jl MadeInAbyss-Win64-Shipping.exe+D352F5
+MadeInAbyss-Win64-Shipping.exe+D352ED: 40 B5 01        - mov bpl,01
+MadeInAbyss-Win64-Shipping.exe+D352F0: 40 88 6C 1E 08  - mov [rsi+rbx+08],bpl
+MadeInAbyss-Win64-Shipping.exe+D352F5: FF C7           - inc edi
+MadeInAbyss-Win64-Shipping.exe+D352F7: 48 83 C6 20     - add rsi,20
+MadeInAbyss-Win64-Shipping.exe+D352FB: 41 3B 7E 08     - cmp edi,[r14+08]
+MadeInAbyss-Win64-Shipping.exe+D352FF: 7C AF           - jl MadeInAbyss-Win64-Shipping.exe+D352B0
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>37</ID>
+      <Description>"拾取+10"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : MadeInAbyss-Win64-Shipping.exe
+  Version: 
+  Date   : 2025-01-19
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,MadeInAbyss-Win64-Shipping.exe,01 41 04 EB 50) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rcx+04],#10
+  jmp MadeInAbyss-Win64-Shipping.exe+DCF112
+  jmp return
+
+code:
+  add [rcx+04],eax
+  jmp MadeInAbyss-Win64-Shipping.exe+DCF112
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 01 41 04 EB 50
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MadeInAbyss-Win64-Shipping.exe+DCF0BD
+
+MadeInAbyss-Win64-Shipping.exe+DCF09C: 33 F6           - xor esi,esi
+MadeInAbyss-Win64-Shipping.exe+DCF09E: 66 90           - nop 2
+MadeInAbyss-Win64-Shipping.exe+DCF0A0: 48 8B 54 24 40  - mov rdx,[rsp+40]
+MadeInAbyss-Win64-Shipping.exe+DCF0A5: 48 63 04 32     - movsxd  rax,dword ptr [rdx+rsi]
+MadeInAbyss-Win64-Shipping.exe+DCF0A9: 83 F8 FF        - cmp eax,-01
+MadeInAbyss-Win64-Shipping.exe+DCF0AC: 74 14           - je MadeInAbyss-Win64-Shipping.exe+DCF0C2
+MadeInAbyss-Win64-Shipping.exe+DCF0AE: 48 8B C8        - mov rcx,rax
+MadeInAbyss-Win64-Shipping.exe+DCF0B1: 8B 44 32 04     - mov eax,[rdx+rsi+04]
+MadeInAbyss-Win64-Shipping.exe+DCF0B5: 48 C1 E1 04     - shl rcx,04
+MadeInAbyss-Win64-Shipping.exe+DCF0B9: 48 03 4B 08     - add rcx,[rbx+08]
+// ---------- INJECTING HERE ----------
+MadeInAbyss-Win64-Shipping.exe+DCF0BD: 01 41 04        - add [rcx+04],eax
+// ---------- DONE INJECTING  ----------
+MadeInAbyss-Win64-Shipping.exe+DCF0C0: EB 50           - jmp MadeInAbyss-Win64-Shipping.exe+DCF112
+MadeInAbyss-Win64-Shipping.exe+DCF0C2: 8B 44 24 20     - mov eax,[rsp+20]
+MadeInAbyss-Win64-Shipping.exe+DCF0C6: 41 B5 01        - mov r13b,01
+MadeInAbyss-Win64-Shipping.exe+DCF0C9: 48 63 6B 10     - movsxd  rbp,dword ptr [rbx+10]
+MadeInAbyss-Win64-Shipping.exe+DCF0CD: 89 44 24 30     - mov [rsp+30],eax
+MadeInAbyss-Win64-Shipping.exe+DCF0D1: 8B 44 32 04     - mov eax,[rdx+rsi+04]
+MadeInAbyss-Win64-Shipping.exe+DCF0D5: 89 44 24 34     - mov [rsp+34],eax
+MadeInAbyss-Win64-Shipping.exe+DCF0D9: 8B 44 24 28     - mov eax,[rsp+28]
+MadeInAbyss-Win64-Shipping.exe+DCF0DD: 89 44 24 38     - mov [rsp+38],eax
+MadeInAbyss-Win64-Shipping.exe+DCF0E1: 8B 44 24 2C     - mov eax,[rsp+2C]
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

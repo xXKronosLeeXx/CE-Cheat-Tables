@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"EXP 50W 满级"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Star Trucker.exe
+  Version: 
+  Date   : 2024-09-08
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,30 48 89 83 E8 00 00 00 48 8B) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rbx+000000E8],#500000
+  jmp return
+
+code:
+  mov [rbx+000000E8],rax
+  jmp return
+
+INJECT+01:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+01:
+  db 48 89 83 E8 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+3BC6A0
+
+GameAssembly.dll+3BC681: 83 B9 E0 00 00 00 00  - cmp dword ptr [rcx+000000E0],00
+GameAssembly.dll+3BC688: 75 05                 - jne GameAssembly.dll+3BC68F
+GameAssembly.dll+3BC68A: E8 F1 38 E7 FF        - call GameAssembly.il2cpp_runtime_class_init
+GameAssembly.dll+3BC68F: 8B C6                 - mov eax,esi
+GameAssembly.dll+3BC691: 99                    - cdq 
+GameAssembly.dll+3BC692: 33 C2                 - xor eax,edx
+GameAssembly.dll+3BC694: 2B C2                 - sub eax,edx
+GameAssembly.dll+3BC696: 48 98                 - cdqe 
+GameAssembly.dll+3BC698: 48 03 C7              - add rax,rdi
+GameAssembly.dll+3BC69B: 48 8B 7C 24 30        - mov rdi,[rsp+30]
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+3BC6A0: 48 89 83 E8 00 00 00  - mov [rbx+000000E8],rax
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+3BC6A7: 48 8B 05 B2 B2 25 02  - mov rax,[GameAssembly.dll+2617960]
+GameAssembly.dll+3BC6AE: 48 8B 88 B8 00 00 00  - mov rcx,[rax+000000B8]
+GameAssembly.dll+3BC6B5: 48 8B 09              - mov rcx,[rcx]
+GameAssembly.dll+3BC6B8: 48 85 C9              - test rcx,rcx
+GameAssembly.dll+3BC6BB: 74 4A                 - je GameAssembly.dll+3BC707
+GameAssembly.dll+3BC6BD: 45 33 C0              - xor r8d,r8d
+GameAssembly.dll+3BC6C0: 33 D2                 - xor edx,edx
+GameAssembly.dll+3BC6C2: E8 79 0A 00 00        - call GameAssembly.dll+3BD140
+GameAssembly.dll+3BC6C7: 48 8B 05 92 B2 25 02  - mov rax,[GameAssembly.dll+2617960]
+GameAssembly.dll+3BC6CE: 48 8B 88 B8 00 00 00  - mov rcx,[rax+000000B8]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"电池不减少"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Star Trucker.exe
+  Version: 
+  Date   : 2024-09-08
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,2B C2 2B F8 89 BB 60 01 00 00 85 FF 48 8B 7C 24 58) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop//  sub eax,edx
+  nop//  sub edi,eax
+  mov [rbx+00000160],edi
+  jmp return
+
+
+code:
+  sub eax,edx
+  sub edi,eax
+  mov [rbx+00000160],edi
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 5
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 2B C2 2B F8 89 BB 60 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+387FBB
+
+GameAssembly.dll+387F8E: 48 8D 0D C3 E4 27 02           - lea rcx,[GameAssembly.dll+2606458]
+GameAssembly.dll+387F95: E8 D6 7C EA FF                 - call GameAssembly.il2cpp_get_exception_argument_null+2E0
+GameAssembly.dll+387F9A: C6 05 B9 75 4A 02 01           - mov byte ptr [GameAssembly.dll+282F55A],01
+GameAssembly.dll+387FA1: 48 8B 0D B0 E4 27 02           - mov rcx,[GameAssembly.dll+2606458]
+GameAssembly.dll+387FA8: 83 B9 E0 00 00 00 00           - cmp dword ptr [rcx+000000E0],00
+GameAssembly.dll+387FAF: 75 05                          - jne GameAssembly.dll+387FB6
+GameAssembly.dll+387FB1: E8 CA 7F EA FF                 - call GameAssembly.il2cpp_runtime_class_init
+GameAssembly.dll+387FB6: 8B C6                          - mov eax,esi
+GameAssembly.dll+387FB8: 99                             - cdq 
+GameAssembly.dll+387FB9: 33 C2                          - xor eax,edx
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+387FBB: 2B C2                          - sub eax,edx
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+387FBD: 2B F8                          - sub edi,eax
+GameAssembly.dll+387FBF: 89 BB 60 01 00 00              - mov [rbx+00000160],edi
+GameAssembly.dll+387FC5: 85 FF                          - test edi,edi
+GameAssembly.dll+387FC7: 48 8B 7C 24 58                 - mov rdi,[rsp+58]
+GameAssembly.dll+387FCC: 7F 14                          - jg GameAssembly.dll+387FE2
+GameAssembly.dll+387FCE: 33 D2                          - xor edx,edx
+GameAssembly.dll+387FD0: 48 8B CB                       - mov rcx,rbx
+GameAssembly.dll+387FD3: E8 18 28 00 00                 - call GameAssembly.dll+38A7F0
+GameAssembly.dll+387FD8: C7 83 60 01 00 00 00 00 00 00  - mov [rbx+00000160],00000000
+GameAssembly.dll+387FE2: 48 8B 83 18 01 00 00           - mov rax,[rbx+00000118]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"money9999999"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Star Trucker.exe
+  Version: 
+  Date   : 2024-09-08
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,CC CC CC 48 89 51 30 C3) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rcx+30],#9999999
+  ret
+  jmp return
+
+code:
+  mov [rcx+30],rdx
+  ret 
+  jmp return
+
+INJECT+03:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+03:
+  db 48 89 51 30 C3
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+3EFA10
+
+GameAssembly.dll+3EF9FA: C3              - ret 
+GameAssembly.dll+3EF9FB: 48 8B 5C 24 30  - mov rbx,[rsp+30]
+GameAssembly.dll+3EFA00: 32 C0           - xor al,al
+GameAssembly.dll+3EFA02: 48 83 C4 20     - add rsp,20
+GameAssembly.dll+3EFA06: 5F              - pop rdi
+GameAssembly.dll+3EFA07: C3              - ret 
+GameAssembly.dll+3EFA08: E8 D3 04 E4 FF  - call GameAssembly.il2cpp_method_get_class+90
+GameAssembly.dll+3EFA0D: CC              - int 3 
+GameAssembly.dll+3EFA0E: CC              - int 3 
+GameAssembly.dll+3EFA0F: CC              - int 3 
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+3EFA10: 48 89 51 30     - mov [rcx+30],rdx
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+3EFA14: C3              - ret 
+GameAssembly.dll+3EFA15: CC              - int 3 
+GameAssembly.dll+3EFA16: CC              - int 3 
+GameAssembly.dll+3EFA17: CC              - int 3 
+GameAssembly.dll+3EFA18: CC              - int 3 
+GameAssembly.dll+3EFA19: CC              - int 3 
+GameAssembly.dll+3EFA1A: CC              - int 3 
+GameAssembly.dll+3EFA1B: CC              - int 3 
+GameAssembly.dll+3EFA1C: CC              - int 3 
+GameAssembly.dll+3EFA1D: CC              - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"money"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Prison Architect
+  Version: 
+  Date   : 2025-05-08
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Prison Architect64.exe,F3 0F 11 41 30 4C) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+//  movss [rcx+30],xmm0
+  jmp return
+
+code:
+  movss [rcx+30],xmm0
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 41 30
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Prison Architect64.exe+5A04CF
+
+Prison Architect64.exe+5A04AB: 45 33 ED              - xor r13d,r13d
+Prison Architect64.exe+5A04AE: 44 89 6D 5F           - mov [rbp+5F],r13d
+Prison Architect64.exe+5A04B2: 85 D2                 - test edx,edx
+Prison Architect64.exe+5A04B4: 75 0A                 - jne "Prison Architect64.exe"+5A04C0
+Prison Architect64.exe+5A04B6: 44 38 6D 7F           - cmp [rbp+7F],r13b
+Prison Architect64.exe+5A04BA: 0F 84 2B 04 00 00     - je "Prison Architect64.exe"+5A08EB
+Prison Architect64.exe+5A04C0: 66 0F 6E F3           - movd xmm6,ebx
+Prison Architect64.exe+5A04C4: 0F 5B F6              - cvtdq2ps xmm6,xmm6
+Prison Architect64.exe+5A04C7: 0F 28 C6              - movaps xmm0,xmm6
+Prison Architect64.exe+5A04CA: F3 0F 58 41 30        - addss xmm0,[rcx+30]
+// ---------- INJECTING HERE ----------
+Prison Architect64.exe+5A04CF: F3 0F 11 41 30        - movss [rcx+30],xmm0
+// ---------- DONE INJECTING  ----------
+Prison Architect64.exe+5A04D4: 4C 8B 75 77           - mov r14,[rbp+77]
+Prison Architect64.exe+5A04D8: 4C 89 74 24 20        - mov [rsp+20],r14
+Prison Architect64.exe+5A04DD: 44 0F B6 CE           - movzx r9d,sil
+Prison Architect64.exe+5A04E1: E8 3A 12 00 00        - call "Prison Architect64.exe"+5A1720
+Prison Architect64.exe+5A04E6: 84 C0                 - test al,al
+Prison Architect64.exe+5A04E8: 0F 85 FD 01 00 00     - jne "Prison Architect64.exe"+5A06EB
+Prison Architect64.exe+5A04EE: 4C 39 2D 8B 73 7B 00  - cmp ["Prison Architect64.exe"+D57880],r13
+Prison Architect64.exe+5A04F5: 74 36                 - je "Prison Architect64.exe"+5A052D
+Prison Architect64.exe+5A04F7: 49 8B D7              - mov rdx,r15
+Prison Architect64.exe+5A04FA: E8 B1 D6 B7 FF        - call "Prison Architect64.exe"+11DBB0
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>money</Description>
+      <AddressString>Prison Architect64.exe+5A04CF</AddressString>
+      <Before>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>58</Byte>
+        <Byte>41</Byte>
+        <Byte>30</Byte>
+      </Before>
+      <Actual>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>11</Byte>
+        <Byte>41</Byte>
+        <Byte>30</Byte>
+      </Actual>
+      <After>
+        <Byte>4C</Byte>
+        <Byte>8B</Byte>
+        <Byte>75</Byte>
+        <Byte>77</Byte>
+        <Byte>4C</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>

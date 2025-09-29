@@ -1,0 +1,757 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"SP/gold=9999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : LostJudgment.exe
+  Version: 
+  Date   : 2024-08-25
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LostJudgment.exe,48 89 3C D8 48 8B 5C 24 50) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rax+rbx*8],#999999999
+  mov rbx,[rsp+50]
+  jmp return
+
+
+code:
+  mov [rax+rbx*8],rdi
+  mov rbx,[rsp+50]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 4
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 48 89 3C D8 48 8B 5C 24 50
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LostJudgment.exe+17DAB452
+
+LostJudgment.exe+17DAB42D: 48 8D 4C 24 20  - lea rcx,[rsp+20]
+LostJudgment.exe+17DAB432: 89 DA           - mov edx,ebx
+LostJudgment.exe+17DAB434: 48 89 C7        - mov rdi,rax
+LostJudgment.exe+17DAB437: E8 C4 95 96 EA  - call LostJudgment.exe+2714A00
+LostJudgment.exe+17DAB43C: 48 39 C6        - cmp rsi,rax
+LostJudgment.exe+17DAB43F: 48 0F 4F C6     - cmovg rax,rsi
+LostJudgment.exe+17DAB443: 48 8B 74 24 58  - mov rsi,[rsp+58]
+LostJudgment.exe+17DAB448: 48 39 F8        - cmp rax,rdi
+LostJudgment.exe+17DAB44B: 48 0F 4C F8     - cmovl rdi,rax
+LostJudgment.exe+17DAB44F: 49 8B 06        - mov rax,[r14]
+// ---------- INJECTING HERE ----------
+LostJudgment.exe+17DAB452: 48 89 3C D8     - mov [rax+rbx*8],rdi
+// ---------- DONE INJECTING  ----------
+LostJudgment.exe+17DAB456: 48 8B 5C 24 50  - mov rbx,[rsp+50]
+LostJudgment.exe+17DAB45B: 48 8B 7C 24 60  - mov rdi,[rsp+60]
+LostJudgment.exe+17DAB460: 48 83 C4 40     - add rsp,40
+LostJudgment.exe+17DAB464: 41 5E           - pop r14
+LostJudgment.exe+17DAB466: C3              - ret 
+LostJudgment.exe+17DAB467: CC              - int 3 
+LostJudgment.exe+17DAB468: 4C 8B 24 24     - mov r12,[rsp]
+LostJudgment.exe+17DAB46C: 48 83 C4 08     - add rsp,08
+LostJudgment.exe+17DAB470: E9 76 6E 0E F1  - jmp LostJudgment.exe+8E922EB
+LostJudgment.exe+17DAB475: 48 8B 1C 24     - mov rbx,[rsp]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>11</ID>
+      <Description>"EX不减"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : LostJudgment.exe
+  Version: 
+  Date   : 2024-08-25
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LostJudgment.exe,C5 FA 11 08 48 8B 05 B8 77 46 02) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop   //  vmovss [rax],xmm1
+  mov rax,[LostJudgment.exe+533BC68]
+  jmp return
+
+code:
+  vmovss [rax],xmm1
+  mov rax,[LostJudgment.exe+533BC68]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 6
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db C5 FA 11 08 48 8B 05 B8 77 46 02
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LostJudgment.exe+2ED44A5
+
+LostJudgment.exe+2ED4482: 74 25                 - je LostJudgment.exe+2ED44A9
+LostJudgment.exe+2ED4484: 48 83 C0 08           - add rax,08
+LostJudgment.exe+2ED4488: 74 1F                 - je LostJudgment.exe+2ED44A9
+LostJudgment.exe+2ED448A: 48 83 C0 20           - add rax,20
+LostJudgment.exe+2ED448E: 74 19                 - je LostJudgment.exe+2ED44A9
+LostJudgment.exe+2ED4490: C5 F8 57 C0           - vxorps xmm0,xmm0,xmm0
+LostJudgment.exe+2ED4494: C5 FA 10 E1           - vmovss xmm4,xmm0,xmm1
+LostJudgment.exe+2ED4498: C5 DA 5D 50 04        - vminss xmm2,xmm4,[rax+04]
+LostJudgment.exe+2ED449D: C5 F0 57 C9           - vxorps xmm1,xmm1,xmm1
+LostJudgment.exe+2ED44A1: C5 EA 5F C9           - vmaxss xmm1,xmm2,xmm1
+// ---------- INJECTING HERE ----------
+LostJudgment.exe+2ED44A5: C5 FA 11 08           - vmovss [rax],xmm1
+// ---------- DONE INJECTING  ----------
+LostJudgment.exe+2ED44A9: 48 8B 05 B8 77 46 02  - mov rax,[LostJudgment.exe+533BC68]
+LostJudgment.exe+2ED44B0: 4C 8D 0D 09 A9 43 01  - lea r9,[LostJudgment.exe+430EDC0]
+LostJudgment.exe+2ED44B7: 8B 48 28              - mov ecx,[rax+28]
+LostJudgment.exe+2ED44BA: 33 C0                 - xor eax,eax
+LostJudgment.exe+2ED44BC: 85 C9                 - test ecx,ecx
+LostJudgment.exe+2ED44BE: 74 2C                 - je LostJudgment.exe+2ED44EC
+LostJudgment.exe+2ED44C0: 8B D1                 - mov edx,ecx
+LostJudgment.exe+2ED44C2: 81 E2 FF FF 0F 00     - and edx,000FFFFF
+LostJudgment.exe+2ED44C8: 81 FA 00 00 08 00     - cmp edx,00080000
+LostJudgment.exe+2ED44CE: 73 1C                 - jae LostJudgment.exe+2ED44EC
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>17</ID>
+      <Description>"吃饭不涨体力，可以多吃"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : LostJudgment.exe
+  Version: 
+  Date   : 2024-08-25
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LostJudgment.exe,49 89 01 41 B0 01 49 8B D2 49 8B CE) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [r9],#990
+  mov r8b,01
+  jmp return
+
+code:
+  mov [r9],rax
+  mov r8b,01
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 49 89 01 41 B0 01
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LostJudgment.exe+2D7A70A
+
+LostJudgment.exe+2D7A6E8: 48 0F 4C D1        - cmovl rdx,rcx
+LostJudgment.exe+2D7A6EC: 49 89 51 10        - mov [r9+10],rdx
+LostJudgment.exe+2D7A6F0: 4C 2B C2           - sub r8,rdx
+LostJudgment.exe+2D7A6F3: 49 8B 09           - mov rcx,[r9]
+LostJudgment.exe+2D7A6F6: 49 03 CA           - add rcx,r10
+LostJudgment.exe+2D7A6F9: 49 3B C8           - cmp rcx,r8
+LostJudgment.exe+2D7A6FC: 4C 0F 4C C1        - cmovl r8,rcx
+LostJudgment.exe+2D7A700: 48 8B C7           - mov rax,rdi
+LostJudgment.exe+2D7A703: 4D 85 C0           - test r8,r8
+LostJudgment.exe+2D7A706: 49 0F 4F C0        - cmovg rax,r8
+// ---------- INJECTING HERE ----------
+LostJudgment.exe+2D7A70A: 49 89 01           - mov [r9],rax
+// ---------- DONE INJECTING  ----------
+LostJudgment.exe+2D7A70D: 41 B0 01           - mov r8b,01
+LostJudgment.exe+2D7A710: 49 8B D2           - mov rdx,r10
+LostJudgment.exe+2D7A713: 49 8B CE           - mov rcx,r14
+LostJudgment.exe+2D7A716: E8 D5 27 A4 FF     - call LostJudgment.exe+27BCEF0
+LostJudgment.exe+2D7A71B: 48 85 DB           - test rbx,rbx
+LostJudgment.exe+2D7A71E: 74 07              - je LostJudgment.exe+2D7A727
+LostJudgment.exe+2D7A720: C5 FA 10 43 40     - vmovss xmm0,[rbx+40]
+LostJudgment.exe+2D7A725: EB 12              - jmp LostJudgment.exe+2D7A739
+LostJudgment.exe+2D7A727: 41 B8 13 00 00 00  - mov r8d,00000013
+LostJudgment.exe+2D7A72D: 41 8B D7           - mov edx,r15d
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>13</ID>
+      <Description>"加血逻辑 8字节（目前锁990红血）"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : LostJudgment.exe
+  Version: 
+  Date   : 2024-08-25
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LostJudgment.exe,49 89 02 41 B0 01) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [r10],#990//  mov [r10],rax
+  mov r8b,01
+  jmp return
+
+code:
+  mov [r10],rax
+  mov r8b,01
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 49 89 02 41 B0 01
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LostJudgment.exe+28BCBD9
+
+LostJudgment.exe+28BCBB6: 49 8D 40 FF        - lea rax,[r8-01]
+LostJudgment.exe+28BCBBA: 48 3B C8           - cmp rcx,rax
+LostJudgment.exe+28BCBBD: 48 0F 4C C1        - cmovl rax,rcx
+LostJudgment.exe+28BCBC1: 4C 2B C0           - sub r8,rax
+LostJudgment.exe+28BCBC4: 49 89 42 10        - mov [r10+10],rax
+LostJudgment.exe+28BCBC8: 4D 3B C8           - cmp r9,r8
+LostJudgment.exe+28BCBCB: 48 8B C3           - mov rax,rbx
+LostJudgment.exe+28BCBCE: 4D 0F 4C C1        - cmovl r8,r9
+LostJudgment.exe+28BCBD2: 4D 85 C0           - test r8,r8
+LostJudgment.exe+28BCBD5: 49 0F 4F C0        - cmovg rax,r8
+// ---------- INJECTING HERE ----------
+LostJudgment.exe+28BCBD9: 49 89 02           - mov [r10],rax
+// ---------- DONE INJECTING  ----------
+LostJudgment.exe+28BCBDC: 41 B0 01           - mov r8b,01
+LostJudgment.exe+28BCBDF: 49 8B CB           - mov rcx,r11
+LostJudgment.exe+28BCBE2: E8 09 03 F0 FF     - call LostJudgment.exe+27BCEF0
+LostJudgment.exe+28BCBE7: 38 5D 7F           - cmp [rbp+7F],bl
+LostJudgment.exe+28BCBEA: 74 57              - je LostJudgment.exe+28BCC43
+LostJudgment.exe+28BCBEC: 48 85 F6           - test rsi,rsi
+LostJudgment.exe+28BCBEF: 74 05              - je LostJudgment.exe+28BCBF6
+LostJudgment.exe+28BCBF1: 8B 46 34           - mov eax,[rsi+34]
+LostJudgment.exe+28BCBF4: EB 13              - jmp LostJudgment.exe+28BCC09
+LostJudgment.exe+28BCBF6: 41 B8 0C 00 00 00  - mov r8d,0000000C
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>14</ID>
+      <Description>"不减血"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : LostJudgment.exe
+  Version: 
+  Date   : 2024-08-25
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LostJudgment.exe,4D 89 02 C3 C3) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop//  mov [r10],r8
+  ret
+  ret
+  jmp return
+
+code:
+  mov [r10],r8
+  ret 
+  ret 
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 4D 89 02 C3 C3
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LostJudgment.exe+17A8FAE5
+
+LostJudgment.exe+17A8FAC1: 48 0F 4F C8           - cmovg rcx,rax
+LostJudgment.exe+17A8FAC5: 49 8D 51 FF           - lea rdx,[r9-01]
+LostJudgment.exe+17A8FAC9: 48 39 D1              - cmp rcx,rdx
+LostJudgment.exe+17A8FACC: 48 0F 4C D1           - cmovl rdx,rcx
+LostJudgment.exe+17A8FAD0: 49 29 D1              - sub r9,rdx
+LostJudgment.exe+17A8FAD3: 49 89 52 10           - mov [r10+10],rdx
+LostJudgment.exe+17A8FAD7: 4D 39 CB              - cmp r11,r9
+LostJudgment.exe+17A8FADA: 4D 0F 4C CB           - cmovl r9,r11
+LostJudgment.exe+17A8FADE: 4D 85 C9              - test r9,r9
+LostJudgment.exe+17A8FAE1: 4D 0F 4F C1           - cmovg r8,r9
+// ---------- INJECTING HERE ----------
+LostJudgment.exe+17A8FAE5: 4D 89 02              - mov [r10],r8
+// ---------- DONE INJECTING  ----------
+LostJudgment.exe+17A8FAE8: C3                    - ret 
+LostJudgment.exe+17A8FAE9: C3                    - ret 
+LostJudgment.exe+17A8FAEA: 55                    - push rbp
+LostJudgment.exe+17A8FAEB: 0F EA 9E 3F 6C 5A 01  - pminsw mm3,[rsi+015A6C3F]
+LostJudgment.exe+17A8FAF2: 00 00                 - add [rax],al
+LostJudgment.exe+17A8FAF4: 00 9C 41 56 49 F7 D6  - add [rcx+rax*2-2908B6AA],bl
+LostJudgment.exe+17A8FAFB: 4C 21 34 24           - and [rsp],r14
+LostJudgment.exe+17A8FAFF: 41 5E                 - pop r14
+LostJudgment.exe+17A8FB01: 4C 33 74 24 08        - xor r14,[rsp+08]
+LostJudgment.exe+17A8FB06: 9D                    - popfq 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>20</ID>
+      <Description>"喝酒逻辑"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : LostJudgment.exe
+  Version: 
+  Date   : 2024-08-25
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LostJudgment.exe,89 86 28 01 00 00 83) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rsi+00000128],eax
+  jmp return
+
+code:
+  mov [rsi+00000128],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 86 28 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LostJudgment.exe+275EC9A
+
+LostJudgment.exe+275EC6E: E8 0D 9B 06 00        - call LostJudgment.exe+27C8780
+LostJudgment.exe+275EC73: C5 F8 28 CF           - vmovaps xmm1,xmm7
+LostJudgment.exe+275EC77: 48 8B C8              - mov rcx,rax
+LostJudgment.exe+275EC7A: E8 61 BF 06 00        - call LostJudgment.exe+27CABE0
+LostJudgment.exe+275EC7F: 83 3D F2 20 A9 01 09  - cmp dword ptr [LostJudgment.exe+41F0D78],09
+LostJudgment.exe+275EC86: 75 5A                 - jne LostJudgment.exe+275ECE2
+LostJudgment.exe+275EC88: E8 23 51 06 00        - call LostJudgment.exe+27C3DB0
+LostJudgment.exe+275EC8D: 39 86 28 01 00 00     - cmp [rsi+00000128],eax
+LostJudgment.exe+275EC93: 74 4D                 - je LostJudgment.exe+275ECE2
+LostJudgment.exe+275EC95: E8 16 51 06 00        - call LostJudgment.exe+27C3DB0
+// ---------- INJECTING HERE ----------
+LostJudgment.exe+275EC9A: 89 86 28 01 00 00     - mov [rsi+00000128],eax
+// ---------- DONE INJECTING  ----------
+LostJudgment.exe+275ECA0: 83 E8 01              - sub eax,01
+LostJudgment.exe+275ECA3: 74 30                 - je LostJudgment.exe+275ECD5
+LostJudgment.exe+275ECA5: 83 E8 01              - sub eax,01
+LostJudgment.exe+275ECA8: 74 24                 - je LostJudgment.exe+275ECCE
+LostJudgment.exe+275ECAA: 83 E8 01              - sub eax,01
+LostJudgment.exe+275ECAD: 74 18                 - je LostJudgment.exe+275ECC7
+LostJudgment.exe+275ECAF: 83 E8 01              - sub eax,01
+LostJudgment.exe+275ECB2: 74 0C                 - je LostJudgment.exe+275ECC0
+LostJudgment.exe+275ECB4: 83 F8 01              - cmp eax,01
+LostJudgment.exe+275ECB7: 75 29                 - jne LostJudgment.exe+275ECE2
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>25</ID>
+      <Description>"买东西脚本（浏览过就99）"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : LostJudgment.exe
+  Version: 
+  Date   : 2024-08-26
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LostJudgment.exe,8B 70 04 66 0F 1F 44 00 00 48 8D 0D * * * * E8 64) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov esi,63
+  mov [rax+04],esi
+  nop word ptr [rax+rax+00]
+  jmp return
+
+code:
+  mov esi,[rax+04]
+  nop word ptr [rax+rax+00]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 4
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 8B 70 04 66 0F 1F 44 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LostJudgment.exe+2B4AD07
+
+LostJudgment.exe+2B4ACEC: 48 C1 E1 04           - shl rcx,04
+LostJudgment.exe+2B4ACF0: 48 03 C8              - add rcx,rax
+LostJudgment.exe+2B4ACF3: 48 3B C1              - cmp rax,rcx
+LostJudgment.exe+2B4ACF6: 74 18                 - je LostJudgment.exe+2B4AD10
+LostJudgment.exe+2B4ACF8: 39 18                 - cmp [rax],ebx
+LostJudgment.exe+2B4ACFA: 74 0B                 - je LostJudgment.exe+2B4AD07
+LostJudgment.exe+2B4ACFC: 48 83 C0 10           - add rax,10
+LostJudgment.exe+2B4AD00: 48 3B C1              - cmp rax,rcx
+LostJudgment.exe+2B4AD03: 75 F3                 - jne LostJudgment.exe+2B4ACF8
+LostJudgment.exe+2B4AD05: EB 09                 - jmp LostJudgment.exe+2B4AD10
+// ---------- INJECTING HERE ----------
+LostJudgment.exe+2B4AD07: 8B 70 04              - mov esi,[rax+04]
+// ---------- DONE INJECTING  ----------
+LostJudgment.exe+2B4AD0A: 66 0F 1F 44 00 00     - nop word ptr [rax+rax+00]
+LostJudgment.exe+2B4AD10: 48 8D 0D 95 0C 7E 02  - lea rcx,[LostJudgment.exe+532B9AC]
+LostJudgment.exe+2B4AD17: E8 64 BC E9 FE        - call LostJudgment.exe+19E6980
+LostJudgment.exe+2B4AD1C: 90                    - nop 
+LostJudgment.exe+2B4AD1D: EB 03                 - jmp LostJudgment.exe+2B4AD22
+LostJudgment.exe+2B4AD1F: 41 8B F4              - mov esi,r12d
+LostJudgment.exe+2B4AD22: 8B CB                 - mov ecx,ebx
+LostJudgment.exe+2B4AD24: E8 B7 1D 00 00        - call LostJudgment.exe+2B4CAE0
+LostJudgment.exe+2B4AD29: 44 8B F0              - mov r14d,eax
+LostJudgment.exe+2B4AD2C: 44 8B C6              - mov r8d,esi
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>29</ID>
+      <Description>"指针扫描结果"</Description>
+      <LastState Value="99" RealAddress="7FF4B30D5254"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"LostJudgment.exe"+041F0BD0</Address>
+      <Offsets>
+        <Offset>124</Offset>
+        <Offset>470</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>30</ID>
+      <Description>"物品改变逻辑（变成85）"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : LostJudgment.exe
+  Version: 
+  Date   : 2024-08-26
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LostJudgment.exe,44 89 70 04 B0 01) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+
+newmem:
+  mov [rax+04],55
+  mov al,01
+  jmp return
+
+code:
+  mov [rax+04],r14d
+  mov al,01
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 44 89 70 04 B0 01
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LostJudgment.exe+17D3172E
+
+LostJudgment.exe+17D31715: 5D                    - pop rbp
+LostJudgment.exe+17D31716: C3                    - ret 
+LostJudgment.exe+17D31717: C7 40 04 00 00 00 00  - mov [rax+04],00000000
+LostJudgment.exe+17D3171E: B0 01                 - mov al,01
+LostJudgment.exe+17D31720: 48 8B 5C 24 50        - mov rbx,[rsp+50]
+LostJudgment.exe+17D31725: 48 83 C4 20           - add rsp,20
+LostJudgment.exe+17D31729: 41 5E                 - pop r14
+LostJudgment.exe+17D3172B: 5F                    - pop rdi
+LostJudgment.exe+17D3172C: 5D                    - pop rbp
+LostJudgment.exe+17D3172D: C3                    - ret 
+// ---------- INJECTING HERE ----------
+LostJudgment.exe+17D3172E: 44 89 70 04           - mov [rax+04],r14d
+// ---------- DONE INJECTING  ----------
+LostJudgment.exe+17D31732: B0 01                 - mov al,01
+LostJudgment.exe+17D31734: 48 8B 5C 24 50        - mov rbx,[rsp+50]
+LostJudgment.exe+17D31739: 48 83 C4 20           - add rsp,20
+LostJudgment.exe+17D3173D: 41 5E                 - pop r14
+LostJudgment.exe+17D3173F: 5F                    - pop rdi
+LostJudgment.exe+17D31740: 5D                    - pop rbp
+LostJudgment.exe+17D31741: C3                    - ret 
+LostJudgment.exe+17D31742: 48 89 D6              - mov rsi,rdx
+LostJudgment.exe+17D31745: 48 C1 E7 04           - shl rdi,04
+LostJudgment.exe+17D31749: 48 01 F7              - add rdi,rsi
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>33</ID>
+      <Description>"跳舞机分数"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : LostJudgment.exe
+  Version: 
+  Date   : 2024-08-31
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LostJudgment.exe,89 83 80 00 00 00 48 8D 4B 30) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rbx+00000080],#999999
+  jmp return
+
+code:
+  mov [rbx+00000080],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 83 80 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LostJudgment.exe+171B98E
+
+LostJudgment.exe+171B961: C5 E0 57 DB              - vxorps xmm3,xmm3,xmm3
+LostJudgment.exe+171B965: C4 E1 E2 2A D8           - vcvtsi2ss xmm3,rbx,rax
+LostJudgment.exe+171B96A: 8B C1                    - mov eax,ecx
+LostJudgment.exe+171B96C: C5 F8 57 C0              - vxorps xmm0,xmm0,xmm0
+LostJudgment.exe+171B970: C4 E1 FA 2A C0           - vcvtsi2ss xmm0,rax,rax
+LostJudgment.exe+171B975: C5 FA 5C D3              - vsubss xmm2,xmm0,xmm3
+LostJudgment.exe+171B979: C5 F2 59 0D BF 0D F7 01  - vmulss xmm1,xmm1,[LostJudgment.exe+368C740]
+LostJudgment.exe+171B981: C5 EA 59 D1              - vmulss xmm2,xmm2,xmm1
+LostJudgment.exe+171B985: C5 EA 58 C3              - vaddss xmm0,xmm2,xmm3
+LostJudgment.exe+171B989: C4 E1 FA 2C C0           - vcvttss2si rax,xmm0
+// ---------- INJECTING HERE ----------
+LostJudgment.exe+171B98E: 89 83 80 00 00 00        - mov [rbx+00000080],eax
+// ---------- DONE INJECTING  ----------
+LostJudgment.exe+171B994: 48 8D 4B 30              - lea rcx,[rbx+30]
+LostJudgment.exe+171B998: 41 B9 FF FF FF FF        - mov r9d,FFFFFFFF
+LostJudgment.exe+171B99E: 41 B8 CE 2E 00 00        - mov r8d,00002ECE
+LostJudgment.exe+171B9A4: 48 8D 54 24 50           - lea rdx,[rsp+50]
+LostJudgment.exe+171B9A9: E8 02 D7 0A 01           - call LostJudgment.exe+27C90B0
+LostJudgment.exe+171B9AE: 44 8B 83 80 00 00 00     - mov r8d,[rbx+00000080]
+LostJudgment.exe+171B9B5: 48 8D 15 DC A6 E8 01     - lea rdx,[LostJudgment.exe+35A6098]
+LostJudgment.exe+171B9BC: 48 8D 4C 24 40           - lea rcx,[rsp+40]
+LostJudgment.exe+171B9C1: E8 1A 60 E8 00           - call LostJudgment.exe+25A19E0
+LostJudgment.exe+171B9C6: 90                       - nop 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>36</ID>
+      <Description>"高尔夫分数8888"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : LostJudgment.exe
+  Version: 
+  Date   : 2024-08-31
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LostJudgment.exe,89 51 70 4D 8B C8) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rcx+70],#8888
+  mov r9,r8
+  jmp return
+
+code:
+  mov [rcx+70],edx
+  mov r9,r8
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 51 70 4D 8B C8
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LostJudgment.exe+2CD5C9E
+
+LostJudgment.exe+2CD5C7C: CC                       - int 3 
+LostJudgment.exe+2CD5C7D: CC                       - int 3 
+LostJudgment.exe+2CD5C7E: CC                       - int 3 
+LostJudgment.exe+2CD5C7F: CC                       - int 3 
+LostJudgment.exe+2CD5C80: 40 53                    - push rbx
+LostJudgment.exe+2CD5C82: 48 81 EC 50 01 00 00     - sub rsp,00000150
+LostJudgment.exe+2CD5C89: 48 8B 05 10 9B E8 00     - mov rax,[LostJudgment.exe+3B5F7A0]
+LostJudgment.exe+2CD5C90: 48 33 C4                 - xor rax,rsp
+LostJudgment.exe+2CD5C93: 48 89 84 24 40 01 00 00  - mov [rsp+00000140],rax
+LostJudgment.exe+2CD5C9B: 48 8B D9                 - mov rbx,rcx
+// ---------- INJECTING HERE ----------
+LostJudgment.exe+2CD5C9E: 89 51 70                 - mov [rcx+70],edx
+// ---------- DONE INJECTING  ----------
+LostJudgment.exe+2CD5CA1: 4D 8B C8                 - mov r9,r8
+LostJudgment.exe+2CD5CA4: 44 8B C2                 - mov r8d,edx
+LostJudgment.exe+2CD5CA7: 48 8D 15 36 0C 7D 00     - lea rdx,[LostJudgment.exe+34A68E4]
+LostJudgment.exe+2CD5CAE: 48 8D 4C 24 40           - lea rcx,[rsp+40]
+LostJudgment.exe+2CD5CB3: E8 A8 C0 60 FD           - call LostJudgment.exe+2E1D60
+LostJudgment.exe+2CD5CB8: 48 8D 4B 60              - lea rcx,[rbx+60]
+LostJudgment.exe+2CD5CBC: 45 33 C9                 - xor r9d,r9d
+LostJudgment.exe+2CD5CBF: 41 B8 FD 0B 00 00        - mov r8d,00000BFD
+LostJudgment.exe+2CD5CC5: 48 8D 54 24 20           - lea rdx,[rsp+20]
+LostJudgment.exe+2CD5CCA: E8 E1 33 AF FF           - call LostJudgment.exe+27C90B0
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

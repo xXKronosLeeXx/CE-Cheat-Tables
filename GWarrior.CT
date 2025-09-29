@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"分数+99"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : GWarrior.exe
+  Version: 
+  Date   : 2024-08-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,89 86 E0 00 00 00 48 B8 A8) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [rsi+000000E0],64
+  jmp return
+
+code:
+  mov [rsi+000000E0],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 86 E0 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Player:AddKill+1c
+
+16118CAD22C: 00 00                          - add [rax],al
+16118CAD22E: 00 00                          - add [rax],al
+Player:AddKill: 55                             - push rbp
+Player:AddKill+1: 48 8B EC                       - mov rbp,rsp
+Player:AddKill+4: 48 83 EC 30                    - sub rsp,30
+Player:AddKill+8: 48 89 75 F0                    - mov [rbp-10],rsi
+Player:AddKill+c: 48 89 7D F8                    - mov [rbp-08],rdi
+Player:AddKill+10: 48 8B F1                       - mov rsi,rcx
+Player:AddKill+13: 48 63 86 E0 00 00 00           - movsxd  rax,dword ptr [rsi+000000E0]
+Player:AddKill+1a: FF C0                          - inc eax
+// ---------- INJECTING HERE ----------
+Player:AddKill+1c: 89 86 E0 00 00 00              - mov [rsi+000000E0],eax
+// ---------- DONE INJECTING  ----------
+Player:AddKill+22: 48 B8 A8 DF E2 91 60 01 00 00  - mov rax,0000016091E2DFA8
+Player:AddKill+2c: 48 63 08                       - movsxd  rcx,dword ptr [rax]
+Player:AddKill+2f: FF C1                          - inc ecx
+Player:AddKill+31: 48 B8 A8 DF E2 91 60 01 00 00  - mov rax,0000016091E2DFA8
+Player:AddKill+3b: 89 08                          - mov [rax],ecx
+Player:AddKill+3d: BF 64 00 00 00                 - mov edi,00000064
+Player:AddKill+42: 48 B8 B4 DF E2 91 60 01 00 00  - mov rax,0000016091E2DFB4
+Player:AddKill+4c: 0F B6 00                       - movzx eax,byte ptr [rax]
+Player:AddKill+4f: 85 C0                          - test eax,eax
+Player:AddKill+51: 74 17                          - je Player:AddKill+6a
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>15</ID>
+      <Description>"不减命"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : GWarrior.exe
+  Version: 
+  Date   : 2024-08-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,5F 00 00 00 48 8B 47 18 48 63 88 DC 00 00 00 FF C9 89 88 DC 00 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  //mov [rax+000000DC],ecx
+  nop
+  jmp return
+
+code:
+  mov [rax+000000DC],ecx
+  jmp return
+
+INJECT+11:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+11:
+  db 89 88 DC 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 229527D9F48
+
+229527D9F14: 48 8B 48 68                    - mov rcx,[rax+68]
+229527D9F18: 48 BA E0 3F AA 98 29 02 00 00  - mov rdx,0000022998AA3FE0
+229527D9F22: 48 8D 6D 00                    - lea rbp,[rbp+00]
+229527D9F26: 49 BB D0 70 57 CC 27 02 00 00  - mov r11,00000227CC5770D0
+229527D9F30: 41 FF D3                       - call r11
+229527D9F33: 85 C0                          - test eax,eax
+229527D9F35: 0F 84 5F 00 00 00              - je 229527D9F9A
+229527D9F3B: 48 8B 47 18                    - mov rax,[rdi+18]
+229527D9F3F: 48 63 88 DC 00 00 00           - movsxd  rcx,dword ptr [rax+000000DC]
+229527D9F46: FF C9                          - dec ecx
+// ---------- INJECTING HERE ----------
+229527D9F48: 89 88 DC 00 00 00              - mov [rax+000000DC],ecx
+// ---------- DONE INJECTING  ----------
+229527D9F4E: 48 B8 98 DF A6 98 29 02 00 00  - mov rax,0000022998A6DF98
+229527D9F58: 48 63 08                       - movsxd  rcx,dword ptr [rax]
+229527D9F5B: FF C1                          - inc ecx
+229527D9F5D: 48 B8 98 DF A6 98 29 02 00 00  - mov rax,0000022998A6DF98
+229527D9F67: 89 08                          - mov [rax],ecx
+229527D9F69: 49 BA F8 C1 10 98 29 02 00 00  - mov r10,000002299810C1F8
+229527D9F73: 66 66 90                       - nop 3
+229527D9F76: 49 BB 50 A7 73 1F 2A 02 00 00  - mov r11,0000022A1F73A750
+229527D9F80: 41 FF D3                       - call r11
+229527D9F83: 48 B9 F8 9A B2 97 29 02 00 00  - mov rcx,0000022997B29AF8
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>19</ID>
+      <Description>"枪械强化不减"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : GWarrior.exe
+  Version: 
+  Date   : 2024-08-04
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,C7 86 C4 00 00 00 00 00 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop
+//  mov [rsi+000000C4],00000000
+  jmp return
+
+code:
+  mov [rsi+000000C4],00000000
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 5
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db C7 86 C4 00 00 00 00 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 2389F839D3B
+
+2389F839D08: 0F 84 39 00 00 00              - je 2389F839D47
+2389F839D0E: 48 B8 B4 DF B6 18 38 02 00 00  - mov rax,0000023818B6DFB4
+2389F839D18: 0F B6 00                       - movzx eax,byte ptr [rax]
+2389F839D1B: 85 C0                          - test eax,eax
+2389F839D1D: 74 12                          - je 2389F839D31
+2389F839D1F: 48 B8 FC DE B6 18 38 02 00 00  - mov rax,0000023818B6DEFC
+2389F839D29: 48 63 00                       - movsxd  rax,dword ptr [rax]
+2389F839D2C: 83 F8 01                       - cmp eax,01
+2389F839D2F: 74 0A                          - je 2389F839D3B
+2389F839D31: C7 86 C0 00 00 00 00 00 00 00  - mov [rsi+000000C0],00000000
+// ---------- INJECTING HERE ----------
+2389F839D3B: C7 86 C4 00 00 00 00 00 00 00  - mov [rsi+000000C4],00000000
+// ---------- DONE INJECTING  ----------
+2389F839D45: EB 14                          - jmp 2389F839D5B
+2389F839D47: 48 8B CE                       - mov rcx,rsi
+2389F839D4A: 48 8D 6D 00                    - lea rbp,[rbp+00]
+2389F839D4E: 49 BB B0 9F 83 9F 38 02 00 00  - mov r11,000002389F839FB0
+2389F839D58: 41 FF D3                       - call r11
+2389F839D5B: C7 86 CC 00 00 00 00 00 00 00  - mov [rsi+000000CC],00000000
+2389F839D65: C7 86 D0 00 00 00 00 00 00 00  - mov [rsi+000000D0],00000000
+2389F839D6F: 48 8B 8E 98 00 00 00           - mov rcx,[rsi+00000098]
+2389F839D76: 33 D2                          - xor edx,edx
+2389F839D78: 48 8D 64 24 00                 - lea rsp,[rsp+00]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>21</ID>
+      <Description>"不掉枪"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : GWarrior.exe
+  Version: 
+  Date   : 2024-08-04
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,C7 86 C0 00 00 00 00 00 00 00 C7) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop
+//  mov [rsi+000000C0],00000000
+  jmp return
+
+code:
+  mov [rsi+000000C0],00000000
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 5
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db C7 86 C0 00 00 00 00 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 2389F839D31
+
+2389F839D06: 85 C0                          - test eax,eax
+2389F839D08: 0F 84 39 00 00 00              - je 2389F839D47
+2389F839D0E: 48 B8 B4 DF B6 18 38 02 00 00  - mov rax,0000023818B6DFB4
+2389F839D18: 0F B6 00                       - movzx eax,byte ptr [rax]
+2389F839D1B: 85 C0                          - test eax,eax
+2389F839D1D: 74 12                          - je 2389F839D31
+2389F839D1F: 48 B8 FC DE B6 18 38 02 00 00  - mov rax,0000023818B6DEFC
+2389F839D29: 48 63 00                       - movsxd  rax,dword ptr [rax]
+2389F839D2C: 83 F8 01                       - cmp eax,01
+2389F839D2F: 74 0A                          - je 2389F839D3B
+// ---------- INJECTING HERE ----------
+2389F839D31: C7 86 C0 00 00 00 00 00 00 00  - mov [rsi+000000C0],00000000
+// ---------- DONE INJECTING  ----------
+2389F839D3B: C7 86 C4 00 00 00 00 00 00 00  - mov [rsi+000000C4],00000000
+2389F839D45: EB 14                          - jmp 2389F839D5B
+2389F839D47: 48 8B CE                       - mov rcx,rsi
+2389F839D4A: 48 8D 6D 00                    - lea rbp,[rbp+00]
+2389F839D4E: 49 BB B0 9F 83 9F 38 02 00 00  - mov r11,000002389F839FB0
+2389F839D58: 41 FF D3                       - call r11
+2389F839D5B: C7 86 CC 00 00 00 00 00 00 00  - mov [rsi+000000CC],00000000
+2389F839D65: C7 86 D0 00 00 00 00 00 00 00  - mov [rsi+000000D0],00000000
+2389F839D6F: 48 8B 8E 98 00 00 00           - mov rcx,[rsi+00000098]
+2389F839D76: 33 D2                          - xor edx,edx
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>20</ID>
+      <Description>"Boom不减（需要先获得）"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : GWarrior.exe
+  Version: 
+  Date   : 2024-08-04
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,C7 80 E4 00 00 00 00 00 00 00 48 B8) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop
+//  mov [rax+000000E4],00000000
+  jmp return
+
+code:
+  mov [rax+000000E4],00000000
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 5
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db C7 80 E4 00 00 00 00 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 2389F866BAF
+
+2389F866B7E: F3 0F 5A C9                    - cvtss2sd xmm1,xmm1
+2389F866B82: 66 0F 2F C8                    - comisd xmm1,xmm0
+2389F866B86: 0F 85 1F 04 00 00              - jne 2389F866FAB
+2389F866B8C: 0F 8A 19 04 00 00              - jp 2389F866FAB
+2389F866B92: 0F 82 13 04 00 00              - jb 2389F866FAB
+2389F866B98: 48 8B 46 18                    - mov rax,[rsi+18]
+2389F866B9C: 48 63 80 E4 00 00 00           - movsxd  rax,dword ptr [rax+000000E4]
+2389F866BA3: 85 C0                          - test eax,eax
+2389F866BA5: 0F 8E 00 04 00 00              - jng 2389F866FAB
+2389F866BAB: 48 8B 46 18                    - mov rax,[rsi+18]
+// ---------- INJECTING HERE ----------
+2389F866BAF: C7 80 E4 00 00 00 00 00 00 00  - mov [rax+000000E4],00000000
+// ---------- DONE INJECTING  ----------
+2389F866BB9: 48 B8 9C DF B6 18 38 02 00 00  - mov rax,0000023818B6DF9C
+2389F866BC3: 48 63 08                       - movsxd  rcx,dword ptr [rax]
+2389F866BC6: FF C1                          - inc ecx
+2389F866BC8: 48 B8 9C DF B6 18 38 02 00 00  - mov rax,0000023818B6DF9C
+2389F866BD2: 89 08                          - mov [rax],ecx
+2389F866BD4: 48 8B 46 18                    - mov rax,[rsi+18]
+2389F866BD8: C7 80 C8 00 00 00 05 00 00 00  - mov [rax+000000C8],00000005
+2389F866BE2: C7 86 94 00 00 00 05 00 00 00  - mov [rsi+00000094],00000005
+2389F866BEC: 48 B8 10 39 AE 8C 37 02 00 00  - mov rax,000002378CAE3910
+2389F866BF6: 48 8B 00                       - mov rax,[rax]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>7</ID>
+      <Description>"杀敌数（100个奖命）"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"UnityPlayer.dll"+0180DDB8</Address>
+      <Offsets>
+        <Offset>E0</Offset>
+        <Offset>28</Offset>
+        <Offset>28</Offset>
+        <Offset>3C0</Offset>
+        <Offset>A0</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>8</ID>
+      <Description>"枪械（0普通枪;1自动M；2散单S；3爆炸B；4激光L；5追踪）"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"UnityPlayer.dll"+0180DDB0</Address>
+      <Offsets>
+        <Offset>C0</Offset>
+        <Offset>28</Offset>
+        <Offset>28</Offset>
+        <Offset>3C0</Offset>
+        <Offset>658</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>17</ID>
+      <Description>"枪械LV（改1即可）"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"UnityPlayer.dll"+0180DDB8</Address>
+      <Offsets>
+        <Offset>C4</Offset>
+        <Offset>28</Offset>
+        <Offset>28</Offset>
+        <Offset>3C0</Offset>
+        <Offset>A0</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>16</ID>
+      <Description>"boom（1即可）"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"UnityPlayer.dll"+0180DDB8</Address>
+      <Offsets>
+        <Offset>E4</Offset>
+        <Offset>28</Offset>
+        <Offset>28</Offset>
+        <Offset>3C0</Offset>
+        <Offset>A0</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>18</ID>
+      <Description>"HP"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"UnityPlayer.dll"+0180DDB8</Address>
+      <Offsets>
+        <Offset>DC</Offset>
+        <Offset>28</Offset>
+        <Offset>28</Offset>
+        <Offset>3C0</Offset>
+        <Offset>A0</Offset>
+      </Offsets>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <Structures StructVersion="2">
+    <Structure Name="String" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="16" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000010" Description="Length" DisplayMethod="unsigned integer"/>
+        <Element Offset="20" Vartype="Unicode String" Bytesize="128" OffsetHex="00000014" Description="Value" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="Player" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="16" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000010" Description="m_CachedPtr" DisplayMethod="unsigned integer"/>
+        <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="frame" DisplayMethod="unsigned integer"/>
+        <Element Offset="32" Vartype="Pointer" Bytesize="8" OffsetHex="00000020" Description="ani" DisplayMethod="unsigned integer"/>
+        <Element Offset="40" Vartype="Pointer" Bytesize="8" OffsetHex="00000028" Description="fires" DisplayMethod="unsigned integer"/>
+        <Element Offset="48" Vartype="Float" Bytesize="4" OffsetHex="00000030" Description="HP" DisplayMethod="unsigned integer"/>
+        <Element Offset="52" Vartype="Float" Bytesize="4" OffsetHex="00000034" Description="speed" DisplayMethod="unsigned integer"/>
+        <Element Offset="56" Vartype="Float" Bytesize="4" OffsetHex="00000038" Description="minX" DisplayMethod="unsigned integer"/>
+        <Element Offset="60" Vartype="Float" Bytesize="4" OffsetHex="0000003C" Description="maxX" DisplayMethod="unsigned integer"/>
+        <Element Offset="64" Vartype="Float" Bytesize="4" OffsetHex="00000040" Description="minY" DisplayMethod="unsigned integer"/>
+        <Element Offset="68" Vartype="Float" Bytesize="4" OffsetHex="00000044" Description="maxY" DisplayMethod="unsigned integer"/>
+        <Element Offset="72" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000048" Description="mode" DisplayMethod="unsigned integer"/>
+        <Element Offset="80" Vartype="String" Bytesize="1" OffsetHex="00000050" Description="type" DisplayMethod="unsigned integer"/>
+        <Element Offset="88" Vartype="Pointer" Bytesize="8" OffsetHex="00000058" Description="playerMove" DisplayMethod="unsigned integer"/>
+        <Element Offset="96" Vartype="Pointer" Bytesize="8" OffsetHex="00000060" Description="playerFire" DisplayMethod="unsigned integer"/>
+        <Element Offset="104" Vartype="String" Bytesize="1" OffsetHex="00000068" Description="playerNum" DisplayMethod="unsigned integer"/>
+        <Element Offset="112" Vartype="Pointer" Bytesize="8" OffsetHex="00000070" Description="rd" DisplayMethod="unsigned integer"/>
+        <Element Offset="120" Vartype="Pointer" Bytesize="8" OffsetHex="00000078" Description="lifes" DisplayMethod="unsigned integer"/>
+        <Element Offset="128" Vartype="Pointer" Bytesize="8" OffsetHex="00000080" Description="killText" DisplayMethod="unsigned integer"/>
+        <Element Offset="136" Vartype="Pointer" Bytesize="8" OffsetHex="00000088" Description="fanghuzhao" DisplayMethod="unsigned integer"/>
+        <Element Offset="144" Vartype="Pointer" Bytesize="8" OffsetHex="00000090" Description="bombShow" DisplayMethod="unsigned integer"/>
+        <Element Offset="152" Vartype="Pointer" Bytesize="8" OffsetHex="00000098" Description="bombUse" DisplayMethod="unsigned integer"/>
+        <Element Offset="160" Vartype="Pointer" Bytesize="8" OffsetHex="000000A0" Description="bombUseVal" DisplayMethod="unsigned integer"/>
+        <Element Offset="168" Vartype="Pointer" Bytesize="8" OffsetHex="000000A8" Description="mapCDs" DisplayMethod="unsigned integer"/>
+        <Element Offset="176" Vartype="Pointer" Bytesize="8" OffsetHex="000000B0" Description="pm" DisplayMethod="unsigned integer"/>
+        <Element Offset="184" Vartype="Pointer" Bytesize="8" OffsetHex="000000B8" Description="sg" DisplayMethod="unsigned integer"/>
+        <Element Offset="192" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000C0" Description="weapon" DisplayMethod="unsigned integer"/>
+        <Element Offset="196" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000C4" Description="weaponLv" DisplayMethod="unsigned integer"/>
+        <Element Offset="200" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000C8" Description="god" DisplayMethod="unsigned integer"/>
+        <Element Offset="204" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000CC" Description="god2" DisplayMethod="unsigned integer"/>
+        <Element Offset="208" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000D0" Description="daojishi" DisplayMethod="unsigned integer"/>
+        <Element Offset="212" Vartype="Float" Bytesize="4" OffsetHex="000000D4" Description="maxDaoJiShi" DisplayMethod="unsigned integer"/>
+        <Element Offset="216" Vartype="Byte" Bytesize="1" OffsetHex="000000D8" Description="lockFlag" DisplayMethod="unsigned integer"/>
+        <Element Offset="220" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000DC" Description="life" DisplayMethod="unsigned integer"/>
+        <Element Offset="224" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000E0" Description="kill" DisplayMethod="unsigned integer"/>
+        <Element Offset="228" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000E4" Description="bomb" DisplayMethod="unsigned integer"/>
+        <Element Offset="232" Vartype="Byte" Bytesize="1" OffsetHex="000000E8" Description="noNBox" DisplayMethod="unsigned integer"/>
+        <Element Offset="236" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000EC" Description="first" DisplayMethod="unsigned integer"/>
+        <Element Offset="240" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000F0" Description="boxF" DisplayMethod="unsigned integer"/>
+        <Element Offset="244" Vartype="Byte" Bytesize="1" OffsetHex="000000F4" Description="yanshi" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+  </Structures>
+</CheatTable>

@@ -1,0 +1,1638 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>12</ID>
+      <Description>"money SP 使用次数=999999"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Judgment.exe
+  Version: 
+  Date   : 2024-03-16
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Judgment.exe,48 89 34 F8 E8 2A 18 F9 EE) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rax+rdi*8],#99999999
+  call Judgment.exe+60A2A0
+  jmp return
+
+code:
+  mov [rax+rdi*8],rsi
+  call Judgment.exe+60A2A0
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 4
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 48 89 34 F8 E8 2A 18 F9 EE
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Judgment.exe+11678A6D
+
+Judgment.exe+11678A45: 81 F1 4D 8D 64 24     - xor ecx,24648D4D
+Judgment.exe+11678A4B: 41 89 C8              - mov r8d,ecx
+Judgment.exe+11678A4E: 48 8D 4D E0           - lea rcx,[rbp-20]
+Judgment.exe+11678A52: E8 C9 AE 00 EF        - call Judgment.exe+683920
+Judgment.exe+11678A57: 49 39 C5              - cmp r13,rax
+Judgment.exe+11678A5A: B9 24 02 00 00        - mov ecx,00000224
+Judgment.exe+11678A5F: 49 0F 4F C5           - cmovg rax,r13
+Judgment.exe+11678A63: 48 39 F0              - cmp rax,rsi
+Judgment.exe+11678A66: 48 0F 4C F0           - cmovl rsi,rax
+Judgment.exe+11678A6A: 49 8B 06              - mov rax,[r14]
+// ---------- INJECTING HERE ----------
+Judgment.exe+11678A6D: 48 89 34 F8           - mov [rax+rdi*8],rsi
+// ---------- DONE INJECTING  ----------
+Judgment.exe+11678A71: E8 2A 18 F9 EE        - call Judgment.exe+60A2A0
+Judgment.exe+11678A76: 48 89 C2              - mov rdx,rax
+Judgment.exe+11678A79: 48 85 C0              - test rax,rax
+Judgment.exe+11678A7C: 74 23                 - je Judgment.exe+11678AA1
+Judgment.exe+11678A7E: 8B 48 10              - mov ecx,[rax+10]
+Judgment.exe+11678A81: 48 01 C1              - add rcx,rax
+Judgment.exe+11678A84: 74 2C                 - je Judgment.exe+11678AB2
+Judgment.exe+11678A86: 3B 39                 - cmp edi,[rcx]
+Judgment.exe+11678A88: 73 28                 - jae Judgment.exe+11678AB2
+Judgment.exe+11678A8A: F7 41 20 00 00 00 40  - test [rcx+20],40000000
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>10</ID>
+      <Description>"money"</Description>
+      <Options moManualExpandCollapse="1" moAllowManualCollapseAndExpand="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>2</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="100255859" RealAddress="7FF4C04A1E38"/>
+          <VariableType>8 Bytes</VariableType>
+          <Address>"Judgment.exe"+02A8C700</Address>
+          <Offsets>
+            <Offset>698</Offset>
+            <Offset>620</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>73</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="100255859" RealAddress="7FF4C04A1E38"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"Judgment.exe"+02A8DEC8</Address>
+          <Offsets>
+            <Offset>68</Offset>
+            <Offset>80</Offset>
+            <Offset>4E0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>75</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="100255859" RealAddress="7FF4C04A1E38"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"Judgment.exe"+02A9ED80</Address>
+          <Offsets>
+            <Offset>188</Offset>
+            <Offset>0</Offset>
+            <Offset>0</Offset>
+            <Offset>520</Offset>
+            <Offset>6D0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>76</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="100255859" RealAddress="7FF4C04A1E38"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"Judgment.exe"+02A8DEC8</Address>
+          <Offsets>
+            <Offset>188</Offset>
+            <Offset>0</Offset>
+            <Offset>50</Offset>
+            <Offset>590</Offset>
+            <Offset>310</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>77</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="100255859" RealAddress="7FF4C04A1E38"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"Judgment.exe"+02A8C700</Address>
+          <Offsets>
+            <Offset>188</Offset>
+            <Offset>0</Offset>
+            <Offset>50</Offset>
+            <Offset>610</Offset>
+            <Offset>620</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>78</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="100255859" RealAddress="7FF4C04A1E38"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"Judgment.exe"+02A8DEC8</Address>
+          <Offsets>
+            <Offset>188</Offset>
+            <Offset>0</Offset>
+            <Offset>70</Offset>
+            <Offset>60</Offset>
+            <Offset>230</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>79</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="100255859" RealAddress="7FF4C04A1E38"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"Judgment.exe"+02A9ED80</Address>
+          <Offsets>
+            <Offset>188</Offset>
+            <Offset>0</Offset>
+            <Offset>70</Offset>
+            <Offset>510</Offset>
+            <Offset>620</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>80</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="100255859" RealAddress="7FF4C04A1E38"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"Judgment.exe"+02A8C700</Address>
+          <Offsets>
+            <Offset>188</Offset>
+            <Offset>0</Offset>
+            <Offset>70</Offset>
+            <Offset>540</Offset>
+            <Offset>5E8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>81</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="100255859" RealAddress="7FF4C04A1E38"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"Judgment.exe"+0240A6A0</Address>
+          <Offsets>
+            <Offset>188</Offset>
+            <Offset>0</Offset>
+            <Offset>280</Offset>
+            <Offset>500</Offset>
+            <Offset>5F8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>82</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="100255859" RealAddress="7FF4C04A1E38"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"Judgment.exe"+02A8C700</Address>
+          <Offsets>
+            <Offset>188</Offset>
+            <Offset>0</Offset>
+            <Offset>280</Offset>
+            <Offset>530</Offset>
+            <Offset>620</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>85</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="100255859" RealAddress="7FF4C04A1E38"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"Judgment.exe"+02A8C700</Address>
+          <Offsets>
+            <Offset>188</Offset>
+            <Offset>0</Offset>
+            <Offset>5D0</Offset>
+            <Offset>5E8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>86</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="100255859" RealAddress="7FF4C04A1E38"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"Judgment.exe"+02A8C700</Address>
+          <Offsets>
+            <Offset>168</Offset>
+            <Offset>0</Offset>
+            <Offset>0</Offset>
+            <Offset>540</Offset>
+            <Offset>6D0</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>16</ID>
+      <Description>"道具+不-(物品1会消失，所以要复数)"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Judgment.exe
+  Version: 
+  Date   : 2024-03-16
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Judgment.exe,44 89 79 04 EB 8D) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  cmp r15d,1
+  je jia
+  jmp one
+
+jia:
+  mov r15d,9
+  mov [rcx+04],r15d
+  jmp Judgment.exe+E97274
+  jmp return
+
+one:
+  cmp [rcx+04],r15d
+  jb code
+  jmp Judgment.exe+E97274
+  jmp return
+
+code:
+  mov [rcx+04],r15d
+  jmp Judgment.exe+E97274
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 44 89 79 04 EB 8D
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Judgment.exe+E972E1
+
+Judgment.exe+E972C6: 8B 02        - mov eax,[rdx]
+Judgment.exe+E972C8: 89 42 F0     - mov [rdx-10],eax
+Judgment.exe+E972CB: 8B 42 04     - mov eax,[rdx+04]
+Judgment.exe+E972CE: 89 42 F4     - mov [rdx-0C],eax
+Judgment.exe+E972D1: FF C1        - inc ecx
+Judgment.exe+E972D3: 49 83 C0 10  - add r8,10
+Judgment.exe+E972D7: 3B 4B 0C     - cmp ecx,[rbx+0C]
+Judgment.exe+E972DA: 7C E4        - jl Judgment.exe+E972C0
+Judgment.exe+E972DC: FF 4B 0C     - dec [rbx+0C]
+Judgment.exe+E972DF: EB 93        - jmp Judgment.exe+E97274
+// ---------- INJECTING HERE ----------
+Judgment.exe+E972E1: 44 89 79 04  - mov [rcx+04],r15d
+// ---------- DONE INJECTING  ----------
+Judgment.exe+E972E5: EB 8D        - jmp Judgment.exe+E97274
+Judgment.exe+E972E7: CC           - int 3 
+Judgment.exe+E972E8: CC           - int 3 
+Judgment.exe+E972E9: CC           - int 3 
+Judgment.exe+E972EA: CC           - int 3 
+Judgment.exe+E972EB: CC           - int 3 
+Judgment.exe+E972EC: CC           - int 3 
+Judgment.exe+E972ED: CC           - int 3 
+Judgment.exe+E972EE: CC           - int 3 
+Judgment.exe+E972EF: CC           - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>30</ID>
+      <Description>"物品 all 9"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Judgment.exe
+  Version: 
+  Date   : 2024-03-16
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Judgment.exe,8B 5A 04 48 8D 0D 6D 5B 1C 01) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov ebx,9
+  lea rcx,[Judgment.exe+240A670]
+  jmp return
+
+
+code:
+  mov ebx,[rdx+04]
+  lea rcx,[Judgment.exe+240A670]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 5
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 8B 5A 04 48 8D 0D 6D 5B 1C 01
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Judgment.exe+1244AF9
+
+Judgment.exe+1244ADB: 75 F3                 - jne Judgment.exe+1244AD0
+Judgment.exe+1244ADD: 48 8D 0D 8C 5B 1C 01  - lea rcx,[Judgment.exe+240A670]
+Judgment.exe+1244AE4: E8 B7 43 07 FF        - call Judgment.exe+2B8EA0
+Judgment.exe+1244AE9: 90                    - nop 
+Judgment.exe+1244AEA: 33 DB                 - xor ebx,ebx
+Judgment.exe+1244AEC: 8B C3                 - mov eax,ebx
+Judgment.exe+1244AEE: 48 8B 5C 24 40        - mov rbx,[rsp+40]
+Judgment.exe+1244AF3: 48 83 C4 30           - add rsp,30
+Judgment.exe+1244AF7: 5F                    - pop rdi
+Judgment.exe+1244AF8: C3                    - ret 
+// ---------- INJECTING HERE ----------
+Judgment.exe+1244AF9: 8B 5A 04              - mov ebx,[rdx+04]
+// ---------- DONE INJECTING  ----------
+Judgment.exe+1244AFC: 48 8D 0D 6D 5B 1C 01  - lea rcx,[Judgment.exe+240A670]
+Judgment.exe+1244B03: E8 98 43 07 FF        - call Judgment.exe+2B8EA0
+Judgment.exe+1244B08: 90                    - nop 
+Judgment.exe+1244B09: 8B C3                 - mov eax,ebx
+Judgment.exe+1244B0B: 48 8B 5C 24 40        - mov rbx,[rsp+40]
+Judgment.exe+1244B10: 48 83 C4 30           - add rsp,30
+Judgment.exe+1244B14: 5F                    - pop rdi
+Judgment.exe+1244B15: C3                    - ret 
+Judgment.exe+1244B16: 48 8B 5C 24 40        - mov rbx,[rsp+40]
+Judgment.exe+1244B1B: 48 83 C4 30           - add rsp,30
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>56</ID>
+      <Description>"HP"</Description>
+      <Options moManualExpandCollapse="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>38</ID>
+          <Description>"-HP逻辑"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Judgment.exe
+  Version: 
+  Date   : 2024-03-16
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Judgment.exe,D3 4C 89 11 C3 CC) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [rcx],r10
+  ret 
+  int 3 
+  jmp return
+
+INJECT+01:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+01:
+  db 4C 89 11 C3 CC
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Judgment.exe+E95145
+
+Judgment.exe+E95121: 4C 0F 4F C0     - cmovg r8,rax
+Judgment.exe+E95125: 4D 8D 4B FF     - lea r9,[r11-01]
+Judgment.exe+E95129: 4D 3B C1        - cmp r8,r9
+Judgment.exe+E9512C: 4D 0F 4C C8     - cmovl r9,r8
+Judgment.exe+E95130: 4D 2B D9        - sub r11,r9
+Judgment.exe+E95133: 4C 89 49 10     - mov [rcx+10],r9
+Judgment.exe+E95137: 49 3B D3        - cmp rdx,r11
+Judgment.exe+E9513A: 4C 0F 4C DA     - cmovl r11,rdx
+Judgment.exe+E9513E: 4D 85 DB        - test r11,r11
+Judgment.exe+E95141: 4D 0F 4F D3     - cmovg r10,r11
+// ---------- INJECTING HERE ----------
+Judgment.exe+E95145: 4C 89 11        - mov [rcx],r10
+// ---------- DONE INJECTING  ----------
+Judgment.exe+E95148: C3              - ret 
+Judgment.exe+E95149: CC              - int 3 
+Judgment.exe+E9514A: CC              - int 3 
+Judgment.exe+E9514B: CC              - int 3 
+Judgment.exe+E9514C: CC              - int 3 
+Judgment.exe+E9514D: CC              - int 3 
+Judgment.exe+E9514E: CC              - int 3 
+Judgment.exe+E9514F: CC              - int 3 
+Judgment.exe+E95150: B8 01 00 00 00  - mov eax,00000001
+Judgment.exe+E95155: 48 3B D0        - cmp rdx,rax
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>39</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="24000" Activated="1" RealAddress="7FF4C04986B0"/>
+          <VariableType>8 Bytes</VariableType>
+          <Address>"Judgment.exe"+02A8C700</Address>
+          <Offsets>
+            <Offset>3F0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>40</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="24000" RealAddress="7FF4C04986B0"/>
+          <VariableType>8 Bytes</VariableType>
+          <Address>"Judgment.exe"+02A9ED80</Address>
+          <Offsets>
+            <Offset>3F0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>62</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="24000" RealAddress="7FF4C04986B0"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"Judgment.exe"+0240A6A0</Address>
+          <Offsets>
+            <Offset>390</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>63</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="24000" RealAddress="7FF4C04986B0"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"Judgment.exe"+02A8C700</Address>
+          <Offsets>
+            <Offset>3F0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>64</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="24000" RealAddress="7FF4C04986B0"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"Judgment.exe"+02A9ED80</Address>
+          <Offsets>
+            <Offset>3F0</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>167</ID>
+      <Description>"EX"</Description>
+      <Options moManualExpandCollapse="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>61</ID>
+          <Description>"EX 不减"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Judgment.exe
+  Version: 
+  Date   : 2024-03-16
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Judgment.exe,C5 FA 11 58 20 48 83 C4 38 C3 CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop
+  jmp return
+
+code:
+  vmovss [rax+20],xmm3
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db C5 FA 11 58 20
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Judgment.exe+DB0C57
+
+Judgment.exe+DB0C2A: B9 01 00 00 00     - mov ecx,00000001
+Judgment.exe+DB0C2F: C5 F8 28 F1        - vmovaps xmm6,xmm1
+Judgment.exe+DB0C33: E8 68 82 17 00     - call Judgment.exe+F28EA0
+Judgment.exe+DB0C38: C5 F8 28 DE        - vmovaps xmm3,xmm6
+Judgment.exe+DB0C3C: C5 F8 28 74 24 20  - vmovaps xmm6,[rsp+20]
+Judgment.exe+DB0C42: C5 F0 57 C9        - vxorps xmm1,xmm1,xmm1
+Judgment.exe+DB0C46: C5 F2 10 D3        - vmovss xmm2,xmm1,xmm3
+Judgment.exe+DB0C4A: C5 EA 5D 58 24     - vminss xmm3,xmm2,[rax+24]
+Judgment.exe+DB0C4F: C5 E8 57 D2        - vxorps xmm2,xmm2,xmm2
+Judgment.exe+DB0C53: C5 E2 5F DA        - vmaxss xmm3,xmm3,xmm2
+// ---------- INJECTING HERE ----------
+Judgment.exe+DB0C57: C5 FA 11 58 20     - vmovss [rax+20],xmm3
+// ---------- DONE INJECTING  ----------
+Judgment.exe+DB0C5C: 48 83 C4 38        - add rsp,38
+Judgment.exe+DB0C60: C3                 - ret 
+Judgment.exe+DB0C61: CC                 - int 3 
+Judgment.exe+DB0C62: CC                 - int 3 
+Judgment.exe+DB0C63: CC                 - int 3 
+Judgment.exe+DB0C64: CC                 - int 3 
+Judgment.exe+DB0C65: CC                 - int 3 
+Judgment.exe+DB0C66: CC                 - int 3 
+Judgment.exe+DB0C67: CC                 - int 3 
+Judgment.exe+DB0C68: CC                 - int 3 
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>140</ID>
+          <Description>"无描述"</Description>
+          <LastState Value="6" RealAddress="7FF4C04986C8"/>
+          <VariableType>Float</VariableType>
+          <Address>7FF4C04986C8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>141</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="6" Activated="1" RealAddress="7FF4C04986C8"/>
+          <VariableType>Float</VariableType>
+          <Address>"Judgment.exe"+0240A6A0</Address>
+          <Offsets>
+            <Offset>3A8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>142</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="6" RealAddress="7FF4C04986C8"/>
+          <VariableType>Float</VariableType>
+          <Address>"Judgment.exe"+02A9ED80</Address>
+          <Offsets>
+            <Offset>408</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>145</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="6" RealAddress="7FF4C04986C8"/>
+          <VariableType>Float</VariableType>
+          <Address>"Judgment.exe"+03A906A0</Address>
+          <Offsets>
+            <Offset>438</Offset>
+            <Offset>0</Offset>
+            <Offset>30</Offset>
+            <Offset>10</Offset>
+            <Offset>1D0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>146</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="6" RealAddress="7FF4C04986C8"/>
+          <VariableType>Float</VariableType>
+          <Address>"Judgment.exe"+02A9ED40</Address>
+          <Offsets>
+            <Offset>438</Offset>
+            <Offset>0</Offset>
+            <Offset>30</Offset>
+            <Offset>10</Offset>
+            <Offset>58</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>149</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="6" RealAddress="7FF4C04986C8"/>
+          <VariableType>Float</VariableType>
+          <Address>"Judgment.exe"+02A9ED40</Address>
+          <Offsets>
+            <Offset>438</Offset>
+            <Offset>0</Offset>
+            <Offset>30</Offset>
+            <Offset>70</Offset>
+            <Offset>58</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>150</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="6" RealAddress="7FF4C04986C8"/>
+          <VariableType>Float</VariableType>
+          <Address>"Judgment.exe"+03A908A8</Address>
+          <Offsets>
+            <Offset>438</Offset>
+            <Offset>0</Offset>
+            <Offset>30</Offset>
+            <Offset>10</Offset>
+            <Offset>48</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>151</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="6" RealAddress="7FF4C04986C8"/>
+          <VariableType>Float</VariableType>
+          <Address>"Judgment.exe"+03A90718</Address>
+          <Offsets>
+            <Offset>438</Offset>
+            <Offset>0</Offset>
+            <Offset>30</Offset>
+            <Offset>130</Offset>
+            <Offset>58</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>152</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="6" RealAddress="7FF4C04986C8"/>
+          <VariableType>Float</VariableType>
+          <Address>"Judgment.exe"+02A8C628</Address>
+          <Offsets>
+            <Offset>438</Offset>
+            <Offset>0</Offset>
+            <Offset>30</Offset>
+            <Offset>130</Offset>
+            <Offset>238</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>153</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="6" RealAddress="7FF4C04986C8"/>
+          <VariableType>Float</VariableType>
+          <Address>"Judgment.exe"+03A90880</Address>
+          <Offsets>
+            <Offset>438</Offset>
+            <Offset>0</Offset>
+            <Offset>30</Offset>
+            <Offset>10</Offset>
+            <Offset>48</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>154</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="6" RealAddress="7FF4C04986C8"/>
+          <VariableType>Float</VariableType>
+          <Address>"Judgment.exe"+03A908A8</Address>
+          <Offsets>
+            <Offset>438</Offset>
+            <Offset>0</Offset>
+            <Offset>30</Offset>
+            <Offset>70</Offset>
+            <Offset>48</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>155</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="6" RealAddress="7FF4C04986C8"/>
+          <VariableType>Float</VariableType>
+          <Address>"Judgment.exe"+03A90538</Address>
+          <Offsets>
+            <Offset>438</Offset>
+            <Offset>0</Offset>
+            <Offset>30</Offset>
+            <Offset>190</Offset>
+            <Offset>110</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>156</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="6" RealAddress="7FF4C04986C8"/>
+          <VariableType>Float</VariableType>
+          <Address>"Judgment.exe"+02A8C628</Address>
+          <Offsets>
+            <Offset>438</Offset>
+            <Offset>0</Offset>
+            <Offset>30</Offset>
+            <Offset>190</Offset>
+            <Offset>238</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>159</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="6" RealAddress="7FF4C04986C8"/>
+          <VariableType>Float</VariableType>
+          <Address>"Judgment.exe"+02A8C6F8</Address>
+          <Offsets>
+            <Offset>438</Offset>
+            <Offset>50</Offset>
+            <Offset>10</Offset>
+            <Offset>108</Offset>
+            <Offset>18</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>160</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="6" RealAddress="7FF4C04986C8"/>
+          <VariableType>Float</VariableType>
+          <Address>"Judgment.exe"+02A9EA60</Address>
+          <Offsets>
+            <Offset>438</Offset>
+            <Offset>50</Offset>
+            <Offset>10</Offset>
+            <Offset>168</Offset>
+            <Offset>D8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>162</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="6" RealAddress="7FF4C04986C8"/>
+          <VariableType>Float</VariableType>
+          <Address>"Judgment.exe"+03A90880</Address>
+          <Offsets>
+            <Offset>438</Offset>
+            <Offset>50</Offset>
+            <Offset>10</Offset>
+            <Offset>50</Offset>
+            <Offset>B8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>163</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="6" RealAddress="7FF4C04986C8"/>
+          <VariableType>Float</VariableType>
+          <Address>"Judgment.exe"+03A90880</Address>
+          <Offsets>
+            <Offset>438</Offset>
+            <Offset>50</Offset>
+            <Offset>10</Offset>
+            <Offset>170</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>164</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="6" RealAddress="7FF4C04986C8"/>
+          <VariableType>Float</VariableType>
+          <Address>"Judgment.exe"+03A908A8</Address>
+          <Offsets>
+            <Offset>438</Offset>
+            <Offset>50</Offset>
+            <Offset>10</Offset>
+            <Offset>1D0</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>97</ID>
+      <Description>"小游戏修改选项"</Description>
+      <Options moManualExpandCollapse="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>89</ID>
+          <Description>"VR小游戏"</Description>
+          <Options moManualExpandCollapse="1"/>
+          <LastState Value="" RealAddress="00000000"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>88</ID>
+              <Description>"VR双六剩余99"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : Judgment.exe
+  Version: 
+  Date   : 2024-03-17
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Judgment.exe,44 89 49 1C 48 8B 0D E5 EB 0A 01) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rcx+1C],63
+  mov rcx,[Judgment.exe+241BAF8]
+  jmp return
+
+code:
+  mov [rcx+1C],r9d
+  mov rcx,[Judgment.exe+241BAF8]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 6
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 44 89 49 1C 48 8B 0D E5 EB 0A 01
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Judgment.exe+136CF08
+
+Judgment.exe+136CEEE: CC                    - int 3 
+Judgment.exe+136CEEF: CC                    - int 3 
+Judgment.exe+136CEF0: 40 53                 - push rbx
+Judgment.exe+136CEF2: 48 83 EC 20           - sub rsp,20
+Judgment.exe+136CEF6: 8B 41 1C              - mov eax,[rcx+1C]
+Judgment.exe+136CEF9: 45 33 C9              - xor r9d,r9d
+Judgment.exe+136CEFC: 2B C2                 - sub eax,edx
+Judgment.exe+136CEFE: 48 8B D9              - mov rbx,rcx
+Judgment.exe+136CF01: 39 51 1C              - cmp [rcx+1C],edx
+Judgment.exe+136CF04: 44 0F 4D C8           - cmovge r9d,eax
+// ---------- INJECTING HERE ----------
+Judgment.exe+136CF08: 44 89 49 1C           - mov [rcx+1C],r9d
+// ---------- DONE INJECTING  ----------
+Judgment.exe+136CF0C: 48 8B 0D E5 EB 0A 01  - mov rcx,[Judgment.exe+241BAF8]
+Judgment.exe+136CF13: 48 85 C9              - test rcx,rcx
+Judgment.exe+136CF16: 74 09                 - je Judgment.exe+136CF21
+Judgment.exe+136CF18: 48 8B 49 30           - mov rcx,[rcx+30]
+Judgment.exe+136CF1C: 48 85 C9              - test rcx,rcx
+Judgment.exe+136CF1F: 75 07                 - jne Judgment.exe+136CF28
+Judgment.exe+136CF21: 33 C9                 - xor ecx,ecx
+Judgment.exe+136CF23: 48 85 C9              - test rcx,rcx
+Judgment.exe+136CF26: 74 1B                 - je Judgment.exe+136CF43
+Judgment.exe+136CF28: 48 83 C1 10           - add rcx,10
+}
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>90</ID>
+              <Description>"骰子增加逻辑（获得+奖励时候的逻辑）"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : Judgment.exe
+  Version: 
+  Date   : 2024-03-17
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Judgment.exe,01 71 1C 41 0F B6 F8) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  add [rcx+1C],esi
+  movzx edi,r8b
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 01 71 1C 41 0F B6 F8
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Judgment.exe+136CD9E
+
+Judgment.exe+136CD8C: CC                    - int 3 
+Judgment.exe+136CD8D: CC                    - int 3 
+Judgment.exe+136CD8E: CC                    - int 3 
+Judgment.exe+136CD8F: CC                    - int 3 
+Judgment.exe+136CD90: 40 53                 - push rbx
+Judgment.exe+136CD92: 56                    - push rsi
+Judgment.exe+136CD93: 57                    - push rdi
+Judgment.exe+136CD94: 48 83 EC 40           - sub rsp,40
+Judgment.exe+136CD98: 48 63 F2              - movsxd  rsi,edx
+Judgment.exe+136CD9B: 48 8B D9              - mov rbx,rcx
+// ---------- INJECTING HERE ----------
+Judgment.exe+136CD9E: 01 71 1C              - add [rcx+1C],esi
+// ---------- DONE INJECTING  ----------
+Judgment.exe+136CDA1: 41 0F B6 F8           - movzx edi,r8b
+Judgment.exe+136CDA5: 48 8B 0D 4C ED 0A 01  - mov rcx,[Judgment.exe+241BAF8]
+Judgment.exe+136CDAC: 48 85 C9              - test rcx,rcx
+Judgment.exe+136CDAF: 74 17                 - je Judgment.exe+136CDC8
+Judgment.exe+136CDB1: 48 8B 49 30           - mov rcx,[rcx+30]
+Judgment.exe+136CDB5: 48 85 C9              - test rcx,rcx
+Judgment.exe+136CDB8: 74 0E                 - je Judgment.exe+136CDC8
+Judgment.exe+136CDBA: 48 83 C1 10           - add rcx,10
+Judgment.exe+136CDBE: BA 43 10 00 00        - mov edx,00001043
+Judgment.exe+136CDC3: E8 08 31 9E FF        - call Judgment.exe+D4FED0
+}
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>95</ID>
+              <Description>"骰子出6"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : Judgment.exe
+  Version: 
+  Date   : 2024-03-17
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Judgment.exe,89 97 A4 00 00 00 41) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rdi+000000A4],6
+  jmp return
+
+code:
+  mov [rdi+000000A4],edx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 97 A4 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Judgment.exe+136E981
+
+Judgment.exe+136E94F: 48 85 C0           - test rax,rax
+Judgment.exe+136E952: 0F 84 B8 00 00 00  - je Judgment.exe+136EA10
+Judgment.exe+136E958: BA 01 00 00 00     - mov edx,00000001
+Judgment.exe+136E95D: 48 8B C8           - mov rcx,rax
+Judgment.exe+136E960: E8 8B E5 FF FF     - call Judgment.exe+136CEF0
+Judgment.exe+136E965: 8B 87 98 00 00 00  - mov eax,[rdi+00000098]
+Judgment.exe+136E96B: 89 87 9C 00 00 00  - mov [rdi+0000009C],eax
+Judgment.exe+136E971: 89 9F 98 00 00 00  - mov [rdi+00000098],ebx
+Judgment.exe+136E977: 89 9F A0 00 00 00  - mov [rdi+000000A0],ebx
+Judgment.exe+136E97D: 41 8B 55 04        - mov edx,[r13+04]
+// ---------- INJECTING HERE ----------
+Judgment.exe+136E981: 89 97 A4 00 00 00  - mov [rdi+000000A4],edx
+// ---------- DONE INJECTING  ----------
+Judgment.exe+136E987: 41 8B 45 04        - mov eax,[r13+04]
+Judgment.exe+136E98B: 89 87 A8 00 00 00  - mov [rdi+000000A8],eax
+Judgment.exe+136E991: 48 85 F6           - test rsi,rsi
+Judgment.exe+136E994: 74 08              - je Judgment.exe+136E99E
+Judgment.exe+136E996: 48 8B CE           - mov rcx,rsi
+Judgment.exe+136E999: E8 B2 93 01 00     - call Judgment.exe+1387D50
+Judgment.exe+136E99E: BA 9B 00 00 00     - mov edx,0000009B
+Judgment.exe+136E9A3: 48 8D 4D 48        - lea rcx,[rbp+48]
+Judgment.exe+136E9A7: E8 74 7B FF FF     - call Judgment.exe+1366520
+Judgment.exe+136E9AC: 48 8B D0           - mov rdx,rax
+}
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>96</ID>
+              <Description>"走路不消耗直接到底"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : Judgment.exe
+  Version: 
+  Date   : 2024-03-17
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Judgment.exe,89 87 A4 00 00 00 FF) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop
+  jmp return
+
+code:
+  mov [rdi+000000A4],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 87 A4 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Judgment.exe+1399884
+
+Judgment.exe+1399859: 7C D5                 - jl Judgment.exe+1399830
+Judgment.exe+139985B: 8D 41 FF              - lea eax,[rcx-01]
+Judgment.exe+139985E: 89 47 0C              - mov [rdi+0C],eax
+Judgment.exe+1399861: 8B 87 98 00 00 00     - mov eax,[rdi+00000098]
+Judgment.exe+1399867: 89 87 9C 00 00 00     - mov [rdi+0000009C],eax
+Judgment.exe+139986D: 44 89 B7 98 00 00 00  - mov [rdi+00000098],r14d
+Judgment.exe+1399874: E9 AB 00 00 00        - jmp Judgment.exe+1399924
+Judgment.exe+1399879: 44 38 B6 15 01 00 00  - cmp [rsi+00000115],r14b
+Judgment.exe+1399880: 75 14                 - jne Judgment.exe+1399896
+Judgment.exe+1399882: FF C8                 - dec eax
+// ---------- INJECTING HERE ----------
+Judgment.exe+1399884: 89 87 A4 00 00 00     - mov [rdi+000000A4],eax
+// ---------- DONE INJECTING  ----------
+Judgment.exe+139988A: FF 87 B4 00 00 00     - inc [rdi+000000B4]
+Judgment.exe+1399890: 8B 8F 98 00 00 00     - mov ecx,[rdi+00000098]
+Judgment.exe+1399896: 83 F9 03              - cmp ecx,03
+Judgment.exe+1399899: 75 68                 - jne Judgment.exe+1399903
+Judgment.exe+139989B: 8B 57 0C              - mov edx,[rdi+0C]
+Judgment.exe+139989E: 85 D2                 - test edx,edx
+Judgment.exe+13998A0: 0F 84 7E 00 00 00     - je Judgment.exe+1399924
+Judgment.exe+13998A6: 8B C2                 - mov eax,edx
+Judgment.exe+13998A8: 48 C1 E0 04           - shl rax,04
+Judgment.exe+13998AC: 48 83 C0 F0           - add rax,-10
+}
+</AssemblerScript>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>28</ID>
+          <Description>"VF小游戏 HP （MAX 220）"</Description>
+          <Options moManualExpandCollapse="1"/>
+          <LastState Value="" RealAddress="00000000"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>23</ID>
+              <Description>"指针扫描结果"</Description>
+              <VariableType>2 Bytes</VariableType>
+              <Address>"Judgment.exe"+1217B478</Address>
+              <Offsets>
+                <Offset>0</Offset>
+                <Offset>50</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>24</ID>
+              <Description>"指针扫描结果"</Description>
+              <VariableType>2 Bytes</VariableType>
+              <Address>"Judgment.exe"+02268BE8</Address>
+              <Offsets>
+                <Offset>0</Offset>
+                <Offset>E4</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>25</ID>
+              <Description>"指针扫描结果"</Description>
+              <VariableType>2 Bytes</VariableType>
+              <Address>"Judgment.exe"+02268BE8</Address>
+              <Offsets>
+                <Offset>0</Offset>
+                <Offset>48</Offset>
+                <Offset>5C</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>26</ID>
+              <Description>"指针扫描结果"</Description>
+              <VariableType>2 Bytes</VariableType>
+              <Address>"Judgment.exe"+02268BE8</Address>
+              <Offsets>
+                <Offset>0</Offset>
+                <Offset>48</Offset>
+                <Offset>C</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>27</ID>
+              <Description>"指针扫描结果"</Description>
+              <VariableType>2 Bytes</VariableType>
+              <Address>"Judgment.exe"+02268BE8</Address>
+              <Offsets>
+                <Offset>0</Offset>
+                <Offset>48</Offset>
+                <Offset>4C</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>133</ID>
+          <Description>"无人机"</Description>
+          <LastState Value="" RealAddress="00000000"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>139</ID>
+              <Description>"无人机turbo逻辑"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : Judgment.exe
+  Version: 
+  Date   : 2024-03-23
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Judgment.exe,C5 FA 11 49 10 48 83) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  vmovss [rcx+10],xmm1
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db C5 FA 11 49 10
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Judgment.exe+DA3D0D
+
+Judgment.exe+DA3CE5: 76 0F              - jna Judgment.exe+DA3CF6
+Judgment.exe+DA3CE7: C5 FA 10 40 0C     - vmovss xmm0,[rax+0C]
+Judgment.exe+DA3CEC: C5 FA 5C C9        - vsubss xmm1,xmm0,xmm1
+Judgment.exe+DA3CF0: C5 F2 5E D2        - vdivss xmm2,xmm1,xmm2
+Judgment.exe+DA3CF4: EB 04              - jmp Judgment.exe+DA3CFA
+Judgment.exe+DA3CF6: C5 E8 57 D2        - vxorps xmm2,xmm2,xmm2
+Judgment.exe+DA3CFA: 8B 81 90 00 00 00  - mov eax,[rcx+00000090]
+Judgment.exe+DA3D00: C5 F8 57 C0        - vxorps xmm0,xmm0,xmm0
+Judgment.exe+DA3D04: C4 E1 FA 2A C0     - vcvtsi2ss xmm0,rax,rax
+Judgment.exe+DA3D09: C5 FA 59 CA        - vmulss xmm1,xmm0,xmm2
+// ---------- INJECTING HERE ----------
+Judgment.exe+DA3D0D: C5 FA 11 49 10     - vmovss [rcx+10],xmm1
+// ---------- DONE INJECTING  ----------
+Judgment.exe+DA3D12: 48 83 C4 20        - add rsp,20
+Judgment.exe+DA3D16: 5B                 - pop rbx
+Judgment.exe+DA3D17: C3                 - ret 
+Judgment.exe+DA3D18: CC                 - int 3 
+Judgment.exe+DA3D19: CC                 - int 3 
+Judgment.exe+DA3D1A: CC                 - int 3 
+Judgment.exe+DA3D1B: CC                 - int 3 
+Judgment.exe+DA3D1C: CC                 - int 3 
+Judgment.exe+DA3D1D: CC                 - int 3 
+Judgment.exe+DA3D1E: CC                 - int 3 
+}
+</AssemblerScript>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>170</ID>
+          <Description>"死亡之屋"</Description>
+          <Options moManualExpandCollapse="1"/>
+          <LastState Value="" RealAddress="00000000"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>169</ID>
+              <Description>"子弹不减（和金钱道具无数冲突）"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : Judgment.exe
+  Version: 
+  Date   : 2024-03-24
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Judgment.exe,C8 89 41 20 C3 CC) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov eax,#16
+  mov [rcx+20],eax
+  ret
+  int 3
+  jmp return
+
+code:
+  mov [rcx+20],eax
+  ret 
+  int 3 
+  jmp return
+
+INJECT+01:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+01:
+  db 89 41 20 C3 CC
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Judgment.exe+15A4C49
+
+Judgment.exe+15A4C3A: CC        - int 3 
+Judgment.exe+15A4C3B: CC        - int 3 
+Judgment.exe+15A4C3C: CC        - int 3 
+Judgment.exe+15A4C3D: CC        - int 3 
+Judgment.exe+15A4C3E: CC        - int 3 
+Judgment.exe+15A4C3F: CC        - int 3 
+Judgment.exe+15A4C40: 8B 41 20  - mov eax,[rcx+20]
+Judgment.exe+15A4C43: 85 C0     - test eax,eax
+Judgment.exe+15A4C45: 74 05     - je Judgment.exe+15A4C4C
+Judgment.exe+15A4C47: FF C8     - dec eax
+// ---------- INJECTING HERE ----------
+Judgment.exe+15A4C49: 89 41 20  - mov [rcx+20],eax
+// ---------- DONE INJECTING  ----------
+Judgment.exe+15A4C4C: C3        - ret 
+Judgment.exe+15A4C4D: CC        - int 3 
+Judgment.exe+15A4C4E: CC        - int 3 
+Judgment.exe+15A4C4F: CC        - int 3 
+Judgment.exe+15A4C50: CC        - int 3 
+Judgment.exe+15A4C51: CC        - int 3 
+Judgment.exe+15A4C52: CC        - int 3 
+Judgment.exe+15A4C53: CC        - int 3 
+Judgment.exe+15A4C54: CC        - int 3 
+Judgment.exe+15A4C55: CC        - int 3 
+}
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>172</ID>
+              <Description>"分数99999"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : Judgment.exe
+  Version: 
+  Date   : 2024-03-24
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Judgment.exe,41 89 42 18 C3) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [r10+18],#999999
+  ret
+  jmp return
+
+code:
+  mov [r10+18],eax
+  ret 
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 41 89 42 18 C3
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Judgment.exe+15A4A49
+
+Judgment.exe+15A4A28: 41 0F AF C8     - imul ecx,r8d
+Judgment.exe+15A4A2C: 83 C1 63        - add ecx,63
+Judgment.exe+15A4A2F: F7 E1           - mul ecx
+Judgment.exe+15A4A31: 44 8B C2        - mov r8d,edx
+Judgment.exe+15A4A34: 41 C1 E8 05     - shr r8d,05
+Judgment.exe+15A4A38: 41 8B 4A 18     - mov ecx,[r10+18]
+Judgment.exe+15A4A3C: B8 FF FF FF 7F  - mov eax,7FFFFFFF
+Judgment.exe+15A4A41: 41 03 C8        - add ecx,r8d
+Judgment.exe+15A4A44: 3B C8           - cmp ecx,eax
+Judgment.exe+15A4A46: 0F 42 C1        - cmovb eax,ecx
+// ---------- INJECTING HERE ----------
+Judgment.exe+15A4A49: 41 89 42 18     - mov [r10+18],eax
+// ---------- DONE INJECTING  ----------
+Judgment.exe+15A4A4D: C3              - ret 
+Judgment.exe+15A4A4E: CC              - int 3 
+Judgment.exe+15A4A4F: CC              - int 3 
+Judgment.exe+15A4A50: CC              - int 3 
+Judgment.exe+15A4A51: CC              - int 3 
+Judgment.exe+15A4A52: CC              - int 3 
+Judgment.exe+15A4A53: CC              - int 3 
+Judgment.exe+15A4A54: CC              - int 3 
+Judgment.exe+15A4A55: CC              - int 3 
+Judgment.exe+15A4A56: CC              - int 3 
+}
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>174</ID>
+              <Description>"HP不减"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : Judgment.exe
+  Version: 
+  Date   : 2024-03-24
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Judgment.exe,41 89 45 1C 4C 8B 3A) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [r13+1C],5
+  mov r15,[rdx]
+  jmp return
+
+code:
+  mov [r13+1C],eax
+  mov r15,[rdx]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 41 89 45 1C 4C 8B 3A
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Judgment.exe+1632F22
+
+Judgment.exe+1632EF8: 0F 47 C1                       - cmova eax,ecx
+Judgment.exe+1632EFB: 33 FF                          - xor edi,edi
+Judgment.exe+1632EFD: 41 89 45 38                    - mov [r13+38],eax
+Judgment.exe+1632F01: 48 8B 05 78 E0 DE 00           - mov rax,[Judgment.exe+2420F80]
+Judgment.exe+1632F08: C7 80 D0 00 00 00 00 00 A0 41  - mov [rax+000000D0],41A00000
+Judgment.exe+1632F12: 8B 6A 08                       - mov ebp,[rdx+08]
+Judgment.exe+1632F15: 41 8B 45 1C                    - mov eax,[r13+1C]
+Judgment.exe+1632F19: 2B C5                          - sub eax,ebp
+Judgment.exe+1632F1B: 41 39 6D 1C                    - cmp [r13+1C],ebp
+Judgment.exe+1632F1F: 0F 46 C7                       - cmovbe eax,edi
+// ---------- INJECTING HERE ----------
+Judgment.exe+1632F22: 41 89 45 1C                    - mov [r13+1C],eax
+// ---------- DONE INJECTING  ----------
+Judgment.exe+1632F26: 4C 8B 3A                       - mov r15,[rdx]
+Judgment.exe+1632F29: 49 8B CF                       - mov rcx,r15
+Judgment.exe+1632F2C: E8 CF AB FF FF                 - call Judgment.exe+162DB00
+Judgment.exe+1632F31: 41 83 7E 10 01                 - cmp dword ptr [r14+10],01
+Judgment.exe+1632F36: 41 8B 4E 0C                    - mov ecx,[r14+0C]
+Judgment.exe+1632F3A: 74 2E                          - je Judgment.exe+1632F6A
+Judgment.exe+1632F3C: 44 8B C1                       - mov r8d,ecx
+Judgment.exe+1632F3F: 33 D2                          - xor edx,edx
+Judgment.exe+1632F41: 49 8B CF                       - mov rcx,r15
+Judgment.exe+1632F44: E8 87 3D FB FF                 - call Judgment.exe+15E6CD0
+}
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>176</ID>
+              <Description>"手雷不减"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : Judgment.exe
+  Version: 
+  Date   : 2024-03-24
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Judgment.exe,74 05 FF C8 89 41 3C C3 CC) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rcx+3C],4
+  ret
+  int 3
+  jmp return
+
+code:
+  mov [rcx+3C],eax
+  ret 
+  int 3 
+  jmp return
+
+INJECT+04:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+04:
+  db 89 41 3C C3 CC
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Judgment.exe+15A4CB9
+
+Judgment.exe+15A4CAA: CC        - int 3 
+Judgment.exe+15A4CAB: CC        - int 3 
+Judgment.exe+15A4CAC: CC        - int 3 
+Judgment.exe+15A4CAD: CC        - int 3 
+Judgment.exe+15A4CAE: CC        - int 3 
+Judgment.exe+15A4CAF: CC        - int 3 
+Judgment.exe+15A4CB0: 8B 41 3C  - mov eax,[rcx+3C]
+Judgment.exe+15A4CB3: 85 C0     - test eax,eax
+Judgment.exe+15A4CB5: 74 05     - je Judgment.exe+15A4CBC
+Judgment.exe+15A4CB7: FF C8     - dec eax
+// ---------- INJECTING HERE ----------
+Judgment.exe+15A4CB9: 89 41 3C  - mov [rcx+3C],eax
+// ---------- DONE INJECTING  ----------
+Judgment.exe+15A4CBC: C3        - ret 
+Judgment.exe+15A4CBD: CC        - int 3 
+Judgment.exe+15A4CBE: CC        - int 3 
+Judgment.exe+15A4CBF: CC        - int 3 
+Judgment.exe+15A4CC0: CC        - int 3 
+Judgment.exe+15A4CC1: CC        - int 3 
+Judgment.exe+15A4CC2: CC        - int 3 
+Judgment.exe+15A4CC3: CC        - int 3 
+Judgment.exe+15A4CC4: CC        - int 3 
+Judgment.exe+15A4CC5: CC        - int 3 
+}
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>168</ID>
+              <Description>"子弹"</Description>
+              <LastState Value="486" RealAddress="7FF4CC233388"/>
+              <VariableType>4 Bytes</VariableType>
+              <Address>7FF4CC233388</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>171</ID>
+              <Description>"分数"</Description>
+              <LastState Value="484" RealAddress="7FF4CC233380"/>
+              <VariableType>4 Bytes</VariableType>
+              <Address>7FF4CC233380</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>173</ID>
+              <Description>"HP"</Description>
+              <LastState Value="485" RealAddress="7FF4CC233384"/>
+              <VariableType>4 Bytes</VariableType>
+              <Address>7FF4CC233384</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>175</ID>
+              <Description>"手雷"</Description>
+              <LastState Value="500" RealAddress="7FF4CC2333A4"/>
+              <VariableType>4 Bytes</VariableType>
+              <Address>7FF4CC2333A4</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

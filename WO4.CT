@@ -1,0 +1,2209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"combo"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>WO4U.dll+10E2AAC</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>27</ID>
+      <Description>"SP999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : WO4.exe
+  Version: 
+  Date   : 2024-04-17
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,WO4U.dll,66 41 89 41 78) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [r9+78],#999
+  jmp return
+
+code:
+  mov [r9+78],ax
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 66 41 89 41 78
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: WO4U.dll+20E8B5
+
+WO4U.dll+20E890: 0F 45 C8              - cmovne ecx,eax
+WO4U.dll+20E893: 48 8D 44 24 20        - lea rax,[rsp+20]
+WO4U.dll+20E898: 3B CA                 - cmp ecx,edx
+WO4U.dll+20E89A: 0F 42 D1              - cmovb edx,ecx
+WO4U.dll+20E89D: 48 8D 4C 24 28        - lea rcx,[rsp+28]
+WO4U.dll+20E8A2: 03 D3                 - add edx,ebx
+WO4U.dll+20E8A4: 81 FA E7 03 00 00     - cmp edx,000003E7
+WO4U.dll+20E8AA: 89 54 24 28           - mov [rsp+28],edx
+WO4U.dll+20E8AE: 48 0F 46 C1           - cmovbe rax,rcx
+WO4U.dll+20E8B2: 0F B7 00              - movzx eax,word ptr [rax]
+// ---------- INJECTING HERE ----------
+WO4U.dll+20E8B5: 66 41 89 41 78        - mov [r9+78],ax
+// ---------- DONE INJECTING  ----------
+WO4U.dll+20E8BA: 48 83 C4 30           - add rsp,30
+WO4U.dll+20E8BE: 5B                    - pop rbx
+WO4U.dll+20E8BF: C3                    - ret 
+WO4U.dll+20E8C0: 41 54                 - push r12
+WO4U.dll+20E8C2: 41 55                 - push r13
+WO4U.dll+20E8C4: 48 83 EC 68           - sub rsp,68
+WO4U.dll+20E8C8: 48 8B 05 B9 AE CA 00  - mov rax,[WO4U.dll+EB9788]
+WO4U.dll+20E8CF: 48 33 C4              - xor rax,rsp
+WO4U.dll+20E8D2: 48 89 44 24 40        - mov [rsp+40],rax
+WO4U.dll+20E8D7: 44 8B E2              - mov r12d,edx
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"EXP增长逻辑（战斗可用）"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : WO4.exe
+  Version: 
+  Date   : 2024-04-17
+  Author : lixiang
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,WO4U.dll,44 89 43 64 0F 46 D0) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rbx+64],#9999
+  cmovbe edx,eax
+  jmp return
+
+code:
+  mov [rbx+64],r8d
+  cmovbe edx,eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 44 89 43 64 0F 46 D0
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: WO4U.dll+20E069
+
+WO4U.dll+20E043: 41 3B C9              - cmp ecx,r9d
+WO4U.dll+20E046: BA FF FF FF FF        - mov edx,FFFFFFFF
+WO4U.dll+20E04B: 0F 42 C1              - cmovb eax,ecx
+WO4U.dll+20E04E: 03 C6                 - add eax,esi
+WO4U.dll+20E050: 41 3B C0              - cmp eax,r8d
+WO4U.dll+20E053: 44 0F 42 C0           - cmovb r8d,eax
+WO4U.dll+20E057: 8B 83 80 03 00 00     - mov eax,[rbx+00000380]
+WO4U.dll+20E05D: 45 3B C1              - cmp r8d,r9d
+WO4U.dll+20E060: 45 0F 47 C1           - cmova r8d,r9d
+WO4U.dll+20E064: 3D C7 00 00 00        - cmp eax,000000C7
+// ---------- INJECTING HERE ----------
+WO4U.dll+20E069: 44 89 43 64           - mov [rbx+64],r8d
+// ---------- DONE INJECTING  ----------
+WO4U.dll+20E06D: 0F 46 D0              - cmovbe edx,eax
+WO4U.dll+20E070: 81 FA C7 00 00 00     - cmp edx,000000C7
+WO4U.dll+20E076: 77 17                 - ja WO4U.dll+20E08F
+WO4U.dll+20E078: 48 8B 0D 41 61 D3 00  - mov rcx,[WO4U.dll+F441C0]
+WO4U.dll+20E07F: 48 8B 01              - mov rax,[rcx]
+WO4U.dll+20E082: FF 50 10              - call qword ptr [rax+10]
+WO4U.dll+20E085: 48 8B C8              - mov rcx,rax
+WO4U.dll+20E088: 33 D2                 - xor edx,edx
+WO4U.dll+20E08A: E8 C1 53 02 00        - call WO4U.dll+233450
+WO4U.dll+20E08F: 0F B6 83 78 03 00 00  - movzx eax,byte ptr [rbx+00000378]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>31</ID>
+      <Description>"总EXP池99999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : WO4.exe
+  Version: 
+  Date   : 2024-04-17
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,WO4U.dll,41 89 80 D8 00 00 00 8B) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [r8+000000D8],#999999
+  jmp return
+
+code:
+  mov [r8+000000D8],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 41 89 80 D8 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: WO4U.dll+4651EF
+
+WO4U.dll+4651C7: 0F 45 C8                       - cmovne ecx,eax
+WO4U.dll+4651CA: 48 8D 44 24 20                 - lea rax,[rsp+20]
+WO4U.dll+4651CF: 3B CA                          - cmp ecx,edx
+WO4U.dll+4651D1: 0F 42 D1                       - cmovb edx,ecx
+WO4U.dll+4651D4: 48 8D 4C 24 28                 - lea rcx,[rsp+28]
+WO4U.dll+4651D9: 2B 97 B8 00 00 00              - sub edx,[rdi+000000B8]
+WO4U.dll+4651DF: 81 FA FF E0 F5 05              - cmp edx,05F5E0FF
+WO4U.dll+4651E5: 89 54 24 28                    - mov [rsp+28],edx
+WO4U.dll+4651E9: 48 0F 46 C1                    - cmovbe rax,rcx
+WO4U.dll+4651ED: 8B 00                          - mov eax,[rax]
+// ---------- INJECTING HERE ----------
+WO4U.dll+4651EF: 41 89 80 D8 00 00 00           - mov [r8+000000D8],eax
+// ---------- DONE INJECTING  ----------
+WO4U.dll+4651F6: 8B 97 B0 00 00 00              - mov edx,[rdi+000000B0]
+WO4U.dll+4651FC: C7 87 B8 00 00 00 00 00 00 00  - mov [rdi+000000B8],00000000
+WO4U.dll+465206: 48 8B 0D B3 EF AD 00           - mov rcx,[WO4U.dll+F441C0]
+WO4U.dll+46520D: 48 8B 01                       - mov rax,[rcx]
+WO4U.dll+465210: FF 50 10                       - call qword ptr [rax+10]
+WO4U.dll+465213: 8B 97 D0 00 00 00              - mov edx,[rdi+000000D0]
+WO4U.dll+465219: 33 DB                          - xor ebx,ebx
+WO4U.dll+46521B: 8B 48 64                       - mov ecx,[rax+64]
+WO4U.dll+46521E: 85 C9                          - test ecx,ecx
+WO4U.dll+465220: 0F 45 D9                       - cmovne ebx,ecx
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>32</ID>
+      <Description>"EXP总"</Description>
+      <Options moManualExpandCollapse="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>33</ID>
+          <Description>"指针扫描结果"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F441E8</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>34</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F441B0</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>160</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>35</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>200</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>36</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>220</Offset>
+            <Offset>0</Offset>
+            <Offset>0</Offset>
+            <Offset>88</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>37</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>220</Offset>
+            <Offset>0</Offset>
+            <Offset>150</Offset>
+            <Offset>90</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>38</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F441B0</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>220</Offset>
+            <Offset>0</Offset>
+            <Offset>150</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>39</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>220</Offset>
+            <Offset>0</Offset>
+            <Offset>1F0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>40</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>220</Offset>
+            <Offset>80</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>41</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+010EEFE8</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>220</Offset>
+            <Offset>A0</Offset>
+            <Offset>18</Offset>
+            <Offset>50</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>42</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F75CD8</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>220</Offset>
+            <Offset>A0</Offset>
+            <Offset>18</Offset>
+            <Offset>6E0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>43</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>220</Offset>
+            <Offset>8</Offset>
+            <Offset>0</Offset>
+            <Offset>80</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>44</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+010EEFE8</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>220</Offset>
+            <Offset>18</Offset>
+            <Offset>50</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>45</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+010EEFE8</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>220</Offset>
+            <Offset>18</Offset>
+            <Offset>70</Offset>
+            <Offset>90</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>46</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F75CD8</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>220</Offset>
+            <Offset>18</Offset>
+            <Offset>70</Offset>
+            <Offset>720</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>47</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F75CC8</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>220</Offset>
+            <Offset>18</Offset>
+            <Offset>6E0</Offset>
+            <Offset>A0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>48</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F75CD8</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>220</Offset>
+            <Offset>18</Offset>
+            <Offset>6E0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>49</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F75CD8</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>220</Offset>
+            <Offset>18</Offset>
+            <Offset>700</Offset>
+            <Offset>670</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>50</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+010EEFE8</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>200</Offset>
+            <Offset>10</Offset>
+            <Offset>18</Offset>
+            <Offset>50</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>51</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F75CD8</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>200</Offset>
+            <Offset>10</Offset>
+            <Offset>18</Offset>
+            <Offset>6E0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>52</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F441B0</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>200</Offset>
+            <Offset>10</Offset>
+            <Offset>0</Offset>
+            <Offset>150</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>53</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>200</Offset>
+            <Offset>10</Offset>
+            <Offset>0</Offset>
+            <Offset>1F0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>54</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>200</Offset>
+            <Offset>10</Offset>
+            <Offset>80</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>55</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>180</Offset>
+            <Offset>0</Offset>
+            <Offset>88</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>56</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>180</Offset>
+            <Offset>0</Offset>
+            <Offset>A8</Offset>
+            <Offset>80</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>57</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F441B0</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>180</Offset>
+            <Offset>0</Offset>
+            <Offset>0</Offset>
+            <Offset>158</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>58</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>180</Offset>
+            <Offset>0</Offset>
+            <Offset>0</Offset>
+            <Offset>1F8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>59</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F442A0</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>180</Offset>
+            <Offset>0</Offset>
+            <Offset>0</Offset>
+            <Offset>560</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>60</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>180</Offset>
+            <Offset>150</Offset>
+            <Offset>90</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>61</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>180</Offset>
+            <Offset>150</Offset>
+            <Offset>B0</Offset>
+            <Offset>80</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>62</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F441B0</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>180</Offset>
+            <Offset>150</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>63</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>180</Offset>
+            <Offset>170</Offset>
+            <Offset>8</Offset>
+            <Offset>80</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>64</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>180</Offset>
+            <Offset>1F0</Offset>
+            <Offset>10</Offset>
+            <Offset>80</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>65</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>180</Offset>
+            <Offset>1F0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>66</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+010EEFE8</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>180</Offset>
+            <Offset>210</Offset>
+            <Offset>18</Offset>
+            <Offset>50</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>67</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F75CD8</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>180</Offset>
+            <Offset>210</Offset>
+            <Offset>18</Offset>
+            <Offset>6E0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>68</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>180</Offset>
+            <Offset>210</Offset>
+            <Offset>80</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>69</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+010EEFE8</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>180</Offset>
+            <Offset>8</Offset>
+            <Offset>18</Offset>
+            <Offset>50</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>70</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F75CD8</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>180</Offset>
+            <Offset>8</Offset>
+            <Offset>18</Offset>
+            <Offset>6E0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>71</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F441B0</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>180</Offset>
+            <Offset>8</Offset>
+            <Offset>0</Offset>
+            <Offset>150</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>72</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>180</Offset>
+            <Offset>8</Offset>
+            <Offset>0</Offset>
+            <Offset>1F0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>73</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>180</Offset>
+            <Offset>8</Offset>
+            <Offset>80</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>74</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>160</Offset>
+            <Offset>10</Offset>
+            <Offset>8</Offset>
+            <Offset>80</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>75</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>160</Offset>
+            <Offset>10</Offset>
+            <Offset>0</Offset>
+            <Offset>88</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>76</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F441B0</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>160</Offset>
+            <Offset>10</Offset>
+            <Offset>150</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>77</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>160</Offset>
+            <Offset>10</Offset>
+            <Offset>1F0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>78</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>160</Offset>
+            <Offset>10</Offset>
+            <Offset>210</Offset>
+            <Offset>80</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>79</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>160</Offset>
+            <Offset>90</Offset>
+            <Offset>10</Offset>
+            <Offset>80</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>80</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>160</Offset>
+            <Offset>90</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>81</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+010EEFE8</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>160</Offset>
+            <Offset>B0</Offset>
+            <Offset>18</Offset>
+            <Offset>50</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>82</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F75CD8</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>160</Offset>
+            <Offset>B0</Offset>
+            <Offset>18</Offset>
+            <Offset>6E0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>83</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>160</Offset>
+            <Offset>B0</Offset>
+            <Offset>0</Offset>
+            <Offset>1F0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>84</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F441B0</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>160</Offset>
+            <Offset>B0</Offset>
+            <Offset>0</Offset>
+            <Offset>150</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>85</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>160</Offset>
+            <Offset>B0</Offset>
+            <Offset>80</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>86</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>10</Offset>
+            <Offset>0</Offset>
+            <Offset>8</Offset>
+            <Offset>88</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>87</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>10</Offset>
+            <Offset>0</Offset>
+            <Offset>158</Offset>
+            <Offset>90</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>88</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F441B0</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>10</Offset>
+            <Offset>0</Offset>
+            <Offset>158</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>89</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F441B0</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>10</Offset>
+            <Offset>0</Offset>
+            <Offset>178</Offset>
+            <Offset>150</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>90</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>10</Offset>
+            <Offset>0</Offset>
+            <Offset>178</Offset>
+            <Offset>1F0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>91</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>10</Offset>
+            <Offset>0</Offset>
+            <Offset>1F8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>92</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>10</Offset>
+            <Offset>0</Offset>
+            <Offset>218</Offset>
+            <Offset>80</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>93</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F442A0</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>10</Offset>
+            <Offset>0</Offset>
+            <Offset>560</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>94</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F441B0</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>10</Offset>
+            <Offset>0</Offset>
+            <Offset>580</Offset>
+            <Offset>158</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>95</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F441B0</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>10</Offset>
+            <Offset>0</Offset>
+            <Offset>580</Offset>
+            <Offset>158</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>96</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>10</Offset>
+            <Offset>0</Offset>
+            <Offset>580</Offset>
+            <Offset>1F8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>97</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>10</Offset>
+            <Offset>8</Offset>
+            <Offset>150</Offset>
+            <Offset>90</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>98</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F441B0</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>10</Offset>
+            <Offset>8</Offset>
+            <Offset>150</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>99</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>10</Offset>
+            <Offset>8</Offset>
+            <Offset>1F0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>100</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>10</Offset>
+            <Offset>8</Offset>
+            <Offset>210</Offset>
+            <Offset>80</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>101</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>10</Offset>
+            <Offset>88</Offset>
+            <Offset>10</Offset>
+            <Offset>80</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>102</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>10</Offset>
+            <Offset>88</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>103</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+010EEFE8</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>10</Offset>
+            <Offset>A8</Offset>
+            <Offset>18</Offset>
+            <Offset>50</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>104</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F75CD8</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>10</Offset>
+            <Offset>A8</Offset>
+            <Offset>18</Offset>
+            <Offset>6E0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>105</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F441B0</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>10</Offset>
+            <Offset>A8</Offset>
+            <Offset>0</Offset>
+            <Offset>150</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>106</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>10</Offset>
+            <Offset>A8</Offset>
+            <Offset>0</Offset>
+            <Offset>1F0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>107</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>10</Offset>
+            <Offset>A8</Offset>
+            <Offset>80</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>108</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>D8</Offset>
+            <Offset>10</Offset>
+            <Offset>8</Offset>
+            <Offset>8</Offset>
+            <Offset>80</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>111</ID>
+      <Description>"贵石999999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : WO4.exe
+  Version: 
+  Date   : 2024-04-17
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,WO4U.dll,41 89 82 CC 00 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [r10+000000CC],#999999
+  jmp return
+
+code:
+  mov [r10+000000CC],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 41 89 82 CC 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: WO4U.dll+2131B5
+
+WO4U.dll+21318B: 44 0F 45 C0              - cmovne r8d,eax
+WO4U.dll+21318F: 48 8D 44 24 18           - lea rax,[rsp+18]
+WO4U.dll+213194: 45 3B C1                 - cmp r8d,r9d
+WO4U.dll+213197: 45 0F 42 C8              - cmovb r9d,r8d
+WO4U.dll+21319B: 44 03 C9                 - add r9d,ecx
+WO4U.dll+21319E: 48 8D 4C 24 20           - lea rcx,[rsp+20]
+WO4U.dll+2131A3: 41 81 F9 7F 96 98 00     - cmp r9d,0098967F
+WO4U.dll+2131AA: 44 89 4C 24 20           - mov [rsp+20],r9d
+WO4U.dll+2131AF: 48 0F 46 C1              - cmovbe rax,rcx
+WO4U.dll+2131B3: 8B 00                    - mov eax,[rax]
+// ---------- INJECTING HERE ----------
+WO4U.dll+2131B5: 41 89 82 CC 00 00 00     - mov [r10+000000CC],eax
+// ---------- DONE INJECTING  ----------
+WO4U.dll+2131BC: 85 DB                    - test ebx,ebx
+WO4U.dll+2131BE: 7E 75                    - jle WO4U.dll+213235
+WO4U.dll+2131C0: 84 D2                    - test dl,dl
+WO4U.dll+2131C2: 74 71                    - je WO4U.dll+213235
+WO4U.dll+2131C4: 48 8B 15 1D 10 D3 00     - mov rdx,[WO4U.dll+F441E8]
+WO4U.dll+2131CB: 4C 8D 44 24 20           - lea r8,[rsp+20]
+WO4U.dll+2131D0: B9 7F 96 98 00           - mov ecx,0098967F
+WO4U.dll+2131D5: C7 44 24 18 7F 96 98 00  - mov [rsp+18],0098967F
+WO4U.dll+2131DD: 8B 82 D0 00 00 00        - mov eax,[rdx+000000D0]
+WO4U.dll+2131E3: 85 C0                    - test eax,eax
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>138</ID>
+      <Description>"贵石"</Description>
+      <Options moManualExpandCollapse="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>112</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F441E8</Address>
+          <Offsets>
+            <Offset>CC</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>113</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>CC</Offset>
+            <Offset>10</Offset>
+            <Offset>8</Offset>
+            <Offset>8</Offset>
+            <Offset>80</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>114</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F441B0</Address>
+          <Offsets>
+            <Offset>CC</Offset>
+            <Offset>10</Offset>
+            <Offset>8</Offset>
+            <Offset>150</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>115</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>CC</Offset>
+            <Offset>10</Offset>
+            <Offset>88</Offset>
+            <Offset>10</Offset>
+            <Offset>80</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>116</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F441B0</Address>
+          <Offsets>
+            <Offset>CC</Offset>
+            <Offset>10</Offset>
+            <Offset>A8</Offset>
+            <Offset>0</Offset>
+            <Offset>150</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>117</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>CC</Offset>
+            <Offset>10</Offset>
+            <Offset>A8</Offset>
+            <Offset>80</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>118</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F441B0</Address>
+          <Offsets>
+            <Offset>CC</Offset>
+            <Offset>160</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>119</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>CC</Offset>
+            <Offset>220</Offset>
+            <Offset>0</Offset>
+            <Offset>0</Offset>
+            <Offset>88</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>120</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+010EEFE8</Address>
+          <Offsets>
+            <Offset>CC</Offset>
+            <Offset>220</Offset>
+            <Offset>A0</Offset>
+            <Offset>18</Offset>
+            <Offset>50</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>121</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F441B0</Address>
+          <Offsets>
+            <Offset>CC</Offset>
+            <Offset>180</Offset>
+            <Offset>8</Offset>
+            <Offset>0</Offset>
+            <Offset>150</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>122</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>CC</Offset>
+            <Offset>10</Offset>
+            <Offset>0</Offset>
+            <Offset>178</Offset>
+            <Offset>1F0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>123</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>CC</Offset>
+            <Offset>10</Offset>
+            <Offset>0</Offset>
+            <Offset>158</Offset>
+            <Offset>90</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>124</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F442A0</Address>
+          <Offsets>
+            <Offset>CC</Offset>
+            <Offset>10</Offset>
+            <Offset>0</Offset>
+            <Offset>560</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>125</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>CC</Offset>
+            <Offset>10</Offset>
+            <Offset>0</Offset>
+            <Offset>580</Offset>
+            <Offset>1F8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>126</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>CC</Offset>
+            <Offset>180</Offset>
+            <Offset>0</Offset>
+            <Offset>0</Offset>
+            <Offset>1F8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>127</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>CC</Offset>
+            <Offset>180</Offset>
+            <Offset>150</Offset>
+            <Offset>B0</Offset>
+            <Offset>80</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>128</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>CC</Offset>
+            <Offset>180</Offset>
+            <Offset>1F0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>129</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>CC</Offset>
+            <Offset>180</Offset>
+            <Offset>210</Offset>
+            <Offset>80</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>130</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>CC</Offset>
+            <Offset>160</Offset>
+            <Offset>10</Offset>
+            <Offset>0</Offset>
+            <Offset>88</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>131</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>CC</Offset>
+            <Offset>160</Offset>
+            <Offset>90</Offset>
+            <Offset>10</Offset>
+            <Offset>80</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>132</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F75CD8</Address>
+          <Offsets>
+            <Offset>CC</Offset>
+            <Offset>160</Offset>
+            <Offset>B0</Offset>
+            <Offset>18</Offset>
+            <Offset>6E0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>133</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>CC</Offset>
+            <Offset>160</Offset>
+            <Offset>B0</Offset>
+            <Offset>80</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>134</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F441B0</Address>
+          <Offsets>
+            <Offset>CC</Offset>
+            <Offset>200</Offset>
+            <Offset>10</Offset>
+            <Offset>0</Offset>
+            <Offset>150</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>135</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F44228</Address>
+          <Offsets>
+            <Offset>CC</Offset>
+            <Offset>220</Offset>
+            <Offset>8</Offset>
+            <Offset>0</Offset>
+            <Offset>80</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>136</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+00F75CD8</Address>
+          <Offsets>
+            <Offset>CC</Offset>
+            <Offset>220</Offset>
+            <Offset>18</Offset>
+            <Offset>6E0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>137</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"WO4U.dll"+010EEFE8</Address>
+          <Offsets>
+            <Offset>CC</Offset>
+            <Offset>220</Offset>
+            <Offset>18</Offset>
+            <Offset>70</Offset>
+            <Offset>90</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>142</ID>
+      <Description>"个人获得经验值99999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : WO4.exe
+  Version: 
+  Date   : 2024-04-17
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,WO4U.dll,44 89 43 64 0F 46 D0) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [rbx+64],r8d
+  cmovbe edx,eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 44 89 43 64 0F 46 D0
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: WO4U.dll+20E069
+
+WO4U.dll+20E043: 41 3B C9              - cmp ecx,r9d
+WO4U.dll+20E046: BA FF FF FF FF        - mov edx,FFFFFFFF
+WO4U.dll+20E04B: 0F 42 C1              - cmovb eax,ecx
+WO4U.dll+20E04E: 03 C6                 - add eax,esi
+WO4U.dll+20E050: 41 3B C0              - cmp eax,r8d
+WO4U.dll+20E053: 44 0F 42 C0           - cmovb r8d,eax
+WO4U.dll+20E057: 8B 83 80 03 00 00     - mov eax,[rbx+00000380]
+WO4U.dll+20E05D: 45 3B C1              - cmp r8d,r9d
+WO4U.dll+20E060: 45 0F 47 C1           - cmova r8d,r9d
+WO4U.dll+20E064: 3D C7 00 00 00        - cmp eax,000000C7
+// ---------- INJECTING HERE ----------
+WO4U.dll+20E069: 44 89 43 64           - mov [rbx+64],r8d
+// ---------- DONE INJECTING  ----------
+WO4U.dll+20E06D: 0F 46 D0              - cmovbe edx,eax
+WO4U.dll+20E070: 81 FA C7 00 00 00     - cmp edx,000000C7
+WO4U.dll+20E076: 77 17                 - ja WO4U.dll+20E08F
+WO4U.dll+20E078: 48 8B 0D 41 61 D3 00  - mov rcx,[WO4U.dll+F441C0]
+WO4U.dll+20E07F: 48 8B 01              - mov rax,[rcx]
+WO4U.dll+20E082: FF 50 10              - call qword ptr [rax+10]
+WO4U.dll+20E085: 48 8B C8              - mov rcx,rax
+WO4U.dll+20E088: 33 D2                 - xor edx,edx
+WO4U.dll+20E08A: E8 C1 53 02 00        - call WO4U.dll+233450
+WO4U.dll+20E08F: 0F B6 83 78 03 00 00  - movzx eax,byte ptr [rbx+00000378]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"HP（单浮点） 逻辑"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : WO4.exe
+  Version: 
+  Date   : 2024-04-17
+  Author : lixiang
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,WO4U.dll,F3 41 0F 11 59 10 EB 27) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [r9+4],0
+  jne code
+  nop //  movss [r9+10],xmm3
+  jmp return
+
+code:
+  movss [r9+10],xmm3
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 41 0F 11 59 10
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: WO4U.dll+2E2345
+
+WO4U.dll+2E231C: 74 14                    - je WO4U.dll+2E2332
+WO4U.dll+2E231E: F3 0F 10 81 A8 02 00 00  - movss xmm0,[rcx+000002A8]
+WO4U.dll+2E2326: F3 0F 5C C5              - subss xmm0,xmm5
+WO4U.dll+2E232A: F3 0F 11 81 A8 02 00 00  - movss [rcx+000002A8],xmm0
+WO4U.dll+2E2332: F3 41 0F 10 49 18        - movss xmm1,[r9+18]
+WO4U.dll+2E2338: 0F 2F CC                 - comiss xmm1,xmm4
+WO4U.dll+2E233B: 76 10                    - jna WO4U.dll+2E234D
+WO4U.dll+2E233D: 0F 2F F4                 - comiss xmm6,xmm4
+WO4U.dll+2E2340: 77 0E                    - ja WO4U.dll+2E2350
+WO4U.dll+2E2342: 0F 28 DC                 - movaps xmm3,xmm4
+// ---------- INJECTING HERE ----------
+WO4U.dll+2E2345: F3 41 0F 11 59 10        - movss [r9+10],xmm3
+// ---------- DONE INJECTING  ----------
+WO4U.dll+2E234B: EB 27                    - jmp WO4U.dll+2E2374
+WO4U.dll+2E234D: 0F 28 D9                 - movaps xmm3,xmm1
+WO4U.dll+2E2350: F3 41 0F 11 59 10        - movss [r9+10],xmm3
+WO4U.dll+2E2356: EB 1C                    - jmp WO4U.dll+2E2374
+WO4U.dll+2E2358: F3 0F 58 D5              - addss xmm2,xmm5
+WO4U.dll+2E235C: 0F 2F CA                 - comiss xmm1,xmm2
+WO4U.dll+2E235F: 76 0A                    - jna WO4U.dll+2E236B
+WO4U.dll+2E2361: 0F 2F F2                 - comiss xmm6,xmm2
+WO4U.dll+2E2364: 76 08                    - jna WO4U.dll+2E236E
+WO4U.dll+2E2366: 0F 28 D3                 - movaps xmm2,xmm3
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>8</ID>
+      <Description>"神术增长逻辑（900 单浮点）"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : WO4.exe
+  Version: 
+  Date   : 2024-04-17
+  Author : lixiang
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,WO4U.dll,F3 0F 11 B7 C0 06 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  movss [rdi+000006C0],xmm6
+  jmp return
+
+code:
+  movss [rdi+000006C0],xmm6
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 B7 C0 06 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: WO4U.dll+117840
+
+WO4U.dll+11780F: E8 EC E1 FC FF           - call WO4U.dll+E5A00
+WO4U.dll+117814: F3 0F 10 05 A0 D5 C0 00  - movss xmm0,[WO4U.dll+D24DBC]
+WO4U.dll+11781C: 83 F8 05                 - cmp eax,05
+WO4U.dll+11781F: 77 0C                    - ja WO4U.dll+11782D
+WO4U.dll+117821: BA 02 00 00 00           - mov edx,00000002
+WO4U.dll+117826: 8B C8                    - mov ecx,eax
+WO4U.dll+117828: E8 F3 A0 06 00           - call WO4U.dll+181920
+WO4U.dll+11782D: F3 0F 59 F0              - mulss xmm6,xmm0
+WO4U.dll+117831: F3 0F 58 B7 C0 06 00 00  - addss xmm6,[rdi+000006C0]
+WO4U.dll+117839: 48 8B 05 68 9A E0 00     - mov rax,[WO4U.dll+F212A8]
+// ---------- INJECTING HERE ----------
+WO4U.dll+117840: F3 0F 11 B7 C0 06 00 00  - movss [rdi+000006C0],xmm6
+// ---------- DONE INJECTING  ----------
+WO4U.dll+117848: 66 0F 6E 80 D8 8C 29 00  - movd xmm0,[rax+00298CD8]
+WO4U.dll+117850: 0F 5B C0                 - cvtdq2ps xmm0,xmm0
+WO4U.dll+117853: F3 0F 5E C7              - divss xmm0,xmm7
+WO4U.dll+117857: 0F 2F F0                 - comiss xmm6,xmm0
+WO4U.dll+11785A: 77 03                    - ja WO4U.dll+11785F
+WO4U.dll+11785C: 0F 28 C6                 - movaps xmm0,xmm6
+WO4U.dll+11785F: 0F 28 74 24 40           - movaps xmm6,[rsp+40]
+WO4U.dll+117864: F3 0F 11 87 C0 06 00 00  - movss [rdi+000006C0],xmm0
+WO4U.dll+11786C: E9 82 00 00 00           - jmp WO4U.dll+1178F3
+WO4U.dll+117871: 48 8B 4F 08              - mov rcx,[rdi+08]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>9</ID>
+      <Description>"神术不消耗"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : WO4.exe
+  Version: 
+  Date   : 2024-04-17
+  Author : lixiang
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,WO4U.dll,F3 0F 11 B3 C0 06 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop //movss [rbx+000006C0],xmm6
+  jmp return
+
+code:
+  movss [rbx+000006C0],xmm6
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 B3 C0 06 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: WO4U.dll+11EC36
+
+WO4U.dll+11EC0D: F3 0F 5D F7                 - minss xmm6,xmm7
+WO4U.dll+11EC11: 48 63 C2                    - movsxd  rax,edx
+WO4U.dll+11EC14: F3 0F 11 B4 83 C0 06 00 00  - movss [rbx+rax*4+000006C0],xmm6
+WO4U.dll+11EC1D: 0F 28 74 24 40              - movaps xmm6,[rsp+40]
+WO4U.dll+11EC22: 0F 28 7C 24 30              - movaps xmm7,[rsp+30]
+WO4U.dll+11EC27: 48 83 C4 50                 - add rsp,50
+WO4U.dll+11EC2B: 5B                          - pop rbx
+WO4U.dll+11EC2C: C3                          - ret 
+WO4U.dll+11EC2D: F3 0F 5D F7                 - minss xmm6,xmm7
+WO4U.dll+11EC31: 0F 28 7C 24 30              - movaps xmm7,[rsp+30]
+// ---------- INJECTING HERE ----------
+WO4U.dll+11EC36: F3 0F 11 B3 C0 06 00 00     - movss [rbx+000006C0],xmm6
+// ---------- DONE INJECTING  ----------
+WO4U.dll+11EC3E: 0F 28 74 24 40              - movaps xmm6,[rsp+40]
+WO4U.dll+11EC43: 48 83 C4 50                 - add rsp,50
+WO4U.dll+11EC47: 5B                          - pop rbx
+WO4U.dll+11EC48: C3                          - ret 
+WO4U.dll+11EC49: CC                          - int 3 
+WO4U.dll+11EC4A: CC                          - int 3 
+WO4U.dll+11EC4B: CC                          - int 3 
+WO4U.dll+11EC4C: CC                          - int 3 
+WO4U.dll+11EC4D: CC                          - int 3 
+WO4U.dll+11EC4E: CC                          - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>12</ID>
+      <Description>"合体神术 逻辑（单浮点1000）"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : WO4.exe
+  Version: 
+  Date   : 2024-04-17
+  Author : lixiang
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,WO4U.dll,F3 0F 11 82 54 08 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop //  movss [rdx+00000854],xmm0
+  jmp return
+
+code:
+  movss [rdx+00000854],xmm0
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 82 54 08 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: WO4U.dll+15DC1C
+
+WO4U.dll+15DBE9: 48 69 D0 70 09 00 00     - imul rdx,rax,00000970
+WO4U.dll+15DBF0: 48 03 15 61 66 DE 00     - add rdx,[WO4U.dll+F44258]
+WO4U.dll+15DBF7: F3 0F 58 8A 54 08 00 00  - addss xmm1,[rdx+00000854]
+WO4U.dll+15DBFF: F3 0F 10 92 58 08 00 00  - movss xmm2,[rdx+00000858]
+WO4U.dll+15DC07: 0F 57 C0                 - xorps xmm0,xmm0
+WO4U.dll+15DC0A: F3 0F 5F C1              - maxss xmm0,xmm1
+WO4U.dll+15DC0E: 0F 2F C2                 - comiss xmm0,xmm2
+WO4U.dll+15DC11: 76 09                    - jna WO4U.dll+15DC1C
+WO4U.dll+15DC13: F3 0F 11 92 54 08 00 00  - movss [rdx+00000854],xmm2
+WO4U.dll+15DC1B: C3                       - ret 
+// ---------- INJECTING HERE ----------
+WO4U.dll+15DC1C: F3 0F 11 82 54 08 00 00  - movss [rdx+00000854],xmm0
+// ---------- DONE INJECTING  ----------
+WO4U.dll+15DC24: C3                       - ret 
+WO4U.dll+15DC25: CC                       - int 3 
+WO4U.dll+15DC26: CC                       - int 3 
+WO4U.dll+15DC27: CC                       - int 3 
+WO4U.dll+15DC28: CC                       - int 3 
+WO4U.dll+15DC29: CC                       - int 3 
+WO4U.dll+15DC2A: CC                       - int 3 
+WO4U.dll+15DC2B: CC                       - int 3 
+WO4U.dll+15DC2C: CC                       - int 3 
+WO4U.dll+15DC2D: CC                       - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>145</ID>
+      <Description>"炼成元素999"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : WO4.exe
+  Version: 
+  Date   : 2024-04-17
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,WO4U.dll,66 43 89 84 4A E6 00 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [r10+r9*2+000000E6],ax
+  jb code
+  jmp return
+
+code:
+  mov [r10+r9*2+000000E6],ax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 4
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 66 43 89 84 4A E6 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: WO4U.dll+2132AF
+
+WO4U.dll+213282: C7 04 24 0F 27 00 00        - mov [rsp],0000270F
+WO4U.dll+213289: 44 8D 04 11                 - lea r8d,[rcx+rdx]
+WO4U.dll+21328D: 44 89 44 24 08              - mov [rsp+08],r8d
+WO4U.dll+213292: 41 83 F9 40                 - cmp r9d,40
+WO4U.dll+213296: 73 27                       - jae WO4U.dll+2132BF
+WO4U.dll+213298: 41 81 F8 0F 27 00 00        - cmp r8d,0000270F
+WO4U.dll+21329F: 48 8D 04 24                 - lea rax,[rsp]
+WO4U.dll+2132A3: 48 8D 4C 24 08              - lea rcx,[rsp+08]
+WO4U.dll+2132A8: 48 0F 46 C1                 - cmovbe rax,rcx
+WO4U.dll+2132AC: 0F B7 00                    - movzx eax,word ptr [rax]
+// ---------- INJECTING HERE ----------
+WO4U.dll+2132AF: 66 43 89 84 4A E6 00 00 00  - mov [r10+r9*2+000000E6],ax
+// ---------- DONE INJECTING  ----------
+WO4U.dll+2132B8: 4C 8B 15 29 0F D3 00        - mov r10,[WO4U.dll+F441E8]
+WO4U.dll+2132BF: 85 D2                       - test edx,edx
+WO4U.dll+2132C1: 7E 36                       - jle WO4U.dll+2132F9
+WO4U.dll+2132C3: 41 83 F9 3F                 - cmp r9d,3F
+WO4U.dll+2132C7: 76 06                       - jna WO4U.dll+2132CF
+WO4U.dll+2132C9: 41 83 F9 FF                 - cmp r9d,-01
+WO4U.dll+2132CD: 75 2A                       - jne WO4U.dll+2132F9
+WO4U.dll+2132CF: 41 8B C1                    - mov eax,r9d
+WO4U.dll+2132D2: 83 E0 E0                    - and eax,-20
+WO4U.dll+2132D5: 83 F8 40                    - cmp eax,40
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <Structures StructVersion="2">
+    <Structure Name="未命名的结构" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="0" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000000" DisplayMethod="unsigned integer"/>
+        <Element Offset="16" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000010" DisplayMethod="unsigned integer"/>
+        <Element Offset="40" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000028" DisplayMethod="unsigned integer"/>
+        <Element Offset="116" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000074" DisplayMethod="unsigned integer"/>
+        <Element Offset="140" Vartype="4 Bytes" Bytesize="4" RLECount="18" OffsetHex="0000008C" DisplayMethod="unsigned integer"/>
+        <Element Offset="212" Vartype="Double" Bytesize="8" OffsetHex="000000D4" DisplayMethod="unsigned integer"/>
+        <Element Offset="220" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000DC" DisplayMethod="unsigned integer"/>
+        <Element Offset="224" Vartype="Float" Bytesize="4" RLECount="4" OffsetHex="000000E0" DisplayMethod="unsigned integer"/>
+        <Element Offset="240" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="000000F0" DisplayMethod="unsigned integer"/>
+        <Element Offset="316" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="0000013C" DisplayMethod="unsigned integer"/>
+        <Element Offset="340" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000154" DisplayMethod="unsigned integer"/>
+        <Element Offset="416" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="000001A0" DisplayMethod="unsigned integer"/>
+        <Element Offset="440" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="000001B8" DisplayMethod="unsigned integer"/>
+        <Element Offset="516" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000204" DisplayMethod="unsigned integer"/>
+        <Element Offset="540" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="0000021C" DisplayMethod="unsigned integer"/>
+        <Element Offset="616" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000268" DisplayMethod="unsigned integer"/>
+        <Element Offset="640" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000280" DisplayMethod="unsigned integer"/>
+        <Element Offset="716" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="000002CC" DisplayMethod="unsigned integer"/>
+        <Element Offset="740" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="000002E4" DisplayMethod="unsigned integer"/>
+        <Element Offset="816" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000330" DisplayMethod="unsigned integer"/>
+        <Element Offset="840" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000348" DisplayMethod="unsigned integer"/>
+        <Element Offset="916" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000394" DisplayMethod="unsigned integer"/>
+        <Element Offset="940" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="000003AC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1016" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="000003F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1040" Vartype="4 Bytes" Bytesize="4" RLECount="44" OffsetHex="00000410" DisplayMethod="unsigned integer"/>
+        <Element Offset="1216" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="000004C0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1240" Vartype="4 Bytes" Bytesize="4" RLECount="18" OffsetHex="000004D8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1312" Vartype="Double" Bytesize="8" OffsetHex="00000520" DisplayMethod="unsigned integer"/>
+        <Element Offset="1320" Vartype="Float" Bytesize="4" RLECount="5" OffsetHex="00000528" DisplayMethod="unsigned integer"/>
+        <Element Offset="1340" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="0000053C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1416" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000588" DisplayMethod="unsigned integer"/>
+        <Element Offset="1440" Vartype="4 Bytes" Bytesize="4" RLECount="18" OffsetHex="000005A0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1512" Vartype="Double" Bytesize="8" OffsetHex="000005E8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1520" Vartype="Float" Bytesize="4" RLECount="5" OffsetHex="000005F0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1540" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000604" DisplayMethod="unsigned integer"/>
+        <Element Offset="1616" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000650" DisplayMethod="unsigned integer"/>
+        <Element Offset="1640" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000668" DisplayMethod="unsigned integer"/>
+        <Element Offset="1716" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="000006B4" DisplayMethod="unsigned integer"/>
+        <Element Offset="1740" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="000006CC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1816" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000718" DisplayMethod="unsigned integer"/>
+        <Element Offset="1840" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000730" DisplayMethod="unsigned integer"/>
+        <Element Offset="1916" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="0000077C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1940" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000794" DisplayMethod="unsigned integer"/>
+        <Element Offset="2016" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="000007E0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2040" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="000007F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2116" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000844" DisplayMethod="unsigned integer"/>
+        <Element Offset="2140" Vartype="4 Bytes" Bytesize="4" RLECount="44" OffsetHex="0000085C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2316" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="0000090C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2340" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000924" DisplayMethod="unsigned integer"/>
+        <Element Offset="2416" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000970" DisplayMethod="unsigned integer"/>
+        <Element Offset="2440" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000988" DisplayMethod="unsigned integer"/>
+        <Element Offset="2516" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="000009D4" DisplayMethod="unsigned integer"/>
+        <Element Offset="2540" Vartype="4 Bytes" Bytesize="4" RLECount="43" OffsetHex="000009EC" DisplayMethod="unsigned integer"/>
+        <Element Offset="2712" Vartype="Double" Bytesize="8" OffsetHex="00000A98" DisplayMethod="unsigned integer"/>
+        <Element Offset="2720" Vartype="Float" Bytesize="4" RLECount="5" OffsetHex="00000AA0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2740" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000AB4" DisplayMethod="unsigned integer"/>
+        <Element Offset="2816" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000B00" DisplayMethod="unsigned integer"/>
+        <Element Offset="2840" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000B18" DisplayMethod="unsigned integer"/>
+        <Element Offset="2916" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000B64" DisplayMethod="unsigned integer"/>
+        <Element Offset="2940" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000B7C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3016" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000BC8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3040" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000BE0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3116" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000C2C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3140" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000C44" DisplayMethod="unsigned integer"/>
+        <Element Offset="3216" Vartype="String" Bytesize="9" OffsetHex="00000C90" DisplayMethod="unsigned integer"/>
+        <Element Offset="3225" Vartype="Byte" Bytesize="1" RLECount="3" OffsetHex="00000C99" DisplayMethod="unsigned integer"/>
+        <Element Offset="3228" Vartype="Float" Bytesize="4" RLECount="3" OffsetHex="00000C9C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3240" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000CA8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3316" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000CF4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3340" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000D0C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3416" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000D58" DisplayMethod="unsigned integer"/>
+        <Element Offset="3440" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000D70" DisplayMethod="unsigned integer"/>
+        <Element Offset="3516" Vartype="Byte" Bytesize="1" RLECount="8" OffsetHex="00000DBC" DisplayMethod="unsigned integer"/>
+        <Element Offset="3524" Vartype="Float" Bytesize="4" RLECount="4" OffsetHex="00000DC4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3540" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000DD4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3616" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000E20" DisplayMethod="unsigned integer"/>
+        <Element Offset="3640" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000E38" DisplayMethod="unsigned integer"/>
+        <Element Offset="3716" Vartype="Byte" Bytesize="1" RLECount="8" OffsetHex="00000E84" DisplayMethod="unsigned integer"/>
+        <Element Offset="3724" Vartype="Float" Bytesize="4" RLECount="4" OffsetHex="00000E8C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3740" Vartype="4 Bytes" Bytesize="4" RLECount="18" OffsetHex="00000E9C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3812" Vartype="Double" Bytesize="8" OffsetHex="00000EE4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3820" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000EEC" DisplayMethod="unsigned integer"/>
+        <Element Offset="3824" Vartype="Float" Bytesize="4" RLECount="4" OffsetHex="00000EF0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3840" Vartype="4 Bytes" Bytesize="4" RLECount="44" OffsetHex="00000F00" DisplayMethod="unsigned integer"/>
+        <Element Offset="4016" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000FB0" DisplayMethod="unsigned integer"/>
+        <Element Offset="4040" Vartype="4 Bytes" Bytesize="4" RLECount="14" OffsetHex="00000FC8" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="未命名的结构" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="0" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000000" DisplayMethod="unsigned integer"/>
+        <Element Offset="16" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000010" DisplayMethod="unsigned integer"/>
+        <Element Offset="40" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000028" DisplayMethod="unsigned integer"/>
+        <Element Offset="116" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000074" DisplayMethod="unsigned integer"/>
+        <Element Offset="140" Vartype="4 Bytes" Bytesize="4" RLECount="18" OffsetHex="0000008C" DisplayMethod="unsigned integer"/>
+        <Element Offset="212" Vartype="Double" Bytesize="8" OffsetHex="000000D4" DisplayMethod="unsigned integer"/>
+        <Element Offset="220" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000DC" DisplayMethod="unsigned integer"/>
+        <Element Offset="224" Vartype="Float" Bytesize="4" RLECount="4" OffsetHex="000000E0" DisplayMethod="unsigned integer"/>
+        <Element Offset="240" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="000000F0" DisplayMethod="unsigned integer"/>
+        <Element Offset="316" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="0000013C" DisplayMethod="unsigned integer"/>
+        <Element Offset="340" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000154" DisplayMethod="unsigned integer"/>
+        <Element Offset="416" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="000001A0" DisplayMethod="unsigned integer"/>
+        <Element Offset="440" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="000001B8" DisplayMethod="unsigned integer"/>
+        <Element Offset="516" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000204" DisplayMethod="unsigned integer"/>
+        <Element Offset="540" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="0000021C" DisplayMethod="unsigned integer"/>
+        <Element Offset="616" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000268" DisplayMethod="unsigned integer"/>
+        <Element Offset="640" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000280" DisplayMethod="unsigned integer"/>
+        <Element Offset="716" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="000002CC" DisplayMethod="unsigned integer"/>
+        <Element Offset="740" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="000002E4" DisplayMethod="unsigned integer"/>
+        <Element Offset="816" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000330" DisplayMethod="unsigned integer"/>
+        <Element Offset="840" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000348" DisplayMethod="unsigned integer"/>
+        <Element Offset="916" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000394" DisplayMethod="unsigned integer"/>
+        <Element Offset="940" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="000003AC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1016" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="000003F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1040" Vartype="4 Bytes" Bytesize="4" RLECount="44" OffsetHex="00000410" DisplayMethod="unsigned integer"/>
+        <Element Offset="1216" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="000004C0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1240" Vartype="4 Bytes" Bytesize="4" RLECount="18" OffsetHex="000004D8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1312" Vartype="Double" Bytesize="8" OffsetHex="00000520" DisplayMethod="unsigned integer"/>
+        <Element Offset="1320" Vartype="Float" Bytesize="4" RLECount="5" OffsetHex="00000528" DisplayMethod="unsigned integer"/>
+        <Element Offset="1340" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="0000053C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1416" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000588" DisplayMethod="unsigned integer"/>
+        <Element Offset="1440" Vartype="4 Bytes" Bytesize="4" RLECount="18" OffsetHex="000005A0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1512" Vartype="Double" Bytesize="8" OffsetHex="000005E8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1520" Vartype="Float" Bytesize="4" RLECount="5" OffsetHex="000005F0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1540" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000604" DisplayMethod="unsigned integer"/>
+        <Element Offset="1616" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000650" DisplayMethod="unsigned integer"/>
+        <Element Offset="1640" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000668" DisplayMethod="unsigned integer"/>
+        <Element Offset="1716" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="000006B4" DisplayMethod="unsigned integer"/>
+        <Element Offset="1740" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="000006CC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1816" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000718" DisplayMethod="unsigned integer"/>
+        <Element Offset="1840" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000730" DisplayMethod="unsigned integer"/>
+        <Element Offset="1916" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="0000077C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1940" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000794" DisplayMethod="unsigned integer"/>
+        <Element Offset="2016" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="000007E0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2040" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="000007F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2116" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000844" DisplayMethod="unsigned integer"/>
+        <Element Offset="2140" Vartype="4 Bytes" Bytesize="4" RLECount="44" OffsetHex="0000085C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2316" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="0000090C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2340" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000924" DisplayMethod="unsigned integer"/>
+        <Element Offset="2416" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000970" DisplayMethod="unsigned integer"/>
+        <Element Offset="2440" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000988" DisplayMethod="unsigned integer"/>
+        <Element Offset="2516" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="000009D4" DisplayMethod="unsigned integer"/>
+        <Element Offset="2540" Vartype="4 Bytes" Bytesize="4" RLECount="43" OffsetHex="000009EC" DisplayMethod="unsigned integer"/>
+        <Element Offset="2712" Vartype="Double" Bytesize="8" OffsetHex="00000A98" DisplayMethod="unsigned integer"/>
+        <Element Offset="2720" Vartype="Float" Bytesize="4" RLECount="5" OffsetHex="00000AA0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2740" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000AB4" DisplayMethod="unsigned integer"/>
+        <Element Offset="2816" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000B00" DisplayMethod="unsigned integer"/>
+        <Element Offset="2840" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000B18" DisplayMethod="unsigned integer"/>
+        <Element Offset="2916" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000B64" DisplayMethod="unsigned integer"/>
+        <Element Offset="2940" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000B7C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3016" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000BC8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3040" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000BE0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3116" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000C2C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3140" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000C44" DisplayMethod="unsigned integer"/>
+        <Element Offset="3216" Vartype="String" Bytesize="9" OffsetHex="00000C90" DisplayMethod="unsigned integer"/>
+        <Element Offset="3225" Vartype="Byte" Bytesize="1" RLECount="3" OffsetHex="00000C99" DisplayMethod="unsigned integer"/>
+        <Element Offset="3228" Vartype="Float" Bytesize="4" RLECount="3" OffsetHex="00000C9C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3240" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000CA8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3316" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000CF4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3340" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000D0C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3416" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000D58" DisplayMethod="unsigned integer"/>
+        <Element Offset="3440" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000D70" DisplayMethod="unsigned integer"/>
+        <Element Offset="3516" Vartype="Byte" Bytesize="1" RLECount="8" OffsetHex="00000DBC" DisplayMethod="unsigned integer"/>
+        <Element Offset="3524" Vartype="Float" Bytesize="4" RLECount="4" OffsetHex="00000DC4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3540" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000DD4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3616" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000E20" DisplayMethod="unsigned integer"/>
+        <Element Offset="3640" Vartype="4 Bytes" Bytesize="4" RLECount="19" OffsetHex="00000E38" DisplayMethod="unsigned integer"/>
+        <Element Offset="3716" Vartype="Byte" Bytesize="1" RLECount="8" OffsetHex="00000E84" DisplayMethod="unsigned integer"/>
+        <Element Offset="3724" Vartype="Float" Bytesize="4" RLECount="4" OffsetHex="00000E8C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3740" Vartype="4 Bytes" Bytesize="4" RLECount="18" OffsetHex="00000E9C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3812" Vartype="Double" Bytesize="8" OffsetHex="00000EE4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3820" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000EEC" DisplayMethod="unsigned integer"/>
+        <Element Offset="3824" Vartype="Float" Bytesize="4" RLECount="4" OffsetHex="00000EF0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3840" Vartype="4 Bytes" Bytesize="4" RLECount="44" OffsetHex="00000F00" DisplayMethod="unsigned integer"/>
+        <Element Offset="4016" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000FB0" DisplayMethod="unsigned integer"/>
+        <Element Offset="4040" Vartype="4 Bytes" Bytesize="4" RLECount="14" OffsetHex="00000FC8" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+  </Structures>
+</CheatTable>

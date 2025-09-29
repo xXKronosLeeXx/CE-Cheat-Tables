@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"gold"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : OPPW4.exe
+  Version: 
+  Date   : 2024-05-25
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,OPPW4.exe,89 4A 14 48 8B 05 51 95 9F 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov ecx,#9999999
+  mov [rdx+14],ecx
+  mov rax,[OPPW4.exe+1EC24E0]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 5
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 4A 14 48 8B 05 51 95 9F 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: OPPW4.exe+14C8F85
+
+OPPW4.exe+14C8F63: 44 8B D0              - mov r10d,eax
+OPPW4.exe+14C8F66: 48 8B 0D 73 95 9F 00  - mov rcx,[OPPW4.exe+1EC24E0]
+OPPW4.exe+14C8F6D: 4C 8B 49 18           - mov r9,[rcx+18]
+OPPW4.exe+14C8F71: 49 8B 51 10           - mov rdx,[r9+10]
+OPPW4.exe+14C8F75: 8B 42 14              - mov eax,[rdx+14]
+OPPW4.exe+14C8F78: 41 3B C2              - cmp eax,r10d
+OPPW4.exe+14C8F7B: 8B C8                 - mov ecx,eax
+OPPW4.exe+14C8F7D: 73 03                 - jae OPPW4.exe+14C8F82
+OPPW4.exe+14C8F7F: 41 8B CA              - mov ecx,r10d
+OPPW4.exe+14C8F82: 41 2B CA              - sub ecx,r10d
+// ---------- INJECTING HERE ----------
+OPPW4.exe+14C8F85: 89 4A 14              - mov [rdx+14],ecx
+// ---------- DONE INJECTING  ----------
+OPPW4.exe+14C8F88: 48 8B 05 51 95 9F 00  - mov rax,[OPPW4.exe+1EC24E0]
+OPPW4.exe+14C8F8F: 48 8B 48 18           - mov rcx,[rax+18]
+OPPW4.exe+14C8F93: 4C 8B 41 10           - mov r8,[rcx+10]
+OPPW4.exe+14C8F97: 41 8B 90 A4 07 00 00  - mov edx,[r8+000007A4]
+OPPW4.exe+14C8F9E: 49 03 D2              - add rdx,r10
+OPPW4.exe+14C8FA1: B8 00 28 6B EE        - mov eax,EE6B2800
+OPPW4.exe+14C8FA6: 48 3B D0              - cmp rdx,rax
+OPPW4.exe+14C8FA9: 48 0F 46 C2           - cmovbe rax,rdx
+OPPW4.exe+14C8FAD: 41 89 80 A4 07 00 00  - mov [r8+000007A4],eax
+OPPW4.exe+14C8FB4: 48 8B D3              - mov rdx,rbx
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"全硬币"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : OPPW4.exe
+  Version: 
+  Date   : 2024-05-25
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,OPPW4.exe,44 8B 74 C2 18) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rdx+rax*8+18],#99
+  mov r14d,[rdx+rax*8+18]
+  jmp return
+
+code:
+  mov r14d,[rdx+rax*8+18]
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 44 8B 74 C2 18
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: OPPW4.exe+14CA133
+
+OPPW4.exe+14CA108: 48 8B D0                 - mov rdx,rax
+OPPW4.exe+14CA10B: 48 8B CE                 - mov rcx,rsi
+OPPW4.exe+14CA10E: E8 AD 27 13 00           - call OPPW4.exe+15FC8C0
+OPPW4.exe+14CA113: 4C 8B 7C 24 60           - mov r15,[rsp+60]
+OPPW4.exe+14CA118: 4C 8B 6C 24 50           - mov r13,[rsp+50]
+OPPW4.exe+14CA11D: 48 8B 05 BC 83 9F 00     - mov rax,[OPPW4.exe+1EC24E0]
+OPPW4.exe+14CA124: 48 8B 48 18              - mov rcx,[rax+18]
+OPPW4.exe+14CA128: 48 8B 51 48              - mov rdx,[rcx+48]
+OPPW4.exe+14CA12C: 4B 8D 04 64              - lea rax,[r12+r12*2]
+OPPW4.exe+14CA130: 48 03 C0                 - add rax,rax
+// ---------- INJECTING HERE ----------
+OPPW4.exe+14CA133: 44 8B 74 C2 18           - mov r14d,[rdx+rax*8+18]
+// ---------- DONE INJECTING  ----------
+OPPW4.exe+14CA138: 48 8B 44 24 48           - mov rax,[rsp+48]
+OPPW4.exe+14CA13D: 48 8B 00                 - mov rax,[rax]
+OPPW4.exe+14CA140: 48 8B 48 08              - mov rcx,[rax+08]
+OPPW4.exe+14CA144: 4C 8B 64 24 70           - mov r12,[rsp+70]
+OPPW4.exe+14CA149: 41 8B 04 24              - mov eax,[r12]
+OPPW4.exe+14CA14D: 48 03 C0                 - add rax,rax
+OPPW4.exe+14CA150: 0F B6 9C C1 11 20 00 00  - movzx ebx,byte ptr [rcx+rax*8+00002011]
+OPPW4.exe+14CA158: 41 0F B6 7C 24 39        - movzx edi,byte ptr [r12+39]
+OPPW4.exe+14CA15E: 49 8B CC                 - mov rcx,r12
+OPPW4.exe+14CA161: E8 7A 3D 00 00           - call OPPW4.exe+14CDEE0
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

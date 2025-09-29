@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>16</ID>
+      <Description>"EXP大量"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Gestalt.exe
+  Version: 
+  Date   : 2024-10-27
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,03 45 0C 89 41 08 8B 46) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  add eax,#199999
+  mov [ecx+08],eax
+  jmp return
+
+code:
+  add eax,[ebp+0C]
+  mov [ecx+08],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 03 45 0C 89 41 08
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+67BD4C
+
+GameAssembly.dll+67BD24: E8 C7 B4 B4 FF        - call GameAssembly.DllCanUnloadNow+64C0
+GameAssembly.dll+67BD29: C6 05 AF 7C 7F 67 01  - mov byte ptr [GameAssembly.dll+23B7CAF],01
+GameAssembly.dll+67BD30: 8B 75 08              - mov esi,[ebp+08]
+GameAssembly.dll+67BD33: 8B 4E 10              - mov ecx,[esi+10]
+GameAssembly.dll+67BD36: 85 C9                 - test ecx,ecx
+GameAssembly.dll+67BD38: 0F 84 74 01 00 00     - je GameAssembly.dll+67BEB2
+GameAssembly.dll+67BD3E: 8B 49 10              - mov ecx,[ecx+10]
+GameAssembly.dll+67BD41: 85 C9                 - test ecx,ecx
+GameAssembly.dll+67BD43: 0F 84 69 01 00 00     - je GameAssembly.dll+67BEB2
+GameAssembly.dll+67BD49: 8B 41 08              - mov eax,[ecx+08]
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+67BD4C: 03 45 0C              - add eax,[ebp+0C]
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+67BD4F: 89 41 08              - mov [ecx+08],eax
+GameAssembly.dll+67BD52: 8B 46 10              - mov eax,[esi+10]
+GameAssembly.dll+67BD55: 85 C0                 - test eax,eax
+GameAssembly.dll+67BD57: 0F 84 55 01 00 00     - je GameAssembly.dll+67BEB2
+GameAssembly.dll+67BD5D: 8B 40 10              - mov eax,[eax+10]
+GameAssembly.dll+67BD60: 85 C0                 - test eax,eax
+GameAssembly.dll+67BD62: 0F 84 4A 01 00 00     - je GameAssembly.dll+67BEB2
+GameAssembly.dll+67BD68: 8B 4E 0C              - mov ecx,[esi+0C]
+GameAssembly.dll+67BD6B: 85 C9                 - test ecx,ecx
+GameAssembly.dll+67BD6D: 0F 84 3F 01 00 00     - je GameAssembly.dll+67BEB2
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>14</ID>
+      <Description>"金钱399999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Gestalt.exe
+  Version: 
+  Date   : 2024-10-27
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,0C 8B 41 0C 89 71 0C 3B C6) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov [ecx+0C],#399999
+  cmp eax,esi
+  jmp return
+
+code:
+  mov [ecx+0C],esi
+  cmp eax,esi
+  jmp return
+
+INJECT+04:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+04:
+  db 89 71 0C 3B C6
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+7916B7
+
+GameAssembly.dll+791691: 8B EC                 - mov ebp,esp
+GameAssembly.dll+791693: 80 3D E2 84 7F 67 00  - cmp byte ptr [GameAssembly.dll+23B84E2],00
+GameAssembly.dll+79169A: 56                    - push esi
+GameAssembly.dll+79169B: 75 11                 - jne GameAssembly.dll+7916AE
+GameAssembly.dll+79169D: B9 68 18 73 67        - mov ecx,GameAssembly.dll+22F1868
+GameAssembly.dll+7916A2: E8 49 5B A3 FF        - call GameAssembly.DllCanUnloadNow+64C0
+GameAssembly.dll+7916A7: C6 05 E2 84 7F 67 01  - mov byte ptr [GameAssembly.dll+23B84E2],01
+GameAssembly.dll+7916AE: 8B 4D 08              - mov ecx,[ebp+08]
+GameAssembly.dll+7916B1: 8B 75 0C              - mov esi,[ebp+0C]
+GameAssembly.dll+7916B4: 8B 41 0C              - mov eax,[ecx+0C]
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+7916B7: 89 71 0C              - mov [ecx+0C],esi
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+7916BA: 3B C6                 - cmp eax,esi
+GameAssembly.dll+7916BC: 74 35                 - je GameAssembly.dll+7916F3
+GameAssembly.dll+7916BE: 83 79 10 00           - cmp dword ptr [ecx+10],00
+GameAssembly.dll+7916C2: 74 2F                 - je GameAssembly.dll+7916F3
+GameAssembly.dll+7916C4: 8B 41 10              - mov eax,[ecx+10]
+GameAssembly.dll+7916C7: FF 70 14              - push [eax+14]
+GameAssembly.dll+7916CA: 56                    - push esi
+GameAssembly.dll+7916CB: FF 70 20              - push [eax+20]
+GameAssembly.dll+7916CE: 8B 40 0C              - mov eax,[eax+0C]
+GameAssembly.dll+7916D1: FF D0                 - call eax
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"技能点不减"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Gestalt.exe
+  Version: 
+  Date   : 2024-10-27
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,29 79 18 8B 8E A0 00 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  nop//  sub [ecx+18],edi
+  mov ecx,[esi+000000A0]
+  jmp return
+
+code:
+  sub [ecx+18],edi
+  mov ecx,[esi+000000A0]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 4
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 29 79 18 8B 8E A0 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+73D6D4
+
+GameAssembly.dll+73D6B3: 83 C4 14           - add esp,14
+GameAssembly.dll+73D6B6: 6A 00              - push 00
+GameAssembly.dll+73D6B8: 56                 - push esi
+GameAssembly.dll+73D6B9: E8 D2 CF FF FF     - call GameAssembly.dll+73A690
+GameAssembly.dll+73D6BE: 83 C4 08           - add esp,08
+GameAssembly.dll+73D6C1: 85 C0              - test eax,eax
+GameAssembly.dll+73D6C3: 0F 84 4A 01 00 00  - je GameAssembly.dll+73D813
+GameAssembly.dll+73D6C9: 8B 48 10           - mov ecx,[eax+10]
+GameAssembly.dll+73D6CC: 85 C9              - test ecx,ecx
+GameAssembly.dll+73D6CE: 0F 84 3F 01 00 00  - je GameAssembly.dll+73D813
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+73D6D4: 29 79 18           - sub [ecx+18],edi
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+73D6D7: 8B 8E A0 00 00 00  - mov ecx,[esi+000000A0]
+GameAssembly.dll+73D6DD: 85 C9              - test ecx,ecx
+GameAssembly.dll+73D6DF: 0F 84 2E 01 00 00  - je GameAssembly.dll+73D813
+GameAssembly.dll+73D6E5: 8B 86 A0 00 00 00  - mov eax,[esi+000000A0]
+GameAssembly.dll+73D6EB: 8B 49 18           - mov ecx,[ecx+18]
+GameAssembly.dll+73D6EE: 8B 40 10           - mov eax,[eax+10]
+GameAssembly.dll+73D6F1: 85 C0              - test eax,eax
+GameAssembly.dll+73D6F3: 0F 84 1A 01 00 00  - je GameAssembly.dll+73D813
+GameAssembly.dll+73D6F9: 85 C9              - test ecx,ecx
+GameAssembly.dll+73D6FB: 0F 84 12 01 00 00  - je GameAssembly.dll+73D813
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"HP不减"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Gestalt.exe
+  Version: 
+  Date   : 2024-10-27
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,8B 42 10 89 42 0C) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+
+  mov eax,[edx+08]
+  mov [edx+0C],eax
+  jmp return
+
+code:
+  mov eax,[edx+10]
+  mov [edx+0C],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 8B 42 10 89 42 0C
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+67C447
+
+GameAssembly.dll+67C430: 5E                 - pop esi
+GameAssembly.dll+67C431: 8B E5              - mov esp,ebp
+GameAssembly.dll+67C433: 5D                 - pop ebp
+GameAssembly.dll+67C434: C3                 - ret 
+GameAssembly.dll+67C435: 8B 46 10           - mov eax,[esi+10]
+GameAssembly.dll+67C438: 8B 50 18           - mov edx,[eax+18]
+GameAssembly.dll+67C43B: 85 D2              - test edx,edx
+GameAssembly.dll+67C43D: 0F 84 B2 01 00 00  - je GameAssembly.dll+67C5F5
+GameAssembly.dll+67C443: F7 D9              - neg ecx
+GameAssembly.dll+67C445: 79 06              - jns GameAssembly.dll+67C44D
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+67C447: 8B 42 10           - mov eax,[edx+10]
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+67C44A: 89 42 0C           - mov [edx+0C],eax
+GameAssembly.dll+67C44D: 8B 42 0C           - mov eax,[edx+0C]
+GameAssembly.dll+67C450: 6A 00              - push 00
+GameAssembly.dll+67C452: 03 C1              - add eax,ecx
+GameAssembly.dll+67C454: 50                 - push eax
+GameAssembly.dll+67C455: 52                 - push edx
+GameAssembly.dll+67C456: E8 65 0C 00 00     - call GameAssembly.dll+67D0C0
+GameAssembly.dll+67C45B: 83 C4 0C           - add esp,0C
+GameAssembly.dll+67C45E: 80 7D 14 00        - cmp byte ptr [ebp+14],00
+GameAssembly.dll+67C462: 75 28              - jne GameAssembly.dll+67C48C
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>23</ID>
+      <Description>"刀光=4"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Gestalt.exe
+  Version: 
+  Date   : 2024-10-27
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,89 42 14 5E 5D C3 33 C0 89 42 14 5E 5D C3 E8 54) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov [edx+14],4
+  pop esi
+  pop ebp
+  jmp return
+
+code:
+  mov [edx+14],eax
+  pop esi
+  pop ebp
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 42 14 5E 5D
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+68D509
+
+GameAssembly.dll+68D4F2: 8B 40 10        - mov eax,[eax+10]
+GameAssembly.dll+68D4F5: 8B 70 1C        - mov esi,[eax+1C]
+GameAssembly.dll+68D4F8: 8B 41 14        - mov eax,[ecx+14]
+GameAssembly.dll+68D4FB: 85 C0           - test eax,eax
+GameAssembly.dll+68D4FD: 78 10           - js GameAssembly.dll+68D50F
+GameAssembly.dll+68D4FF: 8B 4E 14        - mov ecx,[esi+14]
+GameAssembly.dll+68D502: 49              - dec ecx
+GameAssembly.dll+68D503: 3B C1           - cmp eax,ecx
+GameAssembly.dll+68D505: 7E 0A           - jle GameAssembly.dll+68D511
+GameAssembly.dll+68D507: 8B C1           - mov eax,ecx
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+68D509: 89 42 14        - mov [edx+14],eax
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+68D50C: 5E              - pop esi
+GameAssembly.dll+68D50D: 5D              - pop ebp
+GameAssembly.dll+68D50E: C3              - ret 
+GameAssembly.dll+68D50F: 33 C0           - xor eax,eax
+GameAssembly.dll+68D511: 89 42 14        - mov [edx+14],eax
+GameAssembly.dll+68D514: 5E              - pop esi
+GameAssembly.dll+68D515: 5D              - pop ebp
+GameAssembly.dll+68D516: C3              - ret 
+GameAssembly.dll+68D517: E8 54 28 B3 FF  - call GameAssembly.dll+1BFD70
+GameAssembly.dll+68D51C: CC              - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>24</ID>
+      <Description>"子弹=4"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Gestalt.exe
+  Version: 
+  Date   : 2024-10-27
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,89 43 14 E8 A2 03 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov [ebx+14],4
+  call GameAssembly.dll+674200
+  jmp return
+
+code:
+  mov [ebx+14],eax
+  call GameAssembly.dll+674200
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 43 14 E8 A2 03 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+673E56
+
+GameAssembly.dll+673E45: 49                       - dec ecx
+GameAssembly.dll+673E46: 3B C1                    - cmp eax,ecx
+GameAssembly.dll+673E48: 7E 06                    - jle GameAssembly.dll+673E50
+GameAssembly.dll+673E4A: 8B C1                    - mov eax,ecx
+GameAssembly.dll+673E4C: EB 02                    - jmp GameAssembly.dll+673E50
+GameAssembly.dll+673E4E: 33 C0                    - xor eax,eax
+GameAssembly.dll+673E50: 6A 00                    - push 00
+GameAssembly.dll+673E52: 57                       - push edi
+GameAssembly.dll+673E53: 6A 00                    - push 00
+GameAssembly.dll+673E55: 56                       - push esi
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+673E56: 89 43 14                 - mov [ebx+14],eax
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+673E59: E8 A2 03 00 00           - call GameAssembly.dll+674200
+GameAssembly.dll+673E5E: 66 0F 6E 46 78           - movd xmm0,[esi+78]
+GameAssembly.dll+673E63: 83 C4 10                 - add esp,10
+GameAssembly.dll+673E66: 0F 5B C0                 - cvtdq2ps xmm0,xmm0
+GameAssembly.dll+673E69: 0F 2F 86 84 00 00 00     - comiss xmm0,[esi+00000084]
+GameAssembly.dll+673E70: 76 23                    - jna GameAssembly.dll+673E95
+GameAssembly.dll+673E72: 66 0F 6E 46 78           - movd xmm0,[esi+78]
+GameAssembly.dll+673E77: F3 0F 10 8E E8 00 00 00  - movss xmm1,[esi+000000E8]
+GameAssembly.dll+673E7F: 0F 5B C0                 - cvtdq2ps xmm0,xmm0
+GameAssembly.dll+673E82: F3 0F 5C C8              - subss xmm1,xmm0
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

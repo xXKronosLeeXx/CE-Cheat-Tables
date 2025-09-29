@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"V1.2.2.steam"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>2305C43C55C</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"Gold=899999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+mov [rax+4C],#899999
+mov rax,[rdi+20]
+mov rcx,[rdi+18]
+movsxd  rcx,dword ptr [rcx+4C]
+jmp exit
+
+originalcode:
+mov [rax+4C],ecx
+mov rax,[rdi+20]
+mov rcx,[rdi+18]
+movsxd  rcx,dword ptr [rcx+4C]
+
+exit:
+jmp returnhere
+
+MyLovelyQueen.PlayerDataSO:set_gold+42:
+jmp far newmem
+nop
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+MyLovelyQueen.PlayerDataSO:set_gold+42:
+db 89 48 4C 48 8B 47 20 48 8B 4F 18 48 63 49 4C
+//mov [rax+4C],ecx
+//mov rax,[rdi+20]
+//mov rcx,[rdi+18]
+//movsxd  rcx,dword ptr [rcx+4C]
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"行动点数=3"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+mov [rax+50],3
+mov rax,[rdi+68]
+mov rcx,0000023052F06CC0
+jmp exit
+
+originalcode:
+mov [rax+50],ecx
+mov rax,[rdi+68]
+mov rcx,0000023052F06CC0
+
+exit:
+jmp returnhere
+
+MyLovelyQueen.GameplayManager:set_actionPoint+51:
+jmp far newmem
+nop 3
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+MyLovelyQueen.GameplayManager:set_actionPoint+51:
+db 89 48 50 48 8B 47 68 48 B9 C0 6C F0 52 30 02 00 00
+//mov [rax+50],ecx
+//mov rax,[rdi+68]
+//mov rcx,0000023052F06CC0
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"无描述"</Description>
+      <VariableType>Float</VariableType>
+      <Address>2305EC55594</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>2305C43C560</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"自动汇编脚本"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048)
+alloc(sco,4)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+sco:
+dq #500
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+movss xmm5,[sco]
+movss [rax+14],xmm5
+mov rax,[rsi+20]
+mov rcx,[rsi+18]
+mov rcx,[rcx+28]
+
+
+originalcode:
+movss [rax+14],xmm5
+mov rax,[rsi+20]
+mov rcx,[rsi+18]
+mov rcx,[rcx+28]
+
+exit:
+jmp returnhere
+
+MyLovelyQueen.PlayerDataSO:set_militaryPopulation+57:
+jmp far newmem
+nop 3
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+dealloc(sco)
+MyLovelyQueen.PlayerDataSO:set_militaryPopulation+57:
+db F3 0F 11 68 14 48 8B 46 20 48 8B 4E 18 48 8B 49 28
+//movss [rax+14],xmm5
+//mov rax,[rsi+20]
+//mov rcx,[rsi+18]
+//mov rcx,[rcx+28]
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

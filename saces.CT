@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"无描述"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>saces.exe+126DF0</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"life"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : saces.exe
+  Version: 
+  Date   : 2024-09-26
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,saces.exe,89 87 EC 6D ED 00 56) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov [edi+saces.exe+126DEC],5
+  jmp return
+
+code:
+  mov [edi+saces.exe+126DEC],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 87 EC 6D ED 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: saces.exe+FDDA
+
+saces.exe+FDB5: 89 87 E4 6D ED 00  - mov [edi+saces.exe+126DE4],eax
+saces.exe+FDBB: E8 F0 18 00 00     - call saces.exe+116B0
+saces.exe+FDC0: 56                 - push esi
+saces.exe+FDC1: 89 87 E8 6D ED 00  - mov [edi+saces.exe+126DE8],eax
+saces.exe+FDC7: E8 04 19 00 00     - call saces.exe+116D0
+saces.exe+FDCC: 83 C4 0C           - add esp,0C
+saces.exe+FDCF: 89 87 EC 6D ED 00  - mov [edi+saces.exe+126DEC],eax
+saces.exe+FDD5: 85 C0              - test eax,eax
+saces.exe+FDD7: 74 07              - je saces.exe+FDE0
+saces.exe+FDD9: 48                 - dec eax
+// ---------- INJECTING HERE ----------
+saces.exe+FDDA: 89 87 EC 6D ED 00  - mov [edi+saces.exe+126DEC],eax
+// ---------- DONE INJECTING  ----------
+saces.exe+FDE0: 56                 - push esi
+saces.exe+FDE1: E8 AA 18 00 00     - call saces.exe+11690
+saces.exe+FDE6: 83 C4 04           - add esp,04
+saces.exe+FDE9: 89 87 F0 6D ED 00  - mov [edi+saces.exe+126DF0],eax
+saces.exe+FDEF: EB 5E              - jmp saces.exe+FE4F
+saces.exe+FDF1: 66 A1 10 E7 EE 00  - mov ax,[saces.exe+13E710]
+saces.exe+FDF7: 66 83 F8 FA        - cmp ax,-06
+saces.exe+FDFB: 74 52              - je saces.exe+FE4F
+saces.exe+FDFD: 66 83 F8 F6        - cmp ax,-0A
+saces.exe+FE01: 74 4C              - je saces.exe+FE4F
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"boom"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : saces.exe
+  Version: 
+  Date   : 2024-09-26
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,saces.exe,89 87 F0 6D ED 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov [edi+saces.exe+126DF0],5
+  jmp return
+
+code:
+  mov [edi+saces.exe+126DF0],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 87 F0 6D ED 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: saces.exe+FDE9
+
+saces.exe+FDCC: 83 C4 0C              - add esp,0C
+saces.exe+FDCF: 89 87 EC 6D ED 00     - mov [edi+saces.exe+126DEC],eax
+saces.exe+FDD5: 85 C0                 - test eax,eax
+saces.exe+FDD7: 74 07                 - je saces.exe+FDE0
+saces.exe+FDD9: 48                    - dec eax
+INJECT: E9 21 02 5B 00        - jmp 01370000
+saces.exe+FDDF: 90                    - nop 
+saces.exe+FDE0: 56                    - push esi
+saces.exe+FDE1: E8 AA 18 00 00        - call saces.exe+11690
+saces.exe+FDE6: 83 C4 04              - add esp,04
+// ---------- INJECTING HERE ----------
+saces.exe+FDE9: 89 87 F0 6D ED 00     - mov [edi+saces.exe+126DF0],eax
+// ---------- DONE INJECTING  ----------
+saces.exe+FDEF: EB 5E                 - jmp saces.exe+FE4F
+saces.exe+FDF1: 66 A1 10 E7 EE 00     - mov ax,[saces.exe+13E710]
+saces.exe+FDF7: 66 83 F8 FA           - cmp ax,-06
+saces.exe+FDFB: 74 52                 - je saces.exe+FE4F
+saces.exe+FDFD: 66 83 F8 F6           - cmp ax,-0A
+saces.exe+FE01: 74 4C                 - je saces.exe+FE4F
+saces.exe+FE03: 66 83 F8 F9           - cmp ax,-07
+saces.exe+FE07: 74 46                 - je saces.exe+FE4F
+saces.exe+FE09: 8B 04 B5 00 ED E8 00  - mov eax,[esi*4+saces.exe+DED00]
+saces.exe+FE10: 66 39 58 3E           - cmp [eax+3E],bx
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

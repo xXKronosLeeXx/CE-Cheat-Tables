@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>12</ID>
+      <Description>"ITEM"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Lies of P  
+  Version: 
+  Date   : 2023-09-23
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(ITEM,LOP-WinGDK-Shipping.exe,89 51 40 FF 90 A0 02 00 00) // should be unique
+alloc(newmem,$1000,ITEM)
+
+label(code)
+label(return)
+
+newmem:
+  nop
+  nop
+  jmp return
+
+code:
+  mov [rcx+40],edx
+  call qword ptr [rax+000002A0]
+  jmp return
+
+ITEM:
+  jmp newmem
+  nop 4
+return:
+registersymbol(ITEM)
+
+[DISABLE]
+
+ITEM:
+  db 89 51 40 FF 90 A0 02 00 00
+
+unregistersymbol(ITEM)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LOP-WinGDK-Shipping.exe+1613833
+
+LOP-WinGDK-Shipping.exe+161381D: C3                 - ret 
+LOP-WinGDK-Shipping.exe+161381E: CC                 - int 3 
+LOP-WinGDK-Shipping.exe+161381F: CC                 - int 3 
+LOP-WinGDK-Shipping.exe+1613820: 40 53              - push rbx
+LOP-WinGDK-Shipping.exe+1613822: 48 83 EC 20        - sub rsp,20
+LOP-WinGDK-Shipping.exe+1613826: 33 C0              - xor eax,eax
+LOP-WinGDK-Shipping.exe+1613828: 48 8B D9           - mov rbx,rcx
+LOP-WinGDK-Shipping.exe+161382B: 85 D2              - test edx,edx
+LOP-WinGDK-Shipping.exe+161382D: 0F 4E D0           - cmovle edx,eax
+LOP-WinGDK-Shipping.exe+1613830: 48 8B 01           - mov rax,[rcx]
+// ---------- INJECTING HERE ----------
+LOP-WinGDK-Shipping.exe+1613833: 89 51 40           - mov [rcx+40],edx
+// ---------- DONE INJECTING  ----------
+LOP-WinGDK-Shipping.exe+1613836: FF 90 A0 02 00 00  - call qword ptr [rax+000002A0]
+LOP-WinGDK-Shipping.exe+161383C: 48 8B 43 38        - mov rax,[rbx+38]
+LOP-WinGDK-Shipping.exe+1613840: 48 85 C0           - test rax,rax
+LOP-WinGDK-Shipping.exe+1613843: 75 05              - jne LOP-WinGDK-Shipping.exe+161384A
+LOP-WinGDK-Shipping.exe+1613845: E8 86 B4 A5 02     - call LOP-WinGDK-Shipping.exe+406ECD0
+LOP-WinGDK-Shipping.exe+161384A: 48 8B 40 28        - mov rax,[rax+28]
+LOP-WinGDK-Shipping.exe+161384E: 48 8D 4C 24 30     - lea rcx,[rsp+30]
+LOP-WinGDK-Shipping.exe+1613853: 48 89 44 24 30     - mov [rsp+30],rax
+LOP-WinGDK-Shipping.exe+1613858: E8 43 EB FA FF     - call LOP-WinGDK-Shipping.exe+15C23A0
+LOP-WinGDK-Shipping.exe+161385D: 48 85 C0           - test rax,rax
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>15</ID>
+      <Description>"money"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Lies of P  
+  Version: 
+  Date   : 2023-09-23
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(MOENY,LOP-WinGDK-Shipping.exe,41 89 81 A4 00 00 00 48) // should be unique
+alloc(newmem,$1000,MOENY)
+
+label(code)
+label(return)
+
+newmem:
+  nop
+  jmp return
+
+code:
+  mov [r9+000000A4],eax
+  jmp return
+
+MOENY:
+  jmp newmem
+  nop 2
+return:
+registersymbol(MOENY)
+
+[DISABLE]
+
+MOENY:
+  db 41 89 81 A4 00 00 00
+
+unregistersymbol(MOENY)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LOP-WinGDK-Shipping.exe+17BBBCD
+
+LOP-WinGDK-Shipping.exe+17BBBAD: 8D 82 00 00 00 80     - lea eax,[rdx-80000000]
+LOP-WinGDK-Shipping.exe+17BBBB3: 44 3B C0              - cmp r8d,eax
+LOP-WinGDK-Shipping.exe+17BBBB6: 7C 05                 - jl LOP-WinGDK-Shipping.exe+17BBBBD
+LOP-WinGDK-Shipping.exe+17BBBB8: 44 2B C2              - sub r8d,edx
+LOP-WinGDK-Shipping.exe+17BBBBB: 79 04                 - jns LOP-WinGDK-Shipping.exe+17BBBC1
+LOP-WinGDK-Shipping.exe+17BBBBD: 33 C0                 - xor eax,eax
+LOP-WinGDK-Shipping.exe+17BBBBF: EB 0C                 - jmp LOP-WinGDK-Shipping.exe+17BBBCD
+LOP-WinGDK-Shipping.exe+17BBBC1: B8 FF C9 9A 3B        - mov eax,3B9AC9FF
+LOP-WinGDK-Shipping.exe+17BBBC6: 44 3B C0              - cmp r8d,eax
+LOP-WinGDK-Shipping.exe+17BBBC9: 41 0F 4C C0           - cmovl eax,r8d
+// ---------- INJECTING HERE ----------
+LOP-WinGDK-Shipping.exe+17BBBCD: 41 89 81 A4 00 00 00  - mov [r9+000000A4],eax
+// ---------- DONE INJECTING  ----------
+LOP-WinGDK-Shipping.exe+17BBBD4: 48 8B 81 A0 00 00 00  - mov rax,[rcx+000000A0]
+LOP-WinGDK-Shipping.exe+17BBBDB: 8B 98 A4 00 00 00     - mov ebx,[rax+000000A4]
+LOP-WinGDK-Shipping.exe+17BBBE1: E8 5A 44 0A 00        - call LOP-WinGDK-Shipping.exe+1860040
+LOP-WinGDK-Shipping.exe+17BBBE6: 48 8D 54 24 30        - lea rdx,[rsp+30]
+LOP-WinGDK-Shipping.exe+17BBBEB: 89 5C 24 30           - mov [rsp+30],ebx
+LOP-WinGDK-Shipping.exe+17BBBEF: 48 8D 88 28 04 00 00  - lea rcx,[rax+00000428]
+LOP-WinGDK-Shipping.exe+17BBBF6: E8 D5 00 5F FF        - call LOP-WinGDK-Shipping.exe+DABCD0
+LOP-WinGDK-Shipping.exe+17BBBFB: 48 8B 5C 24 20        - mov rbx,[rsp+20]
+LOP-WinGDK-Shipping.exe+17BBC00: B0 01                 - mov al,01
+LOP-WinGDK-Shipping.exe+17BBC02: 48 83 C4 28           - add rsp,28
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

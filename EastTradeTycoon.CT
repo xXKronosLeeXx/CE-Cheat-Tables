@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"money"</Description>
+      <VariableType>Float</VariableType>
+      <Address>289B8052424</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"自动汇编脚本"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : EastTradeTycoon.exe
+  Version: 
+  Date   : 2024-10-22
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,F3 0F 11 A8 24 04 00 00 49 BB 10 E4 CA 57 89 02 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  movss [rax+00000424],xmm5
+  mov r11,0000028957CAE410
+  jmp return
+
+
+code:
+  movss [rax+00000424],xmm5
+  mov r11,0000028957CAE410
+  jmp return
+
+INJECT:
+  jmp far newmem
+  nop 4
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 A8 24 04 00 00 49 BB 10 E4 CA 57 89 02 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 28957CB3DA6
+
+28957CB3D79: F3 0F 5A C0                    - cvtss2sd xmm0,xmm0
+28957CB3D7D: F3 0F 10 8D 68 FF FF FF        - movss xmm1,[rbp-00000098]
+28957CB3D85: F3 0F 5A C9                    - cvtss2sd xmm1,xmm1
+28957CB3D89: F2 0F 58 C1                    - addsd xmm0,xmm1
+28957CB3D8D: F2 0F 5A E8                    - cvtsd2ss xmm5,xmm0
+28957CB3D91: F3 0F 11 6D 94                 - movss [rbp-6C],xmm5
+28957CB3D96: 83 39 00                       - cmp dword ptr [rcx],00
+28957CB3D99: F3 0F 10 45 94                 - movss xmm0,[rbp-6C]
+28957CB3D9E: F3 0F 5A C0                    - cvtss2sd xmm0,xmm0
+28957CB3DA2: F2 0F 5A E8                    - cvtsd2ss xmm5,xmm0
+// ---------- INJECTING HERE ----------
+28957CB3DA6: F3 0F 11 A8 24 04 00 00        - movss [rax+00000424],xmm5
+// ---------- DONE INJECTING  ----------
+28957CB3DAE: 49 BB 10 E4 CA 57 89 02 00 00  - mov r11,0000028957CAE410
+28957CB3DB8: 41 FF D3                       - call r11
+28957CB3DBB: F3 0F 10 85 68 FF FF FF        - movss xmm0,[rbp-00000098]
+28957CB3DC3: F3 0F 5A C0                    - cvtss2sd xmm0,xmm0
+28957CB3DC7: 48 63 95 60 FF FF FF           - movsxd  rdx,dword ptr [rbp-000000A0]
+28957CB3DCE: F2 0F 5A C0                    - cvtsd2ss xmm0,xmm0
+28957CB3DD2: 48 8D 6D 00                    - lea rbp,[rbp+00]
+28957CB3DD6: 49 BB A0 44 CB 57 89 02 00 00  - mov r11,0000028957CB44A0
+28957CB3DE0: 41 FF D3                       - call r11
+28957CB3DE3: 48 B8 E8 2C AB AA 87 02 00 00  - mov rax,00000287AAAB2CE8
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

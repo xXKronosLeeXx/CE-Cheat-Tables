@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>2C709800088</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>2C77102EBA0</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>2C8D2018A5C</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"自动汇编脚本"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : MGSDelta-Win64-Shipping.exe
+  Version: 
+  Date   : 2025-09-11
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,MGSDelta-Win64-Shipping.exe,B7 40 FC 8B 43 40 48 8D 93 B0 00 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov eax,[rdi+40]
+  mov eax,[rbx+40]
+  lea rdx,[rbx+000000B0]
+  jmp return
+
+code:
+  mov eax,[rbx+40]
+  lea rdx,[rbx+000000B0]
+  jmp return
+
+INJECT+03:
+  jmp newmem
+  nop 5
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+03:
+  db 8B 43 40 48 8D 93 B0 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MGSDelta-Win64-Shipping.exe+51A87A4
+
+MGSDelta-Win64-Shipping.exe+51A877F: 0F 11 47 04           - movups [rdi+04],xmm0
+MGSDelta-Win64-Shipping.exe+51A8783: 8B 43 14              - mov eax,[rbx+14]
+MGSDelta-Win64-Shipping.exe+51A8786: 89 47 14              - mov [rdi+14],eax
+MGSDelta-Win64-Shipping.exe+51A8789: 0F 10 43 18           - movups xmm0,[rbx+18]
+MGSDelta-Win64-Shipping.exe+51A878D: 0F 11 47 18           - movups [rdi+18],xmm0
+MGSDelta-Win64-Shipping.exe+51A8791: 0F B6 43 28           - movzx eax,byte ptr [rbx+28]
+MGSDelta-Win64-Shipping.exe+51A8795: 88 47 28              - mov [rdi+28],al
+MGSDelta-Win64-Shipping.exe+51A8798: 0F B6 43 29           - movzx eax,byte ptr [rbx+29]
+MGSDelta-Win64-Shipping.exe+51A879C: 88 47 29              - mov [rdi+29],al
+MGSDelta-Win64-Shipping.exe+51A879F: E8 2C B7 40 FC        - call MGSDelta-Win64-Shipping.exe+15B3ED0
+// ---------- INJECTING HERE ----------
+MGSDelta-Win64-Shipping.exe+51A87A4: 8B 43 40              - mov eax,[rbx+40]
+// ---------- DONE INJECTING  ----------
+MGSDelta-Win64-Shipping.exe+51A87A7: 48 8D 93 B0 00 00 00  - lea rdx,[rbx+000000B0]
+MGSDelta-Win64-Shipping.exe+51A87AE: 89 47 40              - mov [rdi+40],eax
+MGSDelta-Win64-Shipping.exe+51A87B1: 48 8D 8F B0 00 00 00  - lea rcx,[rdi+000000B0]
+MGSDelta-Win64-Shipping.exe+51A87B8: 0F 10 43 44           - movups xmm0,[rbx+44]
+MGSDelta-Win64-Shipping.exe+51A87BC: 0F 11 47 44           - movups [rdi+44],xmm0
+MGSDelta-Win64-Shipping.exe+51A87C0: 0F B6 43 54           - movzx eax,byte ptr [rbx+54]
+MGSDelta-Win64-Shipping.exe+51A87C4: 88 47 54              - mov [rdi+54],al
+MGSDelta-Win64-Shipping.exe+51A87C7: 0F 10 43 58           - movups xmm0,[rbx+58]
+MGSDelta-Win64-Shipping.exe+51A87CB: 0F 11 47 58           - movups [rdi+58],xmm0
+MGSDelta-Win64-Shipping.exe+51A87CF: 8B 43 68              - mov eax,[rbx+68]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"自动汇编脚本"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : MGSDelta-Win64-Shipping.exe
+  Version: 
+  Date   : 2025-09-11
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,MGSDelta-Win64-Shipping.exe,89 87 20 05 00 00 41) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop //  mov [rdi+00000520],eax
+  jmp return
+
+code:
+  mov [rdi+00000520],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 87 20 05 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MGSDelta-Win64-Shipping.exe+53710E8
+
+MGSDelta-Win64-Shipping.exe+53710C3: 74 05                 - je MGSDelta-Win64-Shipping.exe+53710CA
+MGSDelta-Win64-Shipping.exe+53710C5: E8 B6 C0 27 FC        - call MGSDelta-Win64-Shipping.AK::SoundEngine::RegisterResourceMonitorCallback+E60
+MGSDelta-Win64-Shipping.exe+53710CA: 40 F6 C6 01           - test sil,01
+MGSDelta-Win64-Shipping.exe+53710CE: 74 0E                 - je MGSDelta-Win64-Shipping.exe+53710DE
+MGSDelta-Win64-Shipping.exe+53710D0: 48 8B 4D D0           - mov rcx,[rbp-30]
+MGSDelta-Win64-Shipping.exe+53710D4: 48 85 C9              - test rcx,rcx
+MGSDelta-Win64-Shipping.exe+53710D7: 74 05                 - je MGSDelta-Win64-Shipping.exe+53710DE
+MGSDelta-Win64-Shipping.exe+53710D9: E8 A2 C0 27 FC        - call MGSDelta-Win64-Shipping.AK::SoundEngine::RegisterResourceMonitorCallback+E60
+MGSDelta-Win64-Shipping.exe+53710DE: 41 0F BF 46 44        - movsx eax,word ptr [r14+44]
+MGSDelta-Win64-Shipping.exe+53710E3: 0F 10 44 24 48        - movups xmm0,[rsp+48]
+// ---------- INJECTING HERE ----------
+MGSDelta-Win64-Shipping.exe+53710E8: 89 87 20 05 00 00     - mov [rdi+00000520],eax
+// ---------- DONE INJECTING  ----------
+MGSDelta-Win64-Shipping.exe+53710EE: 41 83 7E 4C 00        - cmp dword ptr [r14+4C],00
+MGSDelta-Win64-Shipping.exe+53710F3: 0F 11 87 38 05 00 00  - movups [rdi+00000538],xmm0
+MGSDelta-Win64-Shipping.exe+53710FA: 0F 9F C0              - setg al
+MGSDelta-Win64-Shipping.exe+53710FD: 88 87 34 05 00 00     - mov [rdi+00000534],al
+MGSDelta-Win64-Shipping.exe+5371103: 41 8B 46 50           - mov eax,[r14+50]
+MGSDelta-Win64-Shipping.exe+5371107: 89 87 48 05 00 00     - mov [rdi+00000548],eax
+MGSDelta-Win64-Shipping.exe+537110D: 0F 11 B7 4C 05 00 00  - movups [rdi+0000054C],xmm6
+MGSDelta-Win64-Shipping.exe+5371114: 41 8B 46 54           - mov eax,[r14+54]
+MGSDelta-Win64-Shipping.exe+5371118: 89 87 5C 05 00 00     - mov [rdi+0000055C],eax
+MGSDelta-Win64-Shipping.exe+537111E: 0F 11 B7 60 05 00 00  - movups [rdi+00000560],xmm6
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"MGSDelta-Win64-Shipping.exe"+135C59CC</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>2C6015DCF4C</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>7</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>2C7028DF488</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>8</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>2C709800154</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>9</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>2C7314C9818</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>10</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>2C77102EC6C</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>11</ID>
+      <Description>"无描述"</Description>
+      <VariableType>Float</VariableType>
+      <Address>2C5E20DCA30</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>12</ID>
+      <Description>"自动汇编脚本"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : MGSDelta-Win64-Shipping.exe
+  Version: 
+  Date   : 2025-09-11
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,MGSDelta-Win64-Shipping.exe,41 0F BF 46 44 0F 10 44) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov eax,[rdi+00000520]
+  mov [r14+44],eax
+  movsx eax,word ptr [r14+44]
+  jmp return
+
+
+code:
+  movsx eax,word ptr [r14+44]
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 41 0F BF 46 44
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MGSDelta-Win64-Shipping.exe+53710DE
+
+MGSDelta-Win64-Shipping.exe+53710BD: 83 E6 FD              - and esi,-03
+MGSDelta-Win64-Shipping.exe+53710C0: 48 85 C9              - test rcx,rcx
+MGSDelta-Win64-Shipping.exe+53710C3: 74 05                 - je MGSDelta-Win64-Shipping.exe+53710CA
+MGSDelta-Win64-Shipping.exe+53710C5: E8 B6 C0 27 FC        - call MGSDelta-Win64-Shipping.AK::SoundEngine::RegisterResourceMonitorCallback+E60
+MGSDelta-Win64-Shipping.exe+53710CA: 40 F6 C6 01           - test sil,01
+MGSDelta-Win64-Shipping.exe+53710CE: 74 0E                 - je MGSDelta-Win64-Shipping.exe+53710DE
+MGSDelta-Win64-Shipping.exe+53710D0: 48 8B 4D D0           - mov rcx,[rbp-30]
+MGSDelta-Win64-Shipping.exe+53710D4: 48 85 C9              - test rcx,rcx
+MGSDelta-Win64-Shipping.exe+53710D7: 74 05                 - je MGSDelta-Win64-Shipping.exe+53710DE
+MGSDelta-Win64-Shipping.exe+53710D9: E8 A2 C0 27 FC        - call MGSDelta-Win64-Shipping.AK::SoundEngine::RegisterResourceMonitorCallback+E60
+// ---------- INJECTING HERE ----------
+MGSDelta-Win64-Shipping.exe+53710DE: 41 0F BF 46 44        - movsx eax,word ptr [r14+44]
+// ---------- DONE INJECTING  ----------
+MGSDelta-Win64-Shipping.exe+53710E3: 0F 10 44 24 48        - movups xmm0,[rsp+48]
+MGSDelta-Win64-Shipping.exe+53710E8: 89 87 20 05 00 00     - mov [rdi+00000520],eax
+MGSDelta-Win64-Shipping.exe+53710EE: 41 83 7E 4C 00        - cmp dword ptr [r14+4C],00
+MGSDelta-Win64-Shipping.exe+53710F3: 0F 11 87 38 05 00 00  - movups [rdi+00000538],xmm0
+MGSDelta-Win64-Shipping.exe+53710FA: 0F 9F C0              - setg al
+MGSDelta-Win64-Shipping.exe+53710FD: 88 87 34 05 00 00     - mov [rdi+00000534],al
+MGSDelta-Win64-Shipping.exe+5371103: 41 8B 46 50           - mov eax,[r14+50]
+MGSDelta-Win64-Shipping.exe+5371107: 89 87 48 05 00 00     - mov [rdi+00000548],eax
+MGSDelta-Win64-Shipping.exe+537110D: 0F 11 B7 4C 05 00 00  - movups [rdi+0000054C],xmm6
+MGSDelta-Win64-Shipping.exe+5371114: 41 8B 46 54           - mov eax,[r14+54]
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

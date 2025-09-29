@@ -1,0 +1,842 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"Gold=99999"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : EiyudenChronicle.exe
+  Version: 
+  Date   : 2024-04-23
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,89 7E 74 85 DB) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rsi+74],#9999999
+  test ebx,ebx
+  jmp return
+
+code:
+  mov [rsi+74],edi
+  test ebx,ebx
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 7E 74 85 DB
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+77CD97
+
+GameAssembly.dll+77CD69: 48 8D 0D 08 FC 4E 04  - lea rcx,[GameAssembly.dll+4C6C978]
+GameAssembly.dll+77CD70: E8 FB C4 CF FF        - call GameAssembly.il2cpp_get_exception_argument_null+2B0
+GameAssembly.dll+77CD75: 48 8D 0D 44 4B 52 04  - lea rcx,[GameAssembly.dll+4CA18C0]
+GameAssembly.dll+77CD7C: E8 EF C4 CF FF        - call GameAssembly.il2cpp_get_exception_argument_null+2B0
+GameAssembly.dll+77CD81: C6 05 C1 D0 7C 04 01  - mov byte ptr [GameAssembly.dll+4F49E49],01
+GameAssembly.dll+77CD88: B8 FF E0 F5 05        - mov eax,05F5E0FF
+GameAssembly.dll+77CD8D: 3B F8                 - cmp edi,eax
+GameAssembly.dll+77CD8F: 0F 4D F8              - cmovge edi,eax
+GameAssembly.dll+77CD92: 8B DF                 - mov ebx,edi
+GameAssembly.dll+77CD94: 2B 5E 74              - sub ebx,[rsi+74]
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+77CD97: 89 7E 74              - mov [rsi+74],edi
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+77CD9A: 85 DB                 - test ebx,ebx
+GameAssembly.dll+77CD9C: 0F 8F 1B 01 00 00     - jg GameAssembly.dll+77CEBD
+GameAssembly.dll+77CDA2: 0F 89 05 01 00 00     - jns GameAssembly.dll+77CEAD
+GameAssembly.dll+77CDA8: 48 8B 0D C9 FB 4E 04  - mov rcx,[GameAssembly.dll+4C6C978]
+GameAssembly.dll+77CDAF: 83 B9 E0 00 00 00 00  - cmp dword ptr [rcx+000000E0],00
+GameAssembly.dll+77CDB6: 75 05                 - jne GameAssembly.dll+77CDBD
+GameAssembly.dll+77CDB8: E8 03 C7 CF FF        - call GameAssembly.il2cpp_runtime_class_init
+GameAssembly.dll+77CDBD: 48 8B 0D 4C 30 54 04  - mov rcx,[GameAssembly.dll+4CBFE10]
+GameAssembly.dll+77CDC4: E8 17 EB 4E 01        - call GameAssembly.dll+1C6B8E0
+GameAssembly.dll+77CDC9: 80 3D 09 CC 7C 04 00  - cmp byte ptr [GameAssembly.dll+4F499D9],00
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>26</ID>
+      <Description>"Gold"</Description>
+      <Options moManualExpandCollapse="1"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>17</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"GameAssembly.dll"+04CFAA08</Address>
+          <Offsets>
+            <Offset>74</Offset>
+            <Offset>30</Offset>
+            <Offset>198</Offset>
+            <Offset>F0</Offset>
+            <Offset>B8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>18</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"GameAssembly.dll"+04D1E588</Address>
+          <Offsets>
+            <Offset>74</Offset>
+            <Offset>30</Offset>
+            <Offset>198</Offset>
+            <Offset>C0</Offset>
+            <Offset>B8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>20</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"GameAssembly.dll"+04C621E0</Address>
+          <Offsets>
+            <Offset>74</Offset>
+            <Offset>30</Offset>
+            <Offset>198</Offset>
+            <Offset>40</Offset>
+            <Offset>168</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>22</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"GameAssembly.dll"+04DCB838</Address>
+          <Offsets>
+            <Offset>74</Offset>
+            <Offset>20</Offset>
+            <Offset>28</Offset>
+            <Offset>C0</Offset>
+            <Offset>680</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>23</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"GameAssembly.dll"+04CE7A08</Address>
+          <Offsets>
+            <Offset>74</Offset>
+            <Offset>20</Offset>
+            <Offset>28</Offset>
+            <Offset>70</Offset>
+            <Offset>B8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>24</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"GameAssembly.dll"+04C297C8</Address>
+          <Offsets>
+            <Offset>74</Offset>
+            <Offset>20</Offset>
+            <Offset>28</Offset>
+            <Offset>10</Offset>
+            <Offset>B8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>25</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"GameAssembly.dll"+04D8F908</Address>
+          <Offsets>
+            <Offset>74</Offset>
+            <Offset>20</Offset>
+            <Offset>28</Offset>
+            <Offset>0</Offset>
+            <Offset>B8</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>31</ID>
+      <Description>"Money 99999"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : EiyudenChronicle.exe
+  Version: 
+  Date   : 2024-04-24
+  Author : lixiang
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,89 7E 74 85 DB) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rsi+74],#99999
+  test ebx,ebx
+  jmp return
+
+code:
+  mov [rsi+74],edi
+  test ebx,ebx
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 7E 74 85 DB
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+77CD97
+
+GameAssembly.dll+77CD69: 48 8D 0D 08 FC 4E 04  - lea rcx,[GameAssembly.dll+4C6C978]
+GameAssembly.dll+77CD70: E8 FB C4 CF FF        - call GameAssembly.il2cpp_get_exception_argument_null+2B0
+GameAssembly.dll+77CD75: 48 8D 0D 44 4B 52 04  - lea rcx,[GameAssembly.dll+4CA18C0]
+GameAssembly.dll+77CD7C: E8 EF C4 CF FF        - call GameAssembly.il2cpp_get_exception_argument_null+2B0
+GameAssembly.dll+77CD81: C6 05 C1 D0 7C 04 01  - mov byte ptr [GameAssembly.dll+4F49E49],01
+GameAssembly.dll+77CD88: B8 FF E0 F5 05        - mov eax,05F5E0FF
+GameAssembly.dll+77CD8D: 3B F8                 - cmp edi,eax
+GameAssembly.dll+77CD8F: 0F 4D F8              - cmovge edi,eax
+GameAssembly.dll+77CD92: 8B DF                 - mov ebx,edi
+GameAssembly.dll+77CD94: 2B 5E 74              - sub ebx,[rsi+74]
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+77CD97: 89 7E 74              - mov [rsi+74],edi
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+77CD9A: 85 DB                 - test ebx,ebx
+GameAssembly.dll+77CD9C: 0F 8F 1B 01 00 00     - jg GameAssembly.dll+77CEBD
+GameAssembly.dll+77CDA2: 0F 89 05 01 00 00     - jns GameAssembly.dll+77CEAD
+GameAssembly.dll+77CDA8: 48 8B 0D C9 FB 4E 04  - mov rcx,[GameAssembly.dll+4C6C978]
+GameAssembly.dll+77CDAF: 83 B9 E0 00 00 00 00  - cmp dword ptr [rcx+000000E0],00
+GameAssembly.dll+77CDB6: 75 05                 - jne GameAssembly.dll+77CDBD
+GameAssembly.dll+77CDB8: E8 03 C7 CF FF        - call GameAssembly.il2cpp_runtime_class_init
+GameAssembly.dll+77CDBD: 48 8B 0D 4C 30 54 04  - mov rcx,[GameAssembly.dll+4CBFE10]
+GameAssembly.dll+77CDC4: E8 17 EB 4E 01        - call GameAssembly.dll+1C6B8E0
+GameAssembly.dll+77CDC9: 80 3D 09 CC 7C 04 00  - cmp byte ptr [GameAssembly.dll+4F499D9],00
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>33</ID>
+      <Description>"SP 自动满"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : EiyudenChronicle.exe
+  Version: 
+  Date   : 2024-04-24
+  Author : lixiang
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,89 47 44 80 BF A1 00 00 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rdi+44],#5
+  cmp byte ptr [rdi+000000A1],00
+  jmp return
+
+code:
+  mov [rdi+44],eax
+  cmp byte ptr [rdi+000000A1],00
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 5
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 47 44 80 BF A1 00 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+C41D96
+
+GameAssembly.dll+C41D6B: C6 05 30 AF 30 04 01  - mov byte ptr [GameAssembly.dll+4F4CCA2],01
+GameAssembly.dll+C41D72: 48 8B 15 9F 3A FD 03  - mov rdx,[GameAssembly.dll+4C15818]
+GameAssembly.dll+C41D79: B9 09 00 00 00        - mov ecx,00000009
+GameAssembly.dll+C41D7E: 8B 5F 44              - mov ebx,[rdi+44]
+GameAssembly.dll+C41D81: 4C 8B C7              - mov r8,rdi
+GameAssembly.dll+C41D84: E8 87 0A 3C FF        - call GameAssembly.dll+2810
+GameAssembly.dll+C41D89: 8D 0C 2B              - lea ecx,[rbx+rbp]
+GameAssembly.dll+C41D8C: 3B C8                 - cmp ecx,eax
+GameAssembly.dll+C41D8E: 0F 4C C1              - cmovl eax,ecx
+GameAssembly.dll+C41D91: 48 8B 5C 24 40        - mov rbx,[rsp+40]
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+C41D96: 89 47 44              - mov [rdi+44],eax
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+C41D99: 80 BF A1 00 00 00 00  - cmp byte ptr [rdi+000000A1],00
+GameAssembly.dll+C41DA0: 74 2B                 - je GameAssembly.dll+C41DCD
+GameAssembly.dll+C41DA2: 48 8B 87 80 00 00 00  - mov rax,[rdi+00000080]
+GameAssembly.dll+C41DA9: 48 85 C0              - test rax,rax
+GameAssembly.dll+C41DAC: 74 48                 - je GameAssembly.dll+C41DF6
+GameAssembly.dll+C41DAE: 80 78 40 00           - cmp byte ptr [rax+40],00
+GameAssembly.dll+C41DB2: 74 19                 - je GameAssembly.dll+C41DCD
+GameAssembly.dll+C41DB4: 48 8B 4F 78           - mov rcx,[rdi+78]
+GameAssembly.dll+C41DB8: 48 85 C9              - test rcx,rcx
+GameAssembly.dll+C41DBB: 74 39                 - je GameAssembly.dll+C41DF6
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>34</ID>
+      <Description>"MP MAX"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : EiyudenChronicle.exe
+  Version: 
+  Date   : 2024-04-24
+  Author : lixiang
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,89 41 40 C3 8B 41 3C) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop//  mov [rcx+40],eax
+  ret
+  mov eax,[rcx+3C]
+  jmp return
+
+code:
+  mov [rcx+40],eax
+  ret 
+  mov eax,[rcx+3C]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 41 40 C3 8B 41 3C
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+C41312
+
+GameAssembly.dll+C412FA: 33 D2     - xor edx,edx
+GameAssembly.dll+C412FC: 85 C0     - test eax,eax
+GameAssembly.dll+C412FE: 0F 4E C2  - cmovle eax,edx
+GameAssembly.dll+C41301: 89 41 44  - mov [rcx+44],eax
+GameAssembly.dll+C41304: C3        - ret 
+GameAssembly.dll+C41305: 8B 41 40  - mov eax,[rcx+40]
+GameAssembly.dll+C41308: 2B 42 04  - sub eax,[rdx+04]
+GameAssembly.dll+C4130B: 33 D2     - xor edx,edx
+GameAssembly.dll+C4130D: 85 C0     - test eax,eax
+GameAssembly.dll+C4130F: 0F 4E C2  - cmovle eax,edx
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+C41312: 89 41 40  - mov [rcx+40],eax
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+C41315: C3        - ret 
+GameAssembly.dll+C41316: 8B 41 3C  - mov eax,[rcx+3C]
+GameAssembly.dll+C41319: 2B 42 04  - sub eax,[rdx+04]
+GameAssembly.dll+C4131C: 33 D2     - xor edx,edx
+GameAssembly.dll+C4131E: 85 C0     - test eax,eax
+GameAssembly.dll+C41320: 0F 4E C2  - cmovle eax,edx
+GameAssembly.dll+C41323: 89 41 3C  - mov [rcx+3C],eax
+GameAssembly.dll+C41326: C3        - ret 
+GameAssembly.dll+C41327: CC        - int 3 
+GameAssembly.dll+C41328: CC        - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>35</ID>
+      <Description>"EXP 99999"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : EiyudenChronicle.exe
+  Version: 
+  Date   : 2024-04-24
+  Author : lixiang
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,89 5D 14 4D 85 F6) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rbp+14],$99999
+  test r14,r14
+  jmp return
+
+code:
+  mov [rbp+14],ebx
+  test r14,r14
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 5D 14 4D 85 F6
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+A36030
+
+GameAssembly.dll+A36000: 80 3D 70 57 51 04 00  - cmp byte ptr [GameAssembly.dll+4F4B777],00
+GameAssembly.dll+A36007: 4D 8B F0              - mov r14,r8
+GameAssembly.dll+A3600A: 8B DA                 - mov ebx,edx
+GameAssembly.dll+A3600C: 48 8B E9              - mov rbp,rcx
+GameAssembly.dll+A3600F: 75 1F                 - jne GameAssembly.dll+A36030
+GameAssembly.dll+A36011: 48 8D 0D F8 9D 28 04  - lea rcx,[GameAssembly.dll+4CBFE10]
+GameAssembly.dll+A36018: E8 53 32 A4 FF        - call GameAssembly.il2cpp_get_exception_argument_null+2B0
+GameAssembly.dll+A3601D: 48 8D 0D 54 69 23 04  - lea rcx,[GameAssembly.dll+4C6C978]
+GameAssembly.dll+A36024: E8 47 32 A4 FF        - call GameAssembly.il2cpp_get_exception_argument_null+2B0
+GameAssembly.dll+A36029: C6 05 47 57 51 04 01  - mov byte ptr [GameAssembly.dll+4F4B777],01
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+A36030: 89 5D 14              - mov [rbp+14],ebx
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+A36033: 4D 85 F6              - test r14,r14
+GameAssembly.dll+A36036: 0F 84 DC 00 00 00     - je GameAssembly.dll+A36118
+GameAssembly.dll+A3603C: 49 8B 8E 48 08 00 00  - mov rcx,[r14+00000848]
+GameAssembly.dll+A36043: 45 33 C0              - xor r8d,r8d
+GameAssembly.dll+A36046: 8B D3                 - mov edx,ebx
+GameAssembly.dll+A36048: E8 83 CF FF FF        - call GameAssembly.dll+A32FD0
+GameAssembly.dll+A3604D: 8B D8                 - mov ebx,eax
+GameAssembly.dll+A3604F: 39 45 64              - cmp [rbp+64],eax
+GameAssembly.dll+A36052: 0F 84 AF 00 00 00     - je GameAssembly.dll+A36107
+GameAssembly.dll+A36058: 48 89 74 24 30        - mov [rsp+30],rsi
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>36</ID>
+      <Description>"物品不减"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : EiyudenChronicle.exe
+  Version: 
+  Date   : 2024-04-24
+  Author : lixiang
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,49 C2 89 41 14 C3 CC CC CC CC) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [rcx+14],eax
+  jb code
+  ret
+  int 3
+  jmp return
+
+code:
+  mov [rcx+14],eax
+  ret 
+  int 3 
+  jmp return
+
+INJECT+02:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+02:
+  db 89 41 14 C3 CC
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+62E41E
+
+GameAssembly.dll+62E40C: CC        - int 3 
+GameAssembly.dll+62E40D: CC        - int 3 
+GameAssembly.dll+62E40E: CC        - int 3 
+GameAssembly.dll+62E40F: CC        - int 3 
+GameAssembly.dll+62E410: 8B 41 18  - mov eax,[rcx+18]
+GameAssembly.dll+62E413: 3B C2     - cmp eax,edx
+GameAssembly.dll+62E415: 7C 07     - jl GameAssembly.dll+62E41E
+GameAssembly.dll+62E417: 33 C0     - xor eax,eax
+GameAssembly.dll+62E419: 85 D2     - test edx,edx
+GameAssembly.dll+62E41B: 0F 49 C2  - cmovns eax,edx
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+62E41E: 89 41 14  - mov [rcx+14],eax
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+62E421: C3        - ret 
+GameAssembly.dll+62E422: CC        - int 3 
+GameAssembly.dll+62E423: CC        - int 3 
+GameAssembly.dll+62E424: CC        - int 3 
+GameAssembly.dll+62E425: CC        - int 3 
+GameAssembly.dll+62E426: CC        - int 3 
+GameAssembly.dll+62E427: CC        - int 3 
+GameAssembly.dll+62E428: CC        - int 3 
+GameAssembly.dll+62E429: CC        - int 3 
+GameAssembly.dll+62E42A: CC        - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>38</ID>
+      <Description>"库存99"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : EiyudenChronicle.exe
+  Version: 
+  Date   : 2024-04-27
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,44 8B 70 14 48 8B 0D 05 00 D0 03) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rax+14],9
+  mov r14d,[rax+14]
+  mov rcx,[GameAssembly.dll+4C324B0]
+  jmp return
+
+
+code:
+  mov r14d,[rax+14]
+  mov rcx,[GameAssembly.dll+4C324B0]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 6
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 44 8B 70 14 48 8B 0D 05 00 D0 03
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+F324A0
+
+GameAssembly.dll+F32479: 48 8B D7                    - mov rdx,rdi
+GameAssembly.dll+F3247C: 49 8B CC                    - mov rcx,r12
+GameAssembly.dll+F3247F: E8 AC B0 5C 00              - call GameAssembly.dll+14FD530
+GameAssembly.dll+F32484: 48 8B C8                    - mov rcx,rax
+GameAssembly.dll+F32487: 48 85 C0                    - test rax,rax
+GameAssembly.dll+F3248A: 0F 85 E7 00 00 00           - jne GameAssembly.dll+F32577
+GameAssembly.dll+F32490: 49 8B 47 10                 - mov rax,[r15+10]
+GameAssembly.dll+F32494: 48 85 C0                    - test rax,rax
+GameAssembly.dll+F32497: 0F 84 71 01 00 00           - je GameAssembly.dll+F3260E
+GameAssembly.dll+F3249D: 8B 70 10                    - mov esi,[rax+10]
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+F324A0: 44 8B 70 14                 - mov r14d,[rax+14]
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+F324A4: 48 8B 0D 05 00 D0 03        - mov rcx,[GameAssembly.dll+4C324B0]
+GameAssembly.dll+F324AB: E8 20 6F 54 FF              - call GameAssembly.il2cpp_method_get_class+40
+GameAssembly.dll+F324B0: 48 8B F8                    - mov rdi,rax
+GameAssembly.dll+F324B3: 48 85 C0                    - test rax,rax
+GameAssembly.dll+F324B6: 0F 84 4D 01 00 00           - je GameAssembly.dll+F32609
+GameAssembly.dll+F324BC: 48 C7 44 24 20 00 00 00 00  - mov qword ptr [rsp+20],00000000
+GameAssembly.dll+F324C5: 41 B9 0F 27 00 00           - mov r9d,0000270F
+GameAssembly.dll+F324CB: 45 8B C6                    - mov r8d,r14d
+GameAssembly.dll+F324CE: 8B D6                       - mov edx,esi
+GameAssembly.dll+F324D0: 48 8B C8                    - mov rcx,rax
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>40</ID>
+      <Description>"资源库 400"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : EiyudenChronicle.exe
+  Version: 
+  Date   : 2024-04-27
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,03 78 14 89 BC 24 A0 00 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rax+14],#300
+  add edi,[rax+14]
+  mov [rsp+000000A0],edi
+  jmp return
+
+
+code:
+  add edi,[rax+14]
+  mov [rsp+000000A0],edi
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 5
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 03 78 14 89 BC 24 A0 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+A0609F
+
+GameAssembly.dll+A06070: 48 89 5C 24 30                    - mov [rsp+30],rbx
+GameAssembly.dll+A06075: 66 66 66 0F 1F 84 00 00 00 00 00  - nop word ptr [rax+rax+00000000]
+GameAssembly.dll+A06080: 48 8B 15 F9 FB 21 04              - mov rdx,[GameAssembly.dll+4C25C80]
+GameAssembly.dll+A06087: 48 8D 4C 24 38                    - lea rcx,[rsp+38]
+GameAssembly.dll+A0608C: E8 0F 4A DB 01                    - call GameAssembly.dll+27BAAA0
+GameAssembly.dll+A06091: 84 C0                             - test al,al
+GameAssembly.dll+A06093: 74 16                             - je GameAssembly.dll+A060AB
+GameAssembly.dll+A06095: 48 8B 44 24 50                    - mov rax,[rsp+50]
+GameAssembly.dll+A0609A: 48 85 C0                          - test rax,rax
+GameAssembly.dll+A0609D: 74 58                             - je GameAssembly.dll+A060F7
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+A0609F: 03 78 14                          - add edi,[rax+14]
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+A060A2: 89 BC 24 A0 00 00 00              - mov [rsp+000000A0],edi
+GameAssembly.dll+A060A9: EB D5                             - jmp GameAssembly.dll+A06080
+GameAssembly.dll+A060AB: 48 8B 15 9E FA 21 04              - mov rdx,[GameAssembly.dll+4C25B50]
+GameAssembly.dll+A060B2: 48 8B CB                          - mov rcx,rbx
+GameAssembly.dll+A060B5: E8 66 30 B7 FF                    - call GameAssembly.dll+579120
+GameAssembly.dll+A060BA: EB 22                             - jmp GameAssembly.dll+A060DE
+GameAssembly.dll+A060BC: 48 8B 15 8D FA 21 04              - mov rdx,[GameAssembly.dll+4C25B50]
+GameAssembly.dll+A060C3: 48 8B 4C 24 30                    - mov rcx,[rsp+30]
+GameAssembly.dll+A060C8: E8 53 30 B7 FF                    - call GameAssembly.dll+579120
+GameAssembly.dll+A060CD: 48 8B 4C 24 28                    - mov rcx,[rsp+28]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>43</ID>
+      <Description>"总部资金"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : EiyudenChronicle.exe
+  Version: 
+  Date   : 2024-04-27
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,4C C7 89 43 10 48 8B 5C 24 30) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rbx+10],#999999
+  mov rbx,[rsp+30]
+  jmp return
+
+code:
+  mov [rbx+10],eax
+  mov rbx,[rsp+30]
+  jmp return
+
+INJECT+02:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+02:
+  db 89 43 10 48 8B 5C 24 30
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+A03B17
+
+GameAssembly.dll+A03AF3: 48 8B CD              - mov rcx,rbp
+GameAssembly.dll+A03AF6: E8 B5 41 B2 00        - call GameAssembly.dll+1527CB0
+GameAssembly.dll+A03AFB: 48 8B 15 4E 37 27 04  - mov rdx,[GameAssembly.dll+4C77250]
+GameAssembly.dll+A03B02: 48 8B C8              - mov rcx,rax
+GameAssembly.dll+A03B05: E8 F6 97 AF 00        - call GameAssembly.dll+14FD300
+GameAssembly.dll+A03B0A: 48 85 C0              - test rax,rax
+GameAssembly.dll+A03B0D: 74 0B                 - je GameAssembly.dll+A03B1A
+GameAssembly.dll+A03B0F: 8B 40 1C              - mov eax,[rax+1C]
+GameAssembly.dll+A03B12: 3B F8                 - cmp edi,eax
+GameAssembly.dll+A03B14: 0F 4C C7              - cmovl eax,edi
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+A03B17: 89 43 10              - mov [rbx+10],eax
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+A03B1A: 48 8B 5C 24 30        - mov rbx,[rsp+30]
+GameAssembly.dll+A03B1F: 48 8B 6C 24 38        - mov rbp,[rsp+38]
+GameAssembly.dll+A03B24: 48 8B 74 24 40        - mov rsi,[rsp+40]
+GameAssembly.dll+A03B29: 48 83 C4 20           - add rsp,20
+GameAssembly.dll+A03B2D: 5F                    - pop rdi
+GameAssembly.dll+A03B2E: C3                    - ret 
+GameAssembly.dll+A03B2F: E8 EC 58 A7 FF        - call GameAssembly.il2cpp_method_get_class+90
+GameAssembly.dll+A03B34: CC                    - int 3 
+GameAssembly.dll+A03B35: CC                    - int 3 
+GameAssembly.dll+A03B36: CC                    - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>45</ID>
+      <Description>"人口+10000"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : EiyudenChronicle.exe
+  Version: 
+  Date   : 2024-04-27
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,01 51 14 C3 CC) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [rcx+14],#10000
+  ret
+  int 3
+  jmp return
+
+code:
+  add [rcx+14],edx
+  ret 
+  int 3 
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 01 51 14 C3 CC
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+A04A70
+
+GameAssembly.dll+A04A66: CC        - int 3 
+GameAssembly.dll+A04A67: CC        - int 3 
+GameAssembly.dll+A04A68: CC        - int 3 
+GameAssembly.dll+A04A69: CC        - int 3 
+GameAssembly.dll+A04A6A: CC        - int 3 
+GameAssembly.dll+A04A6B: CC        - int 3 
+GameAssembly.dll+A04A6C: CC        - int 3 
+GameAssembly.dll+A04A6D: CC        - int 3 
+GameAssembly.dll+A04A6E: CC        - int 3 
+GameAssembly.dll+A04A6F: CC        - int 3 
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+A04A70: 01 51 14  - add [rcx+14],edx
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+A04A73: C3        - ret 
+GameAssembly.dll+A04A74: CC        - int 3 
+GameAssembly.dll+A04A75: CC        - int 3 
+GameAssembly.dll+A04A76: CC        - int 3 
+GameAssembly.dll+A04A77: CC        - int 3 
+GameAssembly.dll+A04A78: CC        - int 3 
+GameAssembly.dll+A04A79: CC        - int 3 
+GameAssembly.dll+A04A7A: CC        - int 3 
+GameAssembly.dll+A04A7B: CC        - int 3 
+GameAssembly.dll+A04A7C: CC        - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

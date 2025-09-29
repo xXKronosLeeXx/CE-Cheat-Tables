@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"金钱不减"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : FRONT MISSION 1st Remake.exe
+  Version: 
+  Date   : 2024-08-10
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,89 47 3C 48 8B 34 24 48 8B 7C 24 08 48 83 C4 18) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  add [rdi+3C],#9999
+  mov rsi,[rsp]
+  mov rdi,[rsp+08]
+  add rsp,18
+  jmp return
+
+code:
+  mov [rdi+3C],eax
+  mov rsi,[rsp]
+  mov rdi,[rsp+08]
+  add rsp,18
+  jmp return
+
+INJECT:
+  jmp far newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 47 3C 48 8B 34 24 48 8B 7C 24 08 48 83 C4 18
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 14CB44C871A
+
+14CB44C86F8: 48 89 7C 24 08        - mov [rsp+08],rdi
+14CB44C86FD: 48 8B F9              - mov rdi,rcx
+14CB44C8700: 48 8B F2              - mov rsi,rdx
+14CB44C8703: 48 63 47 3C           - movsxd  rax,dword ptr [rdi+3C]
+14CB44C8707: 3B C6                 - cmp eax,esi
+14CB44C8709: 7D 09                 - jnl 14CB44C8714
+14CB44C870B: C7 47 3C 00 00 00 00  - mov [rdi+3C],00000000
+14CB44C8712: EB 09                 - jmp 14CB44C871D
+14CB44C8714: 48 63 47 3C           - movsxd  rax,dword ptr [rdi+3C]
+14CB44C8718: 2B C6                 - sub eax,esi
+// ---------- INJECTING HERE ----------
+14CB44C871A: 89 47 3C              - mov [rdi+3C],eax
+// ---------- DONE INJECTING  ----------
+14CB44C871D: 48 8B 34 24           - mov rsi,[rsp]
+14CB44C8721: 48 8B 7C 24 08        - mov rdi,[rsp+08]
+14CB44C8726: 48 83 C4 18           - add rsp,18
+14CB44C872A: C3                    - ret 
+14CB44C872B: 00 00                 - add [rax],al
+14CB44C872D: 00 00                 - add [rax],al
+14CB44C872F: 00 01                 - add [rcx],al
+14CB44C8731: 04 01                 - add al,01
+14CB44C8733: 00 04 22              - add [rdx],al
+14CB44C8736: 00 00                 - add [rax],al
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"近身经验值999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : FRONT MISSION 1st Remake.exe
+  Version: 
+  Date   : 2024-08-10
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,41 89 8D A4 00 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [r13+000000A4],#999
+//  add [r13+000000A8],#999
+//  add [r13+000000AC],#999
+//  add [r13+000000B0],#999
+  jmp return
+
+code:
+  mov [r13+000000A4],ecx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 41 89 8D A4 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 14DA39AE228
+
+14DA39AE1FF: 4C 89 75 F0           - mov [rbp-10],r14
+14DA39AE203: 4C 89 7D F8           - mov [rbp-08],r15
+14DA39AE207: 48 89 4D B8           - mov [rbp-48],rcx
+14DA39AE20B: 48 89 55 B0           - mov [rbp-50],rdx
+14DA39AE20F: 48 8B C2              - mov rax,rdx
+14DA39AE212: 4C 8B 68 60           - mov r13,[rax+60]
+14DA39AE216: 48 8B 48 48           - mov rcx,[rax+48]
+14DA39AE21A: 48 8B 49 18           - mov rcx,[rcx+18]
+14DA39AE21E: 4C 8B 61 18           - mov r12,[rcx+18]
+14DA39AE222: 41 0F B7 4C 24 20     - movzx ecx,word ptr [r12+20]
+// ---------- INJECTING HERE ----------
+14DA39AE228: 41 89 8D A4 00 00 00  - mov [r13+000000A4],ecx
+// ---------- DONE INJECTING  ----------
+14DA39AE22F: 41 0F B7 4C 24 22     - movzx ecx,word ptr [r12+22]
+14DA39AE235: 41 89 8D A8 00 00 00  - mov [r13+000000A8],ecx
+14DA39AE23C: 41 0F B7 4C 24 24     - movzx ecx,word ptr [r12+24]
+14DA39AE242: 41 89 8D AC 00 00 00  - mov [r13+000000AC],ecx
+14DA39AE249: 41 0F B7 4C 24 26     - movzx ecx,word ptr [r12+26]
+14DA39AE24F: 41 89 8D B0 00 00 00  - mov [r13+000000B0],ecx
+14DA39AE256: 48 63 88 C8 00 00 00  - movsxd  rcx,dword ptr [rax+000000C8]
+14DA39AE25D: 81 E1 F9 FD FF FF     - and ecx,FFFFFDF9
+14DA39AE263: 41 83 7D 00 00        - cmp dword ptr [r13+00],00
+14DA39AE268: 41 89 8D CC 00 00 00  - mov [r13+000000CC],ecx
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>8</ID>
+      <Description>"近距射击经验999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : FRONT MISSION 1st Remake.exe
+  Version: 
+  Date   : 2024-08-10
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,41 89 8D A8 00 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [r13+000000A8],#999
+  jmp return
+
+code:
+  mov [r13+000000A8],ecx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 41 89 8D A8 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 14DA39AE235
+
+14DA39AE207: 48 89 4D B8           - mov [rbp-48],rcx
+14DA39AE20B: 48 89 55 B0           - mov [rbp-50],rdx
+14DA39AE20F: 48 8B C2              - mov rax,rdx
+14DA39AE212: 4C 8B 68 60           - mov r13,[rax+60]
+14DA39AE216: 48 8B 48 48           - mov rcx,[rax+48]
+14DA39AE21A: 48 8B 49 18           - mov rcx,[rcx+18]
+14DA39AE21E: 4C 8B 61 18           - mov r12,[rcx+18]
+14DA39AE222: 41 0F B7 4C 24 20     - movzx ecx,word ptr [r12+20]
+14DA39AE228: 41 89 8D A4 00 00 00  - mov [r13+000000A4],ecx
+14DA39AE22F: 41 0F B7 4C 24 22     - movzx ecx,word ptr [r12+22]
+// ---------- INJECTING HERE ----------
+14DA39AE235: 41 89 8D A8 00 00 00  - mov [r13+000000A8],ecx
+// ---------- DONE INJECTING  ----------
+14DA39AE23C: 41 0F B7 4C 24 24     - movzx ecx,word ptr [r12+24]
+14DA39AE242: 41 89 8D AC 00 00 00  - mov [r13+000000AC],ecx
+14DA39AE249: 41 0F B7 4C 24 26     - movzx ecx,word ptr [r12+26]
+14DA39AE24F: 41 89 8D B0 00 00 00  - mov [r13+000000B0],ecx
+14DA39AE256: 48 63 88 C8 00 00 00  - movsxd  rcx,dword ptr [rax+000000C8]
+14DA39AE25D: 81 E1 F9 FD FF FF     - and ecx,FFFFFDF9
+14DA39AE263: 41 83 7D 00 00        - cmp dword ptr [r13+00],00
+14DA39AE268: 41 89 8D CC 00 00 00  - mov [r13+000000CC],ecx
+14DA39AE26F: 48 63 80 C8 00 00 00  - movsxd  rax,dword ptr [rax+000000C8]
+14DA39AE276: 25 00 04 00 00        - and eax,00000400
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>9</ID>
+      <Description>"远程经验值999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : FRONT MISSION 1st Remake.exe
+  Version: 
+  Date   : 2024-08-10
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,41 89 8D AC 00 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [r13+000000AC],#999
+  jmp return
+
+code:
+  mov [r13+000000AC],ecx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 41 89 8D AC 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 14DA39AE242
+
+14DA39AE20F: 48 8B C2              - mov rax,rdx
+14DA39AE212: 4C 8B 68 60           - mov r13,[rax+60]
+14DA39AE216: 48 8B 48 48           - mov rcx,[rax+48]
+14DA39AE21A: 48 8B 49 18           - mov rcx,[rcx+18]
+14DA39AE21E: 4C 8B 61 18           - mov r12,[rcx+18]
+14DA39AE222: 41 0F B7 4C 24 20     - movzx ecx,word ptr [r12+20]
+14DA39AE228: 41 89 8D A4 00 00 00  - mov [r13+000000A4],ecx
+14DA39AE22F: 41 0F B7 4C 24 22     - movzx ecx,word ptr [r12+22]
+14DA39AE235: 41 89 8D A8 00 00 00  - mov [r13+000000A8],ecx
+14DA39AE23C: 41 0F B7 4C 24 24     - movzx ecx,word ptr [r12+24]
+// ---------- INJECTING HERE ----------
+14DA39AE242: 41 89 8D AC 00 00 00  - mov [r13+000000AC],ecx
+// ---------- DONE INJECTING  ----------
+14DA39AE249: 41 0F B7 4C 24 26     - movzx ecx,word ptr [r12+26]
+14DA39AE24F: 41 89 8D B0 00 00 00  - mov [r13+000000B0],ecx
+14DA39AE256: 48 63 88 C8 00 00 00  - movsxd  rcx,dword ptr [rax+000000C8]
+14DA39AE25D: 81 E1 F9 FD FF FF     - and ecx,FFFFFDF9
+14DA39AE263: 41 83 7D 00 00        - cmp dword ptr [r13+00],00
+14DA39AE268: 41 89 8D CC 00 00 00  - mov [r13+000000CC],ecx
+14DA39AE26F: 48 63 80 C8 00 00 00  - movsxd  rax,dword ptr [rax+000000C8]
+14DA39AE276: 25 00 04 00 00        - and eax,00000400
+14DA39AE27B: 85 C0                 - test eax,eax
+14DA39AE27D: 74 18                 - je 14DA39AE297
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>10</ID>
+      <Description>"敏捷经验999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : FRONT MISSION 1st Remake.exe
+  Version: 
+  Date   : 2024-08-10
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,41 89 8D B0 00 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [r13+000000B0],#999
+  jmp return
+
+code:
+  mov [r13+000000B0],ecx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 41 89 8D B0 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 14DA39AE24F
+
+14DA39AE21A: 48 8B 49 18           - mov rcx,[rcx+18]
+14DA39AE21E: 4C 8B 61 18           - mov r12,[rcx+18]
+14DA39AE222: 41 0F B7 4C 24 20     - movzx ecx,word ptr [r12+20]
+14DA39AE228: 41 89 8D A4 00 00 00  - mov [r13+000000A4],ecx
+14DA39AE22F: 41 0F B7 4C 24 22     - movzx ecx,word ptr [r12+22]
+14DA39AE235: 41 89 8D A8 00 00 00  - mov [r13+000000A8],ecx
+14DA39AE23C: 41 0F B7 4C 24 24     - movzx ecx,word ptr [r12+24]
+INJECT: E9 B9 1D 04 00        - jmp 14DA39F0000
+14DA39AE247: 66 90                 - nop 2
+14DA39AE249: 41 0F B7 4C 24 26     - movzx ecx,word ptr [r12+26]
+// ---------- INJECTING HERE ----------
+14DA39AE24F: 41 89 8D B0 00 00 00  - mov [r13+000000B0],ecx
+// ---------- DONE INJECTING  ----------
+14DA39AE256: 48 63 88 C8 00 00 00  - movsxd  rcx,dword ptr [rax+000000C8]
+14DA39AE25D: 81 E1 F9 FD FF FF     - and ecx,FFFFFDF9
+14DA39AE263: 41 83 7D 00 00        - cmp dword ptr [r13+00],00
+14DA39AE268: 41 89 8D CC 00 00 00  - mov [r13+000000CC],ecx
+14DA39AE26F: 48 63 80 C8 00 00 00  - movsxd  rax,dword ptr [rax+000000C8]
+14DA39AE276: 25 00 04 00 00        - and eax,00000400
+14DA39AE27B: 85 C0                 - test eax,eax
+14DA39AE27D: 74 18                 - je 14DA39AE297
+14DA39AE27F: 41 83 7D 00 00        - cmp dword ptr [r13+00],00
+14DA39AE284: 49 63 85 D0 00 00 00  - movsxd  rax,dword ptr [r13+000000D0]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>11</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>xinput1_3.dll+16210</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>12</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>xinput1_3.dll+16DBC</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>13</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>xinput1_3.dll+16DC0</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>14</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>2B5767D5848</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>15</ID>
+      <Description>"EXP1"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : FRONT MISSION 1st Remake.exe
+  Version: 
+  Date   : 2024-08-11
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,fmodstudio.dll,89 72 38 4C 89 6A 28) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rdx+38],63
+  mov [rdx+28],r13
+  jmp return
+
+code:
+  mov [rdx+38],esi
+  mov [rdx+28],r13
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 72 38 4C 89 6A 28
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: fmodstudio.FMOD_Thread_SetAttributes+2320
+
+fmodstudio.FMOD_Thread_SetAttributes+22FF: 44 2B D1     - sub r10d,ecx
+fmodstudio.FMOD_Thread_SetAttributes+2302: 44 2B D0     - sub r10d,eax
+fmodstudio.FMOD_Thread_SetAttributes+2305: 49 8B C0     - mov rax,r8
+fmodstudio.FMOD_Thread_SetAttributes+2308: 41 8D 4A 15  - lea ecx,[r10+15]
+fmodstudio.FMOD_Thread_SetAttributes+230C: 48 D3 E8     - shr rax,cl
+fmodstudio.FMOD_Thread_SetAttributes+230F: 41 8D 72 0E  - lea esi,[r10+0E]
+fmodstudio.FMOD_Thread_SetAttributes+2313: 83 E0 01     - and eax,01
+fmodstudio.FMOD_Thread_SetAttributes+2316: 8D 34 70     - lea esi,[rax+rsi*2]
+fmodstudio.FMOD_Thread_SetAttributes+2319: 44 8B D6     - mov r10d,esi
+fmodstudio.FMOD_Thread_SetAttributes+231C: 49 83 C2 4A  - add r10,4A
+// ---------- INJECTING HERE ----------
+fmodstudio.FMOD_Thread_SetAttributes+2320: 89 72 38     - mov [rdx+38],esi
+// ---------- DONE INJECTING  ----------
+fmodstudio.FMOD_Thread_SetAttributes+2323: 4C 89 6A 28  - mov [rdx+28],r13
+fmodstudio.FMOD_Thread_SetAttributes+2327: 4C 89 6A 20  - mov [rdx+20],r13
+fmodstudio.FMOD_Thread_SetAttributes+232B: 41 8B 43 04  - mov eax,[r11+04]
+fmodstudio.FMOD_Thread_SetAttributes+232F: 0F A3 F0     - bt eax,esi
+fmodstudio.FMOD_Thread_SetAttributes+2332: 4F 8D 14 D3  - lea r10,[r11+r10*8]
+fmodstudio.FMOD_Thread_SetAttributes+2336: 72 1F        - jb fmodstudio.FMOD_Thread_SetAttributes+2357
+fmodstudio.FMOD_Thread_SetAttributes+2338: 0F AB F0     - bts eax,esi
+fmodstudio.FMOD_Thread_SetAttributes+233B: 41 89 43 04  - mov [r11+04],eax
+fmodstudio.FMOD_Thread_SetAttributes+233F: 49 8D 41 10  - lea rax,[r9+10]
+fmodstudio.FMOD_Thread_SetAttributes+2343: 49 89 12     - mov [r10],rdx
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>16</ID>
+      <Description>"EXP2"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : FRONT MISSION 1st Remake.exe
+  Version: 
+  Date   : 2024-08-11
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,fmodstudio.dll,89 4A 38 48 89 6A 28 48 89 6A 20 41 8B 40) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rdx+38],ecx
+  mov [rdx+28],rbp
+  jmp return
+
+code:
+  mov [rdx+38],ecx
+  mov [rdx+28],rbp
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 4A 38 48 89 6A 28
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: fmodstudio.FMOD_Thread_SetAttributes+114C
+
+fmodstudio.FMOD_Thread_SetAttributes+112B: 44 2B D1        - sub r10d,ecx
+fmodstudio.FMOD_Thread_SetAttributes+112E: 44 2B D0        - sub r10d,eax
+fmodstudio.FMOD_Thread_SetAttributes+1131: 49 8B C1        - mov rax,r9
+fmodstudio.FMOD_Thread_SetAttributes+1134: 41 8D 4A 15     - lea ecx,[r10+15]
+fmodstudio.FMOD_Thread_SetAttributes+1138: 48 D3 E8        - shr rax,cl
+fmodstudio.FMOD_Thread_SetAttributes+113B: 41 8D 4A 0E     - lea ecx,[r10+0E]
+fmodstudio.FMOD_Thread_SetAttributes+113F: 83 E0 01        - and eax,01
+fmodstudio.FMOD_Thread_SetAttributes+1142: 8D 0C 48        - lea ecx,[rax+rcx*2]
+fmodstudio.FMOD_Thread_SetAttributes+1145: 44 8B D1        - mov r10d,ecx
+fmodstudio.FMOD_Thread_SetAttributes+1148: 49 83 C2 4A     - add r10,4A
+// ---------- INJECTING HERE ----------
+fmodstudio.FMOD_Thread_SetAttributes+114C: 89 4A 38        - mov [rdx+38],ecx
+// ---------- DONE INJECTING  ----------
+fmodstudio.FMOD_Thread_SetAttributes+114F: 48 89 6A 28     - mov [rdx+28],rbp
+fmodstudio.FMOD_Thread_SetAttributes+1153: 48 89 6A 20     - mov [rdx+20],rbp
+fmodstudio.FMOD_Thread_SetAttributes+1157: 41 8B 40 04     - mov eax,[r8+04]
+fmodstudio.FMOD_Thread_SetAttributes+115B: 0F A3 C8        - bt eax,ecx
+fmodstudio.FMOD_Thread_SetAttributes+115E: 4F 8D 14 D0     - lea r10,[r8+r10*8]
+fmodstudio.FMOD_Thread_SetAttributes+1162: 72 29           - jb fmodstudio.FMOD_Thread_SetAttributes+118D
+fmodstudio.FMOD_Thread_SetAttributes+1164: 48 8B 5C 24 10  - mov rbx,[rsp+10]
+fmodstudio.FMOD_Thread_SetAttributes+1169: 0F AB C8        - bts eax,ecx
+fmodstudio.FMOD_Thread_SetAttributes+116C: 48 8B 6C 24 18  - mov rbp,[rsp+18]
+fmodstudio.FMOD_Thread_SetAttributes+1171: 48 8B 3C 24     - mov rdi,[rsp]
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

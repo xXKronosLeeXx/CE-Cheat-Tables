@@ -1,0 +1,1375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>9</ID>
+      <Description>"V 2.4.2.1"</Description>
+      <GroupHeader>1</GroupHeader>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>8</ID>
+      <Description>"HP"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Heist.exe
+  Version: 
+  Date   : 2025-07-31
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Heist.exe,89 93 B0 00 00 00 83) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [ebx+00000118],256
+  jne code
+  jmp return
+
+code:
+  mov [ebx+000000B0],edx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 93 B0 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Heist.exe+1A5492
+
+Heist.exe+1A5463: C6 83 F4 03 00 00 01     - mov byte ptr [ebx+000003F4],01
+Heist.exe+1A546A: 01 83 E4 02 00 00        - add [ebx+000002E4],eax
+Heist.exe+1A5470: 8B 8B B0 00 00 00        - mov ecx,[ebx+000000B0]
+Heist.exe+1A5476: 2B 4C 24 38              - sub ecx,[esp+38]
+Heist.exe+1A547A: C7 44 24 20 00 00 00 00  - mov [esp+20],00000000
+Heist.exe+1A5482: 89 4C 24 1C              - mov [esp+1C],ecx
+Heist.exe+1A5486: 8D 44 24 20              - lea eax,[esp+20]
+Heist.exe+1A548A: 78 04                    - js Heist.exe+1A5490
+Heist.exe+1A548C: 8D 44 24 1C              - lea eax,[esp+1C]
+Heist.exe+1A5490: 8B 10                    - mov edx,[eax]
+// ---------- INJECTING HERE ----------
+Heist.exe+1A5492: 89 93 B0 00 00 00        - mov [ebx+000000B0],edx
+// ---------- DONE INJECTING  ----------
+Heist.exe+1A5498: 83 BB 38 01 00 00 00     - cmp dword ptr [ebx+00000138],00
+Heist.exe+1A549F: 75 18                    - jne Heist.exe+1A54B9
+Heist.exe+1A54A1: 68 A2 01 00 00           - push 000001A2
+Heist.exe+1A54A6: 68 80 CC B0 00           - push Heist.exe+4ACC80
+Heist.exe+1A54AB: 68 50 CD B0 00           - push Heist.exe+4ACD50
+Heist.exe+1A54B0: FF 15 E8 73 B0 00        - call dword ptr [Heist.exe+4A73E8]
+Heist.exe+1A54B6: 83 C4 0C                 - add esp,0C
+Heist.exe+1A54B9: 8B 83 38 01 00 00        - mov eax,[ebx+00000138]
+Heist.exe+1A54BF: 8B 80 E4 00 00 00        - mov eax,[eax+000000E4]
+Heist.exe+1A54C5: 89 44 24 20              - mov [esp+20],eax
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>HP-</Description>
+      <AddressString>Heist.exe+1A5492</AddressString>
+      <Before>
+        <Byte>44</Byte>
+        <Byte>24</Byte>
+        <Byte>1C</Byte>
+        <Byte>8B</Byte>
+        <Byte>10</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>93</Byte>
+        <Byte>B0</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>83</Byte>
+        <Byte>BB</Byte>
+        <Byte>38</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+  <Structures StructVersion="2">
+    <Structure Name="未命名的结构" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="0" Vartype="Pointer" Bytesize="4" OffsetHex="00000000" DisplayMethod="unsigned integer"/>
+        <Element Offset="4" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000004" DisplayMethod="unsigned integer"/>
+        <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" DisplayMethod="hexadecimal"/>
+        <Element Offset="12" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="0000000C" DisplayMethod="unsigned integer"/>
+        <Element Offset="20" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000014" DisplayMethod="hexadecimal"/>
+        <Element Offset="28" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="0000001C" DisplayMethod="unsigned integer"/>
+        <Element Offset="40" Vartype="Pointer" Bytesize="4" OffsetHex="00000028" DisplayMethod="unsigned integer"/>
+        <Element Offset="44" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="0000002C" DisplayMethod="unsigned integer"/>
+        <Element Offset="52" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="00000034" DisplayMethod="unsigned integer"/>
+        <Element Offset="56" Vartype="Float" Bytesize="4" OffsetHex="00000038" DisplayMethod="unsigned integer"/>
+        <Element Offset="60" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="0000003C" DisplayMethod="unsigned integer"/>
+        <Element Offset="68" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="00000044" DisplayMethod="unsigned integer"/>
+        <Element Offset="72" Vartype="Float" Bytesize="4" OffsetHex="00000048" DisplayMethod="unsigned integer"/>
+        <Element Offset="76" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="0000004C" DisplayMethod="unsigned integer"/>
+        <Element Offset="92" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="0000005C" DisplayMethod="unsigned integer"/>
+        <Element Offset="116" Vartype="Pointer" Bytesize="4" OffsetHex="00000074" DisplayMethod="unsigned integer"/>
+        <Element Offset="120" Vartype="Pointer" Bytesize="4" OffsetHex="00000078" Description="Pointer to instance of boost::detail::sp_counted_impl_p&lt;b2World&gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="124" Vartype="Pointer" Bytesize="4" OffsetHex="0000007C" DisplayMethod="unsigned integer"/>
+        <Element Offset="128" Vartype="Double" Bytesize="8" OffsetHex="00000080" DisplayMethod="unsigned integer"/>
+        <Element Offset="136" Vartype="Float" Bytesize="4" OffsetHex="00000088" DisplayMethod="unsigned integer"/>
+        <Element Offset="140" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000008C" DisplayMethod="hexadecimal"/>
+        <Element Offset="144" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000090" DisplayMethod="unsigned integer"/>
+        <Element Offset="152" Vartype="Pointer" Bytesize="4" OffsetHex="00000098" Description="Pointer to instance of imf::BehaviorMachineState" DisplayMethod="unsigned integer"/>
+        <Element Offset="156" Vartype="Pointer" Bytesize="4" OffsetHex="0000009C" Description="Pointer to instance of boost::detail::sp_counted_base" DisplayMethod="unsigned integer"/>
+        <Element Offset="160" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000A0" DisplayMethod="unsigned integer"/>
+        <Element Offset="164" Vartype="Double" Bytesize="8" OffsetHex="000000A4" DisplayMethod="unsigned integer"/>
+        <Element Offset="172" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000000AC" DisplayMethod="unsigned integer"/>
+        <Element Offset="188" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="000000BC" DisplayMethod="unsigned integer"/>
+        <Element Offset="196" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000000C4" DisplayMethod="unsigned integer"/>
+        <Element Offset="212" Vartype="Double" Bytesize="8" OffsetHex="000000D4" DisplayMethod="unsigned integer"/>
+        <Element Offset="220" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000DC" DisplayMethod="unsigned integer"/>
+        <Element Offset="224" Vartype="Pointer" Bytesize="4" OffsetHex="000000E0" DisplayMethod="unsigned integer"/>
+        <Element Offset="228" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="000000E4" DisplayMethod="unsigned integer"/>
+        <Element Offset="240" Vartype="Double" Bytesize="8" OffsetHex="000000F0" DisplayMethod="unsigned integer"/>
+        <Element Offset="248" Vartype="Float" Bytesize="4" OffsetHex="000000F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="252" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="000000FC" DisplayMethod="unsigned integer"/>
+        <Element Offset="288" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="00000120" DisplayMethod="unsigned integer"/>
+        <Element Offset="296" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000128" DisplayMethod="unsigned integer"/>
+        <Element Offset="312" Vartype="Pointer" Bytesize="4" OffsetHex="00000138" Description="Pointer to instance of imf::DefinitionBase" DisplayMethod="unsigned integer"/>
+        <Element Offset="316" Vartype="Pointer" Bytesize="4" OffsetHex="0000013C" Description="Pointer to instance of boost::detail::sp_counted_base" DisplayMethod="unsigned integer"/>
+        <Element Offset="320" Vartype="4 Bytes" Bytesize="4" RLECount="16" OffsetHex="00000140" DisplayMethod="unsigned integer"/>
+        <Element Offset="384" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="00000180" DisplayMethod="unsigned integer"/>
+        <Element Offset="392" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000188" DisplayMethod="unsigned integer"/>
+        <Element Offset="404" Vartype="Byte" Bytesize="1" RLECount="2" OffsetHex="00000194" DisplayMethod="unsigned integer"/>
+        <Element Offset="406" Vartype="2 Bytes" Bytesize="2" OffsetHex="00000196" DisplayMethod="unsigned integer"/>
+        <Element Offset="408" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000198" DisplayMethod="unsigned integer"/>
+        <Element Offset="432" Vartype="Float" Bytesize="4" OffsetHex="000001B0" DisplayMethod="unsigned integer"/>
+        <Element Offset="436" Vartype="4 Bytes" Bytesize="4" RLECount="13" OffsetHex="000001B4" DisplayMethod="unsigned integer"/>
+        <Element Offset="488" Vartype="4 Bytes" Bytesize="4" OffsetHex="000001E8" DisplayMethod="hexadecimal"/>
+        <Element Offset="492" Vartype="4 Bytes" Bytesize="4" RLECount="8" OffsetHex="000001EC" DisplayMethod="unsigned integer"/>
+        <Element Offset="524" Vartype="Double" Bytesize="8" OffsetHex="0000020C" DisplayMethod="unsigned integer"/>
+        <Element Offset="532" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000214" DisplayMethod="unsigned integer"/>
+        <Element Offset="552" Vartype="Float" Bytesize="4" OffsetHex="00000228" DisplayMethod="unsigned integer"/>
+        <Element Offset="556" Vartype="4 Bytes" Bytesize="4" RLECount="28" OffsetHex="0000022C" DisplayMethod="unsigned integer"/>
+        <Element Offset="668" Vartype="Byte" Bytesize="1" OffsetHex="0000029C" DisplayMethod="unsigned integer"/>
+        <Element Offset="669" Vartype="String" Bytesize="13" OffsetHex="0000029D" DisplayMethod="unsigned integer"/>
+        <Element Offset="682" Vartype="Byte" Bytesize="1" RLECount="2" OffsetHex="000002AA" DisplayMethod="unsigned integer"/>
+        <Element Offset="684" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="000002AC" DisplayMethod="unsigned integer"/>
+        <Element Offset="696" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="000002B8" DisplayMethod="unsigned integer"/>
+        <Element Offset="700" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="000002BC" DisplayMethod="unsigned integer"/>
+        <Element Offset="736" Vartype="Float" Bytesize="4" OffsetHex="000002E0" DisplayMethod="unsigned integer"/>
+        <Element Offset="740" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="000002E4" DisplayMethod="unsigned integer"/>
+        <Element Offset="760" Vartype="Double" Bytesize="8" OffsetHex="000002F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="768" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000300" DisplayMethod="unsigned integer"/>
+        <Element Offset="788" Vartype="Double" Bytesize="8" OffsetHex="00000314" DisplayMethod="unsigned integer"/>
+        <Element Offset="796" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="0000031C" DisplayMethod="unsigned integer"/>
+        <Element Offset="816" Vartype="Double" Bytesize="8" OffsetHex="00000330" DisplayMethod="unsigned integer"/>
+        <Element Offset="824" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000338" DisplayMethod="unsigned integer"/>
+        <Element Offset="828" Vartype="Pointer" Bytesize="4" RLECount="3" OffsetHex="0000033C" DisplayMethod="unsigned integer"/>
+        <Element Offset="840" Vartype="4 Bytes" Bytesize="4" RLECount="14" OffsetHex="00000348" DisplayMethod="unsigned integer"/>
+        <Element Offset="896" Vartype="Double" Bytesize="8" OffsetHex="00000380" DisplayMethod="unsigned integer"/>
+        <Element Offset="904" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="00000388" DisplayMethod="unsigned integer"/>
+        <Element Offset="940" Vartype="Double" Bytesize="8" OffsetHex="000003AC" DisplayMethod="unsigned integer"/>
+        <Element Offset="948" Vartype="4 Bytes" Bytesize="4" RLECount="8" OffsetHex="000003B4" DisplayMethod="unsigned integer"/>
+        <Element Offset="980" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="000003D4" DisplayMethod="unsigned integer"/>
+        <Element Offset="988" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="000003DC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1012" Vartype="4 Bytes" Bytesize="4" OffsetHex="000003F4" DisplayMethod="hexadecimal"/>
+        <Element Offset="1016" Vartype="Double" Bytesize="8" OffsetHex="000003F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1024" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000400" DisplayMethod="unsigned integer"/>
+        <Element Offset="1036" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="0000040C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1044" Vartype="4 Bytes" Bytesize="4" RLECount="12" OffsetHex="00000414" DisplayMethod="unsigned integer"/>
+        <Element Offset="1092" Vartype="Double" Bytesize="8" OffsetHex="00000444" DisplayMethod="unsigned integer"/>
+        <Element Offset="1100" Vartype="4 Bytes" Bytesize="4" RLECount="10" OffsetHex="0000044C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1140" Vartype="Pointer" Bytesize="4" OffsetHex="00000474" Description="Pointer to instance of imf::DefinitionBase" DisplayMethod="unsigned integer"/>
+        <Element Offset="1144" Vartype="Pointer" Bytesize="4" OffsetHex="00000478" Description="Pointer to instance of boost::detail::sp_counted_base" DisplayMethod="unsigned integer"/>
+        <Element Offset="1148" Vartype="Pointer" Bytesize="4" OffsetHex="0000047C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1152" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000480" DisplayMethod="unsigned integer"/>
+        <Element Offset="1156" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000484" DisplayMethod="hexadecimal"/>
+        <Element Offset="1160" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000488" DisplayMethod="unsigned integer"/>
+        <Element Offset="1164" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="0000048C" DisplayMethod="hexadecimal"/>
+        <Element Offset="1176" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000498" DisplayMethod="unsigned integer"/>
+        <Element Offset="1188" Vartype="Pointer" Bytesize="4" OffsetHex="000004A4" DisplayMethod="unsigned integer"/>
+        <Element Offset="1192" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000004A8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1200" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="000004B0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1208" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000004B8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1216" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="000004C0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1224" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000004C8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1240" Vartype="Float" Bytesize="4" RLECount="4" OffsetHex="000004D8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1256" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000004E8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1264" Vartype="Pointer" Bytesize="4" OffsetHex="000004F0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1268" Vartype="Pointer" Bytesize="4" OffsetHex="000004F4" Description="Pointer to instance of boost::detail::sp_counted_impl_p&lt;b2World&gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="1272" Vartype="Pointer" Bytesize="4" OffsetHex="000004F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1276" Vartype="Double" Bytesize="8" OffsetHex="000004FC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1284" Vartype="Float" Bytesize="4" OffsetHex="00000504" DisplayMethod="unsigned integer"/>
+        <Element Offset="1288" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000508" DisplayMethod="hexadecimal"/>
+        <Element Offset="1292" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="0000050C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1300" Vartype="Pointer" Bytesize="4" OffsetHex="00000514" Description="Pointer to instance of imf::BehaviorMachineState" DisplayMethod="unsigned integer"/>
+        <Element Offset="1304" Vartype="Pointer" Bytesize="4" OffsetHex="00000518" Description="Pointer to instance of boost::detail::sp_counted_base" DisplayMethod="unsigned integer"/>
+        <Element Offset="1308" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000051C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1312" Vartype="Double" Bytesize="8" OffsetHex="00000520" DisplayMethod="unsigned integer"/>
+        <Element Offset="1320" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000528" DisplayMethod="unsigned integer"/>
+        <Element Offset="1336" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="00000538" DisplayMethod="unsigned integer"/>
+        <Element Offset="1344" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000540" DisplayMethod="unsigned integer"/>
+        <Element Offset="1360" Vartype="Double" Bytesize="8" OffsetHex="00000550" DisplayMethod="unsigned integer"/>
+        <Element Offset="1368" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000558" DisplayMethod="unsigned integer"/>
+        <Element Offset="1372" Vartype="Pointer" Bytesize="4" OffsetHex="0000055C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1376" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000560" DisplayMethod="unsigned integer"/>
+        <Element Offset="1388" Vartype="Double" Bytesize="8" OffsetHex="0000056C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1396" Vartype="Float" Bytesize="4" OffsetHex="00000574" DisplayMethod="unsigned integer"/>
+        <Element Offset="1400" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="00000578" DisplayMethod="unsigned integer"/>
+        <Element Offset="1436" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="0000059C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1444" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000005A4" DisplayMethod="unsigned integer"/>
+        <Element Offset="1460" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="000005B4" DisplayMethod="unsigned integer"/>
+        <Element Offset="1468" Vartype="4 Bytes" Bytesize="4" RLECount="16" OffsetHex="000005BC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1532" Vartype="Pointer" Bytesize="4" OffsetHex="000005FC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1536" Vartype="4 Bytes" Bytesize="4" RLECount="25" OffsetHex="00000600" DisplayMethod="unsigned integer"/>
+        <Element Offset="1636" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000664" DisplayMethod="hexadecimal"/>
+        <Element Offset="1640" Vartype="4 Bytes" Bytesize="4" RLECount="8" OffsetHex="00000668" DisplayMethod="unsigned integer"/>
+        <Element Offset="1672" Vartype="Double" Bytesize="8" OffsetHex="00000688" DisplayMethod="unsigned integer"/>
+        <Element Offset="1680" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000690" DisplayMethod="unsigned integer"/>
+        <Element Offset="1700" Vartype="Float" Bytesize="4" OffsetHex="000006A4" DisplayMethod="unsigned integer"/>
+        <Element Offset="1704" Vartype="4 Bytes" Bytesize="4" RLECount="51" OffsetHex="000006A8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1908" Vartype="Double" Bytesize="8" OffsetHex="00000774" DisplayMethod="unsigned integer"/>
+        <Element Offset="1916" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="0000077C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1936" Vartype="Double" Bytesize="8" OffsetHex="00000790" DisplayMethod="unsigned integer"/>
+        <Element Offset="1944" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000798" DisplayMethod="unsigned integer"/>
+        <Element Offset="1964" Vartype="Double" Bytesize="8" OffsetHex="000007AC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1972" Vartype="4 Bytes" Bytesize="4" OffsetHex="000007B4" DisplayMethod="unsigned integer"/>
+        <Element Offset="1976" Vartype="Pointer" Bytesize="4" RLECount="3" OffsetHex="000007B8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1988" Vartype="4 Bytes" Bytesize="4" RLECount="14" OffsetHex="000007C4" DisplayMethod="unsigned integer"/>
+        <Element Offset="2044" Vartype="Double" Bytesize="8" OffsetHex="000007FC" DisplayMethod="unsigned integer"/>
+        <Element Offset="2052" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="00000804" DisplayMethod="unsigned integer"/>
+        <Element Offset="2088" Vartype="Double" Bytesize="8" OffsetHex="00000828" DisplayMethod="unsigned integer"/>
+        <Element Offset="2096" Vartype="4 Bytes" Bytesize="4" RLECount="8" OffsetHex="00000830" DisplayMethod="unsigned integer"/>
+        <Element Offset="2128" Vartype="Double" Bytesize="8" OffsetHex="00000850" DisplayMethod="unsigned integer"/>
+        <Element Offset="2136" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000858" DisplayMethod="unsigned integer"/>
+        <Element Offset="2160" Vartype="Pointer" Bytesize="4" OffsetHex="00000870" DisplayMethod="unsigned integer"/>
+        <Element Offset="2164" Vartype="Double" Bytesize="8" OffsetHex="00000874" DisplayMethod="unsigned integer"/>
+        <Element Offset="2172" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="0000087C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2184" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="00000888" DisplayMethod="unsigned integer"/>
+        <Element Offset="2192" Vartype="4 Bytes" Bytesize="4" RLECount="12" OffsetHex="00000890" DisplayMethod="unsigned integer"/>
+        <Element Offset="2240" Vartype="Double" Bytesize="8" OffsetHex="000008C0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2248" Vartype="4 Bytes" Bytesize="4" RLECount="10" OffsetHex="000008C8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2288" Vartype="Pointer" Bytesize="4" RLECount="3" OffsetHex="000008F0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2300" Vartype="4 Bytes" Bytesize="4" OffsetHex="000008FC" DisplayMethod="unsigned integer"/>
+        <Element Offset="2304" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000900" DisplayMethod="hexadecimal"/>
+        <Element Offset="2308" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000904" DisplayMethod="unsigned integer"/>
+        <Element Offset="2320" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000910" DisplayMethod="hexadecimal"/>
+        <Element Offset="2324" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000914" DisplayMethod="unsigned integer"/>
+        <Element Offset="2336" Vartype="Pointer" Bytesize="4" OffsetHex="00000920" DisplayMethod="unsigned integer"/>
+        <Element Offset="2340" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000924" DisplayMethod="unsigned integer"/>
+        <Element Offset="2348" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="0000092C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2356" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000934" DisplayMethod="unsigned integer"/>
+        <Element Offset="2364" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="0000093C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2372" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000944" DisplayMethod="unsigned integer"/>
+        <Element Offset="2388" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000954" DisplayMethod="unsigned integer"/>
+        <Element Offset="2412" Vartype="Pointer" Bytesize="4" OffsetHex="0000096C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2416" Vartype="Pointer" Bytesize="4" OffsetHex="00000970" Description="Pointer to instance of boost::detail::sp_counted_impl_p&lt;b2World&gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="2420" Vartype="Pointer" Bytesize="4" OffsetHex="00000974" DisplayMethod="unsigned integer"/>
+        <Element Offset="2424" Vartype="Double" Bytesize="8" OffsetHex="00000978" DisplayMethod="unsigned integer"/>
+        <Element Offset="2432" Vartype="Float" Bytesize="4" OffsetHex="00000980" DisplayMethod="unsigned integer"/>
+        <Element Offset="2436" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000984" DisplayMethod="hexadecimal"/>
+        <Element Offset="2440" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000988" DisplayMethod="unsigned integer"/>
+        <Element Offset="2448" Vartype="Pointer" Bytesize="4" OffsetHex="00000990" Description="Pointer to instance of imf::BehaviorMachine" DisplayMethod="unsigned integer"/>
+        <Element Offset="2452" Vartype="Pointer" Bytesize="4" OffsetHex="00000994" Description="Pointer to instance of boost::detail::sp_counted_impl_pd&lt;imf::BehaviorMachine *,boost::detail::sp_ms_deleter&lt;imf::BehaviorMachine&gt; &gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="2456" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000998" DisplayMethod="unsigned integer"/>
+        <Element Offset="2460" Vartype="Double" Bytesize="8" OffsetHex="0000099C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2468" Vartype="4 Bytes" Bytesize="4" OffsetHex="000009A4" DisplayMethod="hexadecimal"/>
+        <Element Offset="2472" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="000009A8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2484" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="000009B4" DisplayMethod="unsigned integer"/>
+        <Element Offset="2492" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000009BC" DisplayMethod="unsigned integer"/>
+        <Element Offset="2508" Vartype="Double" Bytesize="8" OffsetHex="000009CC" DisplayMethod="unsigned integer"/>
+        <Element Offset="2516" Vartype="4 Bytes" Bytesize="4" OffsetHex="000009D4" DisplayMethod="unsigned integer"/>
+        <Element Offset="2520" Vartype="Pointer" Bytesize="4" OffsetHex="000009D8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2524" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="000009DC" DisplayMethod="unsigned integer"/>
+        <Element Offset="2536" Vartype="Double" Bytesize="8" OffsetHex="000009E8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2544" Vartype="Float" Bytesize="4" OffsetHex="000009F0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2548" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="000009F4" DisplayMethod="unsigned integer"/>
+        <Element Offset="2584" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="00000A18" DisplayMethod="unsigned integer"/>
+        <Element Offset="2592" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000A20" DisplayMethod="unsigned integer"/>
+        <Element Offset="2608" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="00000A30" DisplayMethod="unsigned integer"/>
+        <Element Offset="2616" Vartype="4 Bytes" Bytesize="4" RLECount="16" OffsetHex="00000A38" DisplayMethod="unsigned integer"/>
+        <Element Offset="2680" Vartype="Pointer" Bytesize="4" OffsetHex="00000A78" DisplayMethod="unsigned integer"/>
+        <Element Offset="2684" Vartype="4 Bytes" Bytesize="4" RLECount="11" OffsetHex="00000A7C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2728" Vartype="Float" Bytesize="4" OffsetHex="00000AA8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2732" Vartype="4 Bytes" Bytesize="4" RLECount="13" OffsetHex="00000AAC" DisplayMethod="unsigned integer"/>
+        <Element Offset="2784" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000AE0" DisplayMethod="hexadecimal"/>
+        <Element Offset="2788" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000AE4" DisplayMethod="unsigned integer"/>
+        <Element Offset="2792" Vartype="Pointer" Bytesize="4" OffsetHex="00000AE8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2796" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000AEC" DisplayMethod="unsigned integer"/>
+        <Element Offset="2820" Vartype="Double" Bytesize="8" OffsetHex="00000B04" DisplayMethod="unsigned integer"/>
+        <Element Offset="2828" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000B0C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2848" Vartype="Float" Bytesize="4" OffsetHex="00000B20" DisplayMethod="unsigned integer"/>
+        <Element Offset="2852" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000B24" DisplayMethod="unsigned integer"/>
+        <Element Offset="2856" Vartype="Float" Bytesize="4" OffsetHex="00000B28" DisplayMethod="unsigned integer"/>
+        <Element Offset="2860" Vartype="String" Bytesize="4" OffsetHex="00000B2C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2864" Vartype="Float" Bytesize="4" RLECount="5" OffsetHex="00000B30" DisplayMethod="unsigned integer"/>
+        <Element Offset="2884" Vartype="Double" Bytesize="8" OffsetHex="00000B44" DisplayMethod="unsigned integer"/>
+        <Element Offset="2892" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="00000B4C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2896" Vartype="Float" Bytesize="4" RLECount="17" OffsetHex="00000B50" DisplayMethod="unsigned integer"/>
+        <Element Offset="2964" Vartype="4 Bytes" Bytesize="4" RLECount="23" OffsetHex="00000B94" DisplayMethod="unsigned integer"/>
+        <Element Offset="3056" Vartype="Double" Bytesize="8" OffsetHex="00000BF0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3064" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000BF8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3084" Vartype="Double" Bytesize="8" OffsetHex="00000C0C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3092" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000C14" DisplayMethod="unsigned integer"/>
+        <Element Offset="3112" Vartype="Double" Bytesize="8" OffsetHex="00000C28" DisplayMethod="unsigned integer"/>
+        <Element Offset="3120" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000C30" DisplayMethod="unsigned integer"/>
+        <Element Offset="3124" Vartype="Pointer" Bytesize="4" RLECount="3" OffsetHex="00000C34" DisplayMethod="unsigned integer"/>
+        <Element Offset="3136" Vartype="4 Bytes" Bytesize="4" RLECount="14" OffsetHex="00000C40" DisplayMethod="unsigned integer"/>
+        <Element Offset="3192" Vartype="Double" Bytesize="8" OffsetHex="00000C78" DisplayMethod="unsigned integer"/>
+        <Element Offset="3200" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="00000C80" DisplayMethod="unsigned integer"/>
+        <Element Offset="3236" Vartype="Double" Bytesize="8" OffsetHex="00000CA4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3244" Vartype="4 Bytes" Bytesize="4" RLECount="8" OffsetHex="00000CAC" DisplayMethod="unsigned integer"/>
+        <Element Offset="3276" Vartype="Double" Bytesize="8" OffsetHex="00000CCC" DisplayMethod="unsigned integer"/>
+        <Element Offset="3284" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000CD4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3308" Vartype="Pointer" Bytesize="4" OffsetHex="00000CEC" DisplayMethod="unsigned integer"/>
+        <Element Offset="3312" Vartype="Double" Bytesize="8" OffsetHex="00000CF0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3320" Vartype="4 Bytes" Bytesize="4" RLECount="17" OffsetHex="00000CF8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3388" Vartype="Double" Bytesize="8" OffsetHex="00000D3C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3396" Vartype="4 Bytes" Bytesize="4" RLECount="10" OffsetHex="00000D44" DisplayMethod="unsigned integer"/>
+        <Element Offset="3436" Vartype="Pointer" Bytesize="4" RLECount="3" OffsetHex="00000D6C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3448" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000D78" DisplayMethod="unsigned integer"/>
+        <Element Offset="3452" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000D7C" DisplayMethod="hexadecimal"/>
+        <Element Offset="3456" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000D80" DisplayMethod="unsigned integer"/>
+        <Element Offset="3460" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000D84" DisplayMethod="hexadecimal"/>
+        <Element Offset="3472" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000D90" DisplayMethod="unsigned integer"/>
+        <Element Offset="3484" Vartype="Pointer" Bytesize="4" OffsetHex="00000D9C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3488" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000DA0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3496" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="00000DA8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3504" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000DB0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3512" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="00000DB8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3520" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000DC0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3536" Vartype="Float" Bytesize="4" RLECount="4" OffsetHex="00000DD0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3552" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000DE0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3560" Vartype="Pointer" Bytesize="4" OffsetHex="00000DE8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3564" Vartype="Pointer" Bytesize="4" OffsetHex="00000DEC" Description="Pointer to instance of boost::detail::sp_counted_impl_p&lt;b2World&gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="3568" Vartype="Pointer" Bytesize="4" OffsetHex="00000DF0" Description="Pointer to instance of b2PolygonShape" DisplayMethod="unsigned integer"/>
+        <Element Offset="3572" Vartype="Double" Bytesize="8" OffsetHex="00000DF4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3580" Vartype="Float" Bytesize="4" OffsetHex="00000DFC" DisplayMethod="unsigned integer"/>
+        <Element Offset="3584" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000E00" DisplayMethod="hexadecimal"/>
+        <Element Offset="3588" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000E04" DisplayMethod="unsigned integer"/>
+        <Element Offset="3596" Vartype="Pointer" Bytesize="4" OffsetHex="00000E0C" Description="Pointer to instance of imf::BehaviorMachine" DisplayMethod="unsigned integer"/>
+        <Element Offset="3600" Vartype="Pointer" Bytesize="4" OffsetHex="00000E10" Description="Pointer to instance of boost::detail::sp_counted_impl_pd&lt;imf::BehaviorMachine *,boost::detail::sp_ms_deleter&lt;imf::BehaviorMachine&gt; &gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="3604" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000E14" DisplayMethod="unsigned integer"/>
+        <Element Offset="3608" Vartype="Double" Bytesize="8" OffsetHex="00000E18" DisplayMethod="unsigned integer"/>
+        <Element Offset="3616" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000E20" DisplayMethod="hexadecimal"/>
+        <Element Offset="3620" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000E24" DisplayMethod="unsigned integer"/>
+        <Element Offset="3632" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="00000E30" DisplayMethod="unsigned integer"/>
+        <Element Offset="3640" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000E38" DisplayMethod="unsigned integer"/>
+        <Element Offset="3656" Vartype="Double" Bytesize="8" OffsetHex="00000E48" DisplayMethod="unsigned integer"/>
+        <Element Offset="3664" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000E50" DisplayMethod="unsigned integer"/>
+        <Element Offset="3668" Vartype="Pointer" Bytesize="4" OffsetHex="00000E54" DisplayMethod="unsigned integer"/>
+        <Element Offset="3672" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000E58" DisplayMethod="unsigned integer"/>
+        <Element Offset="3684" Vartype="Double" Bytesize="8" OffsetHex="00000E64" DisplayMethod="unsigned integer"/>
+        <Element Offset="3692" Vartype="Float" Bytesize="4" OffsetHex="00000E6C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3696" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="00000E70" DisplayMethod="unsigned integer"/>
+        <Element Offset="3732" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="00000E94" DisplayMethod="unsigned integer"/>
+        <Element Offset="3740" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000E9C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3756" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="00000EAC" DisplayMethod="unsigned integer"/>
+        <Element Offset="3764" Vartype="4 Bytes" Bytesize="4" RLECount="16" OffsetHex="00000EB4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3828" Vartype="Pointer" Bytesize="4" OffsetHex="00000EF4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3832" Vartype="4 Bytes" Bytesize="4" RLECount="25" OffsetHex="00000EF8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3932" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000F5C" DisplayMethod="hexadecimal"/>
+        <Element Offset="3936" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000F60" DisplayMethod="unsigned integer"/>
+        <Element Offset="3940" Vartype="Pointer" Bytesize="4" OffsetHex="00000F64" DisplayMethod="unsigned integer"/>
+        <Element Offset="3944" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000F68" DisplayMethod="unsigned integer"/>
+        <Element Offset="3968" Vartype="Double" Bytesize="8" OffsetHex="00000F80" DisplayMethod="unsigned integer"/>
+        <Element Offset="3976" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000F88" DisplayMethod="unsigned integer"/>
+        <Element Offset="3996" Vartype="Float" Bytesize="4" OffsetHex="00000F9C" DisplayMethod="unsigned integer"/>
+        <Element Offset="4000" Vartype="4 Bytes" Bytesize="4" RLECount="24" OffsetHex="00000FA0" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="未命名的结构" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="0" Vartype="Pointer" Bytesize="4" OffsetHex="00000000" DisplayMethod="unsigned integer"/>
+        <Element Offset="4" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000004" DisplayMethod="unsigned integer"/>
+        <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" DisplayMethod="hexadecimal"/>
+        <Element Offset="12" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="0000000C" DisplayMethod="unsigned integer"/>
+        <Element Offset="20" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000014" DisplayMethod="hexadecimal"/>
+        <Element Offset="28" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="0000001C" DisplayMethod="unsigned integer"/>
+        <Element Offset="40" Vartype="Pointer" Bytesize="4" OffsetHex="00000028" DisplayMethod="unsigned integer"/>
+        <Element Offset="44" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="0000002C" DisplayMethod="unsigned integer"/>
+        <Element Offset="52" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="00000034" DisplayMethod="unsigned integer"/>
+        <Element Offset="56" Vartype="Float" Bytesize="4" OffsetHex="00000038" DisplayMethod="unsigned integer"/>
+        <Element Offset="60" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="0000003C" DisplayMethod="unsigned integer"/>
+        <Element Offset="68" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="00000044" DisplayMethod="unsigned integer"/>
+        <Element Offset="72" Vartype="Float" Bytesize="4" OffsetHex="00000048" DisplayMethod="unsigned integer"/>
+        <Element Offset="76" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="0000004C" DisplayMethod="unsigned integer"/>
+        <Element Offset="92" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="0000005C" DisplayMethod="unsigned integer"/>
+        <Element Offset="116" Vartype="Pointer" Bytesize="4" OffsetHex="00000074" DisplayMethod="unsigned integer"/>
+        <Element Offset="120" Vartype="Pointer" Bytesize="4" OffsetHex="00000078" Description="Pointer to instance of boost::detail::sp_counted_impl_p&lt;b2World&gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="124" Vartype="Pointer" Bytesize="4" OffsetHex="0000007C" DisplayMethod="unsigned integer"/>
+        <Element Offset="128" Vartype="Double" Bytesize="8" OffsetHex="00000080" DisplayMethod="unsigned integer"/>
+        <Element Offset="136" Vartype="Float" Bytesize="4" OffsetHex="00000088" DisplayMethod="unsigned integer"/>
+        <Element Offset="140" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000008C" DisplayMethod="hexadecimal"/>
+        <Element Offset="144" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000090" DisplayMethod="unsigned integer"/>
+        <Element Offset="152" Vartype="Pointer" Bytesize="4" OffsetHex="00000098" Description="Pointer to instance of imf::BehaviorMachineState" DisplayMethod="unsigned integer"/>
+        <Element Offset="156" Vartype="Pointer" Bytesize="4" OffsetHex="0000009C" Description="Pointer to instance of boost::detail::sp_counted_base" DisplayMethod="unsigned integer"/>
+        <Element Offset="160" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000A0" DisplayMethod="unsigned integer"/>
+        <Element Offset="164" Vartype="Double" Bytesize="8" OffsetHex="000000A4" DisplayMethod="unsigned integer"/>
+        <Element Offset="172" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000000AC" DisplayMethod="unsigned integer"/>
+        <Element Offset="188" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="000000BC" DisplayMethod="unsigned integer"/>
+        <Element Offset="196" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000000C4" DisplayMethod="unsigned integer"/>
+        <Element Offset="212" Vartype="Double" Bytesize="8" OffsetHex="000000D4" DisplayMethod="unsigned integer"/>
+        <Element Offset="220" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000DC" DisplayMethod="unsigned integer"/>
+        <Element Offset="224" Vartype="Pointer" Bytesize="4" OffsetHex="000000E0" DisplayMethod="unsigned integer"/>
+        <Element Offset="228" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="000000E4" DisplayMethod="unsigned integer"/>
+        <Element Offset="240" Vartype="Double" Bytesize="8" OffsetHex="000000F0" DisplayMethod="unsigned integer"/>
+        <Element Offset="248" Vartype="Float" Bytesize="4" OffsetHex="000000F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="252" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="000000FC" DisplayMethod="unsigned integer"/>
+        <Element Offset="288" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="00000120" DisplayMethod="unsigned integer"/>
+        <Element Offset="296" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000128" DisplayMethod="unsigned integer"/>
+        <Element Offset="312" Vartype="Pointer" Bytesize="4" OffsetHex="00000138" Description="Pointer to instance of imf::DefinitionBase" DisplayMethod="unsigned integer"/>
+        <Element Offset="316" Vartype="Pointer" Bytesize="4" OffsetHex="0000013C" Description="Pointer to instance of boost::detail::sp_counted_base" DisplayMethod="unsigned integer"/>
+        <Element Offset="320" Vartype="4 Bytes" Bytesize="4" RLECount="16" OffsetHex="00000140" DisplayMethod="unsigned integer"/>
+        <Element Offset="384" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="00000180" DisplayMethod="unsigned integer"/>
+        <Element Offset="392" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000188" DisplayMethod="unsigned integer"/>
+        <Element Offset="404" Vartype="Byte" Bytesize="1" RLECount="2" OffsetHex="00000194" DisplayMethod="unsigned integer"/>
+        <Element Offset="406" Vartype="2 Bytes" Bytesize="2" OffsetHex="00000196" DisplayMethod="unsigned integer"/>
+        <Element Offset="408" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000198" DisplayMethod="unsigned integer"/>
+        <Element Offset="432" Vartype="Float" Bytesize="4" OffsetHex="000001B0" DisplayMethod="unsigned integer"/>
+        <Element Offset="436" Vartype="4 Bytes" Bytesize="4" RLECount="13" OffsetHex="000001B4" DisplayMethod="unsigned integer"/>
+        <Element Offset="488" Vartype="4 Bytes" Bytesize="4" OffsetHex="000001E8" DisplayMethod="hexadecimal"/>
+        <Element Offset="492" Vartype="4 Bytes" Bytesize="4" RLECount="8" OffsetHex="000001EC" DisplayMethod="unsigned integer"/>
+        <Element Offset="524" Vartype="Double" Bytesize="8" OffsetHex="0000020C" DisplayMethod="unsigned integer"/>
+        <Element Offset="532" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000214" DisplayMethod="unsigned integer"/>
+        <Element Offset="552" Vartype="Float" Bytesize="4" OffsetHex="00000228" DisplayMethod="unsigned integer"/>
+        <Element Offset="556" Vartype="4 Bytes" Bytesize="4" RLECount="28" OffsetHex="0000022C" DisplayMethod="unsigned integer"/>
+        <Element Offset="668" Vartype="Byte" Bytesize="1" OffsetHex="0000029C" DisplayMethod="unsigned integer"/>
+        <Element Offset="669" Vartype="String" Bytesize="13" OffsetHex="0000029D" DisplayMethod="unsigned integer"/>
+        <Element Offset="682" Vartype="Byte" Bytesize="1" RLECount="2" OffsetHex="000002AA" DisplayMethod="unsigned integer"/>
+        <Element Offset="684" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="000002AC" DisplayMethod="unsigned integer"/>
+        <Element Offset="696" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="000002B8" DisplayMethod="unsigned integer"/>
+        <Element Offset="700" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="000002BC" DisplayMethod="unsigned integer"/>
+        <Element Offset="736" Vartype="Float" Bytesize="4" OffsetHex="000002E0" DisplayMethod="unsigned integer"/>
+        <Element Offset="740" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="000002E4" DisplayMethod="unsigned integer"/>
+        <Element Offset="760" Vartype="Double" Bytesize="8" OffsetHex="000002F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="768" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000300" DisplayMethod="unsigned integer"/>
+        <Element Offset="788" Vartype="Double" Bytesize="8" OffsetHex="00000314" DisplayMethod="unsigned integer"/>
+        <Element Offset="796" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="0000031C" DisplayMethod="unsigned integer"/>
+        <Element Offset="816" Vartype="Double" Bytesize="8" OffsetHex="00000330" DisplayMethod="unsigned integer"/>
+        <Element Offset="824" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000338" DisplayMethod="unsigned integer"/>
+        <Element Offset="828" Vartype="Pointer" Bytesize="4" RLECount="3" OffsetHex="0000033C" DisplayMethod="unsigned integer"/>
+        <Element Offset="840" Vartype="4 Bytes" Bytesize="4" RLECount="14" OffsetHex="00000348" DisplayMethod="unsigned integer"/>
+        <Element Offset="896" Vartype="Double" Bytesize="8" OffsetHex="00000380" DisplayMethod="unsigned integer"/>
+        <Element Offset="904" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="00000388" DisplayMethod="unsigned integer"/>
+        <Element Offset="940" Vartype="Double" Bytesize="8" OffsetHex="000003AC" DisplayMethod="unsigned integer"/>
+        <Element Offset="948" Vartype="4 Bytes" Bytesize="4" RLECount="8" OffsetHex="000003B4" DisplayMethod="unsigned integer"/>
+        <Element Offset="980" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="000003D4" DisplayMethod="unsigned integer"/>
+        <Element Offset="988" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="000003DC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1012" Vartype="4 Bytes" Bytesize="4" OffsetHex="000003F4" DisplayMethod="hexadecimal"/>
+        <Element Offset="1016" Vartype="Double" Bytesize="8" OffsetHex="000003F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1024" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000400" DisplayMethod="unsigned integer"/>
+        <Element Offset="1036" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="0000040C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1044" Vartype="4 Bytes" Bytesize="4" RLECount="12" OffsetHex="00000414" DisplayMethod="unsigned integer"/>
+        <Element Offset="1092" Vartype="Double" Bytesize="8" OffsetHex="00000444" DisplayMethod="unsigned integer"/>
+        <Element Offset="1100" Vartype="4 Bytes" Bytesize="4" RLECount="10" OffsetHex="0000044C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1140" Vartype="Pointer" Bytesize="4" OffsetHex="00000474" Description="Pointer to instance of imf::DefinitionBase" DisplayMethod="unsigned integer"/>
+        <Element Offset="1144" Vartype="Pointer" Bytesize="4" OffsetHex="00000478" Description="Pointer to instance of boost::detail::sp_counted_base" DisplayMethod="unsigned integer"/>
+        <Element Offset="1148" Vartype="Pointer" Bytesize="4" OffsetHex="0000047C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1152" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000480" DisplayMethod="unsigned integer"/>
+        <Element Offset="1156" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000484" DisplayMethod="hexadecimal"/>
+        <Element Offset="1160" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000488" DisplayMethod="unsigned integer"/>
+        <Element Offset="1164" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="0000048C" DisplayMethod="hexadecimal"/>
+        <Element Offset="1176" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000498" DisplayMethod="unsigned integer"/>
+        <Element Offset="1188" Vartype="Pointer" Bytesize="4" OffsetHex="000004A4" DisplayMethod="unsigned integer"/>
+        <Element Offset="1192" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000004A8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1200" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="000004B0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1208" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000004B8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1216" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="000004C0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1224" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000004C8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1240" Vartype="Float" Bytesize="4" RLECount="4" OffsetHex="000004D8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1256" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000004E8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1264" Vartype="Pointer" Bytesize="4" OffsetHex="000004F0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1268" Vartype="Pointer" Bytesize="4" OffsetHex="000004F4" Description="Pointer to instance of boost::detail::sp_counted_impl_p&lt;b2World&gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="1272" Vartype="Pointer" Bytesize="4" OffsetHex="000004F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1276" Vartype="Double" Bytesize="8" OffsetHex="000004FC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1284" Vartype="Float" Bytesize="4" OffsetHex="00000504" DisplayMethod="unsigned integer"/>
+        <Element Offset="1288" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000508" DisplayMethod="hexadecimal"/>
+        <Element Offset="1292" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="0000050C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1300" Vartype="Pointer" Bytesize="4" OffsetHex="00000514" Description="Pointer to instance of imf::BehaviorMachineState" DisplayMethod="unsigned integer"/>
+        <Element Offset="1304" Vartype="Pointer" Bytesize="4" OffsetHex="00000518" Description="Pointer to instance of boost::detail::sp_counted_base" DisplayMethod="unsigned integer"/>
+        <Element Offset="1308" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000051C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1312" Vartype="Double" Bytesize="8" OffsetHex="00000520" DisplayMethod="unsigned integer"/>
+        <Element Offset="1320" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000528" DisplayMethod="unsigned integer"/>
+        <Element Offset="1336" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="00000538" DisplayMethod="unsigned integer"/>
+        <Element Offset="1344" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000540" DisplayMethod="unsigned integer"/>
+        <Element Offset="1360" Vartype="Double" Bytesize="8" OffsetHex="00000550" DisplayMethod="unsigned integer"/>
+        <Element Offset="1368" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000558" DisplayMethod="unsigned integer"/>
+        <Element Offset="1372" Vartype="Pointer" Bytesize="4" OffsetHex="0000055C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1376" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000560" DisplayMethod="unsigned integer"/>
+        <Element Offset="1388" Vartype="Double" Bytesize="8" OffsetHex="0000056C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1396" Vartype="Float" Bytesize="4" OffsetHex="00000574" DisplayMethod="unsigned integer"/>
+        <Element Offset="1400" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="00000578" DisplayMethod="unsigned integer"/>
+        <Element Offset="1436" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="0000059C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1444" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000005A4" DisplayMethod="unsigned integer"/>
+        <Element Offset="1460" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="000005B4" DisplayMethod="unsigned integer"/>
+        <Element Offset="1468" Vartype="4 Bytes" Bytesize="4" RLECount="16" OffsetHex="000005BC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1532" Vartype="Pointer" Bytesize="4" OffsetHex="000005FC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1536" Vartype="4 Bytes" Bytesize="4" RLECount="25" OffsetHex="00000600" DisplayMethod="unsigned integer"/>
+        <Element Offset="1636" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000664" DisplayMethod="hexadecimal"/>
+        <Element Offset="1640" Vartype="4 Bytes" Bytesize="4" RLECount="8" OffsetHex="00000668" DisplayMethod="unsigned integer"/>
+        <Element Offset="1672" Vartype="Double" Bytesize="8" OffsetHex="00000688" DisplayMethod="unsigned integer"/>
+        <Element Offset="1680" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000690" DisplayMethod="unsigned integer"/>
+        <Element Offset="1700" Vartype="Float" Bytesize="4" OffsetHex="000006A4" DisplayMethod="unsigned integer"/>
+        <Element Offset="1704" Vartype="4 Bytes" Bytesize="4" RLECount="51" OffsetHex="000006A8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1908" Vartype="Double" Bytesize="8" OffsetHex="00000774" DisplayMethod="unsigned integer"/>
+        <Element Offset="1916" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="0000077C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1936" Vartype="Double" Bytesize="8" OffsetHex="00000790" DisplayMethod="unsigned integer"/>
+        <Element Offset="1944" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000798" DisplayMethod="unsigned integer"/>
+        <Element Offset="1964" Vartype="Double" Bytesize="8" OffsetHex="000007AC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1972" Vartype="4 Bytes" Bytesize="4" OffsetHex="000007B4" DisplayMethod="unsigned integer"/>
+        <Element Offset="1976" Vartype="Pointer" Bytesize="4" RLECount="3" OffsetHex="000007B8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1988" Vartype="4 Bytes" Bytesize="4" RLECount="14" OffsetHex="000007C4" DisplayMethod="unsigned integer"/>
+        <Element Offset="2044" Vartype="Double" Bytesize="8" OffsetHex="000007FC" DisplayMethod="unsigned integer"/>
+        <Element Offset="2052" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="00000804" DisplayMethod="unsigned integer"/>
+        <Element Offset="2088" Vartype="Double" Bytesize="8" OffsetHex="00000828" DisplayMethod="unsigned integer"/>
+        <Element Offset="2096" Vartype="4 Bytes" Bytesize="4" RLECount="8" OffsetHex="00000830" DisplayMethod="unsigned integer"/>
+        <Element Offset="2128" Vartype="Double" Bytesize="8" OffsetHex="00000850" DisplayMethod="unsigned integer"/>
+        <Element Offset="2136" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000858" DisplayMethod="unsigned integer"/>
+        <Element Offset="2160" Vartype="Pointer" Bytesize="4" OffsetHex="00000870" DisplayMethod="unsigned integer"/>
+        <Element Offset="2164" Vartype="Double" Bytesize="8" OffsetHex="00000874" DisplayMethod="unsigned integer"/>
+        <Element Offset="2172" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="0000087C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2184" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="00000888" DisplayMethod="unsigned integer"/>
+        <Element Offset="2192" Vartype="4 Bytes" Bytesize="4" RLECount="12" OffsetHex="00000890" DisplayMethod="unsigned integer"/>
+        <Element Offset="2240" Vartype="Double" Bytesize="8" OffsetHex="000008C0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2248" Vartype="4 Bytes" Bytesize="4" RLECount="10" OffsetHex="000008C8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2288" Vartype="Pointer" Bytesize="4" RLECount="3" OffsetHex="000008F0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2300" Vartype="4 Bytes" Bytesize="4" OffsetHex="000008FC" DisplayMethod="unsigned integer"/>
+        <Element Offset="2304" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000900" DisplayMethod="hexadecimal"/>
+        <Element Offset="2308" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000904" DisplayMethod="unsigned integer"/>
+        <Element Offset="2320" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000910" DisplayMethod="hexadecimal"/>
+        <Element Offset="2324" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000914" DisplayMethod="unsigned integer"/>
+        <Element Offset="2336" Vartype="Pointer" Bytesize="4" OffsetHex="00000920" DisplayMethod="unsigned integer"/>
+        <Element Offset="2340" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000924" DisplayMethod="unsigned integer"/>
+        <Element Offset="2348" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="0000092C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2356" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000934" DisplayMethod="unsigned integer"/>
+        <Element Offset="2364" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="0000093C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2372" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000944" DisplayMethod="unsigned integer"/>
+        <Element Offset="2388" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000954" DisplayMethod="unsigned integer"/>
+        <Element Offset="2412" Vartype="Pointer" Bytesize="4" OffsetHex="0000096C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2416" Vartype="Pointer" Bytesize="4" OffsetHex="00000970" Description="Pointer to instance of boost::detail::sp_counted_impl_p&lt;b2World&gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="2420" Vartype="Pointer" Bytesize="4" OffsetHex="00000974" DisplayMethod="unsigned integer"/>
+        <Element Offset="2424" Vartype="Double" Bytesize="8" OffsetHex="00000978" DisplayMethod="unsigned integer"/>
+        <Element Offset="2432" Vartype="Float" Bytesize="4" OffsetHex="00000980" DisplayMethod="unsigned integer"/>
+        <Element Offset="2436" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000984" DisplayMethod="hexadecimal"/>
+        <Element Offset="2440" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000988" DisplayMethod="unsigned integer"/>
+        <Element Offset="2448" Vartype="Pointer" Bytesize="4" OffsetHex="00000990" Description="Pointer to instance of imf::BehaviorMachine" DisplayMethod="unsigned integer"/>
+        <Element Offset="2452" Vartype="Pointer" Bytesize="4" OffsetHex="00000994" Description="Pointer to instance of boost::detail::sp_counted_impl_pd&lt;imf::BehaviorMachine *,boost::detail::sp_ms_deleter&lt;imf::BehaviorMachine&gt; &gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="2456" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000998" DisplayMethod="unsigned integer"/>
+        <Element Offset="2460" Vartype="Double" Bytesize="8" OffsetHex="0000099C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2468" Vartype="4 Bytes" Bytesize="4" OffsetHex="000009A4" DisplayMethod="hexadecimal"/>
+        <Element Offset="2472" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="000009A8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2484" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="000009B4" DisplayMethod="unsigned integer"/>
+        <Element Offset="2492" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000009BC" DisplayMethod="unsigned integer"/>
+        <Element Offset="2508" Vartype="Double" Bytesize="8" OffsetHex="000009CC" DisplayMethod="unsigned integer"/>
+        <Element Offset="2516" Vartype="4 Bytes" Bytesize="4" OffsetHex="000009D4" DisplayMethod="unsigned integer"/>
+        <Element Offset="2520" Vartype="Pointer" Bytesize="4" OffsetHex="000009D8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2524" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="000009DC" DisplayMethod="unsigned integer"/>
+        <Element Offset="2536" Vartype="Double" Bytesize="8" OffsetHex="000009E8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2544" Vartype="Float" Bytesize="4" OffsetHex="000009F0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2548" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="000009F4" DisplayMethod="unsigned integer"/>
+        <Element Offset="2584" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="00000A18" DisplayMethod="unsigned integer"/>
+        <Element Offset="2592" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000A20" DisplayMethod="unsigned integer"/>
+        <Element Offset="2608" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="00000A30" DisplayMethod="unsigned integer"/>
+        <Element Offset="2616" Vartype="4 Bytes" Bytesize="4" RLECount="16" OffsetHex="00000A38" DisplayMethod="unsigned integer"/>
+        <Element Offset="2680" Vartype="Pointer" Bytesize="4" OffsetHex="00000A78" DisplayMethod="unsigned integer"/>
+        <Element Offset="2684" Vartype="4 Bytes" Bytesize="4" RLECount="11" OffsetHex="00000A7C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2728" Vartype="Float" Bytesize="4" OffsetHex="00000AA8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2732" Vartype="4 Bytes" Bytesize="4" RLECount="13" OffsetHex="00000AAC" DisplayMethod="unsigned integer"/>
+        <Element Offset="2784" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000AE0" DisplayMethod="hexadecimal"/>
+        <Element Offset="2788" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000AE4" DisplayMethod="unsigned integer"/>
+        <Element Offset="2792" Vartype="Pointer" Bytesize="4" OffsetHex="00000AE8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2796" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000AEC" DisplayMethod="unsigned integer"/>
+        <Element Offset="2820" Vartype="Double" Bytesize="8" OffsetHex="00000B04" DisplayMethod="unsigned integer"/>
+        <Element Offset="2828" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000B0C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2848" Vartype="Float" Bytesize="4" OffsetHex="00000B20" DisplayMethod="unsigned integer"/>
+        <Element Offset="2852" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000B24" DisplayMethod="unsigned integer"/>
+        <Element Offset="2856" Vartype="Float" Bytesize="4" OffsetHex="00000B28" DisplayMethod="unsigned integer"/>
+        <Element Offset="2860" Vartype="String" Bytesize="4" OffsetHex="00000B2C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2864" Vartype="Float" Bytesize="4" RLECount="5" OffsetHex="00000B30" DisplayMethod="unsigned integer"/>
+        <Element Offset="2884" Vartype="Double" Bytesize="8" OffsetHex="00000B44" DisplayMethod="unsigned integer"/>
+        <Element Offset="2892" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="00000B4C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2896" Vartype="Float" Bytesize="4" RLECount="17" OffsetHex="00000B50" DisplayMethod="unsigned integer"/>
+        <Element Offset="2964" Vartype="4 Bytes" Bytesize="4" RLECount="23" OffsetHex="00000B94" DisplayMethod="unsigned integer"/>
+        <Element Offset="3056" Vartype="Double" Bytesize="8" OffsetHex="00000BF0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3064" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000BF8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3084" Vartype="Double" Bytesize="8" OffsetHex="00000C0C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3092" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000C14" DisplayMethod="unsigned integer"/>
+        <Element Offset="3112" Vartype="Double" Bytesize="8" OffsetHex="00000C28" DisplayMethod="unsigned integer"/>
+        <Element Offset="3120" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000C30" DisplayMethod="unsigned integer"/>
+        <Element Offset="3124" Vartype="Pointer" Bytesize="4" RLECount="3" OffsetHex="00000C34" DisplayMethod="unsigned integer"/>
+        <Element Offset="3136" Vartype="4 Bytes" Bytesize="4" RLECount="14" OffsetHex="00000C40" DisplayMethod="unsigned integer"/>
+        <Element Offset="3192" Vartype="Double" Bytesize="8" OffsetHex="00000C78" DisplayMethod="unsigned integer"/>
+        <Element Offset="3200" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="00000C80" DisplayMethod="unsigned integer"/>
+        <Element Offset="3236" Vartype="Double" Bytesize="8" OffsetHex="00000CA4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3244" Vartype="4 Bytes" Bytesize="4" RLECount="8" OffsetHex="00000CAC" DisplayMethod="unsigned integer"/>
+        <Element Offset="3276" Vartype="Double" Bytesize="8" OffsetHex="00000CCC" DisplayMethod="unsigned integer"/>
+        <Element Offset="3284" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000CD4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3308" Vartype="Pointer" Bytesize="4" OffsetHex="00000CEC" DisplayMethod="unsigned integer"/>
+        <Element Offset="3312" Vartype="Double" Bytesize="8" OffsetHex="00000CF0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3320" Vartype="4 Bytes" Bytesize="4" RLECount="17" OffsetHex="00000CF8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3388" Vartype="Double" Bytesize="8" OffsetHex="00000D3C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3396" Vartype="4 Bytes" Bytesize="4" RLECount="10" OffsetHex="00000D44" DisplayMethod="unsigned integer"/>
+        <Element Offset="3436" Vartype="Pointer" Bytesize="4" RLECount="3" OffsetHex="00000D6C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3448" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000D78" DisplayMethod="unsigned integer"/>
+        <Element Offset="3452" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000D7C" DisplayMethod="hexadecimal"/>
+        <Element Offset="3456" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000D80" DisplayMethod="unsigned integer"/>
+        <Element Offset="3460" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000D84" DisplayMethod="hexadecimal"/>
+        <Element Offset="3472" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000D90" DisplayMethod="unsigned integer"/>
+        <Element Offset="3484" Vartype="Pointer" Bytesize="4" OffsetHex="00000D9C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3488" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000DA0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3496" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="00000DA8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3504" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000DB0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3512" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="00000DB8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3520" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000DC0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3536" Vartype="Float" Bytesize="4" RLECount="4" OffsetHex="00000DD0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3552" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000DE0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3560" Vartype="Pointer" Bytesize="4" OffsetHex="00000DE8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3564" Vartype="Pointer" Bytesize="4" OffsetHex="00000DEC" Description="Pointer to instance of boost::detail::sp_counted_impl_p&lt;b2World&gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="3568" Vartype="Pointer" Bytesize="4" OffsetHex="00000DF0" Description="Pointer to instance of b2PolygonShape" DisplayMethod="unsigned integer"/>
+        <Element Offset="3572" Vartype="Double" Bytesize="8" OffsetHex="00000DF4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3580" Vartype="Float" Bytesize="4" OffsetHex="00000DFC" DisplayMethod="unsigned integer"/>
+        <Element Offset="3584" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000E00" DisplayMethod="hexadecimal"/>
+        <Element Offset="3588" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000E04" DisplayMethod="unsigned integer"/>
+        <Element Offset="3596" Vartype="Pointer" Bytesize="4" OffsetHex="00000E0C" Description="Pointer to instance of imf::BehaviorMachine" DisplayMethod="unsigned integer"/>
+        <Element Offset="3600" Vartype="Pointer" Bytesize="4" OffsetHex="00000E10" Description="Pointer to instance of boost::detail::sp_counted_impl_pd&lt;imf::BehaviorMachine *,boost::detail::sp_ms_deleter&lt;imf::BehaviorMachine&gt; &gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="3604" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000E14" DisplayMethod="unsigned integer"/>
+        <Element Offset="3608" Vartype="Double" Bytesize="8" OffsetHex="00000E18" DisplayMethod="unsigned integer"/>
+        <Element Offset="3616" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000E20" DisplayMethod="hexadecimal"/>
+        <Element Offset="3620" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000E24" DisplayMethod="unsigned integer"/>
+        <Element Offset="3632" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="00000E30" DisplayMethod="unsigned integer"/>
+        <Element Offset="3640" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000E38" DisplayMethod="unsigned integer"/>
+        <Element Offset="3656" Vartype="Double" Bytesize="8" OffsetHex="00000E48" DisplayMethod="unsigned integer"/>
+        <Element Offset="3664" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000E50" DisplayMethod="unsigned integer"/>
+        <Element Offset="3668" Vartype="Pointer" Bytesize="4" OffsetHex="00000E54" DisplayMethod="unsigned integer"/>
+        <Element Offset="3672" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000E58" DisplayMethod="unsigned integer"/>
+        <Element Offset="3684" Vartype="Double" Bytesize="8" OffsetHex="00000E64" DisplayMethod="unsigned integer"/>
+        <Element Offset="3692" Vartype="Float" Bytesize="4" OffsetHex="00000E6C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3696" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="00000E70" DisplayMethod="unsigned integer"/>
+        <Element Offset="3732" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="00000E94" DisplayMethod="unsigned integer"/>
+        <Element Offset="3740" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000E9C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3756" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="00000EAC" DisplayMethod="unsigned integer"/>
+        <Element Offset="3764" Vartype="4 Bytes" Bytesize="4" RLECount="16" OffsetHex="00000EB4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3828" Vartype="Pointer" Bytesize="4" OffsetHex="00000EF4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3832" Vartype="4 Bytes" Bytesize="4" RLECount="25" OffsetHex="00000EF8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3932" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000F5C" DisplayMethod="hexadecimal"/>
+        <Element Offset="3936" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000F60" DisplayMethod="unsigned integer"/>
+        <Element Offset="3940" Vartype="Pointer" Bytesize="4" OffsetHex="00000F64" DisplayMethod="unsigned integer"/>
+        <Element Offset="3944" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000F68" DisplayMethod="unsigned integer"/>
+        <Element Offset="3968" Vartype="Double" Bytesize="8" OffsetHex="00000F80" DisplayMethod="unsigned integer"/>
+        <Element Offset="3976" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000F88" DisplayMethod="unsigned integer"/>
+        <Element Offset="3996" Vartype="Float" Bytesize="4" OffsetHex="00000F9C" DisplayMethod="unsigned integer"/>
+        <Element Offset="4000" Vartype="4 Bytes" Bytesize="4" RLECount="24" OffsetHex="00000FA0" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="未命名的结构" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="0" Vartype="Pointer" Bytesize="4" OffsetHex="00000000" DisplayMethod="unsigned integer"/>
+        <Element Offset="4" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000004" DisplayMethod="unsigned integer"/>
+        <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" DisplayMethod="hexadecimal"/>
+        <Element Offset="12" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000000C" DisplayMethod="unsigned integer"/>
+        <Element Offset="16" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000010" DisplayMethod="hexadecimal"/>
+        <Element Offset="28" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="0000001C" DisplayMethod="unsigned integer"/>
+        <Element Offset="40" Vartype="Pointer" Bytesize="4" OffsetHex="00000028" Description="Pointer to instance of imf::Actor" DisplayMethod="unsigned integer"/>
+        <Element Offset="44" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="0000002C" DisplayMethod="unsigned integer"/>
+        <Element Offset="52" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="00000034" DisplayMethod="unsigned integer"/>
+        <Element Offset="60" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="0000003C" DisplayMethod="unsigned integer"/>
+        <Element Offset="68" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="00000044" DisplayMethod="unsigned integer"/>
+        <Element Offset="76" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="0000004C" DisplayMethod="unsigned integer"/>
+        <Element Offset="92" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="0000005C" DisplayMethod="unsigned integer"/>
+        <Element Offset="116" Vartype="Pointer" Bytesize="4" OffsetHex="00000074" DisplayMethod="unsigned integer"/>
+        <Element Offset="120" Vartype="Pointer" Bytesize="4" OffsetHex="00000078" Description="Pointer to instance of boost::detail::sp_counted_impl_p&lt;b2World&gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="124" Vartype="Pointer" Bytesize="4" OffsetHex="0000007C" DisplayMethod="unsigned integer"/>
+        <Element Offset="128" Vartype="Double" Bytesize="8" OffsetHex="00000080" DisplayMethod="unsigned integer"/>
+        <Element Offset="136" Vartype="Float" Bytesize="4" OffsetHex="00000088" DisplayMethod="unsigned integer"/>
+        <Element Offset="140" Vartype="Pointer" Bytesize="4" OffsetHex="0000008C" DisplayMethod="unsigned integer"/>
+        <Element Offset="144" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000090" DisplayMethod="unsigned integer"/>
+        <Element Offset="152" Vartype="Pointer" Bytesize="4" OffsetHex="00000098" Description="Pointer to instance of imf::BehaviorMachine" DisplayMethod="unsigned integer"/>
+        <Element Offset="156" Vartype="Pointer" Bytesize="4" OffsetHex="0000009C" Description="Pointer to instance of boost::detail::sp_counted_impl_pd&lt;imf::BehaviorMachine *,boost::detail::sp_ms_deleter&lt;imf::BehaviorMachine&gt; &gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="160" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000A0" DisplayMethod="unsigned integer"/>
+        <Element Offset="164" Vartype="Double" Bytesize="8" OffsetHex="000000A4" DisplayMethod="unsigned integer"/>
+        <Element Offset="172" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000000AC" DisplayMethod="unsigned integer"/>
+        <Element Offset="188" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="000000BC" DisplayMethod="unsigned integer"/>
+        <Element Offset="196" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000000C4" DisplayMethod="unsigned integer"/>
+        <Element Offset="212" Vartype="Double" Bytesize="8" OffsetHex="000000D4" DisplayMethod="unsigned integer"/>
+        <Element Offset="220" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000DC" DisplayMethod="unsigned integer"/>
+        <Element Offset="224" Vartype="Pointer" Bytesize="4" OffsetHex="000000E0" DisplayMethod="unsigned integer"/>
+        <Element Offset="228" Vartype="Float" Bytesize="4" OffsetHex="000000E4" DisplayMethod="unsigned integer"/>
+        <Element Offset="232" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000000E8" DisplayMethod="unsigned integer"/>
+        <Element Offset="240" Vartype="Double" Bytesize="8" OffsetHex="000000F0" DisplayMethod="unsigned integer"/>
+        <Element Offset="248" Vartype="Float" Bytesize="4" OffsetHex="000000F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="252" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="000000FC" DisplayMethod="unsigned integer"/>
+        <Element Offset="288" Vartype="Pointer" Bytesize="4" RLECount="5" OffsetHex="00000120" DisplayMethod="unsigned integer"/>
+        <Element Offset="308" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000134" DisplayMethod="unsigned integer"/>
+        <Element Offset="312" Vartype="Pointer" Bytesize="4" OffsetHex="00000138" Description="Pointer to instance of imf::ActorDefinition" DisplayMethod="unsigned integer"/>
+        <Element Offset="316" Vartype="Pointer" Bytesize="4" OffsetHex="0000013C" Description="Pointer to instance of boost::detail::sp_counted_impl_pd&lt;imf::ActorDefinition *,boost::detail::sp_ms_deleter&lt;imf::ActorDefinition&gt; &gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="320" Vartype="4 Bytes" Bytesize="4" RLECount="16" OffsetHex="00000140" DisplayMethod="unsigned integer"/>
+        <Element Offset="384" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="00000180" DisplayMethod="unsigned integer"/>
+        <Element Offset="392" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000188" DisplayMethod="unsigned integer"/>
+        <Element Offset="404" Vartype="Byte" Bytesize="1" RLECount="2" OffsetHex="00000194" DisplayMethod="unsigned integer"/>
+        <Element Offset="406" Vartype="2 Bytes" Bytesize="2" OffsetHex="00000196" DisplayMethod="unsigned integer"/>
+        <Element Offset="408" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000198" DisplayMethod="unsigned integer"/>
+        <Element Offset="432" Vartype="Float" Bytesize="4" OffsetHex="000001B0" DisplayMethod="unsigned integer"/>
+        <Element Offset="436" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="000001B4" DisplayMethod="unsigned integer"/>
+        <Element Offset="448" Vartype="Byte" Bytesize="1" RLECount="12" OffsetHex="000001C0" DisplayMethod="unsigned integer"/>
+        <Element Offset="460" Vartype="4 Bytes" Bytesize="4" OffsetHex="000001CC" DisplayMethod="unsigned integer"/>
+        <Element Offset="464" Vartype="Pointer" Bytesize="4" RLECount="3" OffsetHex="000001D0" DisplayMethod="unsigned integer"/>
+        <Element Offset="476" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="000001DC" DisplayMethod="unsigned integer"/>
+        <Element Offset="488" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000001E8" DisplayMethod="hexadecimal"/>
+        <Element Offset="496" Vartype="4 Bytes" Bytesize="4" OffsetHex="000001F0" DisplayMethod="unsigned integer"/>
+        <Element Offset="500" Vartype="4 Bytes" Bytesize="4" OffsetHex="000001F4" DisplayMethod="hexadecimal"/>
+        <Element Offset="504" Vartype="4 Bytes" Bytesize="4" OffsetHex="000001F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="508" Vartype="Float" Bytesize="4" OffsetHex="000001FC" DisplayMethod="unsigned integer"/>
+        <Element Offset="512" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000200" DisplayMethod="unsigned integer"/>
+        <Element Offset="520" Vartype="Float" Bytesize="4" RLECount="3" OffsetHex="00000208" DisplayMethod="unsigned integer"/>
+        <Element Offset="532" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000214" DisplayMethod="unsigned integer"/>
+        <Element Offset="552" Vartype="Float" Bytesize="4" OffsetHex="00000228" DisplayMethod="unsigned integer"/>
+        <Element Offset="556" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000022C" DisplayMethod="unsigned integer"/>
+        <Element Offset="560" Vartype="Float" Bytesize="4" RLECount="4" OffsetHex="00000230" DisplayMethod="unsigned integer"/>
+        <Element Offset="576" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="00000240" DisplayMethod="unsigned integer"/>
+        <Element Offset="580" Vartype="Float" Bytesize="4" RLECount="5" OffsetHex="00000244" DisplayMethod="unsigned integer"/>
+        <Element Offset="600" Vartype="String" Bytesize="4" OffsetHex="00000258" DisplayMethod="unsigned integer"/>
+        <Element Offset="604" Vartype="Float" Bytesize="4" OffsetHex="0000025C" DisplayMethod="unsigned integer"/>
+        <Element Offset="608" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="00000260" DisplayMethod="unsigned integer"/>
+        <Element Offset="612" Vartype="Float" Bytesize="4" RLECount="14" OffsetHex="00000264" DisplayMethod="unsigned integer"/>
+        <Element Offset="668" Vartype="Pointer" Bytesize="4" OffsetHex="0000029C" DisplayMethod="unsigned integer"/>
+        <Element Offset="672" Vartype="String" Bytesize="10" OffsetHex="000002A0" DisplayMethod="unsigned integer"/>
+        <Element Offset="682" Vartype="Byte" Bytesize="1" RLECount="2" OffsetHex="000002AA" DisplayMethod="unsigned integer"/>
+        <Element Offset="684" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="000002AC" DisplayMethod="unsigned integer"/>
+        <Element Offset="696" Vartype="Float" Bytesize="4" OffsetHex="000002B8" DisplayMethod="unsigned integer"/>
+        <Element Offset="700" Vartype="4 Bytes" Bytesize="4" RLECount="8" OffsetHex="000002BC" DisplayMethod="unsigned integer"/>
+        <Element Offset="732" Vartype="Double" Bytesize="8" OffsetHex="000002DC" DisplayMethod="unsigned integer"/>
+        <Element Offset="740" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="000002E4" DisplayMethod="unsigned integer"/>
+        <Element Offset="760" Vartype="Double" Bytesize="8" OffsetHex="000002F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="768" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000300" DisplayMethod="unsigned integer"/>
+        <Element Offset="788" Vartype="Double" Bytesize="8" OffsetHex="00000314" DisplayMethod="unsigned integer"/>
+        <Element Offset="796" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="0000031C" DisplayMethod="unsigned integer"/>
+        <Element Offset="816" Vartype="Double" Bytesize="8" OffsetHex="00000330" DisplayMethod="unsigned integer"/>
+        <Element Offset="824" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000338" DisplayMethod="unsigned integer"/>
+        <Element Offset="828" Vartype="Pointer" Bytesize="4" RLECount="3" OffsetHex="0000033C" DisplayMethod="unsigned integer"/>
+        <Element Offset="840" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000348" DisplayMethod="unsigned integer"/>
+        <Element Offset="844" Vartype="Pointer" Bytesize="4" RLECount="3" OffsetHex="0000034C" DisplayMethod="unsigned integer"/>
+        <Element Offset="856" Vartype="4 Bytes" Bytesize="4" RLECount="10" OffsetHex="00000358" DisplayMethod="unsigned integer"/>
+        <Element Offset="896" Vartype="Double" Bytesize="8" OffsetHex="00000380" DisplayMethod="unsigned integer"/>
+        <Element Offset="904" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="00000388" DisplayMethod="unsigned integer"/>
+        <Element Offset="940" Vartype="Double" Bytesize="8" OffsetHex="000003AC" DisplayMethod="unsigned integer"/>
+        <Element Offset="948" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000003B4" DisplayMethod="unsigned integer"/>
+        <Element Offset="964" Vartype="Pointer" Bytesize="4" RLECount="3" OffsetHex="000003C4" DisplayMethod="unsigned integer"/>
+        <Element Offset="976" Vartype="Double" Bytesize="8" OffsetHex="000003D0" DisplayMethod="unsigned integer"/>
+        <Element Offset="984" Vartype="Float" Bytesize="4" OffsetHex="000003D8" DisplayMethod="unsigned integer"/>
+        <Element Offset="988" Vartype="4 Bytes" Bytesize="4" OffsetHex="000003DC" DisplayMethod="unsigned integer"/>
+        <Element Offset="992" Vartype="Double" Bytesize="8" OffsetHex="000003E0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1000" Vartype="4 Bytes" Bytesize="4" OffsetHex="000003E8" DisplayMethod="hexadecimal"/>
+        <Element Offset="1004" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000003EC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1012" Vartype="4 Bytes" Bytesize="4" OffsetHex="000003F4" DisplayMethod="hexadecimal"/>
+        <Element Offset="1016" Vartype="Double" Bytesize="8" OffsetHex="000003F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1024" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000400" DisplayMethod="unsigned integer"/>
+        <Element Offset="1036" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="0000040C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1044" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000414" DisplayMethod="hexadecimal"/>
+        <Element Offset="1048" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000418" DisplayMethod="unsigned integer"/>
+        <Element Offset="1052" Vartype="Float" Bytesize="4" OffsetHex="0000041C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1056" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="00000420" DisplayMethod="unsigned integer"/>
+        <Element Offset="1092" Vartype="Double" Bytesize="8" OffsetHex="00000444" DisplayMethod="unsigned integer"/>
+        <Element Offset="1100" Vartype="4 Bytes" Bytesize="4" RLECount="10" OffsetHex="0000044C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1140" Vartype="Pointer" Bytesize="4" OffsetHex="00000474" Description="Pointer to instance of imf::ActorDefinition" DisplayMethod="unsigned integer"/>
+        <Element Offset="1144" Vartype="Pointer" Bytesize="4" OffsetHex="00000478" Description="Pointer to instance of boost::detail::sp_counted_impl_pd&lt;imf::ActorDefinition *,boost::detail::sp_ms_deleter&lt;imf::ActorDefinition&gt; &gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="1148" Vartype="Pointer" Bytesize="4" OffsetHex="0000047C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1152" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000480" DisplayMethod="unsigned integer"/>
+        <Element Offset="1156" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000484" DisplayMethod="hexadecimal"/>
+        <Element Offset="1160" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000488" DisplayMethod="unsigned integer"/>
+        <Element Offset="1168" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000490" DisplayMethod="hexadecimal"/>
+        <Element Offset="1176" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000498" DisplayMethod="unsigned integer"/>
+        <Element Offset="1188" Vartype="Pointer" Bytesize="4" OffsetHex="000004A4" DisplayMethod="unsigned integer"/>
+        <Element Offset="1192" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000004A8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1200" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="000004B0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1204" Vartype="Float" Bytesize="4" OffsetHex="000004B4" DisplayMethod="unsigned integer"/>
+        <Element Offset="1208" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000004B8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1216" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="000004C0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1220" Vartype="Float" Bytesize="4" OffsetHex="000004C4" DisplayMethod="unsigned integer"/>
+        <Element Offset="1224" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000004C8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1240" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="000004D8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1264" Vartype="Pointer" Bytesize="4" OffsetHex="000004F0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1268" Vartype="Pointer" Bytesize="4" OffsetHex="000004F4" Description="Pointer to instance of boost::detail::sp_counted_impl_p&lt;b2World&gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="1272" Vartype="Pointer" Bytesize="4" OffsetHex="000004F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1276" Vartype="Double" Bytesize="8" OffsetHex="000004FC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1284" Vartype="Float" Bytesize="4" OffsetHex="00000504" DisplayMethod="unsigned integer"/>
+        <Element Offset="1288" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000508" DisplayMethod="hexadecimal"/>
+        <Element Offset="1292" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="0000050C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1300" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="00000514" DisplayMethod="unsigned integer"/>
+        <Element Offset="1308" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000051C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1312" Vartype="Double" Bytesize="8" OffsetHex="00000520" DisplayMethod="unsigned integer"/>
+        <Element Offset="1320" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000528" DisplayMethod="unsigned integer"/>
+        <Element Offset="1336" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="00000538" DisplayMethod="unsigned integer"/>
+        <Element Offset="1344" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000540" DisplayMethod="unsigned integer"/>
+        <Element Offset="1360" Vartype="Double" Bytesize="8" OffsetHex="00000550" DisplayMethod="unsigned integer"/>
+        <Element Offset="1368" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000558" DisplayMethod="unsigned integer"/>
+        <Element Offset="1372" Vartype="Pointer" Bytesize="4" OffsetHex="0000055C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1376" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000560" DisplayMethod="unsigned integer"/>
+        <Element Offset="1388" Vartype="Double" Bytesize="8" OffsetHex="0000056C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1396" Vartype="Float" Bytesize="4" OffsetHex="00000574" DisplayMethod="unsigned integer"/>
+        <Element Offset="1400" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="00000578" DisplayMethod="unsigned integer"/>
+        <Element Offset="1436" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="0000059C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1444" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000005A4" DisplayMethod="unsigned integer"/>
+        <Element Offset="1460" Vartype="Pointer" Bytesize="4" OffsetHex="000005B4" Description="Pointer to instance of imf::DefinitionBase" DisplayMethod="unsigned integer"/>
+        <Element Offset="1464" Vartype="Pointer" Bytesize="4" OffsetHex="000005B8" Description="Pointer to instance of boost::detail::sp_counted_base" DisplayMethod="unsigned integer"/>
+        <Element Offset="1468" Vartype="4 Bytes" Bytesize="4" RLECount="16" OffsetHex="000005BC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1532" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="000005FC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1540" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000604" DisplayMethod="unsigned integer"/>
+        <Element Offset="1552" Vartype="Byte" Bytesize="1" RLECount="2" OffsetHex="00000610" DisplayMethod="unsigned integer"/>
+        <Element Offset="1554" Vartype="2 Bytes" Bytesize="2" OffsetHex="00000612" DisplayMethod="unsigned integer"/>
+        <Element Offset="1556" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000614" DisplayMethod="unsigned integer"/>
+        <Element Offset="1580" Vartype="Float" Bytesize="4" OffsetHex="0000062C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1584" Vartype="4 Bytes" Bytesize="4" RLECount="13" OffsetHex="00000630" DisplayMethod="unsigned integer"/>
+        <Element Offset="1636" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000664" DisplayMethod="hexadecimal"/>
+        <Element Offset="1640" Vartype="4 Bytes" Bytesize="4" RLECount="8" OffsetHex="00000668" DisplayMethod="unsigned integer"/>
+        <Element Offset="1672" Vartype="Double" Bytesize="8" OffsetHex="00000688" DisplayMethod="unsigned integer"/>
+        <Element Offset="1680" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000690" DisplayMethod="unsigned integer"/>
+        <Element Offset="1700" Vartype="Float" Bytesize="4" OffsetHex="000006A4" DisplayMethod="unsigned integer"/>
+        <Element Offset="1704" Vartype="4 Bytes" Bytesize="4" RLECount="28" OffsetHex="000006A8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1816" Vartype="Byte" Bytesize="1" OffsetHex="00000718" DisplayMethod="unsigned integer"/>
+        <Element Offset="1817" Vartype="String" Bytesize="13" OffsetHex="00000719" DisplayMethod="unsigned integer"/>
+        <Element Offset="1830" Vartype="Byte" Bytesize="1" RLECount="2" OffsetHex="00000726" DisplayMethod="unsigned integer"/>
+        <Element Offset="1832" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000728" DisplayMethod="unsigned integer"/>
+        <Element Offset="1844" Vartype="String" Bytesize="5" OffsetHex="00000734" DisplayMethod="unsigned integer"/>
+        <Element Offset="1849" Vartype="Byte" Bytesize="1" RLECount="3" OffsetHex="00000739" DisplayMethod="unsigned integer"/>
+        <Element Offset="1852" Vartype="4 Bytes" Bytesize="4" RLECount="8" OffsetHex="0000073C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1884" Vartype="Float" Bytesize="4" OffsetHex="0000075C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1888" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000760" DisplayMethod="unsigned integer"/>
+        <Element Offset="1908" Vartype="Double" Bytesize="8" OffsetHex="00000774" DisplayMethod="unsigned integer"/>
+        <Element Offset="1916" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="0000077C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1936" Vartype="Double" Bytesize="8" OffsetHex="00000790" DisplayMethod="unsigned integer"/>
+        <Element Offset="1944" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000798" DisplayMethod="unsigned integer"/>
+        <Element Offset="1964" Vartype="Double" Bytesize="8" OffsetHex="000007AC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1972" Vartype="4 Bytes" Bytesize="4" OffsetHex="000007B4" DisplayMethod="unsigned integer"/>
+        <Element Offset="1976" Vartype="Pointer" Bytesize="4" RLECount="3" OffsetHex="000007B8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1988" Vartype="4 Bytes" Bytesize="4" RLECount="14" OffsetHex="000007C4" DisplayMethod="unsigned integer"/>
+        <Element Offset="2044" Vartype="Double" Bytesize="8" OffsetHex="000007FC" DisplayMethod="unsigned integer"/>
+        <Element Offset="2052" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="00000804" DisplayMethod="unsigned integer"/>
+        <Element Offset="2088" Vartype="Double" Bytesize="8" OffsetHex="00000828" DisplayMethod="unsigned integer"/>
+        <Element Offset="2096" Vartype="4 Bytes" Bytesize="4" RLECount="8" OffsetHex="00000830" DisplayMethod="unsigned integer"/>
+        <Element Offset="2128" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="00000850" DisplayMethod="unsigned integer"/>
+        <Element Offset="2136" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000858" DisplayMethod="unsigned integer"/>
+        <Element Offset="2148" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000864" DisplayMethod="hexadecimal"/>
+        <Element Offset="2152" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000868" DisplayMethod="unsigned integer"/>
+        <Element Offset="2160" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000870" DisplayMethod="hexadecimal"/>
+        <Element Offset="2164" Vartype="Double" Bytesize="8" OffsetHex="00000874" DisplayMethod="unsigned integer"/>
+        <Element Offset="2172" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="0000087C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2184" Vartype="String" Bytesize="4" OffsetHex="00000888" DisplayMethod="unsigned integer"/>
+        <Element Offset="2188" Vartype="Pointer" Bytesize="4" OffsetHex="0000088C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2192" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000890" DisplayMethod="hexadecimal"/>
+        <Element Offset="2196" Vartype="4 Bytes" Bytesize="4" RLECount="11" OffsetHex="00000894" DisplayMethod="unsigned integer"/>
+        <Element Offset="2240" Vartype="Double" Bytesize="8" OffsetHex="000008C0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2248" Vartype="4 Bytes" Bytesize="4" RLECount="10" OffsetHex="000008C8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2288" Vartype="Pointer" Bytesize="4" OffsetHex="000008F0" Description="Pointer to instance of imf::DefinitionBase" DisplayMethod="unsigned integer"/>
+        <Element Offset="2292" Vartype="Pointer" Bytesize="4" OffsetHex="000008F4" Description="Pointer to instance of boost::detail::sp_counted_base" DisplayMethod="unsigned integer"/>
+        <Element Offset="2296" Vartype="Pointer" Bytesize="4" OffsetHex="000008F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2300" Vartype="4 Bytes" Bytesize="4" OffsetHex="000008FC" DisplayMethod="unsigned integer"/>
+        <Element Offset="2304" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000900" DisplayMethod="hexadecimal"/>
+        <Element Offset="2308" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000904" DisplayMethod="unsigned integer"/>
+        <Element Offset="2316" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="0000090C" DisplayMethod="hexadecimal"/>
+        <Element Offset="2324" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000914" DisplayMethod="unsigned integer"/>
+        <Element Offset="2336" Vartype="Pointer" Bytesize="4" OffsetHex="00000920" DisplayMethod="unsigned integer"/>
+        <Element Offset="2340" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000924" DisplayMethod="unsigned integer"/>
+        <Element Offset="2348" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="0000092C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2352" Vartype="Float" Bytesize="4" OffsetHex="00000930" DisplayMethod="unsigned integer"/>
+        <Element Offset="2356" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000934" DisplayMethod="unsigned integer"/>
+        <Element Offset="2364" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="0000093C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2368" Vartype="Float" Bytesize="4" OffsetHex="00000940" DisplayMethod="unsigned integer"/>
+        <Element Offset="2372" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000944" DisplayMethod="unsigned integer"/>
+        <Element Offset="2388" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000954" DisplayMethod="unsigned integer"/>
+        <Element Offset="2412" Vartype="Pointer" Bytesize="4" OffsetHex="0000096C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2416" Vartype="Pointer" Bytesize="4" OffsetHex="00000970" Description="Pointer to instance of boost::detail::sp_counted_impl_p&lt;b2World&gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="2420" Vartype="Pointer" Bytesize="4" OffsetHex="00000974" DisplayMethod="unsigned integer"/>
+        <Element Offset="2424" Vartype="Double" Bytesize="8" OffsetHex="00000978" DisplayMethod="unsigned integer"/>
+        <Element Offset="2432" Vartype="Float" Bytesize="4" OffsetHex="00000980" DisplayMethod="unsigned integer"/>
+        <Element Offset="2436" Vartype="Pointer" Bytesize="4" OffsetHex="00000984" DisplayMethod="unsigned integer"/>
+        <Element Offset="2440" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000988" DisplayMethod="unsigned integer"/>
+        <Element Offset="2448" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="00000990" DisplayMethod="unsigned integer"/>
+        <Element Offset="2456" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000998" DisplayMethod="unsigned integer"/>
+        <Element Offset="2460" Vartype="Double" Bytesize="8" OffsetHex="0000099C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2468" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000009A4" DisplayMethod="unsigned integer"/>
+        <Element Offset="2484" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="000009B4" DisplayMethod="unsigned integer"/>
+        <Element Offset="2492" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000009BC" DisplayMethod="unsigned integer"/>
+        <Element Offset="2508" Vartype="Double" Bytesize="8" OffsetHex="000009CC" DisplayMethod="unsigned integer"/>
+        <Element Offset="2516" Vartype="4 Bytes" Bytesize="4" OffsetHex="000009D4" DisplayMethod="unsigned integer"/>
+        <Element Offset="2520" Vartype="Pointer" Bytesize="4" OffsetHex="000009D8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2524" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="000009DC" DisplayMethod="unsigned integer"/>
+        <Element Offset="2536" Vartype="Double" Bytesize="8" OffsetHex="000009E8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2544" Vartype="Float" Bytesize="4" OffsetHex="000009F0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2548" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="000009F4" DisplayMethod="unsigned integer"/>
+        <Element Offset="2584" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="00000A18" DisplayMethod="unsigned integer"/>
+        <Element Offset="2592" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000A20" DisplayMethod="unsigned integer"/>
+        <Element Offset="2608" Vartype="Pointer" Bytesize="4" OffsetHex="00000A30" Description="Pointer to instance of imf::DefinitionBase" DisplayMethod="unsigned integer"/>
+        <Element Offset="2612" Vartype="Pointer" Bytesize="4" OffsetHex="00000A34" Description="Pointer to instance of boost::detail::sp_counted_base" DisplayMethod="unsigned integer"/>
+        <Element Offset="2616" Vartype="4 Bytes" Bytesize="4" RLECount="16" OffsetHex="00000A38" DisplayMethod="unsigned integer"/>
+        <Element Offset="2680" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="00000A78" DisplayMethod="unsigned integer"/>
+        <Element Offset="2688" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000A80" DisplayMethod="unsigned integer"/>
+        <Element Offset="2700" Vartype="Byte" Bytesize="1" RLECount="2" OffsetHex="00000A8C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2702" Vartype="2 Bytes" Bytesize="2" OffsetHex="00000A8E" DisplayMethod="unsigned integer"/>
+        <Element Offset="2704" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000A90" DisplayMethod="unsigned integer"/>
+        <Element Offset="2728" Vartype="Float" Bytesize="4" OffsetHex="00000AA8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2732" Vartype="4 Bytes" Bytesize="4" RLECount="13" OffsetHex="00000AAC" DisplayMethod="unsigned integer"/>
+        <Element Offset="2784" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000AE0" DisplayMethod="hexadecimal"/>
+        <Element Offset="2792" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000AE8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2804" Vartype="Float" Bytesize="4" OffsetHex="00000AF4" DisplayMethod="unsigned integer"/>
+        <Element Offset="2808" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000AF8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2816" Vartype="Float" Bytesize="4" RLECount="3" OffsetHex="00000B00" DisplayMethod="unsigned integer"/>
+        <Element Offset="2828" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000B0C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2848" Vartype="Float" Bytesize="4" OffsetHex="00000B20" DisplayMethod="unsigned integer"/>
+        <Element Offset="2852" Vartype="Double" Bytesize="8" OffsetHex="00000B24" DisplayMethod="unsigned integer"/>
+        <Element Offset="2860" Vartype="Float" Bytesize="4" RLECount="9" OffsetHex="00000B2C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2896" Vartype="Byte" Bytesize="1" OffsetHex="00000B50" DisplayMethod="unsigned integer"/>
+        <Element Offset="2897" Vartype="String" Bytesize="4" OffsetHex="00000B51" DisplayMethod="unsigned integer"/>
+        <Element Offset="2901" Vartype="Byte" Bytesize="1" RLECount="3" OffsetHex="00000B55" DisplayMethod="unsigned integer"/>
+        <Element Offset="2904" Vartype="Float" Bytesize="4" RLECount="9" OffsetHex="00000B58" DisplayMethod="unsigned integer"/>
+        <Element Offset="2940" Vartype="Byte" Bytesize="1" OffsetHex="00000B7C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2941" Vartype="String" Bytesize="4" OffsetHex="00000B7D" DisplayMethod="unsigned integer"/>
+        <Element Offset="2945" Vartype="Byte" Bytesize="1" RLECount="3" OffsetHex="00000B81" DisplayMethod="unsigned integer"/>
+        <Element Offset="2948" Vartype="Float" Bytesize="4" RLECount="4" OffsetHex="00000B84" DisplayMethod="unsigned integer"/>
+        <Element Offset="2964" Vartype="4 Bytes" Bytesize="4" RLECount="16" OffsetHex="00000B94" DisplayMethod="unsigned integer"/>
+        <Element Offset="3028" Vartype="Double" Bytesize="8" OffsetHex="00000BD4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3036" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000BDC" DisplayMethod="unsigned integer"/>
+        <Element Offset="3056" Vartype="Double" Bytesize="8" OffsetHex="00000BF0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3064" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000BF8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3084" Vartype="Double" Bytesize="8" OffsetHex="00000C0C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3092" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000C14" DisplayMethod="unsigned integer"/>
+        <Element Offset="3112" Vartype="Double" Bytesize="8" OffsetHex="00000C28" DisplayMethod="unsigned integer"/>
+        <Element Offset="3120" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000C30" DisplayMethod="unsigned integer"/>
+        <Element Offset="3124" Vartype="Pointer" Bytesize="4" RLECount="3" OffsetHex="00000C34" DisplayMethod="unsigned integer"/>
+        <Element Offset="3136" Vartype="4 Bytes" Bytesize="4" RLECount="14" OffsetHex="00000C40" DisplayMethod="unsigned integer"/>
+        <Element Offset="3192" Vartype="Double" Bytesize="8" OffsetHex="00000C78" DisplayMethod="unsigned integer"/>
+        <Element Offset="3200" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="00000C80" DisplayMethod="unsigned integer"/>
+        <Element Offset="3236" Vartype="Double" Bytesize="8" OffsetHex="00000CA4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3244" Vartype="4 Bytes" Bytesize="4" RLECount="7" OffsetHex="00000CAC" DisplayMethod="unsigned integer"/>
+        <Element Offset="3272" Vartype="Double" Bytesize="8" OffsetHex="00000CC8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3280" Vartype="Float" Bytesize="4" OffsetHex="00000CD0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3284" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000CD4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3288" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="00000CD8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3296" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000CE0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3308" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000CEC" DisplayMethod="hexadecimal"/>
+        <Element Offset="3312" Vartype="Double" Bytesize="8" OffsetHex="00000CF0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3320" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000CF8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3332" Vartype="String" Bytesize="4" OffsetHex="00000D04" DisplayMethod="unsigned integer"/>
+        <Element Offset="3336" Vartype="Pointer" Bytesize="4" OffsetHex="00000D08" DisplayMethod="unsigned integer"/>
+        <Element Offset="3340" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000D0C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3344" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="00000D10" DisplayMethod="unsigned integer"/>
+        <Element Offset="3352" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="00000D18" DisplayMethod="unsigned integer"/>
+        <Element Offset="3388" Vartype="Double" Bytesize="8" OffsetHex="00000D3C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3396" Vartype="4 Bytes" Bytesize="4" RLECount="10" OffsetHex="00000D44" DisplayMethod="unsigned integer"/>
+        <Element Offset="3436" Vartype="Pointer" Bytesize="4" OffsetHex="00000D6C" Description="Pointer to instance of imf::DefinitionBase" DisplayMethod="unsigned integer"/>
+        <Element Offset="3440" Vartype="Pointer" Bytesize="4" OffsetHex="00000D70" Description="Pointer to instance of boost::detail::sp_counted_base" DisplayMethod="unsigned integer"/>
+        <Element Offset="3444" Vartype="Pointer" Bytesize="4" OffsetHex="00000D74" DisplayMethod="unsigned integer"/>
+        <Element Offset="3448" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000D78" DisplayMethod="unsigned integer"/>
+        <Element Offset="3452" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000D7C" DisplayMethod="hexadecimal"/>
+        <Element Offset="3456" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000D80" DisplayMethod="unsigned integer"/>
+        <Element Offset="3464" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000D88" DisplayMethod="hexadecimal"/>
+        <Element Offset="3472" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000D90" DisplayMethod="unsigned integer"/>
+        <Element Offset="3484" Vartype="Pointer" Bytesize="4" OffsetHex="00000D9C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3488" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000DA0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3496" Vartype="Float" Bytesize="4" OffsetHex="00000DA8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3500" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000DAC" DisplayMethod="unsigned integer"/>
+        <Element Offset="3512" Vartype="Float" Bytesize="4" OffsetHex="00000DB8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3516" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000DBC" DisplayMethod="unsigned integer"/>
+        <Element Offset="3536" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000DD0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3560" Vartype="Pointer" Bytesize="4" OffsetHex="00000DE8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3564" Vartype="Pointer" Bytesize="4" OffsetHex="00000DEC" Description="Pointer to instance of boost::detail::sp_counted_impl_p&lt;b2World&gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="3568" Vartype="Pointer" Bytesize="4" OffsetHex="00000DF0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3572" Vartype="Double" Bytesize="8" OffsetHex="00000DF4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3580" Vartype="Float" Bytesize="4" OffsetHex="00000DFC" DisplayMethod="unsigned integer"/>
+        <Element Offset="3584" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="00000E00" DisplayMethod="unsigned integer"/>
+        <Element Offset="3588" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000E04" DisplayMethod="unsigned integer"/>
+        <Element Offset="3596" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="00000E0C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3604" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000E14" DisplayMethod="unsigned integer"/>
+        <Element Offset="3608" Vartype="Double" Bytesize="8" OffsetHex="00000E18" DisplayMethod="unsigned integer"/>
+        <Element Offset="3616" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000E20" DisplayMethod="unsigned integer"/>
+        <Element Offset="3632" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="00000E30" DisplayMethod="unsigned integer"/>
+        <Element Offset="3640" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000E38" DisplayMethod="unsigned integer"/>
+        <Element Offset="3656" Vartype="Double" Bytesize="8" OffsetHex="00000E48" DisplayMethod="unsigned integer"/>
+        <Element Offset="3664" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000E50" DisplayMethod="unsigned integer"/>
+        <Element Offset="3668" Vartype="Pointer" Bytesize="4" OffsetHex="00000E54" DisplayMethod="unsigned integer"/>
+        <Element Offset="3672" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000E58" DisplayMethod="unsigned integer"/>
+        <Element Offset="3684" Vartype="Double" Bytesize="8" OffsetHex="00000E64" DisplayMethod="unsigned integer"/>
+        <Element Offset="3692" Vartype="Float" Bytesize="4" OffsetHex="00000E6C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3696" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="00000E70" DisplayMethod="unsigned integer"/>
+        <Element Offset="3732" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="00000E94" DisplayMethod="unsigned integer"/>
+        <Element Offset="3740" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000E9C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3756" Vartype="Pointer" Bytesize="4" OffsetHex="00000EAC" Description="Pointer to instance of imf::DefinitionBase" DisplayMethod="unsigned integer"/>
+        <Element Offset="3760" Vartype="Pointer" Bytesize="4" OffsetHex="00000EB0" Description="Pointer to instance of boost::detail::sp_counted_base" DisplayMethod="unsigned integer"/>
+        <Element Offset="3764" Vartype="4 Bytes" Bytesize="4" RLECount="16" OffsetHex="00000EB4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3828" Vartype="Pointer" Bytesize="4" OffsetHex="00000EF4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3832" Vartype="4 Bytes" Bytesize="4" RLECount="25" OffsetHex="00000EF8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3932" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000F5C" DisplayMethod="hexadecimal"/>
+        <Element Offset="3936" Vartype="4 Bytes" Bytesize="4" RLECount="8" OffsetHex="00000F60" DisplayMethod="unsigned integer"/>
+        <Element Offset="3968" Vartype="Double" Bytesize="8" OffsetHex="00000F80" DisplayMethod="unsigned integer"/>
+        <Element Offset="3976" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000F88" DisplayMethod="unsigned integer"/>
+        <Element Offset="3996" Vartype="Float" Bytesize="4" OffsetHex="00000F9C" DisplayMethod="unsigned integer"/>
+        <Element Offset="4000" Vartype="4 Bytes" Bytesize="4" RLECount="24" OffsetHex="00000FA0" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="未命名的结构" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="0" Vartype="Pointer" Bytesize="4" OffsetHex="00000000" DisplayMethod="unsigned integer"/>
+        <Element Offset="4" Vartype="Pointer" Bytesize="4" OffsetHex="00000004" Description="Pointer to instance of imf::LightOverlayEffect" DisplayMethod="unsigned integer"/>
+        <Element Offset="8" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000008" DisplayMethod="unsigned integer"/>
+        <Element Offset="16" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000010" DisplayMethod="hexadecimal"/>
+        <Element Offset="20" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000014" DisplayMethod="unsigned integer"/>
+        <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" DisplayMethod="hexadecimal"/>
+        <Element Offset="28" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="0000001C" DisplayMethod="unsigned integer"/>
+        <Element Offset="40" Vartype="Pointer" Bytesize="4" OffsetHex="00000028" Description="Pointer to instance of imf::Actor" DisplayMethod="unsigned integer"/>
+        <Element Offset="44" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="0000002C" DisplayMethod="unsigned integer"/>
+        <Element Offset="52" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="00000034" DisplayMethod="unsigned integer"/>
+        <Element Offset="60" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="0000003C" DisplayMethod="unsigned integer"/>
+        <Element Offset="68" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="00000044" DisplayMethod="unsigned integer"/>
+        <Element Offset="76" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="0000004C" DisplayMethod="unsigned integer"/>
+        <Element Offset="92" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="0000005C" DisplayMethod="unsigned integer"/>
+        <Element Offset="116" Vartype="Pointer" Bytesize="4" OffsetHex="00000074" DisplayMethod="unsigned integer"/>
+        <Element Offset="120" Vartype="Pointer" Bytesize="4" OffsetHex="00000078" Description="Pointer to instance of boost::detail::sp_counted_impl_p&lt;b2World&gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="124" Vartype="Pointer" Bytesize="4" OffsetHex="0000007C" DisplayMethod="unsigned integer"/>
+        <Element Offset="128" Vartype="Double" Bytesize="8" OffsetHex="00000080" DisplayMethod="unsigned integer"/>
+        <Element Offset="136" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="00000088" DisplayMethod="unsigned integer"/>
+        <Element Offset="144" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000090" DisplayMethod="unsigned integer"/>
+        <Element Offset="152" Vartype="Pointer" Bytesize="4" OffsetHex="00000098" Description="Pointer to instance of imf::BehaviorMachine" DisplayMethod="unsigned integer"/>
+        <Element Offset="156" Vartype="Pointer" Bytesize="4" OffsetHex="0000009C" Description="Pointer to instance of boost::detail::sp_counted_impl_pd&lt;imf::BehaviorMachine *,boost::detail::sp_ms_deleter&lt;imf::BehaviorMachine&gt; &gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="160" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000A0" DisplayMethod="unsigned integer"/>
+        <Element Offset="164" Vartype="Double" Bytesize="8" OffsetHex="000000A4" DisplayMethod="unsigned integer"/>
+        <Element Offset="172" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000000AC" DisplayMethod="unsigned integer"/>
+        <Element Offset="188" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="000000BC" DisplayMethod="unsigned integer"/>
+        <Element Offset="196" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000000C4" DisplayMethod="unsigned integer"/>
+        <Element Offset="212" Vartype="Double" Bytesize="8" OffsetHex="000000D4" DisplayMethod="unsigned integer"/>
+        <Element Offset="220" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000DC" DisplayMethod="unsigned integer"/>
+        <Element Offset="224" Vartype="Pointer" Bytesize="4" OffsetHex="000000E0" DisplayMethod="unsigned integer"/>
+        <Element Offset="228" Vartype="Float" Bytesize="4" OffsetHex="000000E4" DisplayMethod="unsigned integer"/>
+        <Element Offset="232" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000000E8" DisplayMethod="unsigned integer"/>
+        <Element Offset="240" Vartype="Double" Bytesize="8" OffsetHex="000000F0" DisplayMethod="unsigned integer"/>
+        <Element Offset="248" Vartype="Float" Bytesize="4" OffsetHex="000000F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="252" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="000000FC" DisplayMethod="unsigned integer"/>
+        <Element Offset="264" Vartype="Float" Bytesize="4" OffsetHex="00000108" DisplayMethod="unsigned integer"/>
+        <Element Offset="268" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="0000010C" DisplayMethod="unsigned integer"/>
+        <Element Offset="288" Vartype="Pointer" Bytesize="4" RLECount="5" OffsetHex="00000120" DisplayMethod="unsigned integer"/>
+        <Element Offset="308" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000134" DisplayMethod="unsigned integer"/>
+        <Element Offset="312" Vartype="Pointer" Bytesize="4" OffsetHex="00000138" Description="Pointer to instance of imf::ActorDefinition" DisplayMethod="unsigned integer"/>
+        <Element Offset="316" Vartype="Pointer" Bytesize="4" OffsetHex="0000013C" Description="Pointer to instance of boost::detail::sp_counted_impl_pd&lt;imf::ActorDefinition *,boost::detail::sp_ms_deleter&lt;imf::ActorDefinition&gt; &gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="320" Vartype="4 Bytes" Bytesize="4" RLECount="16" OffsetHex="00000140" DisplayMethod="unsigned integer"/>
+        <Element Offset="384" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="00000180" DisplayMethod="unsigned integer"/>
+        <Element Offset="392" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000188" DisplayMethod="unsigned integer"/>
+        <Element Offset="400" Vartype="Double" Bytesize="8" OffsetHex="00000190" DisplayMethod="unsigned integer"/>
+        <Element Offset="408" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000198" DisplayMethod="unsigned integer"/>
+        <Element Offset="432" Vartype="Float" Bytesize="4" OffsetHex="000001B0" DisplayMethod="unsigned integer"/>
+        <Element Offset="436" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="000001B4" DisplayMethod="unsigned integer"/>
+        <Element Offset="448" Vartype="Pointer" Bytesize="4" RLECount="3" OffsetHex="000001C0" DisplayMethod="unsigned integer"/>
+        <Element Offset="460" Vartype="4 Bytes" Bytesize="4" OffsetHex="000001CC" DisplayMethod="unsigned integer"/>
+        <Element Offset="464" Vartype="Pointer" Bytesize="4" RLECount="3" OffsetHex="000001D0" DisplayMethod="unsigned integer"/>
+        <Element Offset="476" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000001DC" DisplayMethod="unsigned integer"/>
+        <Element Offset="484" Vartype="Float" Bytesize="4" OffsetHex="000001E4" DisplayMethod="unsigned integer"/>
+        <Element Offset="488" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000001E8" DisplayMethod="hexadecimal"/>
+        <Element Offset="496" Vartype="4 Bytes" Bytesize="4" OffsetHex="000001F0" DisplayMethod="unsigned integer"/>
+        <Element Offset="500" Vartype="4 Bytes" Bytesize="4" OffsetHex="000001F4" DisplayMethod="hexadecimal"/>
+        <Element Offset="504" Vartype="Double" Bytesize="8" OffsetHex="000001F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="512" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000200" DisplayMethod="unsigned integer"/>
+        <Element Offset="520" Vartype="Float" Bytesize="4" RLECount="3" OffsetHex="00000208" DisplayMethod="unsigned integer"/>
+        <Element Offset="532" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000214" DisplayMethod="unsigned integer"/>
+        <Element Offset="552" Vartype="Float" Bytesize="4" OffsetHex="00000228" DisplayMethod="unsigned integer"/>
+        <Element Offset="556" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000022C" DisplayMethod="unsigned integer"/>
+        <Element Offset="560" Vartype="Float" Bytesize="4" RLECount="12" OffsetHex="00000230" DisplayMethod="unsigned integer"/>
+        <Element Offset="608" Vartype="String" Bytesize="4" OffsetHex="00000260" DisplayMethod="unsigned integer"/>
+        <Element Offset="612" Vartype="Float" Bytesize="4" RLECount="14" OffsetHex="00000264" DisplayMethod="unsigned integer"/>
+        <Element Offset="668" Vartype="String" Bytesize="16" OffsetHex="0000029C" DisplayMethod="unsigned integer"/>
+        <Element Offset="684" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="000002AC" DisplayMethod="unsigned integer"/>
+        <Element Offset="696" Vartype="Float" Bytesize="4" OffsetHex="000002B8" DisplayMethod="unsigned integer"/>
+        <Element Offset="700" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000002BC" DisplayMethod="unsigned integer"/>
+        <Element Offset="716" Vartype="Pointer" Bytesize="4" RLECount="3" OffsetHex="000002CC" DisplayMethod="unsigned integer"/>
+        <Element Offset="728" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000002D8" DisplayMethod="unsigned integer"/>
+        <Element Offset="744" Vartype="Pointer" Bytesize="4" OffsetHex="000002E8" DisplayMethod="unsigned integer"/>
+        <Element Offset="748" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="000002EC" DisplayMethod="unsigned integer"/>
+        <Element Offset="760" Vartype="Double" Bytesize="8" OffsetHex="000002F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="768" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000300" DisplayMethod="unsigned integer"/>
+        <Element Offset="772" Vartype="Pointer" Bytesize="4" OffsetHex="00000304" DisplayMethod="unsigned integer"/>
+        <Element Offset="776" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000308" DisplayMethod="unsigned integer"/>
+        <Element Offset="788" Vartype="Double" Bytesize="8" OffsetHex="00000314" DisplayMethod="unsigned integer"/>
+        <Element Offset="796" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="0000031C" DisplayMethod="unsigned integer"/>
+        <Element Offset="816" Vartype="Double" Bytesize="8" OffsetHex="00000330" DisplayMethod="unsigned integer"/>
+        <Element Offset="824" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000338" DisplayMethod="unsigned integer"/>
+        <Element Offset="828" Vartype="Pointer" Bytesize="4" RLECount="3" OffsetHex="0000033C" DisplayMethod="unsigned integer"/>
+        <Element Offset="840" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000348" DisplayMethod="unsigned integer"/>
+        <Element Offset="844" Vartype="Pointer" Bytesize="4" RLECount="3" OffsetHex="0000034C" DisplayMethod="unsigned integer"/>
+        <Element Offset="856" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000358" DisplayMethod="unsigned integer"/>
+        <Element Offset="864" Vartype="Pointer" Bytesize="4" RLECount="3" OffsetHex="00000360" DisplayMethod="unsigned integer"/>
+        <Element Offset="876" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="0000036C" DisplayMethod="unsigned integer"/>
+        <Element Offset="896" Vartype="Double" Bytesize="8" OffsetHex="00000380" DisplayMethod="unsigned integer"/>
+        <Element Offset="904" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000388" DisplayMethod="unsigned integer"/>
+        <Element Offset="924" Vartype="Pointer" Bytesize="4" OffsetHex="0000039C" DisplayMethod="unsigned integer"/>
+        <Element Offset="928" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="000003A0" DisplayMethod="unsigned integer"/>
+        <Element Offset="940" Vartype="Double" Bytesize="8" OffsetHex="000003AC" DisplayMethod="unsigned integer"/>
+        <Element Offset="948" Vartype="4 Bytes" Bytesize="4" RLECount="8" OffsetHex="000003B4" DisplayMethod="unsigned integer"/>
+        <Element Offset="980" Vartype="Double" Bytesize="8" OffsetHex="000003D4" DisplayMethod="unsigned integer"/>
+        <Element Offset="988" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="000003DC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1012" Vartype="4 Bytes" Bytesize="4" OffsetHex="000003F4" DisplayMethod="hexadecimal"/>
+        <Element Offset="1016" Vartype="Double" Bytesize="8" OffsetHex="000003F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1024" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000400" DisplayMethod="unsigned integer"/>
+        <Element Offset="1036" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="0000040C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1044" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000414" DisplayMethod="unsigned integer"/>
+        <Element Offset="1048" Vartype="Double" Bytesize="8" OffsetHex="00000418" DisplayMethod="unsigned integer"/>
+        <Element Offset="1056" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="00000420" DisplayMethod="unsigned integer"/>
+        <Element Offset="1092" Vartype="Double" Bytesize="8" OffsetHex="00000444" DisplayMethod="unsigned integer"/>
+        <Element Offset="1100" Vartype="4 Bytes" Bytesize="4" RLECount="10" OffsetHex="0000044C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1140" Vartype="Pointer" Bytesize="4" OffsetHex="00000474" Description="Pointer to instance of imf::ActorDefinition" DisplayMethod="unsigned integer"/>
+        <Element Offset="1144" Vartype="Pointer" Bytesize="4" OffsetHex="00000478" Description="Pointer to instance of boost::detail::sp_counted_impl_pd&lt;imf::ActorDefinition *,boost::detail::sp_ms_deleter&lt;imf::ActorDefinition&gt; &gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="1148" Vartype="Pointer" Bytesize="4" OffsetHex="0000047C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1152" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000480" DisplayMethod="unsigned integer"/>
+        <Element Offset="1156" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000484" DisplayMethod="hexadecimal"/>
+        <Element Offset="1160" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000488" DisplayMethod="unsigned integer"/>
+        <Element Offset="1164" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="0000048C" DisplayMethod="hexadecimal"/>
+        <Element Offset="1176" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000498" DisplayMethod="unsigned integer"/>
+        <Element Offset="1188" Vartype="Pointer" Bytesize="4" OffsetHex="000004A4" DisplayMethod="unsigned integer"/>
+        <Element Offset="1192" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000004A8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1200" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="000004B0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1208" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000004B8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1216" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="000004C0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1224" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000004C8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1240" Vartype="Float" Bytesize="4" RLECount="4" OffsetHex="000004D8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1256" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000004E8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1264" Vartype="Pointer" Bytesize="4" OffsetHex="000004F0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1268" Vartype="Pointer" Bytesize="4" OffsetHex="000004F4" Description="Pointer to instance of boost::detail::sp_counted_impl_p&lt;b2World&gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="1272" Vartype="Pointer" Bytesize="4" OffsetHex="000004F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1276" Vartype="Double" Bytesize="8" OffsetHex="000004FC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1284" Vartype="Float" Bytesize="4" OffsetHex="00000504" DisplayMethod="unsigned integer"/>
+        <Element Offset="1288" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000508" DisplayMethod="hexadecimal"/>
+        <Element Offset="1292" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="0000050C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1300" Vartype="Pointer" Bytesize="4" OffsetHex="00000514" Description="Pointer to instance of imf::BehaviorMachineState" DisplayMethod="unsigned integer"/>
+        <Element Offset="1304" Vartype="Pointer" Bytesize="4" OffsetHex="00000518" Description="Pointer to instance of boost::detail::sp_counted_base" DisplayMethod="unsigned integer"/>
+        <Element Offset="1308" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000051C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1312" Vartype="Double" Bytesize="8" OffsetHex="00000520" DisplayMethod="unsigned integer"/>
+        <Element Offset="1320" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000528" DisplayMethod="unsigned integer"/>
+        <Element Offset="1336" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="00000538" DisplayMethod="unsigned integer"/>
+        <Element Offset="1344" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000540" DisplayMethod="unsigned integer"/>
+        <Element Offset="1360" Vartype="Double" Bytesize="8" OffsetHex="00000550" DisplayMethod="unsigned integer"/>
+        <Element Offset="1368" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000558" DisplayMethod="unsigned integer"/>
+        <Element Offset="1372" Vartype="Pointer" Bytesize="4" OffsetHex="0000055C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1376" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000560" DisplayMethod="unsigned integer"/>
+        <Element Offset="1388" Vartype="Double" Bytesize="8" OffsetHex="0000056C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1396" Vartype="Float" Bytesize="4" OffsetHex="00000574" DisplayMethod="unsigned integer"/>
+        <Element Offset="1400" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="00000578" DisplayMethod="unsigned integer"/>
+        <Element Offset="1436" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="0000059C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1444" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000005A4" DisplayMethod="unsigned integer"/>
+        <Element Offset="1460" Vartype="Pointer" Bytesize="4" OffsetHex="000005B4" Description="Pointer to instance of imf::DefinitionBase" DisplayMethod="unsigned integer"/>
+        <Element Offset="1464" Vartype="Pointer" Bytesize="4" OffsetHex="000005B8" Description="Pointer to instance of boost::detail::sp_counted_base" DisplayMethod="unsigned integer"/>
+        <Element Offset="1468" Vartype="4 Bytes" Bytesize="4" RLECount="16" OffsetHex="000005BC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1532" Vartype="Pointer" Bytesize="4" OffsetHex="000005FC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1536" Vartype="4 Bytes" Bytesize="4" RLECount="25" OffsetHex="00000600" DisplayMethod="unsigned integer"/>
+        <Element Offset="1636" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000664" DisplayMethod="hexadecimal"/>
+        <Element Offset="1640" Vartype="4 Bytes" Bytesize="4" RLECount="8" OffsetHex="00000668" DisplayMethod="unsigned integer"/>
+        <Element Offset="1672" Vartype="Double" Bytesize="8" OffsetHex="00000688" DisplayMethod="unsigned integer"/>
+        <Element Offset="1680" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000690" DisplayMethod="unsigned integer"/>
+        <Element Offset="1700" Vartype="Float" Bytesize="4" OffsetHex="000006A4" DisplayMethod="unsigned integer"/>
+        <Element Offset="1704" Vartype="4 Bytes" Bytesize="4" RLECount="51" OffsetHex="000006A8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1908" Vartype="Double" Bytesize="8" OffsetHex="00000774" DisplayMethod="unsigned integer"/>
+        <Element Offset="1916" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="0000077C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1936" Vartype="Double" Bytesize="8" OffsetHex="00000790" DisplayMethod="unsigned integer"/>
+        <Element Offset="1944" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000798" DisplayMethod="unsigned integer"/>
+        <Element Offset="1964" Vartype="Double" Bytesize="8" OffsetHex="000007AC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1972" Vartype="4 Bytes" Bytesize="4" OffsetHex="000007B4" DisplayMethod="unsigned integer"/>
+        <Element Offset="1976" Vartype="Pointer" Bytesize="4" RLECount="3" OffsetHex="000007B8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1988" Vartype="4 Bytes" Bytesize="4" RLECount="14" OffsetHex="000007C4" DisplayMethod="unsigned integer"/>
+        <Element Offset="2044" Vartype="Double" Bytesize="8" OffsetHex="000007FC" DisplayMethod="unsigned integer"/>
+        <Element Offset="2052" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="00000804" DisplayMethod="unsigned integer"/>
+        <Element Offset="2088" Vartype="Double" Bytesize="8" OffsetHex="00000828" DisplayMethod="unsigned integer"/>
+        <Element Offset="2096" Vartype="4 Bytes" Bytesize="4" RLECount="8" OffsetHex="00000830" DisplayMethod="unsigned integer"/>
+        <Element Offset="2128" Vartype="Double" Bytesize="8" OffsetHex="00000850" DisplayMethod="unsigned integer"/>
+        <Element Offset="2136" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000858" DisplayMethod="unsigned integer"/>
+        <Element Offset="2160" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000870" DisplayMethod="hexadecimal"/>
+        <Element Offset="2164" Vartype="Double" Bytesize="8" OffsetHex="00000874" DisplayMethod="unsigned integer"/>
+        <Element Offset="2172" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="0000087C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2184" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="00000888" DisplayMethod="unsigned integer"/>
+        <Element Offset="2188" Vartype="Pointer" Bytesize="4" OffsetHex="0000088C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2192" Vartype="4 Bytes" Bytesize="4" RLECount="12" OffsetHex="00000890" DisplayMethod="unsigned integer"/>
+        <Element Offset="2240" Vartype="Double" Bytesize="8" OffsetHex="000008C0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2248" Vartype="4 Bytes" Bytesize="4" RLECount="10" OffsetHex="000008C8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2288" Vartype="Pointer" Bytesize="4" OffsetHex="000008F0" Description="Pointer to instance of imf::DefinitionBase" DisplayMethod="unsigned integer"/>
+        <Element Offset="2292" Vartype="Pointer" Bytesize="4" OffsetHex="000008F4" Description="Pointer to instance of boost::detail::sp_counted_base" DisplayMethod="unsigned integer"/>
+        <Element Offset="2296" Vartype="Pointer" Bytesize="4" OffsetHex="000008F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2300" Vartype="4 Bytes" Bytesize="4" OffsetHex="000008FC" DisplayMethod="unsigned integer"/>
+        <Element Offset="2304" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000900" DisplayMethod="hexadecimal"/>
+        <Element Offset="2308" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000904" DisplayMethod="unsigned integer"/>
+        <Element Offset="2320" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000910" DisplayMethod="hexadecimal"/>
+        <Element Offset="2324" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000914" DisplayMethod="unsigned integer"/>
+        <Element Offset="2336" Vartype="Pointer" Bytesize="4" OffsetHex="00000920" Description="Pointer to instance of imf::Actor" DisplayMethod="unsigned integer"/>
+        <Element Offset="2340" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000924" DisplayMethod="unsigned integer"/>
+        <Element Offset="2348" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="0000092C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2356" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000934" DisplayMethod="unsigned integer"/>
+        <Element Offset="2364" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="0000093C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2372" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000944" DisplayMethod="unsigned integer"/>
+        <Element Offset="2388" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000954" DisplayMethod="unsigned integer"/>
+        <Element Offset="2412" Vartype="Pointer" Bytesize="4" OffsetHex="0000096C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2416" Vartype="Pointer" Bytesize="4" OffsetHex="00000970" Description="Pointer to instance of boost::detail::sp_counted_impl_p&lt;b2World&gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="2420" Vartype="Pointer" Bytesize="4" OffsetHex="00000974" DisplayMethod="unsigned integer"/>
+        <Element Offset="2424" Vartype="Double" Bytesize="8" OffsetHex="00000978" DisplayMethod="unsigned integer"/>
+        <Element Offset="2432" Vartype="Float" Bytesize="4" OffsetHex="00000980" DisplayMethod="unsigned integer"/>
+        <Element Offset="2436" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000984" DisplayMethod="hexadecimal"/>
+        <Element Offset="2440" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000988" DisplayMethod="unsigned integer"/>
+        <Element Offset="2448" Vartype="Pointer" Bytesize="4" OffsetHex="00000990" Description="Pointer to instance of imf::BehaviorMachine" DisplayMethod="unsigned integer"/>
+        <Element Offset="2452" Vartype="Pointer" Bytesize="4" OffsetHex="00000994" Description="Pointer to instance of boost::detail::sp_counted_impl_pd&lt;imf::BehaviorMachine *,boost::detail::sp_ms_deleter&lt;imf::BehaviorMachine&gt; &gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="2456" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000998" DisplayMethod="unsigned integer"/>
+        <Element Offset="2460" Vartype="Double" Bytesize="8" OffsetHex="0000099C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2468" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000009A4" DisplayMethod="unsigned integer"/>
+        <Element Offset="2484" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="000009B4" DisplayMethod="unsigned integer"/>
+        <Element Offset="2492" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000009BC" DisplayMethod="unsigned integer"/>
+        <Element Offset="2508" Vartype="Double" Bytesize="8" OffsetHex="000009CC" DisplayMethod="unsigned integer"/>
+        <Element Offset="2516" Vartype="4 Bytes" Bytesize="4" OffsetHex="000009D4" DisplayMethod="unsigned integer"/>
+        <Element Offset="2520" Vartype="Pointer" Bytesize="4" OffsetHex="000009D8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2524" Vartype="Float" Bytesize="4" OffsetHex="000009DC" DisplayMethod="unsigned integer"/>
+        <Element Offset="2528" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000009E0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2536" Vartype="Double" Bytesize="8" OffsetHex="000009E8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2544" Vartype="Float" Bytesize="4" OffsetHex="000009F0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2548" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="000009F4" DisplayMethod="unsigned integer"/>
+        <Element Offset="2584" Vartype="Pointer" Bytesize="4" RLECount="5" OffsetHex="00000A18" DisplayMethod="unsigned integer"/>
+        <Element Offset="2604" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000A2C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2608" Vartype="Pointer" Bytesize="4" OffsetHex="00000A30" Description="Pointer to instance of imf::ActorDefinition" DisplayMethod="unsigned integer"/>
+        <Element Offset="2612" Vartype="Pointer" Bytesize="4" OffsetHex="00000A34" Description="Pointer to instance of boost::detail::sp_counted_impl_pd&lt;imf::ActorDefinition *,boost::detail::sp_ms_deleter&lt;imf::ActorDefinition&gt; &gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="2616" Vartype="4 Bytes" Bytesize="4" RLECount="16" OffsetHex="00000A38" DisplayMethod="unsigned integer"/>
+        <Element Offset="2680" Vartype="Pointer" Bytesize="4" RLECount="2" OffsetHex="00000A78" DisplayMethod="unsigned integer"/>
+        <Element Offset="2688" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000A80" DisplayMethod="unsigned integer"/>
+        <Element Offset="2696" Vartype="Double" Bytesize="8" OffsetHex="00000A88" DisplayMethod="unsigned integer"/>
+        <Element Offset="2704" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000A90" DisplayMethod="unsigned integer"/>
+        <Element Offset="2728" Vartype="Float" Bytesize="4" OffsetHex="00000AA8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2732" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000AAC" DisplayMethod="unsigned integer"/>
+        <Element Offset="2744" Vartype="Pointer" Bytesize="4" RLECount="3" OffsetHex="00000AB8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2756" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000AC4" DisplayMethod="unsigned integer"/>
+        <Element Offset="2760" Vartype="Pointer" Bytesize="4" RLECount="3" OffsetHex="00000AC8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2772" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000AD4" DisplayMethod="unsigned integer"/>
+        <Element Offset="2784" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000AE0" DisplayMethod="hexadecimal"/>
+        <Element Offset="2788" Vartype="4 Bytes" Bytesize="4" RLECount="7" OffsetHex="00000AE4" DisplayMethod="unsigned integer"/>
+        <Element Offset="2816" Vartype="Float" Bytesize="4" RLECount="3" OffsetHex="00000B00" DisplayMethod="unsigned integer"/>
+        <Element Offset="2828" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000B0C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2848" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="00000B20" DisplayMethod="unsigned integer"/>
+        <Element Offset="2852" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000B24" DisplayMethod="unsigned integer"/>
+        <Element Offset="2856" Vartype="Float" Bytesize="4" RLECount="4" OffsetHex="00000B28" DisplayMethod="unsigned integer"/>
+        <Element Offset="2872" Vartype="String" Bytesize="4" OffsetHex="00000B38" DisplayMethod="unsigned integer"/>
+        <Element Offset="2876" Vartype="Float" Bytesize="4" OffsetHex="00000B3C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2880" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="00000B40" DisplayMethod="unsigned integer"/>
+        <Element Offset="2884" Vartype="Double" Bytesize="8" OffsetHex="00000B44" DisplayMethod="unsigned integer"/>
+        <Element Offset="2892" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="00000B4C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2896" Vartype="Float" Bytesize="4" RLECount="11" OffsetHex="00000B50" DisplayMethod="unsigned integer"/>
+        <Element Offset="2940" Vartype="Byte" Bytesize="1" RLECount="2" OffsetHex="00000B7C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2942" Vartype="2 Bytes" Bytesize="2" OffsetHex="00000B7E" DisplayMethod="unsigned integer"/>
+        <Element Offset="2944" Vartype="Float" Bytesize="4" RLECount="5" OffsetHex="00000B80" DisplayMethod="unsigned integer"/>
+        <Element Offset="2964" Vartype="String" Bytesize="9" OffsetHex="00000B94" DisplayMethod="unsigned integer"/>
+        <Element Offset="2973" Vartype="String" Bytesize="5" OffsetHex="00000B9D" DisplayMethod="unsigned integer"/>
+        <Element Offset="2978" Vartype="Byte" Bytesize="1" RLECount="2" OffsetHex="00000BA2" DisplayMethod="unsigned integer"/>
+        <Element Offset="2980" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000BA4" DisplayMethod="unsigned integer"/>
+        <Element Offset="2992" Vartype="Float" Bytesize="4" OffsetHex="00000BB0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2996" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000BB4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3012" Vartype="Pointer" Bytesize="4" RLECount="3" OffsetHex="00000BC4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3024" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000BD0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3028" Vartype="Double" Bytesize="8" OffsetHex="00000BD4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3036" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000BDC" DisplayMethod="unsigned integer"/>
+        <Element Offset="3040" Vartype="Pointer" Bytesize="4" OffsetHex="00000BE0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3044" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000BE4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3056" Vartype="Double" Bytesize="8" OffsetHex="00000BF0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3064" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000BF8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3068" Vartype="Pointer" Bytesize="4" OffsetHex="00000BFC" DisplayMethod="unsigned integer"/>
+        <Element Offset="3072" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000C00" DisplayMethod="unsigned integer"/>
+        <Element Offset="3084" Vartype="Double" Bytesize="8" OffsetHex="00000C0C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3092" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000C14" DisplayMethod="unsigned integer"/>
+        <Element Offset="3112" Vartype="Double" Bytesize="8" OffsetHex="00000C28" DisplayMethod="unsigned integer"/>
+        <Element Offset="3120" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000C30" DisplayMethod="unsigned integer"/>
+        <Element Offset="3124" Vartype="Pointer" Bytesize="4" RLECount="3" OffsetHex="00000C34" DisplayMethod="unsigned integer"/>
+        <Element Offset="3136" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000C40" DisplayMethod="unsigned integer"/>
+        <Element Offset="3140" Vartype="Pointer" Bytesize="4" RLECount="3" OffsetHex="00000C44" DisplayMethod="unsigned integer"/>
+        <Element Offset="3152" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000C50" DisplayMethod="unsigned integer"/>
+        <Element Offset="3160" Vartype="Pointer" Bytesize="4" RLECount="3" OffsetHex="00000C58" DisplayMethod="unsigned integer"/>
+        <Element Offset="3172" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000C64" DisplayMethod="unsigned integer"/>
+        <Element Offset="3192" Vartype="Double" Bytesize="8" OffsetHex="00000C78" DisplayMethod="unsigned integer"/>
+        <Element Offset="3200" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000C80" DisplayMethod="unsigned integer"/>
+        <Element Offset="3220" Vartype="Pointer" Bytesize="4" OffsetHex="00000C94" DisplayMethod="unsigned integer"/>
+        <Element Offset="3224" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000C98" DisplayMethod="unsigned integer"/>
+        <Element Offset="3236" Vartype="Double" Bytesize="8" OffsetHex="00000CA4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3244" Vartype="4 Bytes" Bytesize="4" RLECount="8" OffsetHex="00000CAC" DisplayMethod="unsigned integer"/>
+        <Element Offset="3276" Vartype="Double" Bytesize="8" OffsetHex="00000CCC" DisplayMethod="unsigned integer"/>
+        <Element Offset="3284" Vartype="4 Bytes" Bytesize="4" RLECount="7" OffsetHex="00000CD4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3312" Vartype="Double" Bytesize="8" OffsetHex="00000CF0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3320" Vartype="4 Bytes" Bytesize="4" RLECount="17" OffsetHex="00000CF8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3388" Vartype="Double" Bytesize="8" OffsetHex="00000D3C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3396" Vartype="4 Bytes" Bytesize="4" RLECount="10" OffsetHex="00000D44" DisplayMethod="unsigned integer"/>
+        <Element Offset="3436" Vartype="Pointer" Bytesize="4" OffsetHex="00000D6C" Description="Pointer to instance of imf::ActorDefinition" DisplayMethod="unsigned integer"/>
+        <Element Offset="3440" Vartype="Pointer" Bytesize="4" OffsetHex="00000D70" Description="Pointer to instance of boost::detail::sp_counted_impl_pd&lt;imf::ActorDefinition *,boost::detail::sp_ms_deleter&lt;imf::ActorDefinition&gt; &gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="3444" Vartype="Pointer" Bytesize="4" OffsetHex="00000D74" DisplayMethod="unsigned integer"/>
+        <Element Offset="3448" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000D78" DisplayMethod="unsigned integer"/>
+        <Element Offset="3452" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000D7C" DisplayMethod="hexadecimal"/>
+        <Element Offset="3456" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000D80" DisplayMethod="unsigned integer"/>
+        <Element Offset="3460" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000D84" DisplayMethod="hexadecimal"/>
+        <Element Offset="3472" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000D90" DisplayMethod="unsigned integer"/>
+        <Element Offset="3484" Vartype="Pointer" Bytesize="4" OffsetHex="00000D9C" Description="Pointer to instance of imf::Actor" DisplayMethod="unsigned integer"/>
+        <Element Offset="3488" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000DA0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3496" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="00000DA8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3504" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000DB0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3512" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="00000DB8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3520" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000DC0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3536" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000DD0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3560" Vartype="Pointer" Bytesize="4" OffsetHex="00000DE8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3564" Vartype="Pointer" Bytesize="4" OffsetHex="00000DEC" Description="Pointer to instance of boost::detail::sp_counted_impl_p&lt;b2World&gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="3568" Vartype="Pointer" Bytesize="4" OffsetHex="00000DF0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3572" Vartype="Double" Bytesize="8" OffsetHex="00000DF4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3580" Vartype="Float" Bytesize="4" OffsetHex="00000DFC" DisplayMethod="unsigned integer"/>
+        <Element Offset="3584" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000E00" DisplayMethod="hexadecimal"/>
+        <Element Offset="3588" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000E04" DisplayMethod="unsigned integer"/>
+        <Element Offset="3596" Vartype="Pointer" Bytesize="4" OffsetHex="00000E0C" Description="Pointer to instance of imf::BehaviorMachine" DisplayMethod="unsigned integer"/>
+        <Element Offset="3600" Vartype="Pointer" Bytesize="4" OffsetHex="00000E10" Description="Pointer to instance of boost::detail::sp_counted_impl_pd&lt;imf::BehaviorMachine *,boost::detail::sp_ms_deleter&lt;imf::BehaviorMachine&gt; &gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="3604" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000E14" DisplayMethod="unsigned integer"/>
+        <Element Offset="3612" Vartype="Double" Bytesize="8" OffsetHex="00000E1C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3620" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000E24" DisplayMethod="unsigned integer"/>
+        <Element Offset="3632" Vartype="Pointer" Bytesize="4" RLECount="3" OffsetHex="00000E30" DisplayMethod="unsigned integer"/>
+        <Element Offset="3644" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000E3C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3656" Vartype="Double" Bytesize="8" OffsetHex="00000E48" DisplayMethod="unsigned integer"/>
+        <Element Offset="3664" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000E50" DisplayMethod="unsigned integer"/>
+        <Element Offset="3668" Vartype="Pointer" Bytesize="4" OffsetHex="00000E54" DisplayMethod="unsigned integer"/>
+        <Element Offset="3672" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000E58" DisplayMethod="unsigned integer"/>
+        <Element Offset="3684" Vartype="Double" Bytesize="8" OffsetHex="00000E64" DisplayMethod="unsigned integer"/>
+        <Element Offset="3692" Vartype="Float" Bytesize="4" OffsetHex="00000E6C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3696" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="00000E70" DisplayMethod="unsigned integer"/>
+        <Element Offset="3732" Vartype="Pointer" Bytesize="4" RLECount="5" OffsetHex="00000E94" DisplayMethod="unsigned integer"/>
+        <Element Offset="3752" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000EA8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3756" Vartype="Pointer" Bytesize="4" OffsetHex="00000EAC" Description="Pointer to instance of imf::ActorDefinition" DisplayMethod="unsigned integer"/>
+        <Element Offset="3760" Vartype="Pointer" Bytesize="4" OffsetHex="00000EB0" Description="Pointer to instance of boost::detail::sp_counted_impl_pd&lt;imf::ActorDefinition *,boost::detail::sp_ms_deleter&lt;imf::ActorDefinition&gt; &gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="3764" Vartype="4 Bytes" Bytesize="4" RLECount="16" OffsetHex="00000EB4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3828" Vartype="Pointer" Bytesize="4" OffsetHex="00000EF4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3832" Vartype="4 Bytes" Bytesize="4" RLECount="25" OffsetHex="00000EF8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3932" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000F5C" DisplayMethod="hexadecimal"/>
+        <Element Offset="3936" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000F60" DisplayMethod="unsigned integer"/>
+        <Element Offset="3944" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000F68" DisplayMethod="hexadecimal"/>
+        <Element Offset="3948" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000F6C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3952" Vartype="Float" Bytesize="4" OffsetHex="00000F70" DisplayMethod="unsigned integer"/>
+        <Element Offset="3956" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000F74" DisplayMethod="unsigned integer"/>
+        <Element Offset="3968" Vartype="Double" Bytesize="8" OffsetHex="00000F80" DisplayMethod="unsigned integer"/>
+        <Element Offset="3976" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000F88" DisplayMethod="unsigned integer"/>
+        <Element Offset="3996" Vartype="Float" Bytesize="4" OffsetHex="00000F9C" DisplayMethod="unsigned integer"/>
+        <Element Offset="4000" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000FA0" DisplayMethod="unsigned integer"/>
+        <Element Offset="4004" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="00000FA4" DisplayMethod="unsigned integer"/>
+        <Element Offset="4012" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000FAC" DisplayMethod="hexadecimal"/>
+        <Element Offset="4016" Vartype="Float" Bytesize="4" RLECount="20" OffsetHex="00000FB0" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+  </Structures>
+  <Comments>ebx        player        enemy        item
++2C           1           N/A          192
++70           30           0
++CC           0            1
++DC           0            11
++118          256          257
++11C          0            1
+</Comments>
+</CheatTable>

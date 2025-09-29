@@ -1,0 +1,1769 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>47</ID>
+      <Description>"战斗后属性全满(注意提前存档，不要与其他功能同时使用)"</Description>
+      <Color>0000FF</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : SO2R.exe
+  Version: 
+  Date   : 2025-02-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,01 7B 28 48 8B 0D 9B E6 AE 01) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [rbx+28],#85536000 //EXP
+  add [rbx+28+2C+10],7777 //ATK
+    add [rbx+28+2C+18],7777 //DEF
+      add [rbx+28+2C+20],7777 //INT
+        add [rbx+28+2C+28],7777 //HIT
+          add [rbx+28+2C+30],7777 //ADV
+            add [rbx+28+2C+38],255 //GUTS
+              add [rbx+28+2C+40],255 //CRT
+                add [rbx+28+2C+58],255 //LUC
+                  add [rbx+28+2C+60],7777 //STM
+  mov rcx,[GameAssembly.dll+1EEF8D8]
+  jmp return
+
+code:
+  add [rbx+28],edi //EXP
+  mov rcx,[GameAssembly.dll+1EEF8D8]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 5
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 01 7B 28 48 8B 0D 9B E6 AE 01
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+401233
+
+GameAssembly.dll+40120A: 57                    - push rdi
+GameAssembly.dll+40120B: 48 83 EC 20           - sub rsp,20
+GameAssembly.dll+40120F: 80 3D 82 AC BD 01 00  - cmp byte ptr [GameAssembly.dll+1FDBE98],00
+GameAssembly.dll+401216: 49 8B F0              - mov rsi,r8
+GameAssembly.dll+401219: 8B FA                 - mov edi,edx
+GameAssembly.dll+40121B: 48 8B D9              - mov rbx,rcx
+GameAssembly.dll+40121E: 75 13                 - jne GameAssembly.dll+401233
+GameAssembly.dll+401220: 48 8D 0D B1 E6 AE 01  - lea rcx,[GameAssembly.dll+1EEF8D8]
+GameAssembly.dll+401227: E8 D4 47 E2 FF        - call GameAssembly.DllCanUnloadNow+8090
+GameAssembly.dll+40122C: C6 05 65 AC BD 01 01  - mov byte ptr [GameAssembly.dll+1FDBE98],01
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+401233: 01 7B 28              - add [rbx+28],edi
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+401236: 48 8B 0D 9B E6 AE 01  - mov rcx,[GameAssembly.dll+1EEF8D8]
+GameAssembly.dll+40123D: 8B 7B 28              - mov edi,[rbx+28]
+GameAssembly.dll+401240: 83 B9 E0 00 00 00 00  - cmp dword ptr [rcx+000000E0],00
+GameAssembly.dll+401247: 75 0C                 - jne GameAssembly.dll+401255
+GameAssembly.dll+401249: E8 02 6E DD FF        - call GameAssembly.dll+1D8050
+GameAssembly.dll+40124E: 48 8B 0D 83 E6 AE 01  - mov rcx,[GameAssembly.dll+1EEF8D8]
+GameAssembly.dll+401255: 48 8B 81 B8 00 00 00  - mov rax,[rcx+000000B8]
+GameAssembly.dll+40125C: 3B 78 48              - cmp edi,[rax+48]
+GameAssembly.dll+40125F: 7E 22                 - jle GameAssembly.dll+401283
+GameAssembly.dll+401261: 83 B9 E0 00 00 00 00  - cmp dword ptr [rcx+000000E0],00
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>52</ID>
+      <Description>"Gold地址"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"GameAssembly.dll"+01ED8BD0</Address>
+      <Offsets>
+        <Offset>2B4</Offset>
+        <Offset>458</Offset>
+        <Offset>80</Offset>
+        <Offset>0</Offset>
+        <Offset>B8</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"FOL（GOLD）=8888888"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : SO2R.exe
+  Version: 
+  Date   : 2025-02-02
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+
+aobscanmodule(INJECT,GameAssembly.dll,89 5F 14 75 13) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rdi+14],#88888888
+  jne GameAssembly.dll+47AF4C
+  jmp return
+
+code:
+  mov [rdi+14],ebx
+  jne GameAssembly.dll+47AF4C
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 5F 14 75 13
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+47AF34
+
+GameAssembly.dll+47AF12: 2B DE                 - sub ebx,esi
+GameAssembly.dll+47AF14: 48 8B 80 B8 00 00 00  - mov rax,[rax+000000B8]
+GameAssembly.dll+47AF1B: 8B 88 08 01 00 00     - mov ecx,[rax+00000108]
+GameAssembly.dll+47AF21: 78 08                 - js GameAssembly.dll+47AF2B
+GameAssembly.dll+47AF23: 3B D9                 - cmp ebx,ecx
+GameAssembly.dll+47AF25: 7E 06                 - jle GameAssembly.dll+47AF2D
+GameAssembly.dll+47AF27: 8B D9                 - mov ebx,ecx
+GameAssembly.dll+47AF29: EB 02                 - jmp GameAssembly.dll+47AF2D
+GameAssembly.dll+47AF2B: 33 DB                 - xor ebx,ebx
+GameAssembly.dll+47AF2D: 80 3D B2 12 B6 01 00  - cmp byte ptr [GameAssembly.dll+1FDC1E6],00
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+47AF34: 89 5F 14              - mov [rdi+14],ebx
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+47AF37: 75 13                 - jne GameAssembly.dll+47AF4C
+GameAssembly.dll+47AF39: 48 8D 0D 98 49 A7 01  - lea rcx,[GameAssembly.dll+1EEF8D8]
+GameAssembly.dll+47AF40: E8 BB AA DA FF        - call GameAssembly.DllCanUnloadNow+8090
+GameAssembly.dll+47AF45: C6 05 9A 12 B6 01 01  - mov byte ptr [GameAssembly.dll+1FDC1E6],01
+GameAssembly.dll+47AF4C: 48 8B 9F 38 01 00 00  - mov rbx,[rdi+00000138]
+GameAssembly.dll+47AF53: 48 85 DB              - test rbx,rbx
+GameAssembly.dll+47AF56: 74 67                 - je GameAssembly.dll+47AFBF
+GameAssembly.dll+47AF58: 83 7B 18 43           - cmp dword ptr [rbx+18],43
+GameAssembly.dll+47AF5C: 7E 51                 - jle GameAssembly.dll+47AFAF
+GameAssembly.dll+47AF5E: 76 65                 - jna GameAssembly.dll+47AFC5
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"EXP+（满级Lv255，需要打几次怪）"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : SO2R.exe
+  Version: 
+  Date   : 2025-02-02
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,01 7B 28 48 8B 0D 9B E6 AE 01) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [rbx+28],#6553600
+  mov rcx,[GameAssembly.dll+1EEF8D8]
+  jmp return
+
+code:
+  add [rbx+28],edi
+  mov rcx,[GameAssembly.dll+1EEF8D8]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 5
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 01 7B 28 48 8B 0D 9B E6 AE 01
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+401233
+
+GameAssembly.dll+40120A: 57                    - push rdi
+GameAssembly.dll+40120B: 48 83 EC 20           - sub rsp,20
+GameAssembly.dll+40120F: 80 3D 82 AC BD 01 00  - cmp byte ptr [GameAssembly.dll+1FDBE98],00
+GameAssembly.dll+401216: 49 8B F0              - mov rsi,r8
+GameAssembly.dll+401219: 8B FA                 - mov edi,edx
+GameAssembly.dll+40121B: 48 8B D9              - mov rbx,rcx
+GameAssembly.dll+40121E: 75 13                 - jne GameAssembly.dll+401233
+GameAssembly.dll+401220: 48 8D 0D B1 E6 AE 01  - lea rcx,[GameAssembly.dll+1EEF8D8]
+GameAssembly.dll+401227: E8 D4 47 E2 FF        - call GameAssembly.DllCanUnloadNow+8090
+GameAssembly.dll+40122C: C6 05 65 AC BD 01 01  - mov byte ptr [GameAssembly.dll+1FDBE98],01
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+401233: 01 7B 28              - add [rbx+28],edi
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+401236: 48 8B 0D 9B E6 AE 01  - mov rcx,[GameAssembly.dll+1EEF8D8]
+GameAssembly.dll+40123D: 8B 7B 28              - mov edi,[rbx+28]
+GameAssembly.dll+401240: 83 B9 E0 00 00 00 00  - cmp dword ptr [rcx+000000E0],00
+GameAssembly.dll+401247: 75 0C                 - jne GameAssembly.dll+401255
+GameAssembly.dll+401249: E8 02 6E DD FF        - call GameAssembly.dll+1D8050
+GameAssembly.dll+40124E: 48 8B 0D 83 E6 AE 01  - mov rcx,[GameAssembly.dll+1EEF8D8]
+GameAssembly.dll+401255: 48 8B 81 B8 00 00 00  - mov rax,[rcx+000000B8]
+GameAssembly.dll+40125C: 3B 78 48              - cmp edi,[rax+48]
+GameAssembly.dll+40125F: 7E 22                 - jle GameAssembly.dll+401283
+GameAssembly.dll+401261: 83 B9 E0 00 00 00 00  - cmp dword ptr [rcx+000000E0],00
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>17</ID>
+      <Description>"SP不减=999"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : SO2R.exe
+  Version: 
+  Date   : 2025-02-02
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,44 29 AB 30 01 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rbx+00000130],#999
+  sub [rbx+00000130],0
+  jmp return
+
+code:
+  sub [rbx+00000130],r13d
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 44 29 AB 30 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+4036A1
+
+GameAssembly.dll+40366D: 44 8B 7C 24 78           - mov r15d,[rsp+78]
+GameAssembly.dll+403672: 48 8B 83 28 01 00 00     - mov rax,[rbx+00000128]
+GameAssembly.dll+403679: 48 8B AC 24 80 00 00 00  - mov rbp,[rsp+00000080]
+GameAssembly.dll+403681: 48 85 C0                 - test rax,rax
+GameAssembly.dll+403684: 0F 84 C5 01 00 00        - je GameAssembly.dll+40384F
+GameAssembly.dll+40368A: 3B 70 18                 - cmp esi,[rax+18]
+GameAssembly.dll+40368D: 0F 83 C2 01 00 00        - jae GameAssembly.dll+403855
+GameAssembly.dll+403693: 48 8B 4C 24 70           - mov rcx,[rsp+70]
+GameAssembly.dll+403698: BE 00 00 00 00           - mov esi,00000000
+GameAssembly.dll+40369D: 44 89 3C 01              - mov [rcx+rax],r15d
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+4036A1: 44 29 AB 30 01 00 00     - sub [rbx+00000130],r13d
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+4036A8: 8B 83 30 01 00 00        - mov eax,[rbx+00000130]
+GameAssembly.dll+4036AE: 0F 48 C6                 - cmovs eax,esi
+GameAssembly.dll+4036B1: 89 83 30 01 00 00        - mov [rbx+00000130],eax
+GameAssembly.dll+4036B7: 48 8B 0D 4A BB AF 01     - mov rcx,[GameAssembly.dll+1EFF208]
+GameAssembly.dll+4036BE: 39 B1 E0 00 00 00        - cmp [rcx+000000E0],esi
+GameAssembly.dll+4036C4: 75 05                    - jne GameAssembly.dll+4036CB
+GameAssembly.dll+4036C6: E8 85 49 DD FF           - call GameAssembly.dll+1D8050
+GameAssembly.dll+4036CB: 40 38 35 95 87 BD 01     - cmp [GameAssembly.dll+1FDBE67],sil
+GameAssembly.dll+4036D2: 75 13                    - jne GameAssembly.dll+4036E7
+GameAssembly.dll+4036D4: 48 8D 0D 2D BB AF 01     - lea rcx,[GameAssembly.dll+1EFF208]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>9</ID>
+      <Description>"BONUS=MAX（300）"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : SO2R.exe
+  Version: 
+  Date   : 2025-02-02
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,89 98 E4 00 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov ebx,#300
+  mov [rax+000000E4],ebx
+  jmp return
+
+code:
+  mov [rax+000000E4],ebx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 98 E4 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+483A81
+
+GameAssembly.dll+483A5F: 74 2C                 - je GameAssembly.dll+483A8D
+GameAssembly.dll+483A61: 48 8B 80 E0 07 00 00  - mov rax,[rax+000007E0]
+GameAssembly.dll+483A68: 48 85 C0              - test rax,rax
+GameAssembly.dll+483A6B: 74 20                 - je GameAssembly.dll+483A8D
+GameAssembly.dll+483A6D: 48 8B 80 38 01 00 00  - mov rax,[rax+00000138]
+GameAssembly.dll+483A74: 48 85 C0              - test rax,rax
+GameAssembly.dll+483A77: 74 14                 - je GameAssembly.dll+483A8D
+GameAssembly.dll+483A79: 83 78 18 31           - cmp dword ptr [rax+18],31
+GameAssembly.dll+483A7D: 7E 08                 - jle GameAssembly.dll+483A87
+GameAssembly.dll+483A7F: 76 12                 - jna GameAssembly.dll+483A93
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+483A81: 89 98 E4 00 00 00     - mov [rax+000000E4],ebx
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+483A87: 48 83 C4 20           - add rsp,20
+GameAssembly.dll+483A8B: 5B                    - pop rbx
+GameAssembly.dll+483A8C: C3                    - ret 
+GameAssembly.dll+483A8D: E8 5E 5B D5 FF        - call GameAssembly.dll+1D95F0
+GameAssembly.dll+483A92: CC                    - int 3 
+GameAssembly.dll+483A93: E8 68 5B D5 FF        - call GameAssembly.dll+1D9600
+GameAssembly.dll+483A98: CC                    - int 3 
+GameAssembly.dll+483A99: CC                    - int 3 
+GameAssembly.dll+483A9A: CC                    - int 3 
+GameAssembly.dll+483A9B: CC                    - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>11</ID>
+      <Description>"MP不减"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : SO2R.exe
+  Version: 
+  Date   : 2025-02-02
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,89 48 60 48 83 C4 20) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov ecx,[rax+5C]
+  mov [rax+60],ecx
+  add rsp,20
+  jmp return
+
+code:
+  mov [rax+60],ecx
+  add rsp,20
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 48 60 48 83 C4 20
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+5275AE
+
+GameAssembly.dll+527593: 3B CA                 - cmp ecx,edx
+GameAssembly.dll+527595: 7E 12                 - jle GameAssembly.dll+5275A9
+GameAssembly.dll+527597: 8B CA                 - mov ecx,edx
+GameAssembly.dll+527599: 89 50 60              - mov [rax+60],edx
+GameAssembly.dll+52759C: 48 8B 5C 24 38        - mov rbx,[rsp+38]
+GameAssembly.dll+5275A1: 48 83 C4 20           - add rsp,20
+GameAssembly.dll+5275A5: 5F                    - pop rdi
+GameAssembly.dll+5275A6: C3                    - ret 
+GameAssembly.dll+5275A7: 33 C9                 - xor ecx,ecx
+GameAssembly.dll+5275A9: 48 8B 5C 24 38        - mov rbx,[rsp+38]
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+5275AE: 89 48 60              - mov [rax+60],ecx
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+5275B1: 48 83 C4 20           - add rsp,20
+GameAssembly.dll+5275B5: 5F                    - pop rdi
+GameAssembly.dll+5275B6: C3                    - ret 
+GameAssembly.dll+5275B7: E8 34 20 CB FF        - call GameAssembly.dll+1D95F0
+GameAssembly.dll+5275BC: CC                    - int 3 
+GameAssembly.dll+5275BD: CC                    - int 3 
+GameAssembly.dll+5275BE: CC                    - int 3 
+GameAssembly.dll+5275BF: CC                    - int 3 
+GameAssembly.dll+5275C0: 40 53                 - push rbx
+GameAssembly.dll+5275C2: 48 81 EC 80 00 00 00  - sub rsp,00000080
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>14</ID>
+      <Description>"HP不减+秒敌人"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : SO2R.exe
+  Version: 
+  Date   : 2025-02-02
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,89 41 54 48 8B 87 50 01 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [rcx+18],0
+  je code
+  mov eax,[rcx+50]
+  mov [rcx+54],eax
+  mov rax,[rdi+00000150]
+  jmp return
+
+code:
+  mov [rcx+54],0
+  mov rax,[rdi+00000150]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 5
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 41 54 48 8B 87 50 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+6B475D
+
+GameAssembly.dll+6B4742: 0F 84 8B 18 00 00     - je GameAssembly.dll+6B5FD3
+GameAssembly.dll+6B4748: 8B 41 54              - mov eax,[rcx+54]
+GameAssembly.dll+6B474B: 41 2B C4              - sub eax,r12d
+GameAssembly.dll+6B474E: 78 0B                 - js GameAssembly.dll+6B475B
+GameAssembly.dll+6B4750: 8B 51 50              - mov edx,[rcx+50]
+GameAssembly.dll+6B4753: 3B C2                 - cmp eax,edx
+GameAssembly.dll+6B4755: 7E 06                 - jle GameAssembly.dll+6B475D
+GameAssembly.dll+6B4757: 8B C2                 - mov eax,edx
+GameAssembly.dll+6B4759: EB 02                 - jmp GameAssembly.dll+6B475D
+GameAssembly.dll+6B475B: 33 C0                 - xor eax,eax
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+6B475D: 89 41 54              - mov [rcx+54],eax
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+6B4760: 48 8B 87 50 01 00 00  - mov rax,[rdi+00000150]
+GameAssembly.dll+6B4767: 48 85 C0              - test rax,rax
+GameAssembly.dll+6B476A: 0F 84 63 18 00 00     - je GameAssembly.dll+6B5FD3
+GameAssembly.dll+6B4770: 48 8B 48 10           - mov rcx,[rax+10]
+GameAssembly.dll+6B4774: 48 85 C9              - test rcx,rcx
+GameAssembly.dll+6B4777: 0F 84 56 18 00 00     - je GameAssembly.dll+6B5FD3
+GameAssembly.dll+6B477D: 45 33 C0              - xor r8d,r8d
+GameAssembly.dll+6B4780: 41 8D 50 3D           - lea edx,[r8+3D]
+GameAssembly.dll+6B4784: E8 B7 23 D5 FF        - call GameAssembly.dll+406B40
+GameAssembly.dll+6B4789: 84 C0                 - test al,al
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>80</ID>
+      <Description>"秒自己"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : SO2R.exe
+  Version: 
+  Date   : 2025-02-02
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,89 41 54 48 8B 87 50 01 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [rcx+18],0
+  je code
+//  mov eax,[rcx+50]
+  mov [rcx+54],0
+  mov rax,[rdi+00000150]
+  jmp return
+
+code:
+  mov [rcx+54],0
+  mov rax,[rdi+00000150]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 5
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 41 54 48 8B 87 50 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+6B475D
+
+GameAssembly.dll+6B4742: 0F 84 8B 18 00 00     - je GameAssembly.dll+6B5FD3
+GameAssembly.dll+6B4748: 8B 41 54              - mov eax,[rcx+54]
+GameAssembly.dll+6B474B: 41 2B C4              - sub eax,r12d
+GameAssembly.dll+6B474E: 78 0B                 - js GameAssembly.dll+6B475B
+GameAssembly.dll+6B4750: 8B 51 50              - mov edx,[rcx+50]
+GameAssembly.dll+6B4753: 3B C2                 - cmp eax,edx
+GameAssembly.dll+6B4755: 7E 06                 - jle GameAssembly.dll+6B475D
+GameAssembly.dll+6B4757: 8B C2                 - mov eax,edx
+GameAssembly.dll+6B4759: EB 02                 - jmp GameAssembly.dll+6B475D
+GameAssembly.dll+6B475B: 33 C0                 - xor eax,eax
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+6B475D: 89 41 54              - mov [rcx+54],eax
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+6B4760: 48 8B 87 50 01 00 00  - mov rax,[rdi+00000150]
+GameAssembly.dll+6B4767: 48 85 C0              - test rax,rax
+GameAssembly.dll+6B476A: 0F 84 63 18 00 00     - je GameAssembly.dll+6B5FD3
+GameAssembly.dll+6B4770: 48 8B 48 10           - mov rcx,[rax+10]
+GameAssembly.dll+6B4774: 48 85 C9              - test rcx,rcx
+GameAssembly.dll+6B4777: 0F 84 56 18 00 00     - je GameAssembly.dll+6B5FD3
+GameAssembly.dll+6B477D: 45 33 C0              - xor r8d,r8d
+GameAssembly.dll+6B4780: 41 8D 50 3D           - lea edx,[r8+3D]
+GameAssembly.dll+6B4784: E8 B7 23 D5 FF        - call GameAssembly.dll+406B40
+GameAssembly.dll+6B4789: 84 C0                 - test al,al
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>16</ID>
+      <Description>"道具不减"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : SO2R.exe
+  Version: 
+  Date   : 2025-02-02
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,66 89 4B 14 66 85 C9) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov cx,[rbx+14]
+  mov [rbx+14],cx
+  test cx,cx
+  jmp return
+
+code:
+  mov [rbx+14],cx
+  test cx,cx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 66 89 4B 14 66 85 C9
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+39EFF7
+
+GameAssembly.dll+39EFCA: 48 8D 0D EF 01 B6 01  - lea rcx,[GameAssembly.dll+1EFF1C0]
+GameAssembly.dll+39EFD1: E8 2A 6A E8 FF        - call GameAssembly.DllCanUnloadNow+8090
+GameAssembly.dll+39EFD6: C6 05 1C CC C3 01 01  - mov byte ptr [GameAssembly.dll+1FDBBF9],01
+GameAssembly.dll+39EFDD: 48 85 DB              - test rbx,rbx
+GameAssembly.dll+39EFE0: 0F 84 75 01 00 00     - je GameAssembly.dll+39F15B
+GameAssembly.dll+39EFE6: 0F BF 4B 14           - movsx ecx,word ptr [rbx+14]
+GameAssembly.dll+39EFEA: 3B F1                 - cmp esi,ecx
+GameAssembly.dll+39EFEC: 0F 8F 5E 01 00 00     - jg GameAssembly.dll+39F150
+GameAssembly.dll+39EFF2: 66 2B CE              - sub cx,si
+GameAssembly.dll+39EFF5: 33 F6                 - xor esi,esi
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+39EFF7: 66 89 4B 14           - mov [rbx+14],cx
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+39EFFB: 66 85 C9              - test cx,cx
+GameAssembly.dll+39EFFE: 0F 8F 31 01 00 00     - jg GameAssembly.dll+39F135
+GameAssembly.dll+39F004: 40 38 B7 20 01 00 00  - cmp [rdi+00000120],sil
+GameAssembly.dll+39F00B: 75 06                 - jne GameAssembly.dll+39F013
+GameAssembly.dll+39F00D: 48 8B 4F 20           - mov rcx,[rdi+20]
+GameAssembly.dll+39F011: EB 07                 - jmp GameAssembly.dll+39F01A
+GameAssembly.dll+39F013: 48 8B 8F 08 01 00 00  - mov rcx,[rdi+00000108]
+GameAssembly.dll+39F01A: 48 85 C9              - test rcx,rcx
+GameAssembly.dll+39F01D: 0F 84 38 01 00 00     - je GameAssembly.dll+39F15B
+GameAssembly.dll+39F023: 4C 8B 05 96 01 B6 01  - mov r8,[GameAssembly.dll+1EFF1C0]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>24</ID>
+      <Description>"BP"</Description>
+      <Options moHideChildren="1" moManualExpandCollapse="1" moActivateChildrenAsWell="1" moAllowManualCollapseAndExpand="1"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>23</ID>
+          <Description>"BP战斗获取=888"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : SO2R.exe
+  Version: 
+  Date   : 2025-02-02
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,01 BB 40 01 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [rbx+00000140],#888
+  jmp return
+
+code:
+  add [rbx+00000140],edi
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 01 BB 40 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+401B60
+
+GameAssembly.dll+401B35: 48 89 74 24 10        - mov [rsp+10],rsi
+GameAssembly.dll+401B3A: 57                    - push rdi
+GameAssembly.dll+401B3B: 48 83 EC 20           - sub rsp,20
+GameAssembly.dll+401B3F: 80 3D 5A A3 BD 01 00  - cmp byte ptr [GameAssembly.dll+1FDBEA0],00
+GameAssembly.dll+401B46: 8B FA                 - mov edi,edx
+GameAssembly.dll+401B48: 48 8B D9              - mov rbx,rcx
+GameAssembly.dll+401B4B: 75 13                 - jne GameAssembly.dll+401B60
+GameAssembly.dll+401B4D: 48 8D 0D 84 DD AE 01  - lea rcx,[GameAssembly.dll+1EEF8D8]
+GameAssembly.dll+401B54: E8 A7 3E E2 FF        - call GameAssembly.DllCanUnloadNow+8090
+GameAssembly.dll+401B59: C6 05 40 A3 BD 01 01  - mov byte ptr [GameAssembly.dll+1FDBEA0],01
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+401B60: 01 BB 40 01 00 00     - add [rbx+00000140],edi
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+401B66: 48 8B 0D 6B DD AE 01  - mov rcx,[GameAssembly.dll+1EEF8D8]
+GameAssembly.dll+401B6D: 8B B3 40 01 00 00     - mov esi,[rbx+00000140]
+GameAssembly.dll+401B73: 83 B9 E0 00 00 00 00  - cmp dword ptr [rcx+000000E0],00
+GameAssembly.dll+401B7A: 75 0C                 - jne GameAssembly.dll+401B88
+GameAssembly.dll+401B7C: E8 CF 64 DD FF        - call GameAssembly.dll+1D8050
+GameAssembly.dll+401B81: 48 8B 0D 50 DD AE 01  - mov rcx,[GameAssembly.dll+1EEF8D8]
+GameAssembly.dll+401B88: 48 8B 81 B8 00 00 00  - mov rax,[rcx+000000B8]
+GameAssembly.dll+401B8F: 3B 70 34              - cmp esi,[rax+34]
+GameAssembly.dll+401B92: 7E 41                 - jle GameAssembly.dll+401BD5
+GameAssembly.dll+401B94: 83 B9 E0 00 00 00 00  - cmp dword ptr [rcx+000000E0],00
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>5</ID>
+          <Description>"BP不减（战斗技能）"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : SO2R.exe
+  Version: 
+  Date   : 2025-02-02
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,29 B3 40 01 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  sub [rbx+00000140],0
+  jmp return
+
+code:
+  sub [rbx+00000140],esi
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 29 B3 40 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+403CAC
+
+GameAssembly.dll+403C80: E8 CB 43 DD FF        - call GameAssembly.dll+1D8050
+GameAssembly.dll+403C85: 33 D2                 - xor edx,edx
+GameAssembly.dll+403C87: 8D 4A 22              - lea ecx,[rdx+22]
+GameAssembly.dll+403C8A: E8 F1 20 0E 00        - call GameAssembly.dll+4E5D80
+GameAssembly.dll+403C8F: 48 8B 83 38 01 00 00  - mov rax,[rbx+00000138]
+GameAssembly.dll+403C96: 48 85 C0              - test rax,rax
+GameAssembly.dll+403C99: 0F 84 88 00 00 00     - je GameAssembly.dll+403D27
+GameAssembly.dll+403C9F: 3B 78 18              - cmp edi,[rax+18]
+GameAssembly.dll+403CA2: 0F 83 85 00 00 00     - jae GameAssembly.dll+403D2D
+GameAssembly.dll+403CA8: 41 89 2C 07           - mov [r15+rax],ebp
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+403CAC: 29 B3 40 01 00 00     - sub [rbx+00000140],esi
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+403CB2: 8B 83 40 01 00 00     - mov eax,[rbx+00000140]
+GameAssembly.dll+403CB8: 41 0F 48 C4           - cmovs eax,r12d
+GameAssembly.dll+403CBC: 89 83 40 01 00 00     - mov [rbx+00000140],eax
+GameAssembly.dll+403CC2: 44 8B 43 24           - mov r8d,[rbx+24]
+GameAssembly.dll+403CC6: 45 33 C9              - xor r9d,r9d
+GameAssembly.dll+403CC9: 8B 53 10              - mov edx,[rbx+10]
+GameAssembly.dll+403CCC: 48 8B CB              - mov rcx,rbx
+GameAssembly.dll+403CCF: 4C 89 64 24 20        - mov [rsp+20],r12
+GameAssembly.dll+403CD4: E8 C7 B3 FF FF        - call GameAssembly.dll+3FF0A0
+GameAssembly.dll+403CD9: 48 8B 8B 18 01 00 00  - mov rcx,[rbx+00000118]
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>50</ID>
+          <Description>"BP不减（必杀/纹章）"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : SO2R.exe
+  Version: 
+  Date   : 2025-02-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,0C 29 87 40 01 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  sub [rdi+00000140],0
+  jmp return
+
+code:
+  sub [rdi+00000140],eax
+  jmp return
+
+INJECT+01:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+01:
+  db 29 87 40 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+6427F1
+
+GameAssembly.dll+6427C0: 85 C0                 - test eax,eax
+GameAssembly.dll+6427C2: 0F 88 8D 00 00 00     - js GameAssembly.dll+642855
+GameAssembly.dll+6427C8: 3B 87 40 01 00 00     - cmp eax,[rdi+00000140]
+GameAssembly.dll+6427CE: 0F 8F 81 00 00 00     - jg GameAssembly.dll+642855
+GameAssembly.dll+6427D4: 48 8B 8F 60 01 00 00  - mov rcx,[rdi+00000160]
+GameAssembly.dll+6427DB: 48 85 C9              - test rcx,rcx
+GameAssembly.dll+6427DE: 0F 84 14 01 00 00     - je GameAssembly.dll+6428F8
+GameAssembly.dll+6427E4: 3B 59 18              - cmp ebx,[rcx+18]
+GameAssembly.dll+6427E7: 0F 83 11 01 00 00     - jae GameAssembly.dll+6428FE
+GameAssembly.dll+6427ED: 45 89 34 0C           - mov [r12+rcx],r14d
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+6427F1: 29 87 40 01 00 00     - sub [rdi+00000140],eax
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+6427F7: 8B 87 40 01 00 00     - mov eax,[rdi+00000140]
+GameAssembly.dll+6427FD: 41 0F 48 C7           - cmovs eax,r15d
+GameAssembly.dll+642801: 89 87 40 01 00 00     - mov [rdi+00000140],eax
+GameAssembly.dll+642807: 44 8B 47 24           - mov r8d,[rdi+24]
+GameAssembly.dll+64280B: 45 33 C9              - xor r9d,r9d
+GameAssembly.dll+64280E: 8B 57 10              - mov edx,[rdi+10]
+GameAssembly.dll+642811: 48 8B CF              - mov rcx,rdi
+GameAssembly.dll+642814: 4C 89 7C 24 20        - mov [rsp+20],r15
+GameAssembly.dll+642819: E8 82 C8 DB FF        - call GameAssembly.dll+3FF0A0
+GameAssembly.dll+64281E: 48 8B 8F 18 01 00 00  - mov rcx,[rdi+00000118]
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>30</ID>
+      <Description>"女线1号位"</Description>
+      <Options moManualExpandCollapse="1" moAllowManualCollapseAndExpand="1"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>53</ID>
+          <Description>"EXP（HP-2C）"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"GameAssembly.dll"+01ED08A8</Address>
+          <Offsets>
+            <Offset>54-2c</Offset>
+            <Offset>7D0</Offset>
+            <Offset>140</Offset>
+            <Offset>78</Offset>
+            <Offset>408</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>69</ID>
+          <Description>"HP（之后+8都是本体数值）"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"GameAssembly.dll"+01ED08A8</Address>
+          <Offsets>
+            <Offset>54</Offset>
+            <Offset>7D0</Offset>
+            <Offset>140</Offset>
+            <Offset>78</Offset>
+            <Offset>408</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>58</ID>
+          <Description>"ATK（本体）"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"GameAssembly.dll"+01ED08A8</Address>
+          <Offsets>
+            <Offset>54+10</Offset>
+            <Offset>7D0</Offset>
+            <Offset>140</Offset>
+            <Offset>78</Offset>
+            <Offset>408</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>59</ID>
+          <Description>"DEF（本体）"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"GameAssembly.dll"+01ED08A8</Address>
+          <Offsets>
+            <Offset>54+18</Offset>
+            <Offset>7D0</Offset>
+            <Offset>140</Offset>
+            <Offset>78</Offset>
+            <Offset>408</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>60</ID>
+          <Description>"INT（本体）"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"GameAssembly.dll"+01ED08A8</Address>
+          <Offsets>
+            <Offset>54+20</Offset>
+            <Offset>7D0</Offset>
+            <Offset>140</Offset>
+            <Offset>78</Offset>
+            <Offset>408</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>61</ID>
+          <Description>"HIT（本体）"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"GameAssembly.dll"+01ED08A8</Address>
+          <Offsets>
+            <Offset>54+28</Offset>
+            <Offset>7D0</Offset>
+            <Offset>140</Offset>
+            <Offset>78</Offset>
+            <Offset>408</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>62</ID>
+          <Description>"AVD（本体）"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"GameAssembly.dll"+01ED08A8</Address>
+          <Offsets>
+            <Offset>54+30</Offset>
+            <Offset>7D0</Offset>
+            <Offset>140</Offset>
+            <Offset>78</Offset>
+            <Offset>408</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>63</ID>
+          <Description>"GUTS（本体）"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"GameAssembly.dll"+01ED08A8</Address>
+          <Offsets>
+            <Offset>54+38</Offset>
+            <Offset>7D0</Offset>
+            <Offset>140</Offset>
+            <Offset>78</Offset>
+            <Offset>408</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>64</ID>
+          <Description>"CRT（本体）"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"GameAssembly.dll"+01ED08A8</Address>
+          <Offsets>
+            <Offset>54+40</Offset>
+            <Offset>7D0</Offset>
+            <Offset>140</Offset>
+            <Offset>78</Offset>
+            <Offset>408</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>65</ID>
+          <Description>"未知1"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"GameAssembly.dll"+01ED08A8</Address>
+          <Offsets>
+            <Offset>54+48</Offset>
+            <Offset>7D0</Offset>
+            <Offset>140</Offset>
+            <Offset>78</Offset>
+            <Offset>408</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>66</ID>
+          <Description>"未知2"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"GameAssembly.dll"+01ED08A8</Address>
+          <Offsets>
+            <Offset>54+50</Offset>
+            <Offset>7D0</Offset>
+            <Offset>140</Offset>
+            <Offset>78</Offset>
+            <Offset>408</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>67</ID>
+          <Description>"LUC（本体）"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"GameAssembly.dll"+01ED08A8</Address>
+          <Offsets>
+            <Offset>54+58</Offset>
+            <Offset>7D0</Offset>
+            <Offset>140</Offset>
+            <Offset>78</Offset>
+            <Offset>408</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>68</ID>
+          <Description>"STM（本体）"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"GameAssembly.dll"+01ED08A8</Address>
+          <Offsets>
+            <Offset>54+60</Offset>
+            <Offset>7D0</Offset>
+            <Offset>140</Offset>
+            <Offset>78</Offset>
+            <Offset>408</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>44</ID>
+      <Description>"男主"</Description>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>57</ID>
+          <Description>"男主角HP（女主+240）"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"GameAssembly.dll"+01ED08A8</Address>
+          <Offsets>
+            <Offset>54+240</Offset>
+            <Offset>7D0</Offset>
+            <Offset>140</Offset>
+            <Offset>78</Offset>
+            <Offset>408</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>70</ID>
+          <Description>"ATK"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"GameAssembly.dll"+01ED08A8</Address>
+          <Offsets>
+            <Offset>54+240+10</Offset>
+            <Offset>7D0</Offset>
+            <Offset>140</Offset>
+            <Offset>78</Offset>
+            <Offset>408</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>71</ID>
+      <Description>"男1对女1"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>2 Bytes</VariableType>
+      <Address>27709C453C0</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>72</ID>
+      <Description>"女1对男1"</Description>
+      <VariableType>2 Bytes</VariableType>
+      <Address>27709C453DA</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>73</ID>
+      <Description>"无描述"</Description>
+      <VariableType>2 Bytes</VariableType>
+      <Address>27709C453C0</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>74</ID>
+      <Description>"无描述"</Description>
+      <VariableType>2 Bytes</VariableType>
+      <Address>27709C453DA</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>79</ID>
+      <Description>"好感操控"</Description>
+      <Options moManualExpandCollapse="1" moAllowManualCollapseAndExpand="1"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>78</ID>
+          <Description>"变化好感之后，好感强制00"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : SO2R.exe
+  Version: 
+  Date   : 2025-02-04
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,66 89 5C 41 20 48) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov bx,0
+  mov [rcx+rax*2+20],bx
+  jmp return
+
+code:
+  mov [rcx+rax*2+20],bx
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 66 89 5C 41 20
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+46F89D
+
+GameAssembly.dll+46F87C: 48 85 C9        - test rcx,rcx
+GameAssembly.dll+46F87F: 74 2D           - je GameAssembly.dll+46F8AE
+GameAssembly.dll+46F881: 6B D6 0E        - imul edx,esi,0E
+GameAssembly.dll+46F884: 03 D5           - add edx,ebp
+GameAssembly.dll+46F886: 3B 51 18        - cmp edx,[rcx+18]
+GameAssembly.dll+46F889: 73 29           - jae GameAssembly.dll+46F8B4
+GameAssembly.dll+46F88B: 48 8B 6C 24 38  - mov rbp,[rsp+38]
+GameAssembly.dll+46F890: 48 8B 74 24 40  - mov rsi,[rsp+40]
+GameAssembly.dll+46F895: 48 8B 7C 24 48  - mov rdi,[rsp+48]
+GameAssembly.dll+46F89A: 48 63 C2        - movsxd  rax,edx
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+46F89D: 66 89 5C 41 20  - mov [rcx+rax*2+20],bx
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+46F8A2: 48 8B 5C 24 30  - mov rbx,[rsp+30]
+GameAssembly.dll+46F8A7: 48 83 C4 20     - add rsp,20
+GameAssembly.dll+46F8AB: 41 5E           - pop r14
+GameAssembly.dll+46F8AD: C3              - ret 
+GameAssembly.dll+46F8AE: E8 3D 9D D6 FF  - call GameAssembly.dll+1D95F0
+GameAssembly.dll+46F8B3: CC              - int 3 
+GameAssembly.dll+46F8B4: E8 47 9D D6 FF  - call GameAssembly.dll+1D9600
+GameAssembly.dll+46F8B9: CC              - int 3 
+GameAssembly.dll+46F8BA: CC              - int 3 
+GameAssembly.dll+46F8BB: CC              - int 3 
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>75</ID>
+          <Description>"变化好感之后，好感强制16"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : SO2R.exe
+  Version: 
+  Date   : 2025-02-04
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,66 89 5C 41 20 48) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov bx,#16
+  mov [rcx+rax*2+20],bx
+  jmp return
+
+code:
+  mov [rcx+rax*2+20],bx
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 66 89 5C 41 20
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+46F89D
+
+GameAssembly.dll+46F87C: 48 85 C9        - test rcx,rcx
+GameAssembly.dll+46F87F: 74 2D           - je GameAssembly.dll+46F8AE
+GameAssembly.dll+46F881: 6B D6 0E        - imul edx,esi,0E
+GameAssembly.dll+46F884: 03 D5           - add edx,ebp
+GameAssembly.dll+46F886: 3B 51 18        - cmp edx,[rcx+18]
+GameAssembly.dll+46F889: 73 29           - jae GameAssembly.dll+46F8B4
+GameAssembly.dll+46F88B: 48 8B 6C 24 38  - mov rbp,[rsp+38]
+GameAssembly.dll+46F890: 48 8B 74 24 40  - mov rsi,[rsp+40]
+GameAssembly.dll+46F895: 48 8B 7C 24 48  - mov rdi,[rsp+48]
+GameAssembly.dll+46F89A: 48 63 C2        - movsxd  rax,edx
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+46F89D: 66 89 5C 41 20  - mov [rcx+rax*2+20],bx
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+46F8A2: 48 8B 5C 24 30  - mov rbx,[rsp+30]
+GameAssembly.dll+46F8A7: 48 83 C4 20     - add rsp,20
+GameAssembly.dll+46F8AB: 41 5E           - pop r14
+GameAssembly.dll+46F8AD: C3              - ret 
+GameAssembly.dll+46F8AE: E8 3D 9D D6 FF  - call GameAssembly.dll+1D95F0
+GameAssembly.dll+46F8B3: CC              - int 3 
+GameAssembly.dll+46F8B4: E8 47 9D D6 FF  - call GameAssembly.dll+1D9600
+GameAssembly.dll+46F8B9: CC              - int 3 
+GameAssembly.dll+46F8BA: CC              - int 3 
+GameAssembly.dll+46F8BB: CC              - int 3 
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>76</ID>
+          <Description>"变化好感之后，好感强制30"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : SO2R.exe
+  Version: 
+  Date   : 2025-02-04
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,66 89 5C 41 20 48) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov bx,#30
+  mov [rcx+rax*2+20],bx
+  jmp return
+
+code:
+  mov [rcx+rax*2+20],bx
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 66 89 5C 41 20
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+46F89D
+
+GameAssembly.dll+46F87C: 48 85 C9        - test rcx,rcx
+GameAssembly.dll+46F87F: 74 2D           - je GameAssembly.dll+46F8AE
+GameAssembly.dll+46F881: 6B D6 0E        - imul edx,esi,0E
+GameAssembly.dll+46F884: 03 D5           - add edx,ebp
+GameAssembly.dll+46F886: 3B 51 18        - cmp edx,[rcx+18]
+GameAssembly.dll+46F889: 73 29           - jae GameAssembly.dll+46F8B4
+GameAssembly.dll+46F88B: 48 8B 6C 24 38  - mov rbp,[rsp+38]
+GameAssembly.dll+46F890: 48 8B 74 24 40  - mov rsi,[rsp+40]
+GameAssembly.dll+46F895: 48 8B 7C 24 48  - mov rdi,[rsp+48]
+GameAssembly.dll+46F89A: 48 63 C2        - movsxd  rax,edx
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+46F89D: 66 89 5C 41 20  - mov [rcx+rax*2+20],bx
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+46F8A2: 48 8B 5C 24 30  - mov rbx,[rsp+30]
+GameAssembly.dll+46F8A7: 48 83 C4 20     - add rsp,20
+GameAssembly.dll+46F8AB: 41 5E           - pop r14
+GameAssembly.dll+46F8AD: C3              - ret 
+GameAssembly.dll+46F8AE: E8 3D 9D D6 FF  - call GameAssembly.dll+1D95F0
+GameAssembly.dll+46F8B3: CC              - int 3 
+GameAssembly.dll+46F8B4: E8 47 9D D6 FF  - call GameAssembly.dll+1D9600
+GameAssembly.dll+46F8B9: CC              - int 3 
+GameAssembly.dll+46F8BA: CC              - int 3 
+GameAssembly.dll+46F8BB: CC              - int 3 
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>77</ID>
+          <Description>"变化好感之后，好感强制40"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : SO2R.exe
+  Version: 
+  Date   : 2025-02-04
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,66 89 5C 41 20 48) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov bx,#40
+  mov [rcx+rax*2+20],bx
+  jmp return
+
+code:
+  mov [rcx+rax*2+20],bx
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 66 89 5C 41 20
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+46F89D
+
+GameAssembly.dll+46F87C: 48 85 C9        - test rcx,rcx
+GameAssembly.dll+46F87F: 74 2D           - je GameAssembly.dll+46F8AE
+GameAssembly.dll+46F881: 6B D6 0E        - imul edx,esi,0E
+GameAssembly.dll+46F884: 03 D5           - add edx,ebp
+GameAssembly.dll+46F886: 3B 51 18        - cmp edx,[rcx+18]
+GameAssembly.dll+46F889: 73 29           - jae GameAssembly.dll+46F8B4
+GameAssembly.dll+46F88B: 48 8B 6C 24 38  - mov rbp,[rsp+38]
+GameAssembly.dll+46F890: 48 8B 74 24 40  - mov rsi,[rsp+40]
+GameAssembly.dll+46F895: 48 8B 7C 24 48  - mov rdi,[rsp+48]
+GameAssembly.dll+46F89A: 48 63 C2        - movsxd  rax,edx
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+46F89D: 66 89 5C 41 20  - mov [rcx+rax*2+20],bx
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+46F8A2: 48 8B 5C 24 30  - mov rbx,[rsp+30]
+GameAssembly.dll+46F8A7: 48 83 C4 20     - add rsp,20
+GameAssembly.dll+46F8AB: 41 5E           - pop r14
+GameAssembly.dll+46F8AD: C3              - ret 
+GameAssembly.dll+46F8AE: E8 3D 9D D6 FF  - call GameAssembly.dll+1D95F0
+GameAssembly.dll+46F8B3: CC              - int 3 
+GameAssembly.dll+46F8B4: E8 47 9D D6 FF  - call GameAssembly.dll+1D9600
+GameAssembly.dll+46F8B9: CC              - int 3 
+GameAssembly.dll+46F8BA: CC              - int 3 
+GameAssembly.dll+46F8BB: CC              - int 3 
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <Structures StructVersion="2">
+    <Structure Name="未命名的结构" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="0" Vartype="Byte" Bytesize="1" OffsetHex="00000000" DisplayMethod="unsigned integer"/>
+        <Element Offset="1" Vartype="String" Bytesize="4" OffsetHex="00000001" DisplayMethod="unsigned integer"/>
+        <Element Offset="5" Vartype="Byte" Bytesize="1" RLECount="3" OffsetHex="00000005" DisplayMethod="unsigned integer"/>
+        <Element Offset="8" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="00000008" DisplayMethod="unsigned integer"/>
+        <Element Offset="44" Vartype="Double" Bytesize="8" OffsetHex="0000002C" DisplayMethod="unsigned integer"/>
+        <Element Offset="52" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000034" DisplayMethod="unsigned integer"/>
+        <Element Offset="56" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000038" DisplayMethod="unsigned integer"/>
+        <Element Offset="72" Vartype="4 Bytes" Bytesize="4" RLECount="30" OffsetHex="00000048" DisplayMethod="unsigned integer"/>
+        <Element Offset="192" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="000000C0" DisplayMethod="unsigned integer"/>
+        <Element Offset="208" Vartype="String" Bytesize="10" OffsetHex="000000D0" DisplayMethod="unsigned integer"/>
+        <Element Offset="218" Vartype="Byte" Bytesize="1" RLECount="2" OffsetHex="000000DA" DisplayMethod="unsigned integer"/>
+        <Element Offset="220" Vartype="Float" Bytesize="4" OffsetHex="000000DC" DisplayMethod="unsigned integer"/>
+        <Element Offset="224" Vartype="4 Bytes" Bytesize="4" RLECount="13" OffsetHex="000000E0" DisplayMethod="unsigned integer"/>
+        <Element Offset="276" Vartype="Double" Bytesize="8" RLECount="2" OffsetHex="00000114" DisplayMethod="unsigned integer"/>
+        <Element Offset="292" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000124" DisplayMethod="unsigned integer"/>
+        <Element Offset="296" Vartype="Pointer" Bytesize="8" OffsetHex="00000128" DisplayMethod="unsigned integer"/>
+        <Element Offset="304" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000130" DisplayMethod="unsigned integer"/>
+        <Element Offset="312" Vartype="Pointer" Bytesize="8" OffsetHex="00000138" DisplayMethod="unsigned integer"/>
+        <Element Offset="320" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000140" DisplayMethod="unsigned integer"/>
+        <Element Offset="328" Vartype="Pointer" Bytesize="8" OffsetHex="00000148" DisplayMethod="unsigned integer"/>
+        <Element Offset="336" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000150" DisplayMethod="unsigned integer"/>
+        <Element Offset="340" Vartype="Double" Bytesize="8" OffsetHex="00000154" DisplayMethod="unsigned integer"/>
+        <Element Offset="348" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000015C" DisplayMethod="unsigned integer"/>
+        <Element Offset="352" Vartype="Pointer" Bytesize="8" OffsetHex="00000160" DisplayMethod="unsigned integer"/>
+        <Element Offset="360" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000168" DisplayMethod="unsigned integer"/>
+        <Element Offset="364" Vartype="Double" Bytesize="8" OffsetHex="0000016C" DisplayMethod="unsigned integer"/>
+        <Element Offset="372" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000174" DisplayMethod="unsigned integer"/>
+        <Element Offset="380" Vartype="Double" Bytesize="8" RLECount="2" OffsetHex="0000017C" DisplayMethod="unsigned integer"/>
+        <Element Offset="396" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000018C" DisplayMethod="unsigned integer"/>
+        <Element Offset="400" Vartype="Pointer" Bytesize="8" RLECount="9" OffsetHex="00000190" DisplayMethod="unsigned integer"/>
+        <Element Offset="472" Vartype="4 Bytes" Bytesize="4" RLECount="26" OffsetHex="000001D8" DisplayMethod="unsigned integer"/>
+        <Element Offset="576" Vartype="Pointer" Bytesize="8" OffsetHex="00000240" DisplayMethod="unsigned integer"/>
+        <Element Offset="584" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000248" DisplayMethod="unsigned integer"/>
+        <Element Offset="608" Vartype="Pointer" Bytesize="8" OffsetHex="00000260" DisplayMethod="unsigned integer"/>
+        <Element Offset="616" Vartype="4 Bytes" Bytesize="4" RLECount="150" OffsetHex="00000268" DisplayMethod="unsigned integer"/>
+        <Element Offset="1216" Vartype="Pointer" Bytesize="8" OffsetHex="000004C0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1224" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000004C8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1232" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="000004D0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1248" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000004E0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1256" Vartype="Pointer" Bytesize="8" OffsetHex="000004E8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1264" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000004F0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1280" Vartype="Pointer" Bytesize="8" OffsetHex="00000500" DisplayMethod="unsigned integer"/>
+        <Element Offset="1288" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000508" DisplayMethod="unsigned integer"/>
+        <Element Offset="1296" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000510" DisplayMethod="unsigned integer"/>
+        <Element Offset="1312" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000520" DisplayMethod="unsigned integer"/>
+        <Element Offset="1320" Vartype="Pointer" Bytesize="8" OffsetHex="00000528" DisplayMethod="unsigned integer"/>
+        <Element Offset="1328" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000530" DisplayMethod="unsigned integer"/>
+        <Element Offset="1344" Vartype="Pointer" Bytesize="8" OffsetHex="00000540" DisplayMethod="unsigned integer"/>
+        <Element Offset="1352" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000548" DisplayMethod="unsigned integer"/>
+        <Element Offset="1360" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000550" DisplayMethod="unsigned integer"/>
+        <Element Offset="1376" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000560" DisplayMethod="unsigned integer"/>
+        <Element Offset="1384" Vartype="Pointer" Bytesize="8" OffsetHex="00000568" DisplayMethod="unsigned integer"/>
+        <Element Offset="1392" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000570" DisplayMethod="unsigned integer"/>
+        <Element Offset="1408" Vartype="Pointer" Bytesize="8" OffsetHex="00000580" DisplayMethod="unsigned integer"/>
+        <Element Offset="1416" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000588" DisplayMethod="unsigned integer"/>
+        <Element Offset="1424" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000590" DisplayMethod="unsigned integer"/>
+        <Element Offset="1440" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000005A0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1448" Vartype="Pointer" Bytesize="8" OffsetHex="000005A8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1456" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000005B0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1472" Vartype="Pointer" Bytesize="8" OffsetHex="000005C0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1480" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000005C8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1488" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="000005D0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1504" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000005E0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1512" Vartype="Pointer" Bytesize="8" OffsetHex="000005E8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1520" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000005F0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1536" Vartype="Pointer" Bytesize="8" OffsetHex="00000600" DisplayMethod="unsigned integer"/>
+        <Element Offset="1544" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000608" DisplayMethod="unsigned integer"/>
+        <Element Offset="1552" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000610" DisplayMethod="unsigned integer"/>
+        <Element Offset="1568" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000620" DisplayMethod="unsigned integer"/>
+        <Element Offset="1576" Vartype="Pointer" Bytesize="8" OffsetHex="00000628" DisplayMethod="unsigned integer"/>
+        <Element Offset="1584" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000630" DisplayMethod="unsigned integer"/>
+        <Element Offset="1600" Vartype="Pointer" Bytesize="8" OffsetHex="00000640" DisplayMethod="unsigned integer"/>
+        <Element Offset="1608" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000648" DisplayMethod="unsigned integer"/>
+        <Element Offset="1616" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000650" DisplayMethod="unsigned integer"/>
+        <Element Offset="1632" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000660" DisplayMethod="unsigned integer"/>
+        <Element Offset="1640" Vartype="Pointer" Bytesize="8" OffsetHex="00000668" DisplayMethod="unsigned integer"/>
+        <Element Offset="1648" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000670" DisplayMethod="unsigned integer"/>
+        <Element Offset="1664" Vartype="Pointer" Bytesize="8" OffsetHex="00000680" DisplayMethod="unsigned integer"/>
+        <Element Offset="1672" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000688" DisplayMethod="unsigned integer"/>
+        <Element Offset="1680" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000690" DisplayMethod="unsigned integer"/>
+        <Element Offset="1696" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000006A0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1704" Vartype="Pointer" Bytesize="8" OffsetHex="000006A8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1712" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000006B0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1728" Vartype="Pointer" Bytesize="8" OffsetHex="000006C0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1736" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000006C8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1744" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="000006D0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1760" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000006E0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1768" Vartype="Pointer" Bytesize="8" OffsetHex="000006E8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1776" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000006F0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1792" Vartype="Pointer" Bytesize="8" OffsetHex="00000700" DisplayMethod="unsigned integer"/>
+        <Element Offset="1800" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000708" DisplayMethod="unsigned integer"/>
+        <Element Offset="1808" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000710" DisplayMethod="unsigned integer"/>
+        <Element Offset="1824" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000720" DisplayMethod="unsigned integer"/>
+        <Element Offset="1832" Vartype="Pointer" Bytesize="8" OffsetHex="00000728" DisplayMethod="unsigned integer"/>
+        <Element Offset="1840" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000730" DisplayMethod="unsigned integer"/>
+        <Element Offset="1856" Vartype="Pointer" Bytesize="8" OffsetHex="00000740" DisplayMethod="unsigned integer"/>
+        <Element Offset="1864" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000748" DisplayMethod="unsigned integer"/>
+        <Element Offset="1872" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000750" DisplayMethod="unsigned integer"/>
+        <Element Offset="1888" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000760" DisplayMethod="unsigned integer"/>
+        <Element Offset="1896" Vartype="Pointer" Bytesize="8" OffsetHex="00000768" DisplayMethod="unsigned integer"/>
+        <Element Offset="1904" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000770" DisplayMethod="unsigned integer"/>
+        <Element Offset="1920" Vartype="Pointer" Bytesize="8" OffsetHex="00000780" DisplayMethod="unsigned integer"/>
+        <Element Offset="1928" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000788" DisplayMethod="unsigned integer"/>
+        <Element Offset="1936" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000790" DisplayMethod="unsigned integer"/>
+        <Element Offset="1952" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000007A0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1960" Vartype="Pointer" Bytesize="8" OffsetHex="000007A8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1968" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000007B0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1984" Vartype="Pointer" Bytesize="8" OffsetHex="000007C0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1992" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000007C8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2000" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="000007D0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2016" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000007E0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2024" Vartype="Pointer" Bytesize="8" OffsetHex="000007E8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2032" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000007F0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2048" Vartype="Pointer" Bytesize="8" OffsetHex="00000800" DisplayMethod="unsigned integer"/>
+        <Element Offset="2056" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000808" DisplayMethod="unsigned integer"/>
+        <Element Offset="2064" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000810" DisplayMethod="unsigned integer"/>
+        <Element Offset="2080" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000820" DisplayMethod="unsigned integer"/>
+        <Element Offset="2088" Vartype="Pointer" Bytesize="8" OffsetHex="00000828" DisplayMethod="unsigned integer"/>
+        <Element Offset="2096" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000830" DisplayMethod="unsigned integer"/>
+        <Element Offset="2112" Vartype="Pointer" Bytesize="8" OffsetHex="00000840" DisplayMethod="unsigned integer"/>
+        <Element Offset="2120" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000848" DisplayMethod="unsigned integer"/>
+        <Element Offset="2128" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000850" DisplayMethod="unsigned integer"/>
+        <Element Offset="2144" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000860" DisplayMethod="unsigned integer"/>
+        <Element Offset="2152" Vartype="Pointer" Bytesize="8" OffsetHex="00000868" DisplayMethod="unsigned integer"/>
+        <Element Offset="2160" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000870" DisplayMethod="unsigned integer"/>
+        <Element Offset="2176" Vartype="Pointer" Bytesize="8" OffsetHex="00000880" DisplayMethod="unsigned integer"/>
+        <Element Offset="2184" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000888" DisplayMethod="unsigned integer"/>
+        <Element Offset="2192" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000890" DisplayMethod="unsigned integer"/>
+        <Element Offset="2208" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000008A0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2216" Vartype="Pointer" Bytesize="8" OffsetHex="000008A8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2224" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000008B0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2240" Vartype="Pointer" Bytesize="8" OffsetHex="000008C0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2248" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000008C8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2256" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="000008D0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2272" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000008E0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2280" Vartype="Pointer" Bytesize="8" OffsetHex="000008E8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2288" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000008F0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2304" Vartype="Pointer" Bytesize="8" OffsetHex="00000900" DisplayMethod="unsigned integer"/>
+        <Element Offset="2312" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000908" DisplayMethod="unsigned integer"/>
+        <Element Offset="2320" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000910" DisplayMethod="unsigned integer"/>
+        <Element Offset="2336" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000920" DisplayMethod="unsigned integer"/>
+        <Element Offset="2344" Vartype="Pointer" Bytesize="8" OffsetHex="00000928" DisplayMethod="unsigned integer"/>
+        <Element Offset="2352" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000930" DisplayMethod="unsigned integer"/>
+        <Element Offset="2368" Vartype="Pointer" Bytesize="8" OffsetHex="00000940" DisplayMethod="unsigned integer"/>
+        <Element Offset="2376" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000948" DisplayMethod="unsigned integer"/>
+        <Element Offset="2384" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000950" DisplayMethod="unsigned integer"/>
+        <Element Offset="2400" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000960" DisplayMethod="unsigned integer"/>
+        <Element Offset="2408" Vartype="Pointer" Bytesize="8" OffsetHex="00000968" DisplayMethod="unsigned integer"/>
+        <Element Offset="2416" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000970" DisplayMethod="unsigned integer"/>
+        <Element Offset="2432" Vartype="Pointer" Bytesize="8" OffsetHex="00000980" DisplayMethod="unsigned integer"/>
+        <Element Offset="2440" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000988" DisplayMethod="unsigned integer"/>
+        <Element Offset="2448" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000990" DisplayMethod="unsigned integer"/>
+        <Element Offset="2464" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000009A0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2472" Vartype="Pointer" Bytesize="8" OffsetHex="000009A8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2480" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000009B0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2496" Vartype="Pointer" Bytesize="8" OffsetHex="000009C0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2504" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000009C8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2512" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="000009D0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2528" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000009E0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2536" Vartype="Pointer" Bytesize="8" OffsetHex="000009E8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2544" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000009F0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2560" Vartype="Pointer" Bytesize="8" OffsetHex="00000A00" DisplayMethod="unsigned integer"/>
+        <Element Offset="2568" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000A08" DisplayMethod="unsigned integer"/>
+        <Element Offset="2576" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000A10" DisplayMethod="unsigned integer"/>
+        <Element Offset="2592" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000A20" DisplayMethod="unsigned integer"/>
+        <Element Offset="2600" Vartype="Pointer" Bytesize="8" OffsetHex="00000A28" DisplayMethod="unsigned integer"/>
+        <Element Offset="2608" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000A30" DisplayMethod="unsigned integer"/>
+        <Element Offset="2624" Vartype="Pointer" Bytesize="8" OffsetHex="00000A40" DisplayMethod="unsigned integer"/>
+        <Element Offset="2632" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000A48" DisplayMethod="unsigned integer"/>
+        <Element Offset="2640" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000A50" DisplayMethod="unsigned integer"/>
+        <Element Offset="2656" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000A60" DisplayMethod="unsigned integer"/>
+        <Element Offset="2664" Vartype="Pointer" Bytesize="8" OffsetHex="00000A68" DisplayMethod="unsigned integer"/>
+        <Element Offset="2672" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000A70" DisplayMethod="unsigned integer"/>
+        <Element Offset="2688" Vartype="Pointer" Bytesize="8" OffsetHex="00000A80" DisplayMethod="unsigned integer"/>
+        <Element Offset="2696" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000A88" DisplayMethod="unsigned integer"/>
+        <Element Offset="2704" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000A90" DisplayMethod="unsigned integer"/>
+        <Element Offset="2720" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000AA0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2728" Vartype="Pointer" Bytesize="8" OffsetHex="00000AA8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2736" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000AB0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2752" Vartype="Pointer" Bytesize="8" OffsetHex="00000AC0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2760" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000AC8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2768" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000AD0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2784" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000AE0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2792" Vartype="Pointer" Bytesize="8" OffsetHex="00000AE8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2800" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000AF0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2816" Vartype="Pointer" Bytesize="8" OffsetHex="00000B00" DisplayMethod="unsigned integer"/>
+        <Element Offset="2824" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000B08" DisplayMethod="unsigned integer"/>
+        <Element Offset="2832" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000B10" DisplayMethod="unsigned integer"/>
+        <Element Offset="2848" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000B20" DisplayMethod="unsigned integer"/>
+        <Element Offset="2856" Vartype="Pointer" Bytesize="8" OffsetHex="00000B28" DisplayMethod="unsigned integer"/>
+        <Element Offset="2864" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000B30" DisplayMethod="unsigned integer"/>
+        <Element Offset="2880" Vartype="Pointer" Bytesize="8" OffsetHex="00000B40" DisplayMethod="unsigned integer"/>
+        <Element Offset="2888" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000B48" DisplayMethod="unsigned integer"/>
+        <Element Offset="2896" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000B50" DisplayMethod="unsigned integer"/>
+        <Element Offset="2912" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000B60" DisplayMethod="unsigned integer"/>
+        <Element Offset="2920" Vartype="Pointer" Bytesize="8" OffsetHex="00000B68" DisplayMethod="unsigned integer"/>
+        <Element Offset="2928" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000B70" DisplayMethod="unsigned integer"/>
+        <Element Offset="2944" Vartype="Pointer" Bytesize="8" OffsetHex="00000B80" DisplayMethod="unsigned integer"/>
+        <Element Offset="2952" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000B88" DisplayMethod="unsigned integer"/>
+        <Element Offset="2960" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000B90" DisplayMethod="unsigned integer"/>
+        <Element Offset="2976" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000BA0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2984" Vartype="Pointer" Bytesize="8" OffsetHex="00000BA8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2992" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000BB0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3008" Vartype="Pointer" Bytesize="8" OffsetHex="00000BC0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3016" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000BC8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3024" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000BD0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3040" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000BE0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3048" Vartype="Pointer" Bytesize="8" OffsetHex="00000BE8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3056" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000BF0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3072" Vartype="Pointer" Bytesize="8" OffsetHex="00000C00" DisplayMethod="unsigned integer"/>
+        <Element Offset="3080" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000C08" DisplayMethod="unsigned integer"/>
+        <Element Offset="3088" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000C10" DisplayMethod="unsigned integer"/>
+        <Element Offset="3104" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000C20" DisplayMethod="unsigned integer"/>
+        <Element Offset="3112" Vartype="Pointer" Bytesize="8" OffsetHex="00000C28" DisplayMethod="unsigned integer"/>
+        <Element Offset="3120" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000C30" DisplayMethod="unsigned integer"/>
+        <Element Offset="3136" Vartype="Pointer" Bytesize="8" OffsetHex="00000C40" DisplayMethod="unsigned integer"/>
+        <Element Offset="3144" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000C48" DisplayMethod="unsigned integer"/>
+        <Element Offset="3152" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000C50" DisplayMethod="unsigned integer"/>
+        <Element Offset="3168" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000C60" DisplayMethod="unsigned integer"/>
+        <Element Offset="3176" Vartype="Pointer" Bytesize="8" OffsetHex="00000C68" DisplayMethod="unsigned integer"/>
+        <Element Offset="3184" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000C70" DisplayMethod="unsigned integer"/>
+        <Element Offset="3200" Vartype="Pointer" Bytesize="8" OffsetHex="00000C80" DisplayMethod="unsigned integer"/>
+        <Element Offset="3208" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000C88" DisplayMethod="unsigned integer"/>
+        <Element Offset="3216" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000C90" DisplayMethod="unsigned integer"/>
+        <Element Offset="3232" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000CA0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3240" Vartype="Pointer" Bytesize="8" OffsetHex="00000CA8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3248" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000CB0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3264" Vartype="Pointer" Bytesize="8" OffsetHex="00000CC0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3272" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000CC8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3280" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000CD0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3296" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000CE0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3304" Vartype="Pointer" Bytesize="8" OffsetHex="00000CE8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3312" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000CF0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3328" Vartype="Pointer" Bytesize="8" OffsetHex="00000D00" DisplayMethod="unsigned integer"/>
+        <Element Offset="3336" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000D08" DisplayMethod="unsigned integer"/>
+        <Element Offset="3344" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000D10" DisplayMethod="unsigned integer"/>
+        <Element Offset="3360" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000D20" DisplayMethod="unsigned integer"/>
+        <Element Offset="3368" Vartype="Pointer" Bytesize="8" OffsetHex="00000D28" DisplayMethod="unsigned integer"/>
+        <Element Offset="3376" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000D30" DisplayMethod="unsigned integer"/>
+        <Element Offset="3392" Vartype="Pointer" Bytesize="8" OffsetHex="00000D40" DisplayMethod="unsigned integer"/>
+        <Element Offset="3400" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000D48" DisplayMethod="unsigned integer"/>
+        <Element Offset="3408" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000D50" DisplayMethod="unsigned integer"/>
+        <Element Offset="3424" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000D60" DisplayMethod="unsigned integer"/>
+        <Element Offset="3432" Vartype="Pointer" Bytesize="8" OffsetHex="00000D68" DisplayMethod="unsigned integer"/>
+        <Element Offset="3440" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000D70" DisplayMethod="unsigned integer"/>
+        <Element Offset="3456" Vartype="Pointer" Bytesize="8" OffsetHex="00000D80" DisplayMethod="unsigned integer"/>
+        <Element Offset="3464" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000D88" DisplayMethod="unsigned integer"/>
+        <Element Offset="3472" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000D90" DisplayMethod="unsigned integer"/>
+        <Element Offset="3488" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000DA0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3496" Vartype="Pointer" Bytesize="8" OffsetHex="00000DA8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3504" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000DB0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3520" Vartype="Pointer" Bytesize="8" OffsetHex="00000DC0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3528" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000DC8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3536" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000DD0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3552" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000DE0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3560" Vartype="Pointer" Bytesize="8" OffsetHex="00000DE8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3568" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000DF0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3584" Vartype="Pointer" Bytesize="8" OffsetHex="00000E00" DisplayMethod="unsigned integer"/>
+        <Element Offset="3592" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000E08" DisplayMethod="unsigned integer"/>
+        <Element Offset="3600" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000E10" DisplayMethod="unsigned integer"/>
+        <Element Offset="3616" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000E20" DisplayMethod="unsigned integer"/>
+        <Element Offset="3624" Vartype="Pointer" Bytesize="8" OffsetHex="00000E28" DisplayMethod="unsigned integer"/>
+        <Element Offset="3632" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000E30" DisplayMethod="unsigned integer"/>
+        <Element Offset="3648" Vartype="Pointer" Bytesize="8" OffsetHex="00000E40" DisplayMethod="unsigned integer"/>
+        <Element Offset="3656" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000E48" DisplayMethod="unsigned integer"/>
+        <Element Offset="3664" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000E50" DisplayMethod="unsigned integer"/>
+        <Element Offset="3680" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000E60" DisplayMethod="unsigned integer"/>
+        <Element Offset="3688" Vartype="Pointer" Bytesize="8" OffsetHex="00000E68" DisplayMethod="unsigned integer"/>
+        <Element Offset="3696" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000E70" DisplayMethod="unsigned integer"/>
+        <Element Offset="3712" Vartype="Pointer" Bytesize="8" OffsetHex="00000E80" DisplayMethod="unsigned integer"/>
+        <Element Offset="3720" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000E88" DisplayMethod="unsigned integer"/>
+        <Element Offset="3728" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000E90" DisplayMethod="unsigned integer"/>
+        <Element Offset="3744" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000EA0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3752" Vartype="Pointer" Bytesize="8" OffsetHex="00000EA8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3760" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000EB0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3776" Vartype="Pointer" Bytesize="8" OffsetHex="00000EC0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3784" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000EC8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3792" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000ED0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3808" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000EE0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3816" Vartype="Pointer" Bytesize="8" OffsetHex="00000EE8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3824" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000EF0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3840" Vartype="Pointer" Bytesize="8" OffsetHex="00000F00" DisplayMethod="unsigned integer"/>
+        <Element Offset="3848" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000F08" DisplayMethod="unsigned integer"/>
+        <Element Offset="3856" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000F10" DisplayMethod="unsigned integer"/>
+        <Element Offset="3872" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000F20" DisplayMethod="unsigned integer"/>
+        <Element Offset="3880" Vartype="Pointer" Bytesize="8" OffsetHex="00000F28" DisplayMethod="unsigned integer"/>
+        <Element Offset="3888" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000F30" DisplayMethod="unsigned integer"/>
+        <Element Offset="3904" Vartype="Pointer" Bytesize="8" OffsetHex="00000F40" DisplayMethod="unsigned integer"/>
+        <Element Offset="3912" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000F48" DisplayMethod="unsigned integer"/>
+        <Element Offset="3920" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000F50" DisplayMethod="unsigned integer"/>
+        <Element Offset="3936" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000F60" DisplayMethod="unsigned integer"/>
+        <Element Offset="3944" Vartype="Pointer" Bytesize="8" OffsetHex="00000F68" DisplayMethod="unsigned integer"/>
+        <Element Offset="3952" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000F70" DisplayMethod="unsigned integer"/>
+        <Element Offset="3968" Vartype="Pointer" Bytesize="8" OffsetHex="00000F80" DisplayMethod="unsigned integer"/>
+        <Element Offset="3976" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000F88" DisplayMethod="unsigned integer"/>
+        <Element Offset="3984" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000F90" DisplayMethod="unsigned integer"/>
+        <Element Offset="4000" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000FA0" DisplayMethod="unsigned integer"/>
+        <Element Offset="4008" Vartype="Pointer" Bytesize="8" OffsetHex="00000FA8" DisplayMethod="unsigned integer"/>
+        <Element Offset="4016" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000FB0" DisplayMethod="unsigned integer"/>
+        <Element Offset="4032" Vartype="Pointer" Bytesize="8" OffsetHex="00000FC0" DisplayMethod="unsigned integer"/>
+        <Element Offset="4040" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000FC8" DisplayMethod="unsigned integer"/>
+        <Element Offset="4048" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000FD0" DisplayMethod="unsigned integer"/>
+        <Element Offset="4064" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000FE0" DisplayMethod="unsigned integer"/>
+        <Element Offset="4072" Vartype="Pointer" Bytesize="8" OffsetHex="00000FE8" DisplayMethod="unsigned integer"/>
+        <Element Offset="4080" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000FF0" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+  </Structures>
+  <Comments>rcx+DB=65  敌人   自己0
+rcx+18=0  敌人   自己很大一个数
+ 
+</Comments>
+</CheatTable>

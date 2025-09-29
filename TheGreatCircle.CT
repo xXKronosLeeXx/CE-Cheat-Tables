@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"技能点+钱"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : TheGreatCircle.exe
+  Version: 
+  Date   : 2024-12-09
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,TheGreatCircle.exe,44 89 03 48 85 D2) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rbx],#8888
+  test rdx,rdx
+  jmp return
+
+code:
+  mov [rbx],r8d
+  test rdx,rdx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 44 89 03 48 85 D2
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TheGreatCircle.exe+19A2E02
+
+TheGreatCircle.exe+19A2DDE: 89 47 08              - mov [rdi+08],eax
+TheGreatCircle.exe+19A2DE1: 48 63 C2              - movsxd  rax,edx
+TheGreatCircle.exe+19A2DE4: 48 8D 0C 40           - lea rcx,[rax+rax*2]
+TheGreatCircle.exe+19A2DE8: 48 8B 07              - mov rax,[rdi]
+TheGreatCircle.exe+19A2DEB: 48 8B 7C 24 20        - mov rdi,[rsp+20]
+TheGreatCircle.exe+19A2DF0: 48 8D 14 C8           - lea rdx,[rax+rcx*8]
+TheGreatCircle.exe+19A2DF4: 44 8B 42 0C           - mov r8d,[rdx+0C]
+TheGreatCircle.exe+19A2DF8: 48 8D 5A 0C           - lea rbx,[rdx+0C]
+TheGreatCircle.exe+19A2DFC: 48 8B 12              - mov rdx,[rdx]
+TheGreatCircle.exe+19A2DFF: 44 03 C6              - add r8d,esi
+// ---------- INJECTING HERE ----------
+TheGreatCircle.exe+19A2E02: 44 89 03              - mov [rbx],r8d
+// ---------- DONE INJECTING  ----------
+TheGreatCircle.exe+19A2E05: 48 85 D2              - test rdx,rdx
+TheGreatCircle.exe+19A2E08: 74 06                 - je TheGreatCircle.exe+19A2E10
+TheGreatCircle.exe+19A2E0A: 48 8B 52 08           - mov rdx,[rdx+08]
+TheGreatCircle.exe+19A2E0E: EB 07                 - jmp TheGreatCircle.exe+19A2E17
+TheGreatCircle.exe+19A2E10: 48 8D 15 89 9C C8 01  - lea rdx,[TheGreatCircle.exe+362CAA0]
+TheGreatCircle.exe+19A2E17: 48 8B 05 A2 B5 0B 03  - mov rax,[TheGreatCircle.exe+4A5E3C0]
+TheGreatCircle.exe+19A2E1E: 48 8D 0D 9B B5 0B 03  - lea rcx,[TheGreatCircle.exe+4A5E3C0]
+TheGreatCircle.exe+19A2E25: 48 89 54 24 58        - mov [rsp+58],rdx
+TheGreatCircle.exe+19A2E2A: FF 90 88 02 00 00     - call qword ptr [rax+00000288]
+TheGreatCircle.exe+19A2E30: 4C 8B C3              - mov r8,rbx
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <Comments>HP当前值-4H 是上限HP  最高13
+HP当前值+8H 是护甲HP
+HP当前值-14D32F4 绷带数量
+绷带地址-60H  是面包地址（增加体力护盾）
+</Comments>
+</CheatTable>

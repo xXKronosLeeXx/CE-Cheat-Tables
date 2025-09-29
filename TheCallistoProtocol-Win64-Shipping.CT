@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"不减钱"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : TheCallistoProtocol-Win64-Shipping.exe
+  Version: 
+  Date   : 2024-08-24
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,TheCallistoProtocol-Win64-Shipping.exe,44 29 40 10 83 78 10 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [rax+10],r8d
+  cmp dword ptr [rax+10],00
+  jmp return
+
+
+
+code:
+  sub [rax+10],r8d
+  cmp dword ptr [rax+10],00
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 44 29 40 10 83 78 10 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TheCallistoProtocol-Win64-Shipping.exe+19ED9DC
+
+TheCallistoProtocol-Win64-Shipping.exe+19ED9B4: 48 83 EC 68           - sub rsp,68
+TheCallistoProtocol-Win64-Shipping.exe+19ED9B8: 4C 8D B1 A8 01 00 00  - lea r14,[rcx+000001A8]
+TheCallistoProtocol-Win64-Shipping.exe+19ED9BF: 4C 63 FA              - movsxd  r15,edx
+TheCallistoProtocol-Win64-Shipping.exe+19ED9C2: 49 8B 06              - mov rax,[r14]
+TheCallistoProtocol-Win64-Shipping.exe+19ED9C5: 41 8B E8              - mov ebp,r8d
+TheCallistoProtocol-Win64-Shipping.exe+19ED9C8: 49 C1 E7 08           - shl r15,08
+TheCallistoProtocol-Win64-Shipping.exe+19ED9CC: 48 8B F1              - mov rsi,rcx
+TheCallistoProtocol-Win64-Shipping.exe+19ED9CF: 49 03 C7              - add rax,r15
+TheCallistoProtocol-Win64-Shipping.exe+19ED9D2: 4C 89 74 24 20        - mov [rsp+20],r14
+TheCallistoProtocol-Win64-Shipping.exe+19ED9D7: 48 89 44 24 28        - mov [rsp+28],rax
+// ---------- INJECTING HERE ----------
+TheCallistoProtocol-Win64-Shipping.exe+19ED9DC: 44 29 40 10           - sub [rax+10],r8d
+// ---------- DONE INJECTING  ----------
+TheCallistoProtocol-Win64-Shipping.exe+19ED9E0: 83 78 10 00           - cmp dword ptr [rax+10],00
+TheCallistoProtocol-Win64-Shipping.exe+19ED9E4: 7E 2D                 - jle TheCallistoProtocol-Win64-Shipping.exe+19EDA13
+TheCallistoProtocol-Win64-Shipping.exe+19ED9E6: 48 8B 40 08           - mov rax,[rax+08]
+TheCallistoProtocol-Win64-Shipping.exe+19ED9EA: 48 8D 54 24 28        - lea rdx,[rsp+28]
+TheCallistoProtocol-Win64-Shipping.exe+19ED9EF: F7 DD                 - neg ebp
+TheCallistoProtocol-Win64-Shipping.exe+19ED9F1: 48 89 44 24 28        - mov [rsp+28],rax
+TheCallistoProtocol-Win64-Shipping.exe+19ED9F6: 48 81 C1 C0 00 00 00  - add rcx,000000C0
+TheCallistoProtocol-Win64-Shipping.exe+19ED9FD: 89 6C 24 30           - mov [rsp+30],ebp
+TheCallistoProtocol-Win64-Shipping.exe+19EDA01: E8 0A AE ED FE        - call TheCallistoProtocol-Win64-Shipping.exe+8C8810
+TheCallistoProtocol-Win64-Shipping.exe+19EDA06: 32 C0                 - xor al,al
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"子弹不减"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : TheCallistoProtocol-Win64-Shipping.exe
+  Version: 
+  Date   : 2024-08-24
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,TheCallistoProtocol-Win64-Shipping.exe,89 91 B8 00 00 00 48 8B) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov edx,[rcx+000000B8]
+  mov [rcx+000000B8],edx
+  jmp return
+
+code:
+  mov [rcx+000000B8],edx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 91 B8 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TheCallistoProtocol-Win64-Shipping.exe+19E7CC8
+
+TheCallistoProtocol-Win64-Shipping.exe+19E7CAA: 8B FA                 - mov edi,edx
+TheCallistoProtocol-Win64-Shipping.exe+19E7CAC: 48 8B D9              - mov rbx,rcx
+TheCallistoProtocol-Win64-Shipping.exe+19E7CAF: 85 D2                 - test edx,edx
+TheCallistoProtocol-Win64-Shipping.exe+19E7CB1: 79 09                 - jns TheCallistoProtocol-Win64-Shipping.exe+19E7CBC
+TheCallistoProtocol-Win64-Shipping.exe+19E7CB3: 83 3D 72 E1 E8 04 00  - cmp dword ptr [TheCallistoProtocol-Win64-Shipping.exe+6875E2C],00
+TheCallistoProtocol-Win64-Shipping.exe+19E7CBA: 7F 4E                 - jg TheCallistoProtocol-Win64-Shipping.exe+19E7D0A
+TheCallistoProtocol-Win64-Shipping.exe+19E7CBC: 85 FF                 - test edi,edi
+TheCallistoProtocol-Win64-Shipping.exe+19E7CBE: 74 4A                 - je TheCallistoProtocol-Win64-Shipping.exe+19E7D0A
+TheCallistoProtocol-Win64-Shipping.exe+19E7CC0: 8B 91 B8 00 00 00     - mov edx,[rcx+000000B8]
+TheCallistoProtocol-Win64-Shipping.exe+19E7CC6: 03 D7                 - add edx,edi
+// ---------- INJECTING HERE ----------
+TheCallistoProtocol-Win64-Shipping.exe+19E7CC8: 89 91 B8 00 00 00     - mov [rcx+000000B8],edx
+// ---------- DONE INJECTING  ----------
+TheCallistoProtocol-Win64-Shipping.exe+19E7CCE: 48 8B 89 D8 00 00 00  - mov rcx,[rcx+000000D8]
+TheCallistoProtocol-Win64-Shipping.exe+19E7CD5: 48 85 C9              - test rcx,rcx
+TheCallistoProtocol-Win64-Shipping.exe+19E7CD8: 74 22                 - je TheCallistoProtocol-Win64-Shipping.exe+19E7CFC
+TheCallistoProtocol-Win64-Shipping.exe+19E7CDA: E8 61 F8 21 00        - call TheCallistoProtocol-Win64-Shipping.exe+1C07540
+TheCallistoProtocol-Win64-Shipping.exe+19E7CDF: 44 8B 83 B8 00 00 00  - mov r8d,[rbx+000000B8]
+TheCallistoProtocol-Win64-Shipping.exe+19E7CE6: 8B D7                 - mov edx,edi
+TheCallistoProtocol-Win64-Shipping.exe+19E7CE8: 48 8B 8B D8 00 00 00  - mov rcx,[rbx+000000D8]
+TheCallistoProtocol-Win64-Shipping.exe+19E7CEF: E8 0C E6 1F 00        - call TheCallistoProtocol-Win64-Shipping.exe+1BE6300
+TheCallistoProtocol-Win64-Shipping.exe+19E7CF4: 48 8B CB              - mov rcx,rbx
+TheCallistoProtocol-Win64-Shipping.exe+19E7CF7: E8 14 52 00 00        - call TheCallistoProtocol-Win64-Shipping.exe+19ECF10
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

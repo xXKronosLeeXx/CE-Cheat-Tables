@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>13</ID>
+      <Description>"1击EXP满"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Timespinner
+  Version: 
+  Date   : 2023-10-27
+  Author : lixiang
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,03 C2 89 46 08 EB 19) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov edx,#140000
+code:
+  add eax,edx
+  mov [esi+08],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 03 C2 89 46 08
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 0806A3AC
+
+0806A396: 00 00           - add [eax],al
+0806A398: E8 23 60 01 D4  - call DC0803C0
+0806A39D: E1 C0           - loope 0806A35F
+0806A39F: 11 55 8B        - adc [ebp-75],edx
+0806A3A2: EC              - in al,dx
+0806A3A3: 57              - push edi
+0806A3A4: 56              - push esi
+0806A3A5: 8B F1           - mov esi,ecx
+0806A3A7: 33 FF           - xor edi,edi
+0806A3A9: 8B 46 08        - mov eax,[esi+08]
+// ---------- INJECTING HERE ----------
+0806A3AC: 03 C2           - add eax,edx
+// ---------- DONE INJECTING  ----------
+0806A3AE: 89 46 08        - mov [esi+08],eax
+0806A3B1: EB 19           - jmp 0806A3CC
+0806A3B3: BF 01 00 00 00  - mov edi,00000001
+0806A3B8: 41              - inc ecx
+0806A3B9: 8B C1           - mov eax,ecx
+0806A3BB: 89 46 18        - mov [esi+18],eax
+0806A3BE: 8B 4E 18        - mov ecx,[esi+18]
+0806A3C1: 8B 56 1C        - mov edx,[esi+1C]
+0806A3C4: E8 0F CC D8 0C  - call Timespinner.Core.Constants.Constants::GetCharacterLevelUpThresholdFromLevel
+0806A3C9: 89 46 20        - mov [esi+20],eax
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>17</ID>
+      <Description>"金钱无限"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Timespinner
+  Version: 
+  Date   : 2023-10-27
+  Author : lixiang
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+
+ 
+ 
+aobscan(INJECT,2B F0 89 71 44) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov eax,ffff
+  add esi,eax
+  mov [ecx+44],esi
+  jmp return
+
+code:
+  sub esi,eax
+  mov [ecx+44],esi
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+INJECT:
+  db 2B F0 89 71 44
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 00DD17CE
+
+00DD17B0: C8 A9 A5 00        - enter A5A9,00
+00DD17B4: 48                 - dec eax
+00DD17B5: 6A A4              - push -5C
+00DD17B7: 00 57 56           - add [edi+56],dl
+00DD17BA: 8B 89 1C 01 00 00  - mov ecx,[ecx+0000011C]
+00DD17C0: 8B 71 44           - mov esi,[ecx+44]
+00DD17C3: 38 02              - cmp [edx],al
+00DD17C5: 8B 7A 5C           - mov edi,[edx+5C]
+00DD17C8: 8B 42 60           - mov eax,[edx+60]
+00DD17CB: 0F AF C7           - imul eax,edi
+// ---------- INJECTING HERE ----------
+00DD17CE: 2B F0              - sub esi,eax
+// ---------- DONE INJECTING  ----------
+00DD17D0: 89 71 44           - mov [ecx+44],esi
+00DD17D3: 83 79 44 00        - cmp dword ptr [ecx+44],00
+00DD17D7: 7D 05              - jnl 00DD17DE
+00DD17D9: 33 D2              - xor edx,edx
+00DD17DB: 89 51 44           - mov [ecx+44],edx
+00DD17DE: 5E                 - pop esi
+00DD17DF: 5F                 - pop edi
+00DD17E0: C3                 - ret 
+00DD17E1: 00 00              - add [eax],al
+00DD17E3: 00 00              - add [eax],al
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>20</ID>
+      <Description>"宠物经验"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Timespinner
+  Version: 
+  Date   : 2023-10-27
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,8B C6 89 41 24 8B 71) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov esi,#125535
+
+code:
+  mov eax,esi
+  mov [ecx+24],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 8B C6 89 41 24
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 080490EA
+
+080490D6: DA 10              - ficom [eax]
+080490D8: 55                 - push ebp
+080490D9: 8B EC              - mov ebp,esp
+080490DB: 57                 - push edi
+080490DC: 56                 - push esi
+080490DD: 33 FF              - xor edi,edi
+080490DF: 83 79 38 63        - cmp dword ptr [ecx+38],63
+080490E3: 7D 27              - jnl 0804910C
+080490E5: 8B 71 24           - mov esi,[ecx+24]
+080490E8: 03 F2              - add esi,edx
+// ---------- INJECTING HERE ----------
+080490EA: 8B C6              - mov eax,esi
+// ---------- DONE INJECTING  ----------
+080490EC: 89 41 24           - mov [ecx+24],eax
+080490EF: 8B 71 24           - mov esi,[ecx+24]
+080490F2: 8B 41 40           - mov eax,[ecx+40]
+080490F5: 3B F0              - cmp esi,eax
+080490F7: 7E 0D              - jle 08049106
+080490F9: BF 01 00 00 00     - mov edi,00000001
+080490FE: FF 15 04 FC DA 10  - call dword ptr [10DAFC04]
+08049104: EB 06              - jmp 0804910C
+08049106: 2B C6              - sub eax,esi
+08049108: 40                 - inc eax
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>24</ID>
+      <Description>"道具不减"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Timespinner
+  Version: 
+  Date   : 2023-10-28
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,89 42 20 83 7A 20 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [edx+20],eax
+  jb code
+  cmp [edx+20],1
+  je jiafa
+  nop
+  nop
+  jmp return
+
+jiafa:
+  mov [edx+20],2
+  nop
+  jmp return
+
+code:
+  mov [edx+20],eax
+  cmp dword ptr [edx+20],00
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 42 20 83 7A 20 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 01A61D8D
+
+01A61D70: E8 2B C0 86 68  - call mscorlib.ni.dll+3EDDA0
+01A61D75: 85 C0           - test eax,eax
+01A61D77: 7C 29           - jl 01A61DA2
+01A61D79: 8B 4E 04        - mov ecx,[esi+04]
+01A61D7C: 8B D7           - mov edx,edi
+01A61D7E: 39 09           - cmp [ecx],ecx
+01A61D80: E8 FB 47 8C 68  - call mscorlib.ni.dll+446580
+01A61D85: 8B D0           - mov edx,eax
+01A61D87: 8B 42 20        - mov eax,[edx+20]
+01A61D8A: 2B 45 08        - sub eax,[ebp+08]
+// ---------- INJECTING HERE ----------
+01A61D8D: 89 42 20        - mov [edx+20],eax
+// ---------- DONE INJECTING  ----------
+01A61D90: 83 7A 20 00     - cmp dword ptr [edx+20],00
+01A61D94: 7F 0C           - jg 01A61DA2
+01A61D96: 8B 4E 04        - mov ecx,[esi+04]
+01A61D99: 8B D7           - mov edx,edi
+01A61D9B: 39 09           - cmp [ecx],ecx
+01A61D9D: E8 CE 49 8C 68  - call mscorlib.ni.dll+446770
+01A61DA2: 5E              - pop esi
+01A61DA3: 5F              - pop edi
+01A61DA4: 5D              - pop ebp
+01A61DA5: C2 04 00        - ret 0004
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>替换了 mov [ecx+50],edx</Description>
+      <AddressString>076AF700</AddressString>
+      <Before>
+        <Byte>00</Byte>
+        <Byte>FC</Byte>
+        <Byte>DA</Byte>
+        <Byte>6A</Byte>
+        <Byte>10</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>51</Byte>
+        <Byte>50</Byte>
+      </Actual>
+      <After>
+        <Byte>C3</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>替换了 mov eax,[eax+4C]</Description>
+      <AddressString>0440BCC8</AddressString>
+      <Before>
+        <Byte>FA</Byte>
+        <Byte>8B</Byte>
+        <Byte>CF</Byte>
+        <Byte>8B</Byte>
+        <Byte>01</Byte>
+      </Before>
+      <Actual>
+        <Byte>8B</Byte>
+        <Byte>40</Byte>
+        <Byte>4C</Byte>
+      </Actual>
+      <After>
+        <Byte>FF</Byte>
+        <Byte>50</Byte>
+        <Byte>0C</Byte>
+        <Byte>89</Byte>
+        <Byte>46</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>

@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"获得物品99"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : My Time at Portia
+  Version: 
+  Date   : 2023-12-31
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,89 70 24 BF 01 00 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [rax+24],#99
+  ja code
+  mov [rax+24],#100
+  cmp [rax+24],esi
+  jb code
+  mov edi,00000001
+  jmp return
+
+code:
+  mov [rax+24],esi
+  mov edi,00000001
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 70 24 BF 01 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 205380CD3BD
+
+205380CD39C: 83 3A 00                       - cmp dword ptr [rdx],00
+205380CD39F: 48 8B 49 10                    - mov rcx,[rcx+10]
+205380CD3A3: 48 63 89 B4 00 00 00           - movsxd  rcx,dword ptr [rcx+000000B4]
+205380CD3AA: 3B C1                          - cmp eax,ecx
+205380CD3AC: 7F 04                          - jg 205380CD3B2
+205380CD3AE: 85 F6                          - test esi,esi
+205380CD3B0: 7D 07                          - jnl 205380CD3B9
+205380CD3B2: 33 FF                          - xor edi,edi
+205380CD3B4: E9 D6 01 00 00                 - jmp 205380CD58F
+205380CD3B9: 48 8B 45 88                    - mov rax,[rbp-78]
+// ---------- INJECTING HERE ----------
+205380CD3BD: 89 70 24                       - mov [rax+24],esi
+// ---------- DONE INJECTING  ----------
+205380CD3C0: BF 01 00 00 00                 - mov edi,00000001
+205380CD3C5: E9 C5 01 00 00                 - jmp 205380CD58F
+205380CD3CA: 48 8B 45 98                    - mov rax,[rbp-68]
+205380CD3CE: 48 8B 45 98                    - mov rax,[rbp-68]
+205380CD3D2: 48 89 45 90                    - mov [rbp-70],rax
+205380CD3D6: BA 02 00 00 00                 - mov edx,00000002
+205380CD3DB: 48 B9 58 93 69 26 05 02 00 00  - mov rcx,0000020526699358
+205380CD3E5: 48 83 EC 20                    - sub rsp,20
+205380CD3E9: 49 BB E0 09 A6 26 05 02 00 00  - mov r11,0000020526A609E0
+205380CD3F3: 41 FF D3                       - call r11
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"money"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : My Time at Portia
+  Version: 
+  Date   : 2023-12-31
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,41 89 47 58 45 33 E4) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [r15+58],#99999
+  ja code
+  mov [r15+58],#100000
+  cmp [r15+58],eax
+  jb code
+  xor r12d,r12d
+  jmp return
+
+code:
+  mov [r15+58],eax
+  xor r12d,r12d
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 41 89 47 58 45 33 E4
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 20526B3B959
+
+20526B3B92E: 6A 00                          - push 00
+20526B3B930: F2 0F 10 D0                    - movsd xmm2,xmm0
+20526B3B934: F2 0F 5A D2                    - cvtsd2ss xmm2,xmm2
+20526B3B938: 48 83 EC 20                    - sub rsp,20
+20526B3B93C: 49 BB 0C BB B3 26 05 02 00 00  - mov r11,0000020526B3BB0C
+20526B3B946: 41 FF D3                       - call r11
+20526B3B949: 48 83 C4 30                    - add rsp,30
+20526B3B94D: E9 12 01 00 00                 - jmp 20526B3BA64
+20526B3B952: 49 63 47 58                    - movsxd  rax,dword ptr [r15+58]
+20526B3B956: 41 2B C6                       - sub eax,r14d
+// ---------- INJECTING HERE ----------
+20526B3B959: 41 89 47 58                    - mov [r15+58],eax
+// ---------- DONE INJECTING  ----------
+20526B3B95D: 45 33 E4                       - xor r12d,r12d
+20526B3B960: E9 4A 00 00 00                 - jmp 20526B3B9AF
+20526B3B965: 66 66 90                       - nop 3
+20526B3B968: 83 7D C0 00                    - cmp dword ptr [rbp-40],00
+20526B3B96C: 0F 84 4A 00 00 00              - je 20526B3B9BC
+20526B3B972: 49 8B 47 18                    - mov rax,[r15+18]
+20526B3B976: 49 63 CC                       - movsxd  rcx,r12d
+20526B3B979: 39 48 18                       - cmp [rax+18],ecx
+20526B3B97C: 0F 86 10 01 00 00              - jbe 20526B3BA92
+20526B3B982: 48 8D 44 C8 20                 - lea rax,[rax+rcx*8+20]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"SP"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : My Time at Portia
+  Version: 
+  Date   : 2023-12-31
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,89 86 BC 00 00 00 48 B8) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop
+  jmp return
+
+code:
+  mov [rsi+000000BC],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 86 BC 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 2050D6A758D
+
+2050D6A7561: F3 0F 5A C0                    - cvtss2sd xmm0,xmm0
+2050D6A7565: F2 0F 5A E8                    - cvtsd2ss xmm5,xmm0
+2050D6A7569: F3 0F 11 6D F4                 - movss [rbp-0C],xmm5
+2050D6A756E: F3 0F 10 45 F4                 - movss xmm0,[rbp-0C]
+2050D6A7573: F3 0F 5A C0                    - cvtss2sd xmm0,xmm0
+2050D6A7577: F2 0F 5A E8                    - cvtsd2ss xmm5,xmm0
+2050D6A757B: F3 0F 11 6D F4                 - movss [rbp-0C],xmm5
+2050D6A7580: F3 0F 10 45 F4                 - movss xmm0,[rbp-0C]
+2050D6A7585: F3 0F 5A C0                    - cvtss2sd xmm0,xmm0
+2050D6A7589: F2 0F 2C C0                    - cvttsd2si eax,xmm0
+// ---------- INJECTING HERE ----------
+2050D6A758D: 89 86 BC 00 00 00              - mov [rsi+000000BC],eax
+// ---------- DONE INJECTING  ----------
+2050D6A7593: 48 B8 A0 C4 60 26 05 02 00 00  - mov rax,000002052660C4A0
+2050D6A759D: 48 8B 00                       - mov rax,[rax]
+2050D6A75A0: 48 8B C8                       - mov rcx,rax
+2050D6A75A3: 83 39 00                       - cmp dword ptr [rcx],00
+2050D6A75A6: 48 8B 40 20                    - mov rax,[rax+20]
+2050D6A75AA: 48 8B C8                       - mov rcx,rax
+2050D6A75AD: 83 39 00                       - cmp dword ptr [rcx],00
+2050D6A75B0: 48 8B 80 90 01 00 00           - mov rax,[rax+00000190]
+2050D6A75B7: 48 8B C8                       - mov rcx,rax
+2050D6A75BA: 83 39 00                       - cmp dword ptr [rcx],00
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>9</ID>
+      <Description>"EXP"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : My Time at Portia
+  Version: 
+  Date   : 2023-12-31
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,44 89 3F C7 06 00 00 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rdi],#99999
+  mov [rsi],#99999
+  jmp return
+
+code:
+  mov [rdi],r15d
+  mov [rsi],00000000
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 4
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 44 89 3F C7 06 00 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 205380F62FF
+
+205380F62E4: 56                             - push rsi
+205380F62E5: 57                             - push rdi
+205380F62E6: 41 56                          - push r14
+205380F62E8: 41 57                          - push r15
+205380F62EA: 48 83 EC 10                    - sub rsp,10
+205380F62EE: 48 89 4D D8                    - mov [rbp-28],rcx
+205380F62F2: 4C 8B F2                       - mov r14,rdx
+205380F62F5: 4D 8B F8                       - mov r15,r8
+205380F62F8: 49 8B F9                       - mov rdi,r9
+205380F62FB: 48 8B 75 30                    - mov rsi,[rbp+30]
+// ---------- INJECTING HERE ----------
+205380F62FF: 44 89 3F                       - mov [rdi],r15d
+// ---------- DONE INJECTING  ----------
+205380F6302: C7 06 00 00 00 00              - mov [rsi],00000000
+205380F6308: 48 8B 4D D8                    - mov rcx,[rbp-28]
+205380F630C: 49 8B D6                       - mov rdx,r14
+205380F630F: 48 83 EC 20                    - sub rsp,20
+205380F6313: 49 BB C0 60 0F 38 05 02 00 00  - mov r11,00000205380F60C0
+205380F631D: 41 FF D3                       - call r11
+205380F6320: 48 83 C4 20                    - add rsp,20
+205380F6324: 4C 8B F0                       - mov r14,rax
+205380F6327: 49 8B C6                       - mov rax,r14
+205380F632A: 48 85 C0                       - test rax,rax
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>代码 :mov [rax+24],esi</Description>
+      <AddressString>205380CD3BD</AddressString>
+      <Before>
+        <Byte>00</Byte>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>45</Byte>
+        <Byte>88</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>70</Byte>
+        <Byte>24</Byte>
+      </Actual>
+      <After>
+        <Byte>BF</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>

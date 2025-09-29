@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"分数"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>s1945.exe+117ADBC</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>10</ID>
+      <Description>"HP"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>2 Bytes</VariableType>
+      <Address>s1945.exe+117ADBC+20</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"Boom"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>2 Bytes</VariableType>
+      <Address>s1945.exe+117ADBC+24</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>15</ID>
+      <Description>"fire"</Description>
+      <DropDownList ReadOnly="1" DisplayValueAsItem="1">3:火力
+</DropDownList>
+      <ShowAsSigned>0</ShowAsSigned>
+      <Color>0000FF</Color>
+      <VariableType>2 Bytes</VariableType>
+      <Address>s1945.exe+117ADBC+26</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>14</ID>
+      <Description>"子机"</Description>
+      <DropDownList ReadOnly="1" DisplayValueAsItem="1">4:子机
+</DropDownList>
+      <ShowAsSigned>0</ShowAsSigned>
+      <Color>0000FF</Color>
+      <VariableType>2 Bytes</VariableType>
+      <Address>s1945.exe+117ADBC+50</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>11</ID>
+      <Description>"无描述"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>2 Bytes</VariableType>
+      <Address>017AAE0C</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>12</ID>
+      <Description>"无描述"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>2 Bytes</VariableType>
+      <Address>017AADE2</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

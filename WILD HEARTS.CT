@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>13</ID>
+      <Description>"齿轮50"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : WILD HEARTS
+  Version: 
+  Date   : 2023-12-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,WILD HEARTS.exe,66 89 8A 4C 3B 11 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rdx+00113B4C],#50
+  jmp return
+
+code:
+  mov [rdx+00113B4C],cx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 66 89 8A 4C 3B 11 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: WILD HEARTS.exe+3F9C58A
+
+WILD HEARTS.exe+3F9C578: 41 5E                 - pop r14
+WILD HEARTS.exe+3F9C57A: 41 5D                 - pop r13
+WILD HEARTS.exe+3F9C57C: 41 5C                 - pop r12
+WILD HEARTS.exe+3F9C57E: 5F                    - pop rdi
+WILD HEARTS.exe+3F9C57F: 5E                    - pop rsi
+WILD HEARTS.exe+3F9C580: 5D                    - pop rbp
+WILD HEARTS.exe+3F9C581: C3                    - ret 
+WILD HEARTS.exe+3F9C582: 98                    - cwde 
+WILD HEARTS.exe+3F9C583: 2B C8                 - sub ecx,eax
+WILD HEARTS.exe+3F9C585: 66 41 0F 48 C9        - cmovs cx,r9w
+// ---------- INJECTING HERE ----------
+WILD HEARTS.exe+3F9C58A: 66 89 8A 4C 3B 11 00  - mov [rdx+00113B4C],cx
+// ---------- DONE INJECTING  ----------
+WILD HEARTS.exe+3F9C591: 41 8B 4D 04           - mov ecx,[r13+04]
+WILD HEARTS.exe+3F9C595: 49 63 45 00           - movsxd  rax,dword ptr [r13+00]
+WILD HEARTS.exe+3F9C599: 83 F8 09              - cmp eax,09
+WILD HEARTS.exe+3F9C59C: 77 07                 - ja "WILD HEARTS.exe"+3F9C5A5
+WILD HEARTS.exe+3F9C59E: 88 8C 10 3C 3B 11 00  - mov [rax+rdx+00113B3C],cl
+WILD HEARTS.exe+3F9C5A5: E8 C6 D1 67 FC        - call "WILD HEARTS.exe"+619770
+WILD HEARTS.exe+3F9C5AA: 48 85 C0              - test rax,rax
+WILD HEARTS.exe+3F9C5AD: 0F 84 AA 00 00 00     - je "WILD HEARTS.exe"+3F9C65D
+WILD HEARTS.exe+3F9C5B3: 48 8B 78 48           - mov rdi,[rax+48]
+WILD HEARTS.exe+3F9C5B7: 48 81 C7 A8 00 00 00  - add rdi,000000A8
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>11</ID>
+      <Description>"机巧不减"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : WILD HEARTS
+  Version: 
+  Date   : 2023-12-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,WILD HEARTS.exe,66 89 48 04 75 83) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [rax+04],cx
+  jb code
+  jne "WILD HEARTS.exe"+3A027B0
+  jmp return
+
+code:
+  mov [rax+04],cx
+  jne "WILD HEARTS.exe"+3A027B0
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 66 89 48 04 75 83
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: WILD HEARTS.exe+3A02827
+
+WILD HEARTS.exe+3A027FF: 48 3B C1              - cmp rax,rcx
+WILD HEARTS.exe+3A02802: 75 EC                 - jne "WILD HEARTS.exe"+3A027F0
+WILD HEARTS.exe+3A02804: 48 8D 8D E0 00 00 00  - lea rcx,[rbp+000000E0]
+WILD HEARTS.exe+3A0280B: 4A 8D 0C D9           - lea rcx,[rcx+r11*8]
+WILD HEARTS.exe+3A0280F: 48 3B D1              - cmp rdx,rcx
+WILD HEARTS.exe+3A02812: 0F 84 70 01 00 00     - je "WILD HEARTS.exe"+3A02988
+WILD HEARTS.exe+3A02818: 0F B7 48 04           - movzx ecx,word ptr [rax+04]
+WILD HEARTS.exe+3A0281C: 3B F9                 - cmp edi,ecx
+WILD HEARTS.exe+3A0281E: 0F 87 64 01 00 00     - ja "WILD HEARTS.exe"+3A02988
+WILD HEARTS.exe+3A02824: 66 2B CF              - sub cx,di
+// ---------- INJECTING HERE ----------
+WILD HEARTS.exe+3A02827: 66 89 48 04           - mov [rax+04],cx
+// ---------- DONE INJECTING  ----------
+WILD HEARTS.exe+3A0282B: 75 83                 - jne "WILD HEARTS.exe"+3A027B0
+WILD HEARTS.exe+3A0282D: 49 8B 80 40 1F 00 00  - mov rax,[r8+00001F40]
+WILD HEARTS.exe+3A02834: 4D 8D 0C C0           - lea r9,[r8+rax*8]
+WILD HEARTS.exe+3A02838: 48 8D 4A 08           - lea rcx,[rdx+08]
+WILD HEARTS.exe+3A0283C: 49 3B C9              - cmp rcx,r9
+WILD HEARTS.exe+3A0283F: 74 1D                 - je "WILD HEARTS.exe"+3A0285E
+WILD HEARTS.exe+3A02841: 8B 01                 - mov eax,[rcx]
+WILD HEARTS.exe+3A02843: 89 41 F8              - mov [rcx-08],eax
+WILD HEARTS.exe+3A02846: 0F B7 41 04           - movzx eax,word ptr [rcx+04]
+WILD HEARTS.exe+3A0284A: 66 89 41 FC           - mov [rcx-04],ax
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"怪物球99999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : WILD HEARTS
+  Version: 
+  Date   : 2023-12-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,WILD HEARTS.exe,89 43 54 48 63 06 3D 2B 01 00 00 77 2D 48 8B D0) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [rbx+54],eax
+  jb code
+  cmp [rbx+54],#99999
+  ja code
+  mov [rbx+54],#99999
+  movsxd  rax,dword ptr [rsi]
+  cmp eax,0000012B
+  ja "WILD HEARTS.exe"+412ED6C
+  mov rdx,rax
+  jmp return
+
+code:
+  mov [rbx+54],eax
+  movsxd  rax,dword ptr [rsi]
+  cmp eax,0000012B
+  ja "WILD HEARTS.exe"+412ED6C
+  mov rdx,rax
+  jmp return
+
+INJECT:
+  jmp far newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 43 54 48 63 06 3D 2B 01 00 00 77 2D 48 8B D0
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: WILD HEARTS.exe+412ED32
+
+WILD HEARTS.exe+412ED0F: E8 6C FC FF FF           - call "WILD HEARTS.exe"+412E980
+WILD HEARTS.exe+412ED14: 81 38 2D 01 00 00        - cmp [rax],0000012D
+WILD HEARTS.exe+412ED1A: 0F 85 45 06 00 00        - jne "WILD HEARTS.exe"+412F365
+WILD HEARTS.exe+412ED20: 8B 4F 0C                 - mov ecx,[rdi+0C]
+WILD HEARTS.exe+412ED23: 8B 43 54                 - mov eax,[rbx+54]
+WILD HEARTS.exe+412ED26: 3B C1                    - cmp eax,ecx
+WILD HEARTS.exe+412ED28: 73 06                    - jae "WILD HEARTS.exe"+412ED30
+WILD HEARTS.exe+412ED2A: 44 89 7B 54              - mov [rbx+54],r15d
+WILD HEARTS.exe+412ED2E: EB 05                    - jmp "WILD HEARTS.exe"+412ED35
+WILD HEARTS.exe+412ED30: 2B C1                    - sub eax,ecx
+// ---------- INJECTING HERE ----------
+WILD HEARTS.exe+412ED32: 89 43 54                 - mov [rbx+54],eax
+// ---------- DONE INJECTING  ----------
+WILD HEARTS.exe+412ED35: 48 63 06                 - movsxd  rax,dword ptr [rsi]
+WILD HEARTS.exe+412ED38: 3D 2B 01 00 00           - cmp eax,0000012B
+WILD HEARTS.exe+412ED3D: 77 2D                    - ja "WILD HEARTS.exe"+412ED6C
+WILD HEARTS.exe+412ED3F: 48 8B D0                 - mov rdx,rax
+WILD HEARTS.exe+412ED42: 48 3D 2C 01 00 00        - cmp rax,0000012C
+WILD HEARTS.exe+412ED48: 0F 83 3B 06 00 00        - jae "WILD HEARTS.exe"+412F389
+WILD HEARTS.exe+412ED4E: 48 8B C8                 - mov rcx,rax
+WILD HEARTS.exe+412ED51: 48 C1 E9 06              - shr rcx,06
+WILD HEARTS.exe+412ED55: 83 E2 3F                 - and edx,3F
+WILD HEARTS.exe+412ED58: 48 8B 84 CB B8 4E 10 00  - mov rax,[rbx+rcx*8+00104EB8]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>9</ID>
+      <Description>"money99999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : WILD HEARTS
+  Version: 
+  Date   : 2023-12-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,WILD HEARTS.exe,89 46 48 44 8B 44 24 68) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [rsi+48],eax
+  jb code
+  cmp [rsi+48],#99999
+  ja code
+  mov [rsi+48],#99999
+  mov r8d,[rsp+68]
+  jmp return
+
+code:
+  mov [rsi+48],eax
+  mov r8d,[rsp+68]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 46 48 44 8B 44 24 68
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: WILD HEARTS.exe+3A6FBC3
+
+WILD HEARTS.exe+3A6FBA0: 4C 8B 2D E9 17 DB 02  - mov r13,["WILD HEARTS.flite_lang_list_length"+3040]
+WILD HEARTS.exe+3A6FBA7: 44 8B 44 24 68        - mov r8d,[rsp+68]
+WILD HEARTS.exe+3A6FBAC: 8B 46 48              - mov eax,[rsi+48]
+WILD HEARTS.exe+3A6FBAF: 41 3B C0              - cmp eax,r8d
+WILD HEARTS.exe+3A6FBB2: 73 05                 - jae "WILD HEARTS.exe"+3A6FBB9
+WILD HEARTS.exe+3A6FBB4: 40 32 FF              - xor dil,dil
+WILD HEARTS.exe+3A6FBB7: EB 12                 - jmp "WILD HEARTS.exe"+3A6FBCB
+WILD HEARTS.exe+3A6FBB9: 41 2B C0              - sub eax,r8d
+WILD HEARTS.exe+3A6FBBC: 40 B7 01              - mov dil,01
+WILD HEARTS.exe+3A6FBBF: 44 01 46 4C           - add [rsi+4C],r8d
+// ---------- INJECTING HERE ----------
+WILD HEARTS.exe+3A6FBC3: 89 46 48              - mov [rsi+48],eax
+// ---------- DONE INJECTING  ----------
+WILD HEARTS.exe+3A6FBC6: 44 8B 44 24 68        - mov r8d,[rsp+68]
+WILD HEARTS.exe+3A6FBCB: 41 22 FC              - and dil,r12b
+WILD HEARTS.exe+3A6FBCE: 0F 84 E8 FE FF FF     - je "WILD HEARTS.exe"+3A6FABC
+WILD HEARTS.exe+3A6FBD4: E8 27 C0 BD FC        - call "WILD HEARTS.exe"+64BC00
+WILD HEARTS.exe+3A6FBD9: 44 89 80 A0 02 00 00  - mov [rax+000002A0],r8d
+WILD HEARTS.exe+3A6FBE0: 4D 85 FF              - test r15,r15
+WILD HEARTS.exe+3A6FBE3: 75 04                 - jne "WILD HEARTS.exe"+3A6FBE9
+WILD HEARTS.exe+3A6FBE5: 8B C5                 - mov eax,ebp
+WILD HEARTS.exe+3A6FBE7: EB 0C                 - jmp "WILD HEARTS.exe"+3A6FBF5
+WILD HEARTS.exe+3A6FBE9: 41 8B 87 70 08 00 00  - mov eax,[r15+00000870]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>15</ID>
+      <Description>"素材99保底"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : WILD HEARTS
+  Version: 
+  Date   : 2023-12-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,WILD HEARTS.exe,66 89 48 04 75 83 49 8B 80 40 1F 00 00 4D 8D 0C C0) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [rax+04],cx
+  jb code
+  cmp [rax+04],#99
+  ja code
+  mov [rax+04],#99
+  jne "WILD HEARTS.exe"+3A027B0
+  mov rax,[r8+00001F40]
+  lea r9,[r8+rax*8]
+  jmp return
+
+code:
+  mov [rax+04],cx
+  jne "WILD HEARTS.exe"+3A027B0
+  mov rax,[r8+00001F40]
+  lea r9,[r8+rax*8]
+  jmp return
+
+INJECT:
+  jmp far newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 66 89 48 04 75 83 49 8B 80 40 1F 00 00 4D 8D 0C C0
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: WILD HEARTS.exe+3A02827
+
+WILD HEARTS.exe+3A027FF: 48 3B C1              - cmp rax,rcx
+WILD HEARTS.exe+3A02802: 75 EC                 - jne "WILD HEARTS.exe"+3A027F0
+WILD HEARTS.exe+3A02804: 48 8D 8D E0 00 00 00  - lea rcx,[rbp+000000E0]
+WILD HEARTS.exe+3A0280B: 4A 8D 0C D9           - lea rcx,[rcx+r11*8]
+WILD HEARTS.exe+3A0280F: 48 3B D1              - cmp rdx,rcx
+WILD HEARTS.exe+3A02812: 0F 84 70 01 00 00     - je "WILD HEARTS.exe"+3A02988
+WILD HEARTS.exe+3A02818: 0F B7 48 04           - movzx ecx,word ptr [rax+04]
+WILD HEARTS.exe+3A0281C: 3B F9                 - cmp edi,ecx
+WILD HEARTS.exe+3A0281E: 0F 87 64 01 00 00     - ja "WILD HEARTS.exe"+3A02988
+WILD HEARTS.exe+3A02824: 66 2B CF              - sub cx,di
+// ---------- INJECTING HERE ----------
+WILD HEARTS.exe+3A02827: 66 89 48 04           - mov [rax+04],cx
+// ---------- DONE INJECTING  ----------
+WILD HEARTS.exe+3A0282B: 75 83                 - jne "WILD HEARTS.exe"+3A027B0
+WILD HEARTS.exe+3A0282D: 49 8B 80 40 1F 00 00  - mov rax,[r8+00001F40]
+WILD HEARTS.exe+3A02834: 4D 8D 0C C0           - lea r9,[r8+rax*8]
+WILD HEARTS.exe+3A02838: 48 8D 4A 08           - lea rcx,[rdx+08]
+WILD HEARTS.exe+3A0283C: 49 3B C9              - cmp rcx,r9
+WILD HEARTS.exe+3A0283F: 74 1D                 - je "WILD HEARTS.exe"+3A0285E
+WILD HEARTS.exe+3A02841: 8B 01                 - mov eax,[rcx]
+WILD HEARTS.exe+3A02843: 89 41 F8              - mov [rcx-08],eax
+WILD HEARTS.exe+3A02846: 0F B7 41 04           - movzx eax,word ptr [rcx+04]
+WILD HEARTS.exe+3A0284A: 66 89 41 FC           - mov [rcx-04],ax
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>16</ID>
+      <Description>"扫描内存逻辑"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : WILD HEARTS
+  Version: 
+  Date   : 2023-12-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,WILD HEARTS.exe,0F B7 48 04 3B F9 0F 87 64 01 00 00 66 2B CF) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  movzx ecx,word ptr [rax+04]
+  cmp edi,ecx
+  ja "WILD HEARTS.exe"+3A02988
+  sub cx,di
+  jmp return
+
+code:
+  movzx ecx,word ptr [rax+04]
+  cmp edi,ecx
+  ja "WILD HEARTS.exe"+3A02988
+  sub cx,di
+  jmp return
+
+INJECT:
+  jmp far newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 0F B7 48 04 3B F9 0F 87 64 01 00 00 66 2B CF
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: WILD HEARTS.exe+3A02818
+
+WILD HEARTS.exe+3A027F3: 74 0F                 - je "WILD HEARTS.exe"+3A02804
+WILD HEARTS.exe+3A027F5: 49 8D 41 08           - lea rax,[r9+08]
+WILD HEARTS.exe+3A027F9: 48 8B D0              - mov rdx,rax
+WILD HEARTS.exe+3A027FC: 4C 8B C8              - mov r9,rax
+WILD HEARTS.exe+3A027FF: 48 3B C1              - cmp rax,rcx
+WILD HEARTS.exe+3A02802: 75 EC                 - jne "WILD HEARTS.exe"+3A027F0
+WILD HEARTS.exe+3A02804: 48 8D 8D E0 00 00 00  - lea rcx,[rbp+000000E0]
+WILD HEARTS.exe+3A0280B: 4A 8D 0C D9           - lea rcx,[rcx+r11*8]
+WILD HEARTS.exe+3A0280F: 48 3B D1              - cmp rdx,rcx
+WILD HEARTS.exe+3A02812: 0F 84 70 01 00 00     - je "WILD HEARTS.exe"+3A02988
+// ---------- INJECTING HERE ----------
+WILD HEARTS.exe+3A02818: 0F B7 48 04           - movzx ecx,word ptr [rax+04]
+// ---------- DONE INJECTING  ----------
+WILD HEARTS.exe+3A0281C: 3B F9                 - cmp edi,ecx
+WILD HEARTS.exe+3A0281E: 0F 87 64 01 00 00     - ja "WILD HEARTS.exe"+3A02988
+WILD HEARTS.exe+3A02824: 66 2B CF              - sub cx,di
+WILD HEARTS.exe+3A02827: 66 89 48 04           - mov [rax+04],cx
+WILD HEARTS.exe+3A0282B: 75 83                 - jne "WILD HEARTS.exe"+3A027B0
+WILD HEARTS.exe+3A0282D: 49 8B 80 40 1F 00 00  - mov rax,[r8+00001F40]
+WILD HEARTS.exe+3A02834: 4D 8D 0C C0           - lea r9,[r8+rax*8]
+WILD HEARTS.exe+3A02838: 48 8D 4A 08           - lea rcx,[rdx+08]
+WILD HEARTS.exe+3A0283C: 49 3B C9              - cmp rcx,r9
+WILD HEARTS.exe+3A0283F: 74 1D                 - je "WILD HEARTS.exe"+3A0285E
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>14</ID>
+      <Description>"无描述"</Description>
+      <VariableType>2 Bytes</VariableType>
+      <Address>1295467C</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>20</ID>
+      <Description>"无描述"</Description>
+      <VariableType>2 Bytes</VariableType>
+      <Address>34270EBC</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>21</ID>
+      <Description>"无描述"</Description>
+      <VariableType>2 Bytes</VariableType>
+      <Address>376736EC</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>22</ID>
+      <Description>"无描述"</Description>
+      <VariableType>2 Bytes</VariableType>
+      <Address>37673A0C</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

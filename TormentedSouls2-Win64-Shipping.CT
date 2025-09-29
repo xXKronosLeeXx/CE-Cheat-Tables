@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>216384FFB30</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>2163D75628C</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"gun"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : TormentedSouls2-Win64-Shipping.exe
+  Version: 
+  Date   : 2025-06-09
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,TormentedSouls2-Win64-Shipping.exe,45 89 61 10 49 8B 0A) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [r9+10],r12d
+  mov rcx,[r10]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 45 89 61 10 49 8B 0A
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: TormentedSouls2-Win64-Shipping.USaveSystemTempData::AddGunToTempData+203
+
+TormentedSouls2-Win64-Shipping.USaveSystemTempData::AddGunToTempData+1EA: 75 08                 - jne TormentedSouls2-Win64-Shipping.USaveSystemTempData::AddGunToTempData+1F4
+TormentedSouls2-Win64-Shipping.USaveSystemTempData::AddGunToTempData+1EC: 48 83 C0 02           - add rax,02
+TormentedSouls2-Win64-Shipping.USaveSystemTempData::AddGunToTempData+1F0: 85 C9                 - test ecx,ecx
+TormentedSouls2-Win64-Shipping.USaveSystemTempData::AddGunToTempData+1F2: 75 EC                 - jne TormentedSouls2-Win64-Shipping.USaveSystemTempData::AddGunToTempData+1E0
+TormentedSouls2-Win64-Shipping.USaveSystemTempData::AddGunToTempData+1F4: 85 D2                 - test edx,edx
+TormentedSouls2-Win64-Shipping.USaveSystemTempData::AddGunToTempData+1F6: 74 0B                 - je TormentedSouls2-Win64-Shipping.USaveSystemTempData::AddGunToTempData+203
+TormentedSouls2-Win64-Shipping.USaveSystemTempData::AddGunToTempData+1F8: 49 83 C1 18           - add r9,18
+TormentedSouls2-Win64-Shipping.USaveSystemTempData::AddGunToTempData+1FC: 4D 3B CB              - cmp r9,r11
+TormentedSouls2-Win64-Shipping.USaveSystemTempData::AddGunToTempData+1FF: 75 B3                 - jne TormentedSouls2-Win64-Shipping.USaveSystemTempData::AddGunToTempData+1B4
+TormentedSouls2-Win64-Shipping.USaveSystemTempData::AddGunToTempData+201: EB 04                 - jmp TormentedSouls2-Win64-Shipping.USaveSystemTempData::AddGunToTempData+207
+// ---------- INJECTING HERE ----------
+TormentedSouls2-Win64-Shipping.USaveSystemTempData::AddGunToTempData+203: 45 89 61 10           - mov [r9+10],r12d
+// ---------- DONE INJECTING  ----------
+TormentedSouls2-Win64-Shipping.USaveSystemTempData::AddGunToTempData+207: 49 8B 0A              - mov rcx,[r10]
+TormentedSouls2-Win64-Shipping.USaveSystemTempData::AddGunToTempData+20A: 48 85 C9              - test rcx,rcx
+TormentedSouls2-Win64-Shipping.USaveSystemTempData::AddGunToTempData+20D: 74 7C                 - je TormentedSouls2-Win64-Shipping.USaveSystemTempData::AddGunToTempData+28B
+TormentedSouls2-Win64-Shipping.USaveSystemTempData::AddGunToTempData+20F: E8 FC 54 ED FC        - call TormentedSouls2-Win64-Shipping.FMemory::Free
+TormentedSouls2-Win64-Shipping.USaveSystemTempData::AddGunToTempData+214: EB 75                 - jmp TormentedSouls2-Win64-Shipping.USaveSystemTempData::AddGunToTempData+28B
+TormentedSouls2-Win64-Shipping.USaveSystemTempData::AddGunToTempData+216: 48 63 BE 38 02 00 00  - movsxd  rdi,dword ptr [rsi+00000238]
+TormentedSouls2-Win64-Shipping.USaveSystemTempData::AddGunToTempData+21D: 8D 47 01              - lea eax,[rdi+01]
+TormentedSouls2-Win64-Shipping.USaveSystemTempData::AddGunToTempData+220: 89 86 38 02 00 00     - mov [rsi+00000238],eax
+TormentedSouls2-Win64-Shipping.USaveSystemTempData::AddGunToTempData+226: 3B 86 3C 02 00 00     - cmp eax,[rsi+0000023C]
+TormentedSouls2-Win64-Shipping.USaveSystemTempData::AddGunToTempData+22C: 76 0E                 - jna TormentedSouls2-Win64-Shipping.USaveSystemTempData::AddGunToTempData+23C
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>子弹1代码 :mov [rax],ecx</Description>
+      <AddressString>VCRUNTIME140.dll+1150C</AddressString>
+      <Before>
+        <Byte>88</Byte>
+        <Byte>08</Byte>
+        <Byte>C3</Byte>
+        <Byte>8B</Byte>
+        <Byte>0A</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>08</Byte>
+      </Actual>
+      <After>
+        <Byte>C3</Byte>
+        <Byte>90</Byte>
+        <Byte>49</Byte>
+        <Byte>83</Byte>
+        <Byte>F8</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>子弹2代码 :mov [r9+10],r12d</Description>
+      <AddressString>TormentedSouls2-Win64-Shipping.exe+425D143</AddressString>
+      <Before>
+        <Byte>CB</Byte>
+        <Byte>75</Byte>
+        <Byte>B3</Byte>
+        <Byte>EB</Byte>
+        <Byte>04</Byte>
+      </Before>
+      <Actual>
+        <Byte>45</Byte>
+        <Byte>89</Byte>
+        <Byte>61</Byte>
+        <Byte>10</Byte>
+      </Actual>
+      <After>
+        <Byte>49</Byte>
+        <Byte>8B</Byte>
+        <Byte>0A</Byte>
+        <Byte>48</Byte>
+        <Byte>85</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>

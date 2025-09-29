@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"金钱                  disgaea5.exe+4FCD518"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>disgaea5.exe+4FCD518</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"奇力亚 EXP        disgaea5.exe+5207DC0"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>disgaea5.exe+5207DC0</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"奇力亚 HP开始    disgaea5.exe+520AA80"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>disgaea5.exe+520AA80</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"雪拉菲娜 EXP     disgaea5.exe+520C510"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>disgaea5.exe+520C510</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"瑟蕾丝蒂 EXP     disgaea5.exe+5219B00"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>disgaea5.exe+5219B00</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"瑟蕾丝蒂 杀敌数 disgaea5.exe+521C93C"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>disgaea5.exe+521C93C</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

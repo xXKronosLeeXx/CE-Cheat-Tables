@@ -1,0 +1,3 @@
+HealthManager:TakeDamage+39ca - E9 35000000           - jmp HealthManager:TakeDamage+3a04
+HealthManager:TakeDamage+39c4:   mov [rsi+00000240],eax  //敌人HP减少
+

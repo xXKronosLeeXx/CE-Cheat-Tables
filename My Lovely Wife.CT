@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>24</ID>
+      <Description>"好感变化都是33倍"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048,RoomStatus:GainAffection+26)
+alloc(love,4,RoomStatus:GainAffection+26)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+love:
+dq 99.99
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+addsd xmm0,xmm1
+cvtsd2ss xmm5,xmm0
+jmp exit
+
+originalcode:
+addsd xmm0,xmm1
+cvtsd2ss xmm5,xmm0
+
+exit:
+jmp returnhere
+
+RoomStatus:GainAffection+26:
+jmp newmem
+nop 3
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+dealloc(love)
+RoomStatus:GainAffection+26:
+db F2 0F 58 C1 F2 0F 5A E8
+//addsd xmm0,xmm1
+//cvtsd2ss xmm5,xmm0
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>22</ID>
+      <Description>"献祭道具=48"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+mov [rax+20],30
+movsxd  r8,dword ptr [rax+20]
+mov rcx,r15
+mov rdx,r12
+cmp dword ptr [r15],00
+jmp exit
+
+originalcode:
+movsxd  r8,dword ptr [rax+20]
+mov rcx,r15
+mov rdx,r12
+cmp dword ptr [r15],00
+
+exit:
+jmp returnhere
+
+InventoryManagerGeneric:DisplayItems+137:
+jmp far newmem
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+InventoryManagerGeneric:DisplayItems+137:
+db 4C 63 40 20 49 8B CF 49 8B D4 41 83 3F 00
+//movsxd  r8,dword ptr [rax+20]
+//mov rcx,r15
+//mov rdx,r12
+//cmp dword ptr [r15],00
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"gold=899999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048,SO_PlayerStatus:GainGold+20) 
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+mov [r15+38],#899999
+movzx eax,byte ptr [rbp-18]
+jmp exit
+
+originalcode:
+mov [r15+38],eax
+movzx eax,byte ptr [rbp-18]
+
+exit:
+jmp returnhere
+
+SO_PlayerStatus:GainGold+20:
+jmp newmem
+nop 3
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+SO_PlayerStatus:GainGold+20:
+db 41 89 47 38 0F B6 45 E8
+//mov [r15+38],eax
+//movzx eax,byte ptr [rbp-18]
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"精华+19999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+add ecx,#19999
+mov [rdi+54],ecx
+movsxd  r8,dword ptr [rdi+58]
+xor edx,edx
+lea rsp,[rsp+00]
+
+originalcode:
+add ecx,esi
+mov [rdi+54],ecx
+movsxd  r8,dword ptr [rdi+58]
+xor edx,edx
+lea rsp,[rsp+00]
+
+exit:
+jmp returnhere
+
+RoomStatus:GainEssence+35:
+jmp far newmem
+nop 2
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+RoomStatus:GainEssence+35:
+db 03 CE 89 4F 54 4C 63 47 58 33 D2 48 8D 64 24 00
+//add ecx,esi
+//mov [rdi+54],ecx
+//movsxd  r8,dword ptr [rdi+58]
+//xor edx,edx
+//lea rsp,[rsp+00]
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>7</ID>
+      <Description>"资质+999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048,RoomStatus:GainFlair+17) 
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+add ecx,#999
+mov [rdi+5C],ecx
+jmp exit
+
+originalcode:
+add ecx,[rbp-10]
+mov [rdi+5C],ecx
+
+exit:
+jmp returnhere
+
+RoomStatus:GainFlair+17:
+jmp newmem
+nop
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+RoomStatus:GainFlair+17:
+db 03 4D F0 89 4F 5C
+//add ecx,[rbp-10]
+//mov [rdi+5C],ecx
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>9</ID>
+      <Description>"魅力+999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+add ecx,#999
+mov [rdi+60],ecx
+movsxd  r8,dword ptr [rdi+68]
+xor edx,edx
+nop 3
+jmp exit
+
+originalcode:
+add ecx,[rbp-10]
+mov [rdi+60],ecx
+movsxd  r8,dword ptr [rdi+68]
+xor edx,edx
+nop 3
+
+exit:
+jmp returnhere
+
+RoomStatus:GainCharm+17:
+jmp far newmem
+nop
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+RoomStatus:GainCharm+17:
+db 03 4D F0 89 4F 60 4C 63 47 68 33 D2 66 66 90
+//add ecx,[rbp-10]
+//mov [rdi+60],ecx
+//movsxd  r8,dword ptr [rdi+68]
+//xor edx,edx
+//nop 3
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>13</ID>
+      <Description>"升级点数+999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048,SO_PlayerStatus:GainPlayerCurrCE+17) 
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+add ecx,#999
+mov [rdi+44],ecx
+jmp exit
+
+
+originalcode:
+add ecx,[rbp-10]
+mov [rdi+44],ecx
+
+exit:
+jmp returnhere
+
+SO_PlayerStatus:GainPlayerCurrCE+17:
+jmp newmem
+nop
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+SO_PlayerStatus:GainPlayerCurrCE+17:
+db 03 4D F0 89 4F 44
+//add ecx,[rbp-10]
+//mov [rdi+44],ecx
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

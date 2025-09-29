@@ -1,0 +1,790 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"HP"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : granblue_fantasy_relink.exe
+  Version: 
+  Date   : 2024-12-24
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,granblue_fantasy_relink.exe,89 90 60 01 00 00 48) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov edx,[rax+00000164]
+  mov [rax+00000160],edx
+  jmp return
+
+code:
+  mov [rax+00000160],edx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 90 60 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: granblue_fantasy_relink.exe+AA13BD
+
+granblue_fantasy_relink.exe+AA13AB: CC                       - int 3 
+granblue_fantasy_relink.exe+AA13AC: CC                       - int 3 
+granblue_fantasy_relink.exe+AA13AD: CC                       - int 3 
+granblue_fantasy_relink.exe+AA13AE: CC                       - int 3 
+granblue_fantasy_relink.exe+AA13AF: CC                       - int 3 
+granblue_fantasy_relink.exe+AA13B0: 56                       - push rsi
+granblue_fantasy_relink.exe+AA13B1: 57                       - push rdi
+granblue_fantasy_relink.exe+AA13B2: 48 83 EC 48              - sub rsp,48
+granblue_fantasy_relink.exe+AA13B6: 48 89 CE                 - mov rsi,rcx
+granblue_fantasy_relink.exe+AA13B9: 48 8B 41 10              - mov rax,[rcx+10]
+// ---------- INJECTING HERE ----------
+granblue_fantasy_relink.exe+AA13BD: 89 90 60 01 00 00        - mov [rax+00000160],edx
+// ---------- DONE INJECTING  ----------
+granblue_fantasy_relink.exe+AA13C3: 48 8B 49 10              - mov rcx,[rcx+10]
+granblue_fantasy_relink.exe+AA13C7: 83 B9 60 01 00 00 00     - cmp dword ptr [rcx+00000160],00
+granblue_fantasy_relink.exe+AA13CE: 7E 26                    - jle granblue_fantasy_relink.exe+AA13F6
+granblue_fantasy_relink.exe+AA13D0: 48 8B 81 60 43 00 00     - mov rax,[rcx+00004360]
+granblue_fantasy_relink.exe+AA13D7: 48 8B 50 20              - mov rdx,[rax+20]
+granblue_fantasy_relink.exe+AA13DB: 48 83 7A 28 00           - cmp qword ptr [rdx+28],00
+granblue_fantasy_relink.exe+AA13E0: 74 14                    - je granblue_fantasy_relink.exe+AA13F6
+granblue_fantasy_relink.exe+AA13E2: C5 FA 10 0D A6 45 D4 03  - vmovss xmm1,[granblue_fantasy_relink.exe+47E5990]
+granblue_fantasy_relink.exe+AA13EA: 48 89 C1                 - mov rcx,rax
+granblue_fantasy_relink.exe+AA13ED: E8 AE 7E C4 FF           - call granblue_fantasy_relink.exe+6E92A0
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>8</ID>
+      <Description>"Gold+"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : granblue_fantasy_relink.exe
+  Version: 
+  Date   : 2024-12-24
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,granblue_fantasy_relink.exe,89 03 48 89 D9 E8 4C) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rbx],#899999999
+  mov rcx,rbx
+  jmp return
+
+code:
+  mov [rbx],eax
+  mov rcx,rbx
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 03 48 89 D9
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: granblue_fantasy_relink.exe+34257A
+
+granblue_fantasy_relink.exe+34255A: 31 C9                          - xor ecx,ecx
+granblue_fantasy_relink.exe+34255C: 85 C0                          - test eax,eax
+granblue_fantasy_relink.exe+34255E: 0F 4F C8                       - cmovg ecx,eax
+granblue_fantasy_relink.exe+342561: 81 F9 FF C9 9A 3B              - cmp ecx,3B9AC9FF
+granblue_fantasy_relink.exe+342567: B8 FF C9 9A 3B                 - mov eax,3B9AC9FF
+granblue_fantasy_relink.exe+34256C: 0F 42 C1                       - cmovb eax,ecx
+granblue_fantasy_relink.exe+34256F: 41 89 F9                       - mov r9d,edi
+granblue_fantasy_relink.exe+342572: 39 C7                          - cmp edi,eax
+granblue_fantasy_relink.exe+342574: 74 11                          - je granblue_fantasy_relink.exe+342587
+granblue_fantasy_relink.exe+342576: 48 8D 5E 30                    - lea rbx,[rsi+30]
+// ---------- INJECTING HERE ----------
+granblue_fantasy_relink.exe+34257A: 89 03                          - mov [rbx],eax
+// ---------- DONE INJECTING  ----------
+granblue_fantasy_relink.exe+34257C: 48 89 D9                       - mov rcx,rbx
+granblue_fantasy_relink.exe+34257F: E8 4C FE 39 00                 - call granblue_fantasy_relink.exe+6E23D0
+granblue_fantasy_relink.exe+342584: 44 8B 0B                       - mov r9d,[rbx]
+granblue_fantasy_relink.exe+342587: 48 89 75 10                    - mov [rbp+10],rsi
+granblue_fantasy_relink.exe+34258B: 48 8B 0D 5E 26 56 06           - mov rcx,[granblue_fantasy_relink.exe+68A4BF0]
+granblue_fantasy_relink.exe+342592: 48 8D 55 A8                    - lea rdx,[rbp-58]
+granblue_fantasy_relink.exe+342596: 41 89 F8                       - mov r8d,edi
+granblue_fantasy_relink.exe+342599: E8 72 10 68 00                 - call granblue_fantasy_relink.exe+9C3610
+granblue_fantasy_relink.exe+34259E: 48 8B 45 10                    - mov rax,[rbp+10]
+granblue_fantasy_relink.exe+3425A2: C7 80 60 05 00 00 00 00 00 00  - mov [rax+00000560],00000000
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>10</ID>
+      <Description>"MSP88888"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : granblue_fantasy_relink.exe
+  Version: 
+  Date   : 2024-12-24
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,granblue_fantasy_relink.exe,89 07 48 89 F9 E8 D7) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rdi],#88888
+  mov rcx,rdi
+  jmp return
+
+code:
+  mov [rdi],eax
+  mov rcx,rdi
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 07 48 89 F9
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: granblue_fantasy_relink.exe+3434EF
+
+granblue_fantasy_relink.exe+3434C7: 42 8D 04 36                       - lea eax,[rsi+r14]
+granblue_fantasy_relink.exe+3434CB: 31 C9                             - xor ecx,ecx
+granblue_fantasy_relink.exe+3434CD: 85 C0                             - test eax,eax
+granblue_fantasy_relink.exe+3434CF: 0F 4F C8                          - cmovg ecx,eax
+granblue_fantasy_relink.exe+3434D2: 81 F9 9F 86 01 00                 - cmp ecx,0001869F
+granblue_fantasy_relink.exe+3434D8: B8 9F 86 01 00                    - mov eax,0001869F
+granblue_fantasy_relink.exe+3434DD: 0F 42 C1                          - cmovb eax,ecx
+granblue_fantasy_relink.exe+3434E0: 39 C6                             - cmp esi,eax
+granblue_fantasy_relink.exe+3434E2: 0F 84 9A 00 00 00                 - je granblue_fantasy_relink.exe+343582
+granblue_fantasy_relink.exe+3434E8: 48 8D BB 98 00 00 00              - lea rdi,[rbx+00000098]
+// ---------- INJECTING HERE ----------
+granblue_fantasy_relink.exe+3434EF: 89 07                             - mov [rdi],eax
+// ---------- DONE INJECTING  ----------
+granblue_fantasy_relink.exe+3434F1: 48 89 F9                          - mov rcx,rdi
+granblue_fantasy_relink.exe+3434F4: E8 D7 EE 39 00                    - call granblue_fantasy_relink.exe+6E23D0
+granblue_fantasy_relink.exe+3434F9: 44 8B 2F                          - mov r13d,[rdi]
+granblue_fantasy_relink.exe+3434FC: 44 39 EE                          - cmp esi,r13d
+granblue_fantasy_relink.exe+3434FF: 0F 84 7D 00 00 00                 - je granblue_fantasy_relink.exe+343582
+granblue_fantasy_relink.exe+343505: 66 66 2E 0F 1F 84 00 00 00 00 00  - nop word ptr cs:[rax+rax+00000000]
+granblue_fantasy_relink.exe+343510: B8 01 00 00 00                    - mov eax,00000001
+granblue_fantasy_relink.exe+343515: 87 83 88 04 00 00                 - xchg [rbx+00000488],eax
+granblue_fantasy_relink.exe+34351B: 85 C0                             - test eax,eax
+granblue_fantasy_relink.exe+34351D: 74 04                             - je granblue_fantasy_relink.exe+343523
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>13</ID>
+      <Description>"道具777"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : granblue_fantasy_relink.exe
+  Version: 
+  Date   : 2024-12-24
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,granblue_fantasy_relink.exe,41 01 47 04 48 89 4B 38) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [r15+04],#777
+  mov [rbx+38],rcx
+  jmp return
+
+code:
+  add [r15+04],eax
+  mov [rbx+38],rcx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 41 01 47 04 48 89 4B 38
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: granblue_fantasy_relink.exe+315554
+
+granblue_fantasy_relink.exe+315535: 48 8B 49 08     - mov rcx,[rcx+08]
+granblue_fantasy_relink.exe+315539: 44 39 69 10     - cmp [rcx+10],r13d
+granblue_fantasy_relink.exe+31553D: 75 ED           - jne granblue_fantasy_relink.exe+31552C
+granblue_fantasy_relink.exe+31553F: 4C 39 C1        - cmp rcx,r8
+granblue_fantasy_relink.exe+315542: 74 75           - je granblue_fantasy_relink.exe+3155B9
+granblue_fantasy_relink.exe+315544: 4C 8B 79 18     - mov r15,[rcx+18]
+granblue_fantasy_relink.exe+315548: 4D 85 FF        - test r15,r15
+granblue_fantasy_relink.exe+31554B: 74 6C           - je granblue_fantasy_relink.exe+3155B9
+granblue_fantasy_relink.exe+31554D: 49 8D 4F 04     - lea rcx,[r15+04]
+granblue_fantasy_relink.exe+315551: 8B 43 2C        - mov eax,[rbx+2C]
+// ---------- INJECTING HERE ----------
+granblue_fantasy_relink.exe+315554: 41 01 47 04     - add [r15+04],eax
+// ---------- DONE INJECTING  ----------
+granblue_fantasy_relink.exe+315558: 48 89 4B 38     - mov [rbx+38],rcx
+granblue_fantasy_relink.exe+31555C: E8 6F CE 3C 00  - call granblue_fantasy_relink.exe+6E23D0
+granblue_fantasy_relink.exe+315561: 48 8B 4B 38     - mov rcx,[rbx+38]
+granblue_fantasy_relink.exe+315565: 8B 11           - mov edx,[rcx]
+granblue_fantasy_relink.exe+315567: 31 C0           - xor eax,eax
+granblue_fantasy_relink.exe+315569: 85 D2           - test edx,edx
+granblue_fantasy_relink.exe+31556B: 0F 4F C2        - cmovg eax,edx
+granblue_fantasy_relink.exe+31556E: 41 39 C4        - cmp r12d,eax
+granblue_fantasy_relink.exe+315571: 41 0F 4C C4     - cmovl eax,r12d
+granblue_fantasy_relink.exe+315575: 39 C2           - cmp edx,eax
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>22</ID>
+      <Description>"EXP+99999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : granblue_fantasy_relink.exe
+  Version: 
+  Date   : 2024-12-24
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,granblue_fantasy_relink.exe,45 01 2E 4C 89 F1) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [r14],#99999
+  mov rcx,r14
+  jmp return
+
+code:
+  add [r14],r13d
+  mov rcx,r14
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 45 01 2E 4C 89 F1
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: granblue_fantasy_relink.exe+28697B
+
+granblue_fantasy_relink.exe+286950: 75 EE                 - jne granblue_fantasy_relink.exe+286940
+granblue_fantasy_relink.exe+286952: 48 39 C1              - cmp rcx,rax
+granblue_fantasy_relink.exe+286955: 0F 84 88 07 00 00     - je granblue_fantasy_relink.exe+2870E3
+granblue_fantasy_relink.exe+28695B: 48 8B 71 18           - mov rsi,[rcx+18]
+granblue_fantasy_relink.exe+28695F: 48 85 F6              - test rsi,rsi
+granblue_fantasy_relink.exe+286962: 0F 84 7B 07 00 00     - je granblue_fantasy_relink.exe+2870E3
+granblue_fantasy_relink.exe+286968: 48 8B 85 50 01 00 00  - mov rax,[rbp+00000150]
+granblue_fantasy_relink.exe+28696F: 4C 8D B0 C8 30 00 00  - lea r14,[rax+000030C8]
+granblue_fantasy_relink.exe+286976: 45 85 ED              - test r13d,r13d
+granblue_fantasy_relink.exe+286979: 74 0B                 - je granblue_fantasy_relink.exe+286986
+// ---------- INJECTING HERE ----------
+granblue_fantasy_relink.exe+28697B: 45 01 2E              - add [r14],r13d
+// ---------- DONE INJECTING  ----------
+granblue_fantasy_relink.exe+28697E: 4C 89 F1              - mov rcx,r14
+granblue_fantasy_relink.exe+286981: E8 4A BA 45 00        - call granblue_fantasy_relink.exe+6E23D0
+granblue_fantasy_relink.exe+286986: 8B 46 70              - mov eax,[rsi+70]
+granblue_fantasy_relink.exe+286989: 0F B6 CC              - movzx ecx,ah
+granblue_fantasy_relink.exe+28698C: 89 C2                 - mov edx,eax
+granblue_fantasy_relink.exe+28698E: C1 EA 10              - shr edx,10
+granblue_fantasy_relink.exe+286991: 0F B6 D2              - movzx edx,dl
+granblue_fantasy_relink.exe+286994: 48 89 C7              - mov rdi,rax
+granblue_fantasy_relink.exe+286997: 48 C1 EF 18           - shr rdi,18
+granblue_fantasy_relink.exe+28699B: 0F B6 F0              - movzx esi,al
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>30</ID>
+      <Description>"因子强化+LV99"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : granblue_fantasy_relink.exe
+  Version: 
+  Date   : 2024-12-25
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,granblue_fantasy_relink.exe,41 89 04 24 4C 89 E1 E8 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [r12],#99
+  mov rcx,r12
+  jmp return
+
+code:
+  mov [r12],eax
+  mov rcx,r12
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 41 89 04 24 4C 89 E1
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: granblue_fantasy_relink.exe+328F0C4
+
+granblue_fantasy_relink.exe+328F09D: 4C 8D 67 18           - lea r12,[rdi+18]
+granblue_fantasy_relink.exe+328F0A1: 41 83 FF 01           - cmp r15d,01
+granblue_fantasy_relink.exe+328F0A5: 75 1A                 - jne granblue_fantasy_relink.exe+328F0C1
+granblue_fantasy_relink.exe+328F0A7: 41 89 04 24           - mov [r12],eax
+granblue_fantasy_relink.exe+328F0AB: 4C 89 E1              - mov rcx,r12
+granblue_fantasy_relink.exe+328F0AE: E8 1D 33 45 FD        - call granblue_fantasy_relink.exe+6E23D0
+granblue_fantasy_relink.exe+328F0B3: EB 1B                 - jmp granblue_fantasy_relink.exe+328F0D0
+granblue_fantasy_relink.exe+328F0B5: C6 80 0C 02 00 00 00  - mov byte ptr [rax+0000020C],00
+granblue_fantasy_relink.exe+328F0BC: E9 7B 05 00 00        - jmp granblue_fantasy_relink.exe+328F63C
+granblue_fantasy_relink.exe+328F0C1: 8D 46 01              - lea eax,[rsi+01]
+// ---------- INJECTING HERE ----------
+granblue_fantasy_relink.exe+328F0C4: 41 89 04 24           - mov [r12],eax
+// ---------- DONE INJECTING  ----------
+granblue_fantasy_relink.exe+328F0C8: 4C 89 E1              - mov rcx,r12
+granblue_fantasy_relink.exe+328F0CB: E8 00 33 45 FD        - call granblue_fantasy_relink.exe+6E23D0
+granblue_fantasy_relink.exe+328F0D0: 8B 47 18              - mov eax,[rdi+18]
+granblue_fantasy_relink.exe+328F0D3: 39 47 04              - cmp [rdi+04],eax
+granblue_fantasy_relink.exe+328F0D6: 74 0F                 - je granblue_fantasy_relink.exe+328F0E7
+granblue_fantasy_relink.exe+328F0D8: 48 8D 4F 04           - lea rcx,[rdi+04]
+granblue_fantasy_relink.exe+328F0DC: 89 01                 - mov [rcx],eax
+granblue_fantasy_relink.exe+328F0DE: E8 ED 32 45 FD        - call granblue_fantasy_relink.exe+6E23D0
+granblue_fantasy_relink.exe+328F0E3: 41 8B 04 24           - mov eax,[r12]
+granblue_fantasy_relink.exe+328F0E7: 39 47 0C              - cmp [rdi+0C],eax
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>34</ID>
+      <Description>"物品第一个"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>44</ID>
+          <Description>"基址"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"granblue_fantasy_relink.exe"+05E48188</Address>
+          <Offsets>
+            <Offset>4</Offset>
+            <Offset>1B8</Offset>
+            <Offset>5F0</Offset>
+            <Offset>2B0</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>77</ID>
+      <Description>"秒杀"</Description>
+      <Options moHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+      <LastState Value="" Activated="1" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>50</ID>
+          <Description>"秒Boss"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048,"granblue_fantasy_relink.exe"+1B3F7A5) 
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+
+mov eax,[rsi+10]
+mov eax,1
+test r8d,r8d
+jmp exit
+
+originalcode:
+mov eax,[rsi+10]
+test r8d,r8d
+
+exit:
+jmp returnhere
+
+"granblue_fantasy_relink.exe"+1B3F7A5:
+jmp newmem
+nop
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+"granblue_fantasy_relink.exe"+1B3F7A5:
+db 8B 46 10 45 85 C0
+//mov eax,[rsi+10]
+//test r8d,r8d
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>70</ID>
+          <Description>"秒特殊boss"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048,"granblue_fantasy_relink.exe"+22179B2) 
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+mov [rsi+10],0
+mov rax,[rsi-00000150]
+
+jmp exit
+originalcode:
+mov [rsi+10],edx
+mov rax,[rsi-00000150]
+
+exit:
+jmp returnhere
+
+"granblue_fantasy_relink.exe"+22179B2:
+jmp newmem
+nop 5
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+"granblue_fantasy_relink.exe"+22179B2:
+db 89 56 10 48 8B 86 B0 FE FF FF
+//mov [rsi+10],edx
+//mov rax,[rsi-00000150]
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>76</ID>
+          <Description>"秒巴哈姆特"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048,"granblue_fantasy_relink.exe"+25C08BA) 
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+mov [rdi+10],0
+mov rax,[rdi-00000150]
+jmp exit
+
+originalcode:
+mov [rdi+10],ecx
+mov rax,[rdi-00000150]
+
+exit:
+jmp returnhere
+
+"granblue_fantasy_relink.exe"+25C08BA:
+jmp newmem
+nop 5
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+"granblue_fantasy_relink.exe"+25C08BA:
+db 89 4F 10 48 8B 87 B0 FE FF FF
+//mov [rdi+10],ecx
+//mov rax,[rdi-00000150]
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>64</ID>
+          <Description>"秒其他小怪"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048,"granblue_fantasy_relink.exe"+23FD479) 
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+mov [rsi+10],0
+mov rax,[rsi-00000150]
+jmp exit
+
+originalcode:
+mov [rsi+10],edx
+mov rax,[rsi-00000150]
+
+exit:
+jmp returnhere
+
+"granblue_fantasy_relink.exe"+23FD479:
+jmp newmem
+nop 5
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+"granblue_fantasy_relink.exe"+23FD479:
+db 89 56 10 48 8B 86 B0 FE FF FF
+//mov [rsi+10],edx
+//mov rax,[rsi-00000150]
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>83</ID>
+      <Description>"奥义100%"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048,"granblue_fantasy_relink.exe"+AA2635) 
+label(returnhere)
+label(originalcode)
+label(exit)
+
+alloc(aoyi,4,"granblue_fantasy_relink.exe"+AA2635)
+
+aoyi:
+dd (float)3148846080
+jmp exit
+
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+
+originalcode:
+vmovss xmm6,[aoyi]
+vmovss [rbx+7C],xmm6
+
+exit:
+jmp returnhere
+
+"granblue_fantasy_relink.exe"+AA2635:
+jmp newmem
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+dealloc(aoyi)
+"granblue_fantasy_relink.exe"+AA2635:
+db C5 FA 11 73 7C
+//vmovss [rbx+7C],xmm6
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>85</ID>
+      <Description>"100星晶兽跳杯"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : granblue_fantasy_relink.exe
+  Version: 
+  Date   : 2024-12-31
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,granblue_fantasy_relink.exe,48 FF 86 C8 06 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rsi+000006C8],99
+  inc qword ptr [rsi+000006C8]
+  jmp return
+
+
+code:
+  inc qword ptr [rsi+000006C8]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 48 FF 86 C8 06 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: granblue_fantasy_relink.exe+A16380
+
+granblue_fantasy_relink.exe+A16351: C5 F8 77                       - vzeroupper 
+granblue_fantasy_relink.exe+A16354: E8 07 33 B7 FF                 - call granblue_fantasy_relink.exe+589660
+granblue_fantasy_relink.exe+A16359: 41 83 FE 02                    - cmp r14d,02
+granblue_fantasy_relink.exe+A1635D: 74 16                          - je granblue_fantasy_relink.exe+A16375
+granblue_fantasy_relink.exe+A1635F: 81 BB E0 00 00 00 01 70 10 00  - cmp [rbx+000000E0],00107001
+granblue_fantasy_relink.exe+A16369: 75 0A                          - jne granblue_fantasy_relink.exe+A16375
+granblue_fantasy_relink.exe+A1636B: 83 7B 30 13                    - cmp dword ptr [rbx+30],13
+granblue_fantasy_relink.exe+A1636F: 0F 84 18 03 00 00              - je granblue_fantasy_relink.exe+A1668D
+granblue_fantasy_relink.exe+A16375: 48 8B 73 20                    - mov rsi,[rbx+20]
+granblue_fantasy_relink.exe+A16379: 48 8D 8E 78 04 00 00           - lea rcx,[rsi+00000478]
+// ---------- INJECTING HERE ----------
+granblue_fantasy_relink.exe+A16380: 48 FF 86 C8 06 00 00           - inc qword ptr [rsi+000006C8]
+// ---------- DONE INJECTING  ----------
+granblue_fantasy_relink.exe+A16387: E8 44 C0 CC FF                 - call granblue_fantasy_relink.exe+6E23D0
+granblue_fantasy_relink.exe+A1638C: 48 8B 4E 20                    - mov rcx,[rsi+20]
+granblue_fantasy_relink.exe+A16390: 48 8B 46 38                    - mov rax,[rsi+38]
+granblue_fantasy_relink.exe+A16394: 48 01 C0                       - add rax,rax
+granblue_fantasy_relink.exe+A16397: 48 BA BE 2B AD 12 D1 61 36 17  - mov rdx,173661D112AD2BBE
+granblue_fantasy_relink.exe+A163A1: 48 21 C2                       - and rdx,rax
+granblue_fantasy_relink.exe+A163A4: 48 8B 44 D1 08                 - mov rax,[rcx+rdx*8+08]
+granblue_fantasy_relink.exe+A163A9: 48 3B 46 10                    - cmp rax,[rsi+10]
+granblue_fantasy_relink.exe+A163AD: 0F 84 19 0A 00 00              - je granblue_fantasy_relink.exe+A16DCC
+granblue_fantasy_relink.exe+A163B3: 4C 8B BE C8 06 00 00           - mov r15,[rsi+000006C8]
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <Comments>金钱+68=MSP
+1  4  6588 1637413927
+2  4  6618 1637413927
+3  4  6647 1637413927
+4  4  6687
+5  12 6727
+6  12 8195
+7  12 8257
+8  12 8299
+9  12 8341
+10 12 8378
+11 12 8409
+12 12 8456
+13 12 8496
+14 12 8532 1637413927
+15 12 8565
+16 12 8595
+17 12 8630
+18 12 8662
+19 12 8693
+22 13 8730
+23 13 8788
+26 13 8822
+39 13 8943
+</Comments>
+</CheatTable>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"自动汇编脚本"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Octopath_Traveler-Win64-Shipping.exe
+  Version: 
+  Date   : 2024-01-23
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,VCRUNTIME140.dll,89 08 C3 90 49 83 F8 20) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov ecx,#65535
+  mov [rax],ecx
+  ret
+  nop
+  cmp r8,20
+  jmp return
+
+code:
+  mov [rax],ecx
+  ret 
+  nop 
+  cmp r8,20
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 08 C3 90 49 83 F8 20
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: VCRUNTIME140.memcpy+11C
+
+VCRUNTIME140.memcpy+106: 89 08                 - mov [rax],ecx
+VCRUNTIME140.memcpy+108: 44 88 40 04           - mov [rax+04],r8b
+VCRUNTIME140.memcpy+10C: C3                    - ret 
+VCRUNTIME140.memcpy+10D: 48 8B 0A              - mov rcx,[rdx]
+VCRUNTIME140.memcpy+110: 48 89 08              - mov [rax],rcx
+VCRUNTIME140.memcpy+113: C3                    - ret 
+VCRUNTIME140.memcpy+114: 0F B6 0A              - movzx ecx,byte ptr [rdx]
+VCRUNTIME140.memcpy+117: 88 08                 - mov [rax],cl
+VCRUNTIME140.memcpy+119: C3                    - ret 
+VCRUNTIME140.memcpy+11A: 8B 0A                 - mov ecx,[rdx]
+// ---------- INJECTING HERE ----------
+VCRUNTIME140.memcpy+11C: 89 08                 - mov [rax],ecx
+// ---------- DONE INJECTING  ----------
+VCRUNTIME140.memcpy+11E: C3                    - ret 
+VCRUNTIME140.memcpy+11F: 90                    - nop 
+VCRUNTIME140.memcpy+120: 49 83 F8 20           - cmp r8,20
+VCRUNTIME140.memcpy+124: 77 17                 - ja VCRUNTIME140.memcpy+13D
+VCRUNTIME140.memcpy+126: F3 0F 6F 0A           - movdqu xmm1,[rdx]
+VCRUNTIME140.memcpy+12A: F3 42 0F 6F 54 02 F0  - movdqu xmm2,[rdx+r8-10]
+VCRUNTIME140.memcpy+131: F3 0F 7F 09           - movdqu [rcx],xmm1
+VCRUNTIME140.memcpy+135: F3 42 0F 7F 54 01 F0  - movdqu [rcx+r8-10],xmm2
+VCRUNTIME140.memcpy+13C: C3                    - ret 
+VCRUNTIME140.memcpy+13D: 48 3B D1              - cmp rdx,rcx
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

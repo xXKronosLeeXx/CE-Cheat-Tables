@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"HP 不减"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Iconoclasts
+  Version: 
+  Date   : 2023-12-16
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Iconoclasts.exe,F2 0F 11 81 50 06 00 00 F2 0F 10 82) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  nop
+  jmp return
+
+code:
+  movsd [ecx+00000650],xmm0
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F2 0F 11 81 50 06 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Iconoclasts.exe+185AAE
+
+Iconoclasts.exe+185A7B: F6 C4 44                 - test ah,44
+Iconoclasts.exe+185A7E: 7A 36                    - jp Iconoclasts.exe+185AB6
+Iconoclasts.exe+185A80: 8B 86 84 07 00 00        - mov eax,[esi+00000784]
+Iconoclasts.exe+185A86: 8B 48 28                 - mov ecx,[eax+28]
+Iconoclasts.exe+185A89: 8B 86 64 04 00 00        - mov eax,[esi+00000464]
+Iconoclasts.exe+185A8F: F2 0F 10 81 50 06 00 00  - movsd xmm0,[ecx+00000650]
+Iconoclasts.exe+185A97: 8B 40 28                 - mov eax,[eax+28]
+Iconoclasts.exe+185A9A: F2 0F 10 88 D0 06 00 00  - movsd xmm1,[eax+000006D0]
+Iconoclasts.exe+185AA2: F2 0F 59 0D 88 FA EA 00  - mulsd xmm1,[Iconoclasts.exe+8AFA88]
+Iconoclasts.exe+185AAA: F2 0F 5C C1              - subsd xmm0,xmm1
+// ---------- INJECTING HERE ----------
+Iconoclasts.exe+185AAE: F2 0F 11 81 50 06 00 00  - movsd [ecx+00000650],xmm0
+// ---------- DONE INJECTING  ----------
+Iconoclasts.exe+185AB6: F2 0F 10 82 C8 02 00 00  - movsd xmm0,[edx+000002C8]
+Iconoclasts.exe+185ABE: 66 0F 2E C2              - ucomisd xmm0,xmm2
+Iconoclasts.exe+185AC2: 9F                       - lahf 
+Iconoclasts.exe+185AC3: F6 C4 44                 - test ah,44
+Iconoclasts.exe+185AC6: 7A 4C                    - jp Iconoclasts.exe+185B14
+Iconoclasts.exe+185AC8: F2 0F 10 82 60 02 00 00  - movsd xmm0,[edx+00000260]
+Iconoclasts.exe+185AD0: 66 0F 2E 05 48 0C E9 00  - ucomisd xmm0,[Iconoclasts.exe+890C48]
+Iconoclasts.exe+185AD8: 9F                       - lahf 
+Iconoclasts.exe+185AD9: F6 C4 44                 - test ah,44
+Iconoclasts.exe+185ADC: 7A 36                    - jp Iconoclasts.exe+185B14
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

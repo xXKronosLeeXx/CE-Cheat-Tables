@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>12</ID>
+      <Description>"SCORE"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>ZankiZero.exe+274E2A8</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>20</ID>
+      <Description>"SP不减"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : ZankiZero.exe
+  Version: 
+  Date   : 2024-03-09
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,ZankiZero.exe,29 86 0C 15 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  sub [rsi+0000150C],0
+  jmp return
+
+code:
+  sub [rsi+0000150C],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 29 86 0C 15 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: ZankiZero.exe+6AA12A
+
+ZankiZero.exe+6AA105: FF C1                    - inc ecx
+ZankiZero.exe+6AA107: 48 FF C0                 - inc rax
+ZankiZero.exe+6AA10A: 48 83 C3 10              - add rbx,10
+ZankiZero.exe+6AA10E: 48 3D 80 00 00 00        - cmp rax,00000080
+ZankiZero.exe+6AA114: 7C EB                    - jl ZankiZero.exe+6AA101
+ZankiZero.exe+6AA116: EB 0E                    - jmp ZankiZero.exe+6AA126
+ZankiZero.exe+6AA118: 48 63 C1                 - movsxd  rax,ecx
+ZankiZero.exe+6AA11B: 48 03 C0                 - add rax,rax
+ZankiZero.exe+6AA11E: C6 84 C6 04 0A 00 00 01  - mov byte ptr [rsi+rax*8+00000A04],01
+ZankiZero.exe+6AA126: 41 8B 46 20              - mov eax,[r14+20]
+// ---------- INJECTING HERE ----------
+ZankiZero.exe+6AA12A: 29 86 0C 15 00 00        - sub [rsi+0000150C],eax
+// ---------- DONE INJECTING  ----------
+ZankiZero.exe+6AA130: 48 8B 8D 60 01 00 00     - mov rcx,[rbp+00000160]
+ZankiZero.exe+6AA137: 8B 95 E4 01 00 00        - mov edx,[rbp+000001E4]
+ZankiZero.exe+6AA13D: 48 85 C9                 - test rcx,rcx
+ZankiZero.exe+6AA140: 74 12                    - je ZankiZero.exe+6AA154
+ZankiZero.exe+6AA142: 48 8B 41 10              - mov rax,[rcx+10]
+ZankiZero.exe+6AA146: 39 50 38                 - cmp [rax+38],edx
+ZankiZero.exe+6AA149: 74 60                    - je ZankiZero.exe+6AA1AB
+ZankiZero.exe+6AA14B: 48 8B 49 08              - mov rcx,[rcx+08]
+ZankiZero.exe+6AA14F: 48 85 C9                 - test rcx,rcx
+ZankiZero.exe+6AA152: 75 EE                    - jne ZankiZero.exe+6AA142
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>14</ID>
+      <Description>"HP"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : ZankiZero.exe
+  Version: 
+  Date   : 2024-03-09
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,ZankiZero.exe,C2 89 81 18 15 00 00 8B) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rcx+00001518],#999
+  jmp return
+
+code:
+  mov [rcx+00001518],eax
+  jmp return
+
+INJECT+01:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+01:
+  db 89 81 18 15 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: ZankiZero.exe+5E38E0
+
+ZankiZero.exe+5E38BE: 01 99 18 15 00 00     - add [rcx+00001518],ebx
+ZankiZero.exe+5E38C4: 79 0F                 - jns ZankiZero.exe+5E38D5
+ZankiZero.exe+5E38C6: 44 89 81 18 15 00 00  - mov [rcx+00001518],r8d
+ZankiZero.exe+5E38CD: 8B C3                 - mov eax,ebx
+ZankiZero.exe+5E38CF: 48 83 C4 40           - add rsp,40
+ZankiZero.exe+5E38D3: 5B                    - pop rbx
+ZankiZero.exe+5E38D4: C3                    - ret 
+ZankiZero.exe+5E38D5: 8B 81 18 15 00 00     - mov eax,[rcx+00001518]
+ZankiZero.exe+5E38DB: 3B C2                 - cmp eax,edx
+ZankiZero.exe+5E38DD: 0F 4F C2              - cmovg eax,edx
+// ---------- INJECTING HERE ----------
+ZankiZero.exe+5E38E0: 89 81 18 15 00 00     - mov [rcx+00001518],eax
+// ---------- DONE INJECTING  ----------
+ZankiZero.exe+5E38E6: 8B C3                 - mov eax,ebx
+ZankiZero.exe+5E38E8: 48 83 C4 40           - add rsp,40
+ZankiZero.exe+5E38EC: 5B                    - pop rbx
+ZankiZero.exe+5E38ED: C3                    - ret 
+ZankiZero.exe+5E38EE: CC                    - int 3 
+ZankiZero.exe+5E38EF: CC                    - int 3 
+ZankiZero.exe+5E38F0: CC                    - int 3 
+ZankiZero.exe+5E38F1: CC                    - int 3 
+ZankiZero.exe+5E38F2: CC                    - int 3 
+ZankiZero.exe+5E38F3: CC                    - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>18</ID>
+      <Description>"EXP++"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : ZankiZero.exe
+  Version: 
+  Date   : 2024-03-09
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,ZankiZero.exe,44 01 B1 14 15 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [rcx+00001514],#999999
+
+code:
+  add [rcx+00001514],r14d
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 44 01 B1 14 15 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: ZankiZero.exe+5EFB6D
+
+ZankiZero.exe+5EFB43: 4C 8B EB              - mov r13,rbx
+ZankiZero.exe+5EFB46: 4C 0F 46 EE           - cmovbe r13,rsi
+ZankiZero.exe+5EFB4A: 41 39 9D 18 15 00 00  - cmp [r13+00001518],ebx
+ZankiZero.exe+5EFB51: 0F 8E BD 02 00 00     - jng ZankiZero.exe+5EFE14
+ZankiZero.exe+5EFB57: 44 8B 75 77           - mov r14d,[rbp+77]
+ZankiZero.exe+5EFB5B: 83 FF 07              - cmp edi,07
+ZankiZero.exe+5EFB5E: 48 8B CB              - mov rcx,rbx
+ZankiZero.exe+5EFB61: 41 B0 01              - mov r8b,01
+ZankiZero.exe+5EFB64: 48 0F 46 CE           - cmovbe rcx,rsi
+ZankiZero.exe+5EFB68: BA 90 00 00 00        - mov edx,00000090
+// ---------- INJECTING HERE ----------
+ZankiZero.exe+5EFB6D: 44 01 B1 14 15 00 00  - add [rcx+00001514],r14d
+// ---------- DONE INJECTING  ----------
+ZankiZero.exe+5EFB74: 8B 81 14 15 00 00     - mov eax,[rcx+00001514]
+ZankiZero.exe+5EFB7A: 41 3B C7              - cmp eax,r15d
+ZankiZero.exe+5EFB7D: 41 0F 4F C7           - cmovg eax,r15d
+ZankiZero.exe+5EFB81: 89 81 14 15 00 00     - mov [rcx+00001514],eax
+ZankiZero.exe+5EFB87: 49 8B CD              - mov rcx,r13
+ZankiZero.exe+5EFB8A: E8 D1 05 C0 FF        - call ZankiZero.exe+1F0160
+ZankiZero.exe+5EFB8F: 48 85 C0              - test rax,rax
+ZankiZero.exe+5EFB92: 0F 84 78 02 00 00     - je ZankiZero.exe+5EFE10
+ZankiZero.exe+5EFB98: 66 0F 6E 48 08        - movd xmm1,[rax+08]
+ZankiZero.exe+5EFB9D: 8B F3                 - mov esi,ebx
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

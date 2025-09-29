@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"枪膛子弹"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : AloneInTheDark-Win64-Shipping.exe
+  Version: 
+  Date   : 2025-01-15
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,AloneInTheDark-Win64-Shipping.exe,FF 8E 00 04 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop//  dec [rsi+00000400]
+  jmp return
+
+code:
+  dec [rsi+00000400]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db FF 8E 00 04 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: AloneInTheDark-Win64-Shipping.exe+1746A19
+
+AloneInTheDark-Win64-Shipping.exe+17469ED: 41 B8 02 00 00 00        - mov r8d,00000002
+AloneInTheDark-Win64-Shipping.exe+17469F3: 41 3B C0                 - cmp eax,r8d
+AloneInTheDark-Win64-Shipping.exe+17469F6: 41 0F 4E C0              - cmovle eax,r8d
+AloneInTheDark-Win64-Shipping.exe+17469FA: 89 05 18 A7 46 04        - mov [AloneInTheDark-Win64-Shipping.exe+5BB1118],eax
+AloneInTheDark-Win64-Shipping.exe+1746A00: 44 3B F0                 - cmp r14d,eax
+AloneInTheDark-Win64-Shipping.exe+1746A03: 7E 14                    - jle AloneInTheDark-Win64-Shipping.exe+1746A19
+AloneInTheDark-Win64-Shipping.exe+1746A05: 39 15 09 A7 46 04        - cmp [AloneInTheDark-Win64-Shipping.exe+5BB1114],edx
+AloneInTheDark-Win64-Shipping.exe+1746A0B: 74 0C                    - je AloneInTheDark-Win64-Shipping.exe+1746A19
+AloneInTheDark-Win64-Shipping.exe+1746A0D: 48 8D 0D F4 A6 46 04     - lea rcx,[AloneInTheDark-Win64-Shipping.exe+5BB1108]
+AloneInTheDark-Win64-Shipping.exe+1746A14: E8 27 5F 12 FF           - call AloneInTheDark-Win64-Shipping.exe+86C940
+// ---------- INJECTING HERE ----------
+AloneInTheDark-Win64-Shipping.exe+1746A19: FF 8E 00 04 00 00        - dec [rsi+00000400]
+// ---------- DONE INJECTING  ----------
+AloneInTheDark-Win64-Shipping.exe+1746A1F: 48 8D 8E 90 03 00 00     - lea rcx,[rsi+00000390]
+AloneInTheDark-Win64-Shipping.exe+1746A26: 8B 86 00 04 00 00        - mov eax,[rsi+00000400]
+AloneInTheDark-Win64-Shipping.exe+1746A2C: 89 44 24 30              - mov [rsp+30],eax
+AloneInTheDark-Win64-Shipping.exe+1746A30: 8B 86 FC 03 00 00        - mov eax,[rsi+000003FC]
+AloneInTheDark-Win64-Shipping.exe+1746A36: 89 44 24 34              - mov [rsp+34],eax
+AloneInTheDark-Win64-Shipping.exe+1746A3A: 48 8D 54 24 30           - lea rdx,[rsp+30]
+AloneInTheDark-Win64-Shipping.exe+1746A3F: E8 6C 30 18 FF           - call AloneInTheDark-Win64-Shipping.exe+8C9AB0
+AloneInTheDark-Win64-Shipping.exe+1746A44: 48 8B 4C 24 50           - mov rcx,[rsp+50]
+AloneInTheDark-Win64-Shipping.exe+1746A49: 4C 8B BC 24 F0 01 00 00  - mov r15,[rsp+000001F0]
+AloneInTheDark-Win64-Shipping.exe+1746A51: 4C 8B B4 24 F8 01 00 00  - mov r14,[rsp+000001F8]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>9</ID>
+      <Description>"道具"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : AloneInTheDark-Win64-Shipping.exe
+  Version: 
+  Date   : 2025-01-15
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,AloneInTheDark-Win64-Shipping.exe,44 29 70 28 48 8B 4D 90) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop//  sub [rax+28],r14d
+  mov rcx,[rbp-70]
+  jmp return
+
+code:
+  sub [rax+28],r14d
+  mov rcx,[rbp-70]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 44 29 70 28 48 8B 4D 90
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: AloneInTheDark-Win64-Shipping.exe+1822517
+
+AloneInTheDark-Win64-Shipping.exe+18224F3: 48 8B CE              - mov rcx,rsi
+AloneInTheDark-Win64-Shipping.exe+18224F6: E8 15 5F FA FF        - call AloneInTheDark-Win64-Shipping.exe+17C8410
+AloneInTheDark-Win64-Shipping.exe+18224FB: 48 63 85 D8 00 00 00  - movsxd  rax,dword ptr [rbp+000000D8]
+AloneInTheDark-Win64-Shipping.exe+1822502: 83 F8 FF              - cmp eax,-01
+AloneInTheDark-Win64-Shipping.exe+1822505: 74 0D                 - je AloneInTheDark-Win64-Shipping.exe+1822514
+AloneInTheDark-Win64-Shipping.exe+1822507: 48 8D 04 80           - lea rax,[rax+rax*4]
+AloneInTheDark-Win64-Shipping.exe+182250B: 48 C1 E0 04           - shl rax,04
+AloneInTheDark-Win64-Shipping.exe+182250F: 48 03 06              - add rax,[rsi]
+AloneInTheDark-Win64-Shipping.exe+1822512: EB 03                 - jmp AloneInTheDark-Win64-Shipping.exe+1822517
+AloneInTheDark-Win64-Shipping.exe+1822514: 49 8B C4              - mov rax,r12
+// ---------- INJECTING HERE ----------
+AloneInTheDark-Win64-Shipping.exe+1822517: 44 29 70 28           - sub [rax+28],r14d
+// ---------- DONE INJECTING  ----------
+AloneInTheDark-Win64-Shipping.exe+182251B: 48 8B 4D 90           - mov rcx,[rbp-70]
+AloneInTheDark-Win64-Shipping.exe+182251F: 48 85 C9              - test rcx,rcx
+AloneInTheDark-Win64-Shipping.exe+1822522: 74 05                 - je AloneInTheDark-Win64-Shipping.exe+1822529
+AloneInTheDark-Win64-Shipping.exe+1822524: E8 07 95 17 00        - call AloneInTheDark-Win64-Shipping.exe+199BA30
+AloneInTheDark-Win64-Shipping.exe+1822529: 49 8B C4              - mov rax,r12
+AloneInTheDark-Win64-Shipping.exe+182252C: 4C 89 65 B8           - mov [rbp-48],r12
+AloneInTheDark-Win64-Shipping.exe+1822530: 48 8B D7              - mov rdx,rdi
+AloneInTheDark-Win64-Shipping.exe+1822533: 48 89 45 B0           - mov [rbp-50],rax
+AloneInTheDark-Win64-Shipping.exe+1822537: 48 8D 4D 50           - lea rcx,[rbp+50]
+AloneInTheDark-Win64-Shipping.exe+182253B: 4C 89 65 C0           - mov [rbp-40],r12
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

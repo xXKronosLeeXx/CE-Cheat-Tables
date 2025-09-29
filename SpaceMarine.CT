@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"bullet"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : SpaceMarine.exe
+  Version: 
+  Date   : 2024-09-10
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,SpaceMarine.exe,F3 0F 11 9E 48 06 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  movss xmm3,[esi+00000648]
+  movss [esi+00000648],xmm3
+  jmp return
+
+code:
+  movss [esi+00000648],xmm3
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 9E 48 06 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: SpaceMarine.exe+EB608
+
+SpaceMarine.exe+EB5E4: 83 FA 06                 - cmp edx,06
+SpaceMarine.exe+EB5E7: 74 09                    - je SpaceMarine.exe+EB5F2
+SpaceMarine.exe+EB5E9: C6 45 0B 01              - mov byte ptr [ebp+0B],01
+SpaceMarine.exe+EB5ED: 83 FA 09                 - cmp edx,09
+SpaceMarine.exe+EB5F0: 75 04                    - jne SpaceMarine.exe+EB5F6
+SpaceMarine.exe+EB5F2: C6 45 0B 00              - mov byte ptr [ebp+0B],00
+SpaceMarine.exe+EB5F6: 53                       - push ebx
+SpaceMarine.exe+EB5F7: 57                       - push edi
+SpaceMarine.exe+EB5F8: F3 0F 11 8E 40 06 00 00  - movss [esi+00000640],xmm1
+SpaceMarine.exe+EB600: F3 0F 11 96 44 06 00 00  - movss [esi+00000644],xmm2
+// ---------- INJECTING HERE ----------
+SpaceMarine.exe+EB608: F3 0F 11 9E 48 06 00 00  - movss [esi+00000648],xmm3
+// ---------- DONE INJECTING  ----------
+SpaceMarine.exe+EB610: 83 F9 03                 - cmp ecx,03
+SpaceMarine.exe+EB613: 0F 84 97 0D 00 00        - je SpaceMarine.exe+EC3B0
+SpaceMarine.exe+EB619: 83 F9 04                 - cmp ecx,04
+SpaceMarine.exe+EB61C: 0F 84 8E 0D 00 00        - je SpaceMarine.exe+EC3B0
+SpaceMarine.exe+EB622: 83 F9 05                 - cmp ecx,05
+SpaceMarine.exe+EB625: 0F 84 85 0D 00 00        - je SpaceMarine.exe+EC3B0
+SpaceMarine.exe+EB62B: F3 0F 11 5D C8           - movss [ebp-38],xmm3
+SpaceMarine.exe+EB630: B8 8C 8F 3B 01           - mov eax,SpaceMarine.exe+FB8F8C
+SpaceMarine.exe+EB635: 83 FA 0A                 - cmp edx,0A
+SpaceMarine.exe+EB638: 75 0D                    - jne SpaceMarine.exe+EB647
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"bullet3种"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : SpaceMarine.exe
+  Version: 
+  Date   : 2024-09-10
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,SpaceMarine.exe,F3 0F 11 8E 40 06 00 00 F3 0F 11 96 44 06 00 00 F3 0F 11 9E 48 06 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  movss xmm1,[esi+00000640]
+  movss [esi+00000640],xmm1
+  movss xmm2,[esi+00000644]
+  movss [esi+00000644],xmm2
+  movss xmm3,[esi+00000648]
+  movss [esi+00000648],xmm3
+
+code:
+  movss [esi+00000640],xmm1
+  movss [esi+00000644],xmm2
+  movss [esi+00000648],xmm3
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 8E 40 06 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: SpaceMarine.exe+EB5F8
+
+SpaceMarine.exe+EB5DD: EB 05                    - jmp SpaceMarine.exe+EB5E4
+SpaceMarine.exe+EB5DF: F3 0F 11 6D C0           - movss [ebp-40],xmm5
+SpaceMarine.exe+EB5E4: 83 FA 06                 - cmp edx,06
+SpaceMarine.exe+EB5E7: 74 09                    - je SpaceMarine.exe+EB5F2
+SpaceMarine.exe+EB5E9: C6 45 0B 01              - mov byte ptr [ebp+0B],01
+SpaceMarine.exe+EB5ED: 83 FA 09                 - cmp edx,09
+SpaceMarine.exe+EB5F0: 75 04                    - jne SpaceMarine.exe+EB5F6
+SpaceMarine.exe+EB5F2: C6 45 0B 00              - mov byte ptr [ebp+0B],00
+SpaceMarine.exe+EB5F6: 53                       - push ebx
+SpaceMarine.exe+EB5F7: 57                       - push edi
+// ---------- INJECTING HERE ----------
+SpaceMarine.exe+EB5F8: F3 0F 11 8E 40 06 00 00  - movss [esi+00000640],xmm1
+// ---------- DONE INJECTING  ----------
+SpaceMarine.exe+EB600: F3 0F 11 96 44 06 00 00  - movss [esi+00000644],xmm2
+SpaceMarine.exe+EB608: F3 0F 11 9E 48 06 00 00  - movss [esi+00000648],xmm3
+SpaceMarine.exe+EB610: 83 F9 03                 - cmp ecx,03
+SpaceMarine.exe+EB613: 0F 84 97 0D 00 00        - je SpaceMarine.exe+EC3B0
+SpaceMarine.exe+EB619: 83 F9 04                 - cmp ecx,04
+SpaceMarine.exe+EB61C: 0F 84 8E 0D 00 00        - je SpaceMarine.exe+EC3B0
+SpaceMarine.exe+EB622: 83 F9 05                 - cmp ecx,05
+SpaceMarine.exe+EB625: 0F 84 85 0D 00 00        - je SpaceMarine.exe+EC3B0
+SpaceMarine.exe+EB62B: F3 0F 11 5D C8           - movss [ebp-38],xmm3
+SpaceMarine.exe+EB630: B8 8C 8F 3B 01           - mov eax,SpaceMarine.exe+FB8F8C
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>9</ID>
+      <Description>"buttle1"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : SpaceMarine.exe
+  Version: 
+  Date   : 2024-09-15
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,SpaceMarine.exe,F3 0F 11 8E 40 06 00 00) // should be unique
+alloc(newmem,$1000)
+alloc(buttle,4,$1000)
+
+label(code)
+label(return)
+buttle1:
+dd (float)100
+
+newmem:
+  movss xmm1,[buttle1]
+  movss [esi+00000640],xmm1
+  jmp return
+
+code:
+  movss [esi+00000640],xmm1
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 8E 40 06 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+dealloc(buttle1)
+
+{
+// ORIGINAL CODE - INJECTION POINT: SpaceMarine.exe+EB5F8
+
+SpaceMarine.exe+EB5DD: EB 05                    - jmp SpaceMarine.exe+EB5E4
+SpaceMarine.exe+EB5DF: F3 0F 11 6D C0           - movss [ebp-40],xmm5
+SpaceMarine.exe+EB5E4: 83 FA 06                 - cmp edx,06
+SpaceMarine.exe+EB5E7: 74 09                    - je SpaceMarine.exe+EB5F2
+SpaceMarine.exe+EB5E9: C6 45 0B 01              - mov byte ptr [ebp+0B],01
+SpaceMarine.exe+EB5ED: 83 FA 09                 - cmp edx,09
+SpaceMarine.exe+EB5F0: 75 04                    - jne SpaceMarine.exe+EB5F6
+SpaceMarine.exe+EB5F2: C6 45 0B 00              - mov byte ptr [ebp+0B],00
+SpaceMarine.exe+EB5F6: 53                       - push ebx
+SpaceMarine.exe+EB5F7: 57                       - push edi
+// ---------- INJECTING HERE ----------
+SpaceMarine.exe+EB5F8: F3 0F 11 8E 40 06 00 00  - movss [esi+00000640],xmm1
+// ---------- DONE INJECTING  ----------
+SpaceMarine.exe+EB600: F3 0F 11 96 44 06 00 00  - movss [esi+00000644],xmm2
+SpaceMarine.exe+EB608: F3 0F 11 9E 48 06 00 00  - movss [esi+00000648],xmm3
+SpaceMarine.exe+EB610: 83 F9 03                 - cmp ecx,03
+SpaceMarine.exe+EB613: 0F 84 97 0D 00 00        - je SpaceMarine.exe+EC3B0
+SpaceMarine.exe+EB619: 83 F9 04                 - cmp ecx,04
+SpaceMarine.exe+EB61C: 0F 84 8E 0D 00 00        - je SpaceMarine.exe+EC3B0
+SpaceMarine.exe+EB622: 83 F9 05                 - cmp ecx,05
+SpaceMarine.exe+EB625: 0F 84 85 0D 00 00        - je SpaceMarine.exe+EC3B0
+SpaceMarine.exe+EB62B: F3 0F 11 5D C8           - movss [ebp-38],xmm3
+SpaceMarine.exe+EB630: B8 8C 8F 3B 01           - mov eax,SpaceMarine.exe+FB8F8C
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>10</ID>
+      <Description>"自动汇编脚本"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : SpaceMarine.exe
+  Version: 
+  Date   : 2024-09-15
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,SpaceMarine.exe,F3 0F 11 96 44 06 00 00) // should be unique
+alloc(newmem,$1000)
+alloc(buttle2,4,$1000)
+
+label(code)
+label(return)
+buttle2:
+dd (float)88
+
+newmem:
+  movss xmm2,[buttle2]
+  movss [esi+00000644],xmm2
+  jmp return
+
+code:
+  movss [esi+00000644],xmm2
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 96 44 06 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+dealloc(buttle2)
+
+{
+// ORIGINAL CODE - INJECTION POINT: SpaceMarine.exe+EB600
+
+SpaceMarine.exe+EB5DF: F3 0F 11 6D C0           - movss [ebp-40],xmm5
+SpaceMarine.exe+EB5E4: 83 FA 06                 - cmp edx,06
+SpaceMarine.exe+EB5E7: 74 09                    - je SpaceMarine.exe+EB5F2
+SpaceMarine.exe+EB5E9: C6 45 0B 01              - mov byte ptr [ebp+0B],01
+SpaceMarine.exe+EB5ED: 83 FA 09                 - cmp edx,09
+SpaceMarine.exe+EB5F0: 75 04                    - jne SpaceMarine.exe+EB5F6
+SpaceMarine.exe+EB5F2: C6 45 0B 00              - mov byte ptr [ebp+0B],00
+SpaceMarine.exe+EB5F6: 53                       - push ebx
+SpaceMarine.exe+EB5F7: 57                       - push edi
+SpaceMarine.exe+EB5F8: F3 0F 11 8E 40 06 00 00  - movss [esi+00000640],xmm1
+// ---------- INJECTING HERE ----------
+SpaceMarine.exe+EB600: F3 0F 11 96 44 06 00 00  - movss [esi+00000644],xmm2
+// ---------- DONE INJECTING  ----------
+SpaceMarine.exe+EB608: F3 0F 11 9E 48 06 00 00  - movss [esi+00000648],xmm3
+SpaceMarine.exe+EB610: 83 F9 03                 - cmp ecx,03
+SpaceMarine.exe+EB613: 0F 84 97 0D 00 00        - je SpaceMarine.exe+EC3B0
+SpaceMarine.exe+EB619: 83 F9 04                 - cmp ecx,04
+SpaceMarine.exe+EB61C: 0F 84 8E 0D 00 00        - je SpaceMarine.exe+EC3B0
+SpaceMarine.exe+EB622: 83 F9 05                 - cmp ecx,05
+SpaceMarine.exe+EB625: 0F 84 85 0D 00 00        - je SpaceMarine.exe+EC3B0
+SpaceMarine.exe+EB62B: F3 0F 11 5D C8           - movss [ebp-38],xmm3
+SpaceMarine.exe+EB630: B8 8C 8F 3B 01           - mov eax,SpaceMarine.exe+FB8F8C
+SpaceMarine.exe+EB635: 83 FA 0A                 - cmp edx,0A
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>11</ID>
+      <Description>"buttle temp"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : SpaceMarine.exe
+  Version: 
+  Date   : 2024-09-15
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,SpaceMarine.exe,F3 0F 11 9E 48 06 00 00) // should be unique
+alloc(newmem,$1000)
+alloc(buttle3,4,$1000)
+
+label(code)
+label(return)
+
+buttle3:
+dd (float)50
+
+newmem:
+  movss xmm3,[buttle3]
+    movss xmm2,[buttle3]
+      movss xmm1,[buttle3]
+  movss [esi+00000648],xmm3
+  jmp return
+
+code:
+  movss [esi+00000648],xmm3
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 9E 48 06 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+dealloc(buttle3)
+
+{
+// ORIGINAL CODE - INJECTION POINT: SpaceMarine.exe+EB608
+
+SpaceMarine.exe+EB5E4: 83 FA 06                 - cmp edx,06
+SpaceMarine.exe+EB5E7: 74 09                    - je SpaceMarine.exe+EB5F2
+SpaceMarine.exe+EB5E9: C6 45 0B 01              - mov byte ptr [ebp+0B],01
+SpaceMarine.exe+EB5ED: 83 FA 09                 - cmp edx,09
+SpaceMarine.exe+EB5F0: 75 04                    - jne SpaceMarine.exe+EB5F6
+SpaceMarine.exe+EB5F2: C6 45 0B 00              - mov byte ptr [ebp+0B],00
+SpaceMarine.exe+EB5F6: 53                       - push ebx
+SpaceMarine.exe+EB5F7: 57                       - push edi
+SpaceMarine.exe+EB5F8: F3 0F 11 8E 40 06 00 00  - movss [esi+00000640],xmm1
+SpaceMarine.exe+EB600: F3 0F 11 96 44 06 00 00  - movss [esi+00000644],xmm2
+// ---------- INJECTING HERE ----------
+SpaceMarine.exe+EB608: F3 0F 11 9E 48 06 00 00  - movss [esi+00000648],xmm3
+// ---------- DONE INJECTING  ----------
+SpaceMarine.exe+EB610: 83 F9 03                 - cmp ecx,03
+SpaceMarine.exe+EB613: 0F 84 97 0D 00 00        - je SpaceMarine.exe+EC3B0
+SpaceMarine.exe+EB619: 83 F9 04                 - cmp ecx,04
+SpaceMarine.exe+EB61C: 0F 84 8E 0D 00 00        - je SpaceMarine.exe+EC3B0
+SpaceMarine.exe+EB622: 83 F9 05                 - cmp ecx,05
+SpaceMarine.exe+EB625: 0F 84 85 0D 00 00        - je SpaceMarine.exe+EC3B0
+SpaceMarine.exe+EB62B: F3 0F 11 5D C8           - movss [ebp-38],xmm3
+SpaceMarine.exe+EB630: B8 8C 8F 3B 01           - mov eax,SpaceMarine.exe+FB8F8C
+SpaceMarine.exe+EB635: 83 FA 0A                 - cmp edx,0A
+SpaceMarine.exe+EB638: 75 0D                    - jne SpaceMarine.exe+EB647
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>20</ID>
+      <Description>"无描述"</Description>
+      <LastState Value="99999" RealAddress="1AABB85C7B0"/>
+      <VariableType>8 Bytes</VariableType>
+      <Address>1AABB85C7B0</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

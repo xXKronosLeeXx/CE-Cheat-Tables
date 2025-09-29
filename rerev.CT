@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"子弹不减"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : rerev.exe
+  Version: 
+  Date   : 2024-09-28
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,rerev.exe,2B CA 89 88 7C 0F 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+nop//  sub ecx,edx
+  mov [eax+00000F7C],ecx
+  jmp return
+
+code:
+  sub ecx,edx
+  mov [eax+00000F7C],ecx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 2B CA 89 88 7C 0F 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: rerev.exe+1C373E
+
+rerev.exe+1C3722: 8B 54 24 04        - mov edx,[esp+04]
+rerev.exe+1C3726: 8B 40 14           - mov eax,[eax+14]
+rerev.exe+1C3729: 52                 - push edx
+rerev.exe+1C372A: FF D0              - call eax
+rerev.exe+1C372C: 85 C0              - test eax,eax
+rerev.exe+1C372E: 74 21              - je rerev.exe+1C3751
+rerev.exe+1C3730: 8B 88 7C 0F 00 00  - mov ecx,[eax+00000F7C]
+rerev.exe+1C3736: 8B 54 24 08        - mov edx,[esp+08]
+rerev.exe+1C373A: 3B D1              - cmp edx,ecx
+rerev.exe+1C373C: 7D 0B              - jnl rerev.exe+1C3749
+// ---------- INJECTING HERE ----------
+rerev.exe+1C373E: 2B CA              - sub ecx,edx
+// ---------- DONE INJECTING  ----------
+rerev.exe+1C3740: 89 88 7C 0F 00 00  - mov [eax+00000F7C],ecx
+rerev.exe+1C3746: C2 08 00           - ret 0008
+rerev.exe+1C3749: 33 C9              - xor ecx,ecx
+rerev.exe+1C374B: 89 88 7C 0F 00 00  - mov [eax+00000F7C],ecx
+rerev.exe+1C3751: C2 08 00           - ret 0008
+rerev.exe+1C3754: CC                 - int 3 
+rerev.exe+1C3755: CC                 - int 3 
+rerev.exe+1C3756: CC                 - int 3 
+rerev.exe+1C3757: CC                 - int 3 
+rerev.exe+1C3758: CC                 - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"弹夹不减"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : rerev.exe
+  Version: 
+  Date   : 2024-09-28
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,rerev.exe,29 6C BE 40 8A 44 24 13) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  nop//  sub [esi+edi*4+40],ebp
+  mov al,[esp+13]
+  jmp return
+
+code:
+  sub [esi+edi*4+40],ebp
+  mov al,[esp+13]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 29 6C BE 40 8A 44 24 13
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: rerev.exe+1C5847
+
+rerev.exe+1C5830: 8B 8E D4 00 00 00  - mov ecx,[esi+000000D4]
+rerev.exe+1C5836: 2B E8              - sub ebp,eax
+rerev.exe+1C5838: 8B 06              - mov eax,[esi]
+rerev.exe+1C583A: 8B 50 60           - mov edx,[eax+60]
+rerev.exe+1C583D: 3B EB              - cmp ebp,ebx
+rerev.exe+1C583F: 7D 14              - jnl rerev.exe+1C5855
+rerev.exe+1C5841: 55                 - push ebp
+rerev.exe+1C5842: 51                 - push ecx
+rerev.exe+1C5843: 8B CE              - mov ecx,esi
+rerev.exe+1C5845: FF D2              - call edx
+// ---------- INJECTING HERE ----------
+rerev.exe+1C5847: 29 6C BE 40        - sub [esi+edi*4+40],ebp
+// ---------- DONE INJECTING  ----------
+rerev.exe+1C584B: 8A 44 24 13        - mov al,[esp+13]
+rerev.exe+1C584F: 5F                 - pop edi
+rerev.exe+1C5850: 5D                 - pop ebp
+rerev.exe+1C5851: 5B                 - pop ebx
+rerev.exe+1C5852: 5E                 - pop esi
+rerev.exe+1C5853: 59                 - pop ecx
+rerev.exe+1C5854: C3                 - ret 
+rerev.exe+1C5855: 53                 - push ebx
+rerev.exe+1C5856: 51                 - push ecx
+rerev.exe+1C5857: 8B CE              - mov ecx,esi
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"扫描100%"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : rerev.exe
+  Version: 
+  Date   : 2024-09-28
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,rerev.exe,01 41 74 83 79 74 64) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  add [ecx+74],64
+  cmp dword ptr [ecx+74],64
+  jmp return
+
+code:
+  add [ecx+74],eax
+  cmp dword ptr [ecx+74],64
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 01 41 74 83 79 74 64
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: rerev.exe+4B9D34
+
+rerev.exe+4B9D27: CC                    - int 3 
+rerev.exe+4B9D28: CC                    - int 3 
+rerev.exe+4B9D29: CC                    - int 3 
+rerev.exe+4B9D2A: CC                    - int 3 
+rerev.exe+4B9D2B: CC                    - int 3 
+rerev.exe+4B9D2C: CC                    - int 3 
+rerev.exe+4B9D2D: CC                    - int 3 
+rerev.exe+4B9D2E: CC                    - int 3 
+rerev.exe+4B9D2F: CC                    - int 3 
+rerev.exe+4B9D30: 8B 44 24 04           - mov eax,[esp+04]
+// ---------- INJECTING HERE ----------
+rerev.exe+4B9D34: 01 41 74              - add [ecx+74],eax
+// ---------- DONE INJECTING  ----------
+rerev.exe+4B9D37: 83 79 74 64           - cmp dword ptr [ecx+74],64
+rerev.exe+4B9D3B: 76 07                 - jna rerev.exe+4B9D44
+rerev.exe+4B9D3D: C7 41 74 64 00 00 00  - mov [ecx+74],00000064
+rerev.exe+4B9D44: C2 04 00              - ret 0004
+rerev.exe+4B9D47: CC                    - int 3 
+rerev.exe+4B9D48: CC                    - int 3 
+rerev.exe+4B9D49: CC                    - int 3 
+rerev.exe+4B9D4A: CC                    - int 3 
+rerev.exe+4B9D4B: CC                    - int 3 
+rerev.exe+4B9D4C: CC                    - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>10</ID>
+      <Description>"血瓶不减"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : rerev.exe
+  Version: 
+  Date   : 2024-09-28
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,rerev.exe,4A 89 91 C8 00 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  nop//  dec edx
+  mov [ecx+000000C8],edx
+  jmp return
+
+code:
+  dec edx
+  mov [ecx+000000C8],edx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 4A 89 91 C8 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: rerev.exe+1C405C
+
+rerev.exe+1C404A: CC                 - int 3 
+rerev.exe+1C404B: CC                 - int 3 
+rerev.exe+1C404C: CC                 - int 3 
+rerev.exe+1C404D: CC                 - int 3 
+rerev.exe+1C404E: CC                 - int 3 
+rerev.exe+1C404F: CC                 - int 3 
+rerev.exe+1C4050: 8B 91 C8 00 00 00  - mov edx,[ecx+000000C8]
+rerev.exe+1C4056: 32 C0              - xor al,al
+rerev.exe+1C4058: 85 D2              - test edx,edx
+rerev.exe+1C405A: 74 09              - je rerev.exe+1C4065
+// ---------- INJECTING HERE ----------
+rerev.exe+1C405C: 4A                 - dec edx
+// ---------- DONE INJECTING  ----------
+rerev.exe+1C405D: 89 91 C8 00 00 00  - mov [ecx+000000C8],edx
+rerev.exe+1C4063: B0 01              - mov al,01
+rerev.exe+1C4065: C3                 - ret 
+rerev.exe+1C4066: CC                 - int 3 
+rerev.exe+1C4067: CC                 - int 3 
+rerev.exe+1C4068: CC                 - int 3 
+rerev.exe+1C4069: CC                 - int 3 
+rerev.exe+1C406A: CC                 - int 3 
+rerev.exe+1C406B: CC                 - int 3 
+rerev.exe+1C406C: CC                 - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>12</ID>
+      <Description>"副武器=5"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : rerev.exe
+  Version: 
+  Date   : 2024-09-28
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,rerev.exe,7D 0B 8B 54 24 08 89 94 81 A0 00 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov edx,[esp+08]
+  mov [ecx+eax*4+000000A0],5
+  jmp return
+
+code:
+  mov edx,[esp+08]
+  mov [ecx+eax*4+000000A0],edx
+  jmp return
+
+INJECT+02:
+  jmp newmem
+  nop 6
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+02:
+  db 8B 54 24 08 89 94 81 A0 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: rerev.exe+1C2E59
+
+rerev.exe+1C2E49: CC                    - int 3 
+rerev.exe+1C2E4A: CC                    - int 3 
+rerev.exe+1C2E4B: CC                    - int 3 
+rerev.exe+1C2E4C: CC                    - int 3 
+rerev.exe+1C2E4D: CC                    - int 3 
+rerev.exe+1C2E4E: CC                    - int 3 
+rerev.exe+1C2E4F: CC                    - int 3 
+rerev.exe+1C2E50: 8B 44 24 04           - mov eax,[esp+04]
+rerev.exe+1C2E54: 83 F8 05              - cmp eax,05
+rerev.exe+1C2E57: 7D 0B                 - jnl rerev.exe+1C2E64
+// ---------- INJECTING HERE ----------
+rerev.exe+1C2E59: 8B 54 24 08           - mov edx,[esp+08]
+// ---------- DONE INJECTING  ----------
+rerev.exe+1C2E5D: 89 94 81 A0 00 00 00  - mov [ecx+eax*4+000000A0],edx
+rerev.exe+1C2E64: C2 08 00              - ret 0008
+rerev.exe+1C2E67: CC                    - int 3 
+rerev.exe+1C2E68: CC                    - int 3 
+rerev.exe+1C2E69: CC                    - int 3 
+rerev.exe+1C2E6A: CC                    - int 3 
+rerev.exe+1C2E6B: CC                    - int 3 
+rerev.exe+1C2E6C: CC                    - int 3 
+rerev.exe+1C2E6D: CC                    - int 3 
+rerev.exe+1C2E6E: CC                    - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>14</ID>
+      <Description>"BP消费变成增加"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : rerev.exe
+  Version: 
+  Date   : 2024-09-28
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,rerev.exe,2B C7 C7 44 24 08 00 00 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  add eax,edi
+  mov [esp+08],00000000
+  jmp return
+
+code:
+  sub eax,edi
+  mov [esp+08],00000000
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 5
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 2B C7 C7 44 24 08 00 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: rerev.exe+3FA28D
+
+rerev.exe+3FA267: 57                       - push edi
+rerev.exe+3FA268: 8B 7C 24 14              - mov edi,[esp+14]
+rerev.exe+3FA26C: 85 FF                    - test edi,edi
+rerev.exe+3FA26E: 79 17                    - jns rerev.exe+3FA287
+rerev.exe+3FA270: 68 AC 81 08 01           - push rerev.exe+C881AC
+rerev.exe+3FA275: 68 D7 0A 00 00           - push 00000AD7
+rerev.exe+3FA27A: 68 C0 7D 08 01           - push rerev.exe+C87DC0
+rerev.exe+3FA27F: E8 EC 70 C0 FF           - call rerev.exe+1370
+rerev.exe+3FA284: 83 C4 0C                 - add esp,0C
+rerev.exe+3FA287: 8B 86 CC 00 00 00        - mov eax,[esi+000000CC]
+// ---------- INJECTING HERE ----------
+rerev.exe+3FA28D: 2B C7                    - sub eax,edi
+// ---------- DONE INJECTING  ----------
+rerev.exe+3FA28F: C7 44 24 08 00 00 00 00  - mov [esp+08],00000000
+rerev.exe+3FA297: 89 44 24 0C              - mov [esp+0C],eax
+rerev.exe+3FA29B: 79 06                    - jns rerev.exe+3FA2A3
+rerev.exe+3FA29D: 8D 44 24 08              - lea eax,[esp+08]
+rerev.exe+3FA2A1: EB 10                    - jmp rerev.exe+3FA2B3
+rerev.exe+3FA2A3: 3D 7F 96 98 00           - cmp eax,rerev.exe+58967F
+rerev.exe+3FA2A8: B8 E8 AC FE 00           - mov eax,rerev.exe+BEACE8
+rerev.exe+3FA2AD: 7F 04                    - jg rerev.exe+3FA2B3
+rerev.exe+3FA2AF: 8D 44 24 0C              - lea eax,[esp+0C]
+rerev.exe+3FA2B3: 8B 08                    - mov ecx,[eax]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>15</ID>
+      <Description>"BP变999999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : rerev.exe
+  Version: 
+  Date   : 2024-09-28
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,rerev.exe,89 8E CC 00 00 00 57) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov [esi+000000CC],#999999
+  jmp return
+
+code:
+  mov [esi+000000CC],ecx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 8E CC 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: rerev.exe+3FA2B5
+
+rerev.exe+3FA292: 0F 1F 44 00 00     - nop dword ptr [eax+eax+00]
+rerev.exe+3FA297: 89 44 24 0C        - mov [esp+0C],eax
+rerev.exe+3FA29B: 79 06              - jns rerev.exe+3FA2A3
+rerev.exe+3FA29D: 8D 44 24 08        - lea eax,[esp+08]
+rerev.exe+3FA2A1: EB 10              - jmp rerev.exe+3FA2B3
+rerev.exe+3FA2A3: 3D 7F 96 98 00     - cmp eax,rerev.exe+58967F
+rerev.exe+3FA2A8: B8 E8 AC FE 00     - mov eax,rerev.exe+BEACE8
+rerev.exe+3FA2AD: 7F 04              - jg rerev.exe+3FA2B3
+rerev.exe+3FA2AF: 8D 44 24 0C        - lea eax,[esp+0C]
+rerev.exe+3FA2B3: 8B 08              - mov ecx,[eax]
+// ---------- INJECTING HERE ----------
+rerev.exe+3FA2B5: 89 8E CC 00 00 00  - mov [esi+000000CC],ecx
+// ---------- DONE INJECTING  ----------
+rerev.exe+3FA2BB: 57                 - push edi
+rerev.exe+3FA2BC: 8B CE              - mov ecx,esi
+rerev.exe+3FA2BE: E8 0D 5A 08 00     - call rerev.exe+47FCD0
+rerev.exe+3FA2C3: 5F                 - pop edi
+rerev.exe+3FA2C4: 5E                 - pop esi
+rerev.exe+3FA2C5: 83 C4 08           - add esp,08
+rerev.exe+3FA2C8: C3                 - ret 
+rerev.exe+3FA2C9: CC                 - int 3 
+rerev.exe+3FA2CA: CC                 - int 3 
+rerev.exe+3FA2CB: CC                 - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

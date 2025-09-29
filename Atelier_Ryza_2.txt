@@ -1,0 +1,12 @@
+Atelier_Ryza_2
+
+//战斗HP
+[rbx+0000010C] //战斗HP
+[rbx+0000011C] //HP上限
+
+Atelier_Ryza_2.exe+346A5D - 29 83 0C010000        - sub [rbx+0000010C],eax
+add      player    enemy        
++110       1or6       0
++134       3or16      0
++13c        1         0
+

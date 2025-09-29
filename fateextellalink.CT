@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"战斗中QP增加"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : fateextellalink.exe
+  Version: 
+  Date   : 2024-09-15
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,fateextellalink.exe,01 83 2C 01 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  add [rbx+0000012C],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 01 83 2C 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: fateextellalink.exe+4FE9FC
+
+fateextellalink.exe+4FE9E5: 8D 14 01           - lea edx,[rcx+rax]
+fateextellalink.exe+4FE9E8: 41 3B D0           - cmp edx,r8d
+fateextellalink.exe+4FE9EB: 7E 07              - jle fateextellalink.exe+4FE9F4
+fateextellalink.exe+4FE9ED: 41 8B C0           - mov eax,r8d
+fateextellalink.exe+4FE9F0: 2B C1              - sub eax,ecx
+fateextellalink.exe+4FE9F2: EB 08              - jmp fateextellalink.exe+4FE9FC
+fateextellalink.exe+4FE9F4: 85 D2              - test edx,edx
+fateextellalink.exe+4FE9F6: 79 04              - jns fateextellalink.exe+4FE9FC
+fateextellalink.exe+4FE9F8: 8B C1              - mov eax,ecx
+fateextellalink.exe+4FE9FA: F7 D8              - neg eax
+// ---------- INJECTING HERE ----------
+fateextellalink.exe+4FE9FC: 01 83 2C 01 00 00  - add [rbx+0000012C],eax
+// ---------- DONE INJECTING  ----------
+fateextellalink.exe+4FEA02: 8B 8B 2C 01 00 00  - mov ecx,[rbx+0000012C]
+fateextellalink.exe+4FEA08: 0F 28 74 24 20     - movaps xmm6,[rsp+20]
+fateextellalink.exe+4FEA0D: 41 3B C8           - cmp ecx,r8d
+fateextellalink.exe+4FEA10: 41 0F 4F C8        - cmovg ecx,r8d
+fateextellalink.exe+4FEA14: 89 8B 2C 01 00 00  - mov [rbx+0000012C],ecx
+fateextellalink.exe+4FEA1A: 48 8B 5C 24 40     - mov rbx,[rsp+40]
+fateextellalink.exe+4FEA1F: 48 83 C4 30        - add rsp,30
+fateextellalink.exe+4FEA23: 5F                 - pop rdi
+fateextellalink.exe+4FEA24: C3                 - ret 
+fateextellalink.exe+4FEA25: CC                 - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"EXP"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : fateextellalink.exe
+  Version: 
+  Date   : 2024-09-15
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,fateextellalink.exe,01 9D 44 01 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [rbp+00000144],#999999
+  jmp return
+
+code:
+  add [rbp+00000144],ebx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 01 9D 44 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: fateextellalink.exe+744CE7
+
+fateextellalink.exe+744CC7: 48 8B E9              - mov rbp,rcx
+fateextellalink.exe+744CCA: 41 03 F6              - add esi,r14d
+fateextellalink.exe+744CCD: E8 BE 00 00 00        - call fateextellalink.exe+744D90
+fateextellalink.exe+744CD2: 8B CE                 - mov ecx,esi
+fateextellalink.exe+744CD4: 8B F8                 - mov edi,eax
+fateextellalink.exe+744CD6: E8 35 5B B1 FF        - call fateextellalink.exe+25A810
+fateextellalink.exe+744CDB: 41 8B CE              - mov ecx,r14d
+fateextellalink.exe+744CDE: 8B D8                 - mov ebx,eax
+fateextellalink.exe+744CE0: E8 2B 5B B1 FF        - call fateextellalink.exe+25A810
+fateextellalink.exe+744CE5: 2B D8                 - sub ebx,eax
+// ---------- INJECTING HERE ----------
+fateextellalink.exe+744CE7: 01 9D 44 01 00 00     - add [rbp+00000144],ebx
+// ---------- DONE INJECTING  ----------
+fateextellalink.exe+744CED: 8B 8D 44 01 00 00     - mov ecx,[rbp+00000144]
+fateextellalink.exe+744CF3: E8 F8 5A B1 FF        - call fateextellalink.exe+25A7F0
+fateextellalink.exe+744CF8: 48 8D 95 E0 1F 00 00  - lea rdx,[rbp+00001FE0]
+fateextellalink.exe+744CFF: 48 8D 8D 80 01 00 00  - lea rcx,[rbp+00000180]
+fateextellalink.exe+744D06: 29 3A                 - sub [rdx],edi
+fateextellalink.exe+744D08: 89 85 28 01 00 00     - mov [rbp+00000128],eax
+fateextellalink.exe+744D0E: E8 0D FF 0B 00        - call fateextellalink.exe+804C20
+fateextellalink.exe+744D13: 44 8B 85 44 01 00 00  - mov r8d,[rbp+00000144]
+fateextellalink.exe+744D1A: 8B 95 24 01 00 00     - mov edx,[rbp+00000124]
+fateextellalink.exe+744D20: 48 8D 8D 80 00 00 00  - lea rcx,[rbp+00000080]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>12</ID>
+      <Description>"KO数"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : fateextellalink.exe
+  Version: 
+  Date   : 2024-09-15
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,fateextellalink.exe,89 83 68 01 00 00 84) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [rbx+00000168],#1000
+  jmp return
+
+code:
+  mov [rbx+00000168],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 83 68 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: fateextellalink.exe+4FEE46
+
+fateextellalink.exe+4FEE20: 48 89 5C 24 08     - mov [rsp+08],rbx
+fateextellalink.exe+4FEE25: 57                 - push rdi
+fateextellalink.exe+4FEE26: 48 83 EC 20        - sub rsp,20
+fateextellalink.exe+4FEE2A: 8B B9 68 01 00 00  - mov edi,[rcx+00000168]
+fateextellalink.exe+4FEE30: 48 8B D9           - mov rbx,rcx
+fateextellalink.exe+4FEE33: 8D 47 01           - lea eax,[rdi+01]
+fateextellalink.exe+4FEE36: 89 81 68 01 00 00  - mov [rcx+00000168],eax
+fateextellalink.exe+4FEE3C: B9 FF E0 F5 05     - mov ecx,05F5E0FF
+fateextellalink.exe+4FEE41: 3B C1              - cmp eax,ecx
+fateextellalink.exe+4FEE43: 0F 4D C1           - cmovge eax,ecx
+// ---------- INJECTING HERE ----------
+fateextellalink.exe+4FEE46: 89 83 68 01 00 00  - mov [rbx+00000168],eax
+// ---------- DONE INJECTING  ----------
+fateextellalink.exe+4FEE4C: 84 D2              - test dl,dl
+fateextellalink.exe+4FEE4E: 74 17              - je fateextellalink.exe+4FEE67
+fateextellalink.exe+4FEE50: FF 83 6C 01 00 00  - inc [rbx+0000016C]
+fateextellalink.exe+4FEE56: 8B 83 6C 01 00 00  - mov eax,[rbx+0000016C]
+fateextellalink.exe+4FEE5C: 3B C1              - cmp eax,ecx
+fateextellalink.exe+4FEE5E: 0F 4D C1           - cmovge eax,ecx
+fateextellalink.exe+4FEE61: 89 83 6C 01 00 00  - mov [rbx+0000016C],eax
+fateextellalink.exe+4FEE67: 48 8B 4B 28        - mov rcx,[rbx+28]
+fateextellalink.exe+4FEE6B: E8 D0 76 13 00     - call fateextellalink.exe+636540
+fateextellalink.exe+4FEE70: 84 C0              - test al,al
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>207F67EA974</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

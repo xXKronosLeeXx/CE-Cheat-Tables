@@ -1,0 +1,1166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>86</ID>
+      <Description>"能用的了"</Description>
+      <Options moManualExpandCollapse="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>70</ID>
+          <Description>"temp2 数据的加减变化在这里"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : The Evil Within
+  Version: 
+  Date   : 2023-10-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,evilwithin.exe,89 51 10 45 84 C0) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  cmp R8,0
+  jne return
+  mov R8,[rcx+10]
+  mov [rcx+10],edx
+  test r8b,r8b
+  mov [rcx+10],R8
+  mov R8,0
+  jmp return
+
+code:
+  mov [rcx+10],edx
+  test r8b,r8b
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 51 10 45 84 C0
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: evilwithin.exe+7C5960
+
+evilwithin.exe+7C5956: CC                       - int 3 
+evilwithin.exe+7C5957: CC                       - int 3 
+evilwithin.exe+7C5958: CC                       - int 3 
+evilwithin.exe+7C5959: CC                       - int 3 
+evilwithin.exe+7C595A: CC                       - int 3 
+evilwithin.exe+7C595B: CC                       - int 3 
+evilwithin.exe+7C595C: CC                       - int 3 
+evilwithin.exe+7C595D: CC                       - int 3 
+evilwithin.exe+7C595E: CC                       - int 3 
+evilwithin.exe+7C595F: CC                       - int 3 
+// ---------- INJECTING HERE ----------
+evilwithin.exe+7C5960: 89 51 10                 - mov [rcx+10],edx
+// ---------- DONE INJECTING  ----------
+evilwithin.exe+7C5963: 45 84 C0                 - test r8b,r8b
+evilwithin.exe+7C5966: 75 37                    - jne evilwithin.exe+7C599F
+evilwithin.exe+7C5968: 8B 41 18                 - mov eax,[rcx+18]
+evilwithin.exe+7C596B: 85 C0                    - test eax,eax
+evilwithin.exe+7C596D: 79 1E                    - jns evilwithin.exe+7C598D
+evilwithin.exe+7C596F: 48 8B 41 08              - mov rax,[rcx+08]
+evilwithin.exe+7C5973: 44 0F B7 80 DC 01 00 00  - movzx r8d,word ptr [rax+000001DC]
+evilwithin.exe+7C597B: 66 45 85 C0              - test r8w,r8w
+evilwithin.exe+7C597F: 78 06                    - js evilwithin.exe+7C5987
+evilwithin.exe+7C5981: 41 0F BF C0              - movsx eax,r8w
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>94</ID>
+          <Description>"temp bullet"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : The Evil Within
+  Version: 
+  Date   : 2023-10-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(bullet,evilwithin.exe,29 41 10 8B 41 10) // should be unique
+alloc(newmem,$1000,bullet)
+
+label(code)
+label(return)
+
+newmem:
+  cmp R10d,5 //R10=5是子弹使用码，不是就跳走，不走这个弹药作弊
+  jne return
+  mov r10,[rcx+10] //借用R10的位置存储[rcx+10]原始数据，使用完后还原之=5
+  sub [rcx+10],eax
+  mov eax,r10
+  mov R10,5
+  jmp return
+
+code:
+  sub [rcx+10],eax
+  mov eax,[rcx+10]
+  jmp return
+
+bullet:
+  jmp newmem
+  nop
+return:
+registersymbol(bullet)
+
+[DISABLE]
+
+bullet:
+  db 29 41 10 8B 41 10
+
+unregistersymbol(bullet)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: evilwithin.exe+7C37CB
+
+evilwithin.exe+7C37A6: 75 5B                    - jne evilwithin.exe+7C3803
+evilwithin.exe+7C37A8: 48 85 C9                 - test rcx,rcx
+evilwithin.exe+7C37AB: 74 56                    - je evilwithin.exe+7C3803
+evilwithin.exe+7C37AD: 39 35 E5 A0 2F 09        - cmp [evilwithin.exe+9ABD898],esi
+evilwithin.exe+7C37B3: 75 4E                    - jne evilwithin.exe+7C3803
+evilwithin.exe+7C37B5: 48 8B 47 08              - mov rax,[rdi+08]
+evilwithin.exe+7C37B9: 40 38 B0 C0 03 00 00     - cmp [rax+000003C0],sil
+evilwithin.exe+7C37C0: 75 41                    - jne evilwithin.exe+7C3803
+evilwithin.exe+7C37C2: 8B 80 CC 03 00 00        - mov eax,[rax+000003CC]
+evilwithin.exe+7C37C8: 8B 51 18                 - mov edx,[rcx+18]
+// ---------- INJECTING HERE ----------
+evilwithin.exe+7C37CB: 29 41 10                 - sub [rcx+10],eax
+// ---------- DONE INJECTING  ----------
+evilwithin.exe+7C37CE: 8B 41 10                 - mov eax,[rcx+10]
+evilwithin.exe+7C37D1: 85 D2                    - test edx,edx
+evilwithin.exe+7C37D3: 79 1E                    - jns evilwithin.exe+7C37F3
+evilwithin.exe+7C37D5: 48 8B 51 08              - mov rdx,[rcx+08]
+evilwithin.exe+7C37D9: 44 0F B7 82 DC 01 00 00  - movzx r8d,word ptr [rdx+000001DC]
+evilwithin.exe+7C37E1: 66 45 85 C0              - test r8w,r8w
+evilwithin.exe+7C37E5: 78 06                    - js evilwithin.exe+7C37ED
+evilwithin.exe+7C37E7: 41 0F BF D0              - movsx edx,r8w
+evilwithin.exe+7C37EB: EB 06                    - jmp evilwithin.exe+7C37F3
+evilwithin.exe+7C37ED: 8B 92 04 02 00 00        - mov edx,[rdx+00000204]
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>6</ID>
+          <Description>"brain 使用的时候打开，及时关闭"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : The Evil Within
+  Version: 
+  Date   : 2023-10-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(brain,evilwithin.exe,89 51 10 F3 C3) // should be unique
+alloc(newmem,$1000,brain)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rcx+10],60000
+  ret
+  jmp return
+
+code:
+  mov [rcx+10],edx
+  ret 
+  jmp return
+
+brain:
+  jmp newmem
+return:
+registersymbol(brain)
+
+[DISABLE]
+
+brain:
+  db 89 51 10 F3 C3
+
+unregistersymbol(brain)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: evilwithin.exe+7C599C
+
+evilwithin.exe+7C5981: 41 0F BF C0        - movsx eax,r8w
+evilwithin.exe+7C5985: EB 06              - jmp evilwithin.exe+7C598D
+evilwithin.exe+7C5987: 8B 80 04 02 00 00  - mov eax,[rax+00000204]
+evilwithin.exe+7C598D: 85 D2              - test edx,edx
+evilwithin.exe+7C598F: 79 06              - jns evilwithin.exe+7C5997
+evilwithin.exe+7C5991: 33 D2              - xor edx,edx
+evilwithin.exe+7C5993: 89 51 10           - mov [rcx+10],edx
+evilwithin.exe+7C5996: C3                 - ret 
+evilwithin.exe+7C5997: 3B D0              - cmp edx,eax
+evilwithin.exe+7C5999: 0F 4F D0           - cmovg edx,eax
+// ---------- INJECTING HERE ----------
+evilwithin.exe+7C599C: 89 51 10           - mov [rcx+10],edx
+// ---------- DONE INJECTING  ----------
+evilwithin.exe+7C599F: F3 C3              - repe ret 
+evilwithin.exe+7C59A1: CC                 - int 3 
+evilwithin.exe+7C59A2: CC                 - int 3 
+evilwithin.exe+7C59A3: CC                 - int 3 
+evilwithin.exe+7C59A4: CC                 - int 3 
+evilwithin.exe+7C59A5: CC                 - int 3 
+evilwithin.exe+7C59A6: CC                 - int 3 
+evilwithin.exe+7C59A7: CC                 - int 3 
+evilwithin.exe+7C59A8: CC                 - int 3 
+evilwithin.exe+7C59A9: CC                 - int 3 
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>85</ID>
+      <Description>"KEY 使用的时候打开，及时关闭"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : The Evil Within
+  Version: 
+  Date   : 2023-10-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(KEY,evilwithin.exe,01 51 10 8B 51 18) // should be unique
+alloc(newmem,$1000,KEY)
+
+label(code)
+label(return)
+
+newmem:
+  cmp edx,-1 //判断edx不为负数就不参加这个运算
+  jns code  //JNE：不等于就跳
+  add edx,1 //理论上edx是-1，所以把它+成0，不强制赋值免得别处用出错
+  add [rcx+10],edx
+  mov edx,[rcx+18]
+  jmp return
+
+code:
+  add [rcx+10],edx
+  mov edx,[rcx+18]
+  jmp return
+
+KEY:
+  jmp newmem
+  nop
+return:
+registersymbol(KEY)
+
+[DISABLE]
+
+KEY:
+  db 01 51 10 8B 51 18
+
+unregistersymbol(KEY)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: evilwithin.exe+7C4E00
+
+evilwithin.exe+7C4DE4: 48 85 C0                 - test rax,rax
+evilwithin.exe+7C4DE7: 75 02                    - jne evilwithin.exe+7C4DEB
+evilwithin.exe+7C4DE9: F3 C3                    - repe ret 
+evilwithin.exe+7C4DEB: 48 8B 40 08              - mov rax,[rax+08]
+evilwithin.exe+7C4DEF: 48 8B 88 A0 02 00 00     - mov rcx,[rax+000002A0]
+evilwithin.exe+7C4DF6: 8B 81 50 02 00 00        - mov eax,[rcx+00000250]
+evilwithin.exe+7C4DFC: C3                       - ret 
+evilwithin.exe+7C4DFD: CC                       - int 3 
+evilwithin.exe+7C4DFE: CC                       - int 3 
+evilwithin.exe+7C4DFF: CC                       - int 3 
+// ---------- INJECTING HERE ----------
+evilwithin.exe+7C4E00: 01 51 10                 - add [rcx+10],edx
+// ---------- DONE INJECTING  ----------
+evilwithin.exe+7C4E03: 8B 51 18                 - mov edx,[rcx+18]
+evilwithin.exe+7C4E06: 8B 41 10                 - mov eax,[rcx+10]
+evilwithin.exe+7C4E09: 85 D2                    - test edx,edx
+evilwithin.exe+7C4E0B: 79 1E                    - jns evilwithin.exe+7C4E2B
+evilwithin.exe+7C4E0D: 48 8B 51 08              - mov rdx,[rcx+08]
+evilwithin.exe+7C4E11: 44 0F B7 82 DC 01 00 00  - movzx r8d,word ptr [rdx+000001DC]
+evilwithin.exe+7C4E19: 66 45 85 C0              - test r8w,r8w
+evilwithin.exe+7C4E1D: 78 06                    - js evilwithin.exe+7C4E25
+evilwithin.exe+7C4E1F: 41 0F BF D0              - movsx edx,r8w
+evilwithin.exe+7C4E23: EB 06                    - jmp evilwithin.exe+7C4E2B
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>32</ID>
+      <Description>"bullet"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : The Evil Within
+  Version: 
+  Date   : 2023-10-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(bullet,evilwithin.exe,29 41 10 8B 41 10) // should be unique
+alloc(newmem,$1000,bullet)
+
+label(code)
+label(return)
+
+newmem:
+  sub [rcx+10],eax
+  add [rcx+10],1
+  mov eax,[rcx+10]
+  jmp return
+
+
+code:
+  sub [rcx+10],eax
+  mov eax,[rcx+10]
+  jmp return
+
+bullet:
+  jmp newmem
+  nop
+return:
+registersymbol(bullet)
+
+[DISABLE]
+
+bullet:
+  db 29 41 10 8B 41 10
+
+unregistersymbol(bullet)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: evilwithin.exe+7C37CB
+
+evilwithin.exe+7C37A6: 75 5B                    - jne evilwithin.exe+7C3803
+evilwithin.exe+7C37A8: 48 85 C9                 - test rcx,rcx
+evilwithin.exe+7C37AB: 74 56                    - je evilwithin.exe+7C3803
+evilwithin.exe+7C37AD: 39 35 E5 A0 2F 09        - cmp [evilwithin.exe+9ABD898],esi
+evilwithin.exe+7C37B3: 75 4E                    - jne evilwithin.exe+7C3803
+evilwithin.exe+7C37B5: 48 8B 47 08              - mov rax,[rdi+08]
+evilwithin.exe+7C37B9: 40 38 B0 C0 03 00 00     - cmp [rax+000003C0],sil
+evilwithin.exe+7C37C0: 75 41                    - jne evilwithin.exe+7C3803
+evilwithin.exe+7C37C2: 8B 80 CC 03 00 00        - mov eax,[rax+000003CC]
+evilwithin.exe+7C37C8: 8B 51 18                 - mov edx,[rcx+18]
+// ---------- INJECTING HERE ----------
+evilwithin.exe+7C37CB: 29 41 10                 - sub [rcx+10],eax
+// ---------- DONE INJECTING  ----------
+evilwithin.exe+7C37CE: 8B 41 10                 - mov eax,[rcx+10]
+evilwithin.exe+7C37D1: 85 D2                    - test edx,edx
+evilwithin.exe+7C37D3: 79 1E                    - jns evilwithin.exe+7C37F3
+evilwithin.exe+7C37D5: 48 8B 51 08              - mov rdx,[rcx+08]
+evilwithin.exe+7C37D9: 44 0F B7 82 DC 01 00 00  - movzx r8d,word ptr [rdx+000001DC]
+evilwithin.exe+7C37E1: 66 45 85 C0              - test r8w,r8w
+evilwithin.exe+7C37E5: 78 06                    - js evilwithin.exe+7C37ED
+evilwithin.exe+7C37E7: 41 0F BF D0              - movsx edx,r8w
+evilwithin.exe+7C37EB: EB 06                    - jmp evilwithin.exe+7C37F3
+evilwithin.exe+7C37ED: 8B 92 04 02 00 00        - mov edx,[rdx+00000204]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>93</ID>
+      <Description>"temp 使用和拾取状态的判断"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : The Evil Within
+  Version: 
+  Date   : 2023-10-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,evilwithin.exe,89 51 10 F3 C3) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  cmp r12d,7764028
+  jne return
+  cmp r13d,28
+  jne return
+  cmp r14d,1
+  jne return
+  mov [rcx+10],edx
+  ret
+  jmp return
+
+code:
+  mov [rcx+10],edx
+  ret 
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 51 10 F3 C3
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: evilwithin.exe+7C599C
+
+evilwithin.exe+7C5981: 41 0F BF C0        - movsx eax,r8w
+evilwithin.exe+7C5985: EB 06              - jmp evilwithin.exe+7C598D
+evilwithin.exe+7C5987: 8B 80 04 02 00 00  - mov eax,[rax+00000204]
+evilwithin.exe+7C598D: 85 D2              - test edx,edx
+evilwithin.exe+7C598F: 79 06              - jns evilwithin.exe+7C5997
+evilwithin.exe+7C5991: 33 D2              - xor edx,edx
+evilwithin.exe+7C5993: 89 51 10           - mov [rcx+10],edx
+evilwithin.exe+7C5996: C3                 - ret 
+evilwithin.exe+7C5997: 3B D0              - cmp edx,eax
+evilwithin.exe+7C5999: 0F 4F D0           - cmovg edx,eax
+// ---------- INJECTING HERE ----------
+evilwithin.exe+7C599C: 89 51 10           - mov [rcx+10],edx
+// ---------- DONE INJECTING  ----------
+evilwithin.exe+7C599F: F3 C3              - repe ret 
+evilwithin.exe+7C59A1: CC                 - int 3 
+evilwithin.exe+7C59A2: CC                 - int 3 
+evilwithin.exe+7C59A3: CC                 - int 3 
+evilwithin.exe+7C59A4: CC                 - int 3 
+evilwithin.exe+7C59A5: CC                 - int 3 
+evilwithin.exe+7C59A6: CC                 - int 3 
+evilwithin.exe+7C59A7: CC                 - int 3 
+evilwithin.exe+7C59A8: CC                 - int 3 
+evilwithin.exe+7C59A9: CC                 - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>80</ID>
+      <Description>"BrainR11"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : The Evil Within
+  Version: 
+  Date   : 2023-10-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(brain,evilwithin.exe,89 51 10 F3 C3) // should be unique
+alloc(newmem,$1000,brain)
+
+label(code)
+label(return)
+
+newmem:
+  cmp R11D,E
+  jne code
+  mov [rcx+10],#25000
+  ret
+  jmp return
+
+code:
+  mov [rcx+10],edx
+  ret 
+  jmp return
+
+brain:
+  jmp newmem
+return:
+registersymbol(brain)
+
+[DISABLE]
+
+brain:
+  db 89 51 10 F3 C3
+
+unregistersymbol(brain)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: evilwithin.exe+7C599C
+
+evilwithin.exe+7C5981: 41 0F BF C0        - movsx eax,r8w
+evilwithin.exe+7C5985: EB 06              - jmp evilwithin.exe+7C598D
+evilwithin.exe+7C5987: 8B 80 04 02 00 00  - mov eax,[rax+00000204]
+evilwithin.exe+7C598D: 85 D2              - test edx,edx
+evilwithin.exe+7C598F: 79 06              - jns evilwithin.exe+7C5997
+evilwithin.exe+7C5991: 33 D2              - xor edx,edx
+evilwithin.exe+7C5993: 89 51 10           - mov [rcx+10],edx
+evilwithin.exe+7C5996: C3                 - ret 
+evilwithin.exe+7C5997: 3B D0              - cmp edx,eax
+evilwithin.exe+7C5999: 0F 4F D0           - cmovg edx,eax
+// ---------- INJECTING HERE ----------
+evilwithin.exe+7C599C: 89 51 10           - mov [rcx+10],edx
+// ---------- DONE INJECTING  ----------
+evilwithin.exe+7C599F: F3 C3              - repe ret 
+evilwithin.exe+7C59A1: CC                 - int 3 
+evilwithin.exe+7C59A2: CC                 - int 3 
+evilwithin.exe+7C59A3: CC                 - int 3 
+evilwithin.exe+7C59A4: CC                 - int 3 
+evilwithin.exe+7C59A5: CC                 - int 3 
+evilwithin.exe+7C59A6: CC                 - int 3 
+evilwithin.exe+7C59A7: CC                 - int 3 
+evilwithin.exe+7C59A8: CC                 - int 3 
+evilwithin.exe+7C59A9: CC                 - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>14</ID>
+      <Description>"firematch02"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : The Evil Within
+  Version: 
+  Date   : 2023-10-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,evilwithin.exe,89 51 10 F3 C3) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rcx+10],9
+  ret
+  jmp return
+
+code:
+  mov [rcx+10],edx
+  ret 
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 51 10 F3 C3
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: evilwithin.exe+7C599C
+
+evilwithin.exe+7C5981: 41 0F BF C0        - movsx eax,r8w
+evilwithin.exe+7C5985: EB 06              - jmp evilwithin.exe+7C598D
+evilwithin.exe+7C5987: 8B 80 04 02 00 00  - mov eax,[rax+00000204]
+evilwithin.exe+7C598D: 85 D2              - test edx,edx
+evilwithin.exe+7C598F: 79 06              - jns evilwithin.exe+7C5997
+evilwithin.exe+7C5991: 33 D2              - xor edx,edx
+evilwithin.exe+7C5993: 89 51 10           - mov [rcx+10],edx
+evilwithin.exe+7C5996: C3                 - ret 
+evilwithin.exe+7C5997: 3B D0              - cmp edx,eax
+evilwithin.exe+7C5999: 0F 4F D0           - cmovg edx,eax
+// ---------- INJECTING HERE ----------
+evilwithin.exe+7C599C: 89 51 10           - mov [rcx+10],edx
+// ---------- DONE INJECTING  ----------
+evilwithin.exe+7C599F: F3 C3              - repe ret 
+evilwithin.exe+7C59A1: CC                 - int 3 
+evilwithin.exe+7C59A2: CC                 - int 3 
+evilwithin.exe+7C59A3: CC                 - int 3 
+evilwithin.exe+7C59A4: CC                 - int 3 
+evilwithin.exe+7C59A5: CC                 - int 3 
+evilwithin.exe+7C59A6: CC                 - int 3 
+evilwithin.exe+7C59A7: CC                 - int 3 
+evilwithin.exe+7C59A8: CC                 - int 3 
+evilwithin.exe+7C59A9: CC                 - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>13</ID>
+      <Description>"firematch01"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : The Evil Within
+  Version: 
+  Date   : 2023-10-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,evilwithin.exe,89 51 10 45 84 C0) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rcx+10],8
+  test r8b,r8b
+  jmp return
+
+code:
+  mov [rcx+10],edx
+  test r8b,r8b
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 51 10 45 84 C0
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: evilwithin.exe+7C5960
+
+evilwithin.exe+7C5956: CC                       - int 3 
+evilwithin.exe+7C5957: CC                       - int 3 
+evilwithin.exe+7C5958: CC                       - int 3 
+evilwithin.exe+7C5959: CC                       - int 3 
+evilwithin.exe+7C595A: CC                       - int 3 
+evilwithin.exe+7C595B: CC                       - int 3 
+evilwithin.exe+7C595C: CC                       - int 3 
+evilwithin.exe+7C595D: CC                       - int 3 
+evilwithin.exe+7C595E: CC                       - int 3 
+evilwithin.exe+7C595F: CC                       - int 3 
+// ---------- INJECTING HERE ----------
+evilwithin.exe+7C5960: 89 51 10                 - mov [rcx+10],edx
+// ---------- DONE INJECTING  ----------
+evilwithin.exe+7C5963: 45 84 C0                 - test r8b,r8b
+evilwithin.exe+7C5966: 75 37                    - jne evilwithin.exe+7C599F
+evilwithin.exe+7C5968: 8B 41 18                 - mov eax,[rcx+18]
+evilwithin.exe+7C596B: 85 C0                    - test eax,eax
+evilwithin.exe+7C596D: 79 1E                    - jns evilwithin.exe+7C598D
+evilwithin.exe+7C596F: 48 8B 41 08              - mov rax,[rcx+08]
+evilwithin.exe+7C5973: 44 0F B7 80 DC 01 00 00  - movzx r8d,word ptr [rax+000001DC]
+evilwithin.exe+7C597B: 66 45 85 C0              - test r8w,r8w
+evilwithin.exe+7C597F: 78 06                    - js evilwithin.exe+7C5987
+evilwithin.exe+7C5981: 41 0F BF C0              - movsx eax,r8w
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>68</ID>
+      <Description>"自动汇编脚本key"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : The Evil Within
+  Version: 
+  Date   : 2023-10-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(key,evilwithin.exe,C2 89 41 10 C3 CC) // should be unique
+alloc(newmem,$1000,key)
+
+label(code)
+label(return)
+
+newmem:
+  cmp eax,0
+  jnge code
+  mov [rcx+10],eax
+  add [rcx+10],5
+  ret
+  int 3
+  jmp return
+
+code:
+  mov [rcx+10],eax
+  ret 
+  int 3 
+  jmp return
+
+key+01:
+  jmp newmem
+return:
+registersymbol(key)
+
+[DISABLE]
+
+key+01:
+  db 89 41 10 C3 CC
+
+unregistersymbol(key)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: evilwithin.exe+7C4E3E
+
+evilwithin.exe+7C4E1F: 41 0F BF D0           - movsx edx,r8w
+evilwithin.exe+7C4E23: EB 06                 - jmp evilwithin.exe+7C4E2B
+evilwithin.exe+7C4E25: 8B 92 04 02 00 00     - mov edx,[rdx+00000204]
+evilwithin.exe+7C4E2B: 85 C0                 - test eax,eax
+evilwithin.exe+7C4E2D: 79 0A                 - jns evilwithin.exe+7C4E39
+evilwithin.exe+7C4E2F: C7 41 10 00 00 00 00  - mov [rcx+10],00000000
+evilwithin.exe+7C4E36: 33 C0                 - xor eax,eax
+evilwithin.exe+7C4E38: C3                    - ret 
+evilwithin.exe+7C4E39: 3B C2                 - cmp eax,edx
+evilwithin.exe+7C4E3B: 0F 4F C2              - cmovg eax,edx
+// ---------- INJECTING HERE ----------
+evilwithin.exe+7C4E3E: 89 41 10              - mov [rcx+10],eax
+// ---------- DONE INJECTING  ----------
+evilwithin.exe+7C4E41: C3                    - ret 
+evilwithin.exe+7C4E42: CC                    - int 3 
+evilwithin.exe+7C4E43: CC                    - int 3 
+evilwithin.exe+7C4E44: CC                    - int 3 
+evilwithin.exe+7C4E45: CC                    - int 3 
+evilwithin.exe+7C4E46: CC                    - int 3 
+evilwithin.exe+7C4E47: CC                    - int 3 
+evilwithin.exe+7C4E48: CC                    - int 3 
+evilwithin.exe+7C4E49: CC                    - int 3 
+evilwithin.exe+7C4E4A: CC                    - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>69</ID>
+      <Description>"自动汇编脚本brain"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : The Evil Within
+  Version: 
+  Date   : 2023-10-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(brain,evilwithin.exe,89 51 10 F3 C3) // should be unique
+alloc(newmem,$1000,brain)
+
+label(code)
+label(return)
+
+newmem:
+  cmp edx,#20
+  jae code
+  mov edx,60000
+  mov [rcx+10],edx
+  nop
+  ret
+  jmp return
+
+code:
+  mov [rcx+10],edx
+  ret 
+  jmp return
+
+brain:
+  jmp newmem
+return:
+registersymbol(brain)
+
+[DISABLE]
+
+brain:
+  db 89 51 10 F3 C3
+
+unregistersymbol(brain)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: evilwithin.exe+7C599C
+
+evilwithin.exe+7C5981: 41 0F BF C0        - movsx eax,r8w
+evilwithin.exe+7C5985: EB 06              - jmp evilwithin.exe+7C598D
+evilwithin.exe+7C5987: 8B 80 04 02 00 00  - mov eax,[rax+00000204]
+evilwithin.exe+7C598D: 85 D2              - test edx,edx
+evilwithin.exe+7C598F: 79 06              - jns evilwithin.exe+7C5997
+evilwithin.exe+7C5991: 33 D2              - xor edx,edx
+evilwithin.exe+7C5993: 89 51 10           - mov [rcx+10],edx
+evilwithin.exe+7C5996: C3                 - ret 
+evilwithin.exe+7C5997: 3B D0              - cmp edx,eax
+evilwithin.exe+7C5999: 0F 4F D0           - cmovg edx,eax
+// ---------- INJECTING HERE ----------
+evilwithin.exe+7C599C: 89 51 10           - mov [rcx+10],edx
+// ---------- DONE INJECTING  ----------
+evilwithin.exe+7C599F: F3 C3              - repe ret 
+evilwithin.exe+7C59A1: CC                 - int 3 
+evilwithin.exe+7C59A2: CC                 - int 3 
+evilwithin.exe+7C59A3: CC                 - int 3 
+evilwithin.exe+7C59A4: CC                 - int 3 
+evilwithin.exe+7C59A5: CC                 - int 3 
+evilwithin.exe+7C59A6: CC                 - int 3 
+evilwithin.exe+7C59A7: CC                 - int 3 
+evilwithin.exe+7C59A8: CC                 - int 3 
+evilwithin.exe+7C59A9: CC                 - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>75</ID>
+      <Description>"自动汇编脚本key2"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : The Evil Within
+  Version: 
+  Date   : 2023-10-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(key,evilwithin.exe,C2 89 41 10 C3 CC) // should be unique
+alloc(newmem,$1000,key)
+
+label(code)
+label(return)
+
+newmem:
+  cmp R10D,FFFF820675F78C0
+  jne code
+  mov [rcx+10],5
+  ret
+  int 3
+  jmp return
+
+code:
+  mov [rcx+10],eax
+  ret 
+  int 3 
+  jmp return
+
+key+01:
+  jmp newmem
+return:
+registersymbol(key)
+
+[DISABLE]
+
+key+01:
+  db 89 41 10 C3 CC
+
+unregistersymbol(key)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: evilwithin.exe+7C4E3E
+
+evilwithin.exe+7C4E1F: 41 0F BF D0           - movsx edx,r8w
+evilwithin.exe+7C4E23: EB 06                 - jmp evilwithin.exe+7C4E2B
+evilwithin.exe+7C4E25: 8B 92 04 02 00 00     - mov edx,[rdx+00000204]
+evilwithin.exe+7C4E2B: 85 C0                 - test eax,eax
+evilwithin.exe+7C4E2D: 79 0A                 - jns evilwithin.exe+7C4E39
+evilwithin.exe+7C4E2F: C7 41 10 00 00 00 00  - mov [rcx+10],00000000
+evilwithin.exe+7C4E36: 33 C0                 - xor eax,eax
+evilwithin.exe+7C4E38: C3                    - ret 
+evilwithin.exe+7C4E39: 3B C2                 - cmp eax,edx
+evilwithin.exe+7C4E3B: 0F 4F C2              - cmovg eax,edx
+// ---------- INJECTING HERE ----------
+evilwithin.exe+7C4E3E: 89 41 10              - mov [rcx+10],eax
+// ---------- DONE INJECTING  ----------
+evilwithin.exe+7C4E41: C3                    - ret 
+evilwithin.exe+7C4E42: CC                    - int 3 
+evilwithin.exe+7C4E43: CC                    - int 3 
+evilwithin.exe+7C4E44: CC                    - int 3 
+evilwithin.exe+7C4E45: CC                    - int 3 
+evilwithin.exe+7C4E46: CC                    - int 3 
+evilwithin.exe+7C4E47: CC                    - int 3 
+evilwithin.exe+7C4E48: CC                    - int 3 
+evilwithin.exe+7C4E49: CC                    - int 3 
+evilwithin.exe+7C4E4A: CC                    - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>78</ID>
+      <Description>"自动汇编脚本brain2"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : The Evil Within
+  Version: 
+  Date   : 2023-10-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(brain,evilwithin.exe,89 51 10 F3 C3) // should be unique
+alloc(newmem,$1000,brain)
+
+label(code)
+label(return)
+
+newmem:
+  cmp RBP,12
+  jne code
+  mov edx,60000
+  ret
+  jmp return
+
+code:
+  mov [rcx+10],edx
+  ret 
+  jmp return
+
+brain:
+  jmp newmem
+return:
+registersymbol(brain)
+
+[DISABLE]
+
+brain:
+  db 89 51 10 F3 C3
+
+unregistersymbol(brain)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: evilwithin.exe+7C599C
+
+evilwithin.exe+7C5981: 41 0F BF C0        - movsx eax,r8w
+evilwithin.exe+7C5985: EB 06              - jmp evilwithin.exe+7C598D
+evilwithin.exe+7C5987: 8B 80 04 02 00 00  - mov eax,[rax+00000204]
+evilwithin.exe+7C598D: 85 D2              - test edx,edx
+evilwithin.exe+7C598F: 79 06              - jns evilwithin.exe+7C5997
+evilwithin.exe+7C5991: 33 D2              - xor edx,edx
+evilwithin.exe+7C5993: 89 51 10           - mov [rcx+10],edx
+evilwithin.exe+7C5996: C3                 - ret 
+evilwithin.exe+7C5997: 3B D0              - cmp edx,eax
+evilwithin.exe+7C5999: 0F 4F D0           - cmovg edx,eax
+// ---------- INJECTING HERE ----------
+evilwithin.exe+7C599C: 89 51 10           - mov [rcx+10],edx
+// ---------- DONE INJECTING  ----------
+evilwithin.exe+7C599F: F3 C3              - repe ret 
+evilwithin.exe+7C59A1: CC                 - int 3 
+evilwithin.exe+7C59A2: CC                 - int 3 
+evilwithin.exe+7C59A3: CC                 - int 3 
+evilwithin.exe+7C59A4: CC                 - int 3 
+evilwithin.exe+7C59A5: CC                 - int 3 
+evilwithin.exe+7C59A6: CC                 - int 3 
+evilwithin.exe+7C59A7: CC                 - int 3 
+evilwithin.exe+7C59A8: CC                 - int 3 
+evilwithin.exe+7C59A9: CC                 - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>87</ID>
+      <Description>"LIFE"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : The Evil Within
+  Version: 
+  Date   : 2023-10-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,evilwithin.exe,89 51 10 45 84 C0) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  cmp edx,#20
+  jnb code
+  mov edx,#19
+  mov [rcx+10],edx
+  nop
+  test r8b,r8b
+  jmp return
+
+code:
+  mov [rcx+10],edx
+  test r8b,r8b
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 51 10 45 84 C0
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: evilwithin.exe+7C5960
+
+evilwithin.exe+7C5956: CC                       - int 3 
+evilwithin.exe+7C5957: CC                       - int 3 
+evilwithin.exe+7C5958: CC                       - int 3 
+evilwithin.exe+7C5959: CC                       - int 3 
+evilwithin.exe+7C595A: CC                       - int 3 
+evilwithin.exe+7C595B: CC                       - int 3 
+evilwithin.exe+7C595C: CC                       - int 3 
+evilwithin.exe+7C595D: CC                       - int 3 
+evilwithin.exe+7C595E: CC                       - int 3 
+evilwithin.exe+7C595F: CC                       - int 3 
+// ---------- INJECTING HERE ----------
+evilwithin.exe+7C5960: 89 51 10                 - mov [rcx+10],edx
+// ---------- DONE INJECTING  ----------
+evilwithin.exe+7C5963: 45 84 C0                 - test r8b,r8b
+evilwithin.exe+7C5966: 75 37                    - jne evilwithin.exe+7C599F
+evilwithin.exe+7C5968: 8B 41 18                 - mov eax,[rcx+18]
+evilwithin.exe+7C596B: 85 C0                    - test eax,eax
+evilwithin.exe+7C596D: 79 1E                    - jns evilwithin.exe+7C598D
+evilwithin.exe+7C596F: 48 8B 41 08              - mov rax,[rcx+08]
+evilwithin.exe+7C5973: 44 0F B7 80 DC 01 00 00  - movzx r8d,word ptr [rax+000001DC]
+evilwithin.exe+7C597B: 66 45 85 C0              - test r8w,r8w
+evilwithin.exe+7C597F: 78 06                    - js evilwithin.exe+7C5987
+evilwithin.exe+7C5981: 41 0F BF C0              - movsx eax,r8w
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>76</ID>
+      <Description>"match 使用的时候打开，及时关闭捡物品都会变成4"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : The Evil Within
+  Version: 
+  Date   : 2023-10-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,evilwithin.exe,89 51 10 45 84 C0) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [rcx+10],0
+  jns code //为负就跳转
+  mov [rcx+10],1
+  test r8b,r8b
+  jmp return
+
+code:
+  mov [rcx+10],edx
+  test r8b,r8b
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 51 10 45 84 C0
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: evilwithin.exe+7C5960
+
+evilwithin.exe+7C5956: CC                       - int 3 
+evilwithin.exe+7C5957: CC                       - int 3 
+evilwithin.exe+7C5958: CC                       - int 3 
+evilwithin.exe+7C5959: CC                       - int 3 
+evilwithin.exe+7C595A: CC                       - int 3 
+evilwithin.exe+7C595B: CC                       - int 3 
+evilwithin.exe+7C595C: CC                       - int 3 
+evilwithin.exe+7C595D: CC                       - int 3 
+evilwithin.exe+7C595E: CC                       - int 3 
+evilwithin.exe+7C595F: CC                       - int 3 
+// ---------- INJECTING HERE ----------
+evilwithin.exe+7C5960: 89 51 10                 - mov [rcx+10],edx
+// ---------- DONE INJECTING  ----------
+evilwithin.exe+7C5963: 45 84 C0                 - test r8b,r8b
+evilwithin.exe+7C5966: 75 37                    - jne evilwithin.exe+7C599F
+evilwithin.exe+7C5968: 8B 41 18                 - mov eax,[rcx+18]
+evilwithin.exe+7C596B: 85 C0                    - test eax,eax
+evilwithin.exe+7C596D: 79 1E                    - jns evilwithin.exe+7C598D
+evilwithin.exe+7C596F: 48 8B 41 08              - mov rax,[rcx+08]
+evilwithin.exe+7C5973: 44 0F B7 80 DC 01 00 00  - movzx r8d,word ptr [rax+000001DC]
+evilwithin.exe+7C597B: 66 45 85 C0              - test r8w,r8w
+evilwithin.exe+7C597F: 78 06                    - js evilwithin.exe+7C5987
+evilwithin.exe+7C5981: 41 0F BF C0              - movsx eax,r8w
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>96</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>1F3A377F868</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

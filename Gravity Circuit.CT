@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"B"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Gravity Circuit
+  Version: 
+  Date   : 2024-01-22
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,lua51.dll,4D 89 1A 8B 06) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [r10],#99999
+  jmp return
+
+code:
+  mov [r10],r11
+  mov eax,[rsi]
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 4D 89 1A 8B 06
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: lua51.dll+2164
+
+lua51.dll+2139: 4C 03 55 28                    - add r10,[rbp+28]
+lua51.dll+213D: 49 BB 00 00 00 00 00 80 FD FF  - mov r11,FFFD800000000000
+lua51.dll+2147: 49 09 C3                       - or r11,rax
+lua51.dll+214A: 4D 39 5A 08                    - cmp [r10+08],r11
+lua51.dll+214E: 75 3F                          - jne lua51.dll+218F
+lua51.dll+2150: 49 83 3A FF                    - cmp qword ptr [r10],-01
+lua51.dll+2154: 74 23                          - je lua51.dll+2179
+lua51.dll+2156: F6 45 08 04                    - test byte ptr [rbp+08],04
+lua51.dll+215A: 0F 85 81 00 00 00              - jne lua51.dll+21E1
+lua51.dll+2160: 4C 8B 1C CA                    - mov r11,[rdx+rcx*8]
+// ---------- INJECTING HERE ----------
+lua51.dll+2164: 4D 89 1A                       - mov [r10],r11
+// ---------- DONE INJECTING  ----------
+lua51.dll+2167: 8B 06                          - mov eax,[rsi]
+lua51.dll+2169: 0F B6 CC                       - movzx ecx,ah
+lua51.dll+216C: 0F B6 E8                       - movzx ebp,al
+lua51.dll+216F: 48 83 C6 04                    - add rsi,04
+lua51.dll+2173: C1 E8 10                       - shr eax,10
+lua51.dll+2176: FF 24 EB                       - jmp qword ptr [rbx+rbp*8]
+lua51.dll+2179: 4C 8B 5D 20                    - mov r11,[rbp+20]
+lua51.dll+217D: 4D 85 DB                       - test r11,r11
+lua51.dll+2180: 74 D4                          - je lua51.dll+2156
+lua51.dll+2182: 41 F6 43 0A 02                 - test byte ptr [r11+0A],02
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>8</ID>
+      <Description>"自动汇编脚本"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Gravity Circuit
+  Version: 
+  Date   : 2024-01-22
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,lua51.dll,4D 89 1A 8B 06) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop
+  jmp return
+
+code:
+  mov [r10],r11
+  mov eax,[rsi]
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 4D 89 1A 8B 06
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: lua51.dll+2164
+
+lua51.dll+2139: 4C 03 55 28                    - add r10,[rbp+28]
+lua51.dll+213D: 49 BB 00 00 00 00 00 80 FD FF  - mov r11,FFFD800000000000
+lua51.dll+2147: 49 09 C3                       - or r11,rax
+lua51.dll+214A: 4D 39 5A 08                    - cmp [r10+08],r11
+lua51.dll+214E: 75 3F                          - jne lua51.dll+218F
+lua51.dll+2150: 49 83 3A FF                    - cmp qword ptr [r10],-01
+lua51.dll+2154: 74 23                          - je lua51.dll+2179
+lua51.dll+2156: F6 45 08 04                    - test byte ptr [rbp+08],04
+lua51.dll+215A: 0F 85 81 00 00 00              - jne lua51.dll+21E1
+lua51.dll+2160: 4C 8B 1C CA                    - mov r11,[rdx+rcx*8]
+// ---------- INJECTING HERE ----------
+lua51.dll+2164: 4D 89 1A                       - mov [r10],r11
+// ---------- DONE INJECTING  ----------
+lua51.dll+2167: 8B 06                          - mov eax,[rsi]
+lua51.dll+2169: 0F B6 CC                       - movzx ecx,ah
+lua51.dll+216C: 0F B6 E8                       - movzx ebp,al
+lua51.dll+216F: 48 83 C6 04                    - add rsi,04
+lua51.dll+2173: C1 E8 10                       - shr eax,10
+lua51.dll+2176: FF 24 EB                       - jmp qword ptr [rbx+rbp*8]
+lua51.dll+2179: 4C 8B 5D 20                    - mov r11,[rbp+20]
+lua51.dll+217D: 4D 85 DB                       - test r11,r11
+lua51.dll+2180: 74 D4                          - je lua51.dll+2156
+lua51.dll+2182: 41 F6 43 0A 02                 - test byte ptr [r11+0A],02
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>10</ID>
+      <Description>"无描述"</Description>
+      <VariableType>Double</VariableType>
+      <Address>2D448DF7A10</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>11</ID>
+      <Description>"无描述"</Description>
+      <VariableType>Double</VariableType>
+      <Address>2D4411899A8</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>代码 :mov [r10],r11</Description>
+      <AddressString>lua51.dll+2164</AddressString>
+      <Before>
+        <Byte>00</Byte>
+        <Byte>4C</Byte>
+        <Byte>8B</Byte>
+        <Byte>1C</Byte>
+        <Byte>CA</Byte>
+      </Before>
+      <Actual>
+        <Byte>4D</Byte>
+        <Byte>89</Byte>
+        <Byte>1A</Byte>
+      </Actual>
+      <After>
+        <Byte>8B</Byte>
+        <Byte>06</Byte>
+        <Byte>0F</Byte>
+        <Byte>B6</Byte>
+        <Byte>CC</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>

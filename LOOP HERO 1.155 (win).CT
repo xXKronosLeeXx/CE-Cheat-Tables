@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"HP的指令"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : LOOP HERO 1.155 (win)
+  Version: 
+  Date   : 2023-10-15
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Loop Hero.exe,F2 0F 11 0E EB 21) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  movsd xmm1,[esi]
+  movsd [esi],xmm1
+  jmp "Loop Hero.exe"+12F5A
+  jmp return
+
+code:
+  movsd [esi],xmm1
+  jmp "Loop Hero.exe"+12F5A
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F2 0F 11 0E EB 21
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Loop Hero.exe+12F33
+
+Loop Hero.exe+12F12: E8 39 54 12 01        - call "Loop Hero.exe"+1138350
+Loop Hero.exe+12F17: 83 C4 04              - add esp,04
+Loop Hero.exe+12F1A: 29 06                 - sub [esi],eax
+Loop Hero.exe+12F1C: 19 56 04              - sbb [esi+04],edx
+Loop Hero.exe+12F1F: EB 39                 - jmp "Loop Hero.exe"+12F5A
+Loop Hero.exe+12F21: F2 0F 10 07           - movsd xmm0,[edi]
+Loop Hero.exe+12F25: F2 0F 10 0E           - movsd xmm1,[esi]
+Loop Hero.exe+12F29: EB 04                 - jmp "Loop Hero.exe"+12F2F
+Loop Hero.exe+12F2B: F2 0F 10 07           - movsd xmm0,[edi]
+Loop Hero.exe+12F2F: F2 0F 5C C8           - subsd xmm1,xmm0
+// ---------- INJECTING HERE ----------
+Loop Hero.exe+12F33: F2 0F 11 0E           - movsd [esi],xmm1
+// ---------- DONE INJECTING  ----------
+Loop Hero.exe+12F37: EB 21                 - jmp "Loop Hero.exe"+12F5A
+Loop Hero.exe+12F39: F2 0F 2A 06           - cvtsi2sd xmm0,[esi]
+Loop Hero.exe+12F3D: EB 0C                 - jmp "Loop Hero.exe"+12F4B
+Loop Hero.exe+12F3F: DF 2E                 - fild qword ptr [esi]
+Loop Hero.exe+12F41: DD 5C 24 10           - fstp qword ptr [esp+10]
+Loop Hero.exe+12F45: F2 0F 10 44 24 10     - movsd xmm0,[esp+10]
+Loop Hero.exe+12F4B: F2 0F 5C 07           - subsd xmm0,[edi]
+Loop Hero.exe+12F4F: F2 0F 11 06           - movsd [esi],xmm0
+Loop Hero.exe+12F53: C7 46 0C 00 00 00 00  - mov [esi+0C],00000000
+Loop Hero.exe+12F5A: 89 F0                 - mov eax,esi
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>12</ID>
+      <Description>"EXP的指令"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : LOOP HERO 1.155 (win)
+  Version: 
+  Date   : 2023-10-15
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Loop Hero.exe,F2 0F 11 06 EB 34) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  movsd [esi],xmm0
+  jmp "Loop Hero.exe"+7985
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F2 0F 11 06 EB 34
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Loop Hero.exe+794B
+
+Loop Hero.exe+792A: F7 40 0C FF FF FF 00  - test [eax+0C],"Loop Hero.exe"+6FFFFF
+Loop Hero.exe+7931: 74 37                 - je "Loop Hero.exe"+796A
+Loop Hero.exe+7933: 50                    - push eax
+Loop Hero.exe+7934: E8 17 0A 13 01        - call "Loop Hero.exe"+1138350
+Loop Hero.exe+7939: 83 C4 04              - add esp,04
+Loop Hero.exe+793C: 01 06                 - add [esi],eax
+Loop Hero.exe+793E: 11 56 04              - adc [esi+04],edx
+Loop Hero.exe+7941: EB 42                 - jmp "Loop Hero.exe"+7985
+Loop Hero.exe+7943: F2 0F 10 00           - movsd xmm0,[eax]
+Loop Hero.exe+7947: F2 0F 58 06           - addsd xmm0,[esi]
+// ---------- INJECTING HERE ----------
+Loop Hero.exe+794B: F2 0F 11 06           - movsd [esi],xmm0
+// ---------- DONE INJECTING  ----------
+Loop Hero.exe+794F: EB 34                 - jmp "Loop Hero.exe"+7985
+Loop Hero.exe+7951: 68 43 F6 CF 01        - push "Loop Hero.exe"+13FF643
+Loop Hero.exe+7956: E8 45 64 14 01        - call "Loop Hero.exe"+114DDA0
+Loop Hero.exe+795B: 83 C4 04              - add esp,04
+Loop Hero.exe+795E: EB 25                 - jmp "Loop Hero.exe"+7985
+Loop Hero.exe+7960: F2 0F 2A 06           - cvtsi2sd xmm0,[esi]
+Loop Hero.exe+7964: F2 0F 58 00           - addsd xmm0,[eax]
+Loop Hero.exe+7968: EB 10                 - jmp "Loop Hero.exe"+797A
+Loop Hero.exe+796A: DF 2E                 - fild qword ptr [esi]
+Loop Hero.exe+796C: DD 5C 24 08           - fstp qword ptr [esp+08]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>112</ID>
+      <Description>"无描述"</Description>
+      <VariableType>Double</VariableType>
+      <Address>0FB17FB0</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

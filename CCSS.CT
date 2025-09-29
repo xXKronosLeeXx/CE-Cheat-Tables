@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"无描述"</Description>
+      <VariableType>8 Bytes</VariableType>
+      <Address>19327716030</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"无描述"</Description>
+      <VariableType>Byte</VariableType>
+      <Address>193B00027BD</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"无描述"</Description>
+      <VariableType>Byte</VariableType>
+      <Address>193F0141797</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"自动汇编脚本"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : CCSS.exe
+  Version: 
+  Date   : 2024-11-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,UnityPlayer.dll,FF 4E 0C EB 03) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop//  dec [rsi+0C]
+  jmp UnityPlayer.dll+590CBE
+  jmp return
+
+
+code:
+  dec [rsi+0C]
+  jmp UnityPlayer.dll+590CBE
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db FF 4E 0C EB 03
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: UnityPlayer.dll+590CB6
+
+UnityPlayer.dll+590C90: E8 7B C8 AF FF     - call UnityPlayer.dll+8D510
+UnityPlayer.dll+590C95: 8B 4E 08           - mov ecx,[rsi+08]
+UnityPlayer.dll+590C98: BD 01 00 00 00     - mov ebp,00000001
+UnityPlayer.dll+590C9D: 48 83 C1 08        - add rcx,08
+UnityPlayer.dll+590CA1: 48 8D 14 49        - lea rdx,[rcx+rcx*2]
+UnityPlayer.dll+590CA5: 48 03 16           - add rdx,[rsi]
+UnityPlayer.dll+590CA8: 48 3B C2           - cmp rax,rdx
+UnityPlayer.dll+590CAB: 74 0E              - je UnityPlayer.dll+590CBB
+UnityPlayer.dll+590CAD: C7 00 FE FF FF FF  - mov [rax],FFFFFFFE
+UnityPlayer.dll+590CB3: 44 8B C5           - mov r8d,ebp
+// ---------- INJECTING HERE ----------
+UnityPlayer.dll+590CB6: FF 4E 0C           - dec [rsi+0C]
+// ---------- DONE INJECTING  ----------
+UnityPlayer.dll+590CB9: EB 03              - jmp UnityPlayer.dll+590CBE
+UnityPlayer.dll+590CBB: 45 33 C0           - xor r8d,r8d
+UnityPlayer.dll+590CBE: 8B 46 0C           - mov eax,[rsi+0C]
+UnityPlayer.dll+590CC1: BA F8 01 00 00     - mov edx,000001F8
+UnityPlayer.dll+590CC6: 8D 0C 40           - lea ecx,[rax+rax*2]
+UnityPlayer.dll+590CC9: 03 C9              - add ecx,ecx
+UnityPlayer.dll+590CCB: D1 E9              - shr ecx,1
+UnityPlayer.dll+590CCD: FF C9              - dec ecx
+UnityPlayer.dll+590CCF: 8B C1              - mov eax,ecx
+UnityPlayer.dll+590CD1: C1 E8 10           - shr eax,10
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>7</ID>
+      <Description>"无描述"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>UnityPlayer.dll+590CBB</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"HP"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : RedBlue.exe
+  Version: 
+  Date   : 2025-01-18
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,FF C9 89 88 AC 00 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop//  dec ecx
+  mov [rax+000000AC],ecx
+  jmp return
+
+code:
+  dec ecx
+  mov [rax+000000AC],ecx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db FF C9 89 88 AC 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: PlayerHit:HitX+2d
+
+PlayerHit:HitX+1: 48 8B EC                       - mov rbp,rsp
+PlayerHit:HitX+4: 48 83 EC 30                    - sub rsp,30
+PlayerHit:HitX+8: 48 89 75 F8                    - mov [rbp-08],rsi
+PlayerHit:HitX+c: 48 8B F1                       - mov rsi,rcx
+PlayerHit:HitX+f: 48 8B 46 28                    - mov rax,[rsi+28]
+PlayerHit:HitX+13: 48 63 80 A8 00 00 00           - movsxd  rax,dword ptr [rax+000000A8]
+PlayerHit:HitX+1a: 85 C0                          - test eax,eax
+PlayerHit:HitX+1c: 0F 8F 41 01 00 00              - jg PlayerHit:HitX+163
+PlayerHit:HitX+22: 48 8B 46 28                    - mov rax,[rsi+28]
+PlayerHit:HitX+26: 48 63 88 AC 00 00 00           - movsxd  rcx,dword ptr [rax+000000AC]
+// ---------- INJECTING HERE ----------
+PlayerHit:HitX+2d: FF C9                          - dec ecx
+// ---------- DONE INJECTING  ----------
+PlayerHit:HitX+2f: 89 88 AC 00 00 00              - mov [rax+000000AC],ecx
+PlayerHit:HitX+35: 0F B6 46 30                    - movzx eax,byte ptr [rsi+30]
+PlayerHit:HitX+39: 85 C0                          - test eax,eax
+PlayerHit:HitX+3b: 74 1B                          - je PlayerHit:HitX+58
+PlayerHit:HitX+3d: 48 B8 F4 4E 5B F6 13 02 00 00  - mov rax,00000213F65B4EF4
+PlayerHit:HitX+47: 48 63 08                       - movsxd  rcx,dword ptr [rax]
+PlayerHit:HitX+4a: FF C1                          - inc ecx
+PlayerHit:HitX+4c: 48 B8 F4 4E 5B F6 13 02 00 00  - mov rax,00000213F65B4EF4
+PlayerHit:HitX+56: 89 08                          - mov [rax],ecx
+PlayerHit:HitX+58: 48 8B 46 28                    - mov rax,[rsi+28]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"能量满"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : RedBlue.exe
+  Version: 
+  Date   : 2025-01-18
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,57 34 03 CA 89 88 B0 00 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov ecx,#6400
+  mov [rax+000000B0],ecx
+  jmp return
+
+code:
+  mov [rax+000000B0],ecx
+  jmp return
+
+INJECT+04:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+04:
+  db 89 88 B0 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: PlayerGetBarrage:OnTriggerEnter2D+22a
+
+PlayerGetBarrage:OnTriggerEnter2D+1f6: 49 BB 20 9B 43 2F 16 02 00 00  - mov r11,SoundManager:PlaySound
+PlayerGetBarrage:OnTriggerEnter2D+200: 41 FF D3                       - call r11
+PlayerGetBarrage:OnTriggerEnter2D+203: 48 8B 47 18                    - mov rax,[rdi+18]
+PlayerGetBarrage:OnTriggerEnter2D+207: 48 63 80 B0 00 00 00           - movsxd  rax,dword ptr [rax+000000B0]
+PlayerGetBarrage:OnTriggerEnter2D+20e: 3D 00 19 00 00                 - cmp eax,00001900
+PlayerGetBarrage:OnTriggerEnter2D+213: 0F 8D 17 00 00 00              - jnl PlayerGetBarrage:OnTriggerEnter2D+230
+PlayerGetBarrage:OnTriggerEnter2D+219: 48 8B 47 18                    - mov rax,[rdi+18]
+PlayerGetBarrage:OnTriggerEnter2D+21d: 48 63 88 B0 00 00 00           - movsxd  rcx,dword ptr [rax+000000B0]
+PlayerGetBarrage:OnTriggerEnter2D+224: 49 63 57 34                    - movsxd  rdx,dword ptr [r15+34]
+PlayerGetBarrage:OnTriggerEnter2D+228: 03 CA                          - add ecx,edx
+// ---------- INJECTING HERE ----------
+PlayerGetBarrage:OnTriggerEnter2D+22a: 89 88 B0 00 00 00              - mov [rax+000000B0],ecx
+// ---------- DONE INJECTING  ----------
+PlayerGetBarrage:OnTriggerEnter2D+230: 48 8B 47 18                    - mov rax,[rdi+18]
+PlayerGetBarrage:OnTriggerEnter2D+234: 48 63 80 B0 00 00 00           - movsxd  rax,dword ptr [rax+000000B0]
+PlayerGetBarrage:OnTriggerEnter2D+23b: 3D 00 19 00 00                 - cmp eax,00001900
+PlayerGetBarrage:OnTriggerEnter2D+240: 7E 0E                          - jle PlayerGetBarrage:OnTriggerEnter2D+250
+PlayerGetBarrage:OnTriggerEnter2D+242: 48 8B 47 18                    - mov rax,[rdi+18]
+PlayerGetBarrage:OnTriggerEnter2D+246: C7 80 B0 00 00 00 00 19 00 00  - mov [rax+000000B0],00001900
+PlayerGetBarrage:OnTriggerEnter2D+250: 41 C7 47 34 00 00 00 00        - mov [r15+34],00000000
+PlayerGetBarrage:OnTriggerEnter2D+258: 41 0F B6 47 38                 - movzx eax,byte ptr [r15+38]
+PlayerGetBarrage:OnTriggerEnter2D+25d: 85 C0                          - test eax,eax
+PlayerGetBarrage:OnTriggerEnter2D+25f: 0F 84 BB 02 00 00              - je PlayerGetBarrage:OnTriggerEnter2D+520
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"能量不减"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : RedBlue.exe
+  Version: 
+  Date   : 2025-01-18
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,89 90 B0 00 00 00 48 8B 46) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov edx,#6400
+  mov [rax+000000B0],edx
+  jmp return
+
+code:
+  mov [rax+000000B0],edx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 90 B0 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: PlaneFire:DoFire+76e
+
+PlaneFire:DoFire+744: 89 46 48                       - mov [rsi+48],eax
+PlaneFire:DoFire+747: 83 E8 06                       - sub eax,06
+PlaneFire:DoFire+74a: 89 46 50                       - mov [rsi+50],eax
+PlaneFire:DoFire+74d: 48 8B 46 18                    - mov rax,[rsi+18]
+PlaneFire:DoFire+751: 48 89 85 C0 FC FF FF           - mov [rbp-00000340],rax
+PlaneFire:DoFire+758: 48 63 80 B0 00 00 00           - movsxd  rax,dword ptr [rax+000000B0]
+PlaneFire:DoFire+75f: B9 20 03 00 00                 - mov ecx,00000320
+PlaneFire:DoFire+764: 99                             - cdq 
+PlaneFire:DoFire+765: F7 F9                          - idiv ecx
+PlaneFire:DoFire+767: 48 8B 85 C0 FC FF FF           - mov rax,[rbp-00000340]
+// ---------- INJECTING HERE ----------
+PlaneFire:DoFire+76e: 89 90 B0 00 00 00              - mov [rax+000000B0],edx
+// ---------- DONE INJECTING  ----------
+PlaneFire:DoFire+774: 48 8B 46 30                    - mov rax,[rsi+30]
+PlaneFire:DoFire+778: 48 8B C8                       - mov rcx,rax
+PlaneFire:DoFire+77b: BA 01 00 00 00                 - mov edx,00000001
+PlaneFire:DoFire+780: 83 38 00                       - cmp dword ptr [rax],00
+PlaneFire:DoFire+783: 66 66 90                       - nop 3
+PlaneFire:DoFire+786: 49 BB E0 9F 29 0F 16 02 00 00  - mov r11,UnityEngine.GameObject:SetActive
+PlaneFire:DoFire+790: 41 FF D3                       - call r11
+PlaneFire:DoFire+793: 48 B8 D0 38 59 F6 13 02 00 00  - mov rax,00000213F65938D0
+PlaneFire:DoFire+79d: 48 8B 00                       - mov rax,[rax]
+PlaneFire:DoFire+7a0: 48 8B C8                       - mov rcx,rax
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

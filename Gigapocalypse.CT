@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"怒气"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Gigapocalypse.exe
+  Version: 
+  Date   : 2024-10-21
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,D9 9F 74 1C 00 00 B9) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  nop//  fstp dword ptr [edi+00001C74]
+  jmp return
+
+code:
+  fstp dword ptr [edi+00001C74]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db D9 9F 74 1C 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 1C0279F4
+
+1C0279D2: D9 5D F0           - fstp dword ptr [ebp-10]
+1C0279D5: D9 EE              - fldz 
+1C0279D7: D9 5D EC           - fstp dword ptr [ebp-14]
+1C0279DA: D9 87 74 1C 00 00  - fld dword ptr [edi+00001C74]
+1C0279E0: D9 5D F4           - fstp dword ptr [ebp-0C]
+1C0279E3: D9 45 0C           - fld dword ptr [ebp+0C]
+1C0279E6: D9 5D F0           - fstp dword ptr [ebp-10]
+1C0279E9: D9 87 74 1C 00 00  - fld dword ptr [edi+00001C74]
+1C0279EF: D9 45 0C           - fld dword ptr [ebp+0C]
+1C0279F2: DE C1              - faddp 
+// ---------- INJECTING HERE ----------
+1C0279F4: D9 9F 74 1C 00 00  - fstp dword ptr [edi+00001C74]
+// ---------- DONE INJECTING  ----------
+1C0279FA: B9 04 00 00 00     - mov ecx,00000004
+1C0279FF: B8 04 9E 16 05     - mov eax,05169E04
+1C027A04: 83 EC 08           - sub esp,08
+1C027A07: 51                 - push ecx
+1C027A08: 50                 - push eax
+1C027A09: E8 FA 8A EB EA     - call 06EE0508
+1C027A0E: 83 C4 10           - add esp,10
+1C027A11: 8B C8              - mov ecx,eax
+1C027A13: 89 4D BC           - mov [ebp-44],ecx
+1C027A16: 83 EC 04           - sub esp,04
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"HP"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Gigapocalypse.exe
+  Version: 
+  Date   : 2024-10-21
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,D9 9E 98 1C 00 00 D9 86 98) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  nop //  fstp dword ptr [esi+00001C98]
+  jmp return
+
+code:
+  fstp dword ptr [esi+00001C98]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db D9 9E 98 1C 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 1C0318D7
+
+1C0318B4: 83 C4 10           - add esp,10
+1C0318B7: 8B 05 94 8B 60 14  - mov eax,[14608B94]
+1C0318BD: 3D 04 00 00 00     - cmp eax,00000004
+1C0318C2: D9 86 98 1C 00 00  - fld dword ptr [esi+00001C98]
+1C0318C8: 57                 - push edi
+1C0318C9: DB 04 24           - fild dword ptr [esp]
+1C0318CC: D9 1C 24           - fstp dword ptr [esp]
+1C0318CF: D9 04 24           - fld dword ptr [esp]
+1C0318D2: 83 C4 04           - add esp,04
+1C0318D5: DE C1              - faddp 
+// ---------- INJECTING HERE ----------
+1C0318D7: D9 9E 98 1C 00 00  - fstp dword ptr [esi+00001C98]
+// ---------- DONE INJECTING  ----------
+1C0318DD: D9 86 98 1C 00 00  - fld dword ptr [esi+00001C98]
+1C0318E3: D9 86 EC 1D 00 00  - fld dword ptr [esi+00001DEC]
+1C0318E9: DF F1              - fcomip st(0),st(1)
+1C0318EB: DD D8              - fstp st(0)
+1C0318ED: 7A 0E              - jp 1C0318FD
+1C0318EF: 73 0C              - jae 1C0318FD
+1C0318F1: D9 86 EC 1D 00 00  - fld dword ptr [esi+00001DEC]
+1C0318F7: D9 9E 98 1C 00 00  - fstp dword ptr [esi+00001C98]
+1C0318FD: 85 FF              - test edi,edi
+1C0318FF: 7D 3B              - jnl 1C03193C
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"分数"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Gigapocalypse.exe
+  Version: 
+  Date   : 2024-10-21
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,89 88 F4 1D 00 00 8B 45) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  add [eax+00001DF4],ecx
+  jmp return
+
+code:
+  mov [eax+00001DF4],ecx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 88 F4 1D 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 1C05EF96
+
+1C05EF74: 8B 45 08           - mov eax,[ebp+08]
+1C05EF77: 89 45 C4           - mov [ebp-3C],eax
+1C05EF7A: D9 80 C4 1C 00 00  - fld dword ptr [eax+00001CC4]
+1C05EF80: 83 EC 0C           - sub esp,0C
+1C05EF83: 83 EC 04           - sub esp,04
+1C05EF86: D9 1C 24           - fstp dword ptr [esp]
+1C05EF89: E8 3A C4 EC EA     - call 06F2B3C8
+1C05EF8E: 83 C4 10           - add esp,10
+1C05EF91: 8B C8              - mov ecx,eax
+1C05EF93: 8B 45 C4           - mov eax,[ebp-3C]
+// ---------- INJECTING HERE ----------
+1C05EF96: 89 88 F4 1D 00 00  - mov [eax+00001DF4],ecx
+// ---------- DONE INJECTING  ----------
+1C05EF9C: 8B 45 08           - mov eax,[ebp+08]
+1C05EF9F: 8B C8              - mov ecx,eax
+1C05EFA1: D9 81 C4 1C 00 00  - fld dword ptr [ecx+00001CC4]
+1C05EFA7: 83 EC 08           - sub esp,08
+1C05EFAA: 83 EC 04           - sub esp,04
+1C05EFAD: D9 1C 24           - fstp dword ptr [esp]
+1C05EFB0: 50                 - push eax
+1C05EFB1: E8 72 7B F8 FF     - call 1BFE6B28
+1C05EFB6: 83 C4 10           - add esp,10
+1C05EFB9: 8B 45 08           - mov eax,[ebp+08]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>9</ID>
+      <Description>"技能点数"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Gigapocalypse.exe
+  Version: 
+  Date   : 2024-10-21
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,D9 18 8D 65 FC) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  nop//  fstp dword ptr [eax]
+  lea esp,[ebp-04]
+  jmp return
+
+code:
+  fstp dword ptr [eax]
+  lea esp,[ebp-04]
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db D9 18 8D 65 FC
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 06F2C891
+
+06F2C871: 8B 45 08           - mov eax,[ebp+08]
+06F2C874: 8B 40 0C           - mov eax,[eax+0C]
+06F2C877: 3B F8              - cmp edi,eax
+06F2C879: 74 1E              - je 06F2C899
+06F2C87B: 8B 45 08           - mov eax,[ebp+08]
+06F2C87E: 8B 40 08           - mov eax,[eax+08]
+06F2C881: D9 45 10           - fld dword ptr [ebp+10]
+06F2C884: 39 78 0C           - cmp [eax+0C],edi
+06F2C887: 0F 86 36 00 00 00  - jbe 06F2C8C3
+06F2C88D: 8D 44 B8 10        - lea eax,[eax+edi*4+10]
+// ---------- INJECTING HERE ----------
+06F2C891: D9 18              - fstp dword ptr [eax]
+// ---------- DONE INJECTING  ----------
+06F2C893: 8D 65 FC           - lea esp,[ebp-04]
+06F2C896: 5F                 - pop edi
+06F2C897: C9                 - leave 
+06F2C898: C3                 - ret 
+06F2C899: 83 EC 0C           - sub esp,0C
+06F2C89C: 68 AD 29 00 00     - push 000029AD
+06F2C8A1: E8 52 65 FB FF     - call 06EE2DF8
+06F2C8A6: 83 C4 10           - add esp,10
+06F2C8A9: 83 EC 08           - sub esp,08
+06F2C8AC: 50                 - push eax
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>7</ID>
+      <Description>"突变点数"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Gigapocalypse.exe
+  Version: 
+  Date   : 2024-10-21
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,D9 18 8D 65 FC) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  nop//  fstp dword ptr [eax]
+  lea esp,[ebp-04]
+  jmp return
+
+code:
+  fstp dword ptr [eax]
+  lea esp,[ebp-04]
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db D9 18 8D 65 FC
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 06F2C891
+
+06F2C871: 8B 45 08           - mov eax,[ebp+08]
+06F2C874: 8B 40 0C           - mov eax,[eax+0C]
+06F2C877: 3B F8              - cmp edi,eax
+06F2C879: 74 1E              - je 06F2C899
+06F2C87B: 8B 45 08           - mov eax,[ebp+08]
+06F2C87E: 8B 40 08           - mov eax,[eax+08]
+06F2C881: D9 45 10           - fld dword ptr [ebp+10]
+06F2C884: 39 78 0C           - cmp [eax+0C],edi
+06F2C887: 0F 86 36 00 00 00  - jbe 06F2C8C3
+06F2C88D: 8D 44 B8 10        - lea eax,[eax+edi*4+10]
+// ---------- INJECTING HERE ----------
+06F2C891: D9 18              - fstp dword ptr [eax]
+// ---------- DONE INJECTING  ----------
+06F2C893: 8D 65 FC           - lea esp,[ebp-04]
+06F2C896: 5F                 - pop edi
+06F2C897: C9                 - leave 
+06F2C898: C3                 - ret 
+06F2C899: 83 EC 0C           - sub esp,0C
+06F2C89C: 68 AD 29 00 00     - push 000029AD
+06F2C8A1: E8 52 65 FB FF     - call 06EE2DF8
+06F2C8A6: 83 C4 10           - add esp,10
+06F2C8A9: 83 EC 08           - sub esp,08
+06F2C8AC: 50                 - push eax
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>15</ID>
+      <Description>"突变点数2"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Gigapocalypse.exe
+  Version: 
+  Date   : 2024-10-25
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,D9 18 8D 65 FC 5F) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  nop//  fstp dword ptr [eax]
+  lea esp,[ebp-04]
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db D9 18 8D 65 FC
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 06DE2109
+
+06DE20E9: 8B 45 08           - mov eax,[ebp+08]
+06DE20EC: 8B 40 0C           - mov eax,[eax+0C]
+06DE20EF: 3B F8              - cmp edi,eax
+06DE20F1: 74 1E              - je 06DE2111
+06DE20F3: 8B 45 08           - mov eax,[ebp+08]
+06DE20F6: 8B 40 08           - mov eax,[eax+08]
+06DE20F9: D9 45 10           - fld dword ptr [ebp+10]
+06DE20FC: 39 78 0C           - cmp [eax+0C],edi
+06DE20FF: 0F 86 36 00 00 00  - jbe 06DE213B
+06DE2105: 8D 44 B8 10        - lea eax,[eax+edi*4+10]
+// ---------- INJECTING HERE ----------
+06DE2109: D9 18              - fstp dword ptr [eax]
+// ---------- DONE INJECTING  ----------
+06DE210B: 8D 65 FC           - lea esp,[ebp-04]
+06DE210E: 5F                 - pop edi
+06DE210F: C9                 - leave 
+06DE2110: C3                 - ret 
+06DE2111: 83 EC 0C           - sub esp,0C
+06DE2114: 68 AD 29 00 00     - push 000029AD
+06DE2119: E8 DA 0C F3 FF     - call 06D12DF8
+06DE211E: 83 C4 10           - add esp,10
+06DE2121: 83 EC 08           - sub esp,08
+06DE2124: 50                 - push eax
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>11</ID>
+      <Description>"食物不减"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Gigapocalypse.exe
+  Version: 
+  Date   : 2024-10-21
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,89 08 8D 65 FC 5E C9 C3 83) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  nop //  mov [eax],ecx
+  lea esp,[ebp-04]
+  jmp return
+
+
+code:
+  mov [eax],ecx
+  lea esp,[ebp-04]
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 08 8D 65 FC
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 06F2C7C1
+
+06F2C7A1: 8B 45 08           - mov eax,[ebp+08]
+06F2C7A4: 8B 40 0C           - mov eax,[eax+0C]
+06F2C7A7: 3B F0              - cmp esi,eax
+06F2C7A9: 74 1E              - je 06F2C7C9
+06F2C7AB: 8B 45 08           - mov eax,[ebp+08]
+06F2C7AE: 8B 40 08           - mov eax,[eax+08]
+06F2C7B1: 39 70 0C           - cmp [eax+0C],esi
+06F2C7B4: 0F 86 39 00 00 00  - jbe 06F2C7F3
+06F2C7BA: 8D 44 B0 10        - lea eax,[eax+esi*4+10]
+06F2C7BE: 8B 4D 10           - mov ecx,[ebp+10]
+// ---------- INJECTING HERE ----------
+06F2C7C1: 89 08              - mov [eax],ecx
+// ---------- DONE INJECTING  ----------
+06F2C7C3: 8D 65 FC           - lea esp,[ebp-04]
+06F2C7C6: 5E                 - pop esi
+06F2C7C7: C9                 - leave 
+06F2C7C8: C3                 - ret 
+06F2C7C9: 83 EC 0C           - sub esp,0C
+06F2C7CC: 68 AD 29 00 00     - push 000029AD
+06F2C7D1: E8 22 66 FB FF     - call 06EE2DF8
+06F2C7D6: 83 C4 10           - add esp,10
+06F2C7D9: 83 EC 08           - sub esp,08
+06F2C7DC: 50                 - push eax
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>13</ID>
+      <Description>"南瓜头"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Gigapocalypse.exe
+  Version: 
+  Date   : 2024-10-21
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,89 08 8D 65 FC 5E C9 C3 83) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  nop//  mov [eax],ecx
+  lea esp,[ebp-04]
+  jmp return
+
+code:
+  mov [eax],ecx
+  lea esp,[ebp-04]
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 08 8D 65 FC
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 06F2C7C1
+
+06F2C7A1: 8B 45 08           - mov eax,[ebp+08]
+06F2C7A4: 8B 40 0C           - mov eax,[eax+0C]
+06F2C7A7: 3B F0              - cmp esi,eax
+06F2C7A9: 74 1E              - je 06F2C7C9
+06F2C7AB: 8B 45 08           - mov eax,[ebp+08]
+06F2C7AE: 8B 40 08           - mov eax,[eax+08]
+06F2C7B1: 39 70 0C           - cmp [eax+0C],esi
+06F2C7B4: 0F 86 39 00 00 00  - jbe 06F2C7F3
+06F2C7BA: 8D 44 B0 10        - lea eax,[eax+esi*4+10]
+06F2C7BE: 8B 4D 10           - mov ecx,[ebp+10]
+// ---------- INJECTING HERE ----------
+06F2C7C1: 89 08              - mov [eax],ecx
+// ---------- DONE INJECTING  ----------
+06F2C7C3: 8D 65 FC           - lea esp,[ebp-04]
+06F2C7C6: 5E                 - pop esi
+06F2C7C7: C9                 - leave 
+06F2C7C8: C3                 - ret 
+06F2C7C9: 83 EC 0C           - sub esp,0C
+06F2C7CC: 68 AD 29 00 00     - push 000029AD
+06F2C7D1: E8 22 66 FB FF     - call 06EE2DF8
+06F2C7D6: 83 C4 10           - add esp,10
+06F2C7D9: 83 EC 08           - sub esp,08
+06F2C7DC: 50                 - push eax
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>14</ID>
+      <Description>"无描述"</Description>
+      <VariableType>Float</VariableType>
+      <Address>171B0E54</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>
