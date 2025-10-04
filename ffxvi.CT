@@ -158,7 +158,7 @@ ffxvi.exe+3A54C0: 4C 8B 83 88 00 00 00        - mov r8,[rbx+00000088]
     <CheatEntry>
       <ID>36</ID>
       <Description>"界面物品使用不减（战斗/强化）"</Description>
-      <LastState/>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : ffxvi.exe
   Version: 
@@ -238,9 +238,81 @@ ffxvi.exe+6A93F9: E8 1E 95 DA FF        - call ffxvi.exe+45291C
       <GroupHeader>1</GroupHeader>
       <CheatEntries>
         <CheatEntry>
+          <ID>59</ID>
+          <Description>"EXP+8999999"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : ffxvi.exe
+  Version: 
+  Date   : 2025-10-01
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,ffxvi.exe,41 8B 9A 2C CB 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov ebx,#8999999
+  jmp return
+
+code:
+  mov ebx,[r10+0000CB2C]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 41 8B 9A 2C CB 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: ffxvi.exe+2536D1
+
+ffxvi.exe+2536AE: 48 8B F2              - mov rsi,rdx
+ffxvi.exe+2536B1: 4C 8B F9              - mov r15,rcx
+ffxvi.exe+2536B4: E8 E7 FA 1F 00        - call ffxvi.exe+4531A0
+ffxvi.exe+2536B9: 4C 8B 15 28 2F 5C 01  - mov r10,[ffxvi.exe+18165E8]
+ffxvi.exe+2536C0: 8B E8                 - mov ebp,eax
+ffxvi.exe+2536C2: 4D 8D 5A 28           - lea r11,[r10+28]
+ffxvi.exe+2536C6: 49 F7 DA              - neg r10
+ffxvi.exe+2536C9: 4D 1B D2              - sbb r10,r10
+ffxvi.exe+2536CC: 4D 23 D3              - and r10,r11
+ffxvi.exe+2536CF: 74 09                 - je ffxvi.exe+2536DA
+// ---------- INJECTING HERE ----------
+ffxvi.exe+2536D1: 41 8B 9A 2C CB 00 00  - mov ebx,[r10+0000CB2C]
+// ---------- DONE INJECTING  ----------
+ffxvi.exe+2536D8: EB 02                 - jmp ffxvi.exe+2536DC
+ffxvi.exe+2536DA: 33 DB                 - xor ebx,ebx
+ffxvi.exe+2536DC: 48 8B 0D 25 2F 5C 01  - mov rcx,[ffxvi.exe+1816608]
+ffxvi.exe+2536E3: 8B D3                 - mov edx,ebx
+ffxvi.exe+2536E5: E8 36 85 1F 00        - call ffxvi.exe+44BC20
+ffxvi.exe+2536EA: 89 1E                 - mov [rsi],ebx
+ffxvi.exe+2536EC: E8 AF FA 1F 00        - call ffxvi.exe+4531A0
+ffxvi.exe+2536F1: 3B C5                 - cmp eax,ebp
+ffxvi.exe+2536F3: 0F 9F C0              - setg al
+ffxvi.exe+2536F6: 88 07                 - mov [rdi],al
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
           <ID>39</ID>
           <Description>"极限爆发MAX"</Description>
-          <LastState/>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : ffxvi.exe
   Version: 
@@ -316,7 +388,7 @@ ffxvi.exe+5DDFD0: C3              - ret
           <ID>10</ID>
           <Description>"人形战斗无敌（与召唤兽冲突）"</Description>
           <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
-          <LastState/>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : ffxvi.exe
   Version: 
@@ -419,7 +491,6 @@ ffxvi.exe+5DDA5E: 7F 03              - jg ffxvi.exe+5DDA63
 9999:9999伤害
 99999:99999伤害
 </DropDownList>
-              <LastState Value="99" RealAddress="7FF72CA61000"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>4 Bytes</VariableType>
               <Address>damage</Address>
@@ -533,196 +604,13 @@ ffxvi.exe+5DDA5E: 7F 03              - jg ffxvi.exe+5DDA63
 9999:9999伤害
 99999:99999伤害
 </DropDownList>
-              <LastState Value="99" RealAddress="7FF72CA61000"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>4 Bytes</VariableType>
               <Address>damage</Address>
             </CheatEntry>
           </CheatEntries>
         </CheatEntry>
-        <CheatEntry>
-          <ID>59</ID>
-          <Description>"EXP+8999999"</Description>
-          <LastState/>
-          <VariableType>Auto Assembler Script</VariableType>
-          <AssemblerScript>{ Game   : ffxvi.exe
-  Version: 
-  Date   : 2025-10-01
-  Author : krono
-
-  This script does blah blah blah
-}
-
-[ENABLE]
-
-aobscanmodule(INJECT,ffxvi.exe,41 8B 9A 2C CB 00 00) // should be unique
-alloc(newmem,$1000,INJECT)
-
-label(code)
-label(return)
-
-newmem:
-  mov ebx,#8999999
-  jmp return
-
-code:
-  mov ebx,[r10+0000CB2C]
-  jmp return
-
-INJECT:
-  jmp newmem
-  nop 2
-return:
-registersymbol(INJECT)
-
-[DISABLE]
-
-INJECT:
-  db 41 8B 9A 2C CB 00 00
-
-unregistersymbol(INJECT)
-dealloc(newmem)
-
-{
-// ORIGINAL CODE - INJECTION POINT: ffxvi.exe+2536D1
-
-ffxvi.exe+2536AE: 48 8B F2              - mov rsi,rdx
-ffxvi.exe+2536B1: 4C 8B F9              - mov r15,rcx
-ffxvi.exe+2536B4: E8 E7 FA 1F 00        - call ffxvi.exe+4531A0
-ffxvi.exe+2536B9: 4C 8B 15 28 2F 5C 01  - mov r10,[ffxvi.exe+18165E8]
-ffxvi.exe+2536C0: 8B E8                 - mov ebp,eax
-ffxvi.exe+2536C2: 4D 8D 5A 28           - lea r11,[r10+28]
-ffxvi.exe+2536C6: 49 F7 DA              - neg r10
-ffxvi.exe+2536C9: 4D 1B D2              - sbb r10,r10
-ffxvi.exe+2536CC: 4D 23 D3              - and r10,r11
-ffxvi.exe+2536CF: 74 09                 - je ffxvi.exe+2536DA
-// ---------- INJECTING HERE ----------
-ffxvi.exe+2536D1: 41 8B 9A 2C CB 00 00  - mov ebx,[r10+0000CB2C]
-// ---------- DONE INJECTING  ----------
-ffxvi.exe+2536D8: EB 02                 - jmp ffxvi.exe+2536DC
-ffxvi.exe+2536DA: 33 DB                 - xor ebx,ebx
-ffxvi.exe+2536DC: 48 8B 0D 25 2F 5C 01  - mov rcx,[ffxvi.exe+1816608]
-ffxvi.exe+2536E3: 8B D3                 - mov edx,ebx
-ffxvi.exe+2536E5: E8 36 85 1F 00        - call ffxvi.exe+44BC20
-ffxvi.exe+2536EA: 89 1E                 - mov [rsi],ebx
-ffxvi.exe+2536EC: E8 AF FA 1F 00        - call ffxvi.exe+4531A0
-ffxvi.exe+2536F1: 3B C5                 - cmp eax,ebp
-ffxvi.exe+2536F3: 0F 9F C0              - setg al
-ffxvi.exe+2536F6: 88 07                 - mov [rdi],al
-}
-</AssemblerScript>
-        </CheatEntry>
       </CheatEntries>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>16</ID>
-      <Description>"召唤兽 战斗功能temp"</Description>
-      <LastState/>
-      <VariableType>Auto Assembler Script</VariableType>
-      <AssemblerScript>{ Game   : ffxvi.exe
-  Version: 
-  Date   : 2025-09-27
-  Author : krono
-
-  This script does blah blah blah
-}
-
-[ENABLE]
-
-aobscanmodule(INJECT,ffxvi.exe,89 71 40 E8 B8 00 00 00) // should be unique
-alloc(newmem,$1000,INJECT)
-
-label(code)
-label(return)
-  cmp [rcx+D8],1
-  je code
-  mov esi,[rcx+40]
-  mov [rcx+40],esi
-  call ffxvi.exe+5DDB00
-  jmp return
-
-newmem:
-  mov [rcx+40],esi
-  call ffxvi.exe+5DDB00
-  jmp return
-
-code:
-  mov [rcx+40],esi
-  call ffxvi.exe+5DDB00
-  jmp return
-
-INJECT:
-  jmp newmem
-  nop 3
-return:
-registersymbol(INJECT)
-
-[DISABLE]
-
-INJECT:
-  db 89 71 40 E8 B8 00 00 00
-
-unregistersymbol(INJECT)
-dealloc(newmem)
-
-{
-// ORIGINAL CODE - INJECTION POINT: ffxvi.exe+5DDA40
-
-ffxvi.exe+5DDA21: 8B FA              - mov edi,edx
-ffxvi.exe+5DDA23: 48 8B D9           - mov rbx,rcx
-ffxvi.exe+5DDA26: 85 D2              - test edx,edx
-ffxvi.exe+5DDA28: 79 0E              - jns ffxvi.exe+5DDA38
-ffxvi.exe+5DDA2A: 8B 41 18           - mov eax,[rcx+18]
-ffxvi.exe+5DDA2D: C1 E8 08           - shr eax,08
-ffxvi.exe+5DDA30: A8 01              - test al,01
-ffxvi.exe+5DDA32: 0F 85 B0 00 00 00  - jne ffxvi.exe+5DDAE8
-ffxvi.exe+5DDA38: 44 8B 71 40        - mov r14d,[rcx+40]
-ffxvi.exe+5DDA3C: 41 8D 34 16        - lea esi,[r14+rdx]
-// ---------- INJECTING HERE ----------
-ffxvi.exe+5DDA40: 89 71 40           - mov [rcx+40],esi
-// ---------- DONE INJECTING  ----------
-ffxvi.exe+5DDA43: E8 B8 00 00 00     - call ffxvi.exe+5DDB00
-ffxvi.exe+5DDA48: 3B F0              - cmp esi,eax
-ffxvi.exe+5DDA4A: 7E 0D              - jle ffxvi.exe+5DDA59
-ffxvi.exe+5DDA4C: 48 8B CB           - mov rcx,rbx
-ffxvi.exe+5DDA4F: E8 AC 00 00 00     - call ffxvi.exe+5DDB00
-ffxvi.exe+5DDA54: 8B F0              - mov esi,eax
-ffxvi.exe+5DDA56: 89 43 40           - mov [rbx+40],eax
-ffxvi.exe+5DDA59: 8B 43 44           - mov eax,[rbx+44]
-ffxvi.exe+5DDA5C: 3B F0              - cmp esi,eax
-ffxvi.exe+5DDA5E: 7F 03              - jg ffxvi.exe+5DDA63
-}
-</AssemblerScript>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>60</ID>
-      <Description>"无描述"</Description>
-      <VariableType>4 Bytes</VariableType>
-      <Address>237E7089290</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>61</ID>
-      <Description>"无描述"</Description>
-      <VariableType>4 Bytes</VariableType>
-      <Address>237E70892C4</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>62</ID>
-      <Description>"无描述"</Description>
-      <VariableType>4 Bytes</VariableType>
-      <Address>237E7089470</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>63</ID>
-      <Description>"无描述"</Description>
-      <VariableType>4 Bytes</VariableType>
-      <Address>2453E54DCE8</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>64</ID>
-      <Description>"无描述"</Description>
-      <VariableType>4 Bytes</VariableType>
-      <Address>2453E552280</Address>
     </CheatEntry>
   </CheatEntries>
   <CheatCodes>
