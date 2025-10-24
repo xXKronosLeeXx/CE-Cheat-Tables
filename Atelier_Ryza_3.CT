@@ -2,9 +2,15 @@
 <CheatTable CheatEngineTableVersion="45">
   <CheatEntries>
     <CheatEntry>
+      <ID>59</ID>
+      <Description>"V1.07"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+    </CheatEntry>
+    <CheatEntry>
       <ID>0</ID>
       <Description>"SP"</Description>
-      <LastState Value="99999" RealAddress="1422BC9F0"/>
+      <LastState Value="200" RealAddress="1422BC9F0"/>
       <VariableType>4 Bytes</VariableType>
       <Address>Atelier_Ryza_3.exe+22BC9F0</Address>
     </CheatEntry>
@@ -18,21 +24,21 @@
     <CheatEntry>
       <ID>33</ID>
       <Description>"宝石"</Description>
-      <LastState Value="8250859" RealAddress="1424710CC"/>
+      <LastState Value="0" RealAddress="1424710CC"/>
       <VariableType>4 Bytes</VariableType>
       <Address>Atelier_Ryza_3.exe+24710CC</Address>
     </CheatEntry>
     <CheatEntry>
       <ID>29</ID>
       <Description>"Gold"</Description>
-      <LastState Value="873308" RealAddress="142471118"/>
+      <LastState Value="200" RealAddress="142471118"/>
       <VariableType>4 Bytes</VariableType>
       <Address>Atelier_Ryza_3.exe+2471118</Address>
     </CheatEntry>
     <CheatEntry>
       <ID>31</ID>
       <Description>"金币"</Description>
-      <LastState Value="978" RealAddress="142471120"/>
+      <LastState Value="0" RealAddress="142471120"/>
       <VariableType>4 Bytes</VariableType>
       <Address>Atelier_Ryza_3.exe+2471120</Address>
     </CheatEntry>
@@ -47,7 +53,7 @@
           <ID>4</ID>
           <Description>"死里打（和留狗命冲突）"</Description>
           <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
-          <LastState/>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : Atelier_Ryza_3.exe
   Version: 
@@ -131,6 +137,7 @@ Atelier_Ryza_3.exe+745C2F: 48 8B CB              - mov rcx,rbx
             <CheatEntry>
               <ID>16</ID>
               <Description>"Damage"</Description>
+              <LastState Value="9999" Activated="1" RealAddress="13FFF1000"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>4 Bytes</VariableType>
               <Address>damage</Address>
@@ -312,7 +319,7 @@ Atelier_Ryza_3.exe+11DBB0: C3                    - ret
             <CheatEntry>
               <ID>12</ID>
               <Description>"莱莎EXP"</Description>
-              <LastState Value="1031157" RealAddress="1424712FC"/>
+              <LastState Value="2570" RealAddress="1424712FC"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>4 Bytes</VariableType>
               <Address>Atelier_Ryza_3.exe+2471300-4</Address>
@@ -320,7 +327,7 @@ Atelier_Ryza_3.exe+11DBB0: C3                    - ret
             <CheatEntry>
               <ID>11</ID>
               <Description>"莱莎HP"</Description>
-              <LastState Value="341" RealAddress="142471300"/>
+              <LastState Value="151" RealAddress="142471300"/>
               <VariableType>4 Bytes</VariableType>
               <Address>Atelier_Ryza_3.exe+2471300</Address>
             </CheatEntry>
@@ -337,14 +344,14 @@ Atelier_Ryza_3.exe+11DBB0: C3                    - ret
             <CheatEntry>
               <ID>22</ID>
               <Description>"科洛蒂娅EXP"</Description>
-              <LastState Value="1031157" RealAddress="14247198C"/>
+              <LastState Value="2570" RealAddress="14247198C"/>
               <VariableType>4 Bytes</VariableType>
               <Address>Atelier_Ryza_3.exe+247198C</Address>
             </CheatEntry>
             <CheatEntry>
               <ID>27</ID>
               <Description>"科洛蒂娅HP"</Description>
-              <LastState Value="345" RealAddress="142471990"/>
+              <LastState Value="135" RealAddress="142471990"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>4 Bytes</VariableType>
               <Address>Atelier_Ryza_3.exe+247198C+4</Address>
@@ -362,14 +369,14 @@ Atelier_Ryza_3.exe+11DBB0: C3                    - ret
             <CheatEntry>
               <ID>23</ID>
               <Description>"兰托EXP"</Description>
-              <LastState Value="1031157" RealAddress="14247201C"/>
+              <LastState Value="2570" RealAddress="14247201C"/>
               <VariableType>4 Bytes</VariableType>
               <Address>Atelier_Ryza_3.exe+247201C</Address>
             </CheatEntry>
             <CheatEntry>
               <ID>28</ID>
               <Description>"兰托HP"</Description>
-              <LastState Value="392" RealAddress="142472020"/>
+              <LastState Value="179" RealAddress="142472020"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>4 Bytes</VariableType>
               <Address>Atelier_Ryza_3.exe+247201C+4</Address>
@@ -387,14 +394,14 @@ Atelier_Ryza_3.exe+11DBB0: C3                    - ret
             <CheatEntry>
               <ID>14</ID>
               <Description>"塔奥EXP"</Description>
-              <LastState Value="1031157" RealAddress="1424726AC"/>
+              <LastState Value="2570" RealAddress="1424726AC"/>
               <VariableType>4 Bytes</VariableType>
               <Address>Atelier_Ryza_3.exe+24726AC</Address>
             </CheatEntry>
             <CheatEntry>
               <ID>19</ID>
               <Description>"塔奥HP"</Description>
-              <LastState Value="304" RealAddress="1424726B0"/>
+              <LastState Value="132" RealAddress="1424726B0"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>4 Bytes</VariableType>
               <Address>Atelier_Ryza_3.exe+24726AC+4</Address>
@@ -412,14 +419,14 @@ Atelier_Ryza_3.exe+11DBB0: C3                    - ret
             <CheatEntry>
               <ID>48</ID>
               <Description>"帕特莉夏EXP"</Description>
-              <LastState Value="1031157" RealAddress="142472D3C"/>
+              <LastState Value="2570" RealAddress="142472D3C"/>
               <VariableType>4 Bytes</VariableType>
               <Address>Atelier_Ryza_3.exe+2472D3C</Address>
             </CheatEntry>
             <CheatEntry>
               <ID>49</ID>
               <Description>"帕特莉夏HP"</Description>
-              <LastState Value="356" RealAddress="142472D40"/>
+              <LastState Value="126" RealAddress="142472D40"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>4 Bytes</VariableType>
               <Address>Atelier_Ryza_3.exe+2472D3C+4</Address>
@@ -437,7 +444,7 @@ Atelier_Ryza_3.exe+11DBB0: C3                    - ret
             <CheatEntry>
               <ID>50</ID>
               <Description>"安佩尔EXP"</Description>
-              <LastState Value="1031157" RealAddress="1424733CC"/>
+              <LastState Value="2570" RealAddress="1424733CC"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>4 Bytes</VariableType>
               <Address>Atelier_Ryza_3.exe+2472D3C+690</Address>
@@ -445,7 +452,7 @@ Atelier_Ryza_3.exe+11DBB0: C3                    - ret
             <CheatEntry>
               <ID>55</ID>
               <Description>"安佩尔HP"</Description>
-              <LastState Value="285" RealAddress="1424733D0"/>
+              <LastState Value="128" RealAddress="1424733D0"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>4 Bytes</VariableType>
               <Address>Atelier_Ryza_3.exe+2472D3C+690+4</Address>
@@ -463,7 +470,7 @@ Atelier_Ryza_3.exe+11DBB0: C3                    - ret
             <CheatEntry>
               <ID>51</ID>
               <Description>"莉拉EXP"</Description>
-              <LastState Value="1031157" RealAddress="142473A5C"/>
+              <LastState Value="2570" RealAddress="142473A5C"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>4 Bytes</VariableType>
               <Address>Atelier_Ryza_3.exe+2472D3C+690+690</Address>
@@ -471,7 +478,7 @@ Atelier_Ryza_3.exe+11DBB0: C3                    - ret
             <CheatEntry>
               <ID>53</ID>
               <Description>"莉拉HP"</Description>
-              <LastState Value="342" RealAddress="142473A60"/>
+              <LastState Value="150" RealAddress="142473A60"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>4 Bytes</VariableType>
               <Address>Atelier_Ryza_3.exe+2472D3C+690+690+4</Address>
@@ -489,14 +496,14 @@ Atelier_Ryza_3.exe+11DBB0: C3                    - ret
             <CheatEntry>
               <ID>15</ID>
               <Description>"博斯EXP"</Description>
-              <LastState Value="1031157" RealAddress="1424740EC"/>
+              <LastState Value="2570" RealAddress="1424740EC"/>
               <VariableType>4 Bytes</VariableType>
               <Address>Atelier_Ryza_3.exe+24740EC</Address>
             </CheatEntry>
             <CheatEntry>
               <ID>21</ID>
               <Description>"博斯HP"</Description>
-              <LastState Value="471" RealAddress="1424740F0"/>
+              <LastState Value="163" RealAddress="1424740F0"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>4 Bytes</VariableType>
               <Address>Atelier_Ryza_3.exe+24740EC+4</Address>
@@ -514,7 +521,7 @@ Atelier_Ryza_3.exe+11DBB0: C3                    - ret
             <CheatEntry>
               <ID>36</ID>
               <Description>"菲德丽卡EXP"</Description>
-              <LastState Value="1031157" RealAddress="14247477C"/>
+              <LastState Value="2570" RealAddress="14247477C"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>4 Bytes</VariableType>
               <Address>Atelier_Ryza_3.exe+24740EC+690</Address>
@@ -522,7 +529,7 @@ Atelier_Ryza_3.exe+11DBB0: C3                    - ret
             <CheatEntry>
               <ID>38</ID>
               <Description>"菲德丽卡HP"</Description>
-              <LastState Value="309" RealAddress="142474780"/>
+              <LastState Value="137" RealAddress="142474780"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>4 Bytes</VariableType>
               <Address>Atelier_Ryza_3.exe+24740EC+690+4</Address>
@@ -540,7 +547,7 @@ Atelier_Ryza_3.exe+11DBB0: C3                    - ret
             <CheatEntry>
               <ID>40</ID>
               <Description>"迪安EXP"</Description>
-              <LastState Value="1031157" RealAddress="142474E0C"/>
+              <LastState Value="2570" RealAddress="142474E0C"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>4 Bytes</VariableType>
               <Address>Atelier_Ryza_3.exe+24740EC+690+690</Address>
@@ -548,7 +555,7 @@ Atelier_Ryza_3.exe+11DBB0: C3                    - ret
             <CheatEntry>
               <ID>41</ID>
               <Description>"迪安HP"</Description>
-              <LastState Value="342" RealAddress="142474E10"/>
+              <LastState Value="157" RealAddress="142474E10"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>4 Bytes</VariableType>
               <Address>Atelier_Ryza_3.exe+24740EC+690+690+4</Address>
@@ -565,7 +572,7 @@ Atelier_Ryza_3.exe+11DBB0: C3                    - ret
             <CheatEntry>
               <ID>56</ID>
               <Description>"卡菈EXP"</Description>
-              <LastState Value="1031157" RealAddress="14247549C"/>
+              <LastState Value="2570" RealAddress="14247549C"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>4 Bytes</VariableType>
               <Address>Atelier_Ryza_3.exe+24740EC+690+690+690</Address>
@@ -573,7 +580,7 @@ Atelier_Ryza_3.exe+11DBB0: C3                    - ret
             <CheatEntry>
               <ID>58</ID>
               <Description>"卡菈HP"</Description>
-              <LastState Value="354" RealAddress="1424754A0"/>
+              <LastState Value="162" RealAddress="1424754A0"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>4 Bytes</VariableType>
               <Address>Atelier_Ryza_3.exe+24740EC+690+690+690+4</Address>
