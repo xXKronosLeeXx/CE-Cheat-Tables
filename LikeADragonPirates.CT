@@ -1,0 +1,1170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"V 1.14 读取存档后再开启功能"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"Money，EXP，厨师及各类加法逻辑"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : LikeADragonPirates.exe
+  Version: 
+  Date   : 2025-10-30
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LikeADragonPirates.exe,48 89 3C D8 48 8B 5C 24 50) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov rdi,#899999999
+  mov [rax+rbx*8],rdi
+  mov rbx,[rsp+50]
+  jmp return
+
+code:
+  mov [rax+rbx*8],rdi
+  mov rbx,[rsp+50]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 4
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 48 89 3C D8 48 8B 5C 24 50
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LikeADragonPirates.exe+141C27A
+
+LikeADragonPirates.exe+141C252: 41 B8 03 00 00 00  - mov r8d,00000003
+LikeADragonPirates.exe+141C258: 48 8D 4C 24 20     - lea rcx,[rsp+20]
+LikeADragonPirates.exe+141C25D: 8B D0              - mov edx,eax
+LikeADragonPirates.exe+141C25F: E8 EC B6 CB FF     - call LikeADragonPirates.exe+10D7950
+LikeADragonPirates.exe+141C264: 48 3B F0           - cmp rsi,rax
+LikeADragonPirates.exe+141C267: 48 0F 4F C6        - cmovg rax,rsi
+LikeADragonPirates.exe+141C26B: 48 8B 74 24 58     - mov rsi,[rsp+58]
+LikeADragonPirates.exe+141C270: 48 3B C7           - cmp rax,rdi
+LikeADragonPirates.exe+141C273: 48 0F 4C F8        - cmovl rdi,rax
+LikeADragonPirates.exe+141C277: 49 8B 06           - mov rax,[r14]
+// ---------- INJECTING HERE ----------
+LikeADragonPirates.exe+141C27A: 48 89 3C D8        - mov [rax+rbx*8],rdi
+// ---------- DONE INJECTING  ----------
+LikeADragonPirates.exe+141C27E: 48 8B 5C 24 50     - mov rbx,[rsp+50]
+LikeADragonPirates.exe+141C283: 48 8B 7C 24 60     - mov rdi,[rsp+60]
+LikeADragonPirates.exe+141C288: 48 83 C4 40        - add rsp,40
+LikeADragonPirates.exe+141C28C: 41 5E              - pop r14
+LikeADragonPirates.exe+141C28E: C3                 - ret 
+LikeADragonPirates.exe+141C28F: CC                 - int 3 
+LikeADragonPirates.exe+141C290: CC                 - int 3 
+LikeADragonPirates.exe+141C291: CC                 - int 3 
+LikeADragonPirates.exe+141C292: CC                 - int 3 
+LikeADragonPirates.exe+141C293: CC                 - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"ITEM=120（使用和增加都是120）"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : LikeADragonPirates.exe
+  Version: 
+  Date   : 2025-10-30
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LikeADragonPirates.exe,89 68 04 B0 01 EB) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov ebp,#120
+  mov [rax+04],ebp
+  mov al,01
+  jmp return
+
+code:
+  mov [rax+04],ebp
+  mov al,01
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 68 04 B0 01
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LikeADragonPirates.exe+B404144
+
+LikeADragonPirates.exe+B404127: 8B 4A 08              - mov ecx,[rdx+08]
+LikeADragonPirates.exe+B40412A: 89 4A F8              - mov [rdx-08],ecx
+LikeADragonPirates.exe+B40412D: 3B 47 0C              - cmp eax,[rdi+0C]
+LikeADragonPirates.exe+B404130: 7C DE                 - jl LikeADragonPirates.exe+B404110
+LikeADragonPirates.exe+B404132: FF 4F 0C              - dec [rdi+0C]
+LikeADragonPirates.exe+B404135: B0 01                 - mov al,01
+LikeADragonPirates.exe+B404137: EB 14                 - jmp LikeADragonPirates.exe+B40414D
+LikeADragonPirates.exe+B404139: C7 40 04 00 00 00 00  - mov [rax+04],00000000
+LikeADragonPirates.exe+B404140: B0 01                 - mov al,01
+LikeADragonPirates.exe+B404142: EB 09                 - jmp LikeADragonPirates.exe+B40414D
+// ---------- INJECTING HERE ----------
+LikeADragonPirates.exe+B404144: 89 68 04              - mov [rax+04],ebp
+// ---------- DONE INJECTING  ----------
+LikeADragonPirates.exe+B404147: B0 01                 - mov al,01
+LikeADragonPirates.exe+B404149: EB 02                 - jmp LikeADragonPirates.exe+B40414D
+LikeADragonPirates.exe+B40414B: 30 C0                 - xor al,al
+LikeADragonPirates.exe+B40414D: 48 8B 5C 24 50        - mov rbx,[rsp+50]
+LikeADragonPirates.exe+B404152: 48 8B 6C 24 58        - mov rbp,[rsp+58]
+LikeADragonPirates.exe+B404157: 48 83 C4 20           - add rsp,20
+LikeADragonPirates.exe+B40415B: 41 5C                 - pop r12
+LikeADragonPirates.exe+B40415D: 5F                    - pop rdi
+LikeADragonPirates.exe+B40415E: 5E                    - pop rsi
+LikeADragonPirates.exe+B40415F: C3                    - ret 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>27</ID>
+      <Description>"海盗点数 +188888（使用激活，用过取消，会跳出）"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : LikeADragonPirates.exe
+  Version: 
+  Date   : 2025-11-01
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LikeADragonPirates.exe,48 89 3C E8 48 8B 06) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [rax+rbp*8],#188888
+  mov rax,[rsi]
+  jmp return
+
+
+code:
+  mov [rax+rbp*8],rdi
+  mov rax,[rsi]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 48 89 3C E8 48 8B 06
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LikeADragonPirates.exe+B3DBD81
+
+LikeADragonPirates.exe+B3DBD57: 49 89 C0              - mov r8,rax
+LikeADragonPirates.exe+B3DBD5A: 48 8B 46 10           - mov rax,[rsi+10]
+LikeADragonPirates.exe+B3DBD5E: 48 8B 14 E8           - mov rdx,[rax+rbp*8]
+LikeADragonPirates.exe+B3DBD62: 4C 01 F2              - add rdx,r14
+LikeADragonPirates.exe+B3DBD65: 4C 8B 35 9E 9F C2 FD  - mov r14,[LikeADragonPirates.exe+9005D0A]
+LikeADragonPirates.exe+B3DBD6C: 44 31 35 B5 9B 72 FD  - xor [LikeADragonPirates.exe+8B05928],r14d
+LikeADragonPirates.exe+B3DBD73: 4C 39 C2              - cmp rdx,r8
+LikeADragonPirates.exe+B3DBD76: 4C 0F 4F C2           - cmovg r8,rdx
+LikeADragonPirates.exe+B3DBD7A: 49 39 F8              - cmp r8,rdi
+LikeADragonPirates.exe+B3DBD7D: 49 0F 4C F8           - cmovl rdi,r8
+// ---------- INJECTING HERE ----------
+LikeADragonPirates.exe+B3DBD81: 48 89 3C E8           - mov [rax+rbp*8],rdi
+// ---------- DONE INJECTING  ----------
+LikeADragonPirates.exe+B3DBD85: 48 8B 06              - mov rax,[rsi]
+LikeADragonPirates.exe+B3DBD88: 48 8B 7C 24 50        - mov rdi,[rsp+50]
+LikeADragonPirates.exe+B3DBD8D: 48 8B 04 E8           - mov rax,[rax+rbp*8]
+LikeADragonPirates.exe+B3DBD91: 48 8B 5C 24 58        - mov rbx,[rsp+58]
+LikeADragonPirates.exe+B3DBD96: 48 8B 6C 24 60        - mov rbp,[rsp+60]
+LikeADragonPirates.exe+B3DBD9B: 48 8B 74 24 68        - mov rsi,[rsp+68]
+LikeADragonPirates.exe+B3DBDA0: 48 83 C4 40           - add rsp,40
+LikeADragonPirates.exe+B3DBDA4: 41 5E                 - pop r14
+LikeADragonPirates.exe+B3DBDA6: C3                    - ret 
+LikeADragonPirates.exe+B3DBDA7: 48 85 C0              - test rax,rax
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>19</ID>
+      <Description>"战斗"</Description>
+      <Options moManualExpandCollapse="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>13</ID>
+          <Description>"HP（能用 但初始化的时候会跳出）"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : LikeADragonPirates.exe
+  Version: 
+  Date   : 2025-10-31
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LikeADragonPirates.exe,48 89 01 C3 38 18) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov rax,[rcx+8]
+  mov [rcx],rax
+  ret
+  cmp [rax],bl
+  jmp return
+
+code:
+  mov [rcx],rax
+  ret 
+  cmp [rax],bl
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 48 89 01 C3 38 18
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LikeADragonPirates.exe+B3CA3B4
+
+LikeADragonPirates.exe+B3CA398: 82 28 55     - sub byte ptr [rax],55
+LikeADragonPirates.exe+B3CA39B: 01 00        - add [rax],eax
+LikeADragonPirates.exe+B3CA39D: 00 00        - add [rax],al
+LikeADragonPirates.exe+B3CA39F: 90           - nop 
+LikeADragonPirates.exe+B3CA3A0: 4C 8B 41 08  - mov r8,[rcx+08]
+LikeADragonPirates.exe+B3CA3A4: 4C 39 C2     - cmp rdx,r8
+LikeADragonPirates.exe+B3CA3A7: 4C 0F 4C C2  - cmovl r8,rdx
+LikeADragonPirates.exe+B3CA3AB: 31 C0        - xor eax,eax
+LikeADragonPirates.exe+B3CA3AD: 4D 85 C0     - test r8,r8
+LikeADragonPirates.exe+B3CA3B0: 49 0F 4F C0  - cmovg rax,r8
+// ---------- INJECTING HERE ----------
+LikeADragonPirates.exe+B3CA3B4: 48 89 01     - mov [rcx],rax
+// ---------- DONE INJECTING  ----------
+LikeADragonPirates.exe+B3CA3B7: C3           - ret 
+LikeADragonPirates.exe+B3CA3B8: 38 18        - cmp [rax],bl
+LikeADragonPirates.exe+B3CA3BA: 00 40 00     - add [rax+00],al
+LikeADragonPirates.exe+B3CA3BD: 00 00        - add [rax],al
+LikeADragonPirates.exe+B3CA3BF: 00 CD        - add ch,cl
+LikeADragonPirates.exe+B3CA3C1: 9F           - lahf 
+LikeADragonPirates.exe+B3CA3C2: FF C7        - inc edi
+LikeADragonPirates.exe+B3CA3C4: FF           - db -01
+LikeADragonPirates.exe+B3CA3C5: FF           - db -01
+LikeADragonPirates.exe+B3CA3C6: FF           - db -01
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>16</ID>
+          <Description>"怒气"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048,"LikeADragonPirates.exe"+14174A9) 
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem:
+vmovss xmm3,[rcx+4]
+vmovss [rcx],xmm3
+ret
+
+
+originalcode:
+vmovss [rcx],xmm3
+ret 
+
+exit:
+jmp returnhere
+
+"LikeADragonPirates.exe"+14174A9:
+jmp newmem
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+"LikeADragonPirates.exe"+14174A9:
+db C5 FA 11 19 C3
+//vmovss [rcx],xmm3
+//ret 
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>18</ID>
+          <Description>"狂怒变身"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048,"LikeADragonPirates.exe"+1417829) 
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem:
+vmovss xmm3,[rcx+4]
+vmovss [rcx],xmm3
+ret
+
+originalcode:
+vmovss [rcx],xmm3
+ret 
+
+exit:
+jmp returnhere
+
+"LikeADragonPirates.exe"+1417829:
+jmp newmem
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+"LikeADragonPirates.exe"+1417829:
+db C5 FA 11 19 C3
+//vmovss [rcx],xmm3
+//ret 
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>30</ID>
+      <Description>"小游戏"</Description>
+      <Options moManualExpandCollapse="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>29</ID>
+          <Description>"爆炸棒球+#30000"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : LikeADragonPirates.exe
+  Version: 
+  Date   : 2025-11-01
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LikeADragonPirates.exe,01 88 3C 13 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [rax+0000133C],#30000
+  jmp return
+
+code:
+  add [rax+0000133C],ecx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 01 88 3C 13 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LikeADragonPirates.exe+264AB34
+
+LikeADragonPirates.exe+264AB12: C5 F8 77              - vzeroupper 
+LikeADragonPirates.exe+264AB15: E8 E6 56 13 FF        - call LikeADragonPirates.exe+1780200
+LikeADragonPirates.exe+264AB1A: 84 C0                 - test al,al
+LikeADragonPirates.exe+264AB1C: 75 23                 - jne LikeADragonPirates.exe+264AB41
+LikeADragonPirates.exe+264AB1E: 48 8B 07              - mov rax,[rdi]
+LikeADragonPirates.exe+264AB21: 80 B8 49 13 00 00 02  - cmp byte ptr [rax+00001349],02
+LikeADragonPirates.exe+264AB28: 74 17                 - je LikeADragonPirates.exe+264AB41
+LikeADragonPirates.exe+264AB2A: 8B 88 40 13 00 00     - mov ecx,[rax+00001340]
+LikeADragonPirates.exe+264AB30: 85 C9                 - test ecx,ecx
+LikeADragonPirates.exe+264AB32: 74 0D                 - je LikeADragonPirates.exe+264AB41
+// ---------- INJECTING HERE ----------
+LikeADragonPirates.exe+264AB34: 01 88 3C 13 00 00     - add [rax+0000133C],ecx
+// ---------- DONE INJECTING  ----------
+LikeADragonPirates.exe+264AB3A: C6 80 49 13 00 00 01  - mov byte ptr [rax+00001349],01
+LikeADragonPirates.exe+264AB41: C5 F8 2F FE           - vcomiss xmm7,xmm6
+LikeADragonPirates.exe+264AB45: 76 35                 - jna LikeADragonPirates.exe+264AB7C
+LikeADragonPirates.exe+264AB47: 48 8B 0F              - mov rcx,[rdi]
+LikeADragonPirates.exe+264AB4A: 80 B9 94 10 00 00 00  - cmp byte ptr [rcx+00001094],00
+LikeADragonPirates.exe+264AB51: 75 29                 - jne LikeADragonPirates.exe+264AB7C
+LikeADragonPirates.exe+264AB53: 48 81 C1 B0 12 00 00  - add rcx,000012B0
+LikeADragonPirates.exe+264AB5A: BA D0 0A 00 00        - mov edx,00000AD0
+LikeADragonPirates.exe+264AB5F: E8 9C 56 13 FF        - call LikeADragonPirates.exe+1780200
+LikeADragonPirates.exe+264AB64: 84 C0                 - test al,al
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>32</ID>
+          <Description>"台球一杆  不减"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : LikeADragonPirates.exe
+  Version: 
+  Date   : 2025-11-01
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LikeADragonPirates.exe,FF 89 74 0C 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop //  dec [rcx+00000C74]
+  jmp return
+
+code:
+  dec [rcx+00000C74]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db FF 89 74 0C 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LikeADragonPirates.exe+25A9757
+
+LikeADragonPirates.exe+25A9730: 48 8B CB              - mov rcx,rbx
+LikeADragonPirates.exe+25A9733: E8 B8 0B 00 00        - call LikeADragonPirates.exe+25AA2F0
+LikeADragonPirates.exe+25A9738: 8B 8B 50 03 00 00     - mov ecx,[rbx+00000350]
+LikeADragonPirates.exe+25A973E: 8B F0                 - mov esi,eax
+LikeADragonPirates.exe+25A9740: 41 80 3C CF 05        - cmp byte ptr [r15+rcx*8],05
+LikeADragonPirates.exe+25A9745: 75 27                 - jne LikeADragonPirates.exe+25A976E
+LikeADragonPirates.exe+25A9747: 85 C0                 - test eax,eax
+LikeADragonPirates.exe+25A9749: 74 23                 - je LikeADragonPirates.exe+25A976E
+LikeADragonPirates.exe+25A974B: 48 8B 0D 26 42 2D 01  - mov rcx,[LikeADragonPirates.exe+387D978]
+LikeADragonPirates.exe+25A9752: B8 01 00 00 00        - mov eax,00000001
+// ---------- INJECTING HERE ----------
+LikeADragonPirates.exe+25A9757: FF 89 74 0C 00 00     - dec [rcx+00000C74]
+// ---------- DONE INJECTING  ----------
+LikeADragonPirates.exe+25A975D: 48 8B 0D 14 42 2D 01  - mov rcx,[LikeADragonPirates.exe+387D978]
+LikeADragonPirates.exe+25A9764: 83 B9 74 0C 00 00 00  - cmp dword ptr [rcx+00000C74],00
+LikeADragonPirates.exe+25A976B: 0F 44 F0              - cmove esi,eax
+LikeADragonPirates.exe+25A976E: 0F B6 93 1C 03 00 00  - movzx edx,byte ptr [rbx+0000031C]
+LikeADragonPirates.exe+25A9775: 80 E2 FE              - and dl,-02
+LikeADragonPirates.exe+25A9778: 89 B3 18 03 00 00     - mov [rbx+00000318],esi
+LikeADragonPirates.exe+25A977E: 83 FE 03              - cmp esi,03
+LikeADragonPirates.exe+25A9781: 0F 95 C0              - setne al
+LikeADragonPirates.exe+25A9784: 0A D0                 - or dl,al
+LikeADragonPirates.exe+25A9786: 80 E2 FD              - and dl,-03
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>34</ID>
+          <Description>"高尔夫 +8999"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : LikeADragonPirates.exe
+  Version: 
+  Date   : 2025-11-02
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LikeADragonPirates.exe,01 5F 70 8B 57 70) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [rdi+70],#8999
+  mov edx,[rdi+70]
+  jmp return
+
+code:
+  add [rdi+70],ebx
+  mov edx,[rdi+70]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 01 5F 70 8B 57 70
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LikeADragonPirates.exe+224305E
+
+LikeADragonPirates.exe+224302D: 48 8B C8                 - mov rcx,rax
+LikeADragonPirates.exe+2243030: E8 CB 3F 54 FF           - call LikeADragonPirates.exe+1787000
+LikeADragonPirates.exe+2243035: 48 8D 54 24 50           - lea rdx,[rsp+50]
+LikeADragonPirates.exe+224303A: 48 8B C8                 - mov rcx,rax
+LikeADragonPirates.exe+224303D: E8 EE F6 53 FF           - call LikeADragonPirates.exe+1782730
+LikeADragonPirates.exe+2243042: C5 FA 10 15 9A C6 AE 00  - vmovss xmm2,[LikeADragonPirates.exe+2D2F6E4]
+LikeADragonPirates.exe+224304A: BA 55 05 00 00           - mov edx,00000555
+LikeADragonPirates.exe+224304F: 48 8B CF                 - mov rcx,rdi
+LikeADragonPirates.exe+2243052: E8 29 F4 FF FF           - call LikeADragonPirates.exe+2242480
+LikeADragonPirates.exe+2243057: 44 89 AF 80 00 00 00     - mov [rdi+00000080],r13d
+// ---------- INJECTING HERE ----------
+LikeADragonPirates.exe+224305E: 01 5F 70                 - add [rdi+70],ebx
+// ---------- DONE INJECTING  ----------
+LikeADragonPirates.exe+2243061: 8B 57 70                 - mov edx,[rdi+70]
+LikeADragonPirates.exe+2243064: 48 8B CF                 - mov rcx,rdi
+LikeADragonPirates.exe+2243067: E8 F4 ED FF FF           - call LikeADragonPirates.exe+2241E60
+LikeADragonPirates.exe+224306C: 90                       - nop 
+LikeADragonPirates.exe+224306D: 48 8B 4C 24 50           - mov rcx,[rsp+50]
+LikeADragonPirates.exe+2243072: 48 C1 E1 14              - shl rcx,14
+LikeADragonPirates.exe+2243076: 48 F7 C1 00 00 F0 FF     - test rcx,FFFFFFFFFFF00000
+LikeADragonPirates.exe+224307D: 74 09                    - je LikeADragonPirates.exe+2243088
+LikeADragonPirates.exe+224307F: 48 C1 F9 10              - sar rcx,10
+LikeADragonPirates.exe+2243083: E8 08 C5 58 00           - call LikeADragonPirates.exe+27CF590
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>44</ID>
+          <Description>"外卖"</Description>
+          <Options moManualExpandCollapse="1"/>
+          <LastState Value="" RealAddress="00000000"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>40</ID>
+              <Description>"送外卖 每单+20000"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : LikeADragonPirates.exe
+  Version: 
+  Date   : 2025-11-02
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LikeADragonPirates.exe,26 69 FF 90 01 AF D8 00 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [rdi+000000D8],#20000
+  jmp return
+
+code:
+  add [rdi+000000D8],ebp
+  jmp return
+
+INJECT+04:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+04:
+  db 01 AF D8 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LikeADragonPirates.exe+E32384
+
+LikeADragonPirates.exe+E3235A: 48 8B F9              - mov rdi,rcx
+LikeADragonPirates.exe+E3235D: 8B 81 F8 01 00 00     - mov eax,[rcx+000001F8]
+LikeADragonPirates.exe+E32363: 83 E8 03              - sub eax,03
+LikeADragonPirates.exe+E32366: 83 F8 01              - cmp eax,01
+LikeADragonPirates.exe+E32369: 0F 87 26 01 00 00     - ja LikeADragonPirates.exe+E32495
+LikeADragonPirates.exe+E3236F: 48 8D 99 74 01 00 00  - lea rbx,[rcx+00000174]
+LikeADragonPirates.exe+E32376: 48 89 5C 24 30        - mov [rsp+30],rbx
+LikeADragonPirates.exe+E3237B: 48 8B CB              - mov rcx,rbx
+LikeADragonPirates.exe+E3237E: E8 5D 26 69 FF        - call LikeADragonPirates.exe+4C49E0
+LikeADragonPirates.exe+E32383: 90                    - nop 
+// ---------- INJECTING HERE ----------
+LikeADragonPirates.exe+E32384: 01 AF D8 00 00 00     - add [rdi+000000D8],ebp
+// ---------- DONE INJECTING  ----------
+LikeADragonPirates.exe+E3238A: 48 8B B7 F0 00 00 00  - mov rsi,[rdi+000000F0]
+LikeADragonPirates.exe+E32391: 45 33 F6              - xor r14d,r14d
+LikeADragonPirates.exe+E32394: 85 ED                 - test ebp,ebp
+LikeADragonPirates.exe+E32396: 0F 84 F3 00 00 00     - je LikeADragonPirates.exe+E3248F
+LikeADragonPirates.exe+E3239C: 8B 46 20              - mov eax,[rsi+20]
+LikeADragonPirates.exe+E3239F: 89 44 24 28           - mov [rsp+28],eax
+LikeADragonPirates.exe+E323A3: 4C 8B C5              - mov r8,rbp
+LikeADragonPirates.exe+E323A6: 41 B1 01              - mov r9b,01
+LikeADragonPirates.exe+E323A9: 48 8D 54 24 28        - lea rdx,[rsp+28]
+LikeADragonPirates.exe+E323AE: 48 8D 4C 24 20        - lea rcx,[rsp+20]
+}
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>43</ID>
+              <Description>"外卖获取99"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : LikeADragonPirates.exe
+  Version: 
+  Date   : 2025-11-02
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,LikeADragonPirates.exe,89 45 04 41 8B 0F) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rbp+04],63
+  mov ecx,[r15]
+  jmp return
+
+code:
+  mov [rbp+04],eax
+  mov ecx,[r15]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 45 04 41 8B 0F
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: LikeADragonPirates.exe+E586F7
+
+LikeADragonPirates.exe+E586D5: 74 0E              - je LikeADragonPirates.exe+E586E5
+LikeADragonPirates.exe+E586D7: B8 02 00 00 00     - mov eax,00000002
+LikeADragonPirates.exe+E586DC: 39 B1 B0 02 00 00  - cmp [rcx+000002B0],esi
+LikeADragonPirates.exe+E586E2: 0F 44 F0           - cmove esi,eax
+LikeADragonPirates.exe+E586E5: 8B 7D 04           - mov edi,[rbp+04]
+LikeADragonPirates.exe+E586E8: 48 8B CD           - mov rcx,rbp
+LikeADragonPirates.exe+E586EB: E8 60 FC FF FF     - call LikeADragonPirates.exe+E58350
+LikeADragonPirates.exe+E586F0: 3B F8              - cmp edi,eax
+LikeADragonPirates.exe+E586F2: 73 54              - jae LikeADragonPirates.exe+E58748
+LikeADragonPirates.exe+E586F4: 8D 47 01           - lea eax,[rdi+01]
+// ---------- INJECTING HERE ----------
+LikeADragonPirates.exe+E586F7: 89 45 04           - mov [rbp+04],eax
+// ---------- DONE INJECTING  ----------
+LikeADragonPirates.exe+E586FA: 41 8B 0F           - mov ecx,[r15]
+LikeADragonPirates.exe+E586FD: 85 C9              - test ecx,ecx
+LikeADragonPirates.exe+E586FF: 74 47              - je LikeADragonPirates.exe+E58748
+LikeADragonPirates.exe+E58701: 45 33 C9           - xor r9d,r9d
+LikeADragonPirates.exe+E58704: 8B C1              - mov eax,ecx
+LikeADragonPirates.exe+E58706: 25 FF FF 0F 00     - and eax,000FFFFF
+LikeADragonPirates.exe+E5870B: 3D 00 00 08 00     - cmp eax,00080000
+LikeADragonPirates.exe+E58710: 73 1C              - jae LikeADragonPirates.exe+E5872E
+LikeADragonPirates.exe+E58712: 48 C1 E0 05        - shl rax,05
+LikeADragonPirates.exe+E58716: C1 E9 14           - shr ecx,14
+}
+</AssemblerScript>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>Money 代码 :mov [rax+rbx*8],rdi</Description>
+      <AddressString>LikeADragonPirates.exe+141C27A</AddressString>
+      <Before>
+        <Byte>4C</Byte>
+        <Byte>F8</Byte>
+        <Byte>49</Byte>
+        <Byte>8B</Byte>
+        <Byte>06</Byte>
+      </Before>
+      <Actual>
+        <Byte>48</Byte>
+        <Byte>89</Byte>
+        <Byte>3C</Byte>
+        <Byte>D8</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>5C</Byte>
+        <Byte>24</Byte>
+        <Byte>50</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>道具增减 代码 :mov [rax+04],ebp</Description>
+      <AddressString>LikeADragonPirates.exe+B404144</AddressString>
+      <Before>
+        <Byte>00</Byte>
+        <Byte>B0</Byte>
+        <Byte>01</Byte>
+        <Byte>EB</Byte>
+        <Byte>09</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>68</Byte>
+        <Byte>04</Byte>
+      </Actual>
+      <After>
+        <Byte>B0</Byte>
+        <Byte>01</Byte>
+        <Byte>EB</Byte>
+        <Byte>02</Byte>
+        <Byte>30</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>HP 代码 :mov [rcx],rax</Description>
+      <AddressString>LikeADragonPirates.exe+B3CA3B4</AddressString>
+      <Before>
+        <Byte>C0</Byte>
+        <Byte>49</Byte>
+        <Byte>0F</Byte>
+        <Byte>4F</Byte>
+        <Byte>C0</Byte>
+      </Before>
+      <Actual>
+        <Byte>48</Byte>
+        <Byte>89</Byte>
+        <Byte>01</Byte>
+      </Actual>
+      <After>
+        <Byte>C3</Byte>
+        <Byte>38</Byte>
+        <Byte>18</Byte>
+        <Byte>00</Byte>
+        <Byte>40</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>怒气槽 代码 :vmovss [rcx],xmm3</Description>
+      <AddressString>LikeADragonPirates.exe+14174A9</AddressString>
+      <Before>
+        <Byte>D2</Byte>
+        <Byte>C5</Byte>
+        <Byte>F2</Byte>
+        <Byte>5F</Byte>
+        <Byte>DA</Byte>
+      </Before>
+      <Actual>
+        <Byte>C5</Byte>
+        <Byte>FA</Byte>
+        <Byte>11</Byte>
+        <Byte>19</Byte>
+      </Actual>
+      <After>
+        <Byte>C3</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>狂怒变身 代码 :vmovss [rcx],xmm3</Description>
+      <AddressString>LikeADragonPirates.exe+1417829</AddressString>
+      <Before>
+        <Byte>D2</Byte>
+        <Byte>C5</Byte>
+        <Byte>F2</Byte>
+        <Byte>5F</Byte>
+        <Byte>DA</Byte>
+      </Before>
+      <Actual>
+        <Byte>C5</Byte>
+        <Byte>FA</Byte>
+        <Byte>11</Byte>
+        <Byte>19</Byte>
+      </Actual>
+      <After>
+        <Byte>C3</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>HP扫描 代码 :mov r13,[rax]</Description>
+      <AddressString>LikeADragonPirates.exe+180899D</AddressString>
+      <Before>
+        <Byte>84</Byte>
+        <Byte>14</Byte>
+        <Byte>06</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>4C</Byte>
+        <Byte>8B</Byte>
+        <Byte>28</Byte>
+      </Actual>
+      <After>
+        <Byte>4C</Byte>
+        <Byte>8B</Byte>
+        <Byte>78</Byte>
+        <Byte>08</Byte>
+        <Byte>B9</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>海盗评级 代码 :mov [rax+rbp*8],rdi</Description>
+      <AddressString>LikeADragonPirates.exe+B3DBD81</AddressString>
+      <Before>
+        <Byte>F8</Byte>
+        <Byte>49</Byte>
+        <Byte>0F</Byte>
+        <Byte>4C</Byte>
+        <Byte>F8</Byte>
+      </Before>
+      <Actual>
+        <Byte>48</Byte>
+        <Byte>89</Byte>
+        <Byte>3C</Byte>
+        <Byte>E8</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>06</Byte>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>棒球爆炸桶 分数 代码 :add [rax+0000133C],ecx</Description>
+      <AddressString>LikeADragonPirates.exe+264AB34</AddressString>
+      <Before>
+        <Byte>00</Byte>
+        <Byte>85</Byte>
+        <Byte>C9</Byte>
+        <Byte>74</Byte>
+        <Byte>0D</Byte>
+      </Before>
+      <Actual>
+        <Byte>01</Byte>
+        <Byte>88</Byte>
+        <Byte>3C</Byte>
+        <Byte>13</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>C6</Byte>
+        <Byte>80</Byte>
+        <Byte>49</Byte>
+        <Byte>13</Byte>
+        <Byte>00</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>高尔夫加分 代码 :add [rdi+70],ebx</Description>
+      <AddressString>LikeADragonPirates.exe+224305E</AddressString>
+      <Before>
+        <Byte>AF</Byte>
+        <Byte>80</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>01</Byte>
+        <Byte>5F</Byte>
+        <Byte>70</Byte>
+      </Actual>
+      <After>
+        <Byte>8B</Byte>
+        <Byte>57</Byte>
+        <Byte>70</Byte>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>外卖获取 代码 :mov [rbp+04],eax</Description>
+      <AddressString>LikeADragonPirates.exe+E586F7</AddressString>
+      <Before>
+        <Byte>73</Byte>
+        <Byte>54</Byte>
+        <Byte>8D</Byte>
+        <Byte>47</Byte>
+        <Byte>01</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>45</Byte>
+        <Byte>04</Byte>
+      </Actual>
+      <After>
+        <Byte>41</Byte>
+        <Byte>8B</Byte>
+        <Byte>0F</Byte>
+        <Byte>85</Byte>
+        <Byte>C9</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+  <Structures StructVersion="2">
+    <Structure Name="未命名的结构" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="0" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000000" DisplayMethod="unsigned integer"/>
+        <Element Offset="16" Vartype="Pointer" Bytesize="8" OffsetHex="00000010" DisplayMethod="unsigned integer"/>
+        <Element Offset="24" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000018" DisplayMethod="unsigned integer"/>
+        <Element Offset="32" Vartype="Pointer" Bytesize="8" OffsetHex="00000020" DisplayMethod="unsigned integer"/>
+        <Element Offset="40" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000028" DisplayMethod="unsigned integer"/>
+        <Element Offset="48" Vartype="Pointer" Bytesize="8" OffsetHex="00000030" DisplayMethod="unsigned integer"/>
+        <Element Offset="56" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000038" DisplayMethod="unsigned integer"/>
+        <Element Offset="72" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000048" DisplayMethod="hexadecimal"/>
+        <Element Offset="76" Vartype="4 Bytes" Bytesize="4" RLECount="59" OffsetHex="0000004C" DisplayMethod="unsigned integer"/>
+        <Element Offset="312" Vartype="Float" Bytesize="4" RLECount="4" OffsetHex="00000138" DisplayMethod="unsigned integer"/>
+        <Element Offset="328" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000148" DisplayMethod="unsigned integer"/>
+        <Element Offset="344" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000158" DisplayMethod="unsigned integer"/>
+        <Element Offset="360" Vartype="Pointer" Bytesize="8" OffsetHex="00000168" DisplayMethod="unsigned integer"/>
+        <Element Offset="368" Vartype="Float" Bytesize="4" OffsetHex="00000170" DisplayMethod="unsigned integer"/>
+        <Element Offset="372" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000174" DisplayMethod="unsigned integer"/>
+        <Element Offset="376" Vartype="Double" Bytesize="8" OffsetHex="00000178" DisplayMethod="unsigned integer"/>
+        <Element Offset="384" Vartype="Float" Bytesize="4" OffsetHex="00000180" DisplayMethod="unsigned integer"/>
+        <Element Offset="388" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000184" DisplayMethod="unsigned integer"/>
+        <Element Offset="392" Vartype="Pointer" Bytesize="8" RLECount="4" OffsetHex="00000188" DisplayMethod="unsigned integer"/>
+        <Element Offset="424" Vartype="Float" Bytesize="4" OffsetHex="000001A8" DisplayMethod="unsigned integer"/>
+        <Element Offset="428" Vartype="4 Bytes" Bytesize="4" OffsetHex="000001AC" DisplayMethod="unsigned integer"/>
+        <Element Offset="432" Vartype="Double" Bytesize="8" OffsetHex="000001B0" DisplayMethod="unsigned integer"/>
+        <Element Offset="440" Vartype="Float" Bytesize="4" OffsetHex="000001B8" DisplayMethod="unsigned integer"/>
+        <Element Offset="444" Vartype="4 Bytes" Bytesize="4" OffsetHex="000001BC" DisplayMethod="unsigned integer"/>
+        <Element Offset="448" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="000001C0" DisplayMethod="unsigned integer"/>
+        <Element Offset="464" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000001D0" DisplayMethod="unsigned integer"/>
+        <Element Offset="472" Vartype="Pointer" Bytesize="8" OffsetHex="000001D8" DisplayMethod="unsigned integer"/>
+        <Element Offset="480" Vartype="Float" Bytesize="4" OffsetHex="000001E0" DisplayMethod="unsigned integer"/>
+        <Element Offset="484" Vartype="4 Bytes" Bytesize="4" OffsetHex="000001E4" DisplayMethod="unsigned integer"/>
+        <Element Offset="488" Vartype="Double" Bytesize="8" OffsetHex="000001E8" DisplayMethod="unsigned integer"/>
+        <Element Offset="496" Vartype="Float" Bytesize="4" OffsetHex="000001F0" DisplayMethod="unsigned integer"/>
+        <Element Offset="500" Vartype="4 Bytes" Bytesize="4" OffsetHex="000001F4" DisplayMethod="unsigned integer"/>
+        <Element Offset="504" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="000001F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="520" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000208" DisplayMethod="unsigned integer"/>
+        <Element Offset="528" Vartype="Pointer" Bytesize="8" OffsetHex="00000210" DisplayMethod="unsigned integer"/>
+        <Element Offset="536" Vartype="Float" Bytesize="4" OffsetHex="00000218" DisplayMethod="unsigned integer"/>
+        <Element Offset="540" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000021C" DisplayMethod="unsigned integer"/>
+        <Element Offset="544" Vartype="Double" Bytesize="8" OffsetHex="00000220" DisplayMethod="unsigned integer"/>
+        <Element Offset="552" Vartype="Float" Bytesize="4" OffsetHex="00000228" DisplayMethod="unsigned integer"/>
+        <Element Offset="556" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000022C" DisplayMethod="unsigned integer"/>
+        <Element Offset="560" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000230" DisplayMethod="unsigned integer"/>
+        <Element Offset="576" Vartype="4 Bytes" Bytesize="4" RLECount="8" OffsetHex="00000240" DisplayMethod="unsigned integer"/>
+        <Element Offset="608" Vartype="String" Bytesize="5" OffsetHex="00000260" DisplayMethod="unsigned integer"/>
+        <Element Offset="613" Vartype="Byte" Bytesize="1" RLECount="3" OffsetHex="00000265" DisplayMethod="unsigned integer"/>
+        <Element Offset="616" Vartype="Pointer" Bytesize="8" OffsetHex="00000268" DisplayMethod="unsigned integer"/>
+        <Element Offset="624" Vartype="4 Bytes" Bytesize="4" RLECount="12" OffsetHex="00000270" DisplayMethod="unsigned integer"/>
+        <Element Offset="672" Vartype="Pointer" Bytesize="8" OffsetHex="000002A0" DisplayMethod="unsigned integer"/>
+        <Element Offset="680" Vartype="4 Bytes" Bytesize="4" RLECount="10" OffsetHex="000002A8" DisplayMethod="unsigned integer"/>
+        <Element Offset="720" Vartype="4 Bytes" Bytesize="4" OffsetHex="000002D0" DisplayMethod="hexadecimal"/>
+        <Element Offset="724" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000002D4" DisplayMethod="unsigned integer"/>
+        <Element Offset="732" Vartype="Byte" Bytesize="1" OffsetHex="000002DC" DisplayMethod="unsigned integer"/>
+        <Element Offset="733" Vartype="String" Bytesize="18" RLECount="36" OffsetHex="000002DD" DisplayMethod="unsigned integer"/>
+        <Element Offset="1381" Vartype="Byte" Bytesize="1" RLECount="3" OffsetHex="00000565" DisplayMethod="unsigned integer"/>
+        <Element Offset="1384" Vartype="4 Bytes" Bytesize="4" RLECount="39" OffsetHex="00000568" DisplayMethod="unsigned integer"/>
+        <Element Offset="1540" Vartype="Byte" Bytesize="1" OffsetHex="00000604" DisplayMethod="unsigned integer"/>
+        <Element Offset="1541" Vartype="String" Bytesize="10" OffsetHex="00000605" DisplayMethod="unsigned integer"/>
+        <Element Offset="1551" Vartype="String" Bytesize="17" OffsetHex="0000060F" DisplayMethod="unsigned integer"/>
+        <Element Offset="1568" Vartype="String" Bytesize="14" OffsetHex="00000620" DisplayMethod="unsigned integer"/>
+        <Element Offset="1582" Vartype="String" Bytesize="13" OffsetHex="0000062E" DisplayMethod="unsigned integer"/>
+        <Element Offset="1595" Vartype="String" Bytesize="9" OffsetHex="0000063B" DisplayMethod="unsigned integer"/>
+        <Element Offset="1604" Vartype="String" Bytesize="6" OffsetHex="00000644" DisplayMethod="unsigned integer"/>
+        <Element Offset="1610" Vartype="String" Bytesize="18" OffsetHex="0000064A" DisplayMethod="unsigned integer"/>
+        <Element Offset="1628" Vartype="String" Bytesize="16" OffsetHex="0000065C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1644" Vartype="String" Bytesize="14" OffsetHex="0000066C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1658" Vartype="String" Bytesize="23" OffsetHex="0000067A" DisplayMethod="unsigned integer"/>
+        <Element Offset="1681" Vartype="Byte" Bytesize="1" RLECount="3" OffsetHex="00000691" DisplayMethod="unsigned integer"/>
+        <Element Offset="1684" Vartype="4 Bytes" Bytesize="4" RLECount="15" OffsetHex="00000694" DisplayMethod="unsigned integer"/>
+        <Element Offset="1744" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000006D0" DisplayMethod="hexadecimal"/>
+        <Element Offset="1752" Vartype="4 Bytes" Bytesize="4" RLECount="12" OffsetHex="000006D8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1800" Vartype="Pointer" Bytesize="8" OffsetHex="00000708" DisplayMethod="unsigned integer"/>
+        <Element Offset="1808" Vartype="4 Bytes" Bytesize="4" RLECount="320" OffsetHex="00000710" DisplayMethod="unsigned integer"/>
+        <Element Offset="3088" Vartype="Pointer" Bytesize="8" OffsetHex="00000C10" DisplayMethod="unsigned integer"/>
+        <Element Offset="3096" Vartype="4 Bytes" Bytesize="4" RLECount="44" OffsetHex="00000C18" DisplayMethod="unsigned integer"/>
+        <Element Offset="3272" Vartype="Pointer" Bytesize="8" OffsetHex="00000CC8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3280" Vartype="4 Bytes" Bytesize="4" RLECount="48" OffsetHex="00000CD0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3472" Vartype="Pointer" Bytesize="8" OffsetHex="00000D90" DisplayMethod="unsigned integer"/>
+        <Element Offset="3480" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000D98" DisplayMethod="unsigned integer"/>
+        <Element Offset="3488" Vartype="Float" Bytesize="4" RLECount="3" OffsetHex="00000DA0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3500" Vartype="Double" Bytesize="8" OffsetHex="00000DAC" DisplayMethod="unsigned integer"/>
+        <Element Offset="3508" Vartype="Float" Bytesize="4" OffsetHex="00000DB4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3512" Vartype="Pointer" Bytesize="8" OffsetHex="00000DB8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3520" Vartype="Double" Bytesize="8" OffsetHex="00000DC0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3528" Vartype="Pointer" Bytesize="8" OffsetHex="00000DC8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3536" Vartype="Float" Bytesize="4" OffsetHex="00000DD0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3540" Vartype="Double" Bytesize="8" OffsetHex="00000DD4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3548" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000DDC" DisplayMethod="unsigned integer"/>
+        <Element Offset="3552" Vartype="Float" Bytesize="4" RLECount="5" OffsetHex="00000DE0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3572" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000DF4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3584" Vartype="Double" Bytesize="8" OffsetHex="00000E00" DisplayMethod="unsigned integer"/>
+        <Element Offset="3592" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000E08" DisplayMethod="unsigned integer"/>
+        <Element Offset="3604" Vartype="Float" Bytesize="4" RLECount="3" OffsetHex="00000E14" DisplayMethod="unsigned integer"/>
+        <Element Offset="3616" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000E20" DisplayMethod="unsigned integer"/>
+        <Element Offset="3624" Vartype="Pointer" Bytesize="8" OffsetHex="00000E28" DisplayMethod="unsigned integer"/>
+        <Element Offset="3632" Vartype="Float" Bytesize="4" RLECount="4" OffsetHex="00000E30" DisplayMethod="unsigned integer"/>
+        <Element Offset="3648" Vartype="Double" Bytesize="8" OffsetHex="00000E40" DisplayMethod="unsigned integer"/>
+        <Element Offset="3656" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000E48" DisplayMethod="hexadecimal"/>
+        <Element Offset="3660" Vartype="Float" Bytesize="4" RLECount="5" OffsetHex="00000E4C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3680" Vartype="String" Bytesize="4" OffsetHex="00000E60" DisplayMethod="unsigned integer"/>
+        <Element Offset="3684" Vartype="Float" Bytesize="4" RLECount="4" OffsetHex="00000E64" DisplayMethod="unsigned integer"/>
+        <Element Offset="3700" Vartype="Double" Bytesize="8" OffsetHex="00000E74" DisplayMethod="unsigned integer"/>
+        <Element Offset="3708" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="00000E7C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3716" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="00000E84" DisplayMethod="unsigned integer"/>
+        <Element Offset="3720" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000E88" DisplayMethod="unsigned integer"/>
+        <Element Offset="3744" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000EA0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3752" Vartype="Double" Bytesize="8" OffsetHex="00000EA8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3760" Vartype="Float" Bytesize="4" OffsetHex="00000EB0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3764" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000EB4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3776" Vartype="Double" Bytesize="8" OffsetHex="00000EC0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3784" Vartype="Pointer" Bytesize="8" OffsetHex="00000EC8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3792" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000ED0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3800" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="00000ED8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3808" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000EE0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3812" Vartype="Double" Bytesize="8" RLECount="3" OffsetHex="00000EE4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3836" Vartype="String" Bytesize="5" OffsetHex="00000EFC" DisplayMethod="unsigned integer"/>
+        <Element Offset="3841" Vartype="Byte" Bytesize="1" RLECount="3" OffsetHex="00000F01" DisplayMethod="unsigned integer"/>
+        <Element Offset="3844" Vartype="Float" Bytesize="4" RLECount="4" OffsetHex="00000F04" DisplayMethod="unsigned integer"/>
+        <Element Offset="3860" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000F14" DisplayMethod="hexadecimal"/>
+        <Element Offset="3864" Vartype="Float" Bytesize="4" RLECount="6" OffsetHex="00000F18" DisplayMethod="unsigned integer"/>
+        <Element Offset="3888" Vartype="Pointer" Bytesize="8" OffsetHex="00000F30" DisplayMethod="unsigned integer"/>
+        <Element Offset="3896" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000F38" DisplayMethod="unsigned integer"/>
+        <Element Offset="3912" Vartype="Float" Bytesize="4" OffsetHex="00000F48" DisplayMethod="unsigned integer"/>
+        <Element Offset="3916" Vartype="Double" Bytesize="8" OffsetHex="00000F4C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3924" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000F54" DisplayMethod="unsigned integer"/>
+        <Element Offset="3936" Vartype="Double" Bytesize="8" OffsetHex="00000F60" DisplayMethod="unsigned integer"/>
+        <Element Offset="3944" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000F68" DisplayMethod="unsigned integer"/>
+        <Element Offset="3956" Vartype="Double" Bytesize="8" OffsetHex="00000F74" DisplayMethod="unsigned integer"/>
+        <Element Offset="3964" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000F7C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3976" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="00000F88" DisplayMethod="unsigned integer"/>
+        <Element Offset="3984" Vartype="Pointer" Bytesize="8" OffsetHex="00000F90" DisplayMethod="unsigned integer"/>
+        <Element Offset="3992" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000F98" DisplayMethod="unsigned integer"/>
+        <Element Offset="4000" Vartype="Double" Bytesize="8" OffsetHex="00000FA0" DisplayMethod="unsigned integer"/>
+        <Element Offset="4008" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000FA8" DisplayMethod="unsigned integer"/>
+        <Element Offset="4024" Vartype="Pointer" Bytesize="8" OffsetHex="00000FB8" DisplayMethod="unsigned integer"/>
+        <Element Offset="4032" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000FC0" DisplayMethod="unsigned integer"/>
+        <Element Offset="4040" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="00000FC8" DisplayMethod="unsigned integer"/>
+        <Element Offset="4048" Vartype="Pointer" Bytesize="8" OffsetHex="00000FD0" DisplayMethod="unsigned integer"/>
+        <Element Offset="4056" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000FD8" DisplayMethod="unsigned integer"/>
+        <Element Offset="4064" Vartype="Double" Bytesize="8" OffsetHex="00000FE0" DisplayMethod="unsigned integer"/>
+        <Element Offset="4072" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000FE8" DisplayMethod="unsigned integer"/>
+        <Element Offset="4088" Vartype="Pointer" Bytesize="8" OffsetHex="00000FF8" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+  </Structures>
+</CheatTable>

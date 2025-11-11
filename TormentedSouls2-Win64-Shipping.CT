@@ -8,81 +8,6 @@
       <GroupHeader>1</GroupHeader>
     </CheatEntry>
     <CheatEntry>
-      <ID>2</ID>
-      <Description>"录音带=5（物品通用）"</Description>
-      <LastState/>
-      <VariableType>Auto Assembler Script</VariableType>
-      <AssemblerScript>{ Game   : TormentedSouls2-Win64-Shipping.exe
-  Version: 
-  Date   : 2025-10-25
-  Author : krono
-
-  This script does blah blah blah
-}
-
-[ENABLE]
-
-aobscanmodule(INJECT,TormentedSouls2-Win64-Shipping.exe,E9 FC 8B 43 10 48 8D 53 18 48) // should be unique
-alloc(newmem,$1000,INJECT)
-
-label(code)
-label(return)
-
-newmem:
-  mov [rbx+10],5
-  mov eax,[rbx+10]
-  lea rdx,[rbx+18]
-  jmp return
-
-code:
-  mov eax,[rbx+10]
-  lea rdx,[rbx+18]
-  jmp return
-
-INJECT+02:
-  jmp newmem
-  nop 2
-return:
-registersymbol(INJECT)
-
-[DISABLE]
-
-INJECT+02:
-  db 8B 43 10 48 8D 53 18
-
-unregistersymbol(INJECT)
-dealloc(newmem)
-
-{
-// ORIGINAL CODE - INJECTION POINT: TormentedSouls2-Win64-Shipping.UScriptStruct::TCppStructOps&lt;FInventoryItem&gt;::Copy+46
-
-TormentedSouls2-Win64-Shipping.UScriptStruct::TCppStructOps&lt;FInventoryItem&gt;::Copy+1E: 48 89 5C 24 30  - mov [rsp+30],rbx
-TormentedSouls2-Win64-Shipping.UScriptStruct::TCppStructOps&lt;FInventoryItem&gt;::Copy+23: 4C 2B F2        - sub r14,rdx
-TormentedSouls2-Win64-Shipping.UScriptStruct::TCppStructOps&lt;FInventoryItem&gt;::Copy+26: 48 89 7C 24 38  - mov [rsp+38],rdi
-TormentedSouls2-Win64-Shipping.UScriptStruct::TCppStructOps&lt;FInventoryItem&gt;::Copy+2B: 0F 1F 44 00 00  - nop dword ptr [rax+rax+00]
-TormentedSouls2-Win64-Shipping.UScriptStruct::TCppStructOps&lt;FInventoryItem&gt;::Copy+30: 49 8D 1C 36     - lea rbx,[r14+rsi]
-TormentedSouls2-Win64-Shipping.UScriptStruct::TCppStructOps&lt;FInventoryItem&gt;::Copy+34: 48 8B FE        - mov rdi,rsi
-TormentedSouls2-Win64-Shipping.UScriptStruct::TCppStructOps&lt;FInventoryItem&gt;::Copy+37: 48 8B D3        - mov rdx,rbx
-TormentedSouls2-Win64-Shipping.UScriptStruct::TCppStructOps&lt;FInventoryItem&gt;::Copy+3A: 48 8B CF        - mov rcx,rdi
-TormentedSouls2-Win64-Shipping.UScriptStruct::TCppStructOps&lt;FInventoryItem&gt;::Copy+3D: 48 83 C6 40     - add rsi,40
-TormentedSouls2-Win64-Shipping.UScriptStruct::TCppStructOps&lt;FInventoryItem&gt;::Copy+41: E8 BA 95 E9 FC  - call TormentedSouls2-Win64-Shipping.FString::operator=
-// ---------- INJECTING HERE ----------
-TormentedSouls2-Win64-Shipping.UScriptStruct::TCppStructOps&lt;FInventoryItem&gt;::Copy+46: 8B 43 10        - mov eax,[rbx+10]
-// ---------- DONE INJECTING  ----------
-TormentedSouls2-Win64-Shipping.UScriptStruct::TCppStructOps&lt;FInventoryItem&gt;::Copy+49: 48 8D 53 18     - lea rdx,[rbx+18]
-TormentedSouls2-Win64-Shipping.UScriptStruct::TCppStructOps&lt;FInventoryItem&gt;::Copy+4D: 48 8D 4F 18     - lea rcx,[rdi+18]
-TormentedSouls2-Win64-Shipping.UScriptStruct::TCppStructOps&lt;FInventoryItem&gt;::Copy+51: 89 47 10        - mov [rdi+10],eax
-TormentedSouls2-Win64-Shipping.UScriptStruct::TCppStructOps&lt;FInventoryItem&gt;::Copy+54: E8 67 18 F9 FC  - call TormentedSouls2-Win64-Shipping.exe+11D2880
-TormentedSouls2-Win64-Shipping.UScriptStruct::TCppStructOps&lt;FInventoryItem&gt;::Copy+59: 0F B6 43 28     - movzx eax,byte ptr [rbx+28]
-TormentedSouls2-Win64-Shipping.UScriptStruct::TCppStructOps&lt;FInventoryItem&gt;::Copy+5D: 48 8D 53 30     - lea rdx,[rbx+30]
-TormentedSouls2-Win64-Shipping.UScriptStruct::TCppStructOps&lt;FInventoryItem&gt;::Copy+61: 88 47 28        - mov [rdi+28],al
-TormentedSouls2-Win64-Shipping.UScriptStruct::TCppStructOps&lt;FInventoryItem&gt;::Copy+64: 48 8D 4F 30     - lea rcx,[rdi+30]
-TormentedSouls2-Win64-Shipping.UScriptStruct::TCppStructOps&lt;FInventoryItem&gt;::Copy+68: 0F B6 43 29     - movzx eax,byte ptr [rbx+29]
-TormentedSouls2-Win64-Shipping.UScriptStruct::TCppStructOps&lt;FInventoryItem&gt;::Copy+6C: 88 47 29        - mov [rdi+29],al
-}
-</AssemblerScript>
-    </CheatEntry>
-    <CheatEntry>
       <ID>9</ID>
       <Description>"包里道具50"</Description>
       <LastState Activated="1"/>
@@ -157,33 +82,138 @@ TormentedSouls2-Win64-Shipping.UTS2GameInstance::UpdateItemCount+A9: 48 85 C9   
 </AssemblerScript>
     </CheatEntry>
     <CheatEntry>
-      <ID>20</ID>
+      <ID>44</ID>
       <Description>"武器栏里第一个物品"</Description>
-      <LastState Value="1" RealAddress="257F65A5270"/>
-      <ShowAsSigned>0</ShowAsSigned>
       <VariableType>4 Bytes</VariableType>
-      <Address>"TormentedSouls2-Win64-Shipping.exe"+09616618</Address>
+      <Address>"TormentedSouls2-Win64-Shipping.exe"+096198C0</Address>
       <Offsets>
         <Offset>D0</Offset>
         <Offset>1F0</Offset>
-        <Offset>1D8</Offset>
-        <Offset>178</Offset>
-        <Offset>A8</Offset>
+        <Offset>4A8</Offset>
+        <Offset>340</Offset>
+        <Offset>158</Offset>
       </Offsets>
     </CheatEntry>
     <CheatEntry>
-      <ID>21</ID>
-      <Description>"HP"</Description>
-      <LastState Value="200" RealAddress="257F5722A34"/>
-      <VariableType>Float</VariableType>
-      <Address>"TormentedSouls2-Win64-Shipping.exe"+0921A7A0</Address>
-      <Offsets>
-        <Offset>B4</Offset>
-        <Offset>58</Offset>
-        <Offset>58</Offset>
-        <Offset>290</Offset>
-        <Offset>0</Offset>
-      </Offsets>
+      <ID>23</ID>
+      <Description>"HP（MAX 200）"</Description>
+      <Options moManualExpandCollapse="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>32</ID>
+          <Description>"指针扫描结果"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>Float</VariableType>
+          <Address>"TormentedSouls2-Win64-Shipping.exe"+095F65E0</Address>
+          <Offsets>
+            <Offset>B4</Offset>
+            <Offset>58</Offset>
+            <Offset>290</Offset>
+            <Offset>2E8</Offset>
+            <Offset>30</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>33</ID>
+          <Description>"指针扫描结果"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>Float</VariableType>
+          <Address>"TormentedSouls2-Win64-Shipping.exe"+095F65E0</Address>
+          <Offsets>
+            <Offset>B4</Offset>
+            <Offset>58</Offset>
+            <Offset>290</Offset>
+            <Offset>2F8</Offset>
+            <Offset>30</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>34</ID>
+          <Description>"指针扫描结果"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>Float</VariableType>
+          <Address>"TormentedSouls2-Win64-Shipping.exe"+095F65E0</Address>
+          <Offsets>
+            <Offset>B4</Offset>
+            <Offset>58</Offset>
+            <Offset>290</Offset>
+            <Offset>350</Offset>
+            <Offset>30</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>35</ID>
+          <Description>"指针扫描结果"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>Float</VariableType>
+          <Address>"TormentedSouls2-Win64-Shipping.exe"+095F65E0</Address>
+          <Offsets>
+            <Offset>B4</Offset>
+            <Offset>C0</Offset>
+            <Offset>230</Offset>
+            <Offset>2E8</Offset>
+            <Offset>30</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>36</ID>
+          <Description>"指针扫描结果"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>Float</VariableType>
+          <Address>"TormentedSouls2-Win64-Shipping.exe"+095F65E0</Address>
+          <Offsets>
+            <Offset>B4</Offset>
+            <Offset>C0</Offset>
+            <Offset>230</Offset>
+            <Offset>2F8</Offset>
+            <Offset>30</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>37</ID>
+          <Description>"指针扫描结果"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>Float</VariableType>
+          <Address>"TormentedSouls2-Win64-Shipping.exe"+095F65E0</Address>
+          <Offsets>
+            <Offset>B4</Offset>
+            <Offset>C0</Offset>
+            <Offset>230</Offset>
+            <Offset>350</Offset>
+            <Offset>30</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>42</ID>
+          <Description>"指针扫描结果"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>Float</VariableType>
+          <Address>"TormentedSouls2-Win64-Shipping.exe"+096198C0</Address>
+          <Offsets>
+            <Offset>B4</Offset>
+            <Offset>58</Offset>
+            <Offset>290</Offset>
+            <Offset>530</Offset>
+            <Offset>158</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>43</ID>
+          <Description>"指针扫描结果"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>Float</VariableType>
+          <Address>"TormentedSouls2-Win64-Shipping.exe"+096198C0</Address>
+          <Offsets>
+            <Offset>B4</Offset>
+            <Offset>C0</Offset>
+            <Offset>230</Offset>
+            <Offset>530</Offset>
+            <Offset>158</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
     </CheatEntry>
   </CheatEntries>
   <CheatCodes>
