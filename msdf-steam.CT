@@ -4,7 +4,7 @@
     <CheatEntry>
       <ID>5</ID>
       <Description>"AP不变（满）"</Description>
-      <LastState/>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : msdf-steam.exe
   Version: 
@@ -76,7 +76,7 @@ dealloc(newmem)
     <CheatEntry>
       <ID>15</ID>
       <Description>"使用钞票后=88888888"</Description>
-      <LastState/>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : msdf-steam.exe
   Version: 
@@ -148,7 +148,7 @@ dealloc(newmem)
     <CheatEntry>
       <ID>13</ID>
       <Description>"使用MEDAL=88888888"</Description>
-      <LastState/>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : msdf-steam.exe
   Version: 
@@ -372,7 +372,7 @@ dealloc(liv)
     <CheatEntry>
       <ID>37</ID>
       <Description>"MS一直MAX"</Description>
-      <LastState/>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : msdf-steam.exe
   Version: 
@@ -446,7 +446,7 @@ dealloc(newmem)
     <CheatEntry>
       <ID>24</ID>
       <Description>"部分单位瞬发无CD"</Description>
-      <LastState/>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : msdf-steam.exe
   Version: 
@@ -520,13 +520,13 @@ dealloc(newmem)
 </AssemblerScript>
     </CheatEntry>
     <CheatEntry>
-      <ID>25</ID>
-      <Description>"CD测试"</Description>
-      <LastState/>
+      <ID>44</ID>
+      <Description>"道具操作后+99"</Description>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : msdf-steam.exe
   Version: 
-  Date   : 2025-11-12
+  Date   : 2025-11-14
   Author : lixiang
 
   This script does blah blah blah
@@ -534,64 +534,59 @@ dealloc(newmem)
 
 [ENABLE]
 
-aobscanmodule(INJECT,msdf-steam.exe,83 C1 1C 4A 75 E0) // should be unique
+aobscanmodule(INJECT,msdf-steam.exe,66 01 82 54 3C 00 00) // should be unique
 alloc(newmem,$1000)
 
 label(code)
 label(return)
 
 newmem:
-  add ecx,1c
-nop //  dec edx
-  jne "msdf-steam.exe"+69580
-  jmp return
 
 code:
-  add ecx,1C
-  dec edx
-  jne "msdf-steam.exe"+69580
+  mov ax,63
+  add [edx+00003C54],ax
   jmp return
 
 INJECT:
   jmp newmem
-  nop
+  nop 2
 return:
 registersymbol(INJECT)
 
 [DISABLE]
 
 INJECT:
-  db 83 C1 1C 4A 75 E0
+  db 66 01 82 54 3C 00 00
 
 unregistersymbol(INJECT)
 dealloc(newmem)
 
 {
-// ORIGINAL CODE - INJECTION POINT: "msdf-steam.exe"+6959A
+// ORIGINAL CODE - INJECTION POINT: "msdf-steam.exe"+8D0CD
 
-"msdf-steam.exe"+69579: 8D A4 24 00 00 00 00     - lea esp,[esp+00000000]
-"msdf-steam.exe"+69580: 8B 01                    - mov eax,[ecx]
-"msdf-steam.exe"+69582: 85 C0                    - test eax,eax
-"msdf-steam.exe"+69584: 7E 14                    - jle "msdf-steam.exe"+6959A
-"msdf-steam.exe"+69586: 80 BE 46 02 00 00 00     - cmp byte ptr [esi+00000246],00
-"msdf-steam.exe"+6958D: 74 08                    - je "msdf-steam.exe"+69597
-"msdf-steam.exe"+6958F: C7 01 00 00 00 00        - mov [ecx],00000000
-"msdf-steam.exe"+69595: EB 03                    - jmp "msdf-steam.exe"+6959A
-"msdf-steam.exe"+69597: 48                       - dec eax
-"msdf-steam.exe"+69598: 89 01                    - mov [ecx],eax
+"msdf-steam.exe"+8D0BB: C3                    - ret 
+"msdf-steam.exe"+8D0BC: CC                    - int 3 
+"msdf-steam.exe"+8D0BD: CC                    - int 3 
+"msdf-steam.exe"+8D0BE: CC                    - int 3 
+"msdf-steam.exe"+8D0BF: CC                    - int 3 
+"msdf-steam.exe"+8D0C0: 55                    - push ebp
+"msdf-steam.exe"+8D0C1: 8B EC                 - mov ebp,esp
+"msdf-steam.exe"+8D0C3: 8B 45 08              - mov eax,[ebp+08]
+"msdf-steam.exe"+8D0C6: 8D 14 41              - lea edx,[ecx+eax*2]
+"msdf-steam.exe"+8D0C9: 66 8B 45 0C           - mov ax,[ebp+0C]
 // ---------- INJECTING HERE ----------
-"msdf-steam.exe"+6959A: 83 C1 1C                 - add ecx,1C
+"msdf-steam.exe"+8D0CD: 66 01 82 54 3C 00 00  - add [edx+00003C54],ax
 // ---------- DONE INJECTING  ----------
-"msdf-steam.exe"+6959D: 4A                       - dec edx
-"msdf-steam.exe"+6959E: 75 E0                    - jne "msdf-steam.exe"+69580
-"msdf-steam.exe"+695A0: 8B 8E 64 02 00 00        - mov ecx,[esi+00000264]
-"msdf-steam.exe"+695A6: 8B 86 A4 02 00 00        - mov eax,[esi+000002A4]
-"msdf-steam.exe"+695AC: 0F AF C1                 - imul eax,ecx
-"msdf-steam.exe"+695AF: F3 0F 10 96 AC 02 00 00  - movss xmm2,[esi+000002AC]
-"msdf-steam.exe"+695B7: 99                       - cdq 
-"msdf-steam.exe"+695B8: 2B C2                    - sub eax,edx
-"msdf-steam.exe"+695BA: D1 F8                    - sar eax,1
-"msdf-steam.exe"+695BC: 03 C1                    - add eax,ecx
+"msdf-steam.exe"+8D0D4: 66 8B 82 54 3C 00 00  - mov ax,[edx+00003C54]
+"msdf-steam.exe"+8D0DB: 66 85 C0              - test ax,ax
+"msdf-steam.exe"+8D0DE: 7E 03                 - jle "msdf-steam.exe"+8D0E3
+"msdf-steam.exe"+8D0E0: 98                    - cwde 
+"msdf-steam.exe"+8D0E1: EB 02                 - jmp "msdf-steam.exe"+8D0E5
+"msdf-steam.exe"+8D0E3: 33 C0                 - xor eax,eax
+"msdf-steam.exe"+8D0E5: 66 89 82 54 3C 00 00  - mov [edx+00003C54],ax
+"msdf-steam.exe"+8D0EC: 66 83 F8 63           - cmp ax,63
+"msdf-steam.exe"+8D0F0: 98                    - cwde 
+"msdf-steam.exe"+8D0F1: 7C 05                 - jl INJECT
 }
 </AssemblerScript>
     </CheatEntry>
@@ -799,6 +794,33 @@ dealloc(newmem)
         <Byte>86</Byte>
         <Byte>01</Byte>
         <Byte>00</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>道具使用逻辑 代码 :add [edx+00003C54],ax</Description>
+      <AddressString>"msdf-steam.exe"+8D0CD</AddressString>
+      <Before>
+        <Byte>41</Byte>
+        <Byte>66</Byte>
+        <Byte>8B</Byte>
+        <Byte>45</Byte>
+        <Byte>0C</Byte>
+      </Before>
+      <Actual>
+        <Byte>66</Byte>
+        <Byte>01</Byte>
+        <Byte>82</Byte>
+        <Byte>54</Byte>
+        <Byte>3C</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>E9</Byte>
+        <Byte>27</Byte>
+        <Byte>2F</Byte>
+        <Byte>D5</Byte>
+        <Byte>FF</Byte>
       </After>
     </CodeEntry>
   </CheatCodes>
