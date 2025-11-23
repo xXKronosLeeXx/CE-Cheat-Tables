@@ -1,0 +1,1128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>9</ID>
+      <Description>"Money"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : sora_1st.exe
+  Version: 
+  Date   : 2025-11-23
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,sora_1st.exe,8B 8E 00 39 1F 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov ecx,[rsi+001F3900]
+  mov ecx,#88899999
+  jmp return
+
+
+code:
+  mov ecx,[rsi+001F3900]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 8B 8E 00 39 1F 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: sora_1st.exe+3F9A1C
+
+sora_1st.exe+3F99E8: E8 13 59 F6 FF           - call sora_1st.exe+35F300
+sora_1st.exe+3F99ED: 84 C0                    - test al,al
+sora_1st.exe+3F99EF: 0F 84 80 03 00 00        - je sora_1st.exe+3F9D75
+sora_1st.exe+3F99F5: 48 8B 83 90 02 00 00     - mov rax,[rbx+00000290]
+sora_1st.exe+3F99FC: 0F 57 C0                 - xorps xmm0,xmm0
+sora_1st.exe+3F99FF: 0F B7 40 22              - movzx eax,word ptr [rax+22]
+sora_1st.exe+3F9A03: 0F AF 87 BC 00 00 00     - imul eax,[rdi+000000BC]
+sora_1st.exe+3F9A0A: F3 48 0F 2A C0           - cvtsi2ss xmm0,rax
+sora_1st.exe+3F9A0F: F3 0F 5E 05 1D 48 42 00  - divss xmm0,[sora_1st.exe+81E234]
+sora_1st.exe+3F9A17: E8 44 98 36 00           - call sora_1st.exe+763260
+// ---------- INJECTING HERE ----------
+sora_1st.exe+3F9A1C: 8B 8E 00 39 1F 00        - mov ecx,[rsi+001F3900]
+// ---------- DONE INJECTING  ----------
+sora_1st.exe+3F9A22: F3 48 0F 2C C0           - cvttss2si rax,xmm0
+sora_1st.exe+3F9A27: 0F AF C5                 - imul eax,ebp
+sora_1st.exe+3F9A2A: 2B C8                    - sub ecx,eax
+sora_1st.exe+3F9A2C: 41 8B C6                 - mov eax,r14d
+sora_1st.exe+3F9A2F: 85 C9                    - test ecx,ecx
+sora_1st.exe+3F9A31: 0F 4F C1                 - cmovg eax,ecx
+sora_1st.exe+3F9A34: 89 86 00 39 1F 00        - mov [rsi+001F3900],eax
+sora_1st.exe+3F9A3A: 8B 07                    - mov eax,[rdi]
+sora_1st.exe+3F9A3C: 3D 88 13 00 00           - cmp eax,00001388
+sora_1st.exe+3F9A41: 72 24                    - jb sora_1st.exe+3F9A67
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>14</ID>
+      <Description>"道具浏览88"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : sora_1st.exe
+  Version: 
+  Date   : 2025-11-23
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,sora_1st.exe,0F B7 94 88 24 67 11 00 85 D2 0F 95) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  movzx edx,word ptr [rax+rcx*4+00116724]
+  mov [rax+rcx*4+00116724],#88
+  jmp return
+
+code:
+  movzx edx,word ptr [rax+rcx*4+00116724]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 0F B7 94 88 24 67 11 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: sora_1st.exe+13F05E
+
+sora_1st.exe+13F037: 83 F9 07                 - cmp ecx,07
+sora_1st.exe+13F03A: 77 18                    - ja sora_1st.exe+13F054
+sora_1st.exe+13F03C: 48 8B 05 3D AB 7C 00     - mov rax,[sora_1st.exe+909B80]
+sora_1st.exe+13F043: 8B 94 88 E0 38 1F 00     - mov edx,[rax+rcx*4+001F38E0]
+sora_1st.exe+13F04A: 85 D2                    - test edx,edx
+sora_1st.exe+13F04C: 0F 95 C0                 - setne al
+sora_1st.exe+13F04F: 48 83 C4 38              - add rsp,38
+sora_1st.exe+13F053: C3                       - ret 
+sora_1st.exe+13F054: 48 8B C8                 - mov rcx,rax
+sora_1st.exe+13F057: 48 8B 05 22 AB 7C 00     - mov rax,[sora_1st.exe+909B80]
+// ---------- INJECTING HERE ----------
+sora_1st.exe+13F05E: 0F B7 94 88 24 67 11 00  - movzx edx,word ptr [rax+rcx*4+00116724]
+// ---------- DONE INJECTING  ----------
+sora_1st.exe+13F066: 85 D2                    - test edx,edx
+sora_1st.exe+13F068: 0F 95 C0                 - setne al
+sora_1st.exe+13F06B: 48 83 C4 38              - add rsp,38
+sora_1st.exe+13F06F: C3                       - ret 
+sora_1st.exe+13F070: 40 55                    - push rbp
+sora_1st.exe+13F072: 53                       - push rbx
+sora_1st.exe+13F073: 57                       - push rdi
+sora_1st.exe+13F074: 41 56                    - push r14
+sora_1st.exe+13F076: 48 8D AC 24 78 FB FF FF  - lea rbp,[rsp-00000488]
+sora_1st.exe+13F07E: 48 81 EC 88 05 00 00     - sub rsp,00000588
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>22</ID>
+      <Description>"EXP+789999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : sora_1st.exe
+  Version: 
+  Date   : 2025-11-23
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,sora_1st.exe,89 43 08 E8 56 FE FF FF) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [rbx+08],#789999
+  call sora_1st.exe+DF130
+  jmp return
+
+code:
+  mov [rbx+08],eax
+  call sora_1st.exe+DF130
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 43 08 E8 56 FE FF FF
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: sora_1st.exe+DF2D2
+
+sora_1st.exe+DF2B4: 44 8B C6           - mov r8d,esi
+sora_1st.exe+DF2B7: 41 8B D6           - mov edx,r14d
+sora_1st.exe+DF2BA: 48 8B CB           - mov rcx,rbx
+sora_1st.exe+DF2BD: E8 5E 00 00 00     - call sora_1st.exe+DF320
+sora_1st.exe+DF2C2: 3B E8              - cmp ebp,eax
+sora_1st.exe+DF2C4: 8B D5              - mov edx,ebp
+sora_1st.exe+DF2C6: 48 8B CB           - mov rcx,rbx
+sora_1st.exe+DF2C9: 0F 4C C5           - cmovl eax,ebp
+sora_1st.exe+DF2CC: 85 C0              - test eax,eax
+sora_1st.exe+DF2CE: 41 0F 48 C5        - cmovs eax,r13d
+// ---------- INJECTING HERE ----------
+sora_1st.exe+DF2D2: 89 43 08           - mov [rbx+08],eax
+// ---------- DONE INJECTING  ----------
+sora_1st.exe+DF2D5: E8 56 FE FF FF     - call sora_1st.exe+DF130
+sora_1st.exe+DF2DA: 45 33 C9           - xor r9d,r9d
+sora_1st.exe+DF2DD: 41 B8 03 00 00 00  - mov r8d,00000003
+sora_1st.exe+DF2E3: 8B D0              - mov edx,eax
+sora_1st.exe+DF2E5: 48 8B CB           - mov rcx,rbx
+sora_1st.exe+DF2E8: E8 A3 FD FF FF     - call sora_1st.exe+DF090
+sora_1st.exe+DF2ED: 44 39 63 04        - cmp [rbx+04],r12d
+sora_1st.exe+DF2F1: 48 8B 5C 24 50     - mov rbx,[rsp+50]
+sora_1st.exe+DF2F6: 48 8B 6C 24 58     - mov rbp,[rsp+58]
+sora_1st.exe+DF2FB: 0F 9F C0           - setg al
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>28</ID>
+      <Description>"耀晶石=899（出售Exchange）"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : sora_1st.exe
+  Version: 
+  Date   : 2025-11-23
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,sora_1st.exe,42 89 84 86 E0 38 1F 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rsi+r8*4+001F38E0],#899
+  jmp return
+
+code:
+  mov [rsi+r8*4+001F38E0],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 42 89 84 86 E0 38 1F 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: sora_1st.exe+3EB6DB
+
+sora_1st.exe+3EB6B6: 48 8B 0C C8              - mov rcx,[rax+rcx*8]
+sora_1st.exe+3EB6BA: 8B 41 20                 - mov eax,[rcx+20]
+sora_1st.exe+3EB6BD: 83 F8 08                 - cmp eax,08
+sora_1st.exe+3EB6C0: 0F 83 E7 00 00 00        - jae sora_1st.exe+3EB7AD
+sora_1st.exe+3EB6C6: 8B 94 86 E0 38 1F 00     - mov edx,[rsi+rax*4+001F38E0]
+sora_1st.exe+3EB6CD: 44 8B C0                 - mov r8d,eax
+sora_1st.exe+3EB6D0: 2B 51 30                 - sub edx,[rcx+30]
+sora_1st.exe+3EB6D3: 41 8B C7                 - mov eax,r15d
+sora_1st.exe+3EB6D6: 85 D2                    - test edx,edx
+sora_1st.exe+3EB6D8: 0F 4F C2                 - cmovg eax,edx
+// ---------- INJECTING HERE ----------
+sora_1st.exe+3EB6DB: 42 89 84 86 E0 38 1F 00  - mov [rsi+r8*4+001F38E0],eax
+// ---------- DONE INJECTING  ----------
+sora_1st.exe+3EB6E3: 44 89 79 30              - mov [rcx+30],r15d
+sora_1st.exe+3EB6E7: E8 E4 F0 FF FF           - call sora_1st.exe+3EA7D0
+sora_1st.exe+3EB6EC: 48 8B 97 98 00 00 00     - mov rdx,[rdi+00000098]
+sora_1st.exe+3EB6F3: FF C3                    - inc ebx
+sora_1st.exe+3EB6F5: 8B 42 40                 - mov eax,[rdx+40]
+sora_1st.exe+3EB6F8: FF C8                    - dec eax
+sora_1st.exe+3EB6FA: 3B D8                    - cmp ebx,eax
+sora_1st.exe+3EB6FC: 72 B2                    - jb sora_1st.exe+3EB6B0
+sora_1st.exe+3EB6FE: 8B 97 90 00 00 00        - mov edx,[rdi+00000090]
+sora_1st.exe+3EB704: 85 D2                    - test edx,edx
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>8</ID>
+      <Description>"战斗相关"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>4</ID>
+          <Description>"HP"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : sora_1st.exe
+  Version: 
+  Date   : 2025-11-23
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,sora_1st.exe,89 56 0C 48 8B 74 24 38) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [rsi+44],0
+  je code
+  mov edx,[rsi+0C+4]
+  mov [rsi+0C],edx
+  mov rsi,[rsp+38]
+  jmp return
+
+code:
+  mov [rsi+0C],edx
+  mov rsi,[rsp+38]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 56 0C 48 8B 74 24 38
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: sora_1st.exe+DE580
+
+sora_1st.exe+DE568: 41 5E           - pop r14
+sora_1st.exe+DE56A: C3              - ret 
+sora_1st.exe+DE56B: 8B 4E 0C        - mov ecx,[rsi+0C]
+sora_1st.exe+DE56E: 8B 56 10        - mov edx,[rsi+10]
+sora_1st.exe+DE571: 41 03 CE        - add ecx,r14d
+sora_1st.exe+DE574: 3B CA           - cmp ecx,edx
+sora_1st.exe+DE576: 0F 4C D1        - cmovl edx,ecx
+sora_1st.exe+DE579: 33 C9           - xor ecx,ecx
+sora_1st.exe+DE57B: 85 D2           - test edx,edx
+sora_1st.exe+DE57D: 0F 48 D1        - cmovs edx,ecx
+// ---------- INJECTING HERE ----------
+sora_1st.exe+DE580: 89 56 0C        - mov [rsi+0C],edx
+// ---------- DONE INJECTING  ----------
+sora_1st.exe+DE583: 48 8B 74 24 38  - mov rsi,[rsp+38]
+sora_1st.exe+DE588: 48 83 C4 20     - add rsp,20
+sora_1st.exe+DE58C: 41 5E           - pop r14
+sora_1st.exe+DE58E: C3              - ret 
+sora_1st.exe+DE58F: 8B 46 18        - mov eax,[rsi+18]
+sora_1st.exe+DE592: 44 3B F0        - cmp r14d,eax
+sora_1st.exe+DE595: 41 0F 4C C6     - cmovl eax,r14d
+sora_1st.exe+DE599: 33 C9           - xor ecx,ecx
+sora_1st.exe+DE59B: 85 C0           - test eax,eax
+sora_1st.exe+DE59D: 0F 48 C1        - cmovs eax,ecx
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>16</ID>
+          <Description>"EP"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : sora_1st.exe
+  Version: 
+  Date   : 2025-11-23
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,sora_1st.exe,89 56 14 48 8B 74 24 38) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov edx,[rsi+18]
+  mov [rsi+14],edx
+  mov rsi,[rsp+38]
+  jmp return
+
+code:
+  mov [rsi+14],edx
+  mov rsi,[rsp+38]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 56 14 48 8B 74 24 38
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: sora_1st.exe+DE5C4
+
+sora_1st.exe+DE5AC: 41 5E           - pop r14
+sora_1st.exe+DE5AE: C3              - ret 
+sora_1st.exe+DE5AF: 8B 4E 14        - mov ecx,[rsi+14]
+sora_1st.exe+DE5B2: 8B 56 18        - mov edx,[rsi+18]
+sora_1st.exe+DE5B5: 41 03 CE        - add ecx,r14d
+sora_1st.exe+DE5B8: 3B CA           - cmp ecx,edx
+sora_1st.exe+DE5BA: 0F 4C D1        - cmovl edx,ecx
+sora_1st.exe+DE5BD: 33 C9           - xor ecx,ecx
+sora_1st.exe+DE5BF: 85 D2           - test edx,edx
+sora_1st.exe+DE5C1: 0F 48 D1        - cmovs edx,ecx
+// ---------- INJECTING HERE ----------
+sora_1st.exe+DE5C4: 89 56 14        - mov [rsi+14],edx
+// ---------- DONE INJECTING  ----------
+sora_1st.exe+DE5C7: 48 8B 74 24 38  - mov rsi,[rsp+38]
+sora_1st.exe+DE5CC: 48 83 C4 20     - add rsp,20
+sora_1st.exe+DE5D0: 41 5E           - pop r14
+sora_1st.exe+DE5D2: C3              - ret 
+sora_1st.exe+DE5D3: 8B 46 20        - mov eax,[rsi+20]
+sora_1st.exe+DE5D6: 44 3B F0        - cmp r14d,eax
+sora_1st.exe+DE5D9: 41 0F 4C C6     - cmovl eax,r14d
+sora_1st.exe+DE5DD: 33 C9           - xor ecx,ecx
+sora_1st.exe+DE5DF: 85 C0           - test eax,eax
+sora_1st.exe+DE5E1: 0F 48 C1        - cmovs eax,ecx
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>7</ID>
+          <Description>"CP"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : sora_1st.exe
+  Version: 
+  Date   : 2025-11-23
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,sora_1st.exe,89 56 1C 48 8B 74 24 38) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov edx,[rsi+1C+4]
+  mov [rsi+1C],edx
+  mov rsi,[rsp+38]
+  jmp return
+
+code:
+  mov [rsi+1C],edx
+  mov rsi,[rsp+38]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 56 1C 48 8B 74 24 38
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: sora_1st.exe+DE608
+
+sora_1st.exe+DE5F0: 41 5E           - pop r14
+sora_1st.exe+DE5F2: C3              - ret 
+sora_1st.exe+DE5F3: 8B 4E 1C        - mov ecx,[rsi+1C]
+sora_1st.exe+DE5F6: 8B 56 20        - mov edx,[rsi+20]
+sora_1st.exe+DE5F9: 41 03 CE        - add ecx,r14d
+sora_1st.exe+DE5FC: 3B CA           - cmp ecx,edx
+sora_1st.exe+DE5FE: 0F 4C D1        - cmovl edx,ecx
+sora_1st.exe+DE601: 33 C9           - xor ecx,ecx
+sora_1st.exe+DE603: 85 D2           - test edx,edx
+sora_1st.exe+DE605: 0F 48 D1        - cmovs edx,ecx
+// ---------- INJECTING HERE ----------
+sora_1st.exe+DE608: 89 56 1C        - mov [rsi+1C],edx
+// ---------- DONE INJECTING  ----------
+sora_1st.exe+DE60B: 48 8B 74 24 38  - mov rsi,[rsp+38]
+sora_1st.exe+DE610: 48 83 C4 20     - add rsp,20
+sora_1st.exe+DE614: 41 5E           - pop r14
+sora_1st.exe+DE616: C3              - ret 
+sora_1st.exe+DE617: 44 8B 46 10     - mov r8d,[rsi+10]
+sora_1st.exe+DE61B: B8 1F 85 EB 51  - mov eax,51EB851F
+sora_1st.exe+DE620: 41 8B C8        - mov ecx,r8d
+sora_1st.exe+DE623: 41 0F AF CE     - imul ecx,r14d
+sora_1st.exe+DE627: F7 E9           - imul ecx
+sora_1st.exe+DE629: C1 FA 05        - sar edx,05
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>24</ID>
+          <Description>"Lv5合体槽 max"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : sora_1st.exe
+  Version: 
+  Date   : 2025-11-23
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,sora_1st.exe,CD 41 89 48 38 3B CA) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [r8+38],#500
+  cmp ecx,edx
+  jmp return
+
+code:
+  mov [r8+38],ecx
+  cmp ecx,edx
+  jmp return
+
+INJECT+01:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+01:
+  db 41 89 48 38 3B CA
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: sora_1st.exe+C32F5
+
+sora_1st.exe+C32C9: 48 8B 05 C8 32 84 00  - mov rax,[sora_1st.exe+906598]
+sora_1st.exe+C32D0: 48 8B 88 50 2C 00 00  - mov rcx,[rax+00002C50]
+sora_1st.exe+C32D7: 4C 8B 81 50 02 00 00  - mov r8,[rcx+00000250]
+sora_1st.exe+C32DE: B9 F4 01 00 00        - mov ecx,000001F4
+sora_1st.exe+C32E3: 41 8B 50 38           - mov edx,[r8+38]
+sora_1st.exe+C32E7: 8D 04 1A              - lea eax,[rdx+rbx]
+sora_1st.exe+C32EA: 3B C1                 - cmp eax,ecx
+sora_1st.exe+C32EC: 0F 4C C8              - cmovl ecx,eax
+sora_1st.exe+C32EF: 85 C9                 - test ecx,ecx
+sora_1st.exe+C32F1: 41 0F 48 CD           - cmovs ecx,r13d
+// ---------- INJECTING HERE ----------
+sora_1st.exe+C32F5: 41 89 48 38           - mov [r8+38],ecx
+// ---------- DONE INJECTING  ----------
+sora_1st.exe+C32F9: 3B CA                 - cmp ecx,edx
+sora_1st.exe+C32FB: 74 05                 - je sora_1st.exe+C3302
+sora_1st.exe+C32FD: 41 C6 40 40 01        - mov byte ptr [r8+40],01
+sora_1st.exe+C3302: 48 8B 5C 24 60        - mov rbx,[rsp+60]
+sora_1st.exe+C3307: 48 83 C4 20           - add rsp,20
+sora_1st.exe+C330B: 41 5D                 - pop r13
+sora_1st.exe+C330D: 41 5C                 - pop r12
+sora_1st.exe+C330F: 5F                    - pop rdi
+sora_1st.exe+C3310: 5E                    - pop rsi
+sora_1st.exe+C3311: 5D                    - pop rbp
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>26</ID>
+              <Description>"Lv5合体草 不减"</Description>
+              <LastState Activated="1"/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : sora_1st.exe
+  Version: 
+  Date   : 2025-11-23
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,sora_1st.exe,44 89 49 38 E8 D2 58 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop //  mov [rcx+38],r9d
+  call sora_1st.exe+57CA0
+  jmp return
+
+code:
+  mov [rcx+38],r9d
+  call sora_1st.exe+57CA0
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 4
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 44 89 49 38 E8 D2 58 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: sora_1st.exe+523C5
+
+sora_1st.exe+5239D: 48 8B 88 50 2C 00 00  - mov rcx,[rax+00002C50]
+sora_1st.exe+523A4: 48 8B 89 50 02 00 00  - mov rcx,[rcx+00000250]
+sora_1st.exe+523AB: 8B 51 38              - mov edx,[rcx+38]
+sora_1st.exe+523AE: 42 8D 04 02           - lea eax,[rdx+r8]
+sora_1st.exe+523B2: 41 3B C1              - cmp eax,r9d
+sora_1st.exe+523B5: 44 0F 4C C8           - cmovl r9d,eax
+sora_1st.exe+523B9: 45 85 C9              - test r9d,r9d
+sora_1st.exe+523BC: 44 0F 48 CD           - cmovs r9d,ebp
+sora_1st.exe+523C0: 41 3B D1              - cmp edx,r9d
+sora_1st.exe+523C3: 74 09                 - je sora_1st.exe+523CE
+// ---------- INJECTING HERE ----------
+sora_1st.exe+523C5: 44 89 49 38           - mov [rcx+38],r9d
+// ---------- DONE INJECTING  ----------
+sora_1st.exe+523C9: E8 D2 58 00 00        - call sora_1st.exe+57CA0
+sora_1st.exe+523CE: 48 8B 05 E3 43 8B 00  - mov rax,[sora_1st.exe+9067B8]
+sora_1st.exe+523D5: 40 88 68 79           - mov [rax+79],bpl
+sora_1st.exe+523D9: 4C 8B 8B 80 00 00 00  - mov r9,[rbx+00000080]
+sora_1st.exe+523E0: 4D 85 C9              - test r9,r9
+sora_1st.exe+523E3: 74 18                 - je sora_1st.exe+523FD
+sora_1st.exe+523E5: 48 63 43 74           - movsxd  rax,dword ptr [rbx+74]
+sora_1st.exe+523E9: 41 B8 04 00 00 00     - mov r8d,00000004
+sora_1st.exe+523EF: 48 8B 0B              - mov rcx,[rbx]
+sora_1st.exe+523F2: 48 8D 14 40           - lea rdx,[rax+rax*2]
+}
+</AssemblerScript>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>27</ID>
+      <Description>"无描述"</Description>
+      <LastState Value="1166" RealAddress="22053203910"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>22053203910</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>29</ID>
+      <Description>"无描述"</Description>
+      <LastState Value="1192" RealAddress="22053203920"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>22053203920</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>32</ID>
+      <Description>"无描述"</Description>
+      <LastState Value="1209" RealAddress="22053203914"/>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>22053203914</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>33</ID>
+      <Description>"无描述"</Description>
+      <LastState Value="0" RealAddress="21FB3103494"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>21FB3103494</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>34</ID>
+      <Description>"无描述"</Description>
+      <LastState Value="0" RealAddress="21FB3103498"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>21FB3103498</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>35</ID>
+      <Description>"BP"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : sora_1st.exe
+  Version: 
+  Date   : 2025-11-23
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,sora_1st.exe,00 89 87 C4 01 00 00 48) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rdi+000001C4],63
+  jmp return
+
+code:
+  mov [rdi+000001C4],eax
+  jmp return
+
+INJECT+01:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+01:
+  db 89 87 C4 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: sora_1st.exe+357035
+
+sora_1st.exe+356FFD: 41 2B C0                          - sub eax,r8d
+sora_1st.exe+357000: 03 C1                             - add eax,ecx
+sora_1st.exe+357002: 89 87 F4 01 00 00                 - mov [rdi+000001F4],eax
+sora_1st.exe+357008: 89 97 C0 01 00 00                 - mov [rdi+000001C0],edx
+sora_1st.exe+35700E: 44 89 87 C4 01 00 00              - mov [rdi+000001C4],r8d
+sora_1st.exe+357015: 48 C7 87 CC 01 00 00 CD CC 4C 3F  - mov qword ptr [rdi+000001CC],3F4CCCCD
+sora_1st.exe+357020: C7 87 D4 01 00 00 03 00 00 00     - mov [rdi+000001D4],00000003
+sora_1st.exe+35702A: EB 2A                             - jmp sora_1st.exe+357056
+sora_1st.exe+35702C: 8D 04 0A                          - lea eax,[rdx+rcx]
+sora_1st.exe+35702F: 89 97 C0 01 00 00                 - mov [rdi+000001C0],edx
+// ---------- INJECTING HERE ----------
+sora_1st.exe+357035: 89 87 C4 01 00 00                 - mov [rdi+000001C4],eax
+// ---------- DONE INJECTING  ----------
+sora_1st.exe+35703B: 48 C7 87 CC 01 00 00 CD CC 4C 3F  - mov qword ptr [rdi+000001CC],3F4CCCCD
+sora_1st.exe+357046: C7 87 D4 01 00 00 03 00 00 00     - mov [rdi+000001D4],00000003
+sora_1st.exe+357050: 89 AF F4 01 00 00                 - mov [rdi+000001F4],ebp
+sora_1st.exe+357056: 83 BF B0 01 00 00 08              - cmp dword ptr [rdi+000001B0],08
+sora_1st.exe+35705D: 74 4A                             - je sora_1st.exe+3570A9
+sora_1st.exe+35705F: 8B 87 F0 01 00 00                 - mov eax,[rdi+000001F0]
+sora_1st.exe+357065: 85 C0                             - test eax,eax
+sora_1st.exe+357067: 74 40                             - je sora_1st.exe+3570A9
+sora_1st.exe+357069: 66 0F 6E 8F C4 01 00 00           - movd xmm1,[rdi+000001C4]
+sora_1st.exe+357071: 0F 5B C9                          - cvtdq2ps xmm1,xmm1
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>Money 代码 :mov ecx,[rsi+001F3900]</Description>
+      <AddressString>sora_1st.exe+3F9A1C</AddressString>
+      <Before>
+        <Byte>E8</Byte>
+        <Byte>44</Byte>
+        <Byte>98</Byte>
+        <Byte>36</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>8B</Byte>
+        <Byte>8E</Byte>
+        <Byte>00</Byte>
+        <Byte>39</Byte>
+        <Byte>1F</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>F3</Byte>
+        <Byte>48</Byte>
+        <Byte>0F</Byte>
+        <Byte>2C</Byte>
+        <Byte>C0</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>HP伤害 代码 :mov [rsi+0C],edx</Description>
+      <AddressString>sora_1st.exe+DE580</AddressString>
+      <Before>
+        <Byte>85</Byte>
+        <Byte>D2</Byte>
+        <Byte>0F</Byte>
+        <Byte>48</Byte>
+        <Byte>D1</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>56</Byte>
+        <Byte>0C</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>74</Byte>
+        <Byte>24</Byte>
+        <Byte>38</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>CP战前 代码 :mov ecx,[rsi+1C]</Description>
+      <AddressString>sora_1st.exe+DE5F3</AddressString>
+      <Before>
+        <Byte>C4</Byte>
+        <Byte>20</Byte>
+        <Byte>41</Byte>
+        <Byte>5E</Byte>
+        <Byte>C3</Byte>
+      </Before>
+      <Actual>
+        <Byte>8B</Byte>
+        <Byte>4E</Byte>
+        <Byte>1C</Byte>
+      </Actual>
+      <After>
+        <Byte>8B</Byte>
+        <Byte>56</Byte>
+        <Byte>20</Byte>
+        <Byte>41</Byte>
+        <Byte>03</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>CP战斗 代码 :mov [rsi+1C],edx</Description>
+      <AddressString>sora_1st.exe+DE608</AddressString>
+      <Before>
+        <Byte>85</Byte>
+        <Byte>D2</Byte>
+        <Byte>0F</Byte>
+        <Byte>48</Byte>
+        <Byte>D1</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>56</Byte>
+        <Byte>1C</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>74</Byte>
+        <Byte>24</Byte>
+        <Byte>38</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>5级合体 代码 :mov [r8+38],ecx</Description>
+      <AddressString>sora_1st.exe+C32F5</AddressString>
+      <Before>
+        <Byte>C9</Byte>
+        <Byte>41</Byte>
+        <Byte>0F</Byte>
+        <Byte>48</Byte>
+        <Byte>CD</Byte>
+      </Before>
+      <Actual>
+        <Byte>41</Byte>
+        <Byte>89</Byte>
+        <Byte>48</Byte>
+        <Byte>38</Byte>
+      </Actual>
+      <After>
+        <Byte>3B</Byte>
+        <Byte>CA</Byte>
+        <Byte>74</Byte>
+        <Byte>05</Byte>
+        <Byte>41</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>BP 代码 :mov [rdi+000001C4],eax</Description>
+      <AddressString>sora_1st.exe+357035</AddressString>
+      <Before>
+        <Byte>97</Byte>
+        <Byte>C0</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>87</Byte>
+        <Byte>C4</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>C7</Byte>
+        <Byte>87</Byte>
+        <Byte>CC</Byte>
+        <Byte>01</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+  <Structures StructVersion="2">
+    <Structure Name="未命名的结构" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="0" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000000" DisplayMethod="hexadecimal"/>
+        <Element Offset="4" Vartype="4 Bytes" Bytesize="4" RLECount="28" OffsetHex="00000004" DisplayMethod="unsigned integer"/>
+        <Element Offset="116" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="00000074" DisplayMethod="unsigned integer"/>
+        <Element Offset="124" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="0000007C" DisplayMethod="unsigned integer"/>
+        <Element Offset="136" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000088" DisplayMethod="hexadecimal"/>
+        <Element Offset="152" Vartype="4 Bytes" Bytesize="4" RLECount="130" OffsetHex="00000098" DisplayMethod="unsigned integer"/>
+        <Element Offset="672" Vartype="Pointer" Bytesize="8" OffsetHex="000002A0" Description="Pointer to instance of fdk::MeshInstance" DisplayMethod="unsigned integer"/>
+        <Element Offset="680" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="000002A8" DisplayMethod="unsigned integer"/>
+        <Element Offset="700" Vartype="Byte" Bytesize="1" OffsetHex="000002BC" DisplayMethod="unsigned integer"/>
+        <Element Offset="701" Vartype="String" Bytesize="11" OffsetHex="000002BD" DisplayMethod="unsigned integer"/>
+        <Element Offset="712" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000002C8" DisplayMethod="unsigned integer"/>
+        <Element Offset="720" Vartype="Pointer" Bytesize="8" RLECount="4" OffsetHex="000002D0" DisplayMethod="unsigned integer"/>
+        <Element Offset="752" Vartype="4 Bytes" Bytesize="4" RLECount="10" OffsetHex="000002F0" DisplayMethod="unsigned integer"/>
+        <Element Offset="792" Vartype="String" Bytesize="5" OffsetHex="00000318" DisplayMethod="unsigned integer"/>
+        <Element Offset="797" Vartype="Byte" Bytesize="1" RLECount="3" OffsetHex="0000031D" DisplayMethod="unsigned integer"/>
+        <Element Offset="800" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000320" DisplayMethod="unsigned integer"/>
+        <Element Offset="808" Vartype="Pointer" Bytesize="8" OffsetHex="00000328" DisplayMethod="unsigned integer"/>
+        <Element Offset="816" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000330" DisplayMethod="unsigned integer"/>
+        <Element Offset="824" Vartype="Pointer" Bytesize="8" OffsetHex="00000338" DisplayMethod="unsigned integer"/>
+        <Element Offset="832" Vartype="4 Bytes" Bytesize="4" RLECount="644" OffsetHex="00000340" DisplayMethod="unsigned integer"/>
+        <Element Offset="3408" Vartype="Pointer" Bytesize="8" RLECount="4" OffsetHex="00000D50" DisplayMethod="unsigned integer"/>
+        <Element Offset="3440" Vartype="4 Bytes" Bytesize="4" RLECount="10" OffsetHex="00000D70" DisplayMethod="unsigned integer"/>
+        <Element Offset="3480" Vartype="String" Bytesize="5" OffsetHex="00000D98" DisplayMethod="unsigned integer"/>
+        <Element Offset="3485" Vartype="Byte" Bytesize="1" RLECount="3" OffsetHex="00000D9D" DisplayMethod="unsigned integer"/>
+        <Element Offset="3488" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000DA0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3496" Vartype="Pointer" Bytesize="8" OffsetHex="00000DA8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3504" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000DB0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3512" Vartype="Pointer" Bytesize="8" OffsetHex="00000DB8" Description="Pointer to instance of sora::graphics::ModelMaterial" DisplayMethod="unsigned integer"/>
+        <Element Offset="3520" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000DC0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3536" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000DD0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3552" Vartype="Pointer" Bytesize="8" OffsetHex="00000DE0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3560" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000DE8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3576" Vartype="String" Bytesize="9" OffsetHex="00000DF8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3585" Vartype="Byte" Bytesize="1" RLECount="3" OffsetHex="00000E01" DisplayMethod="unsigned integer"/>
+        <Element Offset="3588" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000E04" DisplayMethod="unsigned integer"/>
+        <Element Offset="3612" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000E1C" DisplayMethod="hexadecimal"/>
+        <Element Offset="3616" Vartype="Pointer" Bytesize="8" OffsetHex="00000E20" DisplayMethod="unsigned integer"/>
+        <Element Offset="3624" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000E28" DisplayMethod="unsigned integer"/>
+        <Element Offset="3640" Vartype="Pointer" Bytesize="8" OffsetHex="00000E38" DisplayMethod="unsigned integer"/>
+        <Element Offset="3648" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000E40" DisplayMethod="unsigned integer"/>
+        <Element Offset="3664" Vartype="Pointer" Bytesize="8" OffsetHex="00000E50" DisplayMethod="unsigned integer"/>
+        <Element Offset="3672" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000E58" DisplayMethod="unsigned integer"/>
+        <Element Offset="3688" Vartype="Pointer" Bytesize="8" OffsetHex="00000E68" DisplayMethod="unsigned integer"/>
+        <Element Offset="3696" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000E70" DisplayMethod="unsigned integer"/>
+        <Element Offset="3712" Vartype="Pointer" Bytesize="8" OffsetHex="00000E80" DisplayMethod="unsigned integer"/>
+        <Element Offset="3720" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000E88" DisplayMethod="unsigned integer"/>
+        <Element Offset="3736" Vartype="Pointer" Bytesize="8" OffsetHex="00000E98" DisplayMethod="unsigned integer"/>
+        <Element Offset="3744" Vartype="4 Bytes" Bytesize="4" RLECount="12" OffsetHex="00000EA0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3792" Vartype="Pointer" Bytesize="8" OffsetHex="00000ED0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3800" Vartype="4 Bytes" Bytesize="4" RLECount="18" OffsetHex="00000ED8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3872" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000F20" Description="Pointer to instance of fdk::VertexShaderDX11" DisplayMethod="unsigned integer"/>
+        <Element Offset="3888" Vartype="4 Bytes" Bytesize="4" RLECount="38" OffsetHex="00000F30" DisplayMethod="unsigned integer"/>
+        <Element Offset="4040" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000FC8" Description="Pointer to instance of fdk::PixelShaderDX11" DisplayMethod="unsigned integer"/>
+        <Element Offset="4056" Vartype="4 Bytes" Bytesize="4" RLECount="10" OffsetHex="00000FD8" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="未命名的结构" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="0" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000000" DisplayMethod="hexadecimal"/>
+        <Element Offset="4" Vartype="4 Bytes" Bytesize="4" RLECount="28" OffsetHex="00000004" DisplayMethod="unsigned integer"/>
+        <Element Offset="116" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="00000074" DisplayMethod="unsigned integer"/>
+        <Element Offset="120" Vartype="Float" Bytesize="4" OffsetHex="00000078" DisplayMethod="unsigned integer"/>
+        <Element Offset="124" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="0000007C" DisplayMethod="unsigned integer"/>
+        <Element Offset="136" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000088" DisplayMethod="hexadecimal"/>
+        <Element Offset="152" Vartype="4 Bytes" Bytesize="4" RLECount="128" OffsetHex="00000098" DisplayMethod="unsigned integer"/>
+        <Element Offset="664" Vartype="Pointer" Bytesize="8" OffsetHex="00000298" DisplayMethod="unsigned integer"/>
+        <Element Offset="672" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000002A0" DisplayMethod="unsigned integer"/>
+        <Element Offset="688" Vartype="Pointer" Bytesize="8" OffsetHex="000002B0" DisplayMethod="unsigned integer"/>
+        <Element Offset="696" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000002B8" DisplayMethod="unsigned integer"/>
+        <Element Offset="704" Vartype="Pointer" Bytesize="8" RLECount="4" OffsetHex="000002C0" DisplayMethod="unsigned integer"/>
+        <Element Offset="736" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000002E0" DisplayMethod="unsigned integer"/>
+        <Element Offset="744" Vartype="Pointer" Bytesize="8" OffsetHex="000002E8" DisplayMethod="unsigned integer"/>
+        <Element Offset="752" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000002F0" DisplayMethod="unsigned integer"/>
+        <Element Offset="760" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="000002F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="776" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000308" DisplayMethod="unsigned integer"/>
+        <Element Offset="784" Vartype="Pointer" Bytesize="8" RLECount="4" OffsetHex="00000310" DisplayMethod="unsigned integer"/>
+        <Element Offset="816" Vartype="4 Bytes" Bytesize="4" RLECount="10" OffsetHex="00000330" DisplayMethod="unsigned integer"/>
+        <Element Offset="856" Vartype="String" Bytesize="4" OffsetHex="00000358" DisplayMethod="unsigned integer"/>
+        <Element Offset="860" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="0000035C" DisplayMethod="unsigned integer"/>
+        <Element Offset="872" Vartype="Pointer" Bytesize="8" OffsetHex="00000368" DisplayMethod="unsigned integer"/>
+        <Element Offset="880" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000370" DisplayMethod="unsigned integer"/>
+        <Element Offset="888" Vartype="Pointer" Bytesize="8" OffsetHex="00000378" Description="Pointer to instance of sora::fieldmap::ObjectActor" DisplayMethod="unsigned integer"/>
+        <Element Offset="896" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000380" DisplayMethod="unsigned integer"/>
+        <Element Offset="912" Vartype="String" Bytesize="15" OffsetHex="00000390" DisplayMethod="unsigned integer"/>
+        <Element Offset="927" Vartype="Byte" Bytesize="1" OffsetHex="0000039F" DisplayMethod="unsigned integer"/>
+        <Element Offset="928" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="000003A0" DisplayMethod="unsigned integer"/>
+        <Element Offset="948" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000003B4" DisplayMethod="hexadecimal"/>
+        <Element Offset="956" Vartype="4 Bytes" Bytesize="4" OffsetHex="000003BC" DisplayMethod="unsigned integer"/>
+        <Element Offset="960" Vartype="Pointer" Bytesize="8" OffsetHex="000003C0" Description="Pointer to instance of sora::fieldmap::Scene" DisplayMethod="unsigned integer"/>
+        <Element Offset="968" Vartype="Pointer" Bytesize="8" OffsetHex="000003C8" Description="Pointer to instance of fdk::SceneTreeActorNode" DisplayMethod="unsigned integer"/>
+        <Element Offset="976" Vartype="Pointer" Bytesize="8" OffsetHex="000003D0" Description="Pointer to instance of fdk::SceneTreeSceneNode" DisplayMethod="unsigned integer"/>
+        <Element Offset="984" Vartype="Float" Bytesize="4" OffsetHex="000003D8" DisplayMethod="unsigned integer"/>
+        <Element Offset="988" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="000003DC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1000" Vartype="Double" Bytesize="8" OffsetHex="000003E8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1008" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="000003F0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1020" Vartype="Double" Bytesize="8" OffsetHex="000003FC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1028" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000404" DisplayMethod="unsigned integer"/>
+        <Element Offset="1036" Vartype="Float" Bytesize="4" OffsetHex="0000040C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1040" Vartype="Double" Bytesize="8" OffsetHex="00000410" DisplayMethod="unsigned integer"/>
+        <Element Offset="1048" Vartype="Float" Bytesize="4" OffsetHex="00000418" DisplayMethod="unsigned integer"/>
+        <Element Offset="1052" Vartype="Double" Bytesize="8" OffsetHex="0000041C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1060" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000424" DisplayMethod="unsigned integer"/>
+        <Element Offset="1064" Vartype="Double" Bytesize="8" OffsetHex="00000428" DisplayMethod="unsigned integer"/>
+        <Element Offset="1072" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000430" DisplayMethod="unsigned integer"/>
+        <Element Offset="1076" Vartype="Double" Bytesize="8" RLECount="2" OffsetHex="00000434" DisplayMethod="unsigned integer"/>
+        <Element Offset="1092" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000444" DisplayMethod="unsigned integer"/>
+        <Element Offset="1096" Vartype="Float" Bytesize="4" RLECount="4" OffsetHex="00000448" DisplayMethod="unsigned integer"/>
+        <Element Offset="1112" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000458" DisplayMethod="unsigned integer"/>
+        <Element Offset="1116" Vartype="Float" Bytesize="4" OffsetHex="0000045C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1120" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000460" DisplayMethod="unsigned integer"/>
+        <Element Offset="1132" Vartype="Float" Bytesize="4" OffsetHex="0000046C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1136" Vartype="4 Bytes" Bytesize="4" RLECount="8" OffsetHex="00000470" DisplayMethod="unsigned integer"/>
+        <Element Offset="1168" Vartype="Double" Bytesize="8" OffsetHex="00000490" DisplayMethod="unsigned integer"/>
+        <Element Offset="1176" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000498" DisplayMethod="unsigned integer"/>
+        <Element Offset="1200" Vartype="Double" Bytesize="8" OffsetHex="000004B0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1208" Vartype="Float" Bytesize="4" RLECount="3" OffsetHex="000004B8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1220" Vartype="4 Bytes" Bytesize="4" RLECount="7" OffsetHex="000004C4" DisplayMethod="unsigned integer"/>
+        <Element Offset="1248" Vartype="Pointer" Bytesize="8" OffsetHex="000004E0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1256" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000004E8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1272" Vartype="Pointer" Bytesize="8" OffsetHex="000004F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1280" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000500" DisplayMethod="unsigned integer"/>
+        <Element Offset="1296" Vartype="Pointer" Bytesize="8" OffsetHex="00000510" Description="Pointer to instance of fdk::Model" DisplayMethod="unsigned integer"/>
+        <Element Offset="1304" Vartype="Pointer" Bytesize="8" OffsetHex="00000518" DisplayMethod="unsigned integer"/>
+        <Element Offset="1312" Vartype="String" Bytesize="12" OffsetHex="00000520" DisplayMethod="unsigned integer"/>
+        <Element Offset="1324" Vartype="4 Bytes" Bytesize="4" RLECount="7" OffsetHex="0000052C" DisplayMethod="unsigned integer"/>
+        <Element Offset="1352" Vartype="Pointer" Bytesize="8" OffsetHex="00000548" Description="Pointer to instance of sora::AnimationController" DisplayMethod="unsigned integer"/>
+        <Element Offset="1360" Vartype="Pointer" Bytesize="8" OffsetHex="00000550" Description="Pointer to instance of sora::script::Thread" DisplayMethod="unsigned integer"/>
+        <Element Offset="1368" Vartype="Pointer" Bytesize="8" OffsetHex="00000558" Description="Pointer to instance of sora::fieldmap::DoorBehavior" DisplayMethod="unsigned integer"/>
+        <Element Offset="1376" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000560" DisplayMethod="unsigned integer"/>
+        <Element Offset="1392" Vartype="Double" Bytesize="8" OffsetHex="00000570" DisplayMethod="unsigned integer"/>
+        <Element Offset="1400" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000578" DisplayMethod="unsigned integer"/>
+        <Element Offset="1408" Vartype="Pointer" Bytesize="8" OffsetHex="00000580" DisplayMethod="unsigned integer"/>
+        <Element Offset="1416" Vartype="Pointer" Bytesize="8" OffsetHex="00000588" Description="Pointer to instance of sora::fieldmap::ObjectActor" DisplayMethod="unsigned integer"/>
+        <Element Offset="1424" Vartype="4 Bytes" Bytesize="4" RLECount="7" OffsetHex="00000590" DisplayMethod="unsigned integer"/>
+        <Element Offset="1452" Vartype="Double" Bytesize="8" OffsetHex="000005AC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1460" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="000005B4" DisplayMethod="unsigned integer"/>
+        <Element Offset="1468" Vartype="Double" Bytesize="8" OffsetHex="000005BC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1476" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="000005C4" DisplayMethod="unsigned integer"/>
+        <Element Offset="1484" Vartype="Double" Bytesize="8" OffsetHex="000005CC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1492" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="000005D4" DisplayMethod="unsigned integer"/>
+        <Element Offset="1500" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="000005DC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1512" Vartype="Double" Bytesize="8" OffsetHex="000005E8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1520" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="000005F0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1528" Vartype="4 Bytes" Bytesize="4" RLECount="36" OffsetHex="000005F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1672" Vartype="Float" Bytesize="4" RLECount="4" OffsetHex="00000688" DisplayMethod="unsigned integer"/>
+        <Element Offset="1688" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000698" DisplayMethod="unsigned integer"/>
+        <Element Offset="1708" Vartype="4 Bytes" Bytesize="4" OffsetHex="000006AC" DisplayMethod="hexadecimal"/>
+        <Element Offset="1712" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="000006B0" Description="Pointer to instance of fdk::MeshCollider" DisplayMethod="unsigned integer"/>
+        <Element Offset="1736" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000006C8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1744" Vartype="Pointer" Bytesize="8" OffsetHex="000006D0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1752" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000006D8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1760" Vartype="Pointer" Bytesize="8" RLECount="6" OffsetHex="000006E0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1808" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000710" DisplayMethod="unsigned integer"/>
+        <Element Offset="1816" Vartype="Pointer" Bytesize="8" RLECount="52" OffsetHex="00000718" Description="Pointer to instance of fdk::MeshCollider" DisplayMethod="unsigned integer"/>
+        <Element Offset="2232" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000008B8" DisplayMethod="hexadecimal"/>
+        <Element Offset="2240" Vartype="Float" Bytesize="4" OffsetHex="000008C0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2244" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="000008C4" DisplayMethod="hexadecimal"/>
+        <Element Offset="2256" Vartype="Float" Bytesize="4" OffsetHex="000008D0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2260" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="000008D4" DisplayMethod="hexadecimal"/>
+        <Element Offset="2272" Vartype="Float" Bytesize="4" OffsetHex="000008E0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2276" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="000008E4" DisplayMethod="hexadecimal"/>
+        <Element Offset="2288" Vartype="Float" Bytesize="4" OffsetHex="000008F0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2292" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="000008F4" DisplayMethod="hexadecimal"/>
+        <Element Offset="2304" Vartype="Float" Bytesize="4" OffsetHex="00000900" DisplayMethod="unsigned integer"/>
+        <Element Offset="2308" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000904" DisplayMethod="hexadecimal"/>
+        <Element Offset="2312" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000908" DisplayMethod="unsigned integer"/>
+        <Element Offset="2320" Vartype="Pointer" Bytesize="8" RLECount="4" OffsetHex="00000910" DisplayMethod="unsigned integer"/>
+        <Element Offset="2352" Vartype="4 Bytes" Bytesize="4" RLECount="10" OffsetHex="00000930" DisplayMethod="unsigned integer"/>
+        <Element Offset="2392" Vartype="String" Bytesize="4" OffsetHex="00000958" DisplayMethod="unsigned integer"/>
+        <Element Offset="2396" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000095C" DisplayMethod="hexadecimal"/>
+        <Element Offset="2400" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000960" DisplayMethod="unsigned integer"/>
+        <Element Offset="2408" Vartype="Pointer" Bytesize="8" OffsetHex="00000968" DisplayMethod="unsigned integer"/>
+        <Element Offset="2416" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000970" DisplayMethod="unsigned integer"/>
+        <Element Offset="2424" Vartype="Pointer" Bytesize="8" OffsetHex="00000978" DisplayMethod="unsigned integer"/>
+        <Element Offset="2432" Vartype="Pointer" Bytesize="8" RLECount="207" OffsetHex="00000980" Description="Pointer to instance of fdk::MeshCollider" DisplayMethod="unsigned integer"/>
+        <Element Offset="4088" Vartype="Pointer" Bytesize="8" OffsetHex="00000FF8" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+  </Structures>
+  <DisassemblerComments>
+    <DisassemblerComment>
+      <Address>"sora_1st.exe"+35F9BE</Address>
+      <Comment>增加money
+</Comment>
+    </DisassemblerComment>
+  </DisassemblerComments>
+</CheatTable>

@@ -1,0 +1,23 @@
+HP伤害
+sora_1st.exe+DE580 - 89 56 0C              - mov [rsi+0C],edx
+
+4字节
+0C+0 HP
+0C+4 =HPMAX
+0C+8 =MP
+0C+C =MPMAX
+0C+C+4 =CP
+0C+C+8 =CPMAX
+
+敌我
+      player     enemy
++40    8/9          5
++44    1/2          0
++16c   2xxx         0
++18c   n/a          0
++224    1           0
++25c    n/a         0
++260    n/a         0
++264    n/a1        0
++288    1677721600  0
++28c    96          0
