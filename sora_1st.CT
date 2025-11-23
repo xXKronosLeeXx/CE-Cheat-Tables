@@ -224,8 +224,8 @@ sora_1st.exe+DF2FB: 0F 9F C0           - setg al
     </CheatEntry>
     <CheatEntry>
       <ID>28</ID>
-      <Description>"耀晶石=899（出售Exchange）"</Description>
-      <LastState Activated="1"/>
+      <Description>"耀晶石=89999（出售Exchange）"</Description>
+      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : sora_1st.exe
   Version: 
@@ -244,7 +244,7 @@ label(code)
 label(return)
 
 newmem:
-  mov [rsi+r8*4+001F38E0],#899
+  mov [rsi+r8*4+001F38E0],#89999
   jmp return
 
 code:
@@ -682,21 +682,21 @@ sora_1st.exe+523F2: 48 8D 14 40           - lea rdx,[rax+rax*2]
     <CheatEntry>
       <ID>27</ID>
       <Description>"无描述"</Description>
-      <LastState Value="1166" RealAddress="22053203910"/>
+      <LastState Value="88640" RealAddress="22053203910"/>
       <VariableType>4 Bytes</VariableType>
       <Address>22053203910</Address>
     </CheatEntry>
     <CheatEntry>
       <ID>29</ID>
       <Description>"无描述"</Description>
-      <LastState Value="1192" RealAddress="22053203920"/>
+      <LastState Value="88539" RealAddress="22053203920"/>
       <VariableType>4 Bytes</VariableType>
       <Address>22053203920</Address>
     </CheatEntry>
     <CheatEntry>
       <ID>32</ID>
       <Description>"无描述"</Description>
-      <LastState Value="1209" RealAddress="22053203914"/>
+      <LastState Value="89984" RealAddress="22053203914"/>
       <ShowAsSigned>0</ShowAsSigned>
       <VariableType>4 Bytes</VariableType>
       <Address>22053203914</Address>
