@@ -297,7 +297,8 @@ sora_1st.exe+3EB704: 85 D2                    - test edx,edx
     <CheatEntry>
       <ID>8</ID>
       <Description>"战斗相关"</Description>
-      <LastState Value="" RealAddress="00000000"/>
+      <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+      <LastState Value="" Activated="1" RealAddress="00000000"/>
       <GroupHeader>1</GroupHeader>
       <CheatEntries>
         <CheatEntry>
@@ -600,13 +601,13 @@ sora_1st.exe+C3310: 5E                    - pop rsi
 sora_1st.exe+C3311: 5D                    - pop rbp
 }
 </AssemblerScript>
-          <CheatEntries>
-            <CheatEntry>
-              <ID>26</ID>
-              <Description>"Lv5合体草 不减"</Description>
-              <LastState Activated="1"/>
-              <VariableType>Auto Assembler Script</VariableType>
-              <AssemblerScript>{ Game   : sora_1st.exe
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26</ID>
+          <Description>"Lv5合体草 不减"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : sora_1st.exe
   Version: 
   Date   : 2025-11-23
   Author : krono
@@ -674,118 +675,8 @@ sora_1st.exe+523EF: 48 8B 0B              - mov rcx,[rbx]
 sora_1st.exe+523F2: 48 8D 14 40           - lea rdx,[rax+rax*2]
 }
 </AssemblerScript>
-            </CheatEntry>
-          </CheatEntries>
         </CheatEntry>
       </CheatEntries>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>27</ID>
-      <Description>"无描述"</Description>
-      <LastState Value="88640" RealAddress="22053203910"/>
-      <VariableType>4 Bytes</VariableType>
-      <Address>22053203910</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>29</ID>
-      <Description>"无描述"</Description>
-      <LastState Value="88539" RealAddress="22053203920"/>
-      <VariableType>4 Bytes</VariableType>
-      <Address>22053203920</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>32</ID>
-      <Description>"无描述"</Description>
-      <LastState Value="89984" RealAddress="22053203914"/>
-      <ShowAsSigned>0</ShowAsSigned>
-      <VariableType>4 Bytes</VariableType>
-      <Address>22053203914</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>33</ID>
-      <Description>"无描述"</Description>
-      <LastState Value="0" RealAddress="21FB3103494"/>
-      <VariableType>4 Bytes</VariableType>
-      <Address>21FB3103494</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>34</ID>
-      <Description>"无描述"</Description>
-      <LastState Value="0" RealAddress="21FB3103498"/>
-      <VariableType>4 Bytes</VariableType>
-      <Address>21FB3103498</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>35</ID>
-      <Description>"BP"</Description>
-      <LastState/>
-      <VariableType>Auto Assembler Script</VariableType>
-      <AssemblerScript>{ Game   : sora_1st.exe
-  Version: 
-  Date   : 2025-11-23
-  Author : krono
-
-  This script does blah blah blah
-}
-
-[ENABLE]
-
-aobscanmodule(INJECT,sora_1st.exe,00 89 87 C4 01 00 00 48) // should be unique
-alloc(newmem,$1000,INJECT)
-
-label(code)
-label(return)
-
-newmem:
-  mov [rdi+000001C4],63
-  jmp return
-
-code:
-  mov [rdi+000001C4],eax
-  jmp return
-
-INJECT+01:
-  jmp newmem
-  nop
-return:
-registersymbol(INJECT)
-
-[DISABLE]
-
-INJECT+01:
-  db 89 87 C4 01 00 00
-
-unregistersymbol(INJECT)
-dealloc(newmem)
-
-{
-// ORIGINAL CODE - INJECTION POINT: sora_1st.exe+357035
-
-sora_1st.exe+356FFD: 41 2B C0                          - sub eax,r8d
-sora_1st.exe+357000: 03 C1                             - add eax,ecx
-sora_1st.exe+357002: 89 87 F4 01 00 00                 - mov [rdi+000001F4],eax
-sora_1st.exe+357008: 89 97 C0 01 00 00                 - mov [rdi+000001C0],edx
-sora_1st.exe+35700E: 44 89 87 C4 01 00 00              - mov [rdi+000001C4],r8d
-sora_1st.exe+357015: 48 C7 87 CC 01 00 00 CD CC 4C 3F  - mov qword ptr [rdi+000001CC],3F4CCCCD
-sora_1st.exe+357020: C7 87 D4 01 00 00 03 00 00 00     - mov [rdi+000001D4],00000003
-sora_1st.exe+35702A: EB 2A                             - jmp sora_1st.exe+357056
-sora_1st.exe+35702C: 8D 04 0A                          - lea eax,[rdx+rcx]
-sora_1st.exe+35702F: 89 97 C0 01 00 00                 - mov [rdi+000001C0],edx
-// ---------- INJECTING HERE ----------
-sora_1st.exe+357035: 89 87 C4 01 00 00                 - mov [rdi+000001C4],eax
-// ---------- DONE INJECTING  ----------
-sora_1st.exe+35703B: 48 C7 87 CC 01 00 00 CD CC 4C 3F  - mov qword ptr [rdi+000001CC],3F4CCCCD
-sora_1st.exe+357046: C7 87 D4 01 00 00 03 00 00 00     - mov [rdi+000001D4],00000003
-sora_1st.exe+357050: 89 AF F4 01 00 00                 - mov [rdi+000001F4],ebp
-sora_1st.exe+357056: 83 BF B0 01 00 00 08              - cmp dword ptr [rdi+000001B0],08
-sora_1st.exe+35705D: 74 4A                             - je sora_1st.exe+3570A9
-sora_1st.exe+35705F: 8B 87 F0 01 00 00                 - mov eax,[rdi+000001F0]
-sora_1st.exe+357065: 85 C0                             - test eax,eax
-sora_1st.exe+357067: 74 40                             - je sora_1st.exe+3570A9
-sora_1st.exe+357069: 66 0F 6E 8F C4 01 00 00           - movd xmm1,[rdi+000001C4]
-sora_1st.exe+357071: 0F 5B C9                          - cvtdq2ps xmm1,xmm1
-}
-</AssemblerScript>
     </CheatEntry>
   </CheatEntries>
   <CheatCodes>

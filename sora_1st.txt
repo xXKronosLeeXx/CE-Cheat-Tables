@@ -12,7 +12,7 @@ sora_1st.exe+DE580 - 89 56 0C              - mov [rsi+0C],edx
 敌我
       player     enemy
 +40    8/9          5
-+44    1/2          0
++44    1/2          0   目前用的这个
 +16c   2xxx         0
 +18c   n/a          0
 +224    1           0
