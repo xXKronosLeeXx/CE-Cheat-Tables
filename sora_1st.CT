@@ -13,7 +13,7 @@
 
   This script does blah blah blah
 }
-
+ 
 [ENABLE]
 
 aobscanmodule(INJECT,sora_1st.exe,8B 8E 00 39 1F 00) // should be unique
