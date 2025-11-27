@@ -4,7 +4,6 @@
     <CheatEntry>
       <ID>9</ID>
       <Description>"Money"</Description>
-      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : sora_1st.exe
   Version: 
@@ -13,7 +12,7 @@
 
   This script does blah blah blah
 }
- 
+
 [ENABLE]
 
 aobscanmodule(INJECT,sora_1st.exe,8B 8E 00 39 1F 00) // should be unique
@@ -78,7 +77,6 @@ sora_1st.exe+3F9A41: 72 24                    - jb sora_1st.exe+3F9A67
     <CheatEntry>
       <ID>14</ID>
       <Description>"道具浏览88"</Description>
-      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : sora_1st.exe
   Version: 
@@ -151,7 +149,6 @@ sora_1st.exe+13F07E: 48 81 EC 88 05 00 00     - sub rsp,00000588
     <CheatEntry>
       <ID>22</ID>
       <Description>"EXP+789999"</Description>
-      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : sora_1st.exe
   Version: 
@@ -225,7 +222,6 @@ sora_1st.exe+DF2FB: 0F 9F C0           - setg al
     <CheatEntry>
       <ID>28</ID>
       <Description>"耀晶石=89999（出售Exchange）"</Description>
-      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : sora_1st.exe
   Version: 
@@ -295,16 +291,90 @@ sora_1st.exe+3EB704: 85 D2                    - test edx,edx
 </AssemblerScript>
     </CheatEntry>
     <CheatEntry>
+      <ID>29</ID>
+      <Description>"GODMODE"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : sora_1st.exe
+  Version: 
+  Date   : 2025-11-23
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,sora_1st.exe,89 56 0C 48 8B 74 24 38) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [rsi+44],0
+  je code
+  mov edx,[rsi+0C+4]
+  mov [rsi+0C],edx
+  mov rsi,[rsp+38]
+  jmp return
+
+code:
+  mov [rsi+0C],0//edx
+  mov rsi,[rsp+38]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 56 0C 48 8B 74 24 38
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: sora_1st.exe+DE580
+
+sora_1st.exe+DE568: 41 5E           - pop r14
+sora_1st.exe+DE56A: C3              - ret 
+sora_1st.exe+DE56B: 8B 4E 0C        - mov ecx,[rsi+0C]
+sora_1st.exe+DE56E: 8B 56 10        - mov edx,[rsi+10]
+sora_1st.exe+DE571: 41 03 CE        - add ecx,r14d
+sora_1st.exe+DE574: 3B CA           - cmp ecx,edx
+sora_1st.exe+DE576: 0F 4C D1        - cmovl edx,ecx
+sora_1st.exe+DE579: 33 C9           - xor ecx,ecx
+sora_1st.exe+DE57B: 85 D2           - test edx,edx
+sora_1st.exe+DE57D: 0F 48 D1        - cmovs edx,ecx
+// ---------- INJECTING HERE ----------
+sora_1st.exe+DE580: 89 56 0C        - mov [rsi+0C],edx
+// ---------- DONE INJECTING  ----------
+sora_1st.exe+DE583: 48 8B 74 24 38  - mov rsi,[rsp+38]
+sora_1st.exe+DE588: 48 83 C4 20     - add rsp,20
+sora_1st.exe+DE58C: 41 5E           - pop r14
+sora_1st.exe+DE58E: C3              - ret 
+sora_1st.exe+DE58F: 8B 46 18        - mov eax,[rsi+18]
+sora_1st.exe+DE592: 44 3B F0        - cmp r14d,eax
+sora_1st.exe+DE595: 41 0F 4C C6     - cmovl eax,r14d
+sora_1st.exe+DE599: 33 C9           - xor ecx,ecx
+sora_1st.exe+DE59B: 85 C0           - test eax,eax
+sora_1st.exe+DE59D: 0F 48 C1        - cmovs eax,ecx
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
       <ID>8</ID>
       <Description>"战斗相关"</Description>
       <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
-      <LastState Value="" Activated="1" RealAddress="00000000"/>
       <GroupHeader>1</GroupHeader>
       <CheatEntries>
         <CheatEntry>
           <ID>4</ID>
-          <Description>"HP"</Description>
-          <LastState Activated="1"/>
+          <Description>"HPMAX"</Description>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : sora_1st.exe
   Version: 
@@ -381,7 +451,6 @@ sora_1st.exe+DE59D: 0F 48 C1        - cmovs eax,ecx
         <CheatEntry>
           <ID>16</ID>
           <Description>"EP"</Description>
-          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : sora_1st.exe
   Version: 
@@ -456,7 +525,6 @@ sora_1st.exe+DE5E1: 0F 48 C1        - cmovs eax,ecx
         <CheatEntry>
           <ID>7</ID>
           <Description>"CP"</Description>
-          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : sora_1st.exe
   Version: 
@@ -531,7 +599,6 @@ sora_1st.exe+DE629: C1 FA 05        - sar edx,05
         <CheatEntry>
           <ID>24</ID>
           <Description>"Lv5合体槽 max"</Description>
-          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : sora_1st.exe
   Version: 
@@ -605,7 +672,6 @@ sora_1st.exe+C3311: 5D                    - pop rbp
         <CheatEntry>
           <ID>26</ID>
           <Description>"Lv5合体草 不减"</Description>
-          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : sora_1st.exe
   Version: 
