@@ -1,0 +1,12 @@
+HP
+FFXII_TZA.exe+1E0749 - 44 89 76 48           - mov [rsi+48],r14d
+        player         enemy
+0         28             0
+08        80             0
+0C        31             0
+20        2              0
+
+FFXII_TZA.exe+1E0749 - 44 89 76 48           - mov [rsi+48],r14d
+    FFXII_TZA.exe+1EAB88 - 44 8B F0              - mov r14d,eax
+        FFXII_TZA.exe+143C25 - 0FB6 41 0E            - movzx eax,byte ptr [rcx+0E]
+
