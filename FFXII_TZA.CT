@@ -4,20 +4,112 @@
     <CheatEntry>
       <ID>0</ID>
       <Description>"GIL 基址（FFXII_TZA.exe+2044288）"</Description>
-      <LastState Value="510515" RealAddress="02164288"/>
       <VariableType>4 Bytes</VariableType>
       <Address>FFXII_TZA.exe+2044288</Address>
     </CheatEntry>
     <CheatEntry>
+      <ID>72</ID>
+      <Description>"工会点数"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>FFXII_TZA.exe+204FCE8</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>77</ID>
+      <Description>"步数暴涨"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : FFXII_TZA.exe
+  Version: 
+  Date   : 2025-12-21
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,FFXII_TZA.exe,89 41 0C 48 83 C4 28) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [rcx+0C],#8999
+  add rsp,28
+  jmp return
+
+code:
+  mov [rcx+0C],eax
+  add rsp,28
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 41 0C 48 83 C4 28
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: FFXII_TZA.exe+134E90
+
+FFXII_TZA.exe+134E70: 8B 0D 72 D9 E3 01     - mov ecx,[FFXII_TZA.exe+1F727E8]
+FFXII_TZA.exe+134E76: E9 C5 D0 FF FF        - jmp FFXII_TZA.exe+131F40
+FFXII_TZA.exe+134E7B: CC                    - int 3 
+FFXII_TZA.exe+134E7C: CC                    - int 3 
+FFXII_TZA.exe+134E7D: CC                    - int 3 
+FFXII_TZA.exe+134E7E: CC                    - int 3 
+FFXII_TZA.exe+134E7F: CC                    - int 3 
+FFXII_TZA.exe+134E80: 48 83 EC 28           - sub rsp,28
+FFXII_TZA.exe+134E84: E8 C7 BE 0C 00        - call FFXII_TZA.exe+200D50
+FFXII_TZA.exe+134E89: 48 8B 0D C8 D8 E3 01  - mov rcx,[FFXII_TZA.exe+1F72758]
+// ---------- INJECTING HERE ----------
+FFXII_TZA.exe+134E90: 89 41 0C              - mov [rcx+0C],eax
+// ---------- DONE INJECTING  ----------
+FFXII_TZA.exe+134E93: 48 83 C4 28           - add rsp,28
+FFXII_TZA.exe+134E97: C3                    - ret 
+FFXII_TZA.exe+134E98: CC                    - int 3 
+FFXII_TZA.exe+134E99: CC                    - int 3 
+FFXII_TZA.exe+134E9A: CC                    - int 3 
+FFXII_TZA.exe+134E9B: CC                    - int 3 
+FFXII_TZA.exe+134E9C: CC                    - int 3 
+FFXII_TZA.exe+134E9D: CC                    - int 3 
+FFXII_TZA.exe+134E9E: CC                    - int 3 
+FFXII_TZA.exe+134E9F: CC                    - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>75</ID>
+      <Description>"白叶章"</Description>
+      <VariableType>2 Bytes</VariableType>
+      <Address>FFXII_TZA.exe+2097642</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>78</ID>
+      <Description>"传送石"</Description>
+      <VariableType>2 Bytes</VariableType>
+      <Address>FFXII_TZA.exe+209741C</Address>
+    </CheatEntry>
+    <CheatEntry>
       <ID>43</ID>
       <Description>"战斗"</Description>
+      <Options moManualExpandCollapse="1"/>
       <LastState Value="" RealAddress="00000000"/>
       <GroupHeader>1</GroupHeader>
       <CheatEntries>
         <CheatEntry>
           <ID>11</ID>
           <Description>"HP不减"</Description>
-          <LastState/>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : FFXII_TZA.exe
   Version: 
@@ -94,7 +186,7 @@ FFXII_TZA.exe+1E0773: 48 8B CE                 - mov rcx,rsi
         <CheatEntry>
           <ID>56</ID>
           <Description>"MP不减"</Description>
-          <LastState/>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : FFXII_TZA.exe
   Version: 
@@ -169,7 +261,7 @@ FFXII_TZA.exe+1E0E20: 7D 08              - jnl FFXII_TZA.exe+1E0E2A
         <CheatEntry>
           <ID>57</ID>
           <Description>"雾匣不减"</Description>
-          <LastState/>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : FFXII_TZA.exe
   Version: 
@@ -404,7 +496,6 @@ FFXII_TZA.exe+1F246A: 8B CB                 - mov ecx,ebx
         <CheatEntry>
           <ID>24</ID>
           <Description>"雾匣"</Description>
-          <LastState Value="1179" RealAddress="021B291A"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>2 Bytes</VariableType>
           <Address>FFXII_TZA.exe+209295C-42</Address>
@@ -412,14 +503,12 @@ FFXII_TZA.exe+1F246A: 8B CB                 - mov ecx,ebx
         <CheatEntry>
           <ID>8</ID>
           <Description>"HP"</Description>
-          <LastState Value="4370" RealAddress="021B295C"/>
           <VariableType>4 Bytes</VariableType>
           <Address>FFXII_TZA.exe+209295C</Address>
         </CheatEntry>
         <CheatEntry>
           <ID>22</ID>
           <Description>"EXP"</Description>
-          <LastState Value="946827" RealAddress="021B2AA0"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>FFXII_TZA.exe+209295C+144</Address>
@@ -427,7 +516,6 @@ FFXII_TZA.exe+1F246A: 8B CB                 - mov ecx,ebx
         <CheatEntry>
           <ID>12</ID>
           <Description>"LP"</Description>
-          <LastState Value="84755" RealAddress="021B2AA4"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>FFXII_TZA.exe+209295C+144+4</Address>
@@ -444,7 +532,6 @@ FFXII_TZA.exe+1F246A: 8B CB                 - mov ecx,ebx
         <CheatEntry>
           <ID>68</ID>
           <Description>"雾匣"</Description>
-          <LastState Value="405" RealAddress="021B3202"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>2 Bytes</VariableType>
           <Address>FFXII_TZA.exe+209338C-148-42</Address>
@@ -452,7 +539,6 @@ FFXII_TZA.exe+1F246A: 8B CB                 - mov ecx,ebx
         <CheatEntry>
           <ID>65</ID>
           <Description>"MP"</Description>
-          <LastState Value="405" RealAddress="021B3224"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>2 Bytes</VariableType>
           <Address>FFXII_TZA.exe+209338C-168</Address>
@@ -460,7 +546,6 @@ FFXII_TZA.exe+1F246A: 8B CB                 - mov ecx,ebx
         <CheatEntry>
           <ID>69</ID>
           <Description>"HP"</Description>
-          <LastState Value="1845" RealAddress="021B3244"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>FFXII_TZA.exe+209338C-148</Address>
@@ -468,7 +553,6 @@ FFXII_TZA.exe+1F246A: 8B CB                 - mov ecx,ebx
         <CheatEntry>
           <ID>67</ID>
           <Description>"EXP"</Description>
-          <LastState Value="899999" RealAddress="021B3388"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>FFXII_TZA.exe+209338C-4</Address>
@@ -476,7 +560,6 @@ FFXII_TZA.exe+1F246A: 8B CB                 - mov ecx,ebx
         <CheatEntry>
           <ID>66</ID>
           <Description>"LP"</Description>
-          <LastState Value="70827" RealAddress="021B338C"/>
           <VariableType>4 Bytes</VariableType>
           <Address>FFXII_TZA.exe+209338C</Address>
         </CheatEntry>
@@ -492,7 +575,6 @@ FFXII_TZA.exe+1F246A: 8B CB                 - mov ecx,ebx
         <CheatEntry>
           <ID>32</ID>
           <Description>"雾匣"</Description>
-          <LastState Value="1104" RealAddress="021B2E72"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>2 Bytes</VariableType>
           <Address>FFXII_TZA.exe+2092EB4-42</Address>
@@ -500,14 +582,12 @@ FFXII_TZA.exe+1F246A: 8B CB                 - mov ecx,ebx
         <CheatEntry>
           <ID>33</ID>
           <Description>"HP"</Description>
-          <LastState Value="3790" RealAddress="021B2EB4"/>
           <VariableType>4 Bytes</VariableType>
           <Address>FFXII_TZA.exe+2092EB4</Address>
         </CheatEntry>
         <CheatEntry>
           <ID>35</ID>
           <Description>"EXP"</Description>
-          <LastState Value="946827" RealAddress="021B2FF8"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>FFXII_TZA.exe+2092EB4+144</Address>
@@ -515,7 +595,6 @@ FFXII_TZA.exe+1F246A: 8B CB                 - mov ecx,ebx
         <CheatEntry>
           <ID>34</ID>
           <Description>"LP"</Description>
-          <LastState Value="85013" RealAddress="021B2FFC"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>FFXII_TZA.exe+2092EB4+148</Address>
@@ -532,7 +611,6 @@ FFXII_TZA.exe+1F246A: 8B CB                 - mov ecx,ebx
         <CheatEntry>
           <ID>28</ID>
           <Description>"雾匣"</Description>
-          <LastState Value="1368" RealAddress="021B2CAA"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>2 Bytes</VariableType>
           <Address>FFXII_TZA.exe+2092CEC-42</Address>
@@ -540,7 +618,6 @@ FFXII_TZA.exe+1F246A: 8B CB                 - mov ecx,ebx
         <CheatEntry>
           <ID>29</ID>
           <Description>"MP"</Description>
-          <LastState Value="456" RealAddress="021B2CCC"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>2 Bytes</VariableType>
           <Address>FFXII_TZA.exe+2092CEC-20</Address>
@@ -548,7 +625,6 @@ FFXII_TZA.exe+1F246A: 8B CB                 - mov ecx,ebx
         <CheatEntry>
           <ID>58</ID>
           <Description>"HP"</Description>
-          <LastState Value="2808" RealAddress="021B2CEC"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>FFXII_TZA.exe+2092CEC</Address>
@@ -556,7 +632,6 @@ FFXII_TZA.exe+1F246A: 8B CB                 - mov ecx,ebx
         <CheatEntry>
           <ID>30</ID>
           <Description>"EXP"</Description>
-          <LastState Value="950285" RealAddress="021B2E30"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>FFXII_TZA.exe+2092CEC+144</Address>
@@ -564,7 +639,6 @@ FFXII_TZA.exe+1F246A: 8B CB                 - mov ecx,ebx
         <CheatEntry>
           <ID>31</ID>
           <Description>"LP"</Description>
-          <LastState Value="84615" RealAddress="021B2E34"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>FFXII_TZA.exe+2092CEC+148</Address>
@@ -581,7 +655,6 @@ FFXII_TZA.exe+1F246A: 8B CB                 - mov ecx,ebx
         <CheatEntry>
           <ID>37</ID>
           <Description>"雾匣"</Description>
-          <LastState Value="972" RealAddress="021B303A"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>2 Bytes</VariableType>
           <Address>FFXII_TZA.exe+20931C4-148-42</Address>
@@ -589,7 +662,6 @@ FFXII_TZA.exe+1F246A: 8B CB                 - mov ecx,ebx
         <CheatEntry>
           <ID>42</ID>
           <Description>"HP"</Description>
-          <LastState Value="3857" RealAddress="021B307C"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>FFXII_TZA.exe+20931C4-148</Address>
@@ -597,7 +669,6 @@ FFXII_TZA.exe+1F246A: 8B CB                 - mov ecx,ebx
         <CheatEntry>
           <ID>40</ID>
           <Description>"EXP"</Description>
-          <LastState Value="899999" RealAddress="021B31C0"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>FFXII_TZA.exe+20931C4-4</Address>
@@ -605,7 +676,6 @@ FFXII_TZA.exe+1F246A: 8B CB                 - mov ecx,ebx
         <CheatEntry>
           <ID>41</ID>
           <Description>"LP"</Description>
-          <LastState Value="64096" RealAddress="021B31C4"/>
           <VariableType>4 Bytes</VariableType>
           <Address>FFXII_TZA.exe+20931C4</Address>
         </CheatEntry>
@@ -621,7 +691,6 @@ FFXII_TZA.exe+1F246A: 8B CB                 - mov ecx,ebx
         <CheatEntry>
           <ID>48</ID>
           <Description>"雾匣"</Description>
-          <LastState Value="1356" RealAddress="021B2AE2"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>2 Bytes</VariableType>
           <Address>FFXII_TZA.exe+2092C6C-148-42</Address>
@@ -629,7 +698,6 @@ FFXII_TZA.exe+1F246A: 8B CB                 - mov ecx,ebx
         <CheatEntry>
           <ID>50</ID>
           <Description>"HP"</Description>
-          <LastState Value="4425" RealAddress="021B2B24"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>FFXII_TZA.exe+2092C6C-148</Address>
@@ -637,7 +705,6 @@ FFXII_TZA.exe+1F246A: 8B CB                 - mov ecx,ebx
         <CheatEntry>
           <ID>46</ID>
           <Description>"EXP"</Description>
-          <LastState Value="899999" RealAddress="021B2C68"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>FFXII_TZA.exe+2092C6C-4</Address>
@@ -645,7 +712,6 @@ FFXII_TZA.exe+1F246A: 8B CB                 - mov ecx,ebx
         <CheatEntry>
           <ID>49</ID>
           <Description>"LP"</Description>
-          <LastState Value="84745" RealAddress="021B2C6C"/>
           <VariableType>4 Bytes</VariableType>
           <Address>FFXII_TZA.exe+2092C6C</Address>
         </CheatEntry>
