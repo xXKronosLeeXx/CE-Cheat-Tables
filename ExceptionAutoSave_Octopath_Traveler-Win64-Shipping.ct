@@ -3,7 +3,7 @@
   <CheatEntries>
     <CheatEntry>
       <ID>4</ID>
-      <Description>"自动汇编脚本"</Description>
+      <Description>"EXP？"</Description>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : Octopath_Traveler-Win64-Shipping.exe
   Version: 
@@ -83,37 +83,60 @@ VCRUNTIME140.memcpy+13D: 48 3B D1              - cmp rdx,rcx
       <ID>5</ID>
       <Description>"无描述"</Description>
       <VariableType>4 Bytes</VariableType>
-      <Address>21018159430</Address>
+      <Address>23EF234A410</Address>
     </CheatEntry>
     <CheatEntry>
       <ID>6</ID>
       <Description>"无描述"</Description>
-      <ShowAsSigned>0</ShowAsSigned>
-      <VariableType>2 Bytes</VariableType>
-      <Address>2101815944C</Address>
+      <VariableType>4 Bytes</VariableType>
+      <Address>23EF9832C08</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>7</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>284A449F638</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>8</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>284A449F63C</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>9</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>2595BF9744C</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>10</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>2599530B764</Address>
     </CheatEntry>
   </CheatEntries>
   <CheatCodes>
     <CodeEntry>
-      <Description>变更装备及很多其他 代码 :mov [rax],ecx</Description>
-      <AddressString>VCRUNTIME140.dll+121EC</AddressString>
+      <Description>替换了 mov ecx,[rdx]</Description>
+      <AddressString>VCRUNTIME140.dll+121EA</AddressString>
       <Before>
+        <Byte>B6</Byte>
+        <Byte>0A</Byte>
         <Byte>88</Byte>
         <Byte>08</Byte>
         <Byte>C3</Byte>
-        <Byte>8B</Byte>
-        <Byte>0A</Byte>
       </Before>
       <Actual>
-        <Byte>89</Byte>
-        <Byte>08</Byte>
+        <Byte>8B</Byte>
+        <Byte>0A</Byte>
       </Actual>
       <After>
+        <Byte>89</Byte>
+        <Byte>08</Byte>
         <Byte>C3</Byte>
         <Byte>90</Byte>
         <Byte>49</Byte>
-        <Byte>83</Byte>
-        <Byte>F8</Byte>
       </After>
     </CodeEntry>
   </CheatCodes>
