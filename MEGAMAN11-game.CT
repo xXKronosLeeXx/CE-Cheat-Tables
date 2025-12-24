@@ -76,8 +76,8 @@ game.exe+11089C: 24 04                 - and al,04
     </CheatEntry>
     <CheatEntry>
       <ID>7</ID>
-      <Description>"弹簧"</Description>
-      <LastState/>
+      <Description>"弹簧狗MAX"</Description>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : game.exe
   Version: 
@@ -148,20 +148,13 @@ game.exe+FA7EE: CC                    - int 3
 </AssemblerScript>
     </CheatEntry>
     <CheatEntry>
-      <ID>8</ID>
-      <Description>"无描述"</Description>
-      <LastState Value="0" RealAddress="357B3C80"/>
-      <VariableType>4 Bytes</VariableType>
-      <Address>357B3C80</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>9</ID>
-      <Description>"temp 螺丝钉=899999"</Description>
-      <LastState/>
+      <ID>17</ID>
+      <Description>"武器MAX"</Description>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : game.exe
   Version: 
-  Date   : 2025-12-23
+  Date   : 2025-12-24
   Author : krono
 
   This script does blah blah blah
@@ -169,18 +162,22 @@ game.exe+FA7EE: CC                    - int 3
 
 [ENABLE]
 
-aobscanmodule(INJECT,game.exe,89 86 90 38 00 00) // should be unique
+aobscanmodule(INJECT,game.exe,2B C8 33 C0 85 C9) // should be unique
 alloc(newmem,$1000,INJECT)
 
 label(code)
 label(return)
 
 newmem:
-  mov [rsi+00003890],#899999
+  mov ecx,#56 // sub ecx,eax
+  xor eax,eax
+  test ecx,ecx
   jmp return
 
 code:
-  mov [rsi+00003890],eax
+  sub ecx,eax
+  xor eax,eax
+  test ecx,ecx
   jmp return
 
 INJECT:
@@ -192,37 +189,260 @@ registersymbol(INJECT)
 [DISABLE]
 
 INJECT:
-  db 89 86 90 38 00 00
+  db 2B C8 33 C0 85 C9
 
 unregistersymbol(INJECT)
 dealloc(newmem)
 
 {
-// ORIGINAL CODE - INJECTION POINT: game.exe+241D54
+// ORIGINAL CODE - INJECTION POINT: game.exe+FA85E
 
-game.exe+241D28: 75 09                 - jne game.exe+241D33
-game.exe+241D2A: 44 38 3D C7 D6 9F 00  - cmp [game.exe+C3F3F8],r15b
-game.exe+241D31: 74 0A                 - je game.exe+241D3D
-game.exe+241D33: 48 8D 4E 08           - lea rcx,[rsi+08]
-game.exe+241D37: FF 15 F3 E4 76 00     - call qword ptr [game.exe+9B0230]
-game.exe+241D3D: 83 86 90 38 00 00 64  - add dword ptr [rsi+00003890],64
-game.exe+241D44: 8B 86 90 38 00 00     - mov eax,[rsi+00003890]
-game.exe+241D4A: B9 3F 42 0F 00        - mov ecx,000F423F
-game.exe+241D4F: 3B C1                 - cmp eax,ecx
-game.exe+241D51: 0F 47 C1              - cmova eax,ecx
+game.exe+FA838: 74 14                 - je game.exe+FA84E
+game.exe+FA83A: 0F 14 C0              - unpcklps xmm0,xmm0
+game.exe+FA83D: 0F 50 C0              - movmskps eax,xmm0
+game.exe+FA840: 83 E0 01              - and eax,01
+game.exe+FA843: 44 2B C0              - sub r8d,eax
+game.exe+FA846: 66 41 0F 6E C0        - movd xmm0,r8d
+game.exe+FA84B: 0F 5B C0              - cvtdq2ps xmm0,xmm0
+game.exe+FA84E: 8B 8C B7 78 04 00 00  - mov ecx,[rdi+rsi*4+00000478]
+game.exe+FA855: 48 8B 5C 24 30        - mov rbx,[rsp+30]
+game.exe+FA85A: F3 0F 2C C0           - cvttss2si eax,xmm0
 // ---------- INJECTING HERE ----------
-game.exe+241D54: 89 86 90 38 00 00     - mov [rsi+00003890],eax
+game.exe+FA85E: 2B C8                 - sub ecx,eax
 // ---------- DONE INJECTING  ----------
-game.exe+241D5A: 44 38 7E 30           - cmp [rsi+30],r15b
-game.exe+241D5E: 75 09                 - jne game.exe+241D69
-game.exe+241D60: 44 38 3D 91 D6 9F 00  - cmp [game.exe+C3F3F8],r15b
-game.exe+241D67: 74 0A                 - je game.exe+241D73
-game.exe+241D69: 48 8D 4E 08           - lea rcx,[rsi+08]
-game.exe+241D6D: FF 15 AD E4 76 00     - call qword ptr [game.exe+9B0220]
-game.exe+241D73: 48 8B 2D 26 E2 9F 00  - mov rbp,[game.exe+C3FFA0]
-game.exe+241D7A: 48 8D 15 F7 13 78 00  - lea rdx,[game.exe+9C3178]
-game.exe+241D81: 48 8D 8D 20 04 00 00  - lea rcx,[rbp+00000420]
-game.exe+241D88: E8 83 EF E4 FF        - call game.exe+90D10
+game.exe+FA860: 33 C0                 - xor eax,eax
+game.exe+FA862: 85 C9                 - test ecx,ecx
+game.exe+FA864: 0F 4F C1              - cmovg eax,ecx
+game.exe+FA867: 89 84 B7 78 04 00 00  - mov [rdi+rsi*4+00000478],eax
+game.exe+FA86E: 48 8B 74 24 38        - mov rsi,[rsp+38]
+game.exe+FA873: 48 83 C4 20           - add rsp,20
+game.exe+FA877: 5F                    - pop rdi
+game.exe+FA878: C3                    - ret 
+game.exe+FA879: CC                    - int 3 
+game.exe+FA87A: CC                    - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>21</ID>
+      <Description>"齿轮时间MAX"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : game.exe
+  Version: 
+  Date   : 2025-12-24
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,game.exe,F3 0F 58 83 A4 04 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop //  addss xmm0,[rbx+000004A4]
+  jmp return
+
+code:
+  addss xmm0,[rbx+000004A4]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 58 83 A4 04 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: game.exe+F887C
+
+game.exe+F8845: 48 8B 0D 84 FB A8 00        - mov rcx,[game.exe+B883D0]
+game.exe+F884C: 0F 5B FF                    - cvtdq2ps xmm7,xmm7
+game.exe+F884F: F3 0F 59 FE                 - mulss xmm7,xmm6
+game.exe+F8853: E8 C8 E6 00 00              - call game.exe+106F20
+game.exe+F8858: 48 63 83 B8 04 00 00        - movsxd  rax,dword ptr [rbx+000004B8]
+game.exe+F885F: F3 0F 59 B4 83 E4 00 00 00  - mulss xmm6,[rbx+rax*4+000000E4]
+game.exe+F8868: 48 8B 83 68 04 00 00        - mov rax,[rbx+00000468]
+game.exe+F886F: F3 0F 59 C6                 - mulss xmm0,xmm6
+game.exe+F8873: F3 0F 58 C7                 - addss xmm0,xmm7
+game.exe+F8877: 0F 28 7C 24 30              - movaps xmm7,[rsp+30]
+// ---------- INJECTING HERE ----------
+game.exe+F887C: F3 0F 58 83 A4 04 00 00     - addss xmm0,[rbx+000004A4]
+// ---------- DONE INJECTING  ----------
+game.exe+F8884: F3 0F 11 83 A4 04 00 00     - movss [rbx+000004A4],xmm0
+game.exe+F888C: 48 85 C0                    - test rax,rax
+game.exe+F888F: 74 12                       - je game.exe+F88A3
+game.exe+F8891: 8B 80 28 2F 00 00           - mov eax,[rax+00002F28]
+game.exe+F8897: 48 C1 E8 12                 - shr rax,12
+game.exe+F889B: A8 01                       - test al,01
+game.exe+F889D: 0F 85 AC 00 00 00           - jne game.exe+F894F
+game.exe+F88A3: 48 8B 05 E6 ED A8 00        - mov rax,[game.exe+B87690]
+game.exe+F88AA: 83 78 50 14                 - cmp dword ptr [rax+50],14
+game.exe+F88AE: 0F 84 9B 00 00 00           - je game.exe+F894F
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>32</ID>
+      <Description>"无碰撞"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : game.exe
+  Version: 
+  Date   : 2025-12-24
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,game.exe,74 1C 48 8B 05 EE A7 92 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  jmp 14025D3C3
+  mov rax,[game.exe+B87A58]
+  jmp return
+
+code:
+  je game.exe+25D27F
+  mov rax,[game.exe+B87A58]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 4
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 74 1C 48 8B 05 EE A7 92 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: game.exe+25D261
+
+game.exe+25D235: 8B D7                    - mov edx,edi
+game.exe+25D237: 48 8B 05 1A A8 92 00     - mov rax,[game.exe+B87A58]
+game.exe+25D23E: 48 8B CB                 - mov rcx,rbx
+game.exe+25D241: 0F 5B C0                 - cvtdq2ps xmm0,xmm0
+game.exe+25D244: 0F 2F 80 54 01 00 00     - comiss xmm0,[rax+00000154]
+game.exe+25D24B: 48 8B 03                 - mov rax,[rbx]
+game.exe+25D24E: 0F 47 F5                 - cmova esi,ebp
+game.exe+25D251: F7 DA                    - neg edx
+game.exe+25D253: FF 90 30 02 00 00        - call qword ptr [rax+00000230]
+game.exe+25D259: 44 38 B4 24 B8 00 00 00  - cmp [rsp+000000B8],r14b
+// ---------- INJECTING HERE ----------
+game.exe+25D261: 74 1C                    - je game.exe+25D27F
+// ---------- DONE INJECTING  ----------
+game.exe+25D263: 48 8B 05 EE A7 92 00     - mov rax,[game.exe+B87A58]
+game.exe+25D26A: 48 8B CB                 - mov rcx,rbx
+game.exe+25D26D: 4C 8B 03                 - mov r8,[rbx]
+game.exe+25D270: F3 0F 2C 90 54 01 00 00  - cvttss2si edx,[rax+00000154]
+game.exe+25D278: 41 FF 90 18 02 00 00     - call qword ptr [r8+00000218]
+game.exe+25D27F: 85 FF                    - test edi,edi
+game.exe+25D281: 7E 0E                    - jle game.exe+25D291
+game.exe+25D283: 48 8B 0D 86 24 9E 00     - mov rcx,[game.exe+C3F710]
+game.exe+25D28A: 8B D5                    - mov edx,ebp
+game.exe+25D28C: E8 EF 45 FF FF           - call game.exe+251880
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>22</ID>
+      <Description>"发动无CD"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : game.exe
+  Version: 
+  Date   : 2025-12-24
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,game.exe,F3 0F 11 8B C0 04 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+alloc(enery,$2,INJECT)
+
+label(code)
+label(return)
+
+enery:
+  dq (float)0
+
+newmem:
+  movss xmm1,[enery]
+  movss [rbx+000004C0],xmm1
+  jmp return
+
+code:
+  movss [rbx+000004C0],xmm1
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 8B C0 04 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: game.exe+F8C30
+
+game.exe+F8C00: 0F 28 F0                 - movaps xmm6,xmm0
+game.exe+F8C03: E8 18 E3 00 00           - call game.exe+106F20
+game.exe+F8C08: F3 0F 10 8B C0 04 00 00  - movss xmm1,[rbx+000004C0]
+game.exe+F8C10: 33 FF                    - xor edi,edi
+game.exe+F8C12: 48 8B 83 68 04 00 00     - mov rax,[rbx+00000468]
+game.exe+F8C19: F3 0F 59 C6              - mulss xmm0,xmm6
+game.exe+F8C1D: F3 0F 5C C8              - subss xmm1,xmm0
+game.exe+F8C21: 66 0F 6E 83 AC 04 00 00  - movd xmm0,[rbx+000004AC]
+game.exe+F8C29: 0F 5B C0                 - cvtdq2ps xmm0,xmm0
+game.exe+F8C2C: F3 0F 58 C8              - addss xmm1,xmm0
+// ---------- INJECTING HERE ----------
+game.exe+F8C30: F3 0F 11 8B C0 04 00 00  - movss [rbx+000004C0],xmm1
+// ---------- DONE INJECTING  ----------
+game.exe+F8C38: 48 85 C0                 - test rax,rax
+game.exe+F8C3B: 74 0E                    - je game.exe+F8C4B
+game.exe+F8C3D: 8B 80 28 2F 00 00        - mov eax,[rax+00002F28]
+game.exe+F8C43: 48 C1 E8 12              - shr rax,12
+game.exe+F8C47: A8 01                    - test al,01
+game.exe+F8C49: 75 30                    - jne game.exe+F8C7B
+game.exe+F8C4B: 48 8B 05 3E EA A8 00     - mov rax,[game.exe+B87690]
+game.exe+F8C52: 83 78 50 14              - cmp dword ptr [rax+50],14
+game.exe+F8C56: 74 23                    - je game.exe+F8C7B
+game.exe+F8C58: 48 8B 0D B1 6A B4 00     - mov rcx,[game.exe+C3F710]
 }
 </AssemblerScript>
     </CheatEntry>
@@ -301,6 +521,157 @@ game.exe+23556D: 5F                    - pop rdi
 }
 </AssemblerScript>
     </CheatEntry>
+    <CheatEntry>
+      <ID>31</ID>
+      <Description>"LIFE=80"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : game.exe
+  Version: 
+  Date   : 2025-12-24
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,game.exe,89 84 29 C0 01 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rcx+rbp+000001C0],50
+  jmp return
+
+code:
+  mov [rcx+rbp+000001C0],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 84 29 C0 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: game.exe+FD50E
+
+game.exe+FD4E4: 75 09                    - jne game.exe+FD4EF
+game.exe+FD4E6: 80 3D 0B 1F B4 00 00     - cmp byte ptr [game.exe+C3F3F8],00
+game.exe+FD4ED: 74 0A                    - je game.exe+FD4F9
+game.exe+FD4EF: 48 83 C1 08              - add rcx,08
+game.exe+FD4F3: FF 15 37 2D 8B 00        - call qword ptr [game.exe+9B0230]
+game.exe+FD4F9: 48 8D 0C F5 00 00 00 00  - lea rcx,[rsi*8+00000000]
+game.exe+FD501: 8B 84 29 C0 01 00 00     - mov eax,[rcx+rbp+000001C0]
+game.exe+FD508: 85 C0                    - test eax,eax
+game.exe+FD50A: 74 09                    - je game.exe+FD515
+game.exe+FD50C: 2B C7                    - sub eax,edi
+// ---------- INJECTING HERE ----------
+game.exe+FD50E: 89 84 29 C0 01 00 00     - mov [rcx+rbp+000001C0],eax
+// ---------- DONE INJECTING  ----------
+game.exe+FD515: 80 7B 30 00              - cmp byte ptr [rbx+30],00
+game.exe+FD519: 75 09                    - jne game.exe+FD524
+game.exe+FD51B: 80 3D D6 1E B4 00 00     - cmp byte ptr [game.exe+C3F3F8],00
+game.exe+FD522: 74 0A                    - je game.exe+FD52E
+game.exe+FD524: 48 8D 4B 08              - lea rcx,[rbx+08]
+game.exe+FD528: FF 15 F2 2C 8B 00        - call qword ptr [game.exe+9B0220]
+game.exe+FD52E: 48 8B 5C 24 30           - mov rbx,[rsp+30]
+game.exe+FD533: 48 8B 6C 24 38           - mov rbp,[rsp+38]
+game.exe+FD538: 48 8B 74 24 40           - mov rsi,[rsp+40]
+game.exe+FD53D: 48 83 C4 20              - add rsp,20
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>35</ID>
+      <Description>"计时器=0"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : game.exe
+  Version: 
+  Date   : 2025-12-24
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,game.exe,F3 0F 11 83 18 06 00 00 E8) // should be unique
+alloc(newmem,$1000,INJECT)
+alloc(second,$2,INJECT)
+
+label(code)
+label(return)
+
+second:
+ dq  (float)0
+
+newmem:
+
+  movss xmm0,[second]
+  movss [rbx+00000618],xmm0
+  jmp return
+
+
+code:
+  movss [rbx+00000618],xmm0
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 83 18 06 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: game.exe+F85CE
+
+game.exe+F85A2: 48 8B 8B 68 04 00 00     - mov rcx,[rbx+00000468]
+game.exe+F85A9: 48 85 C9                 - test rcx,rcx
+game.exe+F85AC: 74 2D                    - je game.exe+F85DB
+game.exe+F85AE: E8 ED 0F 16 00           - call game.exe+2595A0
+game.exe+F85B3: 84 C0                    - test al,al
+game.exe+F85B5: 74 24                    - je game.exe+F85DB
+game.exe+F85B7: 48 8B 0D 12 FE A8 00     - mov rcx,[game.exe+B883D0]
+game.exe+F85BE: E8 5D E9 00 00           - call game.exe+106F20
+game.exe+F85C3: F3 0F 58 83 18 06 00 00  - addss xmm0,[rbx+00000618]
+game.exe+F85CB: 48 8B CB                 - mov rcx,rbx
+// ---------- INJECTING HERE ----------
+game.exe+F85CE: F3 0F 11 83 18 06 00 00  - movss [rbx+00000618],xmm0
+// ---------- DONE INJECTING  ----------
+game.exe+F85D6: E8 F5 D7 FF FF           - call game.exe+F5DD0
+game.exe+F85DB: 48 8B 0D AE F0 A8 00     - mov rcx,[game.exe+B87690]
+game.exe+F85E2: 8B 81 60 01 00 00        - mov eax,[rcx+00000160]
+game.exe+F85E8: 83 F8 04                 - cmp eax,04
+game.exe+F85EB: 74 45                    - je game.exe+F8632
+game.exe+F85ED: 83 F8 06                 - cmp eax,06
+game.exe+F85F0: 0F 85 E0 00 00 00        - jne game.exe+F86D6
+game.exe+F85F6: 8B 83 20 06 00 00        - mov eax,[rbx+00000620]
+game.exe+F85FC: 87 81 70 01 00 00        - xchg [rcx+00000170],eax
+game.exe+F8602: 8B 8B 20 06 00 00        - mov ecx,[rbx+00000620]
+}
+</AssemblerScript>
+    </CheatEntry>
   </CheatEntries>
   <CheatCodes>
     <CodeEntry>
@@ -352,6 +723,209 @@ game.exe+23556D: 5F                    - pop rdi
         <Byte>87</Byte>
         <Byte>A0</Byte>
         <Byte>04</Byte>
+        <Byte>00</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>替换了 call qword ptr [rax+00000230]</Description>
+      <AddressString>game.exe+25D253</AddressString>
+      <Before>
+        <Byte>0F</Byte>
+        <Byte>47</Byte>
+        <Byte>F5</Byte>
+        <Byte>F7</Byte>
+        <Byte>DA</Byte>
+      </Before>
+      <Actual>
+        <Byte>FF</Byte>
+        <Byte>90</Byte>
+        <Byte>30</Byte>
+        <Byte>02</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>44</Byte>
+        <Byte>38</Byte>
+        <Byte>B4</Byte>
+        <Byte>24</Byte>
+        <Byte>B8</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>替换了 call qword ptr [r8+00000218]</Description>
+      <AddressString>game.exe+25D278</AddressString>
+      <Before>
+        <Byte>90</Byte>
+        <Byte>54</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>41</Byte>
+        <Byte>FF</Byte>
+        <Byte>90</Byte>
+        <Byte>18</Byte>
+        <Byte>02</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>85</Byte>
+        <Byte>FF</Byte>
+        <Byte>7E</Byte>
+        <Byte>0E</Byte>
+        <Byte>48</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>替换了 call game.exe+251880</Description>
+      <AddressString>game.exe+25D28C</AddressString>
+      <Before>
+        <Byte>24</Byte>
+        <Byte>9E</Byte>
+        <Byte>00</Byte>
+        <Byte>8B</Byte>
+        <Byte>D5</Byte>
+      </Before>
+      <Actual>
+        <Byte>E8</Byte>
+        <Byte>EF</Byte>
+        <Byte>45</Byte>
+        <Byte>FF</Byte>
+        <Byte>FF</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>83</Byte>
+        <Byte>8B</Byte>
+        <Byte>28</Byte>
+        <Byte>18</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>替换了 jle game.exe+25D291</Description>
+      <AddressString>game.exe+25D281</AddressString>
+      <Before>
+        <Byte>02</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>85</Byte>
+        <Byte>FF</Byte>
+      </Before>
+      <Actual>
+        <Byte>7E</Byte>
+        <Byte>0E</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>0D</Byte>
+        <Byte>86</Byte>
+        <Byte>24</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>代码 :jmp game.exe+25D3C3</Description>
+      <AddressString>game.exe+25D2AE</AddressString>
+      <Before>
+        <Byte>90</Byte>
+        <Byte>70</Byte>
+        <Byte>03</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>E9</Byte>
+        <Byte>10</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>E8</Byte>
+        <Byte>18</Byte>
+        <Byte>E3</Byte>
+        <Byte>FF</Byte>
+        <Byte>FF</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>替换了 call game.exe+25B5D0</Description>
+      <AddressString>game.exe+25D2B3</AddressString>
+      <Before>
+        <Byte>E9</Byte>
+        <Byte>10</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>E8</Byte>
+        <Byte>18</Byte>
+        <Byte>E3</Byte>
+        <Byte>FF</Byte>
+        <Byte>FF</Byte>
+      </Actual>
+      <After>
+        <Byte>8B</Byte>
+        <Byte>83</Byte>
+        <Byte>C8</Byte>
+        <Byte>28</Byte>
+        <Byte>00</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>bossHP 代码 :mov r8d,[rax+0000183C]</Description>
+      <AddressString>game.exe+21D181</AddressString>
+      <Before>
+        <Byte>91</Byte>
+        <Byte>00</Byte>
+        <Byte>46</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>44</Byte>
+        <Byte>8B</Byte>
+        <Byte>80</Byte>
+        <Byte>3C</Byte>
+        <Byte>18</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>C7</Byte>
+        <Byte>44</Byte>
+        <Byte>24</Byte>
+        <Byte>28</Byte>
+        <Byte>02</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>BossHP 代码 :mov [rdi+0000183C],eax</Description>
+      <AddressString>game.exe+183AF7</AddressString>
+      <Before>
+        <Byte>81</Byte>
+        <Byte>3C</Byte>
+        <Byte>18</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>87</Byte>
+        <Byte>3C</Byte>
+        <Byte>18</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>8B</Byte>
+        <Byte>81</Byte>
+        <Byte>78</Byte>
+        <Byte>2F</Byte>
         <Byte>00</Byte>
       </After>
     </CodeEntry>
