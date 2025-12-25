@@ -2,9 +2,385 @@
 <CheatTable CheatEngineTableVersion="45">
   <CheatEntries>
     <CheatEntry>
+      <ID>36</ID>
+      <Description>"战斗推荐"</Description>
+      <Options moManualExpandCollapse="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>7</ID>
+          <Description>"弹簧狗MAX"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : game.exe
+  Version: 
+  Date   : 2025-12-23
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,game.exe,89 87 9C 04 00 00 8B 87 A0 04 00 00 2B) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov eax,[rdi+0000049C-4]
+  mov [rdi+0000049C],eax
+  jmp return
+
+code:
+  mov [rdi+0000049C],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 87 9C 04 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: game.exe+FA7CC
+
+game.exe+FA7A9: 66 0F 6E C2           - movd xmm0,edx
+game.exe+FA7AD: 0F 5B C0              - cvtdq2ps xmm0,xmm0
+game.exe+FA7B0: 8B 8F 9C 04 00 00     - mov ecx,[rdi+0000049C]
+game.exe+FA7B6: 45 33 C0              - xor r8d,r8d
+game.exe+FA7B9: 48 8B 5C 24 30        - mov rbx,[rsp+30]
+game.exe+FA7BE: 41 8B C0              - mov eax,r8d
+game.exe+FA7C1: F3 0F 2C D0           - cvttss2si edx,xmm0
+game.exe+FA7C5: 2B CA                 - sub ecx,edx
+game.exe+FA7C7: 85 C9                 - test ecx,ecx
+game.exe+FA7C9: 0F 4F C1              - cmovg eax,ecx
+// ---------- INJECTING HERE ----------
+game.exe+FA7CC: 89 87 9C 04 00 00     - mov [rdi+0000049C],eax
+// ---------- DONE INJECTING  ----------
+game.exe+FA7D2: 8B 87 A0 04 00 00     - mov eax,[rdi+000004A0]
+game.exe+FA7D8: 2B C2                 - sub eax,edx
+game.exe+FA7DA: 85 C0                 - test eax,eax
+game.exe+FA7DC: 44 0F 4F C0           - cmovg r8d,eax
+game.exe+FA7E0: 44 89 87 A0 04 00 00  - mov [rdi+000004A0],r8d
+game.exe+FA7E7: 48 83 C4 20           - add rsp,20
+game.exe+FA7EB: 5F                    - pop rdi
+game.exe+FA7EC: C3                    - ret 
+game.exe+FA7ED: CC                    - int 3 
+game.exe+FA7EE: CC                    - int 3 
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>17</ID>
+          <Description>"武器MAX"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : game.exe
+  Version: 
+  Date   : 2025-12-24
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,game.exe,2B C8 33 C0 85 C9) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov ecx,#56 // sub ecx,eax
+  xor eax,eax
+  test ecx,ecx
+  jmp return
+
+code:
+  sub ecx,eax
+  xor eax,eax
+  test ecx,ecx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 2B C8 33 C0 85 C9
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: game.exe+FA85E
+
+game.exe+FA838: 74 14                 - je game.exe+FA84E
+game.exe+FA83A: 0F 14 C0              - unpcklps xmm0,xmm0
+game.exe+FA83D: 0F 50 C0              - movmskps eax,xmm0
+game.exe+FA840: 83 E0 01              - and eax,01
+game.exe+FA843: 44 2B C0              - sub r8d,eax
+game.exe+FA846: 66 41 0F 6E C0        - movd xmm0,r8d
+game.exe+FA84B: 0F 5B C0              - cvtdq2ps xmm0,xmm0
+game.exe+FA84E: 8B 8C B7 78 04 00 00  - mov ecx,[rdi+rsi*4+00000478]
+game.exe+FA855: 48 8B 5C 24 30        - mov rbx,[rsp+30]
+game.exe+FA85A: F3 0F 2C C0           - cvttss2si eax,xmm0
+// ---------- INJECTING HERE ----------
+game.exe+FA85E: 2B C8                 - sub ecx,eax
+// ---------- DONE INJECTING  ----------
+game.exe+FA860: 33 C0                 - xor eax,eax
+game.exe+FA862: 85 C9                 - test ecx,ecx
+game.exe+FA864: 0F 4F C1              - cmovg eax,ecx
+game.exe+FA867: 89 84 B7 78 04 00 00  - mov [rdi+rsi*4+00000478],eax
+game.exe+FA86E: 48 8B 74 24 38        - mov rsi,[rsp+38]
+game.exe+FA873: 48 83 C4 20           - add rsp,20
+game.exe+FA877: 5F                    - pop rdi
+game.exe+FA878: C3                    - ret 
+game.exe+FA879: CC                    - int 3 
+game.exe+FA87A: CC                    - int 3 
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>32</ID>
+          <Description>"无碰撞"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : game.exe
+  Version: 
+  Date   : 2025-12-24
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,game.exe,74 1C 48 8B 05 EE A7 92 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  jmp 14025D3C3
+  mov rax,[game.exe+B87A58]
+  jmp return
+
+code:
+  je game.exe+25D27F
+  mov rax,[game.exe+B87A58]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 4
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 74 1C 48 8B 05 EE A7 92 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: game.exe+25D261
+
+game.exe+25D235: 8B D7                    - mov edx,edi
+game.exe+25D237: 48 8B 05 1A A8 92 00     - mov rax,[game.exe+B87A58]
+game.exe+25D23E: 48 8B CB                 - mov rcx,rbx
+game.exe+25D241: 0F 5B C0                 - cvtdq2ps xmm0,xmm0
+game.exe+25D244: 0F 2F 80 54 01 00 00     - comiss xmm0,[rax+00000154]
+game.exe+25D24B: 48 8B 03                 - mov rax,[rbx]
+game.exe+25D24E: 0F 47 F5                 - cmova esi,ebp
+game.exe+25D251: F7 DA                    - neg edx
+game.exe+25D253: FF 90 30 02 00 00        - call qword ptr [rax+00000230]
+game.exe+25D259: 44 38 B4 24 B8 00 00 00  - cmp [rsp+000000B8],r14b
+// ---------- INJECTING HERE ----------
+game.exe+25D261: 74 1C                    - je game.exe+25D27F
+// ---------- DONE INJECTING  ----------
+game.exe+25D263: 48 8B 05 EE A7 92 00     - mov rax,[game.exe+B87A58]
+game.exe+25D26A: 48 8B CB                 - mov rcx,rbx
+game.exe+25D26D: 4C 8B 03                 - mov r8,[rbx]
+game.exe+25D270: F3 0F 2C 90 54 01 00 00  - cvttss2si edx,[rax+00000154]
+game.exe+25D278: 41 FF 90 18 02 00 00     - call qword ptr [r8+00000218]
+game.exe+25D27F: 85 FF                    - test edi,edi
+game.exe+25D281: 7E 0E                    - jle game.exe+25D291
+game.exe+25D283: 48 8B 0D 86 24 9E 00     - mov rcx,[game.exe+C3F710]
+game.exe+25D28A: 8B D5                    - mov edx,ebp
+game.exe+25D28C: E8 EF 45 FF FF           - call game.exe+251880
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>21</ID>
+          <Description>"齿轮时间MAX"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : game.exe
+  Version: 
+  Date   : 2025-12-24
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,game.exe,F3 0F 58 83 A4 04 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop //  addss xmm0,[rbx+000004A4]
+  jmp return
+
+code:
+  addss xmm0,[rbx+000004A4]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 58 83 A4 04 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: game.exe+F887C
+
+game.exe+F8845: 48 8B 0D 84 FB A8 00        - mov rcx,[game.exe+B883D0]
+game.exe+F884C: 0F 5B FF                    - cvtdq2ps xmm7,xmm7
+game.exe+F884F: F3 0F 59 FE                 - mulss xmm7,xmm6
+game.exe+F8853: E8 C8 E6 00 00              - call game.exe+106F20
+game.exe+F8858: 48 63 83 B8 04 00 00        - movsxd  rax,dword ptr [rbx+000004B8]
+game.exe+F885F: F3 0F 59 B4 83 E4 00 00 00  - mulss xmm6,[rbx+rax*4+000000E4]
+game.exe+F8868: 48 8B 83 68 04 00 00        - mov rax,[rbx+00000468]
+game.exe+F886F: F3 0F 59 C6                 - mulss xmm0,xmm6
+game.exe+F8873: F3 0F 58 C7                 - addss xmm0,xmm7
+game.exe+F8877: 0F 28 7C 24 30              - movaps xmm7,[rsp+30]
+// ---------- INJECTING HERE ----------
+game.exe+F887C: F3 0F 58 83 A4 04 00 00     - addss xmm0,[rbx+000004A4]
+// ---------- DONE INJECTING  ----------
+game.exe+F8884: F3 0F 11 83 A4 04 00 00     - movss [rbx+000004A4],xmm0
+game.exe+F888C: 48 85 C0                    - test rax,rax
+game.exe+F888F: 74 12                       - je game.exe+F88A3
+game.exe+F8891: 8B 80 28 2F 00 00           - mov eax,[rax+00002F28]
+game.exe+F8897: 48 C1 E8 12                 - shr rax,12
+game.exe+F889B: A8 01                       - test al,01
+game.exe+F889D: 0F 85 AC 00 00 00           - jne game.exe+F894F
+game.exe+F88A3: 48 8B 05 E6 ED A8 00        - mov rax,[game.exe+B87690]
+game.exe+F88AA: 83 78 50 14                 - cmp dword ptr [rax+50],14
+game.exe+F88AE: 0F 84 9B 00 00 00           - je game.exe+F894F
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>31</ID>
+          <Description>"LIFE=80"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : game.exe
+  Version: 
+  Date   : 2025-12-24
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,game.exe,89 84 29 C0 01 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rcx+rbp+000001C0],50
+  jmp return
+
+code:
+  mov [rcx+rbp+000001C0],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 84 29 C0 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: game.exe+FD50E
+
+game.exe+FD4E4: 75 09                    - jne game.exe+FD4EF
+game.exe+FD4E6: 80 3D 0B 1F B4 00 00     - cmp byte ptr [game.exe+C3F3F8],00
+game.exe+FD4ED: 74 0A                    - je game.exe+FD4F9
+game.exe+FD4EF: 48 83 C1 08              - add rcx,08
+game.exe+FD4F3: FF 15 37 2D 8B 00        - call qword ptr [game.exe+9B0230]
+game.exe+FD4F9: 48 8D 0C F5 00 00 00 00  - lea rcx,[rsi*8+00000000]
+game.exe+FD501: 8B 84 29 C0 01 00 00     - mov eax,[rcx+rbp+000001C0]
+game.exe+FD508: 85 C0                    - test eax,eax
+game.exe+FD50A: 74 09                    - je game.exe+FD515
+game.exe+FD50C: 2B C7                    - sub eax,edi
+// ---------- INJECTING HERE ----------
+game.exe+FD50E: 89 84 29 C0 01 00 00     - mov [rcx+rbp+000001C0],eax
+// ---------- DONE INJECTING  ----------
+game.exe+FD515: 80 7B 30 00              - cmp byte ptr [rbx+30],00
+game.exe+FD519: 75 09                    - jne game.exe+FD524
+game.exe+FD51B: 80 3D D6 1E B4 00 00     - cmp byte ptr [game.exe+C3F3F8],00
+game.exe+FD522: 74 0A                    - je game.exe+FD52E
+game.exe+FD524: 48 8D 4B 08              - lea rcx,[rbx+08]
+game.exe+FD528: FF 15 F2 2C 8B 00        - call qword ptr [game.exe+9B0220]
+game.exe+FD52E: 48 8B 5C 24 30           - mov rbx,[rsp+30]
+game.exe+FD533: 48 8B 6C 24 38           - mov rbp,[rsp+38]
+game.exe+FD538: 48 8B 74 24 40           - mov rsi,[rsp+40]
+game.exe+FD53D: 48 83 C4 20              - add rsp,20
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
       <ID>6</ID>
-      <Description>"HP"</Description>
-      <LastState/>
+      <Description>"HP MAX"</Description>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : game.exe
   Version: 
@@ -75,304 +451,9 @@ game.exe+11089C: 24 04                 - and al,04
 </AssemblerScript>
     </CheatEntry>
     <CheatEntry>
-      <ID>7</ID>
-      <Description>"弹簧狗MAX"</Description>
-      <LastState Activated="1"/>
-      <VariableType>Auto Assembler Script</VariableType>
-      <AssemblerScript>{ Game   : game.exe
-  Version: 
-  Date   : 2025-12-23
-  Author : krono
-
-  This script does blah blah blah
-}
-
-[ENABLE]
-
-aobscanmodule(INJECT,game.exe,89 87 9C 04 00 00 8B 87 A0 04 00 00 2B) // should be unique
-alloc(newmem,$1000,INJECT)
-
-label(code)
-label(return)
-
-newmem:
-  mov eax,[rdi+0000049C-4]
-  mov [rdi+0000049C],eax
-  jmp return
-
-code:
-  mov [rdi+0000049C],eax
-  jmp return
-
-INJECT:
-  jmp newmem
-  nop
-return:
-registersymbol(INJECT)
-
-[DISABLE]
-
-INJECT:
-  db 89 87 9C 04 00 00
-
-unregistersymbol(INJECT)
-dealloc(newmem)
-
-{
-// ORIGINAL CODE - INJECTION POINT: game.exe+FA7CC
-
-game.exe+FA7A9: 66 0F 6E C2           - movd xmm0,edx
-game.exe+FA7AD: 0F 5B C0              - cvtdq2ps xmm0,xmm0
-game.exe+FA7B0: 8B 8F 9C 04 00 00     - mov ecx,[rdi+0000049C]
-game.exe+FA7B6: 45 33 C0              - xor r8d,r8d
-game.exe+FA7B9: 48 8B 5C 24 30        - mov rbx,[rsp+30]
-game.exe+FA7BE: 41 8B C0              - mov eax,r8d
-game.exe+FA7C1: F3 0F 2C D0           - cvttss2si edx,xmm0
-game.exe+FA7C5: 2B CA                 - sub ecx,edx
-game.exe+FA7C7: 85 C9                 - test ecx,ecx
-game.exe+FA7C9: 0F 4F C1              - cmovg eax,ecx
-// ---------- INJECTING HERE ----------
-game.exe+FA7CC: 89 87 9C 04 00 00     - mov [rdi+0000049C],eax
-// ---------- DONE INJECTING  ----------
-game.exe+FA7D2: 8B 87 A0 04 00 00     - mov eax,[rdi+000004A0]
-game.exe+FA7D8: 2B C2                 - sub eax,edx
-game.exe+FA7DA: 85 C0                 - test eax,eax
-game.exe+FA7DC: 44 0F 4F C0           - cmovg r8d,eax
-game.exe+FA7E0: 44 89 87 A0 04 00 00  - mov [rdi+000004A0],r8d
-game.exe+FA7E7: 48 83 C4 20           - add rsp,20
-game.exe+FA7EB: 5F                    - pop rdi
-game.exe+FA7EC: C3                    - ret 
-game.exe+FA7ED: CC                    - int 3 
-game.exe+FA7EE: CC                    - int 3 
-}
-</AssemblerScript>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>17</ID>
-      <Description>"武器MAX"</Description>
-      <LastState Activated="1"/>
-      <VariableType>Auto Assembler Script</VariableType>
-      <AssemblerScript>{ Game   : game.exe
-  Version: 
-  Date   : 2025-12-24
-  Author : krono
-
-  This script does blah blah blah
-}
-
-[ENABLE]
-
-aobscanmodule(INJECT,game.exe,2B C8 33 C0 85 C9) // should be unique
-alloc(newmem,$1000,INJECT)
-
-label(code)
-label(return)
-
-newmem:
-  mov ecx,#56 // sub ecx,eax
-  xor eax,eax
-  test ecx,ecx
-  jmp return
-
-code:
-  sub ecx,eax
-  xor eax,eax
-  test ecx,ecx
-  jmp return
-
-INJECT:
-  jmp newmem
-  nop
-return:
-registersymbol(INJECT)
-
-[DISABLE]
-
-INJECT:
-  db 2B C8 33 C0 85 C9
-
-unregistersymbol(INJECT)
-dealloc(newmem)
-
-{
-// ORIGINAL CODE - INJECTION POINT: game.exe+FA85E
-
-game.exe+FA838: 74 14                 - je game.exe+FA84E
-game.exe+FA83A: 0F 14 C0              - unpcklps xmm0,xmm0
-game.exe+FA83D: 0F 50 C0              - movmskps eax,xmm0
-game.exe+FA840: 83 E0 01              - and eax,01
-game.exe+FA843: 44 2B C0              - sub r8d,eax
-game.exe+FA846: 66 41 0F 6E C0        - movd xmm0,r8d
-game.exe+FA84B: 0F 5B C0              - cvtdq2ps xmm0,xmm0
-game.exe+FA84E: 8B 8C B7 78 04 00 00  - mov ecx,[rdi+rsi*4+00000478]
-game.exe+FA855: 48 8B 5C 24 30        - mov rbx,[rsp+30]
-game.exe+FA85A: F3 0F 2C C0           - cvttss2si eax,xmm0
-// ---------- INJECTING HERE ----------
-game.exe+FA85E: 2B C8                 - sub ecx,eax
-// ---------- DONE INJECTING  ----------
-game.exe+FA860: 33 C0                 - xor eax,eax
-game.exe+FA862: 85 C9                 - test ecx,ecx
-game.exe+FA864: 0F 4F C1              - cmovg eax,ecx
-game.exe+FA867: 89 84 B7 78 04 00 00  - mov [rdi+rsi*4+00000478],eax
-game.exe+FA86E: 48 8B 74 24 38        - mov rsi,[rsp+38]
-game.exe+FA873: 48 83 C4 20           - add rsp,20
-game.exe+FA877: 5F                    - pop rdi
-game.exe+FA878: C3                    - ret 
-game.exe+FA879: CC                    - int 3 
-game.exe+FA87A: CC                    - int 3 
-}
-</AssemblerScript>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>21</ID>
-      <Description>"齿轮时间MAX"</Description>
-      <LastState Activated="1"/>
-      <VariableType>Auto Assembler Script</VariableType>
-      <AssemblerScript>{ Game   : game.exe
-  Version: 
-  Date   : 2025-12-24
-  Author : krono
-
-  This script does blah blah blah
-}
-
-[ENABLE]
-
-aobscanmodule(INJECT,game.exe,F3 0F 58 83 A4 04 00 00) // should be unique
-alloc(newmem,$1000,INJECT)
-
-label(code)
-label(return)
-
-newmem:
-  nop //  addss xmm0,[rbx+000004A4]
-  jmp return
-
-code:
-  addss xmm0,[rbx+000004A4]
-  jmp return
-
-INJECT:
-  jmp newmem
-  nop 3
-return:
-registersymbol(INJECT)
-
-[DISABLE]
-
-INJECT:
-  db F3 0F 58 83 A4 04 00 00
-
-unregistersymbol(INJECT)
-dealloc(newmem)
-
-{
-// ORIGINAL CODE - INJECTION POINT: game.exe+F887C
-
-game.exe+F8845: 48 8B 0D 84 FB A8 00        - mov rcx,[game.exe+B883D0]
-game.exe+F884C: 0F 5B FF                    - cvtdq2ps xmm7,xmm7
-game.exe+F884F: F3 0F 59 FE                 - mulss xmm7,xmm6
-game.exe+F8853: E8 C8 E6 00 00              - call game.exe+106F20
-game.exe+F8858: 48 63 83 B8 04 00 00        - movsxd  rax,dword ptr [rbx+000004B8]
-game.exe+F885F: F3 0F 59 B4 83 E4 00 00 00  - mulss xmm6,[rbx+rax*4+000000E4]
-game.exe+F8868: 48 8B 83 68 04 00 00        - mov rax,[rbx+00000468]
-game.exe+F886F: F3 0F 59 C6                 - mulss xmm0,xmm6
-game.exe+F8873: F3 0F 58 C7                 - addss xmm0,xmm7
-game.exe+F8877: 0F 28 7C 24 30              - movaps xmm7,[rsp+30]
-// ---------- INJECTING HERE ----------
-game.exe+F887C: F3 0F 58 83 A4 04 00 00     - addss xmm0,[rbx+000004A4]
-// ---------- DONE INJECTING  ----------
-game.exe+F8884: F3 0F 11 83 A4 04 00 00     - movss [rbx+000004A4],xmm0
-game.exe+F888C: 48 85 C0                    - test rax,rax
-game.exe+F888F: 74 12                       - je game.exe+F88A3
-game.exe+F8891: 8B 80 28 2F 00 00           - mov eax,[rax+00002F28]
-game.exe+F8897: 48 C1 E8 12                 - shr rax,12
-game.exe+F889B: A8 01                       - test al,01
-game.exe+F889D: 0F 85 AC 00 00 00           - jne game.exe+F894F
-game.exe+F88A3: 48 8B 05 E6 ED A8 00        - mov rax,[game.exe+B87690]
-game.exe+F88AA: 83 78 50 14                 - cmp dword ptr [rax+50],14
-game.exe+F88AE: 0F 84 9B 00 00 00           - je game.exe+F894F
-}
-</AssemblerScript>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>32</ID>
-      <Description>"无碰撞"</Description>
-      <LastState Activated="1"/>
-      <VariableType>Auto Assembler Script</VariableType>
-      <AssemblerScript>{ Game   : game.exe
-  Version: 
-  Date   : 2025-12-24
-  Author : krono
-
-  This script does blah blah blah
-}
-
-[ENABLE]
-
-aobscanmodule(INJECT,game.exe,74 1C 48 8B 05 EE A7 92 00) // should be unique
-alloc(newmem,$1000,INJECT)
-
-label(code)
-label(return)
-
-newmem:
-  jmp 14025D3C3
-  mov rax,[game.exe+B87A58]
-  jmp return
-
-code:
-  je game.exe+25D27F
-  mov rax,[game.exe+B87A58]
-  jmp return
-
-INJECT:
-  jmp newmem
-  nop 4
-return:
-registersymbol(INJECT)
-
-[DISABLE]
-
-INJECT:
-  db 74 1C 48 8B 05 EE A7 92 00
-
-unregistersymbol(INJECT)
-dealloc(newmem)
-
-{
-// ORIGINAL CODE - INJECTION POINT: game.exe+25D261
-
-game.exe+25D235: 8B D7                    - mov edx,edi
-game.exe+25D237: 48 8B 05 1A A8 92 00     - mov rax,[game.exe+B87A58]
-game.exe+25D23E: 48 8B CB                 - mov rcx,rbx
-game.exe+25D241: 0F 5B C0                 - cvtdq2ps xmm0,xmm0
-game.exe+25D244: 0F 2F 80 54 01 00 00     - comiss xmm0,[rax+00000154]
-game.exe+25D24B: 48 8B 03                 - mov rax,[rbx]
-game.exe+25D24E: 0F 47 F5                 - cmova esi,ebp
-game.exe+25D251: F7 DA                    - neg edx
-game.exe+25D253: FF 90 30 02 00 00        - call qword ptr [rax+00000230]
-game.exe+25D259: 44 38 B4 24 B8 00 00 00  - cmp [rsp+000000B8],r14b
-// ---------- INJECTING HERE ----------
-game.exe+25D261: 74 1C                    - je game.exe+25D27F
-// ---------- DONE INJECTING  ----------
-game.exe+25D263: 48 8B 05 EE A7 92 00     - mov rax,[game.exe+B87A58]
-game.exe+25D26A: 48 8B CB                 - mov rcx,rbx
-game.exe+25D26D: 4C 8B 03                 - mov r8,[rbx]
-game.exe+25D270: F3 0F 2C 90 54 01 00 00  - cvttss2si edx,[rax+00000154]
-game.exe+25D278: 41 FF 90 18 02 00 00     - call qword ptr [r8+00000218]
-game.exe+25D27F: 85 FF                    - test edi,edi
-game.exe+25D281: 7E 0E                    - jle game.exe+25D291
-game.exe+25D283: 48 8B 0D 86 24 9E 00     - mov rcx,[game.exe+C3F710]
-game.exe+25D28A: 8B D5                    - mov edx,ebp
-game.exe+25D28C: E8 EF 45 FF FF           - call game.exe+251880
-}
-</AssemblerScript>
-    </CheatEntry>
-    <CheatEntry>
       <ID>22</ID>
-      <Description>"发动无CD"</Description>
-      <LastState Activated="1"/>
+      <Description>"齿轮无CD"</Description>
+      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : game.exe
   Version: 
@@ -443,153 +524,6 @@ game.exe+F8C4B: 48 8B 05 3E EA A8 00     - mov rax,[game.exe+B87690]
 game.exe+F8C52: 83 78 50 14              - cmp dword ptr [rax+50],14
 game.exe+F8C56: 74 23                    - je game.exe+F8C7B
 game.exe+F8C58: 48 8B 0D B1 6A B4 00     - mov rcx,[game.exe+C3F710]
-}
-</AssemblerScript>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>10</ID>
-      <Description>"螺丝钉=899999"</Description>
-      <LastState/>
-      <VariableType>Auto Assembler Script</VariableType>
-      <AssemblerScript>{ Game   : game.exe
-  Version: 
-  Date   : 2025-12-23
-  Author : krono
-
-  This script does blah blah blah
-}
-
-[ENABLE]
-
-aobscanmodule(INJECT,game.exe,C6 89 47 10 80 7B 30 00) // should be unique
-alloc(newmem,$1000,INJECT)
-
-label(code)
-label(return)
-
-newmem:
-  mov eax,#899999
-  mov [rdi+10],eax
-  cmp byte ptr [rbx+30],00
-  jmp return
-
-code:
-  mov [rdi+10],eax
-  cmp byte ptr [rbx+30],00
-  jmp return
-
-INJECT+01:
-  jmp newmem
-  nop 2
-return:
-registersymbol(INJECT)
-
-[DISABLE]
-
-INJECT+01:
-  db 89 47 10 80 7B 30 00
-
-unregistersymbol(INJECT)
-dealloc(newmem)
-
-{
-// ORIGINAL CODE - INJECTION POINT: game.exe+235543
-
-game.exe+23551E: 80 3D D3 9E A0 00 00  - cmp byte ptr [game.exe+C3F3F8],00
-game.exe+235525: 74 0A                 - je game.exe+235531
-game.exe+235527: 48 83 C1 08           - add rcx,08
-game.exe+23552B: FF 15 FF AC 77 00     - call qword ptr [game.exe+9B0230]
-game.exe+235531: 8B 47 10              - mov eax,[rdi+10]
-game.exe+235534: 3B C6                 - cmp eax,esi
-game.exe+235536: 73 09                 - jae game.exe+235541
-game.exe+235538: C7 47 10 00 00 00 00  - mov [rdi+10],00000000
-game.exe+23553F: EB 05                 - jmp game.exe+235546
-game.exe+235541: 2B C6                 - sub eax,esi
-// ---------- INJECTING HERE ----------
-game.exe+235543: 89 47 10              - mov [rdi+10],eax
-// ---------- DONE INJECTING  ----------
-game.exe+235546: 80 7B 30 00           - cmp byte ptr [rbx+30],00
-game.exe+23554A: 75 09                 - jne game.exe+235555
-game.exe+23554C: 80 3D A5 9E A0 00 00  - cmp byte ptr [game.exe+C3F3F8],00
-game.exe+235553: 74 0A                 - je game.exe+23555F
-game.exe+235555: 48 8D 4B 08           - lea rcx,[rbx+08]
-game.exe+235559: FF 15 C1 AC 77 00     - call qword ptr [game.exe+9B0220]
-game.exe+23555F: 48 8B 5C 24 30        - mov rbx,[rsp+30]
-game.exe+235564: 48 8B 74 24 38        - mov rsi,[rsp+38]
-game.exe+235569: 48 83 C4 20           - add rsp,20
-game.exe+23556D: 5F                    - pop rdi
-}
-</AssemblerScript>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>31</ID>
-      <Description>"LIFE=80"</Description>
-      <LastState Activated="1"/>
-      <VariableType>Auto Assembler Script</VariableType>
-      <AssemblerScript>{ Game   : game.exe
-  Version: 
-  Date   : 2025-12-24
-  Author : krono
-
-  This script does blah blah blah
-}
-
-[ENABLE]
-
-aobscanmodule(INJECT,game.exe,89 84 29 C0 01 00 00) // should be unique
-alloc(newmem,$1000,INJECT)
-
-label(code)
-label(return)
-
-newmem:
-  mov [rcx+rbp+000001C0],50
-  jmp return
-
-code:
-  mov [rcx+rbp+000001C0],eax
-  jmp return
-
-INJECT:
-  jmp newmem
-  nop 2
-return:
-registersymbol(INJECT)
-
-[DISABLE]
-
-INJECT:
-  db 89 84 29 C0 01 00 00
-
-unregistersymbol(INJECT)
-dealloc(newmem)
-
-{
-// ORIGINAL CODE - INJECTION POINT: game.exe+FD50E
-
-game.exe+FD4E4: 75 09                    - jne game.exe+FD4EF
-game.exe+FD4E6: 80 3D 0B 1F B4 00 00     - cmp byte ptr [game.exe+C3F3F8],00
-game.exe+FD4ED: 74 0A                    - je game.exe+FD4F9
-game.exe+FD4EF: 48 83 C1 08              - add rcx,08
-game.exe+FD4F3: FF 15 37 2D 8B 00        - call qword ptr [game.exe+9B0230]
-game.exe+FD4F9: 48 8D 0C F5 00 00 00 00  - lea rcx,[rsi*8+00000000]
-game.exe+FD501: 8B 84 29 C0 01 00 00     - mov eax,[rcx+rbp+000001C0]
-game.exe+FD508: 85 C0                    - test eax,eax
-game.exe+FD50A: 74 09                    - je game.exe+FD515
-game.exe+FD50C: 2B C7                    - sub eax,edi
-// ---------- INJECTING HERE ----------
-game.exe+FD50E: 89 84 29 C0 01 00 00     - mov [rcx+rbp+000001C0],eax
-// ---------- DONE INJECTING  ----------
-game.exe+FD515: 80 7B 30 00              - cmp byte ptr [rbx+30],00
-game.exe+FD519: 75 09                    - jne game.exe+FD524
-game.exe+FD51B: 80 3D D6 1E B4 00 00     - cmp byte ptr [game.exe+C3F3F8],00
-game.exe+FD522: 74 0A                    - je game.exe+FD52E
-game.exe+FD524: 48 8D 4B 08              - lea rcx,[rbx+08]
-game.exe+FD528: FF 15 F2 2C 8B 00        - call qword ptr [game.exe+9B0220]
-game.exe+FD52E: 48 8B 5C 24 30           - mov rbx,[rsp+30]
-game.exe+FD533: 48 8B 6C 24 38           - mov rbp,[rsp+38]
-game.exe+FD538: 48 8B 74 24 40           - mov rsi,[rsp+40]
-game.exe+FD53D: 48 83 C4 20              - add rsp,20
 }
 </AssemblerScript>
     </CheatEntry>
@@ -669,6 +603,81 @@ game.exe+F85F0: 0F 85 E0 00 00 00        - jne game.exe+F86D6
 game.exe+F85F6: 8B 83 20 06 00 00        - mov eax,[rbx+00000620]
 game.exe+F85FC: 87 81 70 01 00 00        - xchg [rcx+00000170],eax
 game.exe+F8602: 8B 8B 20 06 00 00        - mov ecx,[rbx+00000620]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>10</ID>
+      <Description>"螺丝钉=899999"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : game.exe
+  Version: 
+  Date   : 2025-12-23
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,game.exe,C6 89 47 10 80 7B 30 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov eax,#899999
+  mov [rdi+10],eax
+  cmp byte ptr [rbx+30],00
+  jmp return
+
+code:
+  mov [rdi+10],eax
+  cmp byte ptr [rbx+30],00
+  jmp return
+
+INJECT+01:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+01:
+  db 89 47 10 80 7B 30 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: game.exe+235543
+
+game.exe+23551E: 80 3D D3 9E A0 00 00  - cmp byte ptr [game.exe+C3F3F8],00
+game.exe+235525: 74 0A                 - je game.exe+235531
+game.exe+235527: 48 83 C1 08           - add rcx,08
+game.exe+23552B: FF 15 FF AC 77 00     - call qword ptr [game.exe+9B0230]
+game.exe+235531: 8B 47 10              - mov eax,[rdi+10]
+game.exe+235534: 3B C6                 - cmp eax,esi
+game.exe+235536: 73 09                 - jae game.exe+235541
+game.exe+235538: C7 47 10 00 00 00 00  - mov [rdi+10],00000000
+game.exe+23553F: EB 05                 - jmp game.exe+235546
+game.exe+235541: 2B C6                 - sub eax,esi
+// ---------- INJECTING HERE ----------
+game.exe+235543: 89 47 10              - mov [rdi+10],eax
+// ---------- DONE INJECTING  ----------
+game.exe+235546: 80 7B 30 00           - cmp byte ptr [rbx+30],00
+game.exe+23554A: 75 09                 - jne game.exe+235555
+game.exe+23554C: 80 3D A5 9E A0 00 00  - cmp byte ptr [game.exe+C3F3F8],00
+game.exe+235553: 74 0A                 - je game.exe+23555F
+game.exe+235555: 48 8D 4B 08           - lea rcx,[rbx+08]
+game.exe+235559: FF 15 C1 AC 77 00     - call qword ptr [game.exe+9B0220]
+game.exe+23555F: 48 8B 5C 24 30        - mov rbx,[rsp+30]
+game.exe+235564: 48 8B 74 24 38        - mov rsi,[rsp+38]
+game.exe+235569: 48 83 C4 20           - add rsp,20
+game.exe+23556D: 5F                    - pop rdi
 }
 </AssemblerScript>
     </CheatEntry>
