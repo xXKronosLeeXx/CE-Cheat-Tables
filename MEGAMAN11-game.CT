@@ -11,7 +11,7 @@
         <CheatEntry>
           <ID>7</ID>
           <Description>"弹簧狗MAX"</Description>
-          <LastState Activated="1"/>
+          <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : game.exe
   Version: 
@@ -84,7 +84,7 @@ game.exe+FA7EE: CC                    - int 3
         <CheatEntry>
           <ID>17</ID>
           <Description>"武器MAX"</Description>
-          <LastState Activated="1"/>
+          <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : game.exe
   Version: 
@@ -160,7 +160,7 @@ game.exe+FA87A: CC                    - int 3
         <CheatEntry>
           <ID>32</ID>
           <Description>"无碰撞"</Description>
-          <LastState Activated="1"/>
+          <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : game.exe
   Version: 
@@ -234,7 +234,7 @@ game.exe+25D28C: E8 EF 45 FF FF           - call game.exe+251880
         <CheatEntry>
           <ID>21</ID>
           <Description>"齿轮时间MAX"</Description>
-          <LastState Activated="1"/>
+          <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : game.exe
   Version: 
@@ -380,7 +380,7 @@ game.exe+FD53D: 48 83 C4 20              - add rsp,20
     <CheatEntry>
       <ID>6</ID>
       <Description>"HP MAX"</Description>
-      <LastState Activated="1"/>
+      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : game.exe
   Version: 
@@ -530,7 +530,7 @@ game.exe+F8C58: 48 8B 0D B1 6A B4 00     - mov rcx,[game.exe+C3F710]
     <CheatEntry>
       <ID>35</ID>
       <Description>"计时器=0"</Description>
-      <LastState Activated="1"/>
+      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : game.exe
   Version: 
@@ -609,7 +609,7 @@ game.exe+F8602: 8B 8B 20 06 00 00        - mov ecx,[rbx+00000620]
     <CheatEntry>
       <ID>10</ID>
       <Description>"螺丝钉=899999"</Description>
-      <LastState Activated="1"/>
+      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : game.exe
   Version: 
