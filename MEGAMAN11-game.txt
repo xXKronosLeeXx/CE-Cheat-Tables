@@ -1,0 +1,5 @@
+修改无碰撞
+原始地址
+game.exe+25D281 - 7E 0E                 - jle game.exe+25D291
+改直接跳转到
+game.exe+25D2AE - E9 10010000           - jmp game.exe+25D3C3

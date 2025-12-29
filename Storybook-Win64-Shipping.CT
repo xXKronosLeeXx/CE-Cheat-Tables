@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"Gold 不减"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Storybook-Win64-Shipping.exe
+  Version: 
+  Date   : 2025-12-26
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Storybook-Win64-Shipping.exe,F3 0F 5C C6 F3 0F 11 87 08 61 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop //  subss xmm0,xmm6
+  movss [rdi+00006108],xmm0
+  jmp return
+
+code:
+  subss xmm0,xmm6
+  movss [rdi+00006108],xmm0
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 7
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 5C C6 F3 0F 11 87 08 61 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Storybook-Win64-Shipping.exe+12F4206
+
+Storybook-Win64-Shipping.exe+12F41D2: E8 D9 58 00 00           - call Storybook-Win64-Shipping.exe+12F9AB0
+Storybook-Win64-Shipping.exe+12F41D7: 48 8B 97 68 61 00 00     - mov rdx,[rdi+00006168]
+Storybook-Win64-Shipping.exe+12F41DE: 48 8B CF                 - mov rcx,rdi
+Storybook-Win64-Shipping.exe+12F41E1: 48 03 D3                 - add rdx,rbx
+Storybook-Win64-Shipping.exe+12F41E4: E8 87 11 01 00           - call Storybook-Win64-Shipping.exe+1305370
+Storybook-Win64-Shipping.exe+12F41E9: 48 8B B4 24 B0 00 00 00  - mov rsi,[rsp+000000B0]
+Storybook-Win64-Shipping.exe+12F41F1: F3 0F 10 87 08 61 00 00  - movss xmm0,[rdi+00006108]
+Storybook-Win64-Shipping.exe+12F41F9: 0F 2F C6                 - comiss xmm0,xmm6
+Storybook-Win64-Shipping.exe+12F41FC: 4C 8B BC 24 80 00 00 00  - mov r15,[rsp+00000080]
+Storybook-Win64-Shipping.exe+12F4204: 72 0C                    - jb Storybook-Win64-Shipping.exe+12F4212
+// ---------- INJECTING HERE ----------
+Storybook-Win64-Shipping.exe+12F4206: F3 0F 5C C6              - subss xmm0,xmm6
+// ---------- DONE INJECTING  ----------
+Storybook-Win64-Shipping.exe+12F420A: F3 0F 11 87 08 61 00 00  - movss [rdi+00006108],xmm0
+Storybook-Win64-Shipping.exe+12F4212: 0F 28 74 24 70           - movaps xmm6,[rsp+70]
+Storybook-Win64-Shipping.exe+12F4217: 83 FD 0B                 - cmp ebp,0B
+Storybook-Win64-Shipping.exe+12F421A: 77 17                    - ja Storybook-Win64-Shipping.exe+12F4233
+Storybook-Win64-Shipping.exe+12F421C: 41 8B 8C AC BC 43 2F 01  - mov ecx,[r12+rbp*4+012F43BC]
+Storybook-Win64-Shipping.exe+12F4224: 49 03 CC                 - add rcx,r12
+Storybook-Win64-Shipping.exe+12F4227: FF E1                    - jmp rcx
+Storybook-Win64-Shipping.exe+12F4229: B2 07                    - mov dl,07
+Storybook-Win64-Shipping.exe+12F422B: 48 8B CF                 - mov rcx,rdi
+Storybook-Win64-Shipping.exe+12F422E: E8 7D 58 00 00           - call Storybook-Win64-Shipping.exe+12F9AB0
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>13</ID>
+      <Description>"HP 2D"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Storybook-Win64-Shipping.exe
+  Version: 
+  Date   : 2025-12-26
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Storybook-Win64-Shipping.exe,F3 0F 11 93 48 10 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+alloc(hp,$2,INJECT)
+
+label(code)
+label(return)
+
+hp:
+   dq (float)6
+
+newmem:
+  movss xmm2,[hp]
+  movss [rbx+00001048],xmm2
+  jmp return
+
+code:
+  movss [rbx+00001048],xmm2
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 93 48 10 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Storybook-Win64-Shipping.exe+13908CF
+
+Storybook-Win64-Shipping.exe+13908A2: 0F 2F F7                 - comiss xmm6,xmm7
+Storybook-Win64-Shipping.exe+13908A5: 76 11                    - jna Storybook-Win64-Shipping.exe+13908B8
+Storybook-Win64-Shipping.exe+13908A7: 80 B8 00 62 00 00 02     - cmp byte ptr [rax+00006200],02
+Storybook-Win64-Shipping.exe+13908AE: 75 08                    - jne Storybook-Win64-Shipping.exe+13908B8
+Storybook-Win64-Shipping.exe+13908B0: F3 0F 5F 35 58 12 AE 02  - maxss xmm6,[Storybook-Win64-Shipping.exe+3E71B10]
+Storybook-Win64-Shipping.exe+13908B8: F3 0F 10 8B 50 10 00 00  - movss xmm1,[rbx+00001050]
+Storybook-Win64-Shipping.exe+13908C0: 41 0F 28 C0              - movaps xmm0,xmm8
+Storybook-Win64-Shipping.exe+13908C4: F3 0F 58 C6              - addss xmm0,xmm6
+Storybook-Win64-Shipping.exe+13908C8: 0F 28 D1                 - movaps xmm2,xmm1
+Storybook-Win64-Shipping.exe+13908CB: F3 0F 5D D0              - minss xmm2,xmm0
+// ---------- INJECTING HERE ----------
+Storybook-Win64-Shipping.exe+13908CF: F3 0F 11 93 48 10 00 00  - movss [rbx+00001048],xmm2
+// ---------- DONE INJECTING  ----------
+Storybook-Win64-Shipping.exe+13908D7: 80 B8 98 62 00 00 06     - cmp byte ptr [rax+00006298],06
+Storybook-Win64-Shipping.exe+13908DE: 75 1E                    - jne Storybook-Win64-Shipping.exe+13908FE
+Storybook-Win64-Shipping.exe+13908E0: 0F 2F D7                 - comiss xmm2,xmm7
+Storybook-Win64-Shipping.exe+13908E3: 77 19                    - ja Storybook-Win64-Shipping.exe+13908FE
+Storybook-Win64-Shipping.exe+13908E5: 48 8B CB                 - mov rcx,rbx
+Storybook-Win64-Shipping.exe+13908E8: E8 E3 9B FE FF           - call Storybook-Win64-Shipping.exe+137A4D0
+Storybook-Win64-Shipping.exe+13908ED: 48 8B 8B D8 04 00 00     - mov rcx,[rbx+000004D8]
+Storybook-Win64-Shipping.exe+13908F4: BA 01 00 00 00           - mov edx,00000001
+Storybook-Win64-Shipping.exe+13908F9: E8 32 05 F5 FF           - call Storybook-Win64-Shipping.exe+12E0E30
+Storybook-Win64-Shipping.exe+13908FE: 40 84 FF                 - test dil,dil
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>GOLD 代码 :movss [rdi+00006108],xmm0</Description>
+      <AddressString>Storybook-Win64-Shipping.exe+12F420A</AddressString>
+      <Before>
+        <Byte>0C</Byte>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>5C</Byte>
+        <Byte>C6</Byte>
+      </Before>
+      <Actual>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>11</Byte>
+        <Byte>87</Byte>
+        <Byte>08</Byte>
+        <Byte>61</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>0F</Byte>
+        <Byte>28</Byte>
+        <Byte>74</Byte>
+        <Byte>24</Byte>
+        <Byte>70</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>HP2D 代码 :movss [rbx+00001048],xmm2</Description>
+      <AddressString>Storybook-Win64-Shipping.exe+13908CF</AddressString>
+      <Before>
+        <Byte>D1</Byte>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>5D</Byte>
+        <Byte>D0</Byte>
+      </Before>
+      <Actual>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>11</Byte>
+        <Byte>93</Byte>
+        <Byte>48</Byte>
+        <Byte>10</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>80</Byte>
+        <Byte>B8</Byte>
+        <Byte>98</Byte>
+        <Byte>62</Byte>
+        <Byte>00</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>HP3D 代码 :movss [rbx+00000B24],xmm1</Description>
+      <AddressString>Storybook-Win64-Shipping.exe+12CD76D</AddressString>
+      <Before>
+        <Byte>CA</Byte>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>5D</Byte>
+        <Byte>C8</Byte>
+      </Before>
+      <Actual>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>11</Byte>
+        <Byte>8B</Byte>
+        <Byte>24</Byte>
+        <Byte>0B</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>80</Byte>
+        <Byte>B9</Byte>
+        <Byte>98</Byte>
+        <Byte>62</Byte>
+        <Byte>00</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>
