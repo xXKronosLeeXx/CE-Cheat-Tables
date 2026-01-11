@@ -1,0 +1,39 @@
+减少HP的函数头
+GE2RB.exe+1ADBF8A - 56                    - push esi
+
+减血执行
+GE2RB.exe+1ADC000 - F3 0F11 80 9C000000   - movss [eax+0000009C],xmm0
+
+nop后无敌不减血
+GE2RB.exe+1ADBFD6 - 77 08                 - ja GE2RB.exe+1ADBFE0
+
+
+
+减血语句跳上命令
+GE2RB.exe+1B65CE1 - 8B 8D FCFBFFFF        - mov ecx,[ebp-00000404]
+减血call本call，nop不减血
+GE2RB.exe+1B65CDC - E8 7162F7FF           - call GE2RB.exe+1ADBF52
+
+减血之上的逻辑函数头
+GE2RB.exe+1B65C8D - 8B B6 88000000        - mov esi,[esi+00000088]
+
+
+下面这两个都nop掉，所有逻辑都执行，格挡就不会掉血
+GE2RB.exe+1B65CC8 - 74 0B                 - je GE2RB.exe+1B65CD5
+GE2RB.exe+1B65CD0 - 76 03                 - jna GE2RB.exe+1B65CD5
+
+防御相关判断函数call
+GE2RB.exe+1B65CA1 - E8 B0339DFF           - call GE2RB.exe+1539056
+
+
+敌人受击函数头
+GE2RB.exe+1B4AE86 - 55                    - push ebp
+
+
+减血之上的之上的逻辑函数头 和防御无关
+GE2RB.exe+187DA04 - 8B 15 BCDC7D01        - mov edx,[GE2RB.exe+13DDCBC] { (0) }
+
+
+跟着减血之上函数走，找到的一个函数模块头  和防御无关
+GE2RB.exe+1B8E03A - 55                    - push ebp
+

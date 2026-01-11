@@ -1,0 +1,21 @@
+HP操作代码之一，可以用这个找血地址
+CLOS2.exe+F7080 - D9 97 18010000        - fst dword ptr [edi+00000118]
+[ebx+00000118+4] 是HP上限
+
+敌我识别         player         enemy
++00D4              0             2
++010C              0             n/a 
++0110              0             5
++0120              0             n/a
++0148              n/a             0
+
+
+
+这个是实际操作HP的逻辑，用的fsub实际操作数据
+CLOS2.exe+F7077 - D8 65 8C              - fsub dword ptr [ebp-74]
+
+这个call包含经验值增长
+CLOS2.exe+9B56E - E8 ADBD0200           - call CLOS2.exe+C7320
+
+动作相关的一个call，nop了之后会缓慢直至跳出
+CLOS2.exe+C7364 - E8 A7114600           - call CLOS2.exe+528510

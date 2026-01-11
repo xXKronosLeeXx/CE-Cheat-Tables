@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"Gold"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : GE2RB.exe
+  Version: 
+  Date   : 2026-01-10
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GE2RB.exe,D2 89 81 30 62 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov [ecx+00006230],#899990
+  jmp return
+
+code:
+  mov [ecx+00006230],eax
+  jmp return
+
+INJECT+01:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+01:
+  db 89 81 30 62 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GE2RB.exe+1932660
+
+GE2RB.exe+1932644: 89 91 34 62 00 00  - mov [ecx+00006234],edx
+GE2RB.exe+193264A: 5D                 - pop ebp
+GE2RB.exe+193264B: C3                 - ret 
+GE2RB.exe+193264C: 85 D2              - test edx,edx
+GE2RB.exe+193264E: 7C 10              - jl GE2RB.exe+1932660
+GE2RB.exe+1932650: 7F 07              - jg GE2RB.exe+1932659
+GE2RB.exe+1932652: 3D FF C9 9A 3B     - cmp eax,3B9AC9FF
+GE2RB.exe+1932657: 76 07              - jna GE2RB.exe+1932660
+GE2RB.exe+1932659: B8 FF C9 9A 3B     - mov eax,3B9AC9FF
+GE2RB.exe+193265E: 31 D2              - xor edx,edx
+// ---------- INJECTING HERE ----------
+GE2RB.exe+1932660: 89 81 30 62 00 00  - mov [ecx+00006230],eax
+// ---------- DONE INJECTING  ----------
+GE2RB.exe+1932666: 89 91 34 62 00 00  - mov [ecx+00006234],edx
+GE2RB.exe+193266C: 5D                 - pop ebp
+GE2RB.exe+193266D: C3                 - ret 
+GE2RB.exe+193266E: 55                 - push ebp
+GE2RB.exe+193266F: 89 E5              - mov ebp,esp
+GE2RB.exe+1932671: 81 EC 18 01 00 00  - sub esp,00000118
+GE2RB.exe+1932677: A1 90 21 5E 01     - mov eax,[GE2RB.exe+11E2190]
+GE2RB.exe+193267C: 31 E8              - xor eax,ebp
+GE2RB.exe+193267E: 89 85 FC FF FF FF  - mov [ebp-00000004],eax
+GE2RB.exe+1932684: 53                 - push ebx
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>8</ID>
+      <Description>"耐力"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : GE2RB.exe
+  Version: 
+  Date   : 2026-01-10
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GE2RB.exe,F3 0F 11 80 A4 00 00 00 5E) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  movss xmm0,[eax+000000A4-c]
+  movss [eax+000000A4],xmm0
+  jmp return
+
+code:
+  movss [eax+000000A4],xmm0
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 80 A4 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GE2RB.exe+1ADC3AC
+
+GE2RB.exe+1ADC387: F3 0F 11 45 08           - movss [ebp+08],xmm0
+GE2RB.exe+1ADC38C: 0F 2F C1                 - comiss xmm0,xmm1
+GE2RB.exe+1ADC38F: 77 05                    - ja GE2RB.exe+1ADC396
+GE2RB.exe+1ADC391: F3 0F 11 4D 08           - movss [ebp+08],xmm1
+GE2RB.exe+1ADC396: 56                       - push esi
+GE2RB.exe+1ADC397: E8 BA CC A5 FF           - call GE2RB.exe+1539056
+GE2RB.exe+1ADC39C: F3 0F 10 45 08           - movss xmm0,[ebp+08]
+GE2RB.exe+1ADC3A1: 83 C4 04                 - add esp,04
+GE2RB.exe+1ADC3A4: F3 0F 11 45 08           - movss [ebp+08],xmm0
+GE2RB.exe+1ADC3A9: D9 45 08                 - fld dword ptr [ebp+08]
+// ---------- INJECTING HERE ----------
+GE2RB.exe+1ADC3AC: F3 0F 11 80 A4 00 00 00  - movss [eax+000000A4],xmm0
+// ---------- DONE INJECTING  ----------
+GE2RB.exe+1ADC3B4: 5E                       - pop esi
+GE2RB.exe+1ADC3B5: 89 EC                    - mov esp,ebp
+GE2RB.exe+1ADC3B7: 5D                       - pop ebp
+GE2RB.exe+1ADC3B8: C3                       - ret 
+GE2RB.exe+1ADC3B9: CC                       - int 3 
+GE2RB.exe+1ADC3BA: CC                       - int 3 
+GE2RB.exe+1ADC3BB: CC                       - int 3 
+GE2RB.exe+1ADC3BC: CC                       - int 3 
+GE2RB.exe+1ADC3BD: CC                       - int 3 
+GE2RB.exe+1ADC3BE: CC                       - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>9</ID>
+      <Description>"HP"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : GE2RB.exe
+  Version: 
+  Date   : 2026-01-10
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GE2RB.exe,E8 71 62 F7 FF 8B) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  nop //  call GE2RB.exe+1ADBF52
+  jmp return
+
+code:
+  call GE2RB.exe+1ADBF52
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db E8 71 62 F7 FF
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GE2RB.exe+1B65CDC
+
+GE2RB.exe+1B65CC0: 25 00 00 00 02           - and eax,GE2RB.exe+1C00000
+GE2RB.exe+1B65CC5: 83 C8 00                 - or eax,00
+GE2RB.exe+1B65CC8: 74 0B                    - je GE2RB.exe+1B65CD5
+GE2RB.exe+1B65CCA: 0F 57 C9                 - xorps xmm1,xmm1
+GE2RB.exe+1B65CCD: 0F 2F C8                 - comiss xmm1,xmm0
+GE2RB.exe+1B65CD0: 76 03                    - jna GE2RB.exe+1B65CD5
+GE2RB.exe+1B65CD2: 0F 28 C1                 - movaps xmm0,xmm1
+GE2RB.exe+1B65CD5: 51                       - push ecx
+GE2RB.exe+1B65CD6: F3 0F 11 04 24           - movss [esp],xmm0
+GE2RB.exe+1B65CDB: 56                       - push esi
+// ---------- INJECTING HERE ----------
+GE2RB.exe+1B65CDC: E8 71 62 F7 FF           - call GE2RB.exe+1ADBF52
+// ---------- DONE INJECTING  ----------
+GE2RB.exe+1B65CE1: 8B 8D FC FB FF FF        - mov ecx,[ebp-00000404]
+GE2RB.exe+1B65CE7: 83 C4 08                 - add esp,08
+GE2RB.exe+1B65CEA: D9 9D EC F8 FF FF        - fstp dword ptr [ebp-00000714]
+GE2RB.exe+1B65CF0: F3 0F 2C BD EC F8 FF FF  - cvttss2si edi,[ebp-00000714]
+GE2RB.exe+1B65CF8: 85 C9                    - test ecx,ecx
+GE2RB.exe+1B65CFA: 74 0E                    - je GE2RB.exe+1B65D0A
+GE2RB.exe+1B65CFC: 80 39 00                 - cmp byte ptr [ecx],00
+GE2RB.exe+1B65CFF: 74 09                    - je GE2RB.exe+1B65D0A
+GE2RB.exe+1B65D01: 56                       - push esi
+GE2RB.exe+1B65D02: E8 B3 88 F4 FF           - call GE2RB.exe+1AAE5BA
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>13</ID>
+      <Description>"敌人HP-899999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : GE2RB.exe
+  Version: 
+  Date   : 2026-01-10
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GE2RB.exe,29 DE 80 BD BF FF FF FF 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov ebx,#8999999
+  sub esi,ebx
+  cmp byte ptr [ebp-00000041],00
+  jmp return
+
+code:
+  sub esi,ebx
+  cmp byte ptr [ebp-00000041],00
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 4
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 29 DE 80 BD BF FF FF FF 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GE2RB.exe+1B4958F
+
+GE2RB.exe+1B4956A: 80 BD C7 FF FF FF 00  - cmp byte ptr [ebp-00000039],00
+GE2RB.exe+1B49571: 74 14                 - je GE2RB.exe+1B49587
+GE2RB.exe+1B49573: 83 BD C0 FF FF FF 00  - cmp dword ptr [ebp-00000040],00
+GE2RB.exe+1B4957A: 7F 0B                 - jg GE2RB.exe+1B49587
+GE2RB.exe+1B4957C: 53                    - push ebx
+GE2RB.exe+1B4957D: E8 B4 3F 04 00        - call GE2RB.exe+1B8D536
+GE2RB.exe+1B49582: 83 C4 04              - add esp,04
+GE2RB.exe+1B49585: 89 C3                 - mov ebx,eax
+GE2RB.exe+1B49587: 85 DB                 - test ebx,ebx
+GE2RB.exe+1B49589: 0F 88 3E FE FF FF     - js GE2RB.exe+1B493CD
+// ---------- INJECTING HERE ----------
+GE2RB.exe+1B4958F: 29 DE                 - sub esi,ebx
+// ---------- DONE INJECTING  ----------
+GE2RB.exe+1B49591: 80 BD BF FF FF FF 00  - cmp byte ptr [ebp-00000041],00
+GE2RB.exe+1B49598: 74 0C                 - je GE2RB.exe+1B495A6
+GE2RB.exe+1B4959A: 83 FE 01              - cmp esi,01
+GE2RB.exe+1B4959D: 7D 07                 - jnl GE2RB.exe+1B495A6
+GE2RB.exe+1B4959F: BE 01 00 00 00        - mov esi,00000001
+GE2RB.exe+1B495A4: EB 07                 - jmp GE2RB.exe+1B495AD
+GE2RB.exe+1B495A6: 31 C0                 - xor eax,eax
+GE2RB.exe+1B495A8: 85 F6                 - test esi,esi
+GE2RB.exe+1B495AA: 0F 48 F0              - cmovs esi,eax
+GE2RB.exe+1B495AD: FF B5 B0 FF FF FF     - push [ebp-00000050]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>17</ID>
+      <Description>"defence"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>15</ID>
+          <Description>"01a"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : GE2RB.exe
+  Version: 
+  Date   : 2026-01-10
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GE2RB.exe,74 0B 0F 57 C9 0F 2F C8) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  nop //  je GE2RB.exe+1B65CD5
+  xorps xmm1,xmm1
+  jmp return
+
+
+code:
+  je GE2RB.exe+1B65CD5
+  xorps xmm1,xmm1
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 74 0B 0F 57 C9
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GE2RB.exe+1B65CC8
+
+GE2RB.exe+1B65C98: 0F 45 C7                 - cmovne eax,edi
+GE2RB.exe+1B65C9B: 89 85 FC FB FF FF        - mov [ebp-00000404],eax
+GE2RB.exe+1B65CA1: E8 B0 33 9D FF           - call GE2RB.exe+1539056
+GE2RB.exe+1B65CA6: 8B 85 F0 F8 FF FF        - mov eax,[ebp-00000710]
+GE2RB.exe+1B65CAC: 83 C4 04                 - add esp,04
+GE2RB.exe+1B65CAF: 89 85 F4 F8 FF FF        - mov [ebp-0000070C],eax
+GE2RB.exe+1B65CB5: 8B 46 20                 - mov eax,[esi+20]
+GE2RB.exe+1B65CB8: F3 0F 10 85 F4 F8 FF FF  - movss xmm0,[ebp-0000070C]
+GE2RB.exe+1B65CC0: 25 00 00 00 02           - and eax,GE2RB.exe+1C00000
+GE2RB.exe+1B65CC5: 83 C8 00                 - or eax,00
+// ---------- INJECTING HERE ----------
+GE2RB.exe+1B65CC8: 74 0B                    - je GE2RB.exe+1B65CD5
+// ---------- DONE INJECTING  ----------
+GE2RB.exe+1B65CCA: 0F 57 C9                 - xorps xmm1,xmm1
+GE2RB.exe+1B65CCD: 0F 2F C8                 - comiss xmm1,xmm0
+GE2RB.exe+1B65CD0: 76 03                    - jna GE2RB.exe+1B65CD5
+GE2RB.exe+1B65CD2: 0F 28 C1                 - movaps xmm0,xmm1
+GE2RB.exe+1B65CD5: 51                       - push ecx
+GE2RB.exe+1B65CD6: F3 0F 11 04 24           - movss [esp],xmm0
+GE2RB.exe+1B65CDB: 56                       - push esi
+GE2RB.exe+1B65CDC: E8 71 62 F7 FF           - call GE2RB.exe+1ADBF52
+GE2RB.exe+1B65CE1: 8B 8D FC FB FF FF        - mov ecx,[ebp-00000404]
+GE2RB.exe+1B65CE7: 83 C4 08                 - add esp,08
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>16</ID>
+          <Description>"02a"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : GE2RB.exe
+  Version: 
+  Date   : 2026-01-10
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GE2RB.exe,C8 76 03 0F 28 C1 51) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  nop //  jna GE2RB.exe+1B65CD5
+  movaps xmm0,xmm1
+  jmp return
+
+code:
+  jna GE2RB.exe+1B65CD5
+  movaps xmm0,xmm1
+  jmp return
+
+INJECT+01:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+01:
+  db 76 03 0F 28 C1
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GE2RB.exe+1B65CD0
+
+GE2RB.exe+1B65CA6: 8B 85 F0 F8 FF FF        - mov eax,[ebp-00000710]
+GE2RB.exe+1B65CAC: 83 C4 04                 - add esp,04
+GE2RB.exe+1B65CAF: 89 85 F4 F8 FF FF        - mov [ebp-0000070C],eax
+GE2RB.exe+1B65CB5: 8B 46 20                 - mov eax,[esi+20]
+GE2RB.exe+1B65CB8: F3 0F 10 85 F4 F8 FF FF  - movss xmm0,[ebp-0000070C]
+GE2RB.exe+1B65CC0: 25 00 00 00 02           - and eax,GE2RB.exe+1C00000
+GE2RB.exe+1B65CC5: 83 C8 00                 - or eax,00
+GE2RB.exe+1B65CC8: 74 0B                    - je GE2RB.exe+1B65CD5
+GE2RB.exe+1B65CCA: 0F 57 C9                 - xorps xmm1,xmm1
+GE2RB.exe+1B65CCD: 0F 2F C8                 - comiss xmm1,xmm0
+// ---------- INJECTING HERE ----------
+GE2RB.exe+1B65CD0: 76 03                    - jna GE2RB.exe+1B65CD5
+// ---------- DONE INJECTING  ----------
+GE2RB.exe+1B65CD2: 0F 28 C1                 - movaps xmm0,xmm1
+GE2RB.exe+1B65CD5: 51                       - push ecx
+GE2RB.exe+1B65CD6: F3 0F 11 04 24           - movss [esp],xmm0
+GE2RB.exe+1B65CDB: 56                       - push esi
+GE2RB.exe+1B65CDC: E8 71 62 F7 FF           - call GE2RB.exe+1ADBF52
+GE2RB.exe+1B65CE1: 8B 8D FC FB FF FF        - mov ecx,[ebp-00000404]
+GE2RB.exe+1B65CE7: 83 C4 08                 - add esp,08
+GE2RB.exe+1B65CEA: D9 9D EC F8 FF FF        - fstp dword ptr [ebp-00000714]
+GE2RB.exe+1B65CF0: F3 0F 2C BD EC F8 FF FF  - cvttss2si edi,[ebp-00000714]
+GE2RB.exe+1B65CF8: 85 C9                    - test ecx,ecx
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>耐力 代码 :movss [eax+000000A4],xmm0</Description>
+      <AddressString>GE2RB.exe+1ADC3AC</AddressString>
+      <Before>
+        <Byte>45</Byte>
+        <Byte>08</Byte>
+        <Byte>D9</Byte>
+        <Byte>45</Byte>
+        <Byte>08</Byte>
+      </Before>
+      <Actual>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>11</Byte>
+        <Byte>80</Byte>
+        <Byte>A4</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>5E</Byte>
+        <Byte>89</Byte>
+        <Byte>EC</Byte>
+        <Byte>5D</Byte>
+        <Byte>C3</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>HP代码 :movss [eax+0000009C],xmm0</Description>
+      <AddressString>GE2RB.exe+1ADC000</AddressString>
+      <Before>
+        <Byte>45</Byte>
+        <Byte>08</Byte>
+        <Byte>D9</Byte>
+        <Byte>45</Byte>
+        <Byte>08</Byte>
+      </Before>
+      <Actual>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>11</Byte>
+        <Byte>80</Byte>
+        <Byte>9C</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>5E</Byte>
+        <Byte>89</Byte>
+        <Byte>EC</Byte>
+        <Byte>5D</Byte>
+        <Byte>C3</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>敌人HP 减血赋值代码 :mov [edi+00000134],esi</Description>
+      <AddressString>GE2RB.exe+1B495C2</AddressString>
+      <Before>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>83</Byte>
+        <Byte>C4</Byte>
+        <Byte>0C</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>B7</Byte>
+        <Byte>34</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>85</Byte>
+        <Byte>F6</Byte>
+        <Byte>7F</Byte>
+        <Byte>0E</Byte>
+        <Byte>8B</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+  <DisassemblerComments>
+    <DisassemblerComment>
+      <Address>"GE2RB.exe"+187DA04</Address>
+      <Comment>减血之上的之上的逻辑函数头
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"GE2RB.exe"+1B493AB</Address>
+      <Comment>敌人hp注入
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"GE2RB.exe"+1B4958F</Address>
+      <Comment>敌人HP在这里减法
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"GE2RB.exe"+1B495C2</Address>
+      <Comment>减血赋值
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"GE2RB.exe"+1B4AE9A</Address>
+      <Comment>nop 就崩
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"GE2RB.exe"+1B65C8D</Address>
+      <Comment>减血之上的逻辑函数头
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"GE2RB.exe"+1B65CDC</Address>
+      <Comment>call 过去减血
+</Comment>
+    </DisassemblerComment>
+    <DisassemblerComment>
+      <Address>"GE2RB.exe"+1B65CE1</Address>
+      <Comment>减血语句跳上命令
+</Comment>
+    </DisassemblerComment>
+  </DisassemblerComments>
+</CheatTable>
