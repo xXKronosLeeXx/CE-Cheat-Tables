@@ -18,7 +18,7 @@ GE2RB.exe+1B65CDC - E8 7162F7FF           - call GE2RB.exe+1ADBF52
 GE2RB.exe+1B65C8D - 8B B6 88000000        - mov esi,[esi+00000088]
 
 
-下面这两个都nop掉，所有逻辑都执行，格挡就不会掉血
+下面这两个都nop掉，也是不减血的逻辑
 GE2RB.exe+1B65CC8 - 74 0B                 - je GE2RB.exe+1B65CD5
 GE2RB.exe+1B65CD0 - 76 03                 - jna GE2RB.exe+1B65CD5
 
@@ -36,4 +36,11 @@ GE2RB.exe+187DA04 - 8B 15 BCDC7D01        - mov edx,[GE2RB.exe+13DDCBC] { (0) }
 
 跟着减血之上函数走，找到的一个函数模块头  和防御无关
 GE2RB.exe+1B8E03A - 55                    - push ebp
+
+没有被远程攻击判定的函数头
+GE2RB.exe+1B8316A - E8 80A8CFFF           - call GE2RB.exe+187D9EF
+GE2RB.exe+1BF8B5A - E8 3B88B6FF           - call GE2RB.exe+176139A
+GE2RB.exe+1BFB1D6 - E8 DDD2FFFF           - call GE2RB.exe+1BF84B8
+
+
 
