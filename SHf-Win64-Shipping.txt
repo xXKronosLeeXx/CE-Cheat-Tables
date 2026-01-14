@@ -1,0 +1,13 @@
+HP操作码
+SHf-Win64-Shipping.exe+44E7290 - F3 0F11 49 08         - movss [rcx+08],xmm1
+SHf-Win64-Shipping.exe+44E7280 - F3 0F11 49 0C         - movss [rcx+0C],xmm1
+
+HP是共享代码，敌我可能的区别是
+           player     enemy
++003C        0          n/a
++0078        0          n/a
++007C        0          n/a
++0088       n/a          0
++008C       n/a          0
++00B8        1           0   float
++00BC        1           0   float
