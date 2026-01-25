@@ -1,0 +1,9 @@
+HP逻辑
+7FF6ACCE2115 - 89 1C B2   - mov [rdx+rsi*4],ebx
+
+敌我           player         enemy
++020            n/a              0
++058            0               50
++060-+07C       0               n/a
++0A4            0               20
++0B8            0               50
