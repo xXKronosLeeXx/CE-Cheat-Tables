@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"魂结 8999999"</Description>
+      <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>2</ID>
+          <Description>"魂结 9999999"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : WARRIORSAbyss.exe
+  Version: 
+  Date   : 2026-01-28
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,WARRIORSAbyss.exe,2B C8 B8 7F 96 98 00 41 0F 44 CE) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  sub ecx,eax
+  mov ecx,0098967F
+  mov eax,0098967F
+  jmp return
+
+code:
+  sub ecx,eax
+  mov eax,0098967F
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 2B C8 B8 7F 96 98 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: WARRIORSAbyss.exe+613251
+
+WARRIORSAbyss.exe+61322F: 48 85 D2              - test rdx,rdx
+WARRIORSAbyss.exe+613232: 74 08                 - je WARRIORSAbyss.exe+61323C
+WARRIORSAbyss.exe+613234: 8B 8A 68 C2 01 00     - mov ecx,[rdx+0001C268]
+WARRIORSAbyss.exe+61323A: EB 03                 - jmp WARRIORSAbyss.exe+61323F
+WARRIORSAbyss.exe+61323C: 41 8B CE              - mov ecx,r14d
+WARRIORSAbyss.exe+61323F: 41 0F B7 42 02        - movzx eax,word ptr [r10+02]
+WARRIORSAbyss.exe+613244: 3B C8                 - cmp ecx,eax
+WARRIORSAbyss.exe+613246: 0F 82 86 01 00 00     - jb WARRIORSAbyss.exe+6133D2
+WARRIORSAbyss.exe+61324C: 48 85 D2              - test rdx,rdx
+WARRIORSAbyss.exe+61324F: 74 1D                 - je WARRIORSAbyss.exe+61326E
+// ---------- INJECTING HERE ----------
+WARRIORSAbyss.exe+613251: 2B C8                 - sub ecx,eax
+// ---------- DONE INJECTING  ----------
+WARRIORSAbyss.exe+613253: B8 7F 96 98 00        - mov eax,0098967F
+WARRIORSAbyss.exe+613258: 41 0F 44 CE           - cmove ecx,r14d
+WARRIORSAbyss.exe+61325C: 3B C8                 - cmp ecx,eax
+WARRIORSAbyss.exe+61325E: 0F 42 C1              - cmovb eax,ecx
+WARRIORSAbyss.exe+613261: 89 82 68 C2 01 00     - mov [rdx+0001C268],eax
+WARRIORSAbyss.exe+613267: 4D 8B 83 70 ED 00 00  - mov r8,[r11+0000ED70]
+WARRIORSAbyss.exe+61326E: 49 8B 00              - mov rax,[r8]
+WARRIORSAbyss.exe+613271: 48 8D 54 24 40        - lea rdx,[rsp+40]
+WARRIORSAbyss.exe+613276: 48 89 44 24 48        - mov [rsp+48],rax
+WARRIORSAbyss.exe+61327B: 48 8D 4C 24 48        - lea rcx,[rsp+48]
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>4</ID>
+          <Description>"魂结 9999999"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : WARRIORSAbyss.exe
+  Version: 
+  Date   : 2026-01-28
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,WARRIORSAbyss.exe,41 0F 44 CE 3B C8 0F 42 C1 89 82 68 C2 01 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rdx+0001C268],#8999999
+  jmp return
+
+code:
+  mov [rdx+0001C268],eax
+  jmp return
+
+INJECT+09:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+09:
+  db 89 82 68 C2 01 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: WARRIORSAbyss.exe+613261
+
+WARRIORSAbyss.exe+61323F: 41 0F B7 42 02        - movzx eax,word ptr [r10+02]
+WARRIORSAbyss.exe+613244: 3B C8                 - cmp ecx,eax
+WARRIORSAbyss.exe+613246: 0F 82 86 01 00 00     - jb WARRIORSAbyss.exe+6133D2
+WARRIORSAbyss.exe+61324C: 48 85 D2              - test rdx,rdx
+WARRIORSAbyss.exe+61324F: 74 1D                 - je WARRIORSAbyss.exe+61326E
+WARRIORSAbyss.exe+613251: 2B C8                 - sub ecx,eax
+WARRIORSAbyss.exe+613253: B8 7F 96 98 00        - mov eax,0098967F
+WARRIORSAbyss.exe+613258: 41 0F 44 CE           - cmove ecx,r14d
+WARRIORSAbyss.exe+61325C: 3B C8                 - cmp ecx,eax
+WARRIORSAbyss.exe+61325E: 0F 42 C1              - cmovb eax,ecx
+// ---------- INJECTING HERE ----------
+WARRIORSAbyss.exe+613261: 89 82 68 C2 01 00     - mov [rdx+0001C268],eax
+// ---------- DONE INJECTING  ----------
+WARRIORSAbyss.exe+613267: 4D 8B 83 70 ED 00 00  - mov r8,[r11+0000ED70]
+WARRIORSAbyss.exe+61326E: 49 8B 00              - mov rax,[r8]
+WARRIORSAbyss.exe+613271: 48 8D 54 24 40        - lea rdx,[rsp+40]
+WARRIORSAbyss.exe+613276: 48 89 44 24 48        - mov [rsp+48],rax
+WARRIORSAbyss.exe+61327B: 48 8D 4C 24 48        - lea rcx,[rsp+48]
+WARRIORSAbyss.exe+613280: 41 8B 40 08           - mov eax,[r8+08]
+WARRIORSAbyss.exe+613284: 89 44 24 50           - mov [rsp+50],eax
+WARRIORSAbyss.exe+613288: 66 89 74 24 40        - mov [rsp+40],si
+WARRIORSAbyss.exe+61328D: E8 3E E3 DC FF        - call WARRIORSAbyss.exe+3E15D0
+WARRIORSAbyss.exe+613292: 48 8D 4C 24 40        - lea rcx,[rsp+40]
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>5</ID>
+          <Description>"魂结 9999999"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : WARRIORSAbyss.exe
+  Version: 
+  Date   : 2026-01-28
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,WARRIORSAbyss.exe,89 82 68 C2 01 00 45) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rdx+0001C268],#8999999
+  jmp return
+
+code:
+  mov [rdx+0001C268],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 82 68 C2 01 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: WARRIORSAbyss.exe+617FA2
+
+WARRIORSAbyss.exe+617F81: 0F B7 47 02           - movzx eax,word ptr [rdi+02]
+WARRIORSAbyss.exe+617F85: 3B C8                 - cmp ecx,eax
+WARRIORSAbyss.exe+617F87: 0F 82 47 01 00 00     - jb WARRIORSAbyss.exe+6180D4
+WARRIORSAbyss.exe+617F8D: 48 85 D2              - test rdx,rdx
+WARRIORSAbyss.exe+617F90: 74 16                 - je WARRIORSAbyss.exe+617FA8
+WARRIORSAbyss.exe+617F92: 2B C8                 - sub ecx,eax
+WARRIORSAbyss.exe+617F94: B8 7F 96 98 00        - mov eax,0098967F
+WARRIORSAbyss.exe+617F99: 41 0F 44 CA           - cmove ecx,r10d
+WARRIORSAbyss.exe+617F9D: 3B C8                 - cmp ecx,eax
+WARRIORSAbyss.exe+617F9F: 0F 42 C1              - cmovb eax,ecx
+// ---------- INJECTING HERE ----------
+WARRIORSAbyss.exe+617FA2: 89 82 68 C2 01 00     - mov [rdx+0001C268],eax
+// ---------- DONE INJECTING  ----------
+WARRIORSAbyss.exe+617FA8: 45 0F B6 4B 34        - movzx r9d,byte ptr [r11+34]
+WARRIORSAbyss.exe+617FAD: 41 8B CA              - mov ecx,r10d
+WARRIORSAbyss.exe+617FB0: 41 8D 51 FF           - lea edx,[r9-01]
+WARRIORSAbyss.exe+617FB4: 80 FA 27              - cmp dl,27
+WARRIORSAbyss.exe+617FB7: 41 0F 46 C9           - cmovbe ecx,r9d
+WARRIORSAbyss.exe+617FBB: FE C9                 - dec cl
+WARRIORSAbyss.exe+617FBD: 80 F9 27              - cmp cl,27
+WARRIORSAbyss.exe+617FC0: 41 8B CA              - mov ecx,r10d
+WARRIORSAbyss.exe+617FC3: 77 64                 - ja WARRIORSAbyss.exe+618029
+WARRIORSAbyss.exe+617FC5: 48 8B 83 70 ED 00 00  - mov rax,[rbx+0000ED70]
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>3</ID>
+          <Description>"魂结 9999999"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : WARRIORSAbyss.exe
+  Version: 
+  Date   : 2026-01-28
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,WARRIORSAbyss.exe,89 82 68 C2 01 00 41) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rdx+0001C268],#8999999
+  jmp return
+
+code:
+  mov [rdx+0001C268],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 82 68 C2 01 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: WARRIORSAbyss.exe+613FC7
+
+WARRIORSAbyss.exe+613FA2: 48 8B 10                    - mov rdx,[rax]
+WARRIORSAbyss.exe+613FA5: 48 85 D2                    - test rdx,rdx
+WARRIORSAbyss.exe+613FA8: 74 23                       - je WARRIORSAbyss.exe+613FCD
+WARRIORSAbyss.exe+613FAA: 8B 8A 68 C2 01 00           - mov ecx,[rdx+0001C268]
+WARRIORSAbyss.exe+613FB0: B8 7F 96 98 00              - mov eax,0098967F
+WARRIORSAbyss.exe+613FB5: 41 2B C8                    - sub ecx,r8d
+WARRIORSAbyss.exe+613FB8: 41 BA 00 00 00 00           - mov r10d,00000000
+WARRIORSAbyss.exe+613FBE: 41 0F 44 CA                 - cmove ecx,r10d
+WARRIORSAbyss.exe+613FC2: 3B C8                       - cmp ecx,eax
+WARRIORSAbyss.exe+613FC4: 0F 42 C1                    - cmovb eax,ecx
+// ---------- INJECTING HERE ----------
+WARRIORSAbyss.exe+613FC7: 89 82 68 C2 01 00           - mov [rdx+0001C268],eax
+// ---------- DONE INJECTING  ----------
+WARRIORSAbyss.exe+613FCD: 41 0F B6 86 50 05 00 00     - movzx eax,byte ptr [r14+00000550]
+WARRIORSAbyss.exe+613FD5: 49 8B BE 48 05 00 00        - mov rdi,[r14+00000548]
+WARRIORSAbyss.exe+613FDC: 49 8B 9E 08 05 00 00        - mov rbx,[r14+00000508]
+WARRIORSAbyss.exe+613FE3: 4C 8B 87 C8 05 00 00        - mov r8,[rdi+000005C8]
+WARRIORSAbyss.exe+613FEA: 41 0F BF 94 40 10 5E 0A 00  - movsx edx,word ptr [r8+rax*2+000A5E10]
+WARRIORSAbyss.exe+613FF3: 49 8D 88 50 01 00 00        - lea rcx,[r8+00000150]
+WARRIORSAbyss.exe+613FFA: 48 8B 01                    - mov rax,[rcx]
+WARRIORSAbyss.exe+613FFD: FF 50 08                    - call qword ptr [rax+08]
+WARRIORSAbyss.exe+614000: 41 0F B6 96 50 05 00 00     - movzx edx,byte ptr [r14+00000550]
+WARRIORSAbyss.exe+614008: 41 B1 01                    - mov r9b,01
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>魂结1 代码 :mov [rdx+0001C268],eax</Description>
+      <AddressString>WARRIORSAbyss.exe+613FC7</AddressString>
+      <Before>
+        <Byte>3B</Byte>
+        <Byte>C8</Byte>
+        <Byte>0F</Byte>
+        <Byte>42</Byte>
+        <Byte>C1</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>82</Byte>
+        <Byte>68</Byte>
+        <Byte>C2</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>41</Byte>
+        <Byte>0F</Byte>
+        <Byte>B6</Byte>
+        <Byte>86</Byte>
+        <Byte>50</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>魂结2 代码 :mov [rdx+0001C268],eax</Description>
+      <AddressString>WARRIORSAbyss.exe+613261</AddressString>
+      <Before>
+        <Byte>3B</Byte>
+        <Byte>C8</Byte>
+        <Byte>0F</Byte>
+        <Byte>42</Byte>
+        <Byte>C1</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>82</Byte>
+        <Byte>68</Byte>
+        <Byte>C2</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>4D</Byte>
+        <Byte>8B</Byte>
+        <Byte>83</Byte>
+        <Byte>70</Byte>
+        <Byte>ED</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>魂结3 代码 :mov [rdx+0001C268],eax</Description>
+      <AddressString>WARRIORSAbyss.exe+617FA2</AddressString>
+      <Before>
+        <Byte>3B</Byte>
+        <Byte>C8</Byte>
+        <Byte>0F</Byte>
+        <Byte>42</Byte>
+        <Byte>C1</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>82</Byte>
+        <Byte>68</Byte>
+        <Byte>C2</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>45</Byte>
+        <Byte>0F</Byte>
+        <Byte>B6</Byte>
+        <Byte>4B</Byte>
+        <Byte>34</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>

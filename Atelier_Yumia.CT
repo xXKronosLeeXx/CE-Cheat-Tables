@@ -76,7 +76,7 @@ Atelier_Yumia.exe+11AD3F2: 44 3B C0              - cmp r8d,eax
     <CheatEntry>
       <ID>2</ID>
       <Description>"弹药不减"</Description>
-      <LastState/>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : Atelier_Yumia.exe
   Version: 
@@ -149,7 +149,7 @@ Atelier_Yumia.exe+115D0BA: CC           - int 3
     <CheatEntry>
       <ID>4</ID>
       <Description>"余音断片 999"</Description>
-      <LastState/>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : Atelier_Yumia.exe
   Version: 
@@ -367,7 +367,7 @@ Atelier_Yumia.exe+1169873: 48 83 C4 20     - add rsp,20
     <CheatEntry>
       <ID>24</ID>
       <Description>"GOD HP-3999"</Description>
-      <LastState/>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : Atelier_Yumia.exe
   Version: 
@@ -387,7 +387,7 @@ label(return)
 
 newmem:
   cmp [rdx+rsi*4+58-4],0
-  je code
+  jne code
   mov ebx,[rdx+rsi*4+8]
   mov [rdx+rsi*4],ebx
   mov rcx,rdi
