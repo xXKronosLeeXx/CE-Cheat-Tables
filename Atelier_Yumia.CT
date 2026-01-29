@@ -367,7 +367,7 @@ Atelier_Yumia.exe+1169873: 48 83 C4 20     - add rsp,20
     <CheatEntry>
       <ID>24</ID>
       <Description>"GOD HP-3999"</Description>
-      <LastState Activated="1"/>
+      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : Atelier_Yumia.exe
   Version: 
