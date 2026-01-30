@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<CheatTable CheatEngineTableVersion="46">
+<CheatTable CheatEngineTableVersion="45">
   <CheatEntries>
     <CheatEntry>
       <ID>12</ID>
@@ -11,7 +11,7 @@
         <CheatEntry>
           <ID>10</ID>
           <Description>"SP"</Description>
-          <LastState/>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : Nioh3.exe
   Version: 
@@ -83,7 +83,7 @@ Nioh3.exe+28FEFD: EB D3           - jmp Nioh3.exe+28FED2
         <CheatEntry>
           <ID>27</ID>
           <Description>"弓箭"</Description>
-          <LastState/>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : Nioh3.exe
   Version: 
@@ -155,7 +155,7 @@ Nioh3.exe+96FBC7: 0F 10 48 10           - movups xmm1,[rax+10]
         <CheatEntry>
           <ID>23</ID>
           <Description>"HP"</Description>
-          <LastState/>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : Nioh3.exe
   Version: 
@@ -177,6 +177,7 @@ newmem:
   cmp [r11+148],0
   je code
   mov rbx,[r11+18]
+    mov rsi,[r11+18]
   cmp rsi,rbx
   jmp return
 
@@ -233,7 +234,7 @@ Nioh3.exe+35F614: EB D0                    - jmp Nioh3.exe+35F5E6
     <CheatEntry>
       <ID>20</ID>
       <Description>"精华=899999"</Description>
-      <LastState/>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : Nioh3.exe
   Version: 
@@ -302,346 +303,6 @@ Nioh3.exe+5D89F1: 48 8B D9                       - mov rbx,rcx
 Nioh3.exe+5D89F4: E8 0F 01 00 00                 - call Nioh3.exe+5D8B08
 }
 </AssemblerScript>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>15</ID>
-      <Description>"temp"</Description>
-      <LastState Value="" RealAddress="00000000"/>
-      <GroupHeader>1</GroupHeader>
-      <CheatEntries>
-        <CheatEntry>
-          <ID>5</ID>
-          <Description>"GOD"</Description>
-          <LastState/>
-          <VariableType>Auto Assembler Script</VariableType>
-          <AssemblerScript>{ Game   : Nioh3.exe
-  Version: 
-  Date   : 2026-01-29
-  Author : krono
-
-  This script does blah blah blah
-}
-
-[ENABLE]
-
-aobscanmodule(INJECT,Nioh3.exe,E8 65 02 00 00 48 3B) // should be unique
-alloc(newmem,$1000,INJECT)
-
-label(code)
-label(return)
-
-newmem:
-  cmp [rcx+D8],1
-  je code
-  call Nioh3.exe+35F850
-  jmp return
-
-code:
-  //call Nioh3.exe+35F850
-  jmp return
-
-INJECT:
-  jmp newmem
-return:
-registersymbol(INJECT)
-
-[DISABLE]
-
-INJECT:
-  db E8 65 02 00 00
-
-unregistersymbol(INJECT)
-dealloc(newmem)
-
-{
-// ORIGINAL CODE - INJECTION POINT: Nioh3.exe+35F5E6
-
-Nioh3.exe+35F5C6: 57                       - push rdi
-Nioh3.exe+35F5C7: 48 81 EC B0 00 00 00     - sub rsp,000000B0
-Nioh3.exe+35F5CE: 48 8B 79 08              - mov rdi,[rcx+08]
-Nioh3.exe+35F5D2: 48 8B DA                 - mov rbx,rdx
-Nioh3.exe+35F5D5: 4C 8B D9                 - mov r11,rcx
-Nioh3.exe+35F5D8: 48 85 FF                 - test rdi,rdi
-Nioh3.exe+35F5DB: 74 1E                    - je Nioh3.exe+35F5FB
-Nioh3.exe+35F5DD: 48 8B 71 20              - mov rsi,[rcx+20]
-Nioh3.exe+35F5E1: 48 85 D2                 - test rdx,rdx
-Nioh3.exe+35F5E4: 75 2A                    - jne Nioh3.exe+35F610
-// ---------- INJECTING HERE ----------
-Nioh3.exe+35F5E6: E8 65 02 00 00           - call Nioh3.exe+35F850
-// ---------- DONE INJECTING  ----------
-Nioh3.exe+35F5EB: 48 3B C3                 - cmp rax,rbx
-Nioh3.exe+35F5EE: 48 0F 42 D8              - cmovb rbx,rax
-Nioh3.exe+35F5F2: 49 89 5B 20              - mov [r11+20],rbx
-Nioh3.exe+35F5F6: 48 3B F3                 - cmp rsi,rbx
-Nioh3.exe+35F5F9: 75 1B                    - jne Nioh3.exe+35F616
-Nioh3.exe+35F5FB: 4C 8D 9C 24 B0 00 00 00  - lea r11,[rsp+000000B0]
-Nioh3.exe+35F603: 49 8B 5B 10              - mov rbx,[r11+10]
-Nioh3.exe+35F607: 49 8B 73 18              - mov rsi,[r11+18]
-Nioh3.exe+35F60B: 49 8B E3                 - mov rsp,r11
-Nioh3.exe+35F60E: 5F                       - pop rdi
-}
-</AssemblerScript>
-        </CheatEntry>
-        <CheatEntry>
-          <ID>22</ID>
-          <Description>"自动汇编脚本"</Description>
-          <LastState/>
-          <VariableType>Auto Assembler Script</VariableType>
-          <AssemblerScript>{ Game   : Nioh3.exe
-  Version: 
-  Date   : 2026-01-30
-  Author : lixiang
-
-  This script does blah blah blah
-}
-
-[ENABLE]
-
-aobscanmodule(INJECT,Nioh3.exe,49 89 5B 20 48 3B F3) // should be unique
-alloc(newmem,$1000,INJECT)
-
-label(code)
-label(return)
-
-newmem:
-  mov [r11+20],0
-  cmp rsi,rbx
-  jmp return
-
-code:
-  mov [r11+20],rbx
-  cmp rsi,rbx
-  jmp return
-
-INJECT:
-  jmp newmem
-  nop 2
-return:
-registersymbol(INJECT)
-
-[DISABLE]
-
-INJECT:
-  db 49 89 5B 20 48 3B F3
-
-unregistersymbol(INJECT)
-dealloc(newmem)
-
-{
-// ORIGINAL CODE - INJECTION POINT: Nioh3.exe+35F5F2
-
-Nioh3.exe+35F5D2: 48 8B DA                 - mov rbx,rdx
-Nioh3.exe+35F5D5: 4C 8B D9                 - mov r11,rcx
-Nioh3.exe+35F5D8: 48 85 FF                 - test rdi,rdi
-Nioh3.exe+35F5DB: 74 1E                    - je Nioh3.exe+35F5FB
-Nioh3.exe+35F5DD: 48 8B 71 20              - mov rsi,[rcx+20]
-Nioh3.exe+35F5E1: 48 85 D2                 - test rdx,rdx
-Nioh3.exe+35F5E4: 75 2A                    - jne Nioh3.exe+35F610
-Nioh3.exe+35F5E6: E8 65 02 00 00           - call Nioh3.exe+35F850
-Nioh3.exe+35F5EB: 48 3B C3                 - cmp rax,rbx
-Nioh3.exe+35F5EE: 48 0F 42 D8              - cmovb rbx,rax
-// ---------- INJECTING HERE ----------
-Nioh3.exe+35F5F2: 49 89 5B 20              - mov [r11+20],rbx
-// ---------- DONE INJECTING  ----------
-Nioh3.exe+35F5F6: 48 3B F3                 - cmp rsi,rbx
-Nioh3.exe+35F5F9: 75 1B                    - jne Nioh3.exe+35F616
-Nioh3.exe+35F5FB: 4C 8D 9C 24 B0 00 00 00  - lea r11,[rsp+000000B0]
-Nioh3.exe+35F603: 49 8B 5B 10              - mov rbx,[r11+10]
-Nioh3.exe+35F607: 49 8B 73 18              - mov rsi,[r11+18]
-Nioh3.exe+35F60B: 49 8B E3                 - mov rsp,r11
-Nioh3.exe+35F60E: 5F                       - pop rdi
-Nioh3.exe+35F60F: C3                       - ret 
-Nioh3.exe+35F610: 83 61 10 00              - and dword ptr [rcx+10],00
-Nioh3.exe+35F614: EB D0                    - jmp Nioh3.exe+35F5E6
-}
-</AssemblerScript>
-        </CheatEntry>
-        <CheatEntry>
-          <ID>14</ID>
-          <Description>"GOD"</Description>
-          <LastState/>
-          <VariableType>Auto Assembler Script</VariableType>
-          <AssemblerScript>{ Game   : Nioh3.exe
-  Version: 
-  Date   : 2026-01-29
-  Author : krono
-
-  This script does blah blah blah
-}
-
-[ENABLE]
-
-aobscanmodule(INJECT,Nioh3.exe,2B C7 89 4B 48) // should be unique
-alloc(newmem,$1000,INJECT)
-
-label(code)
-label(return)
-
-newmem:
-  cmp [rbx+88],0
-  je code
-  sub eax,0
-  mov [rbx+48],ecx
-  jmp return
-
-
-code:
-  mov edi,#899999
-  sub eax,edi
-  mov [rbx+48],ecx
-  jmp return
-
-INJECT:
-  jmp newmem
-return:
-registersymbol(INJECT)
-
-[DISABLE]
-
-INJECT:
-  db 2B C7 89 4B 48
-
-unregistersymbol(INJECT)
-dealloc(newmem)
-
-{
-// ORIGINAL CODE - INJECTION POINT: Nioh3.exe+35DD9B
-
-Nioh3.exe+35DD81: 57              - push rdi
-Nioh3.exe+35DD82: 48 83 EC 20     - sub rsp,20
-Nioh3.exe+35DD86: 83 79 10 01     - cmp dword ptr [rcx+10],01
-Nioh3.exe+35DD8A: 48 8B D9        - mov rbx,rcx
-Nioh3.exe+35DD8D: 48 63 FA        - movsxd  rdi,edx
-Nioh3.exe+35DD90: 75 04           - jne Nioh3.exe+35DD96
-Nioh3.exe+35DD92: 32 C0           - xor al,al
-Nioh3.exe+35DD94: EB 4D           - jmp Nioh3.exe+35DDE3
-Nioh3.exe+35DD96: 8B 43 20        - mov eax,[rbx+20]
-Nioh3.exe+35DD99: 33 C9           - xor ecx,ecx
-// ---------- INJECTING HERE ----------
-Nioh3.exe+35DD9B: 2B C7           - sub eax,edi
-// ---------- DONE INJECTING  ----------
-Nioh3.exe+35DD9D: 89 4B 48        - mov [rbx+48],ecx
-Nioh3.exe+35DDA0: 85 C0           - test eax,eax
-Nioh3.exe+35DDA2: 7E 05           - jle Nioh3.exe+35DDA9
-Nioh3.exe+35DDA4: 48 63 D0        - movsxd  rdx,eax
-Nioh3.exe+35DDA7: EB 10           - jmp Nioh3.exe+35DDB9
-Nioh3.exe+35DDA9: 45 84 C0        - test r8b,r8b
-Nioh3.exe+35DDAC: 74 15           - je Nioh3.exe+35DDC3
-Nioh3.exe+35DDAE: 48 39 4B 20     - cmp [rbx+20],rcx
-Nioh3.exe+35DDB2: 76 0F           - jna Nioh3.exe+35DDC3
-Nioh3.exe+35DDB4: BA 01 00 00 00  - mov edx,00000001
-}
-</AssemblerScript>
-        </CheatEntry>
-        <CheatEntry>
-          <ID>11</ID>
-          <Description>"HP"</Description>
-          <LastState/>
-          <VariableType>Auto Assembler Script</VariableType>
-          <AssemblerScript>{ Game   : Nioh3.exe
-  Version: 
-  Date   : 2026-01-29
-  Author : krono
-
-  This script does blah blah blah
-}
-
-[ENABLE]
-
-aobscanmodule(INJECT,Nioh3.exe,49 89 5B 20 48 3B F3) // should be unique
-alloc(newmem,$1000,INJECT)
-
-label(code)
-label(return)
-
-newmem:
-  cmp [rbx+88],0
-  je code
-  mov rbx,[r11+18]
-  mov [r11+20],rbx
-  cmp rsi,rbx
-  jmp return
-
-
-code:
-  mov [r11+20],0
-  cmp rsi,rbx
-  jmp return
-
-INJECT:
-  jmp newmem
-  nop 2
-return:
-registersymbol(INJECT)
-
-[DISABLE]
-
-INJECT:
-  db 49 89 5B 20 48 3B F3
-
-unregistersymbol(INJECT)
-dealloc(newmem)
-
-{
-// ORIGINAL CODE - INJECTION POINT: Nioh3.exe+35F5F2
-
-Nioh3.exe+35F5D2: 48 8B DA                 - mov rbx,rdx
-Nioh3.exe+35F5D5: 4C 8B D9                 - mov r11,rcx
-Nioh3.exe+35F5D8: 48 85 FF                 - test rdi,rdi
-Nioh3.exe+35F5DB: 74 1E                    - je Nioh3.exe+35F5FB
-Nioh3.exe+35F5DD: 48 8B 71 20              - mov rsi,[rcx+20]
-Nioh3.exe+35F5E1: 48 85 D2                 - test rdx,rdx
-Nioh3.exe+35F5E4: 75 2A                    - jne Nioh3.exe+35F610
-Nioh3.exe+35F5E6: E8 65 02 00 00           - call Nioh3.exe+35F850
-Nioh3.exe+35F5EB: 48 3B C3                 - cmp rax,rbx
-Nioh3.exe+35F5EE: 48 0F 42 D8              - cmovb rbx,rax
-// ---------- INJECTING HERE ----------
-Nioh3.exe+35F5F2: 49 89 5B 20              - mov [r11+20],rbx
-// ---------- DONE INJECTING  ----------
-Nioh3.exe+35F5F6: 48 3B F3                 - cmp rsi,rbx
-Nioh3.exe+35F5F9: 75 1B                    - jne Nioh3.exe+35F616
-Nioh3.exe+35F5FB: 4C 8D 9C 24 B0 00 00 00  - lea r11,[rsp+000000B0]
-Nioh3.exe+35F603: 49 8B 5B 10              - mov rbx,[r11+10]
-Nioh3.exe+35F607: 49 8B 73 18              - mov rsi,[r11+18]
-Nioh3.exe+35F60B: 49 8B E3                 - mov rsp,r11
-Nioh3.exe+35F60E: 5F                       - pop rdi
-Nioh3.exe+35F60F: C3                       - ret 
-Nioh3.exe+35F610: 83 61 10 00              - and dword ptr [rcx+10],00
-Nioh3.exe+35F614: EB D0                    - jmp Nioh3.exe+35F5E6
-}
-</AssemblerScript>
-        </CheatEntry>
-      </CheatEntries>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>16</ID>
-      <Description>"无描述"</Description>
-      <VariableType>4 Bytes</VariableType>
-      <Address>1CDD3F5B4E0</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>33</ID>
-      <Description>"无描述"</Description>
-      <VariableType>4 Bytes</VariableType>
-      <Address>1470CAF0CD8</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>34</ID>
-      <Description>"无描述"</Description>
-      <VariableType>4 Bytes</VariableType>
-      <Address>27144FEE50</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>35</ID>
-      <Description>"无描述"</Description>
-      <VariableType>4 Bytes</VariableType>
-      <Address>27144FEE58</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>36</ID>
-      <Description>"无描述"</Description>
-      <VariableType>4 Bytes</VariableType>
-      <Address>145C4E4FCF8</Address>
     </CheatEntry>
   </CheatEntries>
   <CheatCodes>
