@@ -1,13 +1,28 @@
 call 血
 Nioh3.exe+35F5E6 - E8 65020000           - call Nioh3.exe+35F850
 
-HP 相等则执行，直接跳过则空血
+HP回复逻辑
+Nioh3.exe+98D81C - 48 03 51 20           - add rdx,[rcx+20]
+
+HP赋值（死亡判断在更前面）
+Nioh3.exe+35F5F2 - 49 89 5B 20           - mov [r11+20],rbx
+
+
+HP 相等则执行，直接跳过则空血  假的
 Nioh3.exe+35F85A - 74 5B                 - je Nioh3.exe+35F8B7
           player           enemy
 +0088        0                n/a
 +008C        0                n/a
 +00D8        1                0
 +00DC        0                n/a
++014C        0                n/a
++0148        1                0
+
++0360        0                n/a
++054c        n/a               0
++0554        n/a               0
++0568        1                 255
++058C        2                 0
 
 HP 执行 但无效
 Nioh3.exe+35F5F2 - 49 89 5B 20           - mov [r11+20],rbx
@@ -33,3 +48,10 @@ HP数组
 Nioh3.exe+35F86F - 78 2C                 - js Nioh3.exe+35F89D
 
 Nioh3.exe+35F88D - 72 0A                 - jb Nioh3.exe+35F899
+崩  Nioh3.exe+35F62D - E8 7AF41200           - call Nioh3.exe+48EAAC
+Nioh3.exe+35F63A - E8 65D1F2FF           - call Nioh3.exe+28C7A4
+Nioh3.exe+35F644 - E8 57F61200           - call Nioh3.exe+48ECA0
+
+
+HP处理的函数头地址
+Nioh3.exe+35F5BC - 48 89 5C 24 08        - mov [rsp+08],rbx
