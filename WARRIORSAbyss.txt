@@ -1,0 +1,9 @@
+HP 执行
+WARRIORSAbyss.exe+1148F7 - F3 0F11 49 1C         - movss [rcx+1C],xmm1
+
+                player            enemy
++0000               0               n/a 
++0004               0               n/a
++0008               0               n/a
++001C HPcurrent     0               n/a     
++0024 HPMax         0               n/a     
