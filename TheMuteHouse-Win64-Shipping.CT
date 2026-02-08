@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"墙内弹药 Item1"</Description>
+      <LastState Value="6" RealAddress="18E20E2CF54"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"TheMuteHouse-Win64-Shipping.exe"+04ADE6F8</Address>
+      <Offsets>
+        <Offset>14</Offset>
+        <Offset>D0</Offset>
+        <Offset>610</Offset>
+        <Offset>20</Offset>
+        <Offset>108</Offset>
+      </Offsets>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>bullet 代码 :mov [rax],ecx</Description>
+      <AddressString>VCRUNTIME140.dll+1124C</AddressString>
+      <Before>
+        <Byte>88</Byte>
+        <Byte>08</Byte>
+        <Byte>C3</Byte>
+        <Byte>8B</Byte>
+        <Byte>0A</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>08</Byte>
+      </Actual>
+      <After>
+        <Byte>C3</Byte>
+        <Byte>90</Byte>
+        <Byte>49</Byte>
+        <Byte>83</Byte>
+        <Byte>F8</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>
