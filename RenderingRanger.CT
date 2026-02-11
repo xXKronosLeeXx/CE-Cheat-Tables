@@ -2,6 +2,13 @@
 <CheatTable CheatEngineTableVersion="46">
   <CheatEntries>
     <CheatEntry>
+      <ID>7</ID>
+      <Description>"Life 基址"</Description>
+      <LastState Value="5" Activated="1" RealAddress="1430C5ED5"/>
+      <VariableType>Byte</VariableType>
+      <Address>RenderingRanger.exe+30C5ED5</Address>
+    </CheatEntry>
+    <CheatEntry>
       <ID>0</ID>
       <Description>"HP 基址"</Description>
       <LastState Value="5" Activated="1" RealAddress="1430C607C"/>
@@ -9,27 +16,28 @@
       <Address>RenderingRanger.exe+30C607C</Address>
     </CheatEntry>
     <CheatEntry>
-      <ID>7</ID>
-      <Description>"Life 基址"</Description>
-      <LastState Value="3" Activated="1" RealAddress="1430C5ED5"/>
-      <VariableType>Byte</VariableType>
-      <Address>RenderingRanger.exe+30C5ED5</Address>
-    </CheatEntry>
-    <CheatEntry>
       <ID>6</ID>
       <Description>"Boom基址（每256一颗，3颗768）"</Description>
-      <LastState Value="784" Activated="1" RealAddress="1430C6080"/>
+      <LastState Value="776" Activated="1" RealAddress="1430C6080"/>
       <ShowAsSigned>0</ShowAsSigned>
       <VariableType>2 Bytes</VariableType>
       <Address>RenderingRanger.exe+30C607C+4</Address>
     </CheatEntry>
     <CheatEntry>
-      <ID>9</ID>
-      <Description>"高跳（锁1）"</Description>
-      <LastState Value="1" RealAddress="1430C60BE"/>
+      <ID>12</ID>
+      <Description>"无敌围绕 基址（锁1）"</Description>
+      <LastState Value="1" Activated="1" RealAddress="1430C6078"/>
       <ShowAsSigned>0</ShowAsSigned>
       <VariableType>2 Bytes</VariableType>
-      <Address>1430C60BE</Address>
+      <Address>RenderingRanger.exe+30C607C-4</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>11</ID>
+      <Description>"高跳基址（锁1）"</Description>
+      <LastState Value="1" Activated="1" RealAddress="1430C60BE"/>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>2 Bytes</VariableType>
+      <Address>RenderingRanger.exe+30C607C+42</Address>
     </CheatEntry>
   </CheatEntries>
   <CheatCodes>
