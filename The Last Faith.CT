@@ -1,5 +1,209 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CheatTable CheatEngineTableVersion="45">
-  <CheatEntries/>
+  <CheatEntries>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"自动汇编脚本"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048,"GameAssembly.dll"+651480) 
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem:
+mov eax,[rax+30]
+mov [rcx+000000E8],eax
+
+originalcode:
+mov eax,[rax+34]
+mov [rcx+000000E8],eax
+
+exit:
+jmp returnhere
+
+"GameAssembly.dll"+651480:
+jmp newmem
+nop 4
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+"GameAssembly.dll"+651480:
+db 8B 40 34 89 81 E8 00 00 00
+//mov eax,[rax+34]
+//mov [rcx+000000E8],eax
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>1719C135D04</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>7</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>1719C0E1590</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>8</ID>
+      <Description>"HP 会死机"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : The Last Faith.exe
+  Version: 
+  Date   : 2026-02-01
+  Author : krono
+
+  This script does blah blah blah
+}
+
+define(address,"GameAssembly.dll"+5EC163)
+define(bytes,89 43 34 39 53 34)
+
+[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+
+ 
+ 
+assert(address,bytes)
+alloc(newmem,$1000,"GameAssembly.dll"+5EC163)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [rbx+34],eax
+  cmp [rbx+34],edx
+  jmp return
+
+address:
+  jmp newmem
+  nop
+return:
+
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+address:
+  db bytes
+  // mov [rbx+34],eax
+  // cmp [rbx+34],edx
+
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+5EC163
+
+GameAssembly.dll+5EC14E: 75 16           - jne GameAssembly.dll+5EC166
+GameAssembly.dll+5EC150: 8B C7           - mov eax,edi
+GameAssembly.dll+5EC152: 85 FF           - test edi,edi
+GameAssembly.dll+5EC154: 78 0B           - js GameAssembly.dll+5EC161
+GameAssembly.dll+5EC156: 8B 4B 30        - mov ecx,[rbx+30]
+GameAssembly.dll+5EC159: 3B F9           - cmp edi,ecx
+GameAssembly.dll+5EC15B: 7E 06           - jle GameAssembly.dll+5EC163
+GameAssembly.dll+5EC15D: 8B C1           - mov eax,ecx
+GameAssembly.dll+5EC15F: EB 02           - jmp GameAssembly.dll+5EC163
+GameAssembly.dll+5EC161: 33 C0           - xor eax,eax
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+5EC163: 89 43 34        - mov [rbx+34],eax
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+5EC166: 39 53 34        - cmp [rbx+34],edx
+GameAssembly.dll+5EC169: 74 73           - je GameAssembly.dll+5EC1DE
+GameAssembly.dll+5EC16B: 48 8B 4B 10     - mov rcx,[rbx+10]
+GameAssembly.dll+5EC16F: 48 85 C9        - test rcx,rcx
+GameAssembly.dll+5EC172: 74 1A           - je GameAssembly.dll+5EC18E
+GameAssembly.dll+5EC174: 8B 43 34        - mov eax,[rbx+34]
+GameAssembly.dll+5EC177: 48 8D 54 24 30  - lea rdx,[rsp+30]
+GameAssembly.dll+5EC17C: 4C 8B 41 28     - mov r8,[rcx+28]
+GameAssembly.dll+5EC180: 89 44 24 30     - mov [rsp+30],eax
+GameAssembly.dll+5EC184: 48 8B 41 18     - mov rax,[rcx+18]
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>HP 代码 :mov [rbx+34],eax</Description>
+      <AddressString>GameAssembly.dll+5EC163</AddressString>
+      <Before>
+        <Byte>C1</Byte>
+        <Byte>EB</Byte>
+        <Byte>02</Byte>
+        <Byte>33</Byte>
+        <Byte>C0</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>43</Byte>
+        <Byte>34</Byte>
+      </Actual>
+      <After>
+        <Byte>39</Byte>
+        <Byte>53</Byte>
+        <Byte>34</Byte>
+        <Byte>74</Byte>
+        <Byte>73</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
   <UserdefinedSymbols/>
+  <Structures StructVersion="2">
+    <Structure Name="DynamicStat" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="16" Vartype="Pointer" Bytesize="8" OffsetHex="00000010" Description="OnChanged" DisplayMethod="unsigned integer">
+          <Structure Name="Action`1" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+            <Elements>
+              <Element Offset="16" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000010" Description="method_ptr" DisplayMethod="unsigned integer"/>
+              <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="invoke_impl" DisplayMethod="unsigned integer"/>
+              <Element Offset="32" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000020" Description="m_target" DisplayMethod="unsigned integer"/>
+              <Element Offset="40" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000028" Description="method" DisplayMethod="unsigned integer"/>
+              <Element Offset="48" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000030" Description="delegate_trampoline" DisplayMethod="unsigned integer"/>
+              <Element Offset="56" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000038" Description="extra_arg" DisplayMethod="unsigned integer"/>
+              <Element Offset="64" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000040" Description="method_code" DisplayMethod="unsigned integer"/>
+              <Element Offset="72" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000048" Description="interp_method" DisplayMethod="unsigned integer"/>
+              <Element Offset="80" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000050" Description="interp_invoke_impl" DisplayMethod="unsigned integer"/>
+              <Element Offset="88" Vartype="Pointer" Bytesize="8" OffsetHex="00000058" Description="method_info" DisplayMethod="unsigned integer"/>
+              <Element Offset="96" Vartype="Pointer" Bytesize="8" OffsetHex="00000060" Description="original_method_info" DisplayMethod="unsigned integer"/>
+              <Element Offset="104" Vartype="Pointer" Bytesize="8" OffsetHex="00000068" Description="data" DisplayMethod="unsigned integer"/>
+              <Element Offset="112" Vartype="Byte" Bytesize="1" OffsetHex="00000070" Description="method_is_virtual" DisplayMethod="unsigned integer"/>
+              <Element Offset="120" Vartype="Pointer" Bytesize="8" OffsetHex="00000078" Description="delegates" DisplayMethod="unsigned integer"/>
+            </Elements>
+          </Structure>
+        </Element>
+        <Element Offset="24" Vartype="Pointer" Bytesize="8" OffsetHex="00000018" Description="OnMaximumChanged" DisplayMethod="unsigned integer"/>
+        <Element Offset="32" Vartype="Byte" Bytesize="1" OffsetHex="00000020" Description="storeDamageTaken" DisplayMethod="unsigned integer"/>
+        <Element Offset="40" Vartype="Pointer" Bytesize="8" OffsetHex="00000028" Description="maximumSetter" DisplayMethod="unsigned integer">
+          <Structure Name="Action`1" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+            <Elements>
+              <Element Offset="16" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000010" Description="method_ptr" DisplayMethod="unsigned integer"/>
+              <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="invoke_impl" DisplayMethod="unsigned integer"/>
+              <Element Offset="32" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000020" Description="m_target" DisplayMethod="unsigned integer"/>
+              <Element Offset="40" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000028" Description="method" DisplayMethod="unsigned integer"/>
+              <Element Offset="48" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000030" Description="delegate_trampoline" DisplayMethod="unsigned integer"/>
+              <Element Offset="56" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000038" Description="extra_arg" DisplayMethod="unsigned integer"/>
+              <Element Offset="64" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000040" Description="method_code" DisplayMethod="unsigned integer"/>
+              <Element Offset="72" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000048" Description="interp_method" DisplayMethod="unsigned integer"/>
+              <Element Offset="80" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000050" Description="interp_invoke_impl" DisplayMethod="unsigned integer"/>
+              <Element Offset="88" Vartype="Pointer" Bytesize="8" OffsetHex="00000058" Description="method_info" DisplayMethod="unsigned integer"/>
+              <Element Offset="96" Vartype="Pointer" Bytesize="8" OffsetHex="00000060" Description="original_method_info" DisplayMethod="unsigned integer"/>
+              <Element Offset="104" Vartype="Pointer" Bytesize="8" OffsetHex="00000068" Description="data" DisplayMethod="unsigned integer"/>
+              <Element Offset="112" Vartype="Byte" Bytesize="1" OffsetHex="00000070" Description="method_is_virtual" DisplayMethod="unsigned integer"/>
+              <Element Offset="120" Vartype="Pointer" Bytesize="8" OffsetHex="00000078" Description="delegates" DisplayMethod="unsigned integer"/>
+            </Elements>
+          </Structure>
+        </Element>
+        <Element Offset="48" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000030" Description="maximum" DisplayMethod="unsigned integer"/>
+        <Element Offset="52" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000034" Description="value" DisplayMethod="unsigned integer"/>
+        <Element Offset="56" Vartype="Byte" Bytesize="1" OffsetHex="00000038" Description="avoidClamp" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+  </Structures>
 </CheatTable>
