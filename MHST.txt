@@ -1,0 +1,20 @@
+HP操作
+MHST.exe+CFB0CB - 66 89 8B 28010000     - mov [rbx+00000128],cx
+其上就是  sub cx,dx
+
+                player              enemy
+// +020             na                   0        
++130              na                    5
+// +140              na                   0
+// +164              0                    na
++1D8              0                    na
+//+1DC              0                    na
+//+1F8              na                  0
+//+234              na                  0
+
+
+吃经验值物品生效代码
+MHST.exe+F401E0 - 89 8A 3C010000        - mov [rdx+0000013C],ecx
+
+牵绊变动后=100
+MHST.exe+C3D159

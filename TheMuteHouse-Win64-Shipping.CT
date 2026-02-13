@@ -3,8 +3,7 @@
   <CheatEntries>
     <CheatEntry>
       <ID>6</ID>
-      <Description>"墙内弹药 Item1"</Description>
-      <LastState Value="6" RealAddress="18E20E2CF54"/>
+      <Description>"枪内弹药 Item1"</Description>
       <VariableType>4 Bytes</VariableType>
       <Address>"TheMuteHouse-Win64-Shipping.exe"+04ADE6F8</Address>
       <Offsets>
