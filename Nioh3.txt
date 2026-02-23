@@ -1,3 +1,58 @@
+扣血操作
+Nioh3.exe+3CAE9E - 49 89 5B 20           - mov [r11+20],rbx
+
+
+HP 相等则执行，直接跳过则空血  假的
+Nioh3.exe+35F85A - 74 5B                 - je Nioh3.exe+35F8B7
+          player           enemy
++148 
+
+HP 执行 但无效
+Nioh3.exe+35F5F2 - 49 89 5B 20           - mov [r11+20],rbx
+
+HP 执行另外一句，下面有sub
+Nioh3.exe+35DD96 - 8B 43 20              - mov eax,[rbx+20]
+                        player           enemy                    other
+
+金钱消费代码
+Nioh3.exe+6BAA61 - 48 89 4A 18           - mov [rdx+18],rcx
+
+变身能量积累  实际上是4字节操作后转浮点，改写4字节就行
+Nioh3.exe+859524 - F3 0F11 49 14         - movss [rcx+14],xmm1
+
+变身槽消耗执行  上面就有subss
+Nioh3.exe+C61039 - F3 0F11 41 20         - movss [rcx+20],xmm0
+
+HP数组
++0018 HP MAX
++0020 HP Current
++0028 debuff 减少的HP上限
++0030 ？？
++0040 ？？
++006C SP Current
++0070 SP MAX
++0074 SP ？？
++00D8 HEX              FFFF0000            0
++011C 变身槽积累   （MAX=5000=可以变身）
++0158 变身后倒数槽 （MAX=120）
+
++148                   1                   0
++14C                   2                   4294967295             na  //用作敌我判断
++15C  float            120                 0
++160  float            120                 0
++174  byte             na                  0
++175  byte             na                  0
++176  byte             na                  0
++177  byte             na                  0
++178  float            na                  0
++180  float            na                  0
++184                   4294967295          4294967295              NA    //有HP角色的统一确认符
+
+
+
+
+//
+//——————————————————————————试玩版————————————————————————//
 call 血
 Nioh3.exe+35F5E6 - E8 65020000           - call Nioh3.exe+35F850
 
@@ -7,44 +62,6 @@ Nioh3.exe+98D81C - 48 03 51 20           - add rdx,[rcx+20]
 HP赋值（死亡判断在更前面）
 Nioh3.exe+35F5F2 - 49 89 5B 20           - mov [r11+20],rbx
 
-
-HP 相等则执行，直接跳过则空血  假的
-Nioh3.exe+35F85A - 74 5B                 - je Nioh3.exe+35F8B7
-          player           enemy
-+0088        0                n/a
-+008C        0                n/a
-+00D8        1                0
-+00DC        0                n/a
-+014C        0                n/a
-+0148        1                0
-
-+0360        0                n/a
-+054c        n/a               0
-+0554        n/a               0
-+0568        1                 255
-+058C        2                 0
-
-HP 执行 但无效
-Nioh3.exe+35F5F2 - 49 89 5B 20           - mov [r11+20],rbx
-
-HP 执行另外一句，下面有sub
-Nioh3.exe+35DD96 - 8B 43 20              - mov eax,[rbx+20]
-          player           enemy
-+0088      n/a                0
-+008C      n/a                0
-+00D8        0                n/a                
-
-
-HP数组
-+0018 HP MAX
-+0020 HP Current
-+0030 ？？
-+0040 ？？
-+006C SP Current
-+0070 SP MAX
-+0074 SP ？？
-
-//
 Nioh3.exe+35F86F - 78 2C                 - js Nioh3.exe+35F89D
 
 Nioh3.exe+35F88D - 72 0A                 - jb Nioh3.exe+35F899
