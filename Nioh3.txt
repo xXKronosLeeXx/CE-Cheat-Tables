@@ -23,6 +23,14 @@ Nioh3.exe+859524 - F3 0F11 49 14         - movss [rcx+14],xmm1
 变身槽消耗执行  上面就有subss
 Nioh3.exe+C61039 - F3 0F11 41 20         - movss [rcx+20],xmm0
 
+常世残思操作码
+Nioh3.exe+21649C8 - 89 4A 20              - mov [rdx+20],ecx
+
+SP操作代码，float
+Nioh3.exe+4963C1 - F3 0F11 53 14         - movss [rbx+14],xmm2
+Nioh3.exe+626C61 - F3 0F11 53 14         - movss [rbx+14],xmm2   //后来更新的
+
+
 HP数组
 +0018 HP MAX
 +0020 HP Current
@@ -35,7 +43,7 @@ HP数组
 +00D8 HEX              FFFF0000            0
 +011C 变身槽积累   （MAX=5000=可以变身）
 +0158 变身后倒数槽 （MAX=120）
-
+                     player                enemy
 +148                   1                   0
 +14C                   2                   4294967295             na  //用作敌我判断
 +15C  float            120                 0
@@ -47,6 +55,14 @@ HP数组
 +178  float            na                  0
 +180  float            na                  0
 +184                   4294967295          4294967295              NA    //有HP角色的统一确认符
+
+SP数组
++0014 SP Current
++0018 SP MAX
++001C SP ？？
++00F4                  22                  4294967295             //用作敌我判断(就是HP部分的+14C)
++011C 变身槽积累   （MAX=5000=可以变身）
++0158 变身后倒数槽 （MAX=120）
 
 
 
