@@ -1,0 +1,813 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>7</ID>
+      <Description>"CP"</Description>
+      <LastState Value="3799499" RealAddress="E6BF6440"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"re9.exe"+0E8473C0</Address>
+      <Offsets>
+        <Offset>10</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>8</ID>
+      <Description>"CP=3899999（会崩溃，但生效）"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : re9.exe
+  Version: 
+  Date   : 2026-03-07
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,re9.exe,48 89 47 10 40 B7 01) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rdi+10],#3899999
+  mov dil,01
+  jmp return
+
+code:
+  mov [rdi+10],rax
+  mov dil,01
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 48 89 47 10 40 B7 01
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: re9.exe+886A704
+
+re9.exe+886A6DD: 40 20 FE              - and sil,dil
+re9.exe+886A6E0: 48 85 C9              - test rcx,rcx
+re9.exe+886A6E3: 0F 85 66 FF FF FF     - jne re9.exe+886A64F
+re9.exe+886A6E9: 4D 85 F6              - test r14,r14
+re9.exe+886A6EC: 0F 84 5D FF FF FF     - je re9.exe+886A64F
+re9.exe+886A6F2: 4C 89 70 18           - mov [rax+18],r14
+re9.exe+886A6F6: E9 52 FF FF FF        - jmp re9.exe+886A64D
+re9.exe+886A6FB: 48 8B 47 10           - mov rax,[rdi+10]
+re9.exe+886A6FF: 48 29 D8              - sub rax,rbx
+re9.exe+886A702: 72 B5                 - jb re9.exe+886A6B9
+// ---------- INJECTING HERE ----------
+re9.exe+886A704: 48 89 47 10           - mov [rdi+10],rax
+// ---------- DONE INJECTING  ----------
+re9.exe+886A708: 40 B7 01              - mov dil,01
+re9.exe+886A70B: EB AE                 - jmp re9.exe+886A6BB
+re9.exe+886A70D: CC                    - int 3 
+re9.exe+886A70E: CC                    - int 3 
+re9.exe+886A70F: CC                    - int 3 
+re9.exe+886A710: 56                    - push rsi
+re9.exe+886A711: 57                    - push rdi
+re9.exe+886A712: 53                    - push rbx
+re9.exe+886A713: 48 81 EC C0 00 00 00  - sub rsp,000000C0
+re9.exe+886A71A: 48 89 D7              - mov rdi,rdx
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>16</ID>
+      <Description>"嗑药次数（要成就就改成0）"</Description>
+      <Options moManualExpandCollapse="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>38</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E85DDE8</Address>
+          <Offsets>
+            <Offset>5FC</Offset>
+            <Offset>78</Offset>
+            <Offset>48</Offset>
+            <Offset>40</Offset>
+            <Offset>3A8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>39</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E852E40</Address>
+          <Offsets>
+            <Offset>5FC</Offset>
+            <Offset>78</Offset>
+            <Offset>48</Offset>
+            <Offset>40</Offset>
+            <Offset>3F8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>40</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E8473C0</Address>
+          <Offsets>
+            <Offset>5FC</Offset>
+            <Offset>78</Offset>
+            <Offset>48</Offset>
+            <Offset>C0</Offset>
+            <Offset>678</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>23</ID>
+      <Description>"杀敌数（要成就就改成299）"</Description>
+      <Options moManualExpandCollapse="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>54</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="664" RealAddress="13EB4792C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E8473C0</Address>
+          <Offsets>
+            <Offset>2CC</Offset>
+            <Offset>58</Offset>
+            <Offset>120</Offset>
+            <Offset>D8</Offset>
+            <Offset>48</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>55</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="664" RealAddress="13EB4792C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E8283E8</Address>
+          <Offsets>
+            <Offset>2CC</Offset>
+            <Offset>58</Offset>
+            <Offset>120</Offset>
+            <Offset>D8</Offset>
+            <Offset>718</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>56</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="664" RealAddress="13EB4792C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E857B58</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+            <Offset>140</Offset>
+            <Offset>468</Offset>
+            <Offset>740</Offset>
+            <Offset>240</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>69</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="664" RealAddress="13EB4792C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E8473C0</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+            <Offset>A0</Offset>
+            <Offset>10</Offset>
+            <Offset>140</Offset>
+            <Offset>48</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>70</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="664" RealAddress="13EB4792C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E8283E8</Address>
+          <Offsets>
+            <Offset>6C</Offset>
+            <Offset>10</Offset>
+            <Offset>50</Offset>
+            <Offset>140</Offset>
+            <Offset>718</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>71</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="664" RealAddress="13EB4792C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E8283E8</Address>
+          <Offsets>
+            <Offset>2CC</Offset>
+            <Offset>58</Offset>
+            <Offset>120</Offset>
+            <Offset>D8</Offset>
+            <Offset>718</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>72</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="664" RealAddress="13EB4792C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E8670F8</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+            <Offset>140</Offset>
+            <Offset>3D8</Offset>
+            <Offset>2E0</Offset>
+            <Offset>1D0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>73</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="664" RealAddress="13EB4792C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E857B30</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+            <Offset>140</Offset>
+            <Offset>3D8</Offset>
+            <Offset>2E0</Offset>
+            <Offset>3F0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>74</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="664" RealAddress="13EB4792C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E857B38</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+            <Offset>140</Offset>
+            <Offset>3D8</Offset>
+            <Offset>460</Offset>
+            <Offset>3A0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>75</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="664" RealAddress="13EB4792C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E857B50</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+            <Offset>140</Offset>
+            <Offset>468</Offset>
+            <Offset>740</Offset>
+            <Offset>280</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>76</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="664" RealAddress="13EB4792C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E8283E8</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+            <Offset>140</Offset>
+            <Offset>488</Offset>
+            <Offset>20</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>77</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="664" RealAddress="13EB4792C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E857B20</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+            <Offset>140</Offset>
+            <Offset>468</Offset>
+            <Offset>740</Offset>
+            <Offset>400</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>31</ID>
+      <Description>"CP战绩点（买东西用）"</Description>
+      <Options moManualExpandCollapse="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>45</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="0" RealAddress="1CDE77CE0"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E81BD28</Address>
+          <Offsets>
+            <Offset>90</Offset>
+            <Offset>78</Offset>
+            <Offset>18</Offset>
+            <Offset>58</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>46</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="0" RealAddress="1CDE77CE0"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E8110F0</Address>
+          <Offsets>
+            <Offset>90</Offset>
+            <Offset>78</Offset>
+            <Offset>18</Offset>
+            <Offset>78</Offset>
+            <Offset>28</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>47</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="0" RealAddress="1CDE77CE0"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E839E58</Address>
+          <Offsets>
+            <Offset>90</Offset>
+            <Offset>78</Offset>
+            <Offset>18</Offset>
+            <Offset>78</Offset>
+            <Offset>598</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>44</ID>
+      <Description>"补给箱获取点数（要成就就改成199999）"</Description>
+      <Options moManualExpandCollapse="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>59</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="205849" RealAddress="13EAC617C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E8283E8</Address>
+          <Offsets>
+            <Offset>6C</Offset>
+            <Offset>10</Offset>
+            <Offset>178</Offset>
+            <Offset>358</Offset>
+            <Offset>38</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>60</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="205849" RealAddress="13EAC617C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E8473C0</Address>
+          <Offsets>
+            <Offset>6C</Offset>
+            <Offset>10</Offset>
+            <Offset>178</Offset>
+            <Offset>48</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>61</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="205849" RealAddress="13EAC617C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E8473C0</Address>
+          <Offsets>
+            <Offset>6C</Offset>
+            <Offset>10</Offset>
+            <Offset>178</Offset>
+            <Offset>48</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>62</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="205849" RealAddress="13EAC617C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E8473C0</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+            <Offset>50</Offset>
+            <Offset>178</Offset>
+            <Offset>48</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>63</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="205849" RealAddress="13EAC617C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E8283E8</Address>
+          <Offsets>
+            <Offset>6C</Offset>
+            <Offset>10</Offset>
+            <Offset>178</Offset>
+            <Offset>718</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>64</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="205849" RealAddress="13EAC617C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E825D90</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+            <Offset>178</Offset>
+            <Offset>48</Offset>
+            <Offset>28</Offset>
+            <Offset>218</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>65</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="205849" RealAddress="13EAC617C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E857B28</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+            <Offset>178</Offset>
+            <Offset>318</Offset>
+            <Offset>6A0</Offset>
+            <Offset>430</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>66</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="205849" RealAddress="13EAC617C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E8670F8</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+            <Offset>178</Offset>
+            <Offset>338</Offset>
+            <Offset>E0</Offset>
+            <Offset>638</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>67</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="205849" RealAddress="13EAC617C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E857B10</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+            <Offset>178</Offset>
+            <Offset>338</Offset>
+            <Offset>4E0</Offset>
+            <Offset>368</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>68</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="205849" RealAddress="13EAC617C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E857B48</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+            <Offset>178</Offset>
+            <Offset>3D8</Offset>
+            <Offset>460</Offset>
+            <Offset>320</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>80</ID>
+      <Description>"采血总量（要成就就改成4999）"</Description>
+      <Options moManualExpandCollapse="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>103</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="5031" RealAddress="13EAC697C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E857B40</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+            <Offset>20</Offset>
+            <Offset>2A8</Offset>
+            <Offset>4B0</Offset>
+            <Offset>300</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>102</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="5031" RealAddress="13EAC697C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E8670F8</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+            <Offset>20</Offset>
+            <Offset>2A8</Offset>
+            <Offset>4B0</Offset>
+            <Offset>160</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>104</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="5031" RealAddress="13EAC697C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E857B20</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+            <Offset>20</Offset>
+            <Offset>2A8</Offset>
+            <Offset>4D0</Offset>
+            <Offset>2C0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>117</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="5031" RealAddress="13EAC697C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E8473C0</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+            <Offset>20</Offset>
+            <Offset>6B8</Offset>
+            <Offset>18</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>118</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="5031" RealAddress="13EAC697C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E8283E8</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+            <Offset>20</Offset>
+            <Offset>6B8</Offset>
+            <Offset>458</Offset>
+            <Offset>20</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>119</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="5031" RealAddress="13EAC697C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E8283E8</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+            <Offset>20</Offset>
+            <Offset>6B8</Offset>
+            <Offset>6E8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>120</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="5031" RealAddress="13EAC697C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E82F520</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+            <Offset>20</Offset>
+            <Offset>738</Offset>
+            <Offset>238</Offset>
+            <Offset>38</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>121</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="5031" RealAddress="13EAC697C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E82F500</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+            <Offset>20</Offset>
+            <Offset>738</Offset>
+            <Offset>238</Offset>
+            <Offset>78</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>122</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="5031" RealAddress="13EAC697C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E869840</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+            <Offset>20</Offset>
+            <Offset>738</Offset>
+            <Offset>28</Offset>
+            <Offset>678</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>123</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="5031" RealAddress="13EAC697C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E82F528</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+            <Offset>20</Offset>
+            <Offset>738</Offset>
+            <Offset>268</Offset>
+            <Offset>20</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>124</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="5031" RealAddress="13EAC697C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E8473C0</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+            <Offset>20</Offset>
+            <Offset>738</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>89</ID>
+      <Description>"采血次数（要成就就改成0）"</Description>
+      <Options moManualExpandCollapse="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>91</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="0" RealAddress="13EAC506C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E825DA0</Address>
+          <Offsets>
+            <Offset>53C</Offset>
+            <Offset>420</Offset>
+            <Offset>E8</Offset>
+            <Offset>200</Offset>
+            <Offset>1A8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>92</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="0" RealAddress="13EAC506C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E848960</Address>
+          <Offsets>
+            <Offset>53C</Offset>
+            <Offset>420</Offset>
+            <Offset>E8</Offset>
+            <Offset>110</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>100</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="0" RealAddress="13EAC506C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E857B28</Address>
+          <Offsets>
+            <Offset>64C</Offset>
+            <Offset>5D8</Offset>
+            <Offset>390</Offset>
+            <Offset>600</Offset>
+            <Offset>430</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>101</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="0" RealAddress="13EAC506C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E848B00</Address>
+          <Offsets>
+            <Offset>64C</Offset>
+            <Offset>5D8</Offset>
+            <Offset>390</Offset>
+            <Offset>6A0</Offset>
+            <Offset>2F0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>111</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="0" RealAddress="13EAC506C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E857B20</Address>
+          <Offsets>
+            <Offset>64C</Offset>
+            <Offset>5D8</Offset>
+            <Offset>6A0</Offset>
+            <Offset>4D8</Offset>
+            <Offset>2C0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>112</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="0" RealAddress="13EAC506C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E857B20</Address>
+          <Offsets>
+            <Offset>39C</Offset>
+            <Offset>138</Offset>
+            <Offset>1E8</Offset>
+            <Offset>2F8</Offset>
+            <Offset>2D8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>113</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="0" RealAddress="13EAC506C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E8283E8</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+            <Offset>300</Offset>
+            <Offset>258</Offset>
+            <Offset>5D8</Offset>
+            <Offset>6F0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>114</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="0" RealAddress="13EAC506C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"re9.exe"+0E8473C0</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+            <Offset>300</Offset>
+            <Offset>258</Offset>
+            <Offset>6D8</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>物品减少 代码 :mov [r14+74],edx</Description>
+      <AddressString>re9.exe+12FC83D</AddressString>
+      <Before>
+        <Byte>85</Byte>
+        <Byte>C0</Byte>
+        <Byte>0F</Byte>
+        <Byte>49</Byte>
+        <Byte>D1</Byte>
+      </Before>
+      <Actual>
+        <Byte>41</Byte>
+        <Byte>89</Byte>
+        <Byte>56</Byte>
+        <Byte>74</Byte>
+      </Actual>
+      <After>
+        <Byte>41</Byte>
+        <Byte>C6</Byte>
+        <Byte>86</Byte>
+        <Byte>AC</Byte>
+        <Byte>00</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>
