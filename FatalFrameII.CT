@@ -1,0 +1,817 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"兑换点数"</Description>
+      <LastState Value="1178003" RealAddress="7FF72B56FC38"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>FatalFrameII.exe+6FBFC38</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>15</ID>
+      <Description>"秒敌人（敌人不出现直接死）"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : FatalFrameII.exe
+  Version: 
+  Date   : 2026-03-12
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,FatalFrameII.exe,0F 11 41 14 0F 10 4A 24 0F 11 49 24 0F 10 42 34 0F 11 41 34 8B) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  nop //  movups [rcx+14],xmm0
+  movups xmm1,[rdx+24]
+  jmp return
+
+code:
+  movups [rcx+14],xmm0
+  movups xmm1,[rdx+24]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 0F 11 41 14 0F 10 4A 24
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: FatalFrameII.exe+69B3F2
+
+FatalFrameII.exe+69B3D0: 48 89 5C 24 18  - mov [rsp+18],rbx
+FatalFrameII.exe+69B3D5: 57              - push rdi
+FatalFrameII.exe+69B3D6: 48 83 EC 20     - sub rsp,20
+FatalFrameII.exe+69B3DA: 48 8B 42 08     - mov rax,[rdx+08]
+FatalFrameII.exe+69B3DE: 48 8B FA        - mov rdi,rdx
+FatalFrameII.exe+69B3E1: 48 89 41 08     - mov [rcx+08],rax
+FatalFrameII.exe+69B3E5: 48 8B D9        - mov rbx,rcx
+FatalFrameII.exe+69B3E8: 8B 42 10        - mov eax,[rdx+10]
+FatalFrameII.exe+69B3EB: 89 41 10        - mov [rcx+10],eax
+FatalFrameII.exe+69B3EE: 0F 10 42 14     - movups xmm0,[rdx+14]
+// ---------- INJECTING HERE ----------
+FatalFrameII.exe+69B3F2: 0F 11 41 14     - movups [rcx+14],xmm0
+// ---------- DONE INJECTING  ----------
+FatalFrameII.exe+69B3F6: 0F 10 4A 24     - movups xmm1,[rdx+24]
+FatalFrameII.exe+69B3FA: 0F 11 49 24     - movups [rcx+24],xmm1
+FatalFrameII.exe+69B3FE: 0F 10 42 34     - movups xmm0,[rdx+34]
+FatalFrameII.exe+69B402: 0F 11 41 34     - movups [rcx+34],xmm0
+FatalFrameII.exe+69B406: 8B 42 44        - mov eax,[rdx+44]
+FatalFrameII.exe+69B409: 89 41 44        - mov [rcx+44],eax
+FatalFrameII.exe+69B40C: 8B 42 48        - mov eax,[rdx+48]
+FatalFrameII.exe+69B40F: 48 83 C2 50     - add rdx,50
+FatalFrameII.exe+69B413: 89 41 48        - mov [rcx+48],eax
+FatalFrameII.exe+69B416: 48 83 C1 50     - add rcx,50
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>45</ID>
+      <Description>"物品不减"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : FatalFrameII.exe
+  Version: 
+  Date   : 2026-03-12
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,FatalFrameII.exe,2B C6 89 43 08) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+ nop //  sub eax,esi
+  mov [rbx+08],eax
+  jmp return
+
+
+code:
+  sub eax,esi
+  mov [rbx+08],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 2B C6 89 43 08
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: FatalFrameII.exe+99F959
+
+FatalFrameII.exe+99F93C: 32 C9                 - xor cl,cl
+FatalFrameII.exe+99F93E: 8B 43 08              - mov eax,[rbx+08]
+FatalFrameII.exe+99F941: 84 C9                 - test cl,cl
+FatalFrameII.exe+99F943: 74 14                 - je FatalFrameII.exe+99F959
+FatalFrameII.exe+99F945: C7 43 08 01 00 00 00  - mov [rbx+08],00000001
+FatalFrameII.exe+99F94C: FF C8                 - dec eax
+FatalFrameII.exe+99F94E: 48 8B 5C 24 30        - mov rbx,[rsp+30]
+FatalFrameII.exe+99F953: 48 83 C4 20           - add rsp,20
+FatalFrameII.exe+99F957: 5E                    - pop rsi
+FatalFrameII.exe+99F958: C3                    - ret 
+// ---------- INJECTING HERE ----------
+FatalFrameII.exe+99F959: 2B C6                 - sub eax,esi
+// ---------- DONE INJECTING  ----------
+FatalFrameII.exe+99F95B: 89 43 08              - mov [rbx+08],eax
+FatalFrameII.exe+99F95E: 8B C6                 - mov eax,esi
+FatalFrameII.exe+99F960: 48 8B 5C 24 30        - mov rbx,[rsp+30]
+FatalFrameII.exe+99F965: 48 83 C4 20           - add rsp,20
+FatalFrameII.exe+99F969: 5E                    - pop rsi
+FatalFrameII.exe+99F96A: C3                    - ret 
+FatalFrameII.exe+99F96B: 48 8B 5C 24 30        - mov rbx,[rsp+30]
+FatalFrameII.exe+99F970: 33 C0                 - xor eax,eax
+FatalFrameII.exe+99F972: 48 83 C4 20           - add rsp,20
+FatalFrameII.exe+99F976: 5E                    - pop rsi
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>38</ID>
+      <Description>"HP"</Description>
+      <Options moManualExpandCollapse="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>46</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="290" RealAddress="263630C60B4"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"FatalFrameII.exe"+02D719A0</Address>
+          <Offsets>
+            <Offset>184</Offset>
+            <Offset>0</Offset>
+            <Offset>0</Offset>
+            <Offset>2D0</Offset>
+            <Offset>728</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>47</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="290" RealAddress="263630C60B4"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"FatalFrameII.exe"+02D955E8</Address>
+          <Offsets>
+            <Offset>184</Offset>
+            <Offset>0</Offset>
+            <Offset>0</Offset>
+            <Offset>410</Offset>
+            <Offset>2C0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>48</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="290" RealAddress="263630C60B4"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"FatalFrameII.exe"+02D71998</Address>
+          <Offsets>
+            <Offset>184</Offset>
+            <Offset>0</Offset>
+            <Offset>0</Offset>
+            <Offset>550</Offset>
+            <Offset>758</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>49</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="290" RealAddress="263630C60B4"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"FatalFrameII.exe"+02DA5198</Address>
+          <Offsets>
+            <Offset>24</Offset>
+            <Offset>2D8</Offset>
+            <Offset>5F8</Offset>
+            <Offset>78</Offset>
+            <Offset>4A8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>50</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="290" RealAddress="263630C60B4"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"FatalFrameII.exe"+02DA50F0</Address>
+          <Offsets>
+            <Offset>24</Offset>
+            <Offset>2D8</Offset>
+            <Offset>5F8</Offset>
+            <Offset>178</Offset>
+            <Offset>528</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>51</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="290" RealAddress="263630C60B4"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"FatalFrameII.exe"+02DA5D58</Address>
+          <Offsets>
+            <Offset>164</Offset>
+            <Offset>760</Offset>
+            <Offset>20</Offset>
+            <Offset>5F0</Offset>
+            <Offset>798</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>52</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="290" RealAddress="263630C60B4"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"FatalFrameII.exe"+02D71900</Address>
+          <Offsets>
+            <Offset>164</Offset>
+            <Offset>760</Offset>
+            <Offset>20</Offset>
+            <Offset>8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>53</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="290" RealAddress="263630C60B4"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"FatalFrameII.exe"+02DA51A8</Address>
+          <Offsets>
+            <Offset>154</Offset>
+            <Offset>768</Offset>
+            <Offset>5F8</Offset>
+            <Offset>4F8</Offset>
+            <Offset>1B8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>54</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="290" Activated="1" RealAddress="263630C60B4"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"FatalFrameII.exe"+02DA5198</Address>
+          <Offsets>
+            <Offset>154</Offset>
+            <Offset>768</Offset>
+            <Offset>5F8</Offset>
+            <Offset>5F8</Offset>
+            <Offset>138</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>65</ID>
+      <Description>"SP"</Description>
+      <Options moManualExpandCollapse="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>69</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="10000" RealAddress="263630C4310"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"FatalFrameII.exe"+02D719A0</Address>
+          <Offsets>
+            <Offset>670</Offset>
+            <Offset>0</Offset>
+            <Offset>0</Offset>
+            <Offset>4D0</Offset>
+            <Offset>388</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>70</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="10000" RealAddress="263630C4310"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"FatalFrameII.exe"+02D719A0</Address>
+          <Offsets>
+            <Offset>670</Offset>
+            <Offset>0</Offset>
+            <Offset>460</Offset>
+            <Offset>380</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>71</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="10000" RealAddress="263630C4310"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"FatalFrameII.exe"+02DA5198</Address>
+          <Offsets>
+            <Offset>1C0</Offset>
+            <Offset>448</Offset>
+            <Offset>5F0</Offset>
+            <Offset>478</Offset>
+            <Offset>558</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>72</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="10000" RealAddress="263630C4310"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"FatalFrameII.exe"+02D9BF88</Address>
+          <Offsets>
+            <Offset>100</Offset>
+            <Offset>488</Offset>
+            <Offset>198</Offset>
+            <Offset>10</Offset>
+            <Offset>170</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>73</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="10000" RealAddress="263630C4310"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"FatalFrameII.exe"+02D9BF88</Address>
+          <Offsets>
+            <Offset>100</Offset>
+            <Offset>488</Offset>
+            <Offset>198</Offset>
+            <Offset>290</Offset>
+            <Offset>8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>75</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="10000" RealAddress="263630C4310"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"FatalFrameII.exe"+02D955F0</Address>
+          <Offsets>
+            <Offset>C0</Offset>
+            <Offset>0</Offset>
+            <Offset>1F0</Offset>
+            <Offset>450</Offset>
+            <Offset>38</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>76</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="10000" RealAddress="263630C4310"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"FatalFrameII.exe"+02D955F0</Address>
+          <Offsets>
+            <Offset>C0</Offset>
+            <Offset>0</Offset>
+            <Offset>1F0</Offset>
+            <Offset>450</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>77</ID>
+          <Description>"指针扫描结果"</Description>
+          <LastState Value="10000" RealAddress="263630C4310"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"FatalFrameII.exe"+02DA51A8</Address>
+          <Offsets>
+            <Offset>1C0</Offset>
+            <Offset>458</Offset>
+            <Offset>5F8</Offset>
+            <Offset>5F8</Offset>
+            <Offset>528</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>HP 代码 :movups [rcx+14],xmm0</Description>
+      <AddressString>FatalFrameII.exe+69B3F2</AddressString>
+      <Before>
+        <Byte>10</Byte>
+        <Byte>0F</Byte>
+        <Byte>10</Byte>
+        <Byte>42</Byte>
+        <Byte>14</Byte>
+      </Before>
+      <Actual>
+        <Byte>0F</Byte>
+        <Byte>11</Byte>
+        <Byte>41</Byte>
+        <Byte>14</Byte>
+      </Actual>
+      <After>
+        <Byte>0F</Byte>
+        <Byte>10</Byte>
+        <Byte>4A</Byte>
+        <Byte>24</Byte>
+        <Byte>0F</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>HP 代码 :mov eax,[rax+14]</Description>
+      <AddressString>FatalFrameII.exe+771455</AddressString>
+      <Before>
+        <Byte>83</Byte>
+        <Byte>F9</Byte>
+        <Byte>01</Byte>
+        <Byte>7E</Byte>
+        <Byte>22</Byte>
+      </Before>
+      <Actual>
+        <Byte>8B</Byte>
+        <Byte>40</Byte>
+        <Byte>14</Byte>
+      </Actual>
+      <After>
+        <Byte>FF</Byte>
+        <Byte>C8</Byte>
+        <Byte>66</Byte>
+        <Byte>0F</Byte>
+        <Byte>6E</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>SP 代码 :movups [r9+10],xmm0</Description>
+      <AddressString>FatalFrameII.exe+6FDF67</AddressString>
+      <Before>
+        <Byte>08</Byte>
+        <Byte>0F</Byte>
+        <Byte>10</Byte>
+        <Byte>42</Byte>
+        <Byte>10</Byte>
+      </Before>
+      <Actual>
+        <Byte>41</Byte>
+        <Byte>0F</Byte>
+        <Byte>11</Byte>
+        <Byte>41</Byte>
+        <Byte>10</Byte>
+      </Actual>
+      <After>
+        <Byte>0F</Byte>
+        <Byte>10</Byte>
+        <Byte>4A</Byte>
+        <Byte>20</Byte>
+        <Byte>41</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>物品减少 代码 :sub eax,esi</Description>
+      <AddressString>FatalFrameII.exe+99F959</AddressString>
+      <Before>
+        <Byte>83</Byte>
+        <Byte>C4</Byte>
+        <Byte>20</Byte>
+        <Byte>5E</Byte>
+        <Byte>C3</Byte>
+      </Before>
+      <Actual>
+        <Byte>2B</Byte>
+        <Byte>C6</Byte>
+      </Actual>
+      <After>
+        <Byte>89</Byte>
+        <Byte>43</Byte>
+        <Byte>08</Byte>
+        <Byte>8B</Byte>
+        <Byte>C6</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+  <Structures StructVersion="2">
+    <Structure Name="未命名的结构" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="0" Vartype="Pointer" Bytesize="8" OffsetHex="00000000" DisplayMethod="unsigned integer"/>
+        <Element Offset="8" Vartype="4 Bytes" Bytesize="4" RLECount="7" OffsetHex="00000008" DisplayMethod="unsigned integer"/>
+        <Element Offset="36" Vartype="Double" Bytesize="8" OffsetHex="00000024" DisplayMethod="unsigned integer"/>
+        <Element Offset="44" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="0000002C" DisplayMethod="unsigned integer"/>
+        <Element Offset="60" Vartype="Double" Bytesize="8" OffsetHex="0000003C" DisplayMethod="unsigned integer"/>
+        <Element Offset="68" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000044" DisplayMethod="unsigned integer"/>
+        <Element Offset="80" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="00000050" DisplayMethod="unsigned integer"/>
+        <Element Offset="104" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="00000068" DisplayMethod="unsigned integer"/>
+        <Element Offset="108" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000006C" DisplayMethod="hexadecimal"/>
+        <Element Offset="112" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="00000070" DisplayMethod="unsigned integer"/>
+        <Element Offset="136" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000088" DisplayMethod="unsigned integer"/>
+        <Element Offset="160" Vartype="Double" Bytesize="8" OffsetHex="000000A0" DisplayMethod="unsigned integer"/>
+        <Element Offset="168" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="000000A8" DisplayMethod="unsigned integer"/>
+        <Element Offset="188" Vartype="Float" Bytesize="4" OffsetHex="000000BC" DisplayMethod="unsigned integer"/>
+        <Element Offset="192" Vartype="4 Bytes" Bytesize="4" RLECount="14" OffsetHex="000000C0" DisplayMethod="unsigned integer"/>
+        <Element Offset="248" Vartype="Float" Bytesize="4" OffsetHex="000000F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="252" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000FC" DisplayMethod="unsigned integer"/>
+        <Element Offset="256" Vartype="Float" Bytesize="4" OffsetHex="00000100" DisplayMethod="unsigned integer"/>
+        <Element Offset="260" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000104" DisplayMethod="unsigned integer"/>
+        <Element Offset="272" Vartype="Pointer" Bytesize="8" OffsetHex="00000110" DisplayMethod="unsigned integer"/>
+        <Element Offset="280" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000118" DisplayMethod="unsigned integer"/>
+        <Element Offset="304" Vartype="Pointer" Bytesize="8" OffsetHex="00000130" DisplayMethod="unsigned integer"/>
+        <Element Offset="312" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000138" DisplayMethod="unsigned integer"/>
+        <Element Offset="320" Vartype="Pointer" Bytesize="8" OffsetHex="00000140" DisplayMethod="unsigned integer"/>
+        <Element Offset="328" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000148" DisplayMethod="unsigned integer"/>
+        <Element Offset="352" Vartype="Pointer" Bytesize="8" OffsetHex="00000160" DisplayMethod="unsigned integer"/>
+        <Element Offset="360" Vartype="Pointer" Bytesize="8" OffsetHex="00000168" Description="Pointer to instance of std::_Ref_count_obj_alloc&lt;CCameraModeRequest,memory::std_allocator&lt;CCameraModeRequest,&amp;GetThreadSafeSystemAllocator,&amp;GetDefaultMemAllocInfoFunction&gt; &gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="368" Vartype="4 Bytes" Bytesize="4" RLECount="64" OffsetHex="00000170" DisplayMethod="unsigned integer"/>
+        <Element Offset="624" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000270" DisplayMethod="hexadecimal"/>
+        <Element Offset="628" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000274" DisplayMethod="unsigned integer"/>
+        <Element Offset="632" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="00000278" DisplayMethod="unsigned integer"/>
+        <Element Offset="656" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000290" DisplayMethod="unsigned integer"/>
+        <Element Offset="680" Vartype="Pointer" Bytesize="8" OffsetHex="000002A8" DisplayMethod="unsigned integer"/>
+        <Element Offset="688" Vartype="Pointer" Bytesize="8" OffsetHex="000002B0" Description="Pointer to instance of std::_Ref_count_obj_alloc&lt;CCameraModeRequest,memory::std_allocator&lt;CCameraModeRequest,&amp;GetThreadSafeSystemAllocator,&amp;GetDefaultMemAllocInfoFunction&gt; &gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="696" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="000002B8" DisplayMethod="unsigned integer"/>
+        <Element Offset="720" Vartype="Float" Bytesize="4" OffsetHex="000002D0" DisplayMethod="unsigned integer"/>
+        <Element Offset="724" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="000002D4" DisplayMethod="unsigned integer"/>
+        <Element Offset="728" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="000002D8" DisplayMethod="unsigned integer"/>
+        <Element Offset="736" Vartype="4 Bytes" Bytesize="4" RLECount="8" OffsetHex="000002E0" DisplayMethod="unsigned integer"/>
+        <Element Offset="768" Vartype="Pointer" Bytesize="8" OffsetHex="00000300" DisplayMethod="unsigned integer"/>
+        <Element Offset="776" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000308" DisplayMethod="hexadecimal"/>
+        <Element Offset="784" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000310" DisplayMethod="unsigned integer"/>
+        <Element Offset="792" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000318" DisplayMethod="hexadecimal"/>
+        <Element Offset="800" Vartype="4 Bytes" Bytesize="4" RLECount="18" OffsetHex="00000320" DisplayMethod="unsigned integer"/>
+        <Element Offset="872" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000368" DisplayMethod="hexadecimal"/>
+        <Element Offset="880" Vartype="4 Bytes" Bytesize="4" RLECount="18" OffsetHex="00000370" DisplayMethod="unsigned integer"/>
+        <Element Offset="952" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000003B8" DisplayMethod="hexadecimal"/>
+        <Element Offset="960" Vartype="4 Bytes" Bytesize="4" RLECount="8" OffsetHex="000003C0" DisplayMethod="unsigned integer"/>
+        <Element Offset="992" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000003E0" DisplayMethod="hexadecimal"/>
+        <Element Offset="1000" Vartype="4 Bytes" Bytesize="4" OffsetHex="000003E8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1004" Vartype="Double" Bytesize="8" OffsetHex="000003EC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1012" Vartype="String" Bytesize="5" OffsetHex="000003F4" DisplayMethod="unsigned integer"/>
+        <Element Offset="1017" Vartype="Byte" Bytesize="1" RLECount="3" OffsetHex="000003F9" DisplayMethod="unsigned integer"/>
+        <Element Offset="1020" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="000003FC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1040" Vartype="Pointer" Bytesize="8" OffsetHex="00000410" DisplayMethod="unsigned integer"/>
+        <Element Offset="1048" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000418" DisplayMethod="unsigned integer"/>
+        <Element Offset="1072" Vartype="Pointer" Bytesize="8" OffsetHex="00000430" DisplayMethod="unsigned integer"/>
+        <Element Offset="1080" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000438" DisplayMethod="unsigned integer"/>
+        <Element Offset="1088" Vartype="Pointer" Bytesize="8" OffsetHex="00000440" DisplayMethod="unsigned integer"/>
+        <Element Offset="1096" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000448" DisplayMethod="unsigned integer"/>
+        <Element Offset="1120" Vartype="Pointer" Bytesize="8" OffsetHex="00000460" DisplayMethod="unsigned integer"/>
+        <Element Offset="1128" Vartype="Pointer" Bytesize="8" OffsetHex="00000468" Description="Pointer to instance of std::_Ref_count_obj_alloc&lt;CCameraModeRequest,memory::std_allocator&lt;CCameraModeRequest,&amp;GetThreadSafeSystemAllocator,&amp;GetDefaultMemAllocInfoFunction&gt; &gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="1136" Vartype="4 Bytes" Bytesize="4" RLECount="64" OffsetHex="00000470" DisplayMethod="unsigned integer"/>
+        <Element Offset="1392" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000570" DisplayMethod="hexadecimal"/>
+        <Element Offset="1396" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000574" DisplayMethod="unsigned integer"/>
+        <Element Offset="1400" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="00000578" DisplayMethod="unsigned integer"/>
+        <Element Offset="1424" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000590" DisplayMethod="unsigned integer"/>
+        <Element Offset="1448" Vartype="Pointer" Bytesize="8" OffsetHex="000005A8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1456" Vartype="Pointer" Bytesize="8" OffsetHex="000005B0" Description="Pointer to instance of std::_Ref_count_obj_alloc&lt;CCameraModeRequest,memory::std_allocator&lt;CCameraModeRequest,&amp;GetThreadSafeSystemAllocator,&amp;GetDefaultMemAllocInfoFunction&gt; &gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="1464" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="000005B8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1488" Vartype="Float" Bytesize="4" OffsetHex="000005D0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1492" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="000005D4" DisplayMethod="unsigned integer"/>
+        <Element Offset="1496" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="000005D8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1504" Vartype="4 Bytes" Bytesize="4" RLECount="8" OffsetHex="000005E0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1536" Vartype="Pointer" Bytesize="8" OffsetHex="00000600" DisplayMethod="unsigned integer"/>
+        <Element Offset="1544" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000608" DisplayMethod="hexadecimal"/>
+        <Element Offset="1552" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000610" DisplayMethod="unsigned integer"/>
+        <Element Offset="1560" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000618" DisplayMethod="hexadecimal"/>
+        <Element Offset="1568" Vartype="4 Bytes" Bytesize="4" RLECount="18" OffsetHex="00000620" DisplayMethod="unsigned integer"/>
+        <Element Offset="1640" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000668" DisplayMethod="hexadecimal"/>
+        <Element Offset="1648" Vartype="4 Bytes" Bytesize="4" RLECount="18" OffsetHex="00000670" DisplayMethod="unsigned integer"/>
+        <Element Offset="1720" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000006B8" DisplayMethod="hexadecimal"/>
+        <Element Offset="1728" Vartype="4 Bytes" Bytesize="4" RLECount="8" OffsetHex="000006C0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1760" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000006E0" DisplayMethod="hexadecimal"/>
+        <Element Offset="1768" Vartype="4 Bytes" Bytesize="4" OffsetHex="000006E8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1772" Vartype="Double" Bytesize="8" OffsetHex="000006EC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1780" Vartype="String" Bytesize="5" OffsetHex="000006F4" DisplayMethod="unsigned integer"/>
+        <Element Offset="1785" Vartype="Byte" Bytesize="1" RLECount="3" OffsetHex="000006F9" DisplayMethod="unsigned integer"/>
+        <Element Offset="1788" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="000006FC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1808" Vartype="Pointer" Bytesize="8" OffsetHex="00000710" DisplayMethod="unsigned integer"/>
+        <Element Offset="1816" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000718" DisplayMethod="unsigned integer"/>
+        <Element Offset="1840" Vartype="Pointer" Bytesize="8" OffsetHex="00000730" DisplayMethod="unsigned integer"/>
+        <Element Offset="1848" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000738" DisplayMethod="unsigned integer"/>
+        <Element Offset="1856" Vartype="Pointer" Bytesize="8" OffsetHex="00000740" DisplayMethod="unsigned integer"/>
+        <Element Offset="1864" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000748" DisplayMethod="unsigned integer"/>
+        <Element Offset="1872" Vartype="Pointer" Bytesize="8" RLECount="9" OffsetHex="00000750" DisplayMethod="unsigned integer"/>
+        <Element Offset="1944" Vartype="4 Bytes" Bytesize="4" RLECount="134" OffsetHex="00000798" DisplayMethod="unsigned integer"/>
+        <Element Offset="2480" Vartype="4 Bytes" Bytesize="4" OffsetHex="000009B0" DisplayMethod="hexadecimal"/>
+        <Element Offset="2484" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="000009B4" DisplayMethod="unsigned integer"/>
+        <Element Offset="2520" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000009D8" DisplayMethod="hexadecimal"/>
+        <Element Offset="2528" Vartype="4 Bytes" Bytesize="4" RLECount="28" OffsetHex="000009E0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2640" Vartype="Pointer" Bytesize="8" OffsetHex="00000A50" DisplayMethod="unsigned integer"/>
+        <Element Offset="2648" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000A58" DisplayMethod="unsigned integer"/>
+        <Element Offset="2672" Vartype="Pointer" Bytesize="8" OffsetHex="00000A70" DisplayMethod="unsigned integer"/>
+        <Element Offset="2680" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000A78" DisplayMethod="unsigned integer"/>
+        <Element Offset="2688" Vartype="Pointer" Bytesize="8" OffsetHex="00000A80" DisplayMethod="unsigned integer"/>
+        <Element Offset="2696" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000A88" DisplayMethod="unsigned integer"/>
+        <Element Offset="2704" Vartype="Pointer" Bytesize="8" RLECount="9" OffsetHex="00000A90" DisplayMethod="unsigned integer"/>
+        <Element Offset="2776" Vartype="4 Bytes" Bytesize="4" RLECount="134" OffsetHex="00000AD8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3312" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000CF0" DisplayMethod="hexadecimal"/>
+        <Element Offset="3316" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="00000CF4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3352" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000D18" DisplayMethod="hexadecimal"/>
+        <Element Offset="3360" Vartype="4 Bytes" Bytesize="4" RLECount="28" OffsetHex="00000D20" DisplayMethod="unsigned integer"/>
+        <Element Offset="3472" Vartype="Pointer" Bytesize="8" OffsetHex="00000D90" DisplayMethod="unsigned integer"/>
+        <Element Offset="3480" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000D98" DisplayMethod="unsigned integer"/>
+        <Element Offset="3504" Vartype="Pointer" Bytesize="8" OffsetHex="00000DB0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3512" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000DB8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3520" Vartype="Pointer" Bytesize="8" OffsetHex="00000DC0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3528" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000DC8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3536" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="00000DD0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3560" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000DE8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3576" Vartype="Pointer" Bytesize="8" RLECount="4" OffsetHex="00000DF8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3608" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000E18" DisplayMethod="unsigned integer"/>
+        <Element Offset="3632" Vartype="Pointer" Bytesize="8" OffsetHex="00000E30" DisplayMethod="unsigned integer"/>
+        <Element Offset="3640" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000E38" DisplayMethod="unsigned integer"/>
+        <Element Offset="3648" Vartype="Pointer" Bytesize="8" OffsetHex="00000E40" DisplayMethod="unsigned integer"/>
+        <Element Offset="3656" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000E48" DisplayMethod="unsigned integer"/>
+        <Element Offset="3664" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="00000E50" DisplayMethod="unsigned integer"/>
+        <Element Offset="3688" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000E68" DisplayMethod="unsigned integer"/>
+        <Element Offset="3704" Vartype="Pointer" Bytesize="8" RLECount="4" OffsetHex="00000E78" DisplayMethod="unsigned integer"/>
+        <Element Offset="3736" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000E98" DisplayMethod="unsigned integer"/>
+        <Element Offset="3760" Vartype="Pointer" Bytesize="8" OffsetHex="00000EB0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3768" Vartype="4 Bytes" Bytesize="4" RLECount="18" OffsetHex="00000EB8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3840" Vartype="Pointer" Bytesize="8" OffsetHex="00000F00" DisplayMethod="unsigned integer"/>
+        <Element Offset="3848" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000F08" DisplayMethod="unsigned integer"/>
+        <Element Offset="3872" Vartype="Pointer" Bytesize="8" OffsetHex="00000F20" DisplayMethod="unsigned integer"/>
+        <Element Offset="3880" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000F28" DisplayMethod="unsigned integer"/>
+        <Element Offset="3888" Vartype="Pointer" Bytesize="8" OffsetHex="00000F30" DisplayMethod="unsigned integer"/>
+        <Element Offset="3896" Vartype="Pointer" Bytesize="8" OffsetHex="00000F38" Description="Pointer to instance of _Ref_count_obj_alloc&lt;character::action::CActionDataLoadRequest, ?? :: ?? &gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="3904" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000F40" DisplayMethod="hexadecimal"/>
+        <Element Offset="3908" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000F44" DisplayMethod="unsigned integer"/>
+        <Element Offset="3912" Vartype="Pointer" Bytesize="8" RLECount="4" OffsetHex="00000F48" DisplayMethod="unsigned integer"/>
+        <Element Offset="3944" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000F68" DisplayMethod="unsigned integer"/>
+        <Element Offset="3952" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="00000F70" DisplayMethod="unsigned integer"/>
+        <Element Offset="3976" Vartype="Pointer" Bytesize="8" OffsetHex="00000F88" Description="Pointer to instance of NewCustomResourceLoadRequest" DisplayMethod="unsigned integer"/>
+        <Element Offset="3984" Vartype="Pointer" Bytesize="8" OffsetHex="00000F90" Description="Pointer to instance of std::_Ref_count_obj_alloc&lt;NewCustomResourceLoadRequest,memory::std_allocator&lt;NewCustomResourceLoadRequest,&amp;GetThreadSafeCharacterAllocator,&amp;GetDefaultMemAllocInfoFunction&gt; &gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="3992" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="00000F98" DisplayMethod="unsigned integer"/>
+        <Element Offset="4016" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000FB0" DisplayMethod="unsigned integer"/>
+        <Element Offset="4032" Vartype="Pointer" Bytesize="8" OffsetHex="00000FC0" DisplayMethod="unsigned integer"/>
+        <Element Offset="4040" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000FC8" DisplayMethod="unsigned integer"/>
+        <Element Offset="4052" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000FD4" DisplayMethod="hexadecimal"/>
+        <Element Offset="4056" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000FD8" DisplayMethod="unsigned integer"/>
+        <Element Offset="4064" Vartype="Pointer" Bytesize="8" OffsetHex="00000FE0" DisplayMethod="unsigned integer"/>
+        <Element Offset="4072" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000FE8" DisplayMethod="unsigned integer"/>
+        <Element Offset="4080" Vartype="Pointer" Bytesize="8" OffsetHex="00000FF0" DisplayMethod="unsigned integer"/>
+        <Element Offset="4088" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000FF8" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="未命名的结构" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="0" Vartype="Pointer" Bytesize="8" OffsetHex="00000000" DisplayMethod="unsigned integer"/>
+        <Element Offset="8" Vartype="4 Bytes" Bytesize="4" RLECount="8" OffsetHex="00000008" DisplayMethod="unsigned integer"/>
+        <Element Offset="44" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="0000002C" DisplayMethod="unsigned integer"/>
+        <Element Offset="60" Vartype="Double" Bytesize="8" OffsetHex="0000003C" DisplayMethod="unsigned integer"/>
+        <Element Offset="68" Vartype="4 Bytes" Bytesize="4" RLECount="30" OffsetHex="00000044" DisplayMethod="unsigned integer"/>
+        <Element Offset="188" Vartype="Float" Bytesize="4" OffsetHex="000000BC" DisplayMethod="unsigned integer"/>
+        <Element Offset="192" Vartype="4 Bytes" Bytesize="4" RLECount="14" OffsetHex="000000C0" DisplayMethod="unsigned integer"/>
+        <Element Offset="248" Vartype="Float" Bytesize="4" OffsetHex="000000F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="252" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000FC" DisplayMethod="unsigned integer"/>
+        <Element Offset="256" Vartype="Float" Bytesize="4" OffsetHex="00000100" DisplayMethod="unsigned integer"/>
+        <Element Offset="260" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000104" DisplayMethod="unsigned integer"/>
+        <Element Offset="272" Vartype="Pointer" Bytesize="8" OffsetHex="00000110" DisplayMethod="unsigned integer"/>
+        <Element Offset="280" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000118" DisplayMethod="unsigned integer"/>
+        <Element Offset="304" Vartype="Pointer" Bytesize="8" OffsetHex="00000130" DisplayMethod="unsigned integer"/>
+        <Element Offset="312" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000138" DisplayMethod="unsigned integer"/>
+        <Element Offset="320" Vartype="Pointer" Bytesize="8" OffsetHex="00000140" DisplayMethod="unsigned integer"/>
+        <Element Offset="328" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000148" DisplayMethod="unsigned integer"/>
+        <Element Offset="352" Vartype="Pointer" Bytesize="8" OffsetHex="00000160" DisplayMethod="unsigned integer"/>
+        <Element Offset="360" Vartype="Pointer" Bytesize="8" OffsetHex="00000168" Description="Pointer to instance of std::_Ref_count_obj_alloc&lt;CCameraModeRequest,memory::std_allocator&lt;CCameraModeRequest,&amp;GetThreadSafeSystemAllocator,&amp;GetDefaultMemAllocInfoFunction&gt; &gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="368" Vartype="4 Bytes" Bytesize="4" RLECount="64" OffsetHex="00000170" DisplayMethod="unsigned integer"/>
+        <Element Offset="624" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000270" DisplayMethod="hexadecimal"/>
+        <Element Offset="628" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000274" DisplayMethod="unsigned integer"/>
+        <Element Offset="632" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="00000278" DisplayMethod="unsigned integer"/>
+        <Element Offset="656" Vartype="4 Bytes" Bytesize="4" RLECount="16" OffsetHex="00000290" DisplayMethod="unsigned integer"/>
+        <Element Offset="720" Vartype="Float" Bytesize="4" RLECount="4" OffsetHex="000002D0" DisplayMethod="unsigned integer"/>
+        <Element Offset="736" Vartype="4 Bytes" Bytesize="4" RLECount="8" OffsetHex="000002E0" DisplayMethod="unsigned integer"/>
+        <Element Offset="768" Vartype="Pointer" Bytesize="8" OffsetHex="00000300" DisplayMethod="unsigned integer"/>
+        <Element Offset="776" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000308" DisplayMethod="hexadecimal"/>
+        <Element Offset="784" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000310" DisplayMethod="unsigned integer"/>
+        <Element Offset="792" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000318" DisplayMethod="hexadecimal"/>
+        <Element Offset="800" Vartype="4 Bytes" Bytesize="4" RLECount="18" OffsetHex="00000320" DisplayMethod="unsigned integer"/>
+        <Element Offset="872" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000368" DisplayMethod="hexadecimal"/>
+        <Element Offset="880" Vartype="4 Bytes" Bytesize="4" RLECount="18" OffsetHex="00000370" DisplayMethod="unsigned integer"/>
+        <Element Offset="952" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000003B8" DisplayMethod="hexadecimal"/>
+        <Element Offset="960" Vartype="4 Bytes" Bytesize="4" RLECount="8" OffsetHex="000003C0" DisplayMethod="unsigned integer"/>
+        <Element Offset="992" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000003E0" DisplayMethod="hexadecimal"/>
+        <Element Offset="1000" Vartype="4 Bytes" Bytesize="4" OffsetHex="000003E8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1004" Vartype="Double" Bytesize="8" OffsetHex="000003EC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1012" Vartype="Float" Bytesize="4" OffsetHex="000003F4" DisplayMethod="unsigned integer"/>
+        <Element Offset="1016" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="000003F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1040" Vartype="Pointer" Bytesize="8" OffsetHex="00000410" DisplayMethod="unsigned integer"/>
+        <Element Offset="1048" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000418" DisplayMethod="unsigned integer"/>
+        <Element Offset="1072" Vartype="Pointer" Bytesize="8" OffsetHex="00000430" DisplayMethod="unsigned integer"/>
+        <Element Offset="1080" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000438" DisplayMethod="unsigned integer"/>
+        <Element Offset="1088" Vartype="Pointer" Bytesize="8" OffsetHex="00000440" DisplayMethod="unsigned integer"/>
+        <Element Offset="1096" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000448" DisplayMethod="unsigned integer"/>
+        <Element Offset="1120" Vartype="Pointer" Bytesize="8" OffsetHex="00000460" DisplayMethod="unsigned integer"/>
+        <Element Offset="1128" Vartype="Pointer" Bytesize="8" OffsetHex="00000468" Description="Pointer to instance of std::_Ref_count_obj_alloc&lt;CCameraModeRequest,memory::std_allocator&lt;CCameraModeRequest,&amp;GetThreadSafeSystemAllocator,&amp;GetDefaultMemAllocInfoFunction&gt; &gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="1136" Vartype="4 Bytes" Bytesize="4" RLECount="64" OffsetHex="00000470" DisplayMethod="unsigned integer"/>
+        <Element Offset="1392" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000570" DisplayMethod="hexadecimal"/>
+        <Element Offset="1396" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000574" DisplayMethod="unsigned integer"/>
+        <Element Offset="1400" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="00000578" DisplayMethod="unsigned integer"/>
+        <Element Offset="1424" Vartype="4 Bytes" Bytesize="4" RLECount="16" OffsetHex="00000590" DisplayMethod="unsigned integer"/>
+        <Element Offset="1488" Vartype="Float" Bytesize="4" RLECount="4" OffsetHex="000005D0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1504" Vartype="4 Bytes" Bytesize="4" RLECount="8" OffsetHex="000005E0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1536" Vartype="Pointer" Bytesize="8" OffsetHex="00000600" DisplayMethod="unsigned integer"/>
+        <Element Offset="1544" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000608" DisplayMethod="hexadecimal"/>
+        <Element Offset="1552" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000610" DisplayMethod="unsigned integer"/>
+        <Element Offset="1560" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000618" DisplayMethod="hexadecimal"/>
+        <Element Offset="1568" Vartype="4 Bytes" Bytesize="4" RLECount="18" OffsetHex="00000620" DisplayMethod="unsigned integer"/>
+        <Element Offset="1640" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000668" DisplayMethod="hexadecimal"/>
+        <Element Offset="1648" Vartype="4 Bytes" Bytesize="4" RLECount="18" OffsetHex="00000670" DisplayMethod="unsigned integer"/>
+        <Element Offset="1720" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000006B8" DisplayMethod="hexadecimal"/>
+        <Element Offset="1728" Vartype="4 Bytes" Bytesize="4" RLECount="8" OffsetHex="000006C0" DisplayMethod="unsigned integer"/>
+        <Element Offset="1760" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000006E0" DisplayMethod="hexadecimal"/>
+        <Element Offset="1768" Vartype="4 Bytes" Bytesize="4" OffsetHex="000006E8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1772" Vartype="Double" Bytesize="8" OffsetHex="000006EC" DisplayMethod="unsigned integer"/>
+        <Element Offset="1780" Vartype="Float" Bytesize="4" OffsetHex="000006F4" DisplayMethod="unsigned integer"/>
+        <Element Offset="1784" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="000006F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="1808" Vartype="Pointer" Bytesize="8" OffsetHex="00000710" DisplayMethod="unsigned integer"/>
+        <Element Offset="1816" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000718" DisplayMethod="unsigned integer"/>
+        <Element Offset="1840" Vartype="Pointer" Bytesize="8" OffsetHex="00000730" DisplayMethod="unsigned integer"/>
+        <Element Offset="1848" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000738" DisplayMethod="unsigned integer"/>
+        <Element Offset="1856" Vartype="Pointer" Bytesize="8" OffsetHex="00000740" DisplayMethod="unsigned integer"/>
+        <Element Offset="1864" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000748" DisplayMethod="unsigned integer"/>
+        <Element Offset="1872" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="00000750" DisplayMethod="unsigned integer"/>
+        <Element Offset="1896" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000768" DisplayMethod="unsigned integer"/>
+        <Element Offset="1920" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="00000780" DisplayMethod="unsigned integer"/>
+        <Element Offset="1944" Vartype="4 Bytes" Bytesize="4" RLECount="100" OffsetHex="00000798" DisplayMethod="unsigned integer"/>
+        <Element Offset="2344" Vartype="Float" Bytesize="4" OffsetHex="00000928" DisplayMethod="unsigned integer"/>
+        <Element Offset="2348" Vartype="4 Bytes" Bytesize="4" RLECount="33" OffsetHex="0000092C" DisplayMethod="unsigned integer"/>
+        <Element Offset="2480" Vartype="4 Bytes" Bytesize="4" OffsetHex="000009B0" DisplayMethod="hexadecimal"/>
+        <Element Offset="2484" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="000009B4" DisplayMethod="unsigned integer"/>
+        <Element Offset="2520" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000009D8" DisplayMethod="hexadecimal"/>
+        <Element Offset="2528" Vartype="4 Bytes" Bytesize="4" RLECount="28" OffsetHex="000009E0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2640" Vartype="Pointer" Bytesize="8" OffsetHex="00000A50" DisplayMethod="unsigned integer"/>
+        <Element Offset="2648" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000A58" DisplayMethod="unsigned integer"/>
+        <Element Offset="2672" Vartype="Pointer" Bytesize="8" OffsetHex="00000A70" DisplayMethod="unsigned integer"/>
+        <Element Offset="2680" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000A78" DisplayMethod="unsigned integer"/>
+        <Element Offset="2688" Vartype="Pointer" Bytesize="8" OffsetHex="00000A80" DisplayMethod="unsigned integer"/>
+        <Element Offset="2696" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000A88" DisplayMethod="unsigned integer"/>
+        <Element Offset="2704" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="00000A90" DisplayMethod="unsigned integer"/>
+        <Element Offset="2728" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000AA8" DisplayMethod="unsigned integer"/>
+        <Element Offset="2752" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="00000AC0" DisplayMethod="unsigned integer"/>
+        <Element Offset="2776" Vartype="4 Bytes" Bytesize="4" RLECount="100" OffsetHex="00000AD8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3176" Vartype="Float" Bytesize="4" OffsetHex="00000C68" DisplayMethod="unsigned integer"/>
+        <Element Offset="3180" Vartype="4 Bytes" Bytesize="4" RLECount="33" OffsetHex="00000C6C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3312" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000CF0" DisplayMethod="hexadecimal"/>
+        <Element Offset="3316" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="00000CF4" DisplayMethod="unsigned integer"/>
+        <Element Offset="3352" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000D18" DisplayMethod="hexadecimal"/>
+        <Element Offset="3360" Vartype="4 Bytes" Bytesize="4" RLECount="28" OffsetHex="00000D20" DisplayMethod="unsigned integer"/>
+        <Element Offset="3472" Vartype="Pointer" Bytesize="8" OffsetHex="00000D90" DisplayMethod="unsigned integer"/>
+        <Element Offset="3480" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000D98" DisplayMethod="unsigned integer"/>
+        <Element Offset="3504" Vartype="Pointer" Bytesize="8" OffsetHex="00000DB0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3512" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000DB8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3520" Vartype="Pointer" Bytesize="8" OffsetHex="00000DC0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3528" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000DC8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3536" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="00000DD0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3560" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000DE8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3576" Vartype="Pointer" Bytesize="8" RLECount="4" OffsetHex="00000DF8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3608" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000E18" DisplayMethod="unsigned integer"/>
+        <Element Offset="3632" Vartype="Pointer" Bytesize="8" OffsetHex="00000E30" DisplayMethod="unsigned integer"/>
+        <Element Offset="3640" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000E38" DisplayMethod="unsigned integer"/>
+        <Element Offset="3648" Vartype="Pointer" Bytesize="8" OffsetHex="00000E40" DisplayMethod="unsigned integer"/>
+        <Element Offset="3656" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000E48" DisplayMethod="unsigned integer"/>
+        <Element Offset="3664" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="00000E50" DisplayMethod="unsigned integer"/>
+        <Element Offset="3688" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000E68" DisplayMethod="unsigned integer"/>
+        <Element Offset="3704" Vartype="Pointer" Bytesize="8" RLECount="4" OffsetHex="00000E78" DisplayMethod="unsigned integer"/>
+        <Element Offset="3736" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000E98" DisplayMethod="unsigned integer"/>
+        <Element Offset="3760" Vartype="Pointer" Bytesize="8" OffsetHex="00000EB0" DisplayMethod="unsigned integer"/>
+        <Element Offset="3768" Vartype="4 Bytes" Bytesize="4" RLECount="18" OffsetHex="00000EB8" DisplayMethod="unsigned integer"/>
+        <Element Offset="3840" Vartype="Pointer" Bytesize="8" OffsetHex="00000F00" DisplayMethod="unsigned integer"/>
+        <Element Offset="3848" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000F08" DisplayMethod="unsigned integer"/>
+        <Element Offset="3872" Vartype="Pointer" Bytesize="8" OffsetHex="00000F20" DisplayMethod="unsigned integer"/>
+        <Element Offset="3880" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000F28" DisplayMethod="unsigned integer"/>
+        <Element Offset="3888" Vartype="Pointer" Bytesize="8" OffsetHex="00000F30" DisplayMethod="unsigned integer"/>
+        <Element Offset="3896" Vartype="Pointer" Bytesize="8" OffsetHex="00000F38" Description="Pointer to instance of _Ref_count_obj_alloc&lt;character::action::CAIDDataLoadRequest, ?? :: ?? ::mem::std_allocator&lt;character::action::CAIDDataLoadRequest,&amp;GetThreadSafeCharacterAllocator,&amp;GetDefaultMemAllocInfoFunction&gt; &gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="3904" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000F40" DisplayMethod="hexadecimal"/>
+        <Element Offset="3908" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000F44" DisplayMethod="unsigned integer"/>
+        <Element Offset="3920" Vartype="Pointer" Bytesize="8" OffsetHex="00000F50" Description="Pointer to instance of NewCustomResourceLoadRequest" DisplayMethod="unsigned integer"/>
+        <Element Offset="3928" Vartype="Pointer" Bytesize="8" OffsetHex="00000F58" Description="Pointer to instance of std::_Ref_count_obj_alloc&lt;NewCustomResourceLoadRequest,memory::std_allocator&lt;NewCustomResourceLoadRequest,&amp;GetThreadSafeCharacterAllocator,&amp;GetDefaultMemAllocInfoFunction&gt; &gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="3936" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="00000F60" DisplayMethod="unsigned integer"/>
+        <Element Offset="3960" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000F78" DisplayMethod="hexadecimal"/>
+        <Element Offset="3964" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000F7C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3968" Vartype="Pointer" Bytesize="8" OffsetHex="00000F80" Description="Pointer to instance of CCharacterModelLoadRequest" DisplayMethod="unsigned integer"/>
+        <Element Offset="3976" Vartype="Pointer" Bytesize="8" OffsetHex="00000F88" Description="Pointer to instance of std::_Ref_count_obj_alloc&lt;CCharacterModelLoadRequest,memory::std_allocator&lt;CCharacterModelLoadRequest,&amp;GetThreadSafeSystemAllocator,&amp;GetDefaultMemAllocInfoFunction&gt; &gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="3984" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000F90" DisplayMethod="hexadecimal"/>
+        <Element Offset="3988" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000F94" DisplayMethod="unsigned integer"/>
+        <Element Offset="3992" Vartype="Pointer" Bytesize="8" OffsetHex="00000F98" Description="Pointer to instance of CCharacterModelLoadRequest" DisplayMethod="unsigned integer"/>
+        <Element Offset="4000" Vartype="Pointer" Bytesize="8" OffsetHex="00000FA0" Description="Pointer to instance of std::_Ref_count_obj_alloc&lt;CCharacterModelLoadRequest,memory::std_allocator&lt;CCharacterModelLoadRequest,&amp;GetThreadSafeSystemAllocator,&amp;GetDefaultMemAllocInfoFunction&gt; &gt;" DisplayMethod="unsigned integer"/>
+        <Element Offset="4008" Vartype="4 Bytes" Bytesize="4" RLECount="22" OffsetHex="00000FA8" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+  </Structures>
+</CheatTable>
