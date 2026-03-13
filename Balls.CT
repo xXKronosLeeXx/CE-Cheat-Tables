@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="46">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"资源变多"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048,"GameAssembly.dll"+48C4E8) 
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem:
+add [rcx+rbx*4+20],esi
+add [rcx+rbx*4+20],#49999
+xor ecx,ecx
+
+originalcode:
+add [rcx+rbx*4+20],esi
+xor ecx,ecx
+
+exit:
+jmp returnhere
+
+"GameAssembly.dll"+48C4E8:
+jmp newmem
+nop
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+"GameAssembly.dll"+48C4E8:
+db 01 74 99 20 33 C9
+//add [rcx+rbx*4+20],esi
+//xor ecx,ecx
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>1DD97020630</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>1DF7F7941E0</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"无描述"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>1DF7F7941E4</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>Gold 代码 :add [rcx+rbx*4+20],esi</Description>
+      <AddressString>GameAssembly.dll+48C4E8</AddressString>
+      <Before>
+        <Byte>83</Byte>
+        <Byte>2A</Byte>
+        <Byte>02</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>01</Byte>
+        <Byte>74</Byte>
+        <Byte>99</Byte>
+        <Byte>20</Byte>
+      </Actual>
+      <After>
+        <Byte>33</Byte>
+        <Byte>C9</Byte>
+        <Byte>0F</Byte>
+        <Byte>B6</Byte>
+        <Byte>44</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>
