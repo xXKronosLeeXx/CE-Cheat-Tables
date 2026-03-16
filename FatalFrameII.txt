@@ -1,0 +1,32 @@
+HP初始化
+FatalFrameII.exe+9DA749 - 89 4A 14              - mov [rdx+14],ecx
+
+HP代码  如果注销，就是人形天灾
+FatalFrameII.exe+69B3F2 - 0F11 41 14            - movups [rcx+14],xmm0
+
+敌我识别：
+                  player     sister          enemy
+
++14                 290         600                             
++190 - +1C4          0           0              na
+
+
+
+SP代码，这个打开可以用，但是开了之后取消就崩    所以HP和SP都建议锁地址数据
+FatalFrameII.exe+69B3F2 - 0F11 41 14            - movups [rcx+14],xmm0
+
+物品数量操作码
+FatalFrameII.exe+99F959 - 2B C6                 - sub eax,esi
+
+
+相机倒计时显示条的逻辑操作 但这里只显示，数值是浮点的200（清空）到300（满值）
+FatalFrameII.exe+EE3C4B: F3 0F 11 51 34  - movss [rcx+34],xmm2
+
+相机真正的倒计时  满值=0，倒计时出现数字并减少
+FatalFrameII.exe+6742E5 - 89 83 F8010000        - mov [rbx+000001F8],eax
+
+FatalFrameII.exe+EE3C1D - 48 8B 05 9C8FD201     - mov rax,[FatalFrameII.exe+2C0CBC0]
+
+
+五本书解谜：
+红蝶 双胞胎 禁忌 人祭 灾厄
