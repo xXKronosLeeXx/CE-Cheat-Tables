@@ -1,0 +1,1001 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>15</ID>
+      <Description>"SC 使用后 99999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : grandia2.exe
+  Version: 
+  Date   : 2026-03-20
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,grandia2.exe,89 78 08 FE 46 01) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov edi,#99999
+  mov [eax+08],edi
+  inc byte ptr [esi+01]
+  jmp return
+
+code:
+  mov [eax+08],edi
+  inc byte ptr [esi+01]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 78 08 FE 46 01
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: grandia2.exe+1DA560
+
+grandia2.exe+1DA542: BA 08 00 00 00        - mov edx,00000008
+grandia2.exe+1DA547: 6A 04                 - push 04
+grandia2.exe+1DA549: 50                    - push eax
+grandia2.exe+1DA54A: B1 01                 - mov cl,01
+grandia2.exe+1DA54C: E8 3F 15 FF FF        - call grandia2.exe+1CBA90
+grandia2.exe+1DA551: 83 C4 08              - add esp,08
+grandia2.exe+1DA554: 84 C0                 - test al,al
+grandia2.exe+1DA556: 75 4E                 - jne grandia2.exe+1DA5A6
+grandia2.exe+1DA558: A1 E4 48 92 00        - mov eax,[grandia2.exe+2C48E4]
+grandia2.exe+1DA55D: 2B 7D D8              - sub edi,[ebp-28]
+// ---------- INJECTING HERE ----------
+grandia2.exe+1DA560: 89 78 08              - mov [eax+08],edi
+// ---------- DONE INJECTING  ----------
+grandia2.exe+1DA563: FE 46 01              - inc byte ptr [esi+01]
+grandia2.exe+1DA566: 66 83 7D D4 03        - cmp word ptr [ebp-2C],03
+grandia2.exe+1DA56B: 75 0C                 - jne grandia2.exe+1DA579
+grandia2.exe+1DA56D: A1 24 52 92 00        - mov eax,[grandia2.exe+2C5224]
+grandia2.exe+1DA572: FE 84 03 A9 00 00 00  - inc byte ptr [ebx+eax+000000A9]
+grandia2.exe+1DA579: B9 0D 00 00 00        - mov ecx,0000000D
+grandia2.exe+1DA57E: E8 9D 23 FF FF        - call grandia2.exe+1CC920
+grandia2.exe+1DA583: 8B 4D D0              - mov ecx,[ebp-30]
+grandia2.exe+1DA586: BA 04 00 00 00        - mov edx,00000004
+grandia2.exe+1DA58B: E8 00 CF FF FF        - call grandia2.exe+1D7490
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>17</ID>
+      <Description>"MC 使用后 99999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : grandia2.exe
+  Version: 
+  Date   : 2026-03-20
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,grandia2.exe,89 48 0C B9 0D 00 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov ecx,#99999
+  mov [eax+0C],ecx
+  mov ecx,0000000D
+  jmp return
+
+code:
+  mov [eax+0C],ecx
+  mov ecx,0000000D
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 48 0C B9 0D 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: grandia2.exe+1DAE74
+
+grandia2.exe+1DAE4A: 0F BF 7C 41 38        - movsx edi,word ptr [ecx+eax*2+38]
+grandia2.exe+1DAE4F: 8B 0D E4 48 92 00     - mov ecx,[grandia2.exe+2C48E4]
+grandia2.exe+1DAE55: 8B 49 0C              - mov ecx,[ecx+0C]
+grandia2.exe+1DAE58: 3B F9                 - cmp edi,ecx
+grandia2.exe+1DAE5A: 0F 8F 27 FF FF FF     - jg grandia2.exe+1DAD87
+grandia2.exe+1DAE60: 0F BF 44 9E 02        - movsx eax,word ptr [esi+ebx*4+02]
+grandia2.exe+1DAE65: 3B D0                 - cmp edx,eax
+grandia2.exe+1DAE67: 0F 8C 1A FF FF FF     - jl grandia2.exe+1DAD87
+grandia2.exe+1DAE6D: A1 E4 48 92 00        - mov eax,[grandia2.exe+2C48E4]
+grandia2.exe+1DAE72: 2B CF                 - sub ecx,edi
+// ---------- INJECTING HERE ----------
+grandia2.exe+1DAE74: 89 48 0C              - mov [eax+0C],ecx
+// ---------- DONE INJECTING  ----------
+grandia2.exe+1DAE77: B9 0D 00 00 00        - mov ecx,0000000D
+grandia2.exe+1DAE7C: FE 44 9E 01           - inc byte ptr [esi+ebx*4+01]
+grandia2.exe+1DAE80: E8 9B 1A FF FF        - call grandia2.exe+1CC920
+grandia2.exe+1DAE85: 8B 5D FC              - mov ebx,[ebp-04]
+grandia2.exe+1DAE88: B8 AB AA AA 2A        - mov eax,2AAAAAAB
+grandia2.exe+1DAE8D: F7 6D F4              - imul [ebp-0C]
+grandia2.exe+1DAE90: 8B 0C 9D D0 12 D7 00  - mov ecx,[ebx*4+grandia2.exe+7112D0]
+grandia2.exe+1DAE97: 8B C2                 - mov eax,edx
+grandia2.exe+1DAE99: C1 E8 1F              - shr eax,1F
+grandia2.exe+1DAE9C: 6A FF                 - push -01
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>16</ID>
+      <Description>"G 购物后=866676"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : grandia2.exe
+  Version: 
+  Date   : 2026-03-20
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,grandia2.exe,29 5E 04 01 59 04) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov [esi+04],#866676
+  add [ecx+04],ebx
+  jmp return
+
+code:
+  sub [esi+04],ebx
+  add [ecx+04],ebx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 29 5E 04 01 59 04
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: grandia2.exe+1CD095
+
+grandia2.exe+1CD06C: 81 7E 04 90 D0 03 00  - cmp [esi+04],0003D090
+grandia2.exe+1CD073: 7E 26                 - jle grandia2.exe+1CD09B
+grandia2.exe+1CD075: B9 09 00 00 00        - mov ecx,00000009
+grandia2.exe+1CD07A: E8 51 5B E3 FF        - call grandia2.exe+2BD0
+grandia2.exe+1CD07F: EB 1A                 - jmp grandia2.exe+1CD09B
+grandia2.exe+1CD081: 79 1E                 - jns grandia2.exe+1CD0A1
+grandia2.exe+1CD083: 8B D3                 - mov edx,ebx
+grandia2.exe+1CD085: B9 02 00 00 00        - mov ecx,00000002
+grandia2.exe+1CD08A: E8 91 5B E3 FF        - call grandia2.exe+2C20
+grandia2.exe+1CD08F: 8B 0D 70 4A 92 00     - mov ecx,[grandia2.exe+2C4A70]
+// ---------- INJECTING HERE ----------
+grandia2.exe+1CD095: 29 5E 04              - sub [esi+04],ebx
+// ---------- DONE INJECTING  ----------
+grandia2.exe+1CD098: 01 59 04              - add [ecx+04],ebx
+grandia2.exe+1CD09B: 8B 3D 1C 55 92 00     - mov edi,[grandia2.exe+2C551C]
+grandia2.exe+1CD0A1: 8B 1D 70 4A 92 00     - mov ebx,[grandia2.exe+2C4A70]
+grandia2.exe+1CD0A7: 8B 43 08              - mov eax,[ebx+08]
+grandia2.exe+1CD0AA: 85 C0                 - test eax,eax
+grandia2.exe+1CD0AC: 74 12                 - je grandia2.exe+1CD0C0
+grandia2.exe+1CD0AE: 99                    - cdq 
+grandia2.exe+1CD0AF: 33 C2                 - xor eax,edx
+grandia2.exe+1CD0B1: 2B C2                 - sub eax,edx
+grandia2.exe+1CD0B3: 8B C8                 - mov ecx,eax
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>18</ID>
+      <Description>"battle"</Description>
+      <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>6</ID>
+          <Description>"战斗HP"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : grandia2.exe
+  Version: 
+  Date   : 2026-03-20
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,grandia2.exe,89 50 10 8B 4D FC 83 79 10 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [eax+8],0
+  je code
+  mov edx,[eax+C]
+  mov [eax+10],edx
+  mov ecx,[ebp-04]
+  jmp return
+
+
+code:
+  mov edx,0
+  mov [eax+10],edx
+  mov ecx,[ebp-04]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 50 10 8B 4D FC
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: grandia2.exe+DED0B
+
+grandia2.exe+DECE7: 8B 4D 08                          - mov ecx,[ebp+08]
+grandia2.exe+DECEA: 83 39 04                          - cmp dword ptr [ecx],04
+grandia2.exe+DECED: 7D 10                             - jnl grandia2.exe+DECFF
+grandia2.exe+DECEF: 8B 55 08                          - mov edx,[ebp+08]
+grandia2.exe+DECF2: 8B 02                             - mov eax,[edx]
+grandia2.exe+DECF4: C7 04 85 E8 42 92 00 20 00 00 00  - mov [eax*4+grandia2.exe+2C42E8],00000020
+grandia2.exe+DECFF: 8B 4D FC                          - mov ecx,[ebp-04]
+grandia2.exe+DED02: 8B 51 10                          - mov edx,[ecx+10]
+grandia2.exe+DED05: 2B 55 0C                          - sub edx,[ebp+0C]
+grandia2.exe+DED08: 8B 45 FC                          - mov eax,[ebp-04]
+// ---------- INJECTING HERE ----------
+grandia2.exe+DED0B: 89 50 10                          - mov [eax+10],edx
+// ---------- DONE INJECTING  ----------
+grandia2.exe+DED0E: 8B 4D FC                          - mov ecx,[ebp-04]
+grandia2.exe+DED11: 83 79 10 00                       - cmp dword ptr [ecx+10],00
+grandia2.exe+DED15: 0F 8F 40 07 00 00                 - jg grandia2.exe+DF45B
+grandia2.exe+DED1B: 8B 15 A4 3D 92 00                 - mov edx,[grandia2.exe+2C3DA4]
+grandia2.exe+DED21: 81 E2 00 00 40 00                 - and edx,00400000
+grandia2.exe+DED27: 74 52                             - je grandia2.exe+DED7B
+grandia2.exe+DED29: 8B 45 FC                          - mov eax,[ebp-04]
+grandia2.exe+DED2C: 8B 4D FC                          - mov ecx,[ebp-04]
+grandia2.exe+DED2F: 8B 51 0C                          - mov edx,[ecx+0C]
+grandia2.exe+DED32: 89 50 10                          - mov [eax+10],edx
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>7</ID>
+          <Description>"战斗SP"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : grandia2.exe
+  Version: 
+  Date   : 2026-03-20
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,grandia2.exe,89 8A 44 01 00 00 8B 45) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov ecx,[edx+00000144-4]
+  mov [edx+00000144],ecx
+  jmp return
+
+code:
+  mov [edx+00000144],ecx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 8A 44 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: grandia2.exe+D9926
+
+grandia2.exe+D9903: F3 0F 10 45 F0                 - movss xmm0,[ebp-10]
+grandia2.exe+D9908: F3 0F 2C C8                    - cvttss2si ecx,xmm0
+grandia2.exe+D990C: F7 D9                          - neg ecx
+grandia2.exe+D990E: 89 4D E8                       - mov [ebp-18],ecx
+grandia2.exe+D9911: 8B 55 08                       - mov edx,[ebp+08]
+grandia2.exe+D9914: 8B 82 44 01 00 00              - mov eax,[edx+00000144]
+grandia2.exe+D991A: 89 45 EC                       - mov [ebp-14],eax
+grandia2.exe+D991D: 8B 4D EC                       - mov ecx,[ebp-14]
+grandia2.exe+D9920: 03 4D E8                       - add ecx,[ebp-18]
+grandia2.exe+D9923: 8B 55 08                       - mov edx,[ebp+08]
+// ---------- INJECTING HERE ----------
+grandia2.exe+D9926: 89 8A 44 01 00 00              - mov [edx+00000144],ecx
+// ---------- DONE INJECTING  ----------
+grandia2.exe+D992C: 8B 45 08                       - mov eax,[ebp+08]
+grandia2.exe+D992F: 83 B8 44 01 00 00 00           - cmp dword ptr [eax+00000144],00
+grandia2.exe+D9936: 7D 0F                          - jnl grandia2.exe+D9947
+grandia2.exe+D9938: 8B 4D 08                       - mov ecx,[ebp+08]
+grandia2.exe+D993B: C7 81 44 01 00 00 00 00 00 00  - mov [ecx+00000144],00000000
+grandia2.exe+D9945: EB 26                          - jmp grandia2.exe+D996D
+grandia2.exe+D9947: 8B 55 08                       - mov edx,[ebp+08]
+grandia2.exe+D994A: 8B 45 08                       - mov eax,[ebp+08]
+grandia2.exe+D994D: 8B 8A 44 01 00 00              - mov ecx,[edx+00000144]
+grandia2.exe+D9953: 3B 88 40 01 00 00              - cmp ecx,[eax+00000140]
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>20</ID>
+          <Description>"战斗MP"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : grandia2.exe
+  Version: 
+  Date   : 2026-03-20
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,grandia2.exe,B4 8B 55 08 89 8A 3C 01 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov ecx,[edx+0000013C-4]
+  mov [edx+0000013C],ecx
+  jmp return
+
+code:
+  mov [edx+0000013C],ecx
+  jmp return
+
+INJECT+04:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+04:
+  db 89 8A 3C 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: grandia2.exe+D8C2C
+
+grandia2.exe+D8C09: F3 0F 10 45 BC                 - movss xmm0,[ebp-44]
+grandia2.exe+D8C0E: F3 0F 2C C8                    - cvttss2si ecx,xmm0
+grandia2.exe+D8C12: F7 D9                          - neg ecx
+grandia2.exe+D8C14: 89 4D B4                       - mov [ebp-4C],ecx
+grandia2.exe+D8C17: 8B 55 08                       - mov edx,[ebp+08]
+grandia2.exe+D8C1A: 8B 82 3C 01 00 00              - mov eax,[edx+0000013C]
+grandia2.exe+D8C20: 89 45 B8                       - mov [ebp-48],eax
+grandia2.exe+D8C23: 8B 4D B8                       - mov ecx,[ebp-48]
+grandia2.exe+D8C26: 03 4D B4                       - add ecx,[ebp-4C]
+grandia2.exe+D8C29: 8B 55 08                       - mov edx,[ebp+08]
+// ---------- INJECTING HERE ----------
+grandia2.exe+D8C2C: 89 8A 3C 01 00 00              - mov [edx+0000013C],ecx
+// ---------- DONE INJECTING  ----------
+grandia2.exe+D8C32: 8B 45 08                       - mov eax,[ebp+08]
+grandia2.exe+D8C35: 83 B8 3C 01 00 00 00           - cmp dword ptr [eax+0000013C],00
+grandia2.exe+D8C3C: 7D 0F                          - jnl grandia2.exe+D8C4D
+grandia2.exe+D8C3E: 8B 4D 08                       - mov ecx,[ebp+08]
+grandia2.exe+D8C41: C7 81 3C 01 00 00 00 00 00 00  - mov [ecx+0000013C],00000000
+grandia2.exe+D8C4B: EB 26                          - jmp grandia2.exe+D8C73
+grandia2.exe+D8C4D: 8B 55 08                       - mov edx,[ebp+08]
+grandia2.exe+D8C50: 8B 45 08                       - mov eax,[ebp+08]
+grandia2.exe+D8C53: 8B 8A 3C 01 00 00              - mov ecx,[edx+0000013C]
+grandia2.exe+D8C59: 3B 88 38 01 00 00              - cmp ecx,[eax+00000138]
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>25</ID>
+          <Description>"战斗后EXP +9999999"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : grandia2.exe
+  Version: 
+  Date   : 2026-03-21
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,grandia2.exe,89 4A 14 8B 45 FC 83 78 14 00 7D 0C) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov ecx,#9999999
+  mov [edx+14],ecx
+  mov eax,[ebp-04]
+  jmp return
+
+code:
+  mov [edx+14],ecx
+  mov eax,[ebp-04]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 4A 14 8B 45 FC
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: grandia2.exe+19027
+
+grandia2.exe+18FFF: 83 7D F4 07           - cmp dword ptr [ebp-0C],07
+grandia2.exe+19003: 0F 8D A7 03 00 00     - jnl grandia2.exe+193B0
+grandia2.exe+19009: 8B 4D FC              - mov ecx,[ebp-04]
+grandia2.exe+1900C: 0F BF 51 1E           - movsx edx,word ptr [ecx+1E]
+grandia2.exe+19010: 85 D2                 - test edx,edx
+grandia2.exe+19012: 0F 8E 93 03 00 00     - jng grandia2.exe+193AB
+grandia2.exe+19018: 8B 45 FC              - mov eax,[ebp-04]
+grandia2.exe+1901B: 8B 48 14              - mov ecx,[eax+14]
+grandia2.exe+1901E: 03 0D 40 3E 92 00     - add ecx,[grandia2.exe+2C3E40]
+grandia2.exe+19024: 8B 55 FC              - mov edx,[ebp-04]
+// ---------- INJECTING HERE ----------
+grandia2.exe+19027: 89 4A 14              - mov [edx+14],ecx
+// ---------- DONE INJECTING  ----------
+grandia2.exe+1902A: 8B 45 FC              - mov eax,[ebp-04]
+grandia2.exe+1902D: 83 78 14 00           - cmp dword ptr [eax+14],00
+grandia2.exe+19031: 7D 0C                 - jnl grandia2.exe+1903F
+grandia2.exe+19033: 8B 4D FC              - mov ecx,[ebp-04]
+grandia2.exe+19036: C7 41 14 00 00 00 00  - mov [ecx+14],00000000
+grandia2.exe+1903D: EB 16                 - jmp grandia2.exe+19055
+grandia2.exe+1903F: 8B 55 FC              - mov edx,[ebp-04]
+grandia2.exe+19042: 81 7A 14 7F 96 98 00  - cmp [edx+14],grandia2.exe+32967F
+grandia2.exe+19049: 7E 0A                 - jle grandia2.exe+19055
+grandia2.exe+1904B: 8B 45 FC              - mov eax,[ebp-04]
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>46</ID>
+      <Description>"道具相关"</Description>
+      <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>28</ID>
+          <Description>"波幅果实=30"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : grandia2.exe
+  Version: 
+  Date   : 2026-03-21
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,grandia2.exe,FE C8 88 44 11 24) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov al,#30 //  dec al
+  mov [ecx+edx+24],al
+  jmp return
+
+
+code:
+  dec al
+  mov [ecx+edx+24],al
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db FE C8 88 44 11 24
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: grandia2.exe+1C186C
+
+grandia2.exe+1C1844: 83 E8 01           - sub eax,01
+grandia2.exe+1C1847: 74 2E              - je grandia2.exe+1C1877
+grandia2.exe+1C1849: 83 E8 02           - sub eax,02
+grandia2.exe+1C184C: 0F 85 EB 0B 00 00  - jne grandia2.exe+1C243D
+grandia2.exe+1C1852: 8B 15 E4 48 82 00  - mov edx,[grandia2.exe+2C48E4]
+grandia2.exe+1C1858: BB 00 01 00 00     - mov ebx,00000100
+grandia2.exe+1C185D: 0F BF C9           - movsx ecx,cx
+grandia2.exe+1C1860: 8A 44 11 24        - mov al,[ecx+edx+24]
+grandia2.exe+1C1864: 84 C0              - test al,al
+grandia2.exe+1C1866: 0F 84 D6 0B 00 00  - je grandia2.exe+1C2442
+// ---------- INJECTING HERE ----------
+grandia2.exe+1C186C: FE C8              - dec al
+// ---------- DONE INJECTING  ----------
+grandia2.exe+1C186E: 88 44 11 24        - mov [ecx+edx+24],al
+grandia2.exe+1C1872: E9 CB 0B 00 00     - jmp grandia2.exe+1C2442
+grandia2.exe+1C1877: 8B 8D 6C FF FF FF  - mov ecx,[ebp-00000094]
+grandia2.exe+1C187D: E8 5E A6 00 00     - call grandia2.exe+1CBEE0
+grandia2.exe+1C1882: 8B 3D 00 54 82 00  - mov edi,[grandia2.exe+2C5400]
+grandia2.exe+1C1888: E9 B0 0B 00 00     - jmp grandia2.exe+1C243D
+grandia2.exe+1C188D: A1 E4 48 82 00     - mov eax,[grandia2.exe+2C48E4]
+grandia2.exe+1C1892: BA 20 01 00 00     - mov edx,00000120
+grandia2.exe+1C1897: 0F BF C9           - movsx ecx,cx
+grandia2.exe+1C189A: 80 7C 01 24 00     - cmp byte ptr [ecx+eax+24],00
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>44</ID>
+          <Description>"普通道具使用不减少"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : grandia2.exe
+  Version: 
+  Date   : 2026-03-21
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,grandia2.exe,FE 4C 31 24 B9 80 00 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  //  dec [ecx+esi+24]
+  mov ecx,00000080
+  jmp return
+
+code:
+  dec [ecx+esi+24]
+  mov ecx,00000080
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 4
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db FE 4C 31 24 B9 80 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: grandia2.exe+2199A4
+
+grandia2.exe+21998B: B9 80 00 00 00     - mov ecx,00000080
+grandia2.exe+219990: 66 09 08           - or [eax],cx
+grandia2.exe+219993: 33 C0              - xor eax,eax
+grandia2.exe+219995: 5E                 - pop esi
+grandia2.exe+219996: 5B                 - pop ebx
+grandia2.exe+219997: 8B E5              - mov esp,ebp
+grandia2.exe+219999: 5D                 - pop ebp
+grandia2.exe+21999A: C3                 - ret 
+grandia2.exe+21999B: 8B 0D E4 48 82 00  - mov ecx,[grandia2.exe+2C48E4]
+grandia2.exe+2199A1: 01 58 04           - add [eax+04],ebx
+// ---------- INJECTING HERE ----------
+grandia2.exe+2199A4: FE 4C 31 24        - dec [ecx+esi+24]
+// ---------- DONE INJECTING  ----------
+grandia2.exe+2199A8: B9 80 00 00 00     - mov ecx,00000080
+grandia2.exe+2199AD: 66 09 08           - or [eax],cx
+grandia2.exe+2199B0: 5F                 - pop edi
+grandia2.exe+2199B1: 5E                 - pop esi
+grandia2.exe+2199B2: 33 C0              - xor eax,eax
+grandia2.exe+2199B4: 5B                 - pop ebx
+grandia2.exe+2199B5: 8B E5              - mov esp,ebp
+grandia2.exe+2199B7: 5D                 - pop ebp
+grandia2.exe+2199B8: C3                 - ret 
+grandia2.exe+2199B9: 5F                 - pop edi
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>48</ID>
+          <Description>"重要道具减少=33"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : grandia2.exe
+  Version: 
+  Date   : 2026-03-22
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,grandia2.exe,FE 4C 06 24 8B 45 E8) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov [esi+eax+24],#33
+  mov eax,[ebp-18]
+  jmp return
+
+code:
+  dec [esi+eax+24]
+  mov eax,[ebp-18]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db FE 4C 06 24 8B 45 E8
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: grandia2.exe+1D7D68
+
+grandia2.exe+1D7D40: F2 0F 59 05 00 7D 3F 00  - mulsd xmm0,[grandia2.exe+2A7D00]
+grandia2.exe+1D7D48: 66 0F 5A C0              - cvtpd2ps xmm0,xmm0
+grandia2.exe+1D7D4C: F3 0F 59 05 A0 83 3F 00  - mulss xmm0,[grandia2.exe+2A83A0]
+grandia2.exe+1D7D54: 0F 2F C8                 - comiss xmm1,xmm0
+grandia2.exe+1D7D57: 76 06                    - jna grandia2.exe+1D7D5F
+grandia2.exe+1D7D59: C6 45 FF 01              - mov byte ptr [ebp-01],01
+grandia2.exe+1D7D5D: EB 70                    - jmp grandia2.exe+1D7DCF
+grandia2.exe+1D7D5F: 8B 4D F4                 - mov ecx,[ebp-0C]
+grandia2.exe+1D7D62: 8B 45 F0                 - mov eax,[ebp-10]
+grandia2.exe+1D7D65: 0F BF F1                 - movsx esi,cx
+// ---------- INJECTING HERE ----------
+grandia2.exe+1D7D68: FE 4C 06 24              - dec [esi+eax+24]
+// ---------- DONE INJECTING  ----------
+grandia2.exe+1D7D6C: 8B 45 E8                 - mov eax,[ebp-18]
+grandia2.exe+1D7D6F: 80 78 3E 2F              - cmp byte ptr [eax+3E],2F
+grandia2.exe+1D7D73: 75 48                    - jne grandia2.exe+1D7DBD
+grandia2.exe+1D7D75: BA 01 00 00 00           - mov edx,00000001
+grandia2.exe+1D7D7A: 8D 4A 05                 - lea ecx,[edx+05]
+grandia2.exe+1D7D7D: E8 9E AE E2 FF           - call grandia2.exe+2C20
+grandia2.exe+1D7D82: 83 F8 05                 - cmp eax,05
+grandia2.exe+1D7D85: 75 11                    - jne grandia2.exe+1D7D98
+grandia2.exe+1D7D87: 6A 64                    - push 64
+grandia2.exe+1D7D89: 8B D0                    - mov edx,eax
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>45</ID>
+          <Description>"消除最后一个道具的时候=9"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : grandia2.exe
+  Version: 
+  Date   : 2026-03-21
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,grandia2.exe,C6 44 31 24 00 B9) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov byte ptr [ecx+esi+24],9
+  jmp return
+
+code:
+  mov byte ptr [ecx+esi+24],00
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db C6 44 31 24 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: grandia2.exe+219986
+
+grandia2.exe+219968: 83 7D FC 00        - cmp dword ptr [ebp-04],00
+grandia2.exe+21996C: 75 42              - jne grandia2.exe+2199B0
+grandia2.exe+21996E: 85 C0              - test eax,eax
+grandia2.exe+219970: A1 70 4A 82 00     - mov eax,[grandia2.exe+2C4A70]
+grandia2.exe+219975: 74 24              - je grandia2.exe+21999B
+grandia2.exe+219977: 0F AF CA           - imul ecx,edx
+grandia2.exe+21997A: 5F                 - pop edi
+grandia2.exe+21997B: D1 E9              - shr ecx,1
+grandia2.exe+21997D: 01 48 04           - add [eax+04],ecx
+grandia2.exe+219980: 8B 0D E4 48 82 00  - mov ecx,[grandia2.exe+2C48E4]
+// ---------- INJECTING HERE ----------
+grandia2.exe+219986: C6 44 31 24 00     - mov byte ptr [ecx+esi+24],00
+// ---------- DONE INJECTING  ----------
+grandia2.exe+21998B: B9 80 00 00 00     - mov ecx,00000080
+grandia2.exe+219990: 66 09 08           - or [eax],cx
+grandia2.exe+219993: 33 C0              - xor eax,eax
+grandia2.exe+219995: 5E                 - pop esi
+grandia2.exe+219996: 5B                 - pop ebx
+grandia2.exe+219997: 8B E5              - mov esp,ebp
+grandia2.exe+219999: 5D                 - pop ebp
+grandia2.exe+21999A: C3                 - ret 
+grandia2.exe+21999B: 8B 0D E4 48 82 00  - mov ecx,[grandia2.exe+2C48E4]
+grandia2.exe+2199A1: 01 58 04           - add [eax+04],ebx
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>战斗 HP 代码 :mov [eax+10],edx</Description>
+      <AddressString>grandia2.exe+DED0B</AddressString>
+      <Before>
+        <Byte>55</Byte>
+        <Byte>0C</Byte>
+        <Byte>8B</Byte>
+        <Byte>45</Byte>
+        <Byte>FC</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>50</Byte>
+        <Byte>10</Byte>
+      </Actual>
+      <After>
+        <Byte>8B</Byte>
+        <Byte>4D</Byte>
+        <Byte>FC</Byte>
+        <Byte>83</Byte>
+        <Byte>79</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>SP使用 代码 :mov [edx+00000144],ecx</Description>
+      <AddressString>grandia2.exe+D9926</AddressString>
+      <Before>
+        <Byte>4D</Byte>
+        <Byte>E8</Byte>
+        <Byte>8B</Byte>
+        <Byte>55</Byte>
+        <Byte>08</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>8A</Byte>
+        <Byte>44</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>8B</Byte>
+        <Byte>45</Byte>
+        <Byte>08</Byte>
+        <Byte>83</Byte>
+        <Byte>B8</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>波幅果实逻辑 代码 :mov [ecx+edx+24],al</Description>
+      <AddressString>grandia2.exe+1C186E</AddressString>
+      <Before>
+        <Byte>0B</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>FE</Byte>
+        <Byte>C8</Byte>
+      </Before>
+      <Actual>
+        <Byte>88</Byte>
+        <Byte>44</Byte>
+        <Byte>11</Byte>
+        <Byte>24</Byte>
+      </Actual>
+      <After>
+        <Byte>E9</Byte>
+        <Byte>CB</Byte>
+        <Byte>0B</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>道具减少 代码 :dec [ecx+esi+24]</Description>
+      <AddressString>grandia2.exe+2199A4</AddressString>
+      <Before>
+        <Byte>82</Byte>
+        <Byte>00</Byte>
+        <Byte>01</Byte>
+        <Byte>58</Byte>
+        <Byte>04</Byte>
+      </Before>
+      <Actual>
+        <Byte>FE</Byte>
+        <Byte>4C</Byte>
+        <Byte>31</Byte>
+        <Byte>24</Byte>
+      </Actual>
+      <After>
+        <Byte>B9</Byte>
+        <Byte>80</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>物品清零 代码 :mov byte ptr [ecx+esi+24],00</Description>
+      <AddressString>grandia2.exe+219986</AddressString>
+      <Before>
+        <Byte>0D</Byte>
+        <Byte>E4</Byte>
+        <Byte>48</Byte>
+        <Byte>82</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>C6</Byte>
+        <Byte>44</Byte>
+        <Byte>31</Byte>
+        <Byte>24</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>B9</Byte>
+        <Byte>80</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+  <Structures StructVersion="2">
+    <Structure Name="未命名的结构" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="0" Vartype="Pointer" Bytesize="4" OffsetHex="00000000" DisplayMethod="unsigned integer"/>
+        <Element Offset="4" Vartype="4 Bytes" Bytesize="4" RLECount="48" OffsetHex="00000004" DisplayMethod="unsigned integer"/>
+        <Element Offset="196" Vartype="Double" Bytesize="8" OffsetHex="000000C4" DisplayMethod="unsigned integer"/>
+        <Element Offset="204" Vartype="4 Bytes" Bytesize="4" RLECount="23" OffsetHex="000000CC" DisplayMethod="unsigned integer"/>
+        <Element Offset="296" Vartype="Float" Bytesize="4" OffsetHex="00000128" DisplayMethod="unsigned integer"/>
+        <Element Offset="300" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000012C" DisplayMethod="hexadecimal"/>
+        <Element Offset="304" Vartype="4 Bytes" Bytesize="4" RLECount="894" OffsetHex="00000130" DisplayMethod="unsigned integer"/>
+        <Element Offset="3880" Vartype="String" Bytesize="16" OffsetHex="00000F28" DisplayMethod="unsigned integer"/>
+        <Element Offset="3896" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000F38" DisplayMethod="unsigned integer"/>
+        <Element Offset="3904" Vartype="Pointer" Bytesize="4" OffsetHex="00000F40" DisplayMethod="unsigned integer"/>
+        <Element Offset="3908" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000F44" DisplayMethod="unsigned integer"/>
+        <Element Offset="3924" Vartype="Double" Bytesize="8" OffsetHex="00000F54" DisplayMethod="unsigned integer"/>
+        <Element Offset="3932" Vartype="Float" Bytesize="4" RLECount="3" OffsetHex="00000F5C" DisplayMethod="unsigned integer"/>
+        <Element Offset="3944" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000F68" DisplayMethod="unsigned integer"/>
+        <Element Offset="3960" Vartype="Pointer" Bytesize="4" RLECount="4" OffsetHex="00000F78" DisplayMethod="unsigned integer"/>
+        <Element Offset="3976" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000F88" DisplayMethod="hexadecimal"/>
+        <Element Offset="3980" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000F8C" DisplayMethod="unsigned integer"/>
+        <Element Offset="4000" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="00000FA0" DisplayMethod="unsigned integer"/>
+        <Element Offset="4004" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000FA4" DisplayMethod="unsigned integer"/>
+        <Element Offset="4024" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000FB8" DisplayMethod="hexadecimal"/>
+        <Element Offset="4028" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000FBC" DisplayMethod="unsigned integer"/>
+        <Element Offset="4032" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="00000FC0" DisplayMethod="unsigned integer"/>
+        <Element Offset="4036" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000FC4" DisplayMethod="unsigned integer"/>
+        <Element Offset="4048" Vartype="Pointer" Bytesize="4" OffsetHex="00000FD0" DisplayMethod="unsigned integer"/>
+        <Element Offset="4052" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000FD4" DisplayMethod="unsigned integer"/>
+        <Element Offset="4056" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000FD8" DisplayMethod="hexadecimal"/>
+        <Element Offset="4060" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000FDC" DisplayMethod="unsigned integer"/>
+        <Element Offset="4080" Vartype="Pointer" Bytesize="4" OffsetHex="00000FF0" DisplayMethod="unsigned integer"/>
+        <Element Offset="4084" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000FF4" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+  </Structures>
+</CheatTable>
