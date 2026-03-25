@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"HP"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : game.exe
+  Version: 
+  Date   : 2026-03-24
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,game.exe,F3 44 0F 11 4C 99 34) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  movss xmm9,[rcx+rbx*4+34]
+  movss [rcx+rbx*4+34],xmm9
+  jmp return
+
+code:
+  movss [rcx+rbx*4+34],xmm9
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 44 0F 11 4C 99 34
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: game.exe+5BA3CA
+
+game.exe+5BA3A4: E8 E7 D5 B2 FF              - call game.exe+E7990
+game.exe+5BA3A9: 90                          - nop 
+game.exe+5BA3AA: 81 FB FF 00 00 00           - cmp ebx,000000FF
+game.exe+5BA3B0: 74 2A                       - je game.exe+5BA3DC
+game.exe+5BA3B2: 48 8B 05 1F 25 9B 00        - mov rax,[game.exe+F6C8D8]
+game.exe+5BA3B9: 48 8B 48 10                 - mov rcx,[rax+10]
+game.exe+5BA3BD: 48 8B 49 30                 - mov rcx,[rcx+30]
+game.exe+5BA3C1: 48 85 C9                    - test rcx,rcx
+game.exe+5BA3C4: 74 04                       - je game.exe+5BA3CA
+game.exe+5BA3C6: F0 FF 41 20                 - lock inc [rcx+20]
+// ---------- INJECTING HERE ----------
+game.exe+5BA3CA: F3 44 0F 11 4C 99 34        - movss [rcx+rbx*4+34],xmm9
+// ---------- DONE INJECTING  ----------
+game.exe+5BA3D1: 48 85 C9                    - test rcx,rcx
+game.exe+5BA3D4: 74 06                       - je game.exe+5BA3DC
+game.exe+5BA3D6: E8 B5 D5 B2 FF              - call game.exe+E7990
+game.exe+5BA3DB: 90                          - nop 
+game.exe+5BA3DC: 48 8B 87 28 06 00 00        - mov rax,[rdi+00000628]
+game.exe+5BA3E3: F3 44 0F 11 88 D0 00 00 00  - movss [rax+000000D0],xmm9
+game.exe+5BA3EC: 44 8B 87 84 08 00 00        - mov r8d,[rdi+00000884]
+game.exe+5BA3F3: 41 FF C0                    - inc r8d
+game.exe+5BA3F6: 48 8D 15 63 16 61 00        - lea rdx,[game.exe+BCBA60]
+game.exe+5BA3FD: 41 BE A5 23 E7 CD           - mov r14d,CDE723A5
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>11</ID>
+      <Description>"SP 武器"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : game.exe
+  Version: 
+  Date   : 2026-03-24
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,game.exe,F3 0F 11 41 48 E8) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  movss xmm0,[rcx+48+4]
+  movss [rcx+48],xmm0
+  jmp return
+
+code:
+  movss [rcx+48],xmm0
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 41 48
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: game.exe+59FFA7
+
+game.exe+59FF83: 48 8B 05 4E C9 9C 00  - mov rax,[game.exe+F6C8D8]
+game.exe+59FF8A: 48 8B 48 10           - mov rcx,[rax+10]
+game.exe+59FF8E: 48 8B 49 30           - mov rcx,[rcx+30]
+game.exe+59FF92: 48 85 C9              - test rcx,rcx
+game.exe+59FF95: 74 04                 - je game.exe+59FF9B
+game.exe+59FF97: F0 FF 41 20           - lock inc [rcx+20]
+game.exe+59FF9B: 2B DF                 - sub ebx,edi
+game.exe+59FF9D: 8B C3                 - mov eax,ebx
+game.exe+59FF9F: 0F 57 C0              - xorps xmm0,xmm0
+game.exe+59FFA2: F3 48 0F 2A C0        - cvtsi2ss xmm0,rax
+// ---------- INJECTING HERE ----------
+game.exe+59FFA7: F3 0F 11 41 48        - movss [rcx+48],xmm0
+// ---------- DONE INJECTING  ----------
+game.exe+59FFAC: E8 DF 79 B4 FF        - call game.exe+E7990
+game.exe+59FFB1: 90                    - nop 
+game.exe+59FFB2: B0 01                 - mov al,01
+game.exe+59FFB4: 48 8B 5C 24 30        - mov rbx,[rsp+30]
+game.exe+59FFB9: 48 83 C4 20           - add rsp,20
+game.exe+59FFBD: 5F                    - pop rdi
+game.exe+59FFBE: C3                    - ret 
+game.exe+59FFBF: CC                    - int 3 
+game.exe+59FFC0: 48 89 74 24 18        - mov [rsp+18],rsi
+game.exe+59FFC5: 57                    - push rdi
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>15</ID>
+      <Description>"必杀不减"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : game.exe
+  Version: 
+  Date   : 2026-03-24
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,game.exe,44 89 7B 5C E8 8B 1A B3 FF) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+//  mov [rbx+5C],r15d
+  call game.exe+E4E60
+  jmp return
+
+code:
+  mov [rbx+5C],r15d
+  call game.exe+E4E60
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 4
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 44 89 7B 5C E8 8B 1A B3 FF
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: game.exe+5B33CC
+
+game.exe+5B33AC: 48 85 DB                       - test rbx,rbx
+game.exe+5B33AF: 74 04                          - je game.exe+5B33B5
+game.exe+5B33B1: F0 FF 43 20                    - lock inc [rbx+20]
+game.exe+5B33B5: BF 03 00 00 00                 - mov edi,00000003
+game.exe+5B33BA: 89 7C 24 50                    - mov [rsp+50],edi
+game.exe+5B33BE: 48 85 DB                       - test rbx,rbx
+game.exe+5B33C1: 74 09                          - je game.exe+5B33CC
+game.exe+5B33C3: 48 8B CB                       - mov rcx,rbx
+game.exe+5B33C6: E8 C5 45 B3 FF                 - call game.exe+E7990
+game.exe+5B33CB: 90                             - nop 
+// ---------- INJECTING HERE ----------
+game.exe+5B33CC: 44 89 7B 5C                    - mov [rbx+5C],r15d
+// ---------- DONE INJECTING  ----------
+game.exe+5B33D0: E8 8B 1A B3 FF                 - call game.exe+E4E60
+game.exe+5B33D5: 81 8E 80 09 00 00 00 00 04 00  - or [rsi+00000980],00040000
+game.exe+5B33DF: 44 89 7C 24 54                 - mov [rsp+54],r15d
+game.exe+5B33E4: 48 8D 54 24 54                 - lea rdx,[rsp+54]
+game.exe+5B33E9: 48 8D 8E 70 04 00 00           - lea rcx,[rsi+00000470]
+game.exe+5B33F0: E8 AB D2 1D 00                 - call game.exe+7906A0
+game.exe+5B33F5: C7 44 24 58 01 00 00 00        - mov [rsp+58],00000001
+game.exe+5B33FD: 48 8D 54 24 58                 - lea rdx,[rsp+58]
+game.exe+5B3402: 48 8D 8E 70 04 00 00           - lea rcx,[rsi+00000470]
+game.exe+5B3409: E8 92 D2 1D 00                 - call game.exe+7906A0
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>HP 代码 :movss [rcx+rbx*4+34],xmm9</Description>
+      <AddressString>game.exe+5BA3CA</AddressString>
+      <Before>
+        <Byte>04</Byte>
+        <Byte>F0</Byte>
+        <Byte>FF</Byte>
+        <Byte>41</Byte>
+        <Byte>20</Byte>
+      </Before>
+      <Actual>
+        <Byte>F3</Byte>
+        <Byte>44</Byte>
+        <Byte>0F</Byte>
+        <Byte>11</Byte>
+        <Byte>4C</Byte>
+        <Byte>99</Byte>
+        <Byte>34</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>85</Byte>
+        <Byte>C9</Byte>
+        <Byte>74</Byte>
+        <Byte>06</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>SP武器 代码 :movss [rcx+48],xmm0</Description>
+      <AddressString>game.exe+59FFA7</AddressString>
+      <Before>
+        <Byte>F3</Byte>
+        <Byte>48</Byte>
+        <Byte>0F</Byte>
+        <Byte>2A</Byte>
+        <Byte>C0</Byte>
+      </Before>
+      <Actual>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>11</Byte>
+        <Byte>41</Byte>
+        <Byte>48</Byte>
+      </Actual>
+      <After>
+        <Byte>E8</Byte>
+        <Byte>DF</Byte>
+        <Byte>79</Byte>
+        <Byte>B4</Byte>
+        <Byte>FF</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>必杀技清零 代码 :movss [rcx+5C],xmm0</Description>
+      <AddressString>game.exe+4AC300</AddressString>
+      <Before>
+        <Byte>04</Byte>
+        <Byte>F0</Byte>
+        <Byte>FF</Byte>
+        <Byte>41</Byte>
+        <Byte>20</Byte>
+      </Before>
+      <Actual>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>11</Byte>
+        <Byte>41</Byte>
+        <Byte>5C</Byte>
+      </Actual>
+      <After>
+        <Byte>E8</Byte>
+        <Byte>86</Byte>
+        <Byte>B6</Byte>
+        <Byte>C3</Byte>
+        <Byte>FF</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>
