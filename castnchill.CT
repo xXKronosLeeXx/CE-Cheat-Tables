@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="46">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"Gold"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : castnchill.exe
+  Version: 
+  Date   : 2026-03-26
+  Author : lixiang
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,89 47 54 48 8B 53 20 C7) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rdi+54],#329888
+  mov rdx,[rbx+20]
+  jmp return
+
+code:
+  mov [rdi+54],eax
+  mov rdx,[rbx+20]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 47 54 48 8B 53 20
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+696CC2
+
+GameAssembly.dll+696C92: E8 D9 08 D3 FF           - call GameAssembly.il2cpp_get_exception_argument_null+3F0
+GameAssembly.dll+696C97: 48 8D 0D EA 81 C8 02     - lea rcx,[GameAssembly.dll+331EE88]
+GameAssembly.dll+696C9E: E8 CD 08 D3 FF           - call GameAssembly.il2cpp_get_exception_argument_null+3F0
+GameAssembly.dll+696CA3: 48 8D 0D 9E 5A CE 02     - lea rcx,[GameAssembly.dll+337C748]
+GameAssembly.dll+696CAA: E8 C1 08 D3 FF           - call GameAssembly.il2cpp_get_exception_argument_null+3F0
+GameAssembly.dll+696CAF: C6 05 1C 9E EC 02 01     - mov byte ptr [GameAssembly.dll+3560AD2],01
+GameAssembly.dll+696CB6: 8B 47 54                 - mov eax,[rdi+54]
+GameAssembly.dll+696CB9: 45 33 C0                 - xor r8d,r8d
+GameAssembly.dll+696CBC: 2B 43 18                 - sub eax,[rbx+18]
+GameAssembly.dll+696CBF: 48 8B CF                 - mov rcx,rdi
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+696CC2: 89 47 54                 - mov [rdi+54],eax
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+696CC5: 48 8B 53 20              - mov rdx,[rbx+20]
+GameAssembly.dll+696CC9: C7 44 24 30 00 00 00 00  - mov [rsp+30],00000000
+GameAssembly.dll+696CD1: E8 CA 1F 00 00           - call Game.Journal.GetItemUpgrades
+GameAssembly.dll+696CD6: 48 8B F8                 - mov rdi,rax
+GameAssembly.dll+696CD9: 48 85 C0                 - test rax,rax
+GameAssembly.dll+696CDC: 0F 84 CE 04 00 00        - je GameAssembly.dll+6971B0
+GameAssembly.dll+696CE2: 48 8B 48 10              - mov rcx,[rax+10]
+GameAssembly.dll+696CE6: 48 85 C9                 - test rcx,rcx
+GameAssembly.dll+696CE9: 0F 84 C1 04 00 00        - je GameAssembly.dll+6971B0
+GameAssembly.dll+696CEF: 4C 8B 0D 62 CE C9 02     - mov r9,[GameAssembly.dll+3333B58]
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>
