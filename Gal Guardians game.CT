@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<CheatTable CheatEngineTableVersion="45">
+<CheatTable CheatEngineTableVersion="46">
+  <Forms>
+    <CETrainer Class="TTrainerForm" Encoding="Ascii85">=Ulc8,eQ={(!i;)N?}ZA9RpcA2l+E$nzDqdCLuDvmY@r^#UgaN6HX[}HM$vHGGr;yF?Hg[WDAfzTfG(5+91wn(YpVYNu.De39?)M?x6PG-+?kGkH_zQ4x4wc#WBYj1;R)QXnFqZZL/SUgx*mkEy#{hLjM:)F(pVu8=@@nD+F24jq7eAvJ;za6]T;naT}$CxN$FzgCoPkBaty$uku}/NCs4t+(OvgPi6$vBWw)YT_A@S8JHm)XL%aqhY@bs4nRE[0:yn2m[TYGC-)ekL@2[bR@+3%+Nua2Aze$Cm1^?_+J:ovGAzUti0wa(yKd,n]5hI6*(!,Bmt?D)sAH1vvm0.%q*laAhSfXiuqkjzl^J]%CF_D.+HSaay?02^wGFf-WqFgaV8g}l2u2rARLRq3@0eKe8Sm!uezl]Mn{!@oWT(Q8NFB.:7@cAL#Owo)rwx^W$a2*vV{wba326u#!;O#PFh_*LXd8{Fu),p+6WCMcmefFU9gwOWMnWF,GXY!5f54[Hbo1ik0$E**p:m}sA8K}Fex%ussx=/eP4kemX.Y$PZZ$a]!Z=(tAYnAs[HU{JF3pBG#}}U4r21QQJr8ZNWHRnTB21?PLaHj+F5Y}SjU-KlNGBns?L4-eOd3q*9-8h%usqNz)XD@?/JJ4u(k8UljE3#?+hDBW%cdbiE,fH4mZGXX#K%x._Kc9^%N@7IQ9x/*j#Ua24?M,7h?;wQAv;0_Ga_K{,Fr_d/ATsVmnMBC8/awx]p+2}EkOL@%9ea#Sa^4.mAjQ(YAF-cf}f?gR@^yGidWn;SKTYQ[bb0Ll/_)(2[k/H/ML]:F5NQy3hlHQKbsYg]JGUnruO@Jec*onc-v6l8#@@TkU8pjkf%2ApipPxfl]5Hv]6AM0!F/zK4KJ;ujJ,OEV?Efd$ppe9oz%rw1W6(_53,n%x8r=zl:AEBJ5db[bY-vp1:6}:Sx(2++?=iuiFmec5t,iDg9:q4@N,eI*5Y4[,myZ9PU}]Du(hqqQ:DfCMpPazwob6p#B/vqvbhuIiFKM^XeI@Z%(nz(-kvmUNf.i_MjApSPQ=;5?}(5Vxj+4</CETrainer>
+  </Forms>
   <CheatEntries>
     <CheatEntry>
       <ID>6</ID>
       <Description>"HP"</Description>
-      <LastState Activated="1"/>
+      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : game.exe
   Version: 
@@ -77,7 +80,7 @@ game.exe+5BA3FD: 41 BE A5 23 E7 CD           - mov r14d,CDE723A5
     <CheatEntry>
       <ID>11</ID>
       <Description>"SP 武器"</Description>
-      <LastState Activated="1"/>
+      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : game.exe
   Version: 
@@ -149,7 +152,7 @@ game.exe+59FFC5: 57                    - push rdi
     <CheatEntry>
       <ID>15</ID>
       <Description>"必杀不减"</Description>
-      <LastState Activated="1"/>
+      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : game.exe
   Version: 
@@ -219,6 +222,31 @@ game.exe+5B3402: 48 8D 8E 70 04 00 00           - lea rcx,[rsi+00000470]
 game.exe+5B3409: E8 92 D2 1D 00                 - call game.exe+7906A0
 }
 </AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>16</ID>
+      <Description>"攻略"</Description>
+      <Options moManualExpandCollapse="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>17</ID>
+          <Description>"攻略地址 https://www.bilibili.com/read/cv41137537/?opus_fallback=1"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+
+https://www.bilibili.com/read/cv41137537/?opus_fallback=1
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
     </CheatEntry>
   </CheatEntries>
   <CheatCodes>
@@ -301,4 +329,7 @@ game.exe+5B3409: E8 92 D2 1D 00                 - call game.exe+7906A0
     </CodeEntry>
   </CheatCodes>
   <UserdefinedSymbols/>
+  <LuaScript>https://www.bilibili.com/read/cv41137537/?opus_fallback=1
+
+</LuaScript>
 </CheatTable>
