@@ -1,0 +1,11 @@
+HP
+
+GameAssembly.dll+C4B745 - 29 79 10              - sub [rcx+10],edi
+
+                  self          summon              enemy
+//+28                 na            0                    0                 
+//+2C                 na            na                   0                  
++40                 0             复数                  正数  （float）
+//+48                 3             0                    1
+//+5c                 na            na                   0
+//+bc                 na            na                   0
