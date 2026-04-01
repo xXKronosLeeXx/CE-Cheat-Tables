@@ -1,0 +1,3 @@
+怒气
+GameAssembly.dll+45F663 - F3 0F58 47 24         - addss xmm0,[rdi+24]
+GameAssembly.dll+45F668 - F3 0F11 47 24         - movss [rdi+24],xmm0
