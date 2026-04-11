@@ -10,7 +10,7 @@
     <CheatEntry>
       <ID>4</ID>
       <Description>"HP"</Description>
-      <LastState Activated="1"/>
+      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : The TakeOver.exe
   Version: 
@@ -29,18 +29,14 @@ label(code)
 label(return)
 
 newmem:
-  cmp [ebx+8],#844932368
-  je code
-  cmp [ebx+8],#672985280
-  je code
-  cmp [ebx+8],#846629744
-    je code
+  cmp [ebx+18],#100
+  jne code
   fstp dword ptr [ebx+18]
   test ebx,ebx
   jmp return
 
 code:
-//  fstp dword ptr [ebx+18]
+  fstp dword ptr [ebx+18]
   test ebx,ebx
   jmp return
 
@@ -86,6 +82,88 @@ HutongGames.PlayMaker.Actions.SubtractFsmFloat:DoSubtractFsmFloat+157: 8B 47 34 
 }
 </AssemblerScript>
     </CheatEntry>
+    <CheatEntry>
+      <ID>10</ID>
+      <Description>"无描述"</Description>
+      <LastState Value="100" RealAddress="41151838"/>
+      <VariableType>Float</VariableType>
+      <Address>41151838</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>12</ID>
+      <Description>"自动汇编脚本"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : The TakeOver.exe
+  Version: 
+  Date   : 2026-04-11
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,E9 D9 5D F0 39 1B D9 45 F0 D9 5B 18 85 DB) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [ebx+08],41144750
+  jne code
+  //  fstp dword ptr [ebx+18]
+  test ebx,ebx
+  jmp return
+
+code:
+  fstp dword ptr [ebx+18]
+  test ebx,ebx
+  jmp return
+
+INJECT+09:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+09:
+  db D9 5B 18 85 DB
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: HutongGames.PlayMaker.Actions.SubtractFsmFloat:DoSubtractFsmFloat+133
+
+HutongGames.PlayMaker.Actions.SubtractFsmFloat:DoSubtractFsmFloat+117: 8B 47 34           - mov eax,[edi+34]
+HutongGames.PlayMaker.Actions.SubtractFsmFloat:DoSubtractFsmFloat+11a: 89 04 24           - mov [esp],eax
+HutongGames.PlayMaker.Actions.SubtractFsmFloat:DoSubtractFsmFloat+11d: 39 00              - cmp [eax],eax
+HutongGames.PlayMaker.Actions.SubtractFsmFloat:DoSubtractFsmFloat+11f: E8 94 20 F7 07     - call HutongGames.PlayMaker.FsmFloat:get_Value
+HutongGames.PlayMaker.Actions.SubtractFsmFloat:DoSubtractFsmFloat+124: DD 45 E0           - fld qword ptr [ebp-20]
+HutongGames.PlayMaker.Actions.SubtractFsmFloat:DoSubtractFsmFloat+127: D9 C9              - fxch st(1)
+HutongGames.PlayMaker.Actions.SubtractFsmFloat:DoSubtractFsmFloat+129: DE E9              - fsubp st(1),st(0)
+HutongGames.PlayMaker.Actions.SubtractFsmFloat:DoSubtractFsmFloat+12b: D9 5D F0           - fstp dword ptr [ebp-10]
+HutongGames.PlayMaker.Actions.SubtractFsmFloat:DoSubtractFsmFloat+12e: 39 1B              - cmp [ebx],ebx
+HutongGames.PlayMaker.Actions.SubtractFsmFloat:DoSubtractFsmFloat+130: D9 45 F0           - fld dword ptr [ebp-10]
+// ---------- INJECTING HERE ----------
+HutongGames.PlayMaker.Actions.SubtractFsmFloat:DoSubtractFsmFloat+133: D9 5B 18           - fstp dword ptr [ebx+18]
+// ---------- DONE INJECTING  ----------
+HutongGames.PlayMaker.Actions.SubtractFsmFloat:DoSubtractFsmFloat+136: 85 DB              - test ebx,ebx
+HutongGames.PlayMaker.Actions.SubtractFsmFloat:DoSubtractFsmFloat+138: 0F 84 47 00 00 00  - je HutongGames.PlayMaker.Actions.SubtractFsmFloat:DoSubtractFsmFloat+185
+HutongGames.PlayMaker.Actions.SubtractFsmFloat:DoSubtractFsmFloat+13e: 0F B6 47 41        - movzx eax,byte ptr [edi+41]
+HutongGames.PlayMaker.Actions.SubtractFsmFloat:DoSubtractFsmFloat+142: 85 C0              - test eax,eax
+HutongGames.PlayMaker.Actions.SubtractFsmFloat:DoSubtractFsmFloat+144: 0F 84 3B 00 00 00  - je HutongGames.PlayMaker.Actions.SubtractFsmFloat:DoSubtractFsmFloat+185
+HutongGames.PlayMaker.Actions.SubtractFsmFloat:DoSubtractFsmFloat+14a: 89 1C 24           - mov [esp],ebx
+HutongGames.PlayMaker.Actions.SubtractFsmFloat:DoSubtractFsmFloat+14d: 39 1B              - cmp [ebx],ebx
+HutongGames.PlayMaker.Actions.SubtractFsmFloat:DoSubtractFsmFloat+14f: E8 0C 54 F0 07     - call 140EEE08
+HutongGames.PlayMaker.Actions.SubtractFsmFloat:DoSubtractFsmFloat+154: DD 5D E0           - fstp qword ptr [ebp-20]
+HutongGames.PlayMaker.Actions.SubtractFsmFloat:DoSubtractFsmFloat+157: 8B 47 34           - mov eax,[edi+34]
+}
+</AssemblerScript>
+    </CheatEntry>
   </CheatEntries>
   <CheatCodes>
     <CodeEntry>
@@ -123,6 +201,34 @@ HutongGames.PlayMaker.Actions.SubtractFsmFloat:DoSubtractFsmFloat+157: 8B 47 34 
     <Structure Name="FsmFloat" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
       <Elements>
         <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" Description="name" DisplayMethod="unsigned integer"/>
+        <Element Offset="12" Vartype="String" Bytesize="1" OffsetHex="0000000C" Description="tooltip" DisplayMethod="unsigned integer"/>
+        <Element Offset="16" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000010" Description="obj" DisplayMethod="unsigned integer"/>
+        <Element Offset="20" Vartype="Byte" Bytesize="1" OffsetHex="00000014" Description="useVariable" DisplayMethod="unsigned integer"/>
+        <Element Offset="21" Vartype="Byte" Bytesize="1" OffsetHex="00000015" Description="showInInspector" DisplayMethod="unsigned integer"/>
+        <Element Offset="22" Vartype="Byte" Bytesize="1" OffsetHex="00000016" Description="networkSync" DisplayMethod="unsigned integer"/>
+        <Element Offset="24" Vartype="Float" Bytesize="4" OffsetHex="00000018" Description="value" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="FsmFloat" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" Description="name" DisplayMethod="unsigned integer"/>
+        <Element Offset="12" Vartype="String" Bytesize="1" OffsetHex="0000000C" Description="tooltip" DisplayMethod="unsigned integer"/>
+        <Element Offset="16" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000010" Description="obj" DisplayMethod="unsigned integer"/>
+        <Element Offset="20" Vartype="Byte" Bytesize="1" OffsetHex="00000014" Description="useVariable" DisplayMethod="unsigned integer"/>
+        <Element Offset="21" Vartype="Byte" Bytesize="1" OffsetHex="00000015" Description="showInInspector" DisplayMethod="unsigned integer"/>
+        <Element Offset="22" Vartype="Byte" Bytesize="1" OffsetHex="00000016" Description="networkSync" DisplayMethod="unsigned integer"/>
+        <Element Offset="24" Vartype="Float" Bytesize="4" OffsetHex="00000018" Description="value" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="String" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" Description="Length" DisplayMethod="unsigned integer"/>
+        <Element Offset="12" Vartype="Unicode String" Bytesize="128" OffsetHex="0000000C" Description="Value" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="FsmFloat" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" Description="name" DisplayMethod="hexadecimal"/>
         <Element Offset="12" Vartype="String" Bytesize="1" OffsetHex="0000000C" Description="tooltip" DisplayMethod="unsigned integer"/>
         <Element Offset="16" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000010" Description="obj" DisplayMethod="unsigned integer"/>
         <Element Offset="20" Vartype="Byte" Bytesize="1" OffsetHex="00000014" Description="useVariable" DisplayMethod="unsigned integer"/>

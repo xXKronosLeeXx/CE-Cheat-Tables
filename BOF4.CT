@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"Gold"</Description>
+      <LastState Value="749" RealAddress="00B55C34"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>BOF4.exe+755C34</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

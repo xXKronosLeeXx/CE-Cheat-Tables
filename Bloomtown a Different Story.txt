@@ -1,0 +1,7 @@
+HP
+BattleParticipantController:set_CurHp+17 - 89 87 A0000000        - mov [rdi+000000A0],eax
+
+maxHp 90
+maxSp 9C
+m_curHp A0
+curSp   A4
