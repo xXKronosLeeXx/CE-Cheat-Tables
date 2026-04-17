@@ -1,0 +1,31 @@
+LegendOfKeepers  
+提前激活mono V1.1.0.5
+
+blood- 代码 :sub [eax+0000008C],edi
+GameAssembly.dll+EC8406 - 29 B8 8C000000        - sub [eax+0000008C],edi
+
+blood+ 代码 :add [eax+0000008C],edi
+GameAssembly.dll+EC8282 - 01 B8 8C000000        - add [eax+0000008C],edi
+
+gold- 代码 :sub [eax+00000088],edi
+GameAssembly.dll+EC8105 - 29 B8 88000000        - sub [eax+00000088],edi
+
+gold+ 代码 :add [eax+00000088],ebx
+GameAssembly.dll+EC7F66 - 01 98 88000000        - add [eax+00000088],ebx
+
+tear+ 代码 :add [eax+00000090],edi
+GameAssembly.dll+EC8582 - 01 B8 90000000        - add [eax+00000090],edi
+
+tear- 代码 :sub [eax+00000090],edi
+GameAssembly.dll+EC8706 - 29 B8 90000000        - sub [eax+00000090],edi
+
+疲劳执行 代码 :mov [edx+2C],eax  （两条都是）
+GameAssembly.dll+FAD7BD - 89 42 2C              - mov [edx+2C],eax
+GameAssembly.dll+FAD80D - 89 41 2C              - mov [ecx+2C],eax
+
+疲劳sub 代码 :sub eax,[ebp+0C]
+GameAssembly.dll+FAD80A - 2B 45 0C              - sub eax,[ebp+0C]
+
+HPsub 代码 :subss xmm0,[ebp+0C]   （下面是赋值执行代码）
+GameAssembly.dll+E670A3 - F3 0F5C 45 0C         - subss xmm0,[ebp+0C]
+GameAssembly.dll+E670A8 - F3 0F11 40 0C         - movss [eax+0C],xmm0
