@@ -462,7 +462,7 @@ Game-Win64-Shipping.exe+54FBA66: 4F 05 21 BA 4F 05  - add rax,054FBA21
       <CheatEntries>
         <CheatEntry>
           <ID>39</ID>
-          <Description>"好感全解 Lv100（小心bug）"</Description>
+          <Description>"好感全解 Lv100（提前备份，小心坏档）"</Description>
           <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : Game-Win64-Shipping.exe
