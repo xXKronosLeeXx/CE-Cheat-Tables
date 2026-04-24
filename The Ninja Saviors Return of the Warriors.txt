@@ -1,0 +1,20 @@
+HPsub
+GameAssembly.dll+23E9C9 - F3 0F5C C8            - subss xmm1,xmm0
+
+HP操作
+GameAssembly.dll+23E9CD - F3 0F11 88 80010000   - movss [rax+00000180],xmm1
+
+电池操作+（按照时间）
+GameAssembly.dll+237677 - F3 0F11 83 D8010000   - movss [rbx+000001D8],xmm0
+
+电池操作-（释放后计数）
+GameAssembly.dll+237551 - F3 0F11 B3 D8010000   - movss [rbx+000001D8],xmm6
+
+电池操作-（受击后减少）
+GameAssembly.dll+2374A8 - F3 0F11 83 D8010000   - movss [rbx+000001D8],xmm0
+
+
+电池释放操作模块修改
+GameAssembly.dll+239AB8 - 66 0F6E CE            - movd xmm1,esi  //这里开始赋值影响减法所以从这里直接跳转jmp到下面
+GameAssembly.dll+239ADF - E8 2CBA0600           - call ScrambleFloat.op_Implicit  //这里就跳过了前面扣除能量_就可以直接释放必杀_并不减少
+
