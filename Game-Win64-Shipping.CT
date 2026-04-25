@@ -3,7 +3,7 @@
   <CheatEntries>
     <CheatEntry>
       <ID>6</ID>
-      <Description>"V1.1.3"</Description>
+      <Description>"V1.1.4"</Description>
       <LastState Value="" RealAddress="00000000"/>
       <GroupHeader>1</GroupHeader>
     </CheatEntry>
@@ -154,13 +154,13 @@ Game-Win64-Shipping.exe+5337DAE: 66 89 8D 9A 00 00 00  - mov [rbp+0000009A],cx
 </AssemblerScript>
     </CheatEntry>
     <CheatEntry>
-      <ID>24</ID>
+      <ID>56</ID>
       <Description>"不减钱"</Description>
       <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : Game-Win64-Shipping.exe
   Version: 
-  Date   : 2026-04-12
+  Date   : 2026-04-25
   Author : krono
 
   This script does blah blah blah
@@ -175,13 +175,15 @@ label(code)
 label(return)
 
 newmem:
-  jna Game-Win64-Shipping.exe+53606AF //跳到减法之后的一行
+  jna Game-Win64-Shipping.exe+53607AF
   xor al,al
   ret
   jmp return
 
+
+
 code:
-  jna Game-Win64-Shipping.exe+53606AD
+  jna Game-Win64-Shipping.exe+53607AD
   xor al,al
   ret 
   jmp return
@@ -200,31 +202,31 @@ unregistersymbol(INJECT)
 dealloc(newmem)
 
 {
-// ORIGINAL CODE - INJECTION POINT: Game-Win64-Shipping.exe+53606A8
+// ORIGINAL CODE - INJECTION POINT: Game-Win64-Shipping.exe+53607A8
 
-Game-Win64-Shipping.exe+5360682: 48 8B 03              - mov rax,[rbx]
-Game-Win64-Shipping.exe+5360685: 48 8B CB              - mov rcx,rbx
-Game-Win64-Shipping.exe+5360688: FF 90 50 07 00 00     - call qword ptr [rax+00000750]
-Game-Win64-Shipping.exe+536068E: 48 8B 03              - mov rax,[rbx]
-Game-Win64-Shipping.exe+5360691: 48 8B CB              - mov rcx,rbx
-Game-Win64-Shipping.exe+5360694: 48 83 C4 20           - add rsp,20
-Game-Win64-Shipping.exe+5360698: 5B                    - pop rbx
-Game-Win64-Shipping.exe+5360699: 48 FF A0 58 07 00 00  - jmp qword ptr [rax+00000758]
-Game-Win64-Shipping.exe+53606A0: 8B 81 B8 00 00 00     - mov eax,[rcx+000000B8]
-Game-Win64-Shipping.exe+53606A6: 3B D0                 - cmp edx,eax
+Game-Win64-Shipping.exe+5360782: 48 8B 03              - mov rax,[rbx]
+Game-Win64-Shipping.exe+5360785: 48 8B CB              - mov rcx,rbx
+Game-Win64-Shipping.exe+5360788: FF 90 50 07 00 00     - call qword ptr [rax+00000750]
+Game-Win64-Shipping.exe+536078E: 48 8B 03              - mov rax,[rbx]
+Game-Win64-Shipping.exe+5360791: 48 8B CB              - mov rcx,rbx
+Game-Win64-Shipping.exe+5360794: 48 83 C4 20           - add rsp,20
+Game-Win64-Shipping.exe+5360798: 5B                    - pop rbx
+Game-Win64-Shipping.exe+5360799: 48 FF A0 58 07 00 00  - jmp qword ptr [rax+00000758]
+Game-Win64-Shipping.exe+53607A0: 8B 81 B8 00 00 00     - mov eax,[rcx+000000B8]
+Game-Win64-Shipping.exe+53607A6: 3B D0                 - cmp edx,eax
 // ---------- INJECTING HERE ----------
-Game-Win64-Shipping.exe+53606A8: 76 03                 - jna Game-Win64-Shipping.exe+53606AD
+Game-Win64-Shipping.exe+53607A8: 76 03                 - jna Game-Win64-Shipping.exe+53607AD
 // ---------- DONE INJECTING  ----------
-Game-Win64-Shipping.exe+53606AA: 32 C0                 - xor al,al
-Game-Win64-Shipping.exe+53606AC: C3                    - ret 
-Game-Win64-Shipping.exe+53606AD: 2B C2                 - sub eax,edx
-Game-Win64-Shipping.exe+53606AF: 89 81 B8 00 00 00     - mov [rcx+000000B8],eax
-Game-Win64-Shipping.exe+53606B5: B0 01                 - mov al,01
-Game-Win64-Shipping.exe+53606B7: C3                    - ret 
-Game-Win64-Shipping.exe+53606B8: CC                    - int 3 
-Game-Win64-Shipping.exe+53606B9: CC                    - int 3 
-Game-Win64-Shipping.exe+53606BA: CC                    - int 3 
-Game-Win64-Shipping.exe+53606BB: CC                    - int 3 
+Game-Win64-Shipping.exe+53607AA: 32 C0                 - xor al,al
+Game-Win64-Shipping.exe+53607AC: C3                    - ret 
+Game-Win64-Shipping.exe+53607AD: 2B C2                 - sub eax,edx
+Game-Win64-Shipping.exe+53607AF: 89 81 B8 00 00 00     - mov [rcx+000000B8],eax
+Game-Win64-Shipping.exe+53607B5: B0 01                 - mov al,01
+Game-Win64-Shipping.exe+53607B7: C3                    - ret 
+Game-Win64-Shipping.exe+53607B8: CC                    - int 3 
+Game-Win64-Shipping.exe+53607B9: CC                    - int 3 
+Game-Win64-Shipping.exe+53607BA: CC                    - int 3 
+Game-Win64-Shipping.exe+53607BB: CC                    - int 3 
 }
 </AssemblerScript>
     </CheatEntry>
@@ -614,81 +616,6 @@ Game-Win64-Shipping.exe+5307407: 48 63 49 10     - movsxd  rcx,dword ptr [rcx+10
       </After>
     </CodeEntry>
     <CodeEntry>
-      <Description>减钱 代码 :mov [rcx+000000B8],eax</Description>
-      <AddressString>Game-Win64-Shipping.exe+53606AF</AddressString>
-      <Before>
-        <Byte>32</Byte>
-        <Byte>C0</Byte>
-        <Byte>C3</Byte>
-        <Byte>2B</Byte>
-        <Byte>C2</Byte>
-      </Before>
-      <Actual>
-        <Byte>89</Byte>
-        <Byte>81</Byte>
-        <Byte>B8</Byte>
-        <Byte>00</Byte>
-        <Byte>00</Byte>
-        <Byte>00</Byte>
-      </Actual>
-      <After>
-        <Byte>B0</Byte>
-        <Byte>01</Byte>
-        <Byte>C3</Byte>
-        <Byte>CC</Byte>
-        <Byte>CC</Byte>
-      </After>
-    </CodeEntry>
-    <CodeEntry>
-      <Description>加钱 代码 :mov [rsi+000000B8],ecx</Description>
-      <AddressString>Game-Win64-Shipping.exe+535BF09</AddressString>
-      <Before>
-        <Byte>0F</Byte>
-        <Byte>42</Byte>
-        <Byte>CA</Byte>
-        <Byte>03</Byte>
-        <Byte>C8</Byte>
-      </Before>
-      <Actual>
-        <Byte>89</Byte>
-        <Byte>8E</Byte>
-        <Byte>B8</Byte>
-        <Byte>00</Byte>
-        <Byte>00</Byte>
-        <Byte>00</Byte>
-      </Actual>
-      <After>
-        <Byte>48</Byte>
-        <Byte>8B</Byte>
-        <Byte>CE</Byte>
-        <Byte>E8</Byte>
-        <Byte>49</Byte>
-      </After>
-    </CodeEntry>
-    <CodeEntry>
-      <Description>金钱 代码 :sub ax,bx</Description>
-      <AddressString>Game-Win64-Shipping.exe+532F0CE</AddressString>
-      <Before>
-        <Byte>34</Byte>
-        <Byte>3B</Byte>
-        <Byte>C3</Byte>
-        <Byte>7C</Byte>
-        <Byte>09</Byte>
-      </Before>
-      <Actual>
-        <Byte>66</Byte>
-        <Byte>2B</Byte>
-        <Byte>C3</Byte>
-      </Actual>
-      <After>
-        <Byte>66</Byte>
-        <Byte>89</Byte>
-        <Byte>42</Byte>
-        <Byte>34</Byte>
-        <Byte>33</Byte>
-      </After>
-    </CodeEntry>
-    <CodeEntry>
       <Description>技能点归位 代码 :mov [rcx+40],edx</Description>
       <AddressString>Game-Win64-Shipping.exe+54FBA3D</AddressString>
       <Before>
@@ -732,6 +659,32 @@ Game-Win64-Shipping.exe+5307407: 48 63 49 10     - movsxd  rcx,dword ptr [rcx+10
         <Byte>5C</Byte>
         <Byte>24</Byte>
         <Byte>30</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>money - 代码 :mov [rcx+000000B8],eax</Description>
+      <AddressString>Game-Win64-Shipping.exe+53607AF</AddressString>
+      <Before>
+        <Byte>32</Byte>
+        <Byte>C0</Byte>
+        <Byte>C3</Byte>
+        <Byte>2B</Byte>
+        <Byte>C2</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>81</Byte>
+        <Byte>B8</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>B0</Byte>
+        <Byte>01</Byte>
+        <Byte>C3</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
       </After>
     </CodeEntry>
   </CheatCodes>
