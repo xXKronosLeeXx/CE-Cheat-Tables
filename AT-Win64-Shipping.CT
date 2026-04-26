@@ -1,0 +1,837 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"V 1.40"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"Zball+ = 899999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : AT-Win64-Shipping.exe
+  Version: 
+  Date   : 2026-04-25
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,AT-Win64-Shipping.exe,41 03 CE 79 04) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add ecx,#899999
+  jns AT-Win64-Shipping.exe+1FCE099
+  jmp return
+
+code:
+  add ecx,r14d
+  jns AT-Win64-Shipping.exe+1FCE099
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 41 03 CE 79 04
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: AT-Win64-Shipping.exe+1FCE090
+
+AT-Win64-Shipping.exe+1FCE072: 79 08                 - jns AT-Win64-Shipping.exe+1FCE07C
+AT-Win64-Shipping.exe+1FCE074: 33 C0                 - xor eax,eax
+AT-Win64-Shipping.exe+1FCE076: 89 44 9F 6C           - mov [rdi+rbx*4+6C],eax
+AT-Win64-Shipping.exe+1FCE07A: EB 2B                 - jmp AT-Win64-Shipping.exe+1FCE0A7
+AT-Win64-Shipping.exe+1FCE07C: B8 3F 42 0F 00        - mov eax,000F423F
+AT-Win64-Shipping.exe+1FCE081: 3B C8                 - cmp ecx,eax
+AT-Win64-Shipping.exe+1FCE083: 0F 4C C1              - cmovl eax,ecx
+AT-Win64-Shipping.exe+1FCE086: 89 44 9F 6C           - mov [rdi+rbx*4+6C],eax
+AT-Win64-Shipping.exe+1FCE08A: EB 1B                 - jmp AT-Win64-Shipping.exe+1FCE0A7
+AT-Win64-Shipping.exe+1FCE08C: 8B 4C 9F 54           - mov ecx,[rdi+rbx*4+54]
+// ---------- INJECTING HERE ----------
+AT-Win64-Shipping.exe+1FCE090: 41 03 CE              - add ecx,r14d
+// ---------- DONE INJECTING  ----------
+AT-Win64-Shipping.exe+1FCE093: 79 04                 - jns AT-Win64-Shipping.exe+1FCE099
+AT-Win64-Shipping.exe+1FCE095: 33 C0                 - xor eax,eax
+AT-Win64-Shipping.exe+1FCE097: EB 0A                 - jmp AT-Win64-Shipping.exe+1FCE0A3
+AT-Win64-Shipping.exe+1FCE099: B8 3F 42 0F 00        - mov eax,000F423F
+AT-Win64-Shipping.exe+1FCE09E: 3B C8                 - cmp ecx,eax
+AT-Win64-Shipping.exe+1FCE0A0: 0F 4C C1              - cmovl eax,ecx
+AT-Win64-Shipping.exe+1FCE0A3: 89 44 9F 54           - mov [rdi+rbx*4+54],eax
+AT-Win64-Shipping.exe+1FCE0A7: 48 8B 0D D2 9B D3 04  - mov rcx,[AT-Win64-Shipping.exe+6D07C80]
+AT-Win64-Shipping.exe+1FCE0AE: 41 0F B6 F4           - movzx esi,r12b
+AT-Win64-Shipping.exe+1FCE0B2: 8B 6C B7 54           - mov ebp,[rdi+rsi*4+54]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"Item - none"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : AT-Win64-Shipping.exe
+  Version: 
+  Date   : 2026-04-25
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,AT-Win64-Shipping.exe,44 29 34 BB 48 8D 14 BB) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  sub [rbx+rdi*4],0
+  lea rdx,[rbx+rdi*4]
+  jmp return
+
+code:
+  sub [rbx+rdi*4],r14d
+  lea rdx,[rbx+rdi*4]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 44 29 34 BB 48 8D 14 BB
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: AT-Win64-Shipping.exe+1B19385
+
+AT-Win64-Shipping.exe+1B19366: 74 1D                       - je AT-Win64-Shipping.exe+1B19385
+AT-Win64-Shipping.exe+1B19368: E8 33 08 B2 FF              - call AT-Win64-Shipping.exe+1639BA0
+AT-Win64-Shipping.exe+1B1936D: 48 85 C0                    - test rax,rax
+AT-Win64-Shipping.exe+1B19370: 74 72                       - je AT-Win64-Shipping.exe+1B193E4
+AT-Win64-Shipping.exe+1B19372: 45 8B C6                    - mov r8d,r14d
+AT-Win64-Shipping.exe+1B19375: 48 8B D6                    - mov rdx,rsi
+AT-Win64-Shipping.exe+1B19378: 41 F7 D8                    - neg r8d
+AT-Win64-Shipping.exe+1B1937B: 48 8B C8                    - mov rcx,rax
+AT-Win64-Shipping.exe+1B1937E: E8 8D 47 4B 00              - call AT-Win64-Shipping.exe+1FCDB10
+AT-Win64-Shipping.exe+1B19383: EB 5F                       - jmp AT-Win64-Shipping.exe+1B193E4
+// ---------- INJECTING HERE ----------
+AT-Win64-Shipping.exe+1B19385: 44 29 34 BB                 - sub [rbx+rdi*4],r14d
+// ---------- DONE INJECTING  ----------
+AT-Win64-Shipping.exe+1B19389: 48 8D 14 BB                 - lea rdx,[rbx+rdi*4]
+AT-Win64-Shipping.exe+1B1938D: 0F 88 8E 02 00 00           - js AT-Win64-Shipping.exe+1B19621
+AT-Win64-Shipping.exe+1B19393: 45 8B C6                    - mov r8d,r14d
+AT-Win64-Shipping.exe+1B19396: 3B 7B 04                    - cmp edi,[rbx+04]
+AT-Win64-Shipping.exe+1B19399: 7D 49                       - jnl AT-Win64-Shipping.exe+1B193E4
+AT-Win64-Shipping.exe+1B1939B: 48 8D 4F 01                 - lea rcx,[rdi+01]
+AT-Win64-Shipping.exe+1B1939F: 48 8D 0C 8B                 - lea rcx,[rbx+rcx*4]
+AT-Win64-Shipping.exe+1B193A3: 0F 1F 40 00                 - nop dword ptr [rax+00]
+AT-Win64-Shipping.exe+1B193A7: 66 0F 1F 84 00 00 00 00 00  - nop word ptr [rax+rax+00000000]
+AT-Win64-Shipping.exe+1B193B0: 8B 01                       - mov eax,[rcx]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>15</ID>
+      <Description>"HP"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : AT-Win64-Shipping.exe
+  Version: 
+  Date   : 2026-04-25
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,AT-Win64-Shipping.exe,89 90 D0 02 00 00 C3) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [rax+000002D0],edx
+  jna code
+  mov edx,[rax+000002D0]
+  mov [rax+000002D0],edx
+  jmp return
+
+code:
+  mov [rax+000002D0],edx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 90 D0 02 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: AT-Win64-Shipping.exe+18B83EB
+
+AT-Win64-Shipping.exe+18B83D8: C3                    - ret 
+AT-Win64-Shipping.exe+18B83D9: CC                    - int 3 
+AT-Win64-Shipping.exe+18B83DA: CC                    - int 3 
+AT-Win64-Shipping.exe+18B83DB: CC                    - int 3 
+AT-Win64-Shipping.exe+18B83DC: CC                    - int 3 
+AT-Win64-Shipping.exe+18B83DD: CC                    - int 3 
+AT-Win64-Shipping.exe+18B83DE: CC                    - int 3 
+AT-Win64-Shipping.exe+18B83DF: CC                    - int 3 
+AT-Win64-Shipping.exe+18B83E0: 48 8B 81 88 03 00 00  - mov rax,[rcx+00000388]
+AT-Win64-Shipping.exe+18B83E7: F3 0F 2C D1           - cvttss2si edx,xmm1
+// ---------- INJECTING HERE ----------
+AT-Win64-Shipping.exe+18B83EB: 89 90 D0 02 00 00     - mov [rax+000002D0],edx
+// ---------- DONE INJECTING  ----------
+AT-Win64-Shipping.exe+18B83F1: C3                    - ret 
+AT-Win64-Shipping.exe+18B83F2: CC                    - int 3 
+AT-Win64-Shipping.exe+18B83F3: CC                    - int 3 
+AT-Win64-Shipping.exe+18B83F4: CC                    - int 3 
+AT-Win64-Shipping.exe+18B83F5: CC                    - int 3 
+AT-Win64-Shipping.exe+18B83F6: CC                    - int 3 
+AT-Win64-Shipping.exe+18B83F7: CC                    - int 3 
+AT-Win64-Shipping.exe+18B83F8: CC                    - int 3 
+AT-Win64-Shipping.exe+18B83F9: CC                    - int 3 
+AT-Win64-Shipping.exe+18B83FA: CC                    - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>13</ID>
+      <Description>"SP"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : AT-Win64-Shipping.exe
+  Version: 
+  Date   : 2026-04-25
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,AT-Win64-Shipping.exe,89 90 D4 02 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [rax+000002D4],edx
+  jna code
+  mov edx,[rax+000002D4]
+  mov [rax+000002D4],edx
+  jmp return
+
+code:
+  mov [rax+000002D4],edx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 90 D4 02 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: AT-Win64-Shipping.exe+18B862B
+
+AT-Win64-Shipping.exe+18B8618: C3                    - ret 
+AT-Win64-Shipping.exe+18B8619: CC                    - int 3 
+AT-Win64-Shipping.exe+18B861A: CC                    - int 3 
+AT-Win64-Shipping.exe+18B861B: CC                    - int 3 
+AT-Win64-Shipping.exe+18B861C: CC                    - int 3 
+AT-Win64-Shipping.exe+18B861D: CC                    - int 3 
+AT-Win64-Shipping.exe+18B861E: CC                    - int 3 
+AT-Win64-Shipping.exe+18B861F: CC                    - int 3 
+AT-Win64-Shipping.exe+18B8620: 48 8B 81 88 03 00 00  - mov rax,[rcx+00000388]
+AT-Win64-Shipping.exe+18B8627: F3 0F 2C D1           - cvttss2si edx,xmm1
+// ---------- INJECTING HERE ----------
+AT-Win64-Shipping.exe+18B862B: 89 90 D4 02 00 00     - mov [rax+000002D4],edx
+// ---------- DONE INJECTING  ----------
+AT-Win64-Shipping.exe+18B8631: C3                    - ret 
+AT-Win64-Shipping.exe+18B8632: CC                    - int 3 
+AT-Win64-Shipping.exe+18B8633: CC                    - int 3 
+AT-Win64-Shipping.exe+18B8634: CC                    - int 3 
+AT-Win64-Shipping.exe+18B8635: CC                    - int 3 
+AT-Win64-Shipping.exe+18B8636: CC                    - int 3 
+AT-Win64-Shipping.exe+18B8637: CC                    - int 3 
+AT-Win64-Shipping.exe+18B8638: CC                    - int 3 
+AT-Win64-Shipping.exe+18B8639: CC                    - int 3 
+AT-Win64-Shipping.exe+18B863A: CC                    - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>16</ID>
+      <Description>"沸腾"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : AT-Win64-Shipping.exe
+  Version: 
+  Date   : 2026-04-25
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,AT-Win64-Shipping.exe,89 86 D8 02 00 00 48 8B 74) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rsi+000002D8],$1000
+  jmp return
+
+code:
+  mov [rsi+000002D8],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 86 D8 02 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: AT-Win64-Shipping.exe+182DCDD
+
+AT-Win64-Shipping.exe+182DCBE: 0F 5B C9           - cvtdq2ps xmm1,xmm1
+AT-Win64-Shipping.exe+182DCC1: F3 0F 2C C0        - cvttss2si eax,xmm0
+AT-Win64-Shipping.exe+182DCC5: F3 0F 58 CE        - addss xmm1,xmm6
+AT-Win64-Shipping.exe+182DCC9: F3 0F 2C C9        - cvttss2si ecx,xmm1
+AT-Win64-Shipping.exe+182DCCD: 3B C8              - cmp ecx,eax
+AT-Win64-Shipping.exe+182DCCF: 7C 07              - jl AT-Win64-Shipping.exe+182DCD8
+AT-Win64-Shipping.exe+182DCD1: 3B CD              - cmp ecx,ebp
+AT-Win64-Shipping.exe+182DCD3: 8B C5              - mov eax,ebp
+AT-Win64-Shipping.exe+182DCD5: 0F 4C C1           - cmovl eax,ecx
+AT-Win64-Shipping.exe+182DCD8: 48 8B 6C 24 48     - mov rbp,[rsp+48]
+// ---------- INJECTING HERE ----------
+AT-Win64-Shipping.exe+182DCDD: 89 86 D8 02 00 00  - mov [rsi+000002D8],eax
+// ---------- DONE INJECTING  ----------
+AT-Win64-Shipping.exe+182DCE3: 48 8B 74 24 50     - mov rsi,[rsp+50]
+AT-Win64-Shipping.exe+182DCE8: 0F 28 74 24 20     - movaps xmm6,[rsp+20]
+AT-Win64-Shipping.exe+182DCED: 48 83 C4 30        - add rsp,30
+AT-Win64-Shipping.exe+182DCF1: 5F                 - pop rdi
+AT-Win64-Shipping.exe+182DCF2: C3                 - ret 
+AT-Win64-Shipping.exe+182DCF3: 0F 28 CE           - movaps xmm1,xmm6
+AT-Win64-Shipping.exe+182DCF6: 48 8B CF           - mov rcx,rdi
+AT-Win64-Shipping.exe+182DCF9: 48 8B 74 24 50     - mov rsi,[rsp+50]
+AT-Win64-Shipping.exe+182DCFE: 0F 28 74 24 20     - movaps xmm6,[rsp+20]
+AT-Win64-Shipping.exe+182DD03: 48 83 C4 30        - add rsp,30
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>34</ID>
+      <Description>"D徽章=999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : AT-Win64-Shipping.exe
+  Version: 
+  Date   : 2026-04-26
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,AT-Win64-Shipping.exe,89 02 EB 0C 41 8B EE 44 89 0A 2B E8 89 6C 24 20) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rdx],#999
+  jmp AT-Win64-Shipping.exe+1AF154D
+  mov ebp,r14d
+  jmp return
+
+code:
+  mov [rdx],eax
+  jmp AT-Win64-Shipping.exe+1AF154D
+  mov ebp,r14d
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 02 EB 0C 41 8B EE
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: AT-Win64-Shipping.exe+1AF153D
+
+AT-Win64-Shipping.exe+1AF151F: E9 F7 02 00 00        - jmp AT-Win64-Shipping.exe+1AF181B
+AT-Win64-Shipping.exe+1AF1524: 45 85 F6              - test r14d,r14d
+AT-Win64-Shipping.exe+1AF1527: 7E 24                 - jle AT-Win64-Shipping.exe+1AF154D
+AT-Win64-Shipping.exe+1AF1529: 44 8B 4B 20           - mov r9d,[rbx+20]
+AT-Win64-Shipping.exe+1AF152D: 41 8B C1              - mov eax,r9d
+AT-Win64-Shipping.exe+1AF1530: 8B 0A                 - mov ecx,[rdx]
+AT-Win64-Shipping.exe+1AF1532: 2B C1                 - sub eax,ecx
+AT-Win64-Shipping.exe+1AF1534: 41 3B C6              - cmp eax,r14d
+AT-Win64-Shipping.exe+1AF1537: 7C 08                 - jl AT-Win64-Shipping.exe+1AF1541
+AT-Win64-Shipping.exe+1AF1539: 42 8D 04 31           - lea eax,[rcx+r14]
+// ---------- INJECTING HERE ----------
+AT-Win64-Shipping.exe+1AF153D: 89 02                 - mov [rdx],eax
+// ---------- DONE INJECTING  ----------
+AT-Win64-Shipping.exe+1AF153F: EB 0C                 - jmp AT-Win64-Shipping.exe+1AF154D
+AT-Win64-Shipping.exe+1AF1541: 41 8B EE              - mov ebp,r14d
+AT-Win64-Shipping.exe+1AF1544: 44 89 0A              - mov [rdx],r9d
+AT-Win64-Shipping.exe+1AF1547: 2B E8                 - sub ebp,eax
+AT-Win64-Shipping.exe+1AF1549: 89 6C 24 20           - mov [rsp+20],ebp
+AT-Win64-Shipping.exe+1AF154D: 45 39 38              - cmp [r8],r15d
+AT-Win64-Shipping.exe+1AF1550: 7D 40                 - jnl AT-Win64-Shipping.exe+1AF1592
+AT-Win64-Shipping.exe+1AF1552: 45 89 38              - mov [r8],r15d
+AT-Win64-Shipping.exe+1AF1555: 49 8B 85 C8 00 00 00  - mov rax,[r13+000000C8]
+AT-Win64-Shipping.exe+1AF155C: 49 63 8D D0 00 00 00  - movsxd  rcx,dword ptr [r13+000000D0]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>19</ID>
+      <Description>"EXP + 8999999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : AT-Win64-Shipping.exe
+  Version: 
+  Date   : 2026-04-25
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,AT-Win64-Shipping.exe,03 D7 78 0A B9 FF C9 9A 3B) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add edx,#8999999
+  js AT-Win64-Shipping.exe+189BE97
+  mov ecx,3B9AC9FF
+  jmp return
+
+code:
+  add edx,edi
+  js AT-Win64-Shipping.exe+189BE97
+  mov ecx,3B9AC9FF
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 4
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 03 D7 78 0A B9 FF C9 9A 3B
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: AT-Win64-Shipping.exe+189BE89
+
+AT-Win64-Shipping.exe+189BE62: 79 04                 - jns AT-Win64-Shipping.exe+189BE68
+AT-Win64-Shipping.exe+189BE64: 8B C1                 - mov eax,ecx
+AT-Win64-Shipping.exe+189BE66: EB 0A                 - jmp AT-Win64-Shipping.exe+189BE72
+AT-Win64-Shipping.exe+189BE68: B8 FF C9 9A 3B        - mov eax,3B9AC9FF
+AT-Win64-Shipping.exe+189BE6D: 3B D0                 - cmp edx,eax
+AT-Win64-Shipping.exe+189BE6F: 0F 4C C2              - cmovl eax,edx
+AT-Win64-Shipping.exe+189BE72: 48 98                 - cdqe 
+AT-Win64-Shipping.exe+189BE74: 49 89 80 C8 02 00 00  - mov [r8+000002C8],rax
+AT-Win64-Shipping.exe+189BE7B: 4C 8B 83 88 03 00 00  - mov r8,[rbx+00000388]
+AT-Win64-Shipping.exe+189BE82: 41 8B 90 C8 02 00 00  - mov edx,[r8+000002C8]
+// ---------- INJECTING HERE ----------
+AT-Win64-Shipping.exe+189BE89: 03 D7                 - add edx,edi
+// ---------- DONE INJECTING  ----------
+AT-Win64-Shipping.exe+189BE8B: 78 0A                 - js AT-Win64-Shipping.exe+189BE97
+AT-Win64-Shipping.exe+189BE8D: B9 FF C9 9A 3B        - mov ecx,3B9AC9FF
+AT-Win64-Shipping.exe+189BE92: 3B D1                 - cmp edx,ecx
+AT-Win64-Shipping.exe+189BE94: 0F 4C CA              - cmovl ecx,edx
+AT-Win64-Shipping.exe+189BE97: 48 63 C1              - movsxd  rax,ecx
+AT-Win64-Shipping.exe+189BE9A: 48 8D 93 34 02 00 00  - lea rdx,[rbx+00000234]
+AT-Win64-Shipping.exe+189BEA1: 49 89 80 C8 02 00 00  - mov [r8+000002C8],rax
+AT-Win64-Shipping.exe+189BEA8: 48 8B 83 88 03 00 00  - mov rax,[rbx+00000388]
+AT-Win64-Shipping.exe+189BEAF: 8B 8B 30 02 00 00     - mov ecx,[rbx+00000230]
+AT-Win64-Shipping.exe+189BEB5: 44 8B 80 C8 02 00 00  - mov r8d,[rax+000002C8]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>24</ID>
+      <Description>"索尼 =899999999"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : AT-Win64-Shipping.exe
+  Version: 
+  Date   : 2026-04-25
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,AT-Win64-Shipping.exe,C1 89 03 48 8B 5C 24 30) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rbx],#899999999
+  mov rbx,[rsp+30]
+  jmp return
+
+code:
+  mov [rbx],eax
+  mov rbx,[rsp+30]
+  jmp return
+
+INJECT+01:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+01:
+  db 89 03 48 8B 5C 24 30
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: AT-Win64-Shipping.exe+22845EE
+
+AT-Win64-Shipping.exe+22845D3: 79 0F           - jns AT-Win64-Shipping.exe+22845E4
+AT-Win64-Shipping.exe+22845D5: 33 C0           - xor eax,eax
+AT-Win64-Shipping.exe+22845D7: 89 03           - mov [rbx],eax
+AT-Win64-Shipping.exe+22845D9: 48 8B 5C 24 30  - mov rbx,[rsp+30]
+AT-Win64-Shipping.exe+22845DE: 48 83 C4 20     - add rsp,20
+AT-Win64-Shipping.exe+22845E2: 5F              - pop rdi
+AT-Win64-Shipping.exe+22845E3: C3              - ret 
+AT-Win64-Shipping.exe+22845E4: B8 FF C9 9A 3B  - mov eax,3B9AC9FF
+AT-Win64-Shipping.exe+22845E9: 3B C8           - cmp ecx,eax
+AT-Win64-Shipping.exe+22845EB: 0F 4C C1        - cmovl eax,ecx
+// ---------- INJECTING HERE ----------
+AT-Win64-Shipping.exe+22845EE: 89 03           - mov [rbx],eax
+// ---------- DONE INJECTING  ----------
+AT-Win64-Shipping.exe+22845F0: 48 8B 5C 24 30  - mov rbx,[rsp+30]
+AT-Win64-Shipping.exe+22845F5: 48 83 C4 20     - add rsp,20
+AT-Win64-Shipping.exe+22845F9: 5F              - pop rdi
+AT-Win64-Shipping.exe+22845FA: C3              - ret 
+AT-Win64-Shipping.exe+22845FB: CC              - int 3 
+AT-Win64-Shipping.exe+22845FC: CC              - int 3 
+AT-Win64-Shipping.exe+22845FD: CC              - int 3 
+AT-Win64-Shipping.exe+22845FE: CC              - int 3 
+AT-Win64-Shipping.exe+22845FF: CC              - int 3 
+AT-Win64-Shipping.exe+2284600: 48 89 5C 24 18  - mov [rsp+18],rbx
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>30</ID>
+      <Description>"好感假满，可以拿奖励"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : AT-Win64-Shipping.exe
+  Version: 
+  Date   : 2026-04-25
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,AT-Win64-Shipping.exe,F3 0F 11 B3 74 04 00 00 E8 44) // should be unique
+alloc(newmem,$1000,INJECT)
+alloc(full,$8,INJECT)
+
+label(code)
+label(return)
+
+full:
+  dq (float)100
+
+newmem:
+  movss xmm6,[full]
+  movss [rbx+00000474],xmm6
+  jmp return
+
+code:
+  movss [rbx+00000474],xmm6
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 B3 74 04 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+dealloc(full)
+
+{
+// ORIGINAL CODE - INJECTION POINT: AT-Win64-Shipping.exe+1EB580F
+
+AT-Win64-Shipping.exe+1EB57E4: 48 85 C0                 - test rax,rax
+AT-Win64-Shipping.exe+1EB57E7: 74 68                    - je AT-Win64-Shipping.exe+1EB5851
+AT-Win64-Shipping.exe+1EB57E9: 48 8B 94 24 90 00 00 00  - mov rdx,[rsp+00000090]
+AT-Win64-Shipping.exe+1EB57F1: 48 8B C8                 - mov rcx,rax
+AT-Win64-Shipping.exe+1EB57F4: F3 41 0F 5E F0           - divss xmm6,xmm8
+AT-Win64-Shipping.exe+1EB57F9: 0F 28 D6                 - movaps xmm2,xmm6
+AT-Win64-Shipping.exe+1EB57FC: E8 5F 95 2B 02           - call AT-Win64-Shipping.exe+416ED60
+AT-Win64-Shipping.exe+1EB5801: EB 4E                    - jmp AT-Win64-Shipping.exe+1EB5851
+AT-Win64-Shipping.exe+1EB5803: 0F B6 83 69 04 00 00     - movzx eax,byte ptr [rbx+00000469]
+AT-Win64-Shipping.exe+1EB580A: E9 4C FF FF FF           - jmp AT-Win64-Shipping.exe+1EB575B
+// ---------- INJECTING HERE ----------
+AT-Win64-Shipping.exe+1EB580F: F3 0F 11 B3 74 04 00 00  - movss [rbx+00000474],xmm6
+// ---------- DONE INJECTING  ----------
+AT-Win64-Shipping.exe+1EB5817: E8 44 9E 8B 00           - call AT-Win64-Shipping.exe+276F660
+AT-Win64-Shipping.exe+1EB581C: 48 8B 8B 08 04 00 00     - mov rcx,[rbx+00000408]
+AT-Win64-Shipping.exe+1EB5823: 48 85 C9                 - test rcx,rcx
+AT-Win64-Shipping.exe+1EB5826: 74 22                    - je AT-Win64-Shipping.exe+1EB584A
+AT-Win64-Shipping.exe+1EB5828: E8 63 1B CF 01           - call AT-Win64-Shipping.exe+3BA7390
+AT-Win64-Shipping.exe+1EB582D: 48 85 C0                 - test rax,rax
+AT-Win64-Shipping.exe+1EB5830: 74 18                    - je AT-Win64-Shipping.exe+1EB584A
+AT-Win64-Shipping.exe+1EB5832: 48 8B 94 24 90 00 00 00  - mov rdx,[rsp+00000090]
+AT-Win64-Shipping.exe+1EB583A: 48 8B C8                 - mov rcx,rax
+AT-Win64-Shipping.exe+1EB583D: F3 41 0F 5E F0           - divss xmm6,xmm8
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>Zball + 代码 :mov [rdi+rbx*4+54],eax</Description>
+      <AddressString>AT-Win64-Shipping.exe+1FCE0A3</AddressString>
+      <Before>
+        <Byte>3B</Byte>
+        <Byte>C8</Byte>
+        <Byte>0F</Byte>
+        <Byte>4C</Byte>
+        <Byte>C1</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>44</Byte>
+        <Byte>9F</Byte>
+        <Byte>54</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>0D</Byte>
+        <Byte>D2</Byte>
+        <Byte>9B</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>item - 代码 :jmp 7FF784520000</Description>
+      <AddressString>AT-Win64-Shipping.exe+1B19385</AddressString>
+      <Before>
+        <Byte>47</Byte>
+        <Byte>4B</Byte>
+        <Byte>00</Byte>
+        <Byte>EB</Byte>
+        <Byte>5F</Byte>
+      </Before>
+      <Actual>
+        <Byte>E9</Byte>
+        <Byte>76</Byte>
+        <Byte>6C</Byte>
+        <Byte>4C</Byte>
+      </Actual>
+      <After>
+        <Byte>FE</Byte>
+        <Byte>0F</Byte>
+        <Byte>1F</Byte>
+        <Byte>00</Byte>
+        <Byte>0F</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>SP 代码 :mov [rax+000002D4],edx</Description>
+      <AddressString>AT-Win64-Shipping.exe+18B862B</AddressString>
+      <Before>
+        <Byte>00</Byte>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>2C</Byte>
+        <Byte>D1</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>90</Byte>
+        <Byte>D4</Byte>
+        <Byte>02</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>C3</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>HP 代码 :mov [rax+000002D0],edx</Description>
+      <AddressString>AT-Win64-Shipping.exe+18B83EB</AddressString>
+      <Before>
+        <Byte>00</Byte>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>2C</Byte>
+        <Byte>D1</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>90</Byte>
+        <Byte>D0</Byte>
+        <Byte>02</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>C3</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>沸腾 代码 :mov [rsi+000002D8],eax</Description>
+      <AddressString>AT-Win64-Shipping.exe+182DCDD</AddressString>
+      <Before>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>6C</Byte>
+        <Byte>24</Byte>
+        <Byte>48</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>86</Byte>
+        <Byte>D8</Byte>
+        <Byte>02</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>74</Byte>
+        <Byte>24</Byte>
+        <Byte>50</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>ENEMY HP 代码 :movups [rsi+40],xmm0</Description>
+      <AddressString>AT-Win64-Shipping.exe+1E46608</AddressString>
+      <Before>
+        <Byte>30</Byte>
+        <Byte>0F</Byte>
+        <Byte>10</Byte>
+        <Byte>4D</Byte>
+        <Byte>C0</Byte>
+      </Before>
+      <Actual>
+        <Byte>0F</Byte>
+        <Byte>11</Byte>
+        <Byte>46</Byte>
+        <Byte>40</Byte>
+      </Actual>
+      <After>
+        <Byte>F2</Byte>
+        <Byte>0F</Byte>
+        <Byte>10</Byte>
+        <Byte>45</Byte>
+        <Byte>D0</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>
