@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>53</ID>
+      <Description>"Gold Ring"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>Bayonetta.exe+56A74B4</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>37</ID>
+      <Description>"HP 不减"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Bayonetta.exe
+  Version: 
+  Date   : 2026-05-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Bayonetta.exe,2B C1 89 86 08 35 09 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+//  sub eax,ecx
+  mov [esi+00093508],eax
+  jmp return
+
+code:
+  sub eax,ecx
+  mov [esi+00093508],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 2B C1 89 86 08 35 09 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Bayonetta.exe+5D4327
+
+Bayonetta.exe+5D4309: 7E 10                          - jle Bayonetta.exe+5D431B
+Bayonetta.exe+5D430B: B9 DC 1E 00 00                 - mov ecx,00001EDC
+Bayonetta.exe+5D4310: EB 09                          - jmp Bayonetta.exe+5D431B
+Bayonetta.exe+5D4312: 8B C1                          - mov eax,ecx
+Bayonetta.exe+5D4314: 99                             - cdq 
+Bayonetta.exe+5D4315: 2B C2                          - sub eax,edx
+Bayonetta.exe+5D4317: D1 F8                          - sar eax,1
+Bayonetta.exe+5D4319: 03 C8                          - add ecx,eax
+Bayonetta.exe+5D431B: 8B 86 08 35 09 00              - mov eax,[esi+00093508]
+Bayonetta.exe+5D4321: 89 86 B4 06 00 00              - mov [esi+000006B4],eax
+// ---------- INJECTING HERE ----------
+Bayonetta.exe+5D4327: 2B C1                          - sub eax,ecx
+// ---------- DONE INJECTING  ----------
+Bayonetta.exe+5D4329: 89 86 08 35 09 00              - mov [esi+00093508],eax
+Bayonetta.exe+5D432F: 85 C0                          - test eax,eax
+Bayonetta.exe+5D4331: 7F 36                          - jg Bayonetta.exe+5D4369
+Bayonetta.exe+5D4333: 33 C0                          - xor eax,eax
+Bayonetta.exe+5D4335: 83 BE B4 06 00 00 0A           - cmp dword ptr [esi+000006B4],0A
+Bayonetta.exe+5D433C: 0F 9D C0                       - setge al
+Bayonetta.exe+5D433F: 83 7C 24 0C 00                 - cmp dword ptr [esp+0C],00
+Bayonetta.exe+5D4344: 89 86 08 35 09 00              - mov [esi+00093508],eax
+Bayonetta.exe+5D434A: 74 0A                          - je Bayonetta.exe+5D4356
+Bayonetta.exe+5D434C: C7 86 08 35 09 00 01 00 00 00  - mov [esi+00093508],00000001
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>46</ID>
+      <Description>"攻击力倍数"</Description>
+      <Options moHideChildren="1" moActivateChildrenAsWell="1"/>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Bayonetta.exe
+  Version: 
+  Date   : 2026-05-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Bayonetta.exe,2B C7 89 86 B4 06 00 00) // should be unique
+alloc(newmem,$1000)
+alloc(beishu,$8)
+
+label(code)
+label(return)
+
+beishu:
+  dd 2
+
+newmem:
+  imul edi,[beishu]
+  sub eax,edi
+  mov [esi+000006B4],eax
+  jmp return
+
+code:
+  sub eax,edi
+  mov [esi+000006B4],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+registersymbol(beishu)
+
+[DISABLE]
+
+INJECT:
+  db 2B C7 89 86 B4 06 00 00
+
+unregistersymbol(INJECT)
+unregistersymbol(beishu)
+dealloc(newmem)
+dealloc(beishu)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Bayonetta.exe+572B8
+
+Bayonetta.exe+5728F: 74 10                          - je Bayonetta.exe+572A1
+Bayonetta.exe+57291: A1 60 5A EF 00                 - mov eax,[Bayonetta.exe+AF5A60]
+Bayonetta.exe+57296: 83 B8 A0 6B 09 00 00           - cmp dword ptr [eax+00096BA0],00
+Bayonetta.exe+5729D: 75 02                          - jne Bayonetta.exe+572A1
+Bayonetta.exe+5729F: 03 FF                          - add edi,edi
+Bayonetta.exe+572A1: 83 BE 08 09 00 00 00           - cmp dword ptr [esi+00000908],00
+Bayonetta.exe+572A8: 74 02                          - je Bayonetta.exe+572AC
+Bayonetta.exe+572AA: 33 FF                          - xor edi,edi
+Bayonetta.exe+572AC: 8B 86 B4 06 00 00              - mov eax,[esi+000006B4]
+Bayonetta.exe+572B2: 89 86 B8 06 00 00              - mov [esi+000006B8],eax
+// ---------- INJECTING HERE ----------
+Bayonetta.exe+572B8: 2B C7                          - sub eax,edi
+// ---------- DONE INJECTING  ----------
+Bayonetta.exe+572BA: 89 86 B4 06 00 00              - mov [esi+000006B4],eax
+Bayonetta.exe+572C0: 85 C0                          - test eax,eax
+Bayonetta.exe+572C2: 7F 26                          - jg Bayonetta.exe+572EA
+Bayonetta.exe+572C4: 83 7C 24 10 00                 - cmp dword ptr [esp+10],00
+Bayonetta.exe+572C9: 75 15                          - jne Bayonetta.exe+572E0
+Bayonetta.exe+572CB: 83 BE 04 09 00 00 00           - cmp dword ptr [esi+00000904],00
+Bayonetta.exe+572D2: 75 0C                          - jne Bayonetta.exe+572E0
+Bayonetta.exe+572D4: C7 86 B4 06 00 00 00 00 00 00  - mov [esi+000006B4],00000000
+Bayonetta.exe+572DE: EB 0A                          - jmp Bayonetta.exe+572EA
+Bayonetta.exe+572E0: C7 86 B4 06 00 00 01 00 00 00  - mov [esi+000006B4],00000001
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>49</ID>
+          <Description>"Mul"</Description>
+          <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">2:x2
+10:x10
+100:x100
+1000:x1000
+</DropDownList>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>beishu</Address>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>66</ID>
+      <Description>"结算相关"</Description>
+      <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+      <LastState Value="" Activated="1" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>56</ID>
+          <Description>"倍数底分(89999)"</Description>
+          <DropDownList ReadOnly="1" DescriptionOnly="1" DisplayValueAsItem="1">89999:89999
+</DropDownList>
+          <VariableType>4 Bytes</VariableType>
+          <Address>Bayonetta.exe+57B519C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>65</ID>
+          <Description>"shot计数器(99)"</Description>
+          <DropDownList ReadOnly="1" DescriptionOnly="1" DisplayValueAsItem="1">99:99
+</DropDownList>
+          <VariableType>4 Bytes</VariableType>
+          <Address>Bayonetta.exe+4CA3E40</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>67</ID>
+          <Description>"倍数(9)"</Description>
+          <DropDownList ReadOnly="1" DescriptionOnly="1" DisplayValueAsItem="1">9:9
+</DropDownList>
+          <VariableType>Float</VariableType>
+          <Address>Bayonetta.exe+57B51A0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>69</ID>
+          <Description>"Combo(8W)"</Description>
+          <DropDownList ReadOnly="1" DescriptionOnly="1" DisplayValueAsItem="1">80000:80000
+</DropDownList>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>Bayonetta.exe+56A8208</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>78</ID>
+          <Description>"艾尔文海姆试炼机会不减"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Bayonetta.exe
+  Version: 
+  Date   : 2026-05-04
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Bayonetta.exe,FF 8E 54 6B 09 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+//  dec [esi+00096B54]
+  jmp return
+
+code:
+  dec [esi+00096B54]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db FF 8E 54 6B 09 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Bayonetta.exe+5D42B8
+
+Bayonetta.exe+5D4287: 2B C2                    - sub eax,edx
+Bayonetta.exe+5D4289: D1 F8                    - sar eax,1
+Bayonetta.exe+5D428B: 8B C8                    - mov ecx,eax
+Bayonetta.exe+5D428D: 83 BE 4C 6B 09 00 00     - cmp dword ptr [esi+00096B4C],00
+Bayonetta.exe+5D4294: 74 34                    - je Bayonetta.exe+5D42CA
+Bayonetta.exe+5D4296: 83 3D A0 85 A9 05 00     - cmp dword ptr [Bayonetta.exe+56985A0],00
+Bayonetta.exe+5D429D: 0F 84 80 01 00 00        - je Bayonetta.exe+5D4423
+Bayonetta.exe+5D42A3: 0F 2F 86 60 6B 09 00     - comiss xmm0,[esi+00096B60]
+Bayonetta.exe+5D42AA: 0F 82 73 01 00 00        - jb Bayonetta.exe+5D4423
+Bayonetta.exe+5D42B0: F3 0F 10 05 E4 11 DA 00  - movss xmm0,[Bayonetta.exe+9A11E4]
+// ---------- INJECTING HERE ----------
+Bayonetta.exe+5D42B8: FF 8E 54 6B 09 00        - dec [esi+00096B54]
+// ---------- DONE INJECTING  ----------
+Bayonetta.exe+5D42BE: F3 0F 11 86 60 6B 09 00  - movss [esi+00096B60],xmm0
+Bayonetta.exe+5D42C6: 5E                       - pop esi
+Bayonetta.exe+5D42C7: C2 08 00                 - ret 0008
+Bayonetta.exe+5D42CA: 83 BE 40 5D 09 00 00     - cmp dword ptr [esi+00095D40],00
+Bayonetta.exe+5D42D1: 74 02                    - je Bayonetta.exe+5D42D5
+Bayonetta.exe+5D42D3: 03 C9                    - add ecx,ecx
+Bayonetta.exe+5D42D5: A1 A0 85 A9 05           - mov eax,[Bayonetta.exe+56985A0]
+Bayonetta.exe+5D42DA: 83 E8 02                 - sub eax,02
+Bayonetta.exe+5D42DD: 74 1D                    - je Bayonetta.exe+5D42FC
+Bayonetta.exe+5D42DF: 48                       - dec eax
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>72</ID>
+      <Description>"MiniGame"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>60</ID>
+          <Description>"Shot minigame bullet"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Bayonetta.exe
+  Version: 
+  Date   : 2026-05-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Bayonetta.exe,48 F3 0F 11 04 24 6A 00 89 86 A8) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+//  dec eax
+  movss [esp],xmm0
+  jmp return
+
+code:
+  dec eax
+  movss [esp],xmm0
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 48 F3 0F 11 04 24
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Bayonetta.exe+84251B
+
+Bayonetta.exe+8424F1: 57                       - push edi
+Bayonetta.exe+8424F2: 0F 84 FE 01 00 00        - je Bayonetta.exe+8426F6
+Bayonetta.exe+8424F8: 8B 86 A8 00 00 00        - mov eax,[esi+000000A8]
+Bayonetta.exe+8424FE: 85 C0                    - test eax,eax
+Bayonetta.exe+842500: 0F 8E F0 01 00 00        - jng Bayonetta.exe+8426F6
+Bayonetta.exe+842506: F3 0F 10 05 48 D7 D9 00  - movss xmm0,[Bayonetta.exe+99D748]
+Bayonetta.exe+84250E: 6A 00                    - push 00
+Bayonetta.exe+842510: 6A 05                    - push 05
+Bayonetta.exe+842512: 83 EC 08                 - sub esp,08
+Bayonetta.exe+842515: F3 0F 11 44 24 04        - movss [esp+04],xmm0
+// ---------- INJECTING HERE ----------
+Bayonetta.exe+84251B: 48                       - dec eax
+// ---------- DONE INJECTING  ----------
+Bayonetta.exe+84251C: F3 0F 11 04 24           - movss [esp],xmm0
+Bayonetta.exe+842521: 6A 00                    - push 00
+Bayonetta.exe+842523: 89 86 A8 00 00 00        - mov [esi+000000A8],eax
+Bayonetta.exe+842529: E8 F2 4D 01 00           - call Bayonetta.exe+857320
+Bayonetta.exe+84252E: 83 C4 14                 - add esp,14
+Bayonetta.exe+842531: B9 90 DB F2 00           - mov ecx,Bayonetta.exe+B2DB90
+Bayonetta.exe+842536: E8 E5 10 02 00           - call Bayonetta.exe+863620
+Bayonetta.exe+84253B: F3 0F 10 00              - movss xmm0,[eax]
+Bayonetta.exe+84253F: F3 0F 11 44 24 20        - movss [esp+20],xmm0
+Bayonetta.exe+842545: F3 0F 10 40 04           - movss xmm0,[eax+04]
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>62</ID>
+          <Description>"Shot minigame score+66"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Bayonetta.exe
+  Version: 
+  Date   : 2026-05-03
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Bayonetta.exe,01 86 AC 00 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  add [esi+000000AC],#66
+  jmp return
+
+code:
+  add [esi+000000AC],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 01 86 AC 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Bayonetta.exe+8432EB
+
+Bayonetta.exe+8432B3: C7 86 94 06 00 00 01 00 00 00  - mov [esi+00000694],00000001
+Bayonetta.exe+8432BD: F3 0F 10 47 F8                 - movss xmm0,[edi-08]
+Bayonetta.exe+8432C2: F3 0F 10 4F FC                 - movss xmm1,[edi-04]
+Bayonetta.exe+8432C7: F3 0F 10 17                    - movss xmm2,[edi]
+Bayonetta.exe+8432CB: F3 0F 10 5F 04                 - movss xmm3,[edi+04]
+Bayonetta.exe+8432D0: F3 0F 11 46 50                 - movss [esi+50],xmm0
+Bayonetta.exe+8432D5: F3 0F 11 4E 54                 - movss [esi+54],xmm1
+Bayonetta.exe+8432DA: F3 0F 11 56 58                 - movss [esi+58],xmm2
+Bayonetta.exe+8432DF: F3 0F 11 5E 5C                 - movss [esi+5C],xmm3
+Bayonetta.exe+8432E4: C7 47 44 00 00 00 00           - mov [edi+44],00000000
+// ---------- INJECTING HERE ----------
+Bayonetta.exe+8432EB: 01 86 AC 00 00 00              - add [esi+000000AC],eax
+// ---------- DONE INJECTING  ----------
+Bayonetta.exe+8432F1: 8B 47 48                       - mov eax,[edi+48]
+Bayonetta.exe+8432F4: 3B 86 8C 06 00 00              - cmp eax,[esi+0000068C]
+Bayonetta.exe+8432FA: 75 36                          - jne Bayonetta.exe+843332
+Bayonetta.exe+8432FC: C7 86 90 06 00 00 01 00 00 00  - mov [esi+00000690],00000001
+Bayonetta.exe+843306: F3 0F 10 47 F8                 - movss xmm0,[edi-08]
+Bayonetta.exe+84330B: F3 0F 10 4F FC                 - movss xmm1,[edi-04]
+Bayonetta.exe+843310: F3 0F 10 17                    - movss xmm2,[edi]
+Bayonetta.exe+843314: F3 0F 10 5F 04                 - movss xmm3,[edi+04]
+Bayonetta.exe+843319: F3 0F 11 46 60                 - movss [esi+60],xmm0
+Bayonetta.exe+84331E: 0F 57 C0                       - xorps xmm0,xmm0
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>Magic 代码 :movss [esi+000000A8],xmm1</Description>
+      <AddressString>Bayonetta.exe+829D7B</AddressString>
+      <Before>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>8B</Byte>
+        <Byte>D8</Byte>
+      </Before>
+      <Actual>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>11</Byte>
+        <Byte>8E</Byte>
+        <Byte>A8</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>75</Byte>
+        <Byte>0B</Byte>
+        <Byte>0F</Byte>
+        <Byte>57</Byte>
+        <Byte>C0</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>HP 代码 :mov [esi+000006B4],eax</Description>
+      <AddressString>Bayonetta.exe+5D4321</AddressString>
+      <Before>
+        <Byte>86</Byte>
+        <Byte>08</Byte>
+        <Byte>35</Byte>
+        <Byte>09</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>86</Byte>
+        <Byte>B4</Byte>
+        <Byte>06</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>2B</Byte>
+        <Byte>C1</Byte>
+        <Byte>89</Byte>
+        <Byte>86</Byte>
+        <Byte>08</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Enemy HP 代码 :mov [esi+000006B8],eax</Description>
+      <AddressString>Bayonetta.exe+572B2</AddressString>
+      <Before>
+        <Byte>86</Byte>
+        <Byte>B4</Byte>
+        <Byte>06</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>86</Byte>
+        <Byte>B8</Byte>
+        <Byte>06</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>2B</Byte>
+        <Byte>C7</Byte>
+        <Byte>89</Byte>
+        <Byte>86</Byte>
+        <Byte>B4</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>bullet minigame 代码 :mov [esi+000000A8],eax</Description>
+      <AddressString>Bayonetta.exe+842523</AddressString>
+      <Before>
+        <Byte>11</Byte>
+        <Byte>04</Byte>
+        <Byte>24</Byte>
+        <Byte>6A</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>86</Byte>
+        <Byte>A8</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>E8</Byte>
+        <Byte>F2</Byte>
+        <Byte>4D</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>
