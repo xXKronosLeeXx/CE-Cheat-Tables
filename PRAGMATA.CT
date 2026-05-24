@@ -2,6 +2,44 @@
 <CheatTable CheatEngineTableVersion="45">
   <CheatEntries>
     <CheatEntry>
+      <ID>19</ID>
+      <Description>"Status"</Description>
+      <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+      <LastState Value="" Activated="1" RealAddress="00000000"/>
+      <Color>0000FF</Color>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>23</ID>
+          <Description>"HP"</Description>
+          <LastState Value="1000" Activated="1" RealAddress="2598A4EF8"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"PRAGMATA.exe"+0B9C06F8</Address>
+          <Offsets>
+            <Offset>18</Offset>
+            <Offset>148</Offset>
+            <Offset>A8</Offset>
+            <Offset>20</Offset>
+            <Offset>C0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>47</ID>
+          <Description>"Enery"</Description>
+          <LastState Value="1000" Activated="1" RealAddress="2505E8450"/>
+          <VariableType>Float</VariableType>
+          <Address>"PRAGMATA.exe"+0B9933A8</Address>
+          <Offsets>
+            <Offset>10</Offset>
+            <Offset>58</Offset>
+            <Offset>3A0</Offset>
+            <Offset>60</Offset>
+            <Offset>50</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
       <ID>17</ID>
       <Description>"Main"</Description>
       <LastState Value="" RealAddress="00000000"/>
@@ -17,6 +55,7 @@
         <CheatEntry>
           <ID>8</ID>
           <Description>"Moon Silk"</Description>
+          <LastState Value="6404032" RealAddress="ED775E54"/>
           <VariableType>4 Bytes</VariableType>
           <Address>"PRAGMATA.exe"+0B993498</Address>
           <Offsets>
@@ -30,6 +69,7 @@
         <CheatEntry>
           <ID>9</ID>
           <Description>"Update Part"</Description>
+          <LastState Value="231" RealAddress="ED775F14"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>"PRAGMATA.exe"+0B993498</Address>
@@ -44,6 +84,7 @@
         <CheatEntry>
           <ID>10</ID>
           <Description>"A Coin"</Description>
+          <LastState Value="67" RealAddress="ED775F34"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>"PRAGMATA.exe"+0B993498</Address>
@@ -58,6 +99,7 @@
         <CheatEntry>
           <ID>11</ID>
           <Description>"Pure Mine"</Description>
+          <LastState Value="66" RealAddress="ED775F54"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>"PRAGMATA.exe"+0B993498</Address>
@@ -72,6 +114,7 @@
         <CheatEntry>
           <ID>46</ID>
           <Description>"Red Zone Key"</Description>
+          <LastState Value="6" RealAddress="ED776014"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>"PRAGMATA.exe"+0B993498</Address>
@@ -86,22 +129,15 @@
       </CheatEntries>
     </CheatEntry>
     <CheatEntry>
-      <ID>16</ID>
-      <Description>"bullet"</Description>
-      <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
-      <LastState Value="" Activated="1" RealAddress="00000000"/>
-      <Color>0000FF</Color>
+      <ID>67</ID>
+      <Description>"Normal Gun(need then check)"</Description>
+      <LastState Value="" RealAddress="00000000"/>
       <GroupHeader>1</GroupHeader>
       <CheatEntries>
         <CheatEntry>
-          <ID>15</ID>
-          <Description>"//Normal bullet+20=slow bullet /slow +20 =boom"</Description>
-          <LastState Value="" Activated="1" RealAddress="00000000"/>
-          <GroupHeader>1</GroupHeader>
-        </CheatEntry>
-        <CheatEntry>
-          <ID>20</ID>
-          <Description>"Normal"</Description>
+          <ID>65</ID>
+          <Description>"Main weapon"</Description>
+          <LastState Value="24" RealAddress="170D4D2E88"/>
           <VariableType>4 Bytes</VariableType>
           <Address>"PRAGMATA.exe"+0B993460</Address>
           <Offsets>
@@ -113,8 +149,9 @@
           </Offsets>
         </CheatEntry>
         <CheatEntry>
-          <ID>21</ID>
-          <Description>"Slow"</Description>
+          <ID>77</ID>
+          <Description>"R1"</Description>
+          <LastState Value="7" RealAddress="170D4D2EA8"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>"PRAGMATA.exe"+0B993460</Address>
@@ -127,8 +164,9 @@
           </Offsets>
         </CheatEntry>
         <CheatEntry>
-          <ID>22</ID>
-          <Description>"Boom"</Description>
+          <ID>78</ID>
+          <Description>"D1"</Description>
+          <LastState Value="300" RealAddress="170D4D2EC8"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>"PRAGMATA.exe"+0B993460</Address>
@@ -140,40 +178,141 @@
             <Offset>68</Offset>
           </Offsets>
         </CheatEntry>
-      </CheatEntries>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>19</ID>
-      <Description>"Status"</Description>
-      <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
-      <LastState Value="" Activated="1" RealAddress="00000000"/>
-      <Color>0000FF</Color>
-      <GroupHeader>1</GroupHeader>
-      <CheatEntries>
         <CheatEntry>
-          <ID>23</ID>
-          <Description>"HP"</Description>
+          <ID>79</ID>
+          <Description>"L2"</Description>
+          <LastState Value="80" RealAddress="170D4D2EE8"/>
+          <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
-          <Address>"PRAGMATA.exe"+0B9C06F8</Address>
+          <Address>"PRAGMATA.exe"+0B993460</Address>
           <Offsets>
+            <Offset>18+20+20+20</Offset>
+            <Offset>310</Offset>
+            <Offset>48</Offset>
             <Offset>18</Offset>
-            <Offset>148</Offset>
-            <Offset>A8</Offset>
-            <Offset>20</Offset>
-            <Offset>C0</Offset>
+            <Offset>68</Offset>
           </Offsets>
         </CheatEntry>
         <CheatEntry>
-          <ID>47</ID>
-          <Description>"Enery"</Description>
-          <VariableType>Float</VariableType>
-          <Address>"PRAGMATA.exe"+0B9933A8</Address>
+          <ID>80</ID>
+          <Description>"R2"</Description>
+          <LastState Value="21" RealAddress="170D4D2F08"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"PRAGMATA.exe"+0B993460</Address>
           <Offsets>
+            <Offset>18+20+20+20+20</Offset>
+            <Offset>310</Offset>
+            <Offset>48</Offset>
+            <Offset>18</Offset>
+            <Offset>68</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>81</ID>
+          <Description>"L1"</Description>
+          <LastState Value="28" RealAddress="170D4D2F28"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"PRAGMATA.exe"+0B993460</Address>
+          <Offsets>
+            <Offset>18+20+20+20+20+20</Offset>
+            <Offset>310</Offset>
+            <Offset>48</Offset>
+            <Offset>18</Offset>
+            <Offset>68</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>53</ID>
+      <Description>"Mission Gun(need then check)"</Description>
+      <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>68</ID>
+          <Description>"Main Weapon"</Description>
+          <LastState Value="10" RealAddress="170D4D2F48"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"PRAGMATA.exe"+0B993498</Address>
+          <Offsets>
+            <Offset>18</Offset>
+            <Offset>40</Offset>
             <Offset>10</Offset>
-            <Offset>58</Offset>
-            <Offset>3A0</Offset>
-            <Offset>60</Offset>
-            <Offset>50</Offset>
+            <Offset>28</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>71</ID>
+          <Description>"R1"</Description>
+          <LastState Value="3" RealAddress="170D4D2F68"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"PRAGMATA.exe"+0B993498</Address>
+          <Offsets>
+            <Offset>18+20</Offset>
+            <Offset>40</Offset>
+            <Offset>10</Offset>
+            <Offset>28</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>72</ID>
+          <Description>"D1"</Description>
+          <LastState Value="1" RealAddress="170D4D2F88"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"PRAGMATA.exe"+0B993498</Address>
+          <Offsets>
+            <Offset>18+20+20</Offset>
+            <Offset>40</Offset>
+            <Offset>10</Offset>
+            <Offset>28</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>73</ID>
+          <Description>"L1"</Description>
+          <LastState Value="2" RealAddress="170D4D2FA8"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"PRAGMATA.exe"+0B993498</Address>
+          <Offsets>
+            <Offset>18+20+20+20</Offset>
+            <Offset>40</Offset>
+            <Offset>10</Offset>
+            <Offset>28</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>74</ID>
+          <Description>"R2"</Description>
+          <LastState Value="5" RealAddress="170D4D2FC8"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"PRAGMATA.exe"+0B993498</Address>
+          <Offsets>
+            <Offset>18+20+20+20+20</Offset>
+            <Offset>40</Offset>
+            <Offset>10</Offset>
+            <Offset>28</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>75</ID>
+          <Description>"L2"</Description>
+          <LastState Value="5" RealAddress="170D4D2FE8"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"PRAGMATA.exe"+0B993498</Address>
+          <Offsets>
+            <Offset>18+20+20+20+20+20</Offset>
+            <Offset>40</Offset>
+            <Offset>10</Offset>
+            <Offset>28</Offset>
           </Offsets>
         </CheatEntry>
       </CheatEntries>
