@@ -1,0 +1,16 @@
+HP:100(float)
+bullet:4byte
+
+HP:
+HutongGames.PlayMaker.Actions.SubtractFsmFloat:DoSubtractFsmFloat+133     - fstp dword ptr [ebx+18]
+
+
+Bullet:
+HutongGames.PlayMaker.Actions.IntAdd:OnEnter+38 - 89 48 18              - mov [eax+18],ecx
+入口共用代码
+bullet EDX=FFFFFFFF
+获取的分数和子弹： + EDX =0a
+
+
+HutongGames.PlayMaker.Actions.IntClamp:DoClamp+5b: 89 48 18        - mov [eax+18],ecx
+执行公用代码，寄存器ecx区别 ecx=0x19获取弹药   ecx=0x05 得分倍率   ecx=0x05F5E00 得分
