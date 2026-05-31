@@ -8,90 +8,8 @@
       <GroupHeader>1</GroupHeader>
     </CheatEntry>
     <CheatEntry>
-      <ID>4</ID>
-      <Description>"Ultra HP &amp; ATK=1000"</Description>
-      <LastState Activated="1"/>
-      <VariableType>Auto Assembler Script</VariableType>
-      <AssemblerScript>{ Game   : IS-DQDai.exe
-  Version: 
-  Date   : 2026-05-27
-  Author : krono
-
-  This script does blah blah blah
-}
-
-[ENABLE]
-
-aobscanmodule(INJECT,IS-DQDai.exe,41 89 82 B4 00 00 00 40) // should be unique
-alloc(newmem,$1000,INJECT)
-
-label(code)
-label(return)
-
-newmem:
-  cmp [r10+0000001CC],0   //player 1CC=576/1D0=3;1D4=4  enemy all=0
-  je code
-  mov eax,[r10+000000B0]
-  mov [r10+000000B4],eax
-  jmp return
-
-code:
-  cmp eax,#1000
-  jl kill
-  sub eax,#1000
-  mov [r10+000000B4],eax
-  jmp return
-
-kill:
-  mov [r10+000000B4],0
-  jmp return
-
-INJECT:
-  jmp newmem
-  nop 2
-return:
-registersymbol(INJECT)
-
-[DISABLE]
-
-INJECT:
-  db 41 89 82 B4 00 00 00
-
-unregistersymbol(INJECT)
-dealloc(newmem)
-
-{
-// ORIGINAL CODE - INJECTION POINT: IS-DQDai.exe+F8F772
-
-IS-DQDai.exe+F8F750: 41 8B 82 B4 00 00 00  - mov eax,[r10+000000B4]
-IS-DQDai.exe+F8F757: 85 C0                 - test eax,eax
-IS-DQDai.exe+F8F759: 7E 1E                 - jle IS-DQDai.exe+F8F779
-IS-DQDai.exe+F8F75B: 45 85 DB              - test r11d,r11d
-IS-DQDai.exe+F8F75E: 79 04                 - jns IS-DQDai.exe+F8F764
-IS-DQDai.exe+F8F760: 8B C3                 - mov eax,ebx
-IS-DQDai.exe+F8F762: EB 0E                 - jmp IS-DQDai.exe+F8F772
-IS-DQDai.exe+F8F764: 41 8B 82 B0 00 00 00  - mov eax,[r10+000000B0]
-IS-DQDai.exe+F8F76B: 44 3B D8              - cmp r11d,eax
-IS-DQDai.exe+F8F76E: 41 0F 4C C3           - cmovl eax,r11d
-// ---------- INJECTING HERE ----------
-IS-DQDai.exe+F8F772: 41 89 82 B4 00 00 00  - mov [r10+000000B4],eax
-// ---------- DONE INJECTING  ----------
-IS-DQDai.exe+F8F779: 40 84 F6              - test sil,sil
-IS-DQDai.exe+F8F77C: 74 07                 - je IS-DQDai.exe+F8F785
-IS-DQDai.exe+F8F77E: 41 89 82 B8 00 00 00  - mov [r10+000000B8],eax
-IS-DQDai.exe+F8F785: 4D 8B 82 E0 01 00 00  - mov r8,[r10+000001E0]
-IS-DQDai.exe+F8F78C: 4D 85 C0              - test r8,r8
-IS-DQDai.exe+F8F78F: 74 50                 - je IS-DQDai.exe+F8F7E1
-IS-DQDai.exe+F8F791: 41 8B 40 0C           - mov eax,[r8+0C]
-IS-DQDai.exe+F8F795: 3B 05 D9 30 22 04     - cmp eax,[IS-DQDai.exe+51B2874]
-IS-DQDai.exe+F8F79B: 7D 28                 - jnl IS-DQDai.exe+F8F7C5
-IS-DQDai.exe+F8F79D: 99                    - cdq 
-}
-</AssemblerScript>
-    </CheatEntry>
-    <CheatEntry>
       <ID>18</ID>
-      <Description>"Memory Dungeon"</Description>
+      <Description>"Memory Temple"</Description>
       <LastState Value="" RealAddress="00000000"/>
       <GroupHeader>1</GroupHeader>
       <CheatEntries>
@@ -172,8 +90,262 @@ IS-DQDai.exe+1024C9F: 75 50           - jne IS-DQDai.exe+1024CF1
       </CheatEntries>
     </CheatEntry>
     <CheatEntry>
+      <ID>25</ID>
+      <Description>"Battle"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>4</ID>
+          <Description>"Ultra HP &amp; ATK=50000"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : IS-DQDai.exe
+  Version: 
+  Date   : 2026-05-27
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,IS-DQDai.exe,41 89 82 B4 00 00 00 40) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [r10+0000001CC],0   //player 1CC=576/1D0=3;1D4=4  enemy all=0
+  je code
+  mov eax,[r10+000000B0]
+  mov [r10+000000B4],eax
+  jmp return
+
+code:
+  cmp eax,#50000
+  jl kill
+  sub eax,#50000
+  mov [r10+000000B4],eax
+  jmp return
+
+kill:
+  mov [r10+000000B4],0
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 41 89 82 B4 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: IS-DQDai.exe+F8F772
+
+IS-DQDai.exe+F8F750: 41 8B 82 B4 00 00 00  - mov eax,[r10+000000B4]
+IS-DQDai.exe+F8F757: 85 C0                 - test eax,eax
+IS-DQDai.exe+F8F759: 7E 1E                 - jle IS-DQDai.exe+F8F779
+IS-DQDai.exe+F8F75B: 45 85 DB              - test r11d,r11d
+IS-DQDai.exe+F8F75E: 79 04                 - jns IS-DQDai.exe+F8F764
+IS-DQDai.exe+F8F760: 8B C3                 - mov eax,ebx
+IS-DQDai.exe+F8F762: EB 0E                 - jmp IS-DQDai.exe+F8F772
+IS-DQDai.exe+F8F764: 41 8B 82 B0 00 00 00  - mov eax,[r10+000000B0]
+IS-DQDai.exe+F8F76B: 44 3B D8              - cmp r11d,eax
+IS-DQDai.exe+F8F76E: 41 0F 4C C3           - cmovl eax,r11d
+// ---------- INJECTING HERE ----------
+IS-DQDai.exe+F8F772: 41 89 82 B4 00 00 00  - mov [r10+000000B4],eax
+// ---------- DONE INJECTING  ----------
+IS-DQDai.exe+F8F779: 40 84 F6              - test sil,sil
+IS-DQDai.exe+F8F77C: 74 07                 - je IS-DQDai.exe+F8F785
+IS-DQDai.exe+F8F77E: 41 89 82 B8 00 00 00  - mov [r10+000000B8],eax
+IS-DQDai.exe+F8F785: 4D 8B 82 E0 01 00 00  - mov r8,[r10+000001E0]
+IS-DQDai.exe+F8F78C: 4D 85 C0              - test r8,r8
+IS-DQDai.exe+F8F78F: 74 50                 - je IS-DQDai.exe+F8F7E1
+IS-DQDai.exe+F8F791: 41 8B 40 0C           - mov eax,[r8+0C]
+IS-DQDai.exe+F8F795: 3B 05 D9 30 22 04     - cmp eax,[IS-DQDai.exe+51B2874]
+IS-DQDai.exe+F8F79B: 7D 28                 - jnl IS-DQDai.exe+F8F7C5
+IS-DQDai.exe+F8F79D: 99                    - cdq 
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26</ID>
+          <Description>"Ultra HP &amp; ATK=5000"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : IS-DQDai.exe
+  Version: 
+  Date   : 2026-05-27
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,IS-DQDai.exe,41 89 82 B4 00 00 00 40) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [r10+0000001CC],0   //player 1CC=576/1D0=3;1D4=4  enemy all=0
+  je code
+  mov eax,[r10+000000B0]
+  mov [r10+000000B4],eax
+  jmp return
+
+code:
+  cmp eax,#5000
+  jl kill
+  sub eax,#5000
+  mov [r10+000000B4],eax
+  jmp return
+
+kill:
+  mov [r10+000000B4],0
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 41 89 82 B4 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: IS-DQDai.exe+F8F772
+
+IS-DQDai.exe+F8F750: 41 8B 82 B4 00 00 00  - mov eax,[r10+000000B4]
+IS-DQDai.exe+F8F757: 85 C0                 - test eax,eax
+IS-DQDai.exe+F8F759: 7E 1E                 - jle IS-DQDai.exe+F8F779
+IS-DQDai.exe+F8F75B: 45 85 DB              - test r11d,r11d
+IS-DQDai.exe+F8F75E: 79 04                 - jns IS-DQDai.exe+F8F764
+IS-DQDai.exe+F8F760: 8B C3                 - mov eax,ebx
+IS-DQDai.exe+F8F762: EB 0E                 - jmp IS-DQDai.exe+F8F772
+IS-DQDai.exe+F8F764: 41 8B 82 B0 00 00 00  - mov eax,[r10+000000B0]
+IS-DQDai.exe+F8F76B: 44 3B D8              - cmp r11d,eax
+IS-DQDai.exe+F8F76E: 41 0F 4C C3           - cmovl eax,r11d
+// ---------- INJECTING HERE ----------
+IS-DQDai.exe+F8F772: 41 89 82 B4 00 00 00  - mov [r10+000000B4],eax
+// ---------- DONE INJECTING  ----------
+IS-DQDai.exe+F8F779: 40 84 F6              - test sil,sil
+IS-DQDai.exe+F8F77C: 74 07                 - je IS-DQDai.exe+F8F785
+IS-DQDai.exe+F8F77E: 41 89 82 B8 00 00 00  - mov [r10+000000B8],eax
+IS-DQDai.exe+F8F785: 4D 8B 82 E0 01 00 00  - mov r8,[r10+000001E0]
+IS-DQDai.exe+F8F78C: 4D 85 C0              - test r8,r8
+IS-DQDai.exe+F8F78F: 74 50                 - je IS-DQDai.exe+F8F7E1
+IS-DQDai.exe+F8F791: 41 8B 40 0C           - mov eax,[r8+0C]
+IS-DQDai.exe+F8F795: 3B 05 D9 30 22 04     - cmp eax,[IS-DQDai.exe+51B2874]
+IS-DQDai.exe+F8F79B: 7D 28                 - jnl IS-DQDai.exe+F8F7C5
+IS-DQDai.exe+F8F79D: 99                    - cdq 
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>24</ID>
+          <Description>"Ultra HP &amp; ATK=100"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : IS-DQDai.exe
+  Version: 
+  Date   : 2026-05-27
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,IS-DQDai.exe,41 89 82 B4 00 00 00 40) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [r10+0000001CC],0   //player 1CC=576/1D0=3;1D4=4  enemy all=0
+  je code
+  mov eax,[r10+000000B0]
+  mov [r10+000000B4],eax
+  jmp return
+
+code:
+  cmp eax,0x64
+  jl kill
+  sub eax,0x64
+  mov [r10+000000B4],eax
+  jmp return
+
+kill:
+  mov [r10+000000B4],0
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 41 89 82 B4 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: IS-DQDai.exe+F8F772
+
+IS-DQDai.exe+F8F750: 41 8B 82 B4 00 00 00  - mov eax,[r10+000000B4]
+IS-DQDai.exe+F8F757: 85 C0                 - test eax,eax
+IS-DQDai.exe+F8F759: 7E 1E                 - jle IS-DQDai.exe+F8F779
+IS-DQDai.exe+F8F75B: 45 85 DB              - test r11d,r11d
+IS-DQDai.exe+F8F75E: 79 04                 - jns IS-DQDai.exe+F8F764
+IS-DQDai.exe+F8F760: 8B C3                 - mov eax,ebx
+IS-DQDai.exe+F8F762: EB 0E                 - jmp IS-DQDai.exe+F8F772
+IS-DQDai.exe+F8F764: 41 8B 82 B0 00 00 00  - mov eax,[r10+000000B0]
+IS-DQDai.exe+F8F76B: 44 3B D8              - cmp r11d,eax
+IS-DQDai.exe+F8F76E: 41 0F 4C C3           - cmovl eax,r11d
+// ---------- INJECTING HERE ----------
+IS-DQDai.exe+F8F772: 41 89 82 B4 00 00 00  - mov [r10+000000B4],eax
+// ---------- DONE INJECTING  ----------
+IS-DQDai.exe+F8F779: 40 84 F6              - test sil,sil
+IS-DQDai.exe+F8F77C: 74 07                 - je IS-DQDai.exe+F8F785
+IS-DQDai.exe+F8F77E: 41 89 82 B8 00 00 00  - mov [r10+000000B8],eax
+IS-DQDai.exe+F8F785: 4D 8B 82 E0 01 00 00  - mov r8,[r10+000001E0]
+IS-DQDai.exe+F8F78C: 4D 85 C0              - test r8,r8
+IS-DQDai.exe+F8F78F: 74 50                 - je IS-DQDai.exe+F8F7E1
+IS-DQDai.exe+F8F791: 41 8B 40 0C           - mov eax,[r8+0C]
+IS-DQDai.exe+F8F795: 3B 05 D9 30 22 04     - cmp eax,[IS-DQDai.exe+51B2874]
+IS-DQDai.exe+F8F79B: 7D 28                 - jnl IS-DQDai.exe+F8F7C5
+IS-DQDai.exe+F8F79D: 99                    - cdq 
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
       <ID>23</ID>
-      <Description>"EXP+FFFFFF"</Description>
+      <Description>"EXP+0xFFFFFF"</Description>
       <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : IS-DQDai.exe
