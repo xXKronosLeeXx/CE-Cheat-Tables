@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="51">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"无描述"</Description>
+      <LastState Value="7798784" RealAddress="1DC1893A904"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>1DC1893A904</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>hp (HPX65536)代码 :mov [rcx+16],ax</Description>
+      <AddressString>GameAssembly.dll+15E69981</AddressString>
+      <Before>
+        <Byte>C0</Byte>
+        <Byte>41</Byte>
+        <Byte>0F</Byte>
+        <Byte>4E</Byte>
+        <Byte>C0</Byte>
+      </Before>
+      <Actual>
+        <Byte>66</Byte>
+        <Byte>89</Byte>
+        <Byte>41</Byte>
+        <Byte>16</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>83</Byte>
+        <Byte>C4</Byte>
+        <Byte>28</Byte>
+        <Byte>C3</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+  <Comments>hp内存 = 显示HPx65536</Comments>
+</CheatTable>

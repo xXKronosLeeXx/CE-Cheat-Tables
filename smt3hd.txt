@@ -1,0 +1,7 @@
+HP搜索部分，最终找到是2字节的
+但是HP逻辑
+GameAssembly.dll+15E69981 - 66 89 41 16           - mov [rcx+16],ax
+是一个低位寄存器的操作
+
+HP判断      player          enemy 
+rax+20       n/a             0
