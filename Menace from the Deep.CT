@@ -2,9 +2,15 @@
 <CheatTable CheatEngineTableVersion="45">
   <CheatEntries>
     <CheatEntry>
+      <ID>42</ID>
+      <Description>"V1.17"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+    </CheatEntry>
+    <CheatEntry>
       <ID>6</ID>
       <Description>"God（HPMAX+敌人秒）"</Description>
-      <LastState Activated="1"/>
+      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : Menace from the Deep.exe
   Version: 
@@ -162,7 +168,7 @@ Common.Resource:SpendResource+a8: 41 FF D3                       - call r11
         <CheatEntry>
           <ID>16</ID>
           <Description>"花钱=8999（商店界面）"</Description>
-          <LastState Activated="1"/>
+          <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : Menace from the Deep.exe
   Version: 
@@ -236,7 +242,7 @@ Common.Player:SpendMoney+32: C3                    - ret
         <CheatEntry>
           <ID>27</ID>
           <Description>"赚钱=8999"</Description>
-          <LastState Activated="1"/>
+          <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : Menace from the Deep.exe
   Version: 
