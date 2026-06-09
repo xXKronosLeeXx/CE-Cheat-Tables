@@ -1,0 +1,25 @@
+HP sub
+Atelier_Sophie_2.exe+3922FC - 29 83 0C010000        - sub [rbx+0000010C],eax
+      player              enemy
+RDX  0xFFFFFFFF            n/a
+RCX  0x46                  n/a
++12C   n/a                   0
++1A8   n/a                   0
++398   n/a                   0
++3A0   n/a                   0
++3A8   n/a                   0
+
+SP sub
+Atelier_Sophie_2.exe+3925BA - 29 91 10010000        - sub [rcx+00000110],edx
+
+有角色基址
+Lv=[exp]-0x04
+exp 基址
+HPcurrent=[exp]+0x04
+SPcurrnet=[HPcurrent]+0x04
+HPMax=[SPcurrent]+0x08
+SPMax=[HPMax]+0x08
+ATK=[SPMax]+0x04
+DEF=[ATK]+0x04
+INT=[DEF]+0x04
+
