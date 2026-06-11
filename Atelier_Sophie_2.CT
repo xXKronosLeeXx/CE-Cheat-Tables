@@ -17,7 +17,7 @@
       <CheatEntries>
         <CheatEntry>
           <ID>4</ID>
-          <Description>"UltraHP+DAMAGEx16"</Description>
+          <Description>"UltraHP+DAMAGEx255"</Description>
           <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : Atelier_Sophie_2.exe
@@ -44,7 +44,7 @@ newmem:
   jmp return
 
 code:
-  imul eax,f
+  imul eax,ff
   sub [rbx+0000010C],eax
   jmp return
 
@@ -391,6 +391,80 @@ Atelier_Sophie_2.exe+B831C: CC              - int 3
 </AssemblerScript>
         </CheatEntry>
         <CheatEntry>
+          <ID>74</ID>
+          <Description>"敌人灵气=0"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Atelier_Sophie_2.exe
+  Version: 
+  Date   : 2026-06-09
+  Author : krono
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Atelier_Sophie_2.exe,29 51 04 8B 41 08) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  sub [rcx+04],ff
+  mov eax,[rcx+08]
+  jmp return
+
+code:
+  sub [rcx+04],edx
+  mov eax,[rcx+08]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 29 51 04 8B 41 08
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Atelier_Sophie_2.exe+9C944
+
+Atelier_Sophie_2.exe+9C933: 48 8B C1              - mov rax,rcx
+Atelier_Sophie_2.exe+9C936: C6 41 34 00           - mov byte ptr [rcx+34],00
+Atelier_Sophie_2.exe+9C93A: C3                    - ret 
+Atelier_Sophie_2.exe+9C93B: CC                    - int 3 
+Atelier_Sophie_2.exe+9C93C: CC                    - int 3 
+Atelier_Sophie_2.exe+9C93D: CC                    - int 3 
+Atelier_Sophie_2.exe+9C93E: CC                    - int 3 
+Atelier_Sophie_2.exe+9C93F: CC                    - int 3 
+Atelier_Sophie_2.exe+9C940: 85 D2                 - test edx,edx
+Atelier_Sophie_2.exe+9C942: 7E 1B                 - jle Atelier_Sophie_2.exe+9C95F
+// ---------- INJECTING HERE ----------
+Atelier_Sophie_2.exe+9C944: 29 51 04              - sub [rcx+04],edx
+// ---------- DONE INJECTING  ----------
+Atelier_Sophie_2.exe+9C947: 8B 41 08              - mov eax,[rcx+08]
+Atelier_Sophie_2.exe+9C94A: 39 41 04              - cmp [rcx+04],eax
+Atelier_Sophie_2.exe+9C94D: 7E 03                 - jle Atelier_Sophie_2.exe+9C952
+Atelier_Sophie_2.exe+9C94F: 89 41 04              - mov [rcx+04],eax
+Atelier_Sophie_2.exe+9C952: 83 79 04 00           - cmp dword ptr [rcx+04],00
+Atelier_Sophie_2.exe+9C956: 7D 07                 - jnl Atelier_Sophie_2.exe+9C95F
+Atelier_Sophie_2.exe+9C958: C7 41 04 00 00 00 00  - mov [rcx+04],00000000
+Atelier_Sophie_2.exe+9C95F: C3                    - ret 
+Atelier_Sophie_2.exe+9C960: 4C 8B C9              - mov r9,rcx
+Atelier_Sophie_2.exe+9C963: 41 83 F8 01           - cmp r8d,01
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
           <ID>61</ID>
           <Description>"TestMode both UltraHP"</Description>
           <LastState/>
@@ -617,96 +691,7 @@ Atelier_Sophie_2.exe+392329: 7D 07                    - jnl Atelier_Sophie_2.exe
           <VariableType>4 Bytes</VariableType>
           <Address>Atelier_Sophie_2.exe+183EE78+4+4+4+4+4</Address>
         </CheatEntry>
-        <CheatEntry>
-          <ID>34</ID>
-          <Description>"F EXP（基址）"</Description>
-          <ShowAsSigned>0</ShowAsSigned>
-          <VariableType>4 Bytes</VariableType>
-          <Address>Atelier_Sophie_2.exe+18E6E78+350+350+350</Address>
-        </CheatEntry>
-        <CheatEntry>
-          <ID>52</ID>
-          <Description>"F AP（基址）"</Description>
-          <ShowAsSigned>0</ShowAsSigned>
-          <VariableType>4 Bytes</VariableType>
-          <Address>Atelier_Sophie_2.exe+183EE78+4+4+4+4+4+4</Address>
-        </CheatEntry>
       </CheatEntries>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>71</ID>
-      <Description>"自动汇编脚本"</Description>
-      <LastState/>
-      <VariableType>Auto Assembler Script</VariableType>
-      <AssemblerScript>{ Game   : Atelier_Sophie_2.exe
-  Version: 
-  Date   : 2026-06-08
-  Author : krono
-
-  This script does blah blah blah
-}
-
-[ENABLE]
-
-aobscanmodule(INJECT,Atelier_Sophie_2.exe,48 8B 01 FF 50 58 8B 55) // should be unique
-alloc(newmem,$1000,INJECT)
-
-label(code)
-label(return)
-
-newmem:
-  mov [rcx],#299999
-  mov rax,[rcx]
-  call qword ptr [rax+58]
-  jmp return
-
-code:
-  mov rax,[rcx]
-  call qword ptr [rax+58]
-  jmp return
-
-INJECT:
-  jmp newmem
-  nop
-return:
-registersymbol(INJECT)
-
-[DISABLE]
-
-INJECT:
-  db 48 8B 01 FF 50 58
-
-unregistersymbol(INJECT)
-dealloc(newmem)
-
-{
-// ORIGINAL CODE - INJECTION POINT: Atelier_Sophie_2.exe+6196D4
-
-Atelier_Sophie_2.exe+6196AC: E8 3F 28 D7 FF        - call Atelier_Sophie_2.exe+38BEF0
-Atelier_Sophie_2.exe+6196B1: 0F 2F C6              - comiss xmm0,xmm6
-Atelier_Sophie_2.exe+6196B4: B8 02 00 00 00        - mov eax,00000002
-Atelier_Sophie_2.exe+6196B9: 0F 47 D8              - cmova ebx,eax
-Atelier_Sophie_2.exe+6196BC: 4C 8B 45 E7           - mov r8,[rbp-19]
-Atelier_Sophie_2.exe+6196C0: 0F 28 74 24 60        - movaps xmm6,[rsp+60]
-Atelier_Sophie_2.exe+6196C5: 4D 85 C0              - test r8,r8
-Atelier_Sophie_2.exe+6196C8: 74 10                 - je Atelier_Sophie_2.exe+6196DA
-Atelier_Sophie_2.exe+6196CA: 48 8B 0D 2F F7 20 01  - mov rcx,[Atelier_Sophie_2.exe+1828E00]
-Atelier_Sophie_2.exe+6196D1: 49 8B D0              - mov rdx,r8
-// ---------- INJECTING HERE ----------
-Atelier_Sophie_2.exe+6196D4: 48 8B 01              - mov rax,[rcx]
-// ---------- DONE INJECTING  ----------
-Atelier_Sophie_2.exe+6196D7: FF 50 58              - call qword ptr [rax+58]
-Atelier_Sophie_2.exe+6196DA: 8B 55 5F              - mov edx,[rbp+5F]
-Atelier_Sophie_2.exe+6196DD: 4D 8B CF              - mov r9,r15
-Atelier_Sophie_2.exe+6196E0: 48 8B 4D 57           - mov rcx,[rbp+57]
-Atelier_Sophie_2.exe+6196E4: 45 8B C5              - mov r8d,r13d
-Atelier_Sophie_2.exe+6196E7: 89 5C 24 30           - mov [rsp+30],ebx
-Atelier_Sophie_2.exe+6196EB: 44 89 64 24 28        - mov [rsp+28],r12d
-Atelier_Sophie_2.exe+6196F0: 44 89 74 24 20        - mov [rsp+20],r14d
-Atelier_Sophie_2.exe+6196F5: E8 66 00 00 00        - call Atelier_Sophie_2.exe+619760
-Atelier_Sophie_2.exe+6196FA: 4C 8B 74 24 70        - mov r14,[rsp+70]
-}
-</AssemblerScript>
     </CheatEntry>
   </CheatEntries>
   <CheatCodes>
