@@ -17,7 +17,7 @@
         <CheatEntry SavedActivationState="1">
           <ID>16</ID>
           <Description>"UltraHP"</Description>
-          <LastState Activated="1"/>
+          <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : DQIIIHD2DRemake.exe
   Version: 
@@ -93,7 +93,7 @@ DQIIIHD2DRemake.exe+E7FE89: CC                             - int 3
         <CheatEntry SavedActivationState="1">
           <ID>22</ID>
           <Description>"UltraHP+DamageMAX"</Description>
-          <LastState/>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : DQIIIHD2DRemake.exe
   Version: 
@@ -248,7 +248,7 @@ DQIIIHD2DRemake.exe+E80039: CC                             - int 3
         </CheatEntry>
         <CheatEntry>
           <ID>14</ID>
-          <Description>"EXP+65535"</Description>
+          <Description>"EXP+0xffffff"</Description>
           <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : DQIIIHD2DRemake.exe
@@ -268,7 +268,7 @@ label(code)
 label(return)
 
 newmem:
-  mov rdx,ffff
+  mov rdx,ffffff
   mov r8d,[rcx+20]
   add r8d,edx
   jmp return
@@ -554,81 +554,6 @@ DQIIIHD2DRemake.exe+11549B2: 48 8D 88 60 03 00 00  - lea rcx,[rax+00000360]
 DQIIIHD2DRemake.exe+11549B9: E8 C2 9E 0A 00        - call DQIIIHD2DRemake.exe+11FE880
 DQIIIHD2DRemake.exe+11549BE: 41 B8 01 00 00 00     - mov r8d,00000001
 DQIIIHD2DRemake.exe+11549C4: 48 8D 15 D5 F9 D9 02  - lea rdx,[DQIIIHD2DRemake.exe+3EF43A0]
-}
-</AssemblerScript>
-        </CheatEntry>
-        <CheatEntry>
-          <ID>38</ID>
-          <Description>"Str ++"</Description>
-          <LastState/>
-          <VariableType>Auto Assembler Script</VariableType>
-          <AssemblerScript>{ Game   : DQIIIHD2DRemake.exe
-  Version: 
-  Date   : 2026-06-18
-  Author : krono
-  描述 : 
-
-  &lt;Optional info&gt;
-}
-
-[ENABLE]
-
-aobscanmodule(INJECT,DQIIIHD2DRemake.exe,41 89 42 70 45 0F 48 CB) // should be unique
-alloc(newmem,$1000,INJECT)
-
-label(code)
-label(return)
-
-newmem:
-  mov [r10+70],eax
-  cmovs r9d,r11d
-  jmp return
-
-code:
-  mov [r10+70],eax
-  cmovs r9d,r11d
-  jmp return
-
-INJECT:
-  jmp newmem
-  nop 3
-return:
-registersymbol(INJECT)
-
-[DISABLE]
-
-INJECT:
-  db 41 89 42 70 45 0F 48 CB
-
-unregistersymbol(INJECT)
-dealloc(newmem)
-
-{
-// ORIGINAL CODE - INJECTION POINT: DQIIIHD2DRemake.exe+F80DB5
-
-DQIIIHD2DRemake.exe+F80D92: F3 0F 2D C1              - cvtss2si eax,xmm1
-DQIIIHD2DRemake.exe+F80D96: D1 F8                    - sar eax,1
-DQIIIHD2DRemake.exe+F80D98: 44 2B C8                 - sub r9d,eax
-DQIIIHD2DRemake.exe+F80D9B: 44 2B C9                 - sub r9d,ecx
-DQIIIHD2DRemake.exe+F80D9E: 45 3B C1                 - cmp r8d,r9d
-DQIIIHD2DRemake.exe+F80DA1: 45 0F 4E C8              - cmovle r9d,r8d
-DQIIIHD2DRemake.exe+F80DA5: 45 85 C9                 - test r9d,r9d
-DQIIIHD2DRemake.exe+F80DA8: 0F 8E 99 01 00 00        - jng DQIIIHD2DRemake.exe+F80F47
-DQIIIHD2DRemake.exe+F80DAE: 42 8D 04 09              - lea eax,[rcx+r9]
-DQIIIHD2DRemake.exe+F80DB2: 45 85 C9                 - test r9d,r9d
-// ---------- INJECTING HERE ----------
-DQIIIHD2DRemake.exe+F80DB5: 41 89 42 70              - mov [r10+70],eax
-// ---------- DONE INJECTING  ----------
-DQIIIHD2DRemake.exe+F80DB9: 45 0F 48 CB              - cmovs r9d,r11d
-DQIIIHD2DRemake.exe+F80DBD: 41 8B C1                 - mov eax,r9d
-DQIIIHD2DRemake.exe+F80DC0: C3                       - ret 
-DQIIIHD2DRemake.exe+F80DC1: F2 41 0F 10 4A 40        - movsd xmm1,[r10+40]
-DQIIIHD2DRemake.exe+F80DC7: 41 B9 E7 03 00 00        - mov r9d,000003E7
-DQIIIHD2DRemake.exe+F80DCD: 41 8B 4A 74              - mov ecx,[r10+74]
-DQIIIHD2DRemake.exe+F80DD1: 66 0F 5A C9              - cvtpd2ps xmm1,xmm1
-DQIIIHD2DRemake.exe+F80DD5: F3 0F 58 C9              - addss xmm1,xmm1
-DQIIIHD2DRemake.exe+F80DD9: F3 0F 5C 0D 17 E8 D4 02  - subss xmm1,[DQIIIHD2DRemake.exe+3CCF5F8]
-DQIIIHD2DRemake.exe+F80DE1: F3 0F 2D C1              - cvtss2si eax,xmm1
 }
 </AssemblerScript>
         </CheatEntry>
