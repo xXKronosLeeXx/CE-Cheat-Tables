@@ -378,11 +378,17 @@ Control_DX12.exe+F178F: 0F 28 D0                 - movaps xmm2,xmm0
 </AssemblerScript>
     </CheatEntry>
     <CheatEntry>
-      <ID>83</ID>
-      <Description>"副本 Time =19mm(Pause reset)"</Description>
-      <LastState/>
-      <VariableType>Auto Assembler Script</VariableType>
-      <AssemblerScript>{ Game   : Control_DX12.exe
+      <ID>103</ID>
+      <Description>"Time"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>83</ID>
+          <Description>"DLC Time =19mm(Pause reset)"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Control_DX12.exe
   Version: 
   Date   : 2026-06-27
   Author : krono
@@ -453,13 +459,13 @@ Control_DX12.exe+1C8623: 48 8D 15 46 64 C2 00     - lea rdx,[Control_DX12.exe+DE
 Control_DX12.exe+1C862A: FF 15 10 3E BD 00        - call qword ptr [Control_DX12.exe+D9C440]
 }
 </AssemblerScript>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>98</ID>
-      <Description>"Sub mission Time(Pause reset)"</Description>
-      <LastState/>
-      <VariableType>Auto Assembler Script</VariableType>
-      <AssemblerScript>{ Game   : Control_DX12.exe
+        </CheatEntry>
+        <CheatEntry>
+          <ID>98</ID>
+          <Description>"Sub mission Time(Pause reset)"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Control_DX12.exe
   Version: 
   Date   : 2026-06-28
   Author : krono
@@ -530,6 +536,87 @@ Control_DX12.exe+451852: 74 4D                          - je Control_DX12.exe+45
 Control_DX12.exe+451854: 48 B8 00 C0 FF FF FF FF FF 3F  - mov rax,3FFFFFFFFFFFC000
 }
 </AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>102</ID>
+          <Description>"shum Time(Pause reset)"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Control_DX12.exe
+  Version: 
+  Date   : 2026-07-01
+  Author : krono
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Control_DX12.exe,F3 0F 11 0B 0F 28 C1) // should be unique
+alloc(newmem,$1000,INJECT)
+alloc(time,$2,INJECT)
+
+label(code)
+label(return)
+time:
+dq (float)1200
+
+newmem:
+  movss xmm1,[time]
+  movss [rbx],xmm1
+  movaps xmm0,xmm1
+  jmp return
+
+code:
+  movss [rbx],xmm1
+  movaps xmm0,xmm1
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 0B 0F 28 C1
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Control_DX12.exe+1B598C
+
+Control_DX12.exe+1B596B: 48 8B 08        - mov rcx,[rax]
+Control_DX12.exe+1B596E: F3 0F 10 59 48  - movss xmm3,[rcx+48]
+Control_DX12.exe+1B5973: 0F 57 F6        - xorps xmm6,xmm6
+Control_DX12.exe+1B5976: F3 0F 10 0B     - movss xmm1,[rbx]
+Control_DX12.exe+1B597A: 0F 28 C1        - movaps xmm0,xmm1
+Control_DX12.exe+1B597D: 40 38 6B 04     - cmp [rbx+04],bpl
+Control_DX12.exe+1B5981: 75 10           - jne Control_DX12.exe+1B5993
+Control_DX12.exe+1B5983: 0F 2F CE        - comiss xmm1,xmm6
+Control_DX12.exe+1B5986: 76 0B           - jna Control_DX12.exe+1B5993
+Control_DX12.exe+1B5988: F3 0F 5C CB     - subss xmm1,xmm3
+// ---------- INJECTING HERE ----------
+Control_DX12.exe+1B598C: F3 0F 11 0B     - movss [rbx],xmm1
+// ---------- DONE INJECTING  ----------
+Control_DX12.exe+1B5990: 0F 28 C1        - movaps xmm0,xmm1
+Control_DX12.exe+1B5993: F3 0F 10 53 34  - movss xmm2,[rbx+34]
+Control_DX12.exe+1B5998: 80 7B 38 00     - cmp byte ptr [rbx+38],00
+Control_DX12.exe+1B599C: 75 15           - jne Control_DX12.exe+1B59B3
+Control_DX12.exe+1B599E: 0F 2F D6        - comiss xmm2,xmm6
+Control_DX12.exe+1B59A1: 76 10           - jna Control_DX12.exe+1B59B3
+Control_DX12.exe+1B59A3: F3 0F 5C D3     - subss xmm2,xmm3
+Control_DX12.exe+1B59A7: F3 0F 11 53 34  - movss [rbx+34],xmm2
+Control_DX12.exe+1B59AC: F3 0F 10 0B     - movss xmm1,[rbx]
+Control_DX12.exe+1B59B0: 0F 28 C1        - movaps xmm0,xmm1
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
     </CheatEntry>
   </CheatEntries>
   <CheatCodes>
@@ -830,6 +917,30 @@ Control_DX12.exe+451854: 48 B8 00 C0 FF FF FF FF FF 3F  - mov rax,3FFFFFFFFFFFC0
         <Byte>75</Byte>
         <Byte>0E</Byte>
         <Byte>F3</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>shum time代码 :movss [rbx],xmm1</Description>
+      <AddressString>Control_DX12.exe+1B598C</AddressString>
+      <Before>
+        <Byte>0B</Byte>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>5C</Byte>
+        <Byte>CB</Byte>
+      </Before>
+      <Actual>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>11</Byte>
+        <Byte>0B</Byte>
+      </Actual>
+      <After>
+        <Byte>0F</Byte>
+        <Byte>28</Byte>
+        <Byte>C1</Byte>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
       </After>
     </CodeEntry>
   </CheatCodes>
