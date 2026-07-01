@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="51">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"Main"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>9</ID>
+          <Description>"COIN = 899"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : SonicOrigins.exe
+  Version: 
+  Date   : 2026-06-21
+  Author : krono
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,SonicOrigins.exe,08 8B 00 C3 CC CC) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rax],#899
+  mov eax,[rax]
+  ret
+  int 3
+  int 3
+  jmp return
+
+code:
+  mov eax,[rax]
+  ret 
+  int 3 
+  int 3 
+  jmp return
+
+INJECT+01:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+01:
+  db 8B 00 C3 CC CC
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: SonicOrigins.exe+4597C4
+
+SonicOrigins.exe+4597B7: CC           - int 3 
+SonicOrigins.exe+4597B8: CC           - int 3 
+SonicOrigins.exe+4597B9: CC           - int 3 
+SonicOrigins.exe+4597BA: CC           - int 3 
+SonicOrigins.exe+4597BB: CC           - int 3 
+SonicOrigins.exe+4597BC: CC           - int 3 
+SonicOrigins.exe+4597BD: CC           - int 3 
+SonicOrigins.exe+4597BE: CC           - int 3 
+SonicOrigins.exe+4597BF: CC           - int 3 
+SonicOrigins.exe+4597C0: 48 8B 41 08  - mov rax,[rcx+08]
+// ---------- INJECTING HERE ----------
+SonicOrigins.exe+4597C4: 8B 00        - mov eax,[rax]
+// ---------- DONE INJECTING  ----------
+SonicOrigins.exe+4597C6: C3           - ret 
+SonicOrigins.exe+4597C7: CC           - int 3 
+SonicOrigins.exe+4597C8: CC           - int 3 
+SonicOrigins.exe+4597C9: CC           - int 3 
+SonicOrigins.exe+4597CA: CC           - int 3 
+SonicOrigins.exe+4597CB: CC           - int 3 
+SonicOrigins.exe+4597CC: CC           - int 3 
+SonicOrigins.exe+4597CD: CC           - int 3 
+SonicOrigins.exe+4597CE: CC           - int 3 
+SonicOrigins.exe+4597CF: CC           - int 3 
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"Sonic2"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>1</ID>
+          <Description>"RINGS"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>SonicOrigins.exe+3151924</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>2</ID>
+          <Description>"MINI GAME SONIC RINGS"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>SonicOrigins.exe+3151B54</Address>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>
