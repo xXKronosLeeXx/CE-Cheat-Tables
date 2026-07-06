@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="51">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"Boom"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : CounterAttack.exe
+  Version: 
+  Date   : 2026-07-04
+  Author : krono
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,48 FF C2 48 89 96 80 00 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add rdx,rdx
+  inc rdx
+  mov [rsi+00000080],rdx
+  jmp return
+
+code:
+  inc rdx
+  mov [rsi+00000080],rdx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 5
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 48 FF C2 48 89 96 80 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+37314F
+
+GameAssembly.dll+37311C: 0F 84 5C 01 00 00     - je GameAssembly.dll+37327E
+GameAssembly.dll+373122: 48 8B 15 EF 4C 17 02  - mov rdx,[GameAssembly.dll+24E7E18]
+GameAssembly.dll+373129: E8 E2 22 41 00        - call GameAssembly.dll+785410
+GameAssembly.dll+37312E: 48 85 C0              - test rax,rax
+GameAssembly.dll+373131: 0F 84 47 01 00 00     - je GameAssembly.dll+37327E
+GameAssembly.dll+373137: 33 D2                 - xor edx,edx
+GameAssembly.dll+373139: 48 8B C8              - mov rcx,rax
+GameAssembly.dll+37313C: E8 2F 30 32 00        - call Killable.Resurrect
+GameAssembly.dll+373141: 48 8B 96 80 00 00 00  - mov rdx,[rsi+00000080]
+GameAssembly.dll+373148: 48 8B 8E A8 0D 00 00  - mov rcx,[rsi+00000DA8]
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+37314F: 48 FF C2              - inc rdx
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+373152: 48 89 96 80 00 00 00  - mov [rsi+00000080],rdx
+GameAssembly.dll+373159: 48 85 C9              - test rcx,rcx
+GameAssembly.dll+37315C: 0F 84 1C 01 00 00     - je GameAssembly.dll+37327E
+GameAssembly.dll+373162: 45 33 C0              - xor r8d,r8d
+GameAssembly.dll+373165: E8 F6 F9 6B 00        - call PowerupBar.SetSpecials
+GameAssembly.dll+37316A: 80 BE 84 05 00 00 00  - cmp byte ptr [rsi+00000584],00
+GameAssembly.dll+373171: 0F 84 BD 00 00 00     - je GameAssembly.dll+373234
+GameAssembly.dll+373177: 48 8B 0D 92 8B 17 02  - mov rcx,[GameAssembly.dll+24EBD10]
+GameAssembly.dll+37317E: F6 81 33 01 00 00 04  - test byte ptr [rcx+00000133],04
+GameAssembly.dll+373185: 74 0E                 - je GameAssembly.dll+373195
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>boom 代码 :mov [rsi+00000080],rdx</Description>
+      <AddressString>GameAssembly.dll+373152</AddressString>
+      <Before>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>48</Byte>
+        <Byte>FF</Byte>
+        <Byte>C2</Byte>
+      </Before>
+      <Actual>
+        <Byte>48</Byte>
+        <Byte>89</Byte>
+        <Byte>96</Byte>
+        <Byte>80</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>85</Byte>
+        <Byte>C9</Byte>
+        <Byte>0F</Byte>
+        <Byte>84</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>fire 代码 :inc qword ptr [rax+70]</Description>
+      <AddressString>GameAssembly.dll+3700BE</AddressString>
+      <Before>
+        <Byte>48</Byte>
+        <Byte>85</Byte>
+        <Byte>C0</Byte>
+        <Byte>74</Byte>
+        <Byte>04</Byte>
+      </Before>
+      <Actual>
+        <Byte>48</Byte>
+        <Byte>FF</Byte>
+        <Byte>40</Byte>
+        <Byte>70</Byte>
+      </Actual>
+      <After>
+        <Byte>8B</Byte>
+        <Byte>83</Byte>
+        <Byte>78</Byte>
+        <Byte>07</Byte>
+        <Byte>00</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>

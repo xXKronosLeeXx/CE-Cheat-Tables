@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="51">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>29</ID>
+      <Description>"MAYA+Kamille"</Description>
+      <Options moManualExpandCollapse="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>16</ID>
+          <Description>"state"</Description>
+          <Options moManualExpandCollapse="1"/>
+          <LastState Value="" RealAddress="00000000"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>149</ID>
+              <Description>"EXP"</Description>
+              <Options moManualExpandCollapse="1"/>
+              <LastState Value="" RealAddress="00000000"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>21</ID>
+                  <Description>"EXP"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>"DragonQuestTreasures.exe"+04C68CA0</Address>
+                  <Offsets>
+                    <Offset>F0</Offset>
+                    <Offset>40</Offset>
+                    <Offset>38</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>23</ID>
+                  <Description>"EXP"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>"DragonQuestTreasures.exe"+04F16C78</Address>
+                  <Offsets>
+                    <Offset>F0</Offset>
+                    <Offset>40</Offset>
+                    <Offset>1A0</Offset>
+                    <Offset>50</Offset>
+                    <Offset>120</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>83</ID>
+                  <Description>"EXP"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>"DragonQuestTreasures.exe"+04F16C78</Address>
+                  <Offsets>
+                    <Offset>F0</Offset>
+                    <Offset>40</Offset>
+                    <Offset>1A0</Offset>
+                    <Offset>50</Offset>
+                    <Offset>120</Offset>
+                  </Offsets>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>158</ID>
+              <Description>"RAGE(EAX-A4)"</Description>
+              <LastState Value="" RealAddress="00000000"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>159</ID>
+                  <Description>"RAGE(MAX=3000)"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>"DragonQuestTreasures.exe"+04F16C78</Address>
+                  <Offsets>
+                    <Offset>F0-a4</Offset>
+                    <Offset>40</Offset>
+                    <Offset>1A0</Offset>
+                    <Offset>50</Offset>
+                    <Offset>120</Offset>
+                  </Offsets>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>4</ID>
+          <Description>"bullet（Next+38h）"</Description>
+          <Options moManualExpandCollapse="1"/>
+          <LastState Value="" RealAddress="00000000"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>6</ID>
+              <Description>"石头弹"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"DragonQuestTreasures.exe"+04C68CA0</Address>
+              <Offsets>
+                <Offset>28C</Offset>
+                <Offset>38</Offset>
+                <Offset>58</Offset>
+                <Offset>38</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>39</ID>
+              <Description>"驯服弹"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"DragonQuestTreasures.exe"+04C68CA0</Address>
+              <Offsets>
+                <Offset>28C+fc</Offset>
+                <Offset>38</Offset>
+                <Offset>58</Offset>
+                <Offset>38</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>171</ID>
+              <Description>"高级驯服弹"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"DragonQuestTreasures.exe"+04C68CA0</Address>
+              <Offsets>
+                <Offset>28C+fc+1998</Offset>
+                <Offset>38</Offset>
+                <Offset>58</Offset>
+                <Offset>38</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>75</ID>
+              <Description>"火弹"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"DragonQuestTreasures.exe"+04C68CA0</Address>
+              <Offsets>
+                <Offset>28C+fc+188</Offset>
+                <Offset>38</Offset>
+                <Offset>58</Offset>
+                <Offset>38</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>86</ID>
+              <Description>"锤弹"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"DragonQuestTreasures.exe"+04C68CA0</Address>
+              <Offsets>
+                <Offset>28C+fc+188+284</Offset>
+                <Offset>38</Offset>
+                <Offset>58</Offset>
+                <Offset>38</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>151</ID>
+              <Description>"大HP"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"DragonQuestTreasures.exe"+04C68CA0</Address>
+              <Offsets>
+                <Offset>28C+fc+188+284+A10</Offset>
+                <Offset>38</Offset>
+                <Offset>58</Offset>
+                <Offset>38</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>152</ID>
+              <Description>"大斩击"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"DragonQuestTreasures.exe"+04C68CA0</Address>
+              <Offsets>
+                <Offset>28C+fc+188+284+A10+540</Offset>
+                <Offset>38</Offset>
+                <Offset>58</Offset>
+                <Offset>38</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>155</ID>
+              <Description>"大打击"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"DragonQuestTreasures.exe"+04C68CA0</Address>
+              <Offsets>
+                <Offset>28C+fc+188+284+A10+24c</Offset>
+                <Offset>38</Offset>
+                <Offset>58</Offset>
+                <Offset>38</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>156</ID>
+              <Description>"大突刺击"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"DragonQuestTreasures.exe"+04C68CA0</Address>
+              <Offsets>
+                <Offset>28C+fc+188+284+A10+24c+118</Offset>
+                <Offset>38</Offset>
+                <Offset>58</Offset>
+                <Offset>38</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>37</ID>
+          <Description>"Item"</Description>
+          <Options moManualExpandCollapse="1"/>
+          <LastState Value="" RealAddress="00000000"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>81</ID>
+              <Description>"蓬松小麦"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"DragonQuestTreasures.exe"+04C68CA0</Address>
+              <Offsets>
+                <Offset>3A4</Offset>
+                <Offset>38</Offset>
+                <Offset>58</Offset>
+                <Offset>38</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>162</ID>
+              <Description>"熔岩碎片"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"DragonQuestTreasures.exe"+04C68CA0</Address>
+              <Offsets>
+                <Offset>3A4+B98</Offset>
+                <Offset>38</Offset>
+                <Offset>58</Offset>
+                <Offset>38</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>164</ID>
+              <Description>"进化的秘石"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"DragonQuestTreasures.exe"+04C68CA0</Address>
+              <Offsets>
+                <Offset>3A4+B98+284</Offset>
+                <Offset>38</Offset>
+                <Offset>58</Offset>
+                <Offset>38</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>165</ID>
+              <Description>"大进化的秘石"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"DragonQuestTreasures.exe"+04C68CA0</Address>
+              <Offsets>
+                <Offset>3A4+B98+284-63c</Offset>
+                <Offset>38</Offset>
+                <Offset>58</Offset>
+                <Offset>38</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>168</ID>
+              <Description>"霜降牛肉"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"DragonQuestTreasures.exe"+04C68CA0</Address>
+              <Offsets>
+                <Offset>3A4+B98+284-63c-604</Offset>
+                <Offset>38</Offset>
+                <Offset>58</Offset>
+                <Offset>38</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>42</ID>
+      <Description>"Gold"</Description>
+      <Options moManualExpandCollapse="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>70</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"DragonQuestTreasures.exe"+04C68CA0</Address>
+          <Offsets>
+            <Offset>124</Offset>
+            <Offset>40</Offset>
+            <Offset>38</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>72</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"DragonQuestTreasures.exe"+04F16C78</Address>
+          <Offsets>
+            <Offset>124</Offset>
+            <Offset>40</Offset>
+            <Offset>1A0</Offset>
+            <Offset>50</Offset>
+            <Offset>120</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>73</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"DragonQuestTreasures.exe"+04F16C80</Address>
+          <Offsets>
+            <Offset>124</Offset>
+            <Offset>40</Offset>
+            <Offset>1A0</Offset>
+            <Offset>50</Offset>
+            <Offset>120</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>136</ID>
+      <Description>"血石英"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"DragonQuestTreasures.exe"+04C68CA0</Address>
+      <Offsets>
+        <Offset>6EC</Offset>
+        <Offset>38</Offset>
+        <Offset>58</Offset>
+        <Offset>38</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>30</ID>
+      <Description>"Monster01"</Description>
+      <Options moManualExpandCollapse="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>34</ID>
+          <Description>"EXP"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"DragonQuestTreasures.exe"+04C68CA0</Address>
+          <Offsets>
+            <Offset>4C</Offset>
+            <Offset>40</Offset>
+            <Offset>88</Offset>
+            <Offset>38</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>35</ID>
+          <Description>"MP（EXP-8）"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"DragonQuestTreasures.exe"+04C68CA0</Address>
+          <Offsets>
+            <Offset>4C-8</Offset>
+            <Offset>40</Offset>
+            <Offset>88</Offset>
+            <Offset>38</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>36</ID>
+          <Description>"HP（MP-4）"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"DragonQuestTreasures.exe"+04C68CA0</Address>
+          <Offsets>
+            <Offset>4C-8-4</Offset>
+            <Offset>40</Offset>
+            <Offset>88</Offset>
+            <Offset>38</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>
