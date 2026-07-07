@@ -372,6 +372,7 @@ newmem:
   cmp RDX,0// Player  R13=0 ;R14 =0 ;RBX = 0F ; RCX = 105; RDX =23
   jne code
   movss xmm5,xmm2
+//  movss xmm5,[rax+000000BC]
   movss [rax+000000BC],xmm5
   jmp return
 
@@ -426,6 +427,84 @@ RCG.Rollback.Components.CombatEntity:SetStamina+fa: C3                       - r
 1CE4E1946D1: 04 02                    - add al,02
 1CE4E1946D3: 05 04 03 01 50           - add eax,50010304
 1CE4E1946D8: 00 00                    - add [rax],al
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>147</ID>
+          <Description>"BoomTime"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : RCG2.exe
+  Version: 
+  Date   : 2026-07-07
+  Author : lixiang
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanfunction(INJECT,RCG.Rollback.Components.Minigames.MinigameTimerEntity:Simulate,F3 0F 10 46 20 F3 0F 5A C0 F3)  // should be unique in this function
+alloc(newmem,$1000,INJECT)
+alloc(time,$2,INJECT)
+
+label(code)
+label(return)
+
+time:
+dq (float)1899
+
+newmem:
+  movss xmm0,[rsi+20]
+  movss xmm0,[time]
+  movss [rsi+20],xmm0
+  jmp return
+
+code:
+  movss xmm0,[rsi+20]
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 10 46 20
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: RCG.Rollback.Components.Minigames.MinigameTimerEntity:Simulate+26
+
+2C7DD474AAF: 00 48 83           - add [rax-7D],cl
+RCG.Rollback.Components.Minigames.MinigameTimerEntity:Simulate+2: EC                 - in al,dx
+RCG.Rollback.Components.Minigames.MinigameTimerEntity:Simulate+3: 38 48 89           - cmp [rax-77],cl
+RCG.Rollback.Components.Minigames.MinigameTimerEntity:Simulate+6: 34 24              - xor al,24
+RCG.Rollback.Components.Minigames.MinigameTimerEntity:Simulate+8: 48 8B F1           - mov rsi,rcx
+RCG.Rollback.Components.Minigames.MinigameTimerEntity:Simulate+b: F3 0F 11 54 24 30  - movss [rsp+30],xmm2
+RCG.Rollback.Components.Minigames.MinigameTimerEntity:Simulate+11: 0F B6 46 24        - movzx eax,byte ptr [rsi+24]
+RCG.Rollback.Components.Minigames.MinigameTimerEntity:Simulate+15: 85 C0              - test eax,eax
+RCG.Rollback.Components.Minigames.MinigameTimerEntity:Simulate+17: 0F 84 BC 00 00 00  - je RCG.Rollback.Components.Minigames.MinigameTimerEntity:Simulate+d9
+RCG.Rollback.Components.Minigames.MinigameTimerEntity:Simulate+1d: 48 89 74 24 08     - mov [rsp+08],rsi
+// ---------- INJECTING HERE ----------
+RCG.Rollback.Components.Minigames.MinigameTimerEntity:Simulate+22: 66 0F 57 C9        - xorpd xmm1,xmm1
+// ---------- DONE INJECTING  ----------
+RCG.Rollback.Components.Minigames.MinigameTimerEntity:Simulate+26: F3 0F 10 46 20     - movss xmm0,[rsi+20]
+RCG.Rollback.Components.Minigames.MinigameTimerEntity:Simulate+2b: F3 0F 5A C0        - cvtss2sd xmm0,xmm0
+RCG.Rollback.Components.Minigames.MinigameTimerEntity:Simulate+2f: F3 0F 10 54 24 30  - movss xmm2,[rsp+30]
+RCG.Rollback.Components.Minigames.MinigameTimerEntity:Simulate+35: F3 0F 5A D2        - cvtss2sd xmm2,xmm2
+RCG.Rollback.Components.Minigames.MinigameTimerEntity:Simulate+39: F2 0F 5C C2        - subsd xmm0,xmm2
+RCG.Rollback.Components.Minigames.MinigameTimerEntity:Simulate+3d: F2 0F 5A E9        - cvtsd2ss xmm5,xmm1
+RCG.Rollback.Components.Minigames.MinigameTimerEntity:Simulate+41: F3 0F 11 6C 24 10  - movss [rsp+10],xmm5
+RCG.Rollback.Components.Minigames.MinigameTimerEntity:Simulate+47: F2 0F 5A E8        - cvtsd2ss xmm5,xmm0
+RCG.Rollback.Components.Minigames.MinigameTimerEntity:Simulate+4b: F3 0F 11 6C 24 14  - movss [rsp+14],xmm5
+RCG.Rollback.Components.Minigames.MinigameTimerEntity:Simulate+51: 66 0F 57 C0        - xorpd xmm0,xmm0
 }
 </AssemblerScript>
         </CheatEntry>
@@ -626,6 +705,57 @@ RCG.Rollback.Components.CombatEntity:SetStamina+fa: C3                       - r
         <Byte>7D</Byte>
         <Byte>F8</Byte>
         <Byte>48</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>time 代码 :movss [rax+20],xmm5</Description>
+      <AddressString>2C7DD474B84</AddressString>
+      <Before>
+        <Byte>08</Byte>
+        <Byte>F2</Byte>
+        <Byte>0F</Byte>
+        <Byte>5A</Byte>
+        <Byte>E8</Byte>
+      </Before>
+      <Actual>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>11</Byte>
+        <Byte>68</Byte>
+        <Byte>20</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>34</Byte>
+        <Byte>24</Byte>
+        <Byte>48</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>替换了 je RCG.Rollback.Components.Minigames.MinigameTimerEntity:Simulate+d9</Description>
+      <AddressString>2C7DD474AC7</AddressString>
+      <Before>
+        <Byte>B6</Byte>
+        <Byte>46</Byte>
+        <Byte>24</Byte>
+        <Byte>85</Byte>
+        <Byte>C0</Byte>
+      </Before>
+      <Actual>
+        <Byte>0F</Byte>
+        <Byte>84</Byte>
+        <Byte>BC</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>89</Byte>
+        <Byte>74</Byte>
+        <Byte>24</Byte>
+        <Byte>08</Byte>
       </After>
     </CodeEntry>
   </CheatCodes>
