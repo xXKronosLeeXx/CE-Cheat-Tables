@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="51">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"Activate Mono"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{$lua}
+[ENABLE]
+LaunchMonoDataCollector();
+
+[DISABLE]
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>5</ID>
+          <Description>"Score + 10W"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : ZERO GUNNER 2-.exe
+  Version: 
+  Date   : 2026-07-14
+  Author : lixiang
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanfunction(INJECT,PlayerInfo:set_p1_score_notShotdown,89 B0 C4 00 00 00 48 8B CE 49)  // should be unique in this function
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add esi,#100000
+  mov [rax+000000C4],esi
+  jmp return
+
+code:
+  mov [rax+000000C4],esi
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 B0 C4 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: PlayerInfo:set_p1_score_notShotdown+8d
+
+PlayerInfo:set_p1_score_notShotdown+65: 48 8B 00                       - mov rax,[rax]
+PlayerInfo:set_p1_score_notShotdown+68: 48 85 C0                       - test rax,rax
+PlayerInfo:set_p1_score_notShotdown+6b: 0F 84 40 00 00 00              - je PlayerInfo:set_p1_score_notShotdown+b1
+PlayerInfo:set_p1_score_notShotdown+71: 48 83 C0 20                    - add rax,20
+PlayerInfo:set_p1_score_notShotdown+75: 48 83 C0 0C                    - add rax,0C
+PlayerInfo:set_p1_score_notShotdown+79: 48 63 08                       - movsxd  rcx,dword ptr [rax]
+PlayerInfo:set_p1_score_notShotdown+7c: 03 CF                          - add ecx,edi
+PlayerInfo:set_p1_score_notShotdown+7e: 89 08                          - mov [rax],ecx
+PlayerInfo:set_p1_score_notShotdown+80: 48 B8 00 3C 8C FD 49 02 00 00  - mov rax,00000249FD8C3C00
+PlayerInfo:set_p1_score_notShotdown+8a: 48 8B 00                       - mov rax,[rax]
+// ---------- INJECTING HERE ----------
+PlayerInfo:set_p1_score_notShotdown+8d: 89 B0 C4 00 00 00              - mov [rax+000000C4],esi
+// ---------- DONE INJECTING  ----------
+PlayerInfo:set_p1_score_notShotdown+93: 48 8B CE                       - mov rcx,rsi
+PlayerInfo:set_p1_score_notShotdown+96: 49 BB 00 49 E0 C9 49 02 00 00  - mov r11,PlayerUI:set_P1_Score
+PlayerInfo:set_p1_score_notShotdown+a0: 41 FF D3                       - call r11
+PlayerInfo:set_p1_score_notShotdown+a3: 48 8B 75 F0                    - mov rsi,[rbp-10]
+PlayerInfo:set_p1_score_notShotdown+a7: 48 8B 7D F8                    - mov rdi,[rbp-08]
+PlayerInfo:set_p1_score_notShotdown+ab: 48 8D 65 00                    - lea rsp,[rbp+00]
+PlayerInfo:set_p1_score_notShotdown+af: 5D                             - pop rbp
+PlayerInfo:set_p1_score_notShotdown+b0: C3                             - ret 
+PlayerInfo:set_p1_score_notShotdown+b1: BA 60 00 00 00                 - mov edx,00000060
+PlayerInfo:set_p1_score_notShotdown+b6: B9 94 01 00 00                 - mov ecx,00000194
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>17</ID>
+          <Description>"Boom Max"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : ZERO GUNNER 2-.exe
+  Version: 
+  Date   : 2026-07-14
+  Author : lixiang
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanfunction(INJECT,PlayerInfo:set_p1_bomb,89 B0 BC 00 00 00 48)  // should be unique in this function
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov esi,#1380
+  mov [rax+000000BC],esi
+  jmp return
+
+code:
+  mov [rax+000000BC],esi
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 B0 BC 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: PlayerInfo:set_p1_bomb+3c
+
+PlayerInfo:set_p1_bomb+c: 48 8B F1                       - mov rsi,rcx
+PlayerInfo:set_p1_bomb+f: 48 B8 00 3C 8C FD 49 02 00 00  - mov rax,00000249FD8C3C00
+PlayerInfo:set_p1_bomb+19: 48 8B 08                       - mov rcx,[rax]
+PlayerInfo:set_p1_bomb+1c: 33 D2                          - xor edx,edx
+PlayerInfo:set_p1_bomb+1e: 49 BB D0 25 E0 C9 49 02 00 00  - mov r11,UnityEngine.Object:op_Inequality
+PlayerInfo:set_p1_bomb+28: 41 FF D3                       - call r11
+PlayerInfo:set_p1_bomb+2b: 85 C0                          - test eax,eax
+PlayerInfo:set_p1_bomb+2d: 74 13                          - je PlayerInfo:set_p1_bomb+42
+PlayerInfo:set_p1_bomb+2f: 48 B8 00 3C 8C FD 49 02 00 00  - mov rax,00000249FD8C3C00
+PlayerInfo:set_p1_bomb+39: 48 8B 00                       - mov rax,[rax]
+// ---------- INJECTING HERE ----------
+PlayerInfo:set_p1_bomb+3c: 89 B0 BC 00 00 00              - mov [rax+000000BC],esi
+// ---------- DONE INJECTING  ----------
+PlayerInfo:set_p1_bomb+42: 48 8B CE                       - mov rcx,rsi
+PlayerInfo:set_p1_bomb+45: 90                             - nop 
+PlayerInfo:set_p1_bomb+46: 49 BB 60 66 C6 D0 49 02 00 00  - mov r11,PlayerUI:set_P1_Bomb
+PlayerInfo:set_p1_bomb+50: 41 FF D3                       - call r11
+PlayerInfo:set_p1_bomb+53: 48 8B 75 F8                    - mov rsi,[rbp-08]
+PlayerInfo:set_p1_bomb+57: 48 8D 65 00                    - lea rsp,[rbp+00]
+PlayerInfo:set_p1_bomb+5b: 5D                             - pop rbp
+PlayerInfo:set_p1_bomb+5c: C3                             - ret 
+249D0C81C9D: 00 00                          - add [rax],al
+249D0C81C9F: 00 01                          - add [rcx],al
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>21</ID>
+          <Description>"Life = 5"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : ZERO GUNNER 2-.exe
+  Version: 
+  Date   : 2026-07-14
+  Author : lixiang
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanfunction(INJECT,PlayerInfo:set_p1_stamina,89 B0 CC 00 00 00 48 8B CE)  // should be unique in this function
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov esi,5
+  mov [rax+000000CC],esi
+  jmp return
+
+code:
+  mov [rax+000000CC],esi
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 B0 CC 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: PlayerInfo:set_p1_stamina+3c
+
+PlayerInfo:set_p1_stamina+c: 48 8B F1                       - mov rsi,rcx
+PlayerInfo:set_p1_stamina+f: 48 B8 00 3C 8C FD 49 02 00 00  - mov rax,00000249FD8C3C00
+PlayerInfo:set_p1_stamina+19: 48 8B 08                       - mov rcx,[rax]
+PlayerInfo:set_p1_stamina+1c: 33 D2                          - xor edx,edx
+PlayerInfo:set_p1_stamina+1e: 49 BB D0 25 E0 C9 49 02 00 00  - mov r11,UnityEngine.Object:op_Inequality
+PlayerInfo:set_p1_stamina+28: 41 FF D3                       - call r11
+PlayerInfo:set_p1_stamina+2b: 85 C0                          - test eax,eax
+PlayerInfo:set_p1_stamina+2d: 74 13                          - je PlayerInfo:set_p1_stamina+42
+PlayerInfo:set_p1_stamina+2f: 48 B8 00 3C 8C FD 49 02 00 00  - mov rax,00000249FD8C3C00
+PlayerInfo:set_p1_stamina+39: 48 8B 00                       - mov rax,[rax]
+// ---------- INJECTING HERE ----------
+PlayerInfo:set_p1_stamina+3c: 89 B0 CC 00 00 00              - mov [rax+000000CC],esi
+// ---------- DONE INJECTING  ----------
+PlayerInfo:set_p1_stamina+42: 48 8B CE                       - mov rcx,rsi
+PlayerInfo:set_p1_stamina+45: 90                             - nop 
+PlayerInfo:set_p1_stamina+46: 49 BB 60 7B C4 D0 49 02 00 00  - mov r11,PlayerUI:set_P1_Stamina
+PlayerInfo:set_p1_stamina+50: 41 FF D3                       - call r11
+PlayerInfo:set_p1_stamina+53: 48 8B 75 F8                    - mov rsi,[rbp-08]
+PlayerInfo:set_p1_stamina+57: 48 8D 65 00                    - lea rsp,[rbp+00]
+PlayerInfo:set_p1_stamina+5b: 5D                             - pop rbp
+PlayerInfo:set_p1_stamina+5c: C3                             - ret 
+249D0C47B3D: 00 00                          - add [rax],al
+249D0C47B3F: 00 01                          - add [rcx],al
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>Sroce 代码 :mov [rax+000000C4],esi</Description>
+      <AddressString>249D0C93C2D</AddressString>
+      <Before>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>B0</Byte>
+        <Byte>C4</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>CE</Byte>
+        <Byte>49</Byte>
+        <Byte>BB</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>enery 代码 :jmp 249D0D20000</Description>
+      <AddressString>249D0C81C7C</AddressString>
+      <Before>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>E9</Byte>
+        <Byte>7F</Byte>
+        <Byte>E3</Byte>
+        <Byte>09</Byte>
+        <Byte>00</Byte>
+        <Byte>90</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>CE</Byte>
+        <Byte>90</Byte>
+        <Byte>49</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>life 代码 :mov [rax+000000CC],esi</Description>
+      <AddressString>249D0C47B1C</AddressString>
+      <Before>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>B0</Byte>
+        <Byte>CC</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>CE</Byte>
+        <Byte>90</Byte>
+        <Byte>49</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Fire 代码 :mov [rax+20],rdx</Description>
+      <AddressString>249D0C8AF3A</AddressString>
+      <Before>
+        <Byte>18</Byte>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>51</Byte>
+        <Byte>20</Byte>
+      </Before>
+      <Actual>
+        <Byte>48</Byte>
+        <Byte>89</Byte>
+        <Byte>50</Byte>
+        <Byte>20</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>49</Byte>
+        <Byte>28</Byte>
+        <Byte>48</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>
