@@ -1,0 +1,821 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="51">
+  <Forms>
+    <CETrainer Class="TTrainerForm" Encoding="Ascii85">=Nz@z,cp(DNwKLPNiR,B)gU)}HV#Gq0a,*/M%_NODNV8zrKOj%V45@2]g^$#1zj;@D$uciL9%2k)7ou:8wwP}tqt02oil_JZOeAx7Tr6Ee2=$r[xQf_bYLNrM4jX7Ng[zjKy/j6+nY6sUF+XmY5r[AyO5uar1;^86FxP6-D{+;GdVK9+t[ASGCv2OGbuR5uGbFlCGC4j5{sn8Ol8hlv(Osb).S#wp{Bg$1hXPu/YfqcZ[49T05D(/K^$QC_2c?FM8lu7K5iYij,:2xC{b86nNN8E+r]4WF(!f{?q;6ubE$(uIEaFQmxO}V9V6S!#y}n5qk*j6!Xm/eI;Ccv.6;hP)APm_M@M*AXnw_UlhE;/){r]PJ+INS[VB#V:O7?^*@H^[tpD@FMrI^s7;W#pv4^2+Eq[*;K55US/ZS)wH9ccN(p50K@!t,Dmrgw5@GLv;^KB#.suOhwwj@1,=1;:rHZL!-UH$br/%)xY,ma:4p;nFsasC+LJy$bWKhq(8,{7r/.y[Ctkm)aRrT0g/gnjKl.d32(=eg+x+#kafS/cQL7_v=[(}RLxYsrjR*=LBp9VIVozaz+5ibzp]l)Wn?I=$+d%O_9iO+^q2%%9MWGPJ_fSuucAT5h$3OlNSj,66S9DzQ]}-IT6}FUn}V,U5#-VtF(k%RqZ2:jN,#UjFgJvr2bLYuNFId=u?PT^MK%GM0R5YgP3o/O}_U(%C=AX2s0kw4jV-#cBpx4;+/rWI9qn$VpUJaH[anIDR,ql1ibsJ)iBRDo[R]bZgm,Ya.$(;qxo4HYtS8@00O+E-QdWI9Edcuyzhg##]:#ZTA-TQSH{.RlMu;!#G%%?v1eiHoDAwgKl-Xc*UoSh+qRt*A.)9nhA2tcn9nI3b#SV3ZqHJB^U{Eik)Hqngv;?J)gclz_CQC$^B37/kjYUdV{in8dXvIWC,ylhRLVF!?k#E(I*JQjPF-TIE%[2*e8Fa$?ACWzCbm_(66PZ2fZlig^Nys+{o#adiwoePkvO:cxOheJ=;6^*Ee3.5IrV#7g3Ag?E!k[3iO{k7qmI2u9kD@qyOjBf16V*l]r(N;w3q.di}w:dScao%39Lq,QdR^0R</CETrainer>
+  </Forms>
+  <CheatEntries>
+    <CheatEntry>
+      <ID>7</ID>
+      <Description>"Activate Mono"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{$lua}
+[ENABLE]
+LaunchMonoDataCollector();
+
+[DISABLE]
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>15</ID>
+          <Description>"Gold = 899999"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Beyond Solar.exe
+  Version: 
+  Date   : 2026-07-16
+  Author : lixiang
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanfunction(INJECT,StatsMNGR:updateCoinsCollected,89 88 F8 00 00 00 48 8B 34)  // should be unique in this function
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov ecx,#899999
+  mov [rax+000000F8],ecx
+  jmp return
+
+code:
+  mov [rax+000000F8],ecx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 88 F8 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: StatsMNGR:updateCoinsCollected+1c
+
+231FEE59ACA: 00 00                 - add [rax],al
+231FEE59ACC: 00 00                 - add [rax],al
+231FEE59ACE: 00 00                 - add [rax],al
+StatsMNGR:updateCoinsCollected: 48 83 EC 08           - sub rsp,08
+StatsMNGR:updateCoinsCollected+4: 48 89 34 24           - mov [rsp],rsi
+StatsMNGR:updateCoinsCollected+8: 48 8B F1              - mov rsi,rcx
+StatsMNGR:updateCoinsCollected+b: 48 8B 46 20           - mov rax,[rsi+20]
+StatsMNGR:updateCoinsCollected+f: 48 8B D0              - mov rdx,rax
+StatsMNGR:updateCoinsCollected+12: 48 63 88 F8 00 00 00  - movsxd  rcx,dword ptr [rax+000000F8]
+StatsMNGR:updateCoinsCollected+19: 83 C1 0A              - add ecx,0A
+// ---------- INJECTING HERE ----------
+StatsMNGR:updateCoinsCollected+1c: 89 88 F8 00 00 00     - mov [rax+000000F8],ecx
+// ---------- DONE INJECTING  ----------
+StatsMNGR:updateCoinsCollected+22: 48 8B 34 24           - mov rsi,[rsp]
+StatsMNGR:updateCoinsCollected+26: 48 83 C4 08           - add rsp,08
+StatsMNGR:updateCoinsCollected+2a: C3                    - ret 
+231FEE59AFB: 00 00                 - add [rax],al
+231FEE59AFD: 00 00                 - add [rax],al
+231FEE59AFF: 00 01                 - add [rcx],al
+231FEE59B01: 04 01                 - add al,01
+231FEE59B03: 00 04 02              - add [rdx+rax],al
+231FEE59B06: 00 00                 - add [rax],al
+231FEE59B08: 00 00                 - add [rax],al
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>16</ID>
+          <Description>"Metal = 899999"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Beyond Solar.exe
+  Version: 
+  Date   : 2026-07-16
+  Author : lixiang
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanfunction(INJECT,StatsMNGR:updateNUTcollected,89 88 04 01 00 00 48 8B 34)  // should be unique in this function
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov ecx,#899999
+  mov [rax+00000104],ecx
+  jmp return
+
+code:
+  mov [rax+00000104],ecx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 88 04 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: StatsMNGR:updateNUTcollected+1b
+
+231FEE5A75A: 00 00                 - add [rax],al
+231FEE5A75C: 00 00                 - add [rax],al
+231FEE5A75E: 00 00                 - add [rax],al
+StatsMNGR:updateNUTcollected: 48 83 EC 08           - sub rsp,08
+StatsMNGR:updateNUTcollected+4: 48 89 34 24           - mov [rsp],rsi
+StatsMNGR:updateNUTcollected+8: 48 8B F1              - mov rsi,rcx
+StatsMNGR:updateNUTcollected+b: 48 8B 46 20           - mov rax,[rsi+20]
+StatsMNGR:updateNUTcollected+f: 48 8B D0              - mov rdx,rax
+StatsMNGR:updateNUTcollected+12: 48 63 88 04 01 00 00  - movsxd  rcx,dword ptr [rax+00000104]
+StatsMNGR:updateNUTcollected+19: FF C1                 - inc ecx
+// ---------- INJECTING HERE ----------
+StatsMNGR:updateNUTcollected+1b: 89 88 04 01 00 00     - mov [rax+00000104],ecx
+// ---------- DONE INJECTING  ----------
+StatsMNGR:updateNUTcollected+21: 48 8B 34 24           - mov rsi,[rsp]
+StatsMNGR:updateNUTcollected+25: 48 83 C4 08           - add rsp,08
+StatsMNGR:updateNUTcollected+29: C3                    - ret 
+231FEE5A78A: 00 00                 - add [rax],al
+231FEE5A78C: 00 00                 - add [rax],al
+231FEE5A78E: 00 00                 - add [rax],al
+231FEE5A790: 01 04 01              - add [rcx+rax],eax
+231FEE5A793: 00 04 02              - add [rdx+rax],al
+231FEE5A796: 00 00                 - add [rax],al
+231FEE5A798: 00 00                 - add [rax],al
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>14</ID>
+          <Description>"Blue Can = 89999"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Beyond Solar.exe
+  Version: 
+  Date   : 2026-07-16
+  Author : lixiang
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanfunction(INJECT,StatsMNGR:updatePowercellCollected,89 88 08 01 00 00 48 8B 34)  // should be unique in this function
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov ecx,#89999
+  mov [rax+00000108],ecx
+  jmp return
+
+code:
+  mov [rax+00000108],ecx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 88 08 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: StatsMNGR:updatePowercellCollected+1b
+
+231FEE5DB4A: 00 00                 - add [rax],al
+231FEE5DB4C: 00 00                 - add [rax],al
+231FEE5DB4E: 00 00                 - add [rax],al
+StatsMNGR:updatePowercellCollected: 48 83 EC 08           - sub rsp,08
+StatsMNGR:updatePowercellCollected+4: 48 89 34 24           - mov [rsp],rsi
+StatsMNGR:updatePowercellCollected+8: 48 8B F1              - mov rsi,rcx
+StatsMNGR:updatePowercellCollected+b: 48 8B 46 20           - mov rax,[rsi+20]
+StatsMNGR:updatePowercellCollected+f: 48 8B D0              - mov rdx,rax
+StatsMNGR:updatePowercellCollected+12: 48 63 88 08 01 00 00  - movsxd  rcx,dword ptr [rax+00000108]
+StatsMNGR:updatePowercellCollected+19: FF C1                 - inc ecx
+// ---------- INJECTING HERE ----------
+StatsMNGR:updatePowercellCollected+1b: 89 88 08 01 00 00     - mov [rax+00000108],ecx
+// ---------- DONE INJECTING  ----------
+StatsMNGR:updatePowercellCollected+21: 48 8B 34 24           - mov rsi,[rsp]
+StatsMNGR:updatePowercellCollected+25: 48 83 C4 08           - add rsp,08
+StatsMNGR:updatePowercellCollected+29: C3                    - ret 
+231FEE5DB7A: 00 00                 - add [rax],al
+231FEE5DB7C: 00 00                 - add [rax],al
+231FEE5DB7E: 00 00                 - add [rax],al
+231FEE5DB80: 01 04 01              - add [rcx+rax],eax
+231FEE5DB83: 00 04 02              - add [rdx+rax],al
+231FEE5DB86: 00 00                 - add [rax],al
+231FEE5DB88: 00 00                 - add [rax],al
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>18</ID>
+          <Description>"Yellow Can = 89999"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Beyond Solar.exe
+  Version: 
+  Date   : 2026-07-16
+  Author : lixiang
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanfunction(INJECT,StatsMNGR:updateKineticCoreCollected,89 88 0C 01 00 00 48 8B 34)  // should be unique in this function
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov ecx,#89999
+  mov [rax+0000010C],ecx
+  jmp return
+
+code:
+  mov [rax+0000010C],ecx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 88 0C 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: StatsMNGR:updateKineticCoreCollected+1b
+
+232098B455A: 00 00                 - add [rax],al
+232098B455C: 00 00                 - add [rax],al
+232098B455E: 00 00                 - add [rax],al
+StatsMNGR:updateKineticCoreCollected: 48 83 EC 08           - sub rsp,08
+StatsMNGR:updateKineticCoreCollected+4: 48 89 34 24           - mov [rsp],rsi
+StatsMNGR:updateKineticCoreCollected+8: 48 8B F1              - mov rsi,rcx
+StatsMNGR:updateKineticCoreCollected+b: 48 8B 46 20           - mov rax,[rsi+20]
+StatsMNGR:updateKineticCoreCollected+f: 48 8B D0              - mov rdx,rax
+StatsMNGR:updateKineticCoreCollected+12: 48 63 88 0C 01 00 00  - movsxd  rcx,dword ptr [rax+0000010C]
+StatsMNGR:updateKineticCoreCollected+19: FF C1                 - inc ecx
+// ---------- INJECTING HERE ----------
+StatsMNGR:updateKineticCoreCollected+1b: 89 88 0C 01 00 00     - mov [rax+0000010C],ecx
+// ---------- DONE INJECTING  ----------
+StatsMNGR:updateKineticCoreCollected+21: 48 8B 34 24           - mov rsi,[rsp]
+StatsMNGR:updateKineticCoreCollected+25: 48 83 C4 08           - add rsp,08
+StatsMNGR:updateKineticCoreCollected+29: C3                    - ret 
+232098B458A: 00 00                 - add [rax],al
+232098B458C: 00 00                 - add [rax],al
+232098B458E: 00 00                 - add [rax],al
+232098B4590: 01 04 01              - add [rcx+rax],eax
+232098B4593: 00 04 02              - add [rdx+rax],al
+232098B4596: 00 00                 - add [rax],al
+232098B4598: 00 00                 - add [rax],al
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>22</ID>
+          <Description>"Green Can = 89999"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Beyond Solar.exe
+  Version: 
+  Date   : 2026-07-16
+  Author : lixiang
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanfunction(INJECT,StatsMNGR:updatecirCircuitChipCollected,89 88 10 01 00 00 48 8B 34)  // should be unique in this function
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov ecx,#89999
+  mov [rax+00000110],ecx
+  jmp return
+code:
+  mov [rax+00000110],ecx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 88 10 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: StatsMNGR:updatecirCircuitChipCollected+1b
+
+2320D2D520A: 00 00                 - add [rax],al
+2320D2D520C: 00 00                 - add [rax],al
+2320D2D520E: 00 00                 - add [rax],al
+StatsMNGR:updatecirCircuitChipCollected: 48 83 EC 08           - sub rsp,08
+StatsMNGR:updatecirCircuitChipCollected+4: 48 89 34 24           - mov [rsp],rsi
+StatsMNGR:updatecirCircuitChipCollected+8: 48 8B F1              - mov rsi,rcx
+StatsMNGR:updatecirCircuitChipCollected+b: 48 8B 46 20           - mov rax,[rsi+20]
+StatsMNGR:updatecirCircuitChipCollected+f: 48 8B D0              - mov rdx,rax
+StatsMNGR:updatecirCircuitChipCollected+12: 48 63 88 10 01 00 00  - movsxd  rcx,dword ptr [rax+00000110]
+StatsMNGR:updatecirCircuitChipCollected+19: FF C1                 - inc ecx
+// ---------- INJECTING HERE ----------
+StatsMNGR:updatecirCircuitChipCollected+1b: 89 88 10 01 00 00     - mov [rax+00000110],ecx
+// ---------- DONE INJECTING  ----------
+StatsMNGR:updatecirCircuitChipCollected+21: 48 8B 34 24           - mov rsi,[rsp]
+StatsMNGR:updatecirCircuitChipCollected+25: 48 83 C4 08           - add rsp,08
+StatsMNGR:updatecirCircuitChipCollected+29: C3                    - ret 
+2320D2D523A: 00 00                 - add [rax],al
+2320D2D523C: 00 00                 - add [rax],al
+2320D2D523E: 00 00                 - add [rax],al
+2320D2D5240: 01 04 01              - add [rcx+rax],eax
+2320D2D5243: 00 04 02              - add [rdx+rax],al
+2320D2D5246: 00 00                 - add [rax],al
+2320D2D5248: 00 00                 - add [rax],al
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>27</ID>
+          <Description>"Enery"</Description>
+          <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+          <LastState Value="" Activated="1" RealAddress="00000000"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>26</ID>
+              <Description>"Enery sub"</Description>
+              <LastState Activated="1"/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : Beyond Solar.exe
+  Version: 
+  Date   : 2026-07-16
+  Author : lixiang
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanfunction(INJECT,HUD:Update,F2 0F 5C C1 F2 0F 5A E8 F3 0F 11 AE 24)  // should be unique in this function
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+//  subsd xmm0,xmm1
+  cvtsd2ss xmm5,xmm0
+  jmp return
+
+code:
+  subsd xmm0,xmm1
+  cvtsd2ss xmm5,xmm0
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F2 0F 5C C1 F2 0F 5A E8
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: HUD:Update+a5
+
+HUD:Update+74: F3 0F 10 05 74 07 00 00        - movss xmm0,[HUD:Update+7f0]
+HUD:Update+7c: F3 0F 5A C0                    - cvtss2sd xmm0,xmm0
+HUD:Update+80: F2 0F 11 45 E8                 - movsd [rbp-18],xmm0
+HUD:Update+85: 90                             - nop 
+HUD:Update+86: 49 BB 70 27 D8 09 32 02 00 00  - mov r11,UnityEngine.Time:get_unscaledDeltaTime
+HUD:Update+90: 41 FF D3                       - call r11
+HUD:Update+93: F3 0F 5A D0                    - cvtss2sd xmm2,xmm0
+HUD:Update+97: F2 0F 10 45 F0                 - movsd xmm0,[rbp-10]
+HUD:Update+9c: F2 0F 10 4D E8                 - movsd xmm1,[rbp-18]
+HUD:Update+a1: F2 0F 59 CA                    - mulsd xmm1,xmm2
+// ---------- INJECTING HERE ----------
+HUD:Update+a5: F2 0F 5C C1                    - subsd xmm0,xmm1
+// ---------- DONE INJECTING  ----------
+HUD:Update+a9: F2 0F 5A E8                    - cvtsd2ss xmm5,xmm0
+HUD:Update+ad: F3 0F 11 AE 24 01 00 00        - movss [rsi+00000124],xmm5
+HUD:Update+b5: F3 0F 10 86 24 01 00 00        - movss xmm0,[rsi+00000124]
+HUD:Update+bd: F3 0F 5A C0                    - cvtss2sd xmm0,xmm0
+HUD:Update+c1: 66 0F 57 C9                    - xorpd xmm1,xmm1
+HUD:Update+c5: 66 0F 2F C8                    - comisd xmm1,xmm0
+HUD:Update+c9: 0F 82 23 00 00 00              - jb HUD:Update+f2
+HUD:Update+cf: 48 8B 46 28                    - mov rax,[rsi+28]
+HUD:Update+d3: C6 40 55 00                    - mov byte ptr [rax+55],00
+HUD:Update+d7: 48 8B 46 28                    - mov rax,[rsi+28]
+}
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>25</ID>
+              <Description>"Enery"</Description>
+              <LastState Activated="1"/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : Beyond Solar.exe
+  Version: 
+  Date   : 2026-07-16
+  Author : lixiang
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanfunction(INJECT,HUD:updateScoreGainedGUI,C1 F2 0F 5A E8 F3 0F 11 AE 24 01 00 00 48)  // should be unique in this function
+alloc(newmem,$1000,INJECT)
+alloc(enery,$2,INJECT)
+
+label(code)
+label(return)
+
+enery:
+dq (float)1.0
+
+newmem:
+  movss xmm5,[enery]
+  movss [rsi+00000124],xmm5
+  jmp return
+
+code:
+  movss [rsi+00000124],xmm5
+  jmp return
+
+INJECT+05:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+05:
+  db F3 0F 11 AE 24 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: HUD:updateScoreGainedGUI+20f
+
+HUD:updateScoreGainedGUI+1de: F3 0F 10 86 24 01 00 00        - movss xmm0,[rsi+00000124]
+HUD:updateScoreGainedGUI+1e6: F3 0F 5A C0                    - cvtss2sd xmm0,xmm0
+HUD:updateScoreGainedGUI+1ea: 48 8B 46 28                    - mov rax,[rsi+28]
+HUD:updateScoreGainedGUI+1ee: F3 0F 10 88 94 00 00 00        - movss xmm1,[rax+00000094]
+HUD:updateScoreGainedGUI+1f6: F3 0F 5A C9                    - cvtss2sd xmm1,xmm1
+HUD:updateScoreGainedGUI+1fa: F3 0F 10 55 DC                 - movss xmm2,[rbp-24]
+HUD:updateScoreGainedGUI+1ff: F3 0F 5A D2                    - cvtss2sd xmm2,xmm2
+HUD:updateScoreGainedGUI+203: F2 0F 59 CA                    - mulsd xmm1,xmm2
+HUD:updateScoreGainedGUI+207: F2 0F 58 C1                    - addsd xmm0,xmm1
+HUD:updateScoreGainedGUI+20b: F2 0F 5A E8                    - cvtsd2ss xmm5,xmm0
+// ---------- INJECTING HERE ----------
+HUD:updateScoreGainedGUI+20f: F3 0F 11 AE 24 01 00 00        - movss [rsi+00000124],xmm5
+// ---------- DONE INJECTING  ----------
+HUD:updateScoreGainedGUI+217: 48 8B 86 00 01 00 00           - mov rax,[rsi+00000100]
+HUD:updateScoreGainedGUI+21e: F3 0F 10 86 24 01 00 00        - movss xmm0,[rsi+00000124]
+HUD:updateScoreGainedGUI+226: F3 0F 5A C0                    - cvtss2sd xmm0,xmm0
+HUD:updateScoreGainedGUI+22a: 48 8B C8                       - mov rcx,rax
+HUD:updateScoreGainedGUI+22d: F2 0F 10 C8                    - movsd xmm1,xmm0
+HUD:updateScoreGainedGUI+231: F2 0F 5A C9                    - cvtsd2ss xmm1,xmm1
+HUD:updateScoreGainedGUI+235: 83 38 00                       - cmp dword ptr [rax],00
+HUD:updateScoreGainedGUI+238: 48 8D 64 24 00                 - lea rsp,[rsp+00]
+HUD:updateScoreGainedGUI+23d: 90                             - nop 
+HUD:updateScoreGainedGUI+23e: 49 BB C0 8E 7D 0D 32 02 00 00  - mov r11,UnityEngine.UI.Image:set_fillAmount
+}
+</AssemblerScript>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>gold01 代码 :mov [rax+000000F8],ecx</Description>
+      <AddressString>231FEE59AEC</AddressString>
+      <Before>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>83</Byte>
+        <Byte>C1</Byte>
+        <Byte>0A</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>88</Byte>
+        <Byte>F8</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>34</Byte>
+        <Byte>24</Byte>
+        <Byte>48</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>gold02 代码 :mov [rax+00000104],ecx</Description>
+      <AddressString>231FEE5A77B</AddressString>
+      <Before>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>FF</Byte>
+        <Byte>C1</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>88</Byte>
+        <Byte>04</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>34</Byte>
+        <Byte>24</Byte>
+        <Byte>48</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>sub metal 代码 :mov [rax+00000124],ecx</Description>
+      <AddressString>2320960C794</AddressString>
+      <Before>
+        <Byte>45</Byte>
+        <Byte>C0</Byte>
+        <Byte>41</Byte>
+        <Byte>2B</Byte>
+        <Byte>C8</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>88</Byte>
+        <Byte>24</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>63</Byte>
+        <Byte>45</Byte>
+        <Byte>C4</Byte>
+        <Byte>85</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>sub gold 代码 :mov [rax+0000011C],ecx</Description>
+      <AddressString>2320960D60A</AddressString>
+      <Before>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>2B</Byte>
+        <Byte>CE</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>88</Byte>
+        <Byte>1C</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>49</Byte>
+        <Byte>8B</Byte>
+        <Byte>47</Byte>
+        <Byte>20</Byte>
+        <Byte>48</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>blue can 代码 :mov [rax+00000108],ecx</Description>
+      <AddressString>231FEE5DB6B</AddressString>
+      <Before>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>FF</Byte>
+        <Byte>C1</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>88</Byte>
+        <Byte>08</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>34</Byte>
+        <Byte>24</Byte>
+        <Byte>48</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>yellow can 代码 :mov [rax+0000010C],ecx</Description>
+      <AddressString>232098B457B</AddressString>
+      <Before>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>FF</Byte>
+        <Byte>C1</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>88</Byte>
+        <Byte>0C</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>34</Byte>
+        <Byte>24</Byte>
+        <Byte>48</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>green can 代码 :mov [rax+00000130],ecx</Description>
+      <AddressString>2320960C7DA</AddressString>
+      <Before>
+        <Byte>45</Byte>
+        <Byte>C8</Byte>
+        <Byte>41</Byte>
+        <Byte>2B</Byte>
+        <Byte>C8</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>88</Byte>
+        <Byte>30</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>63</Byte>
+        <Byte>45</Byte>
+        <Byte>CC</Byte>
+        <Byte>85</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Green can代码 :mov [rax+00000110],ecx</Description>
+      <AddressString>2320D2D522B</AddressString>
+      <Before>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>FF</Byte>
+        <Byte>C1</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>88</Byte>
+        <Byte>10</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>34</Byte>
+        <Byte>24</Byte>
+        <Byte>48</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>enery 代码 :movss [rsi+00000124],xmm5</Description>
+      <AddressString>231FFA18F7F</AddressString>
+      <Before>
+        <Byte>C1</Byte>
+        <Byte>F2</Byte>
+        <Byte>0F</Byte>
+        <Byte>5A</Byte>
+        <Byte>E8</Byte>
+      </Before>
+      <Actual>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>11</Byte>
+        <Byte>AE</Byte>
+        <Byte>24</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>86</Byte>
+        <Byte>00</Byte>
+        <Byte>01</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>sub enery 代码 :movss [rsi+00000124],xmm5</Description>
+      <AddressString>231FF9BDC1D</AddressString>
+      <Before>
+        <Byte>C1</Byte>
+        <Byte>F2</Byte>
+        <Byte>0F</Byte>
+        <Byte>5A</Byte>
+        <Byte>E8</Byte>
+      </Before>
+      <Actual>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>11</Byte>
+        <Byte>AE</Byte>
+        <Byte>24</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>10</Byte>
+        <Byte>86</Byte>
+        <Byte>24</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>
