@@ -17,7 +17,7 @@ LaunchMonoDataCollector();
       <CheatEntries>
         <CheatEntry>
           <ID>4</ID>
-          <Description>"HP"</Description>
+          <Description>"Ultra HP"</Description>
           <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : Echo Generation.exe
@@ -95,7 +95,7 @@ GameAssembly.dll+4CEE03: C3              - ret
         </CheatEntry>
         <CheatEntry>
           <ID>7</ID>
-          <Description>"Skill"</Description>
+          <Description>"Ultra Skill"</Description>
           <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : Echo Generation.exe
