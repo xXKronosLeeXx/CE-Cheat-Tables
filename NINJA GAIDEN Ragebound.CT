@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="51">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>10</ID>
+      <Description>"Activate Mono -cs37895"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{$lua}
+[ENABLE]
+LaunchMonoDataCollector();
+
+[DISABLE]
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>9</ID>
+          <Description>"HP+KI"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : NINJA GAIDEN Ragebound.exe
+  Version: 
+  Date   : 2026-08-02
+  Author : krono
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,89 58 18 33 D2) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [rax+14],#70
+  jne @f
+  mov ebx,[rax+14]
+  mov [rax+18],ebx
+  xor edx,edx
+  jmp return
+
+@@:
+  cmp [rax+14],#75
+  jne @f
+  mov ebx,[rax+14]
+  mov [rax+18],ebx
+  xor edx,edx
+  jmp return
+
+@@:
+  cmp [rax+14],#12500
+  jne code
+  mov ebx,[rax+14]
+  mov [rax+18],ebx
+  xor edx,edx
+  jmp return
+
+code:
+  mov [rax+18],ebx
+  xor edx,edx
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 58 18 33 D2
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+1F1EE5C
+
+GameAssembly.dll+1F1EE45: 8B 48 10              - mov ecx,[rax+10]
+GameAssembly.dll+1F1EE48: 8B 70 18              - mov esi,[rax+18]
+GameAssembly.dll+1F1EE4B: 3B D9                 - cmp ebx,ecx
+GameAssembly.dll+1F1EE4D: 7C 07                 - jl GameAssembly.dll+1F1EE56
+GameAssembly.dll+1F1EE4F: 8B 48 14              - mov ecx,[rax+14]
+GameAssembly.dll+1F1EE52: 3B D9                 - cmp ebx,ecx
+GameAssembly.dll+1F1EE54: 7E 02                 - jle GameAssembly.dll+1F1EE58
+GameAssembly.dll+1F1EE56: 8B D9                 - mov ebx,ecx
+GameAssembly.dll+1F1EE58: 3B F3                 - cmp esi,ebx
+GameAssembly.dll+1F1EE5A: 74 4B                 - je GameAssembly.dll+1F1EEA7
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+1F1EE5C: 89 58 18              - mov [rax+18],ebx
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+1F1EE5F: 33 D2                 - xor edx,edx
+GameAssembly.dll+1F1EE61: 48 8B 6D 30           - mov rbp,[rbp+30]
+GameAssembly.dll+1F1EE65: 48 8B CF              - mov rcx,rdi
+GameAssembly.dll+1F1EE68: E8 43 2B BD FF        - call TGK.Game.Components.Attack.Data.AttackPowerTypeID.GetID
+GameAssembly.dll+1F1EE6D: 48 85 ED              - test rbp,rbp
+GameAssembly.dll+1F1EE70: 74 42                 - je GameAssembly.dll+1F1EEB4
+GameAssembly.dll+1F1EE72: 4C 8B 0D F7 73 F1 00  - mov r9,[GameAssembly.dll+2E36270]
+GameAssembly.dll+1F1EE79: 4C 8D 44 24 48        - lea r8,[rsp+48]
+GameAssembly.dll+1F1EE7E: 8B D0                 - mov edx,eax
+GameAssembly.dll+1F1EE80: 48 8B CD              - mov rcx,rbp
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>66</ID>
+          <Description>"无碰撞"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : NINJA GAIDEN Ragebound.exe
+  Version: 
+  Date   : 2026-08-02
+  Author : krono
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,E8 A9 21 AC FE) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  ucomiss xmm2,xmm14
+  jnz code
+//  call GameAssembly.dll+9E0FE0
+  jmp return
+
+code:
+  call GameAssembly.dll+9E0FE0
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db E8 A9 21 AC FE
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+1F1EE32
+
+GameAssembly.dll+1F1EE0A: 48 8B 75 20           - mov rsi,[rbp+20]
+GameAssembly.dll+1F1EE0E: 33 D2                 - xor edx,edx
+GameAssembly.dll+1F1EE10: 48 8B CF              - mov rcx,rdi
+GameAssembly.dll+1F1EE13: E8 98 2B BD FF        - call TGK.Game.Components.Attack.Data.AttackPowerTypeID.GetID
+GameAssembly.dll+1F1EE18: 48 85 F6              - test rsi,rsi
+GameAssembly.dll+1F1EE1B: 0F 84 93 00 00 00     - je GameAssembly.dll+1F1EEB4
+GameAssembly.dll+1F1EE21: 4C 8B 0D 30 20 F3 00  - mov r9,[GameAssembly.dll+2E50E58]
+GameAssembly.dll+1F1EE28: 4C 8D 44 24 40        - lea r8,[rsp+40]
+GameAssembly.dll+1F1EE2D: 8B D0                 - mov edx,eax
+GameAssembly.dll+1F1EE2F: 48 8B CE              - mov rcx,rsi
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+1F1EE32: E8 A9 21 AC FE        - call GameAssembly.dll+9E0FE0
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+1F1EE37: 84 C0                 - test al,al
+GameAssembly.dll+1F1EE39: 74 6C                 - je GameAssembly.dll+1F1EEA7
+GameAssembly.dll+1F1EE3B: 48 8B 44 24 40        - mov rax,[rsp+40]
+GameAssembly.dll+1F1EE40: 48 85 C0              - test rax,rax
+GameAssembly.dll+1F1EE43: 74 6F                 - je GameAssembly.dll+1F1EEB4
+GameAssembly.dll+1F1EE45: 8B 48 10              - mov ecx,[rax+10]
+GameAssembly.dll+1F1EE48: 8B 70 18              - mov esi,[rax+18]
+GameAssembly.dll+1F1EE4B: 3B D9                 - cmp ebx,ecx
+GameAssembly.dll+1F1EE4D: 7C 07                 - jl GameAssembly.dll+1F1EE56
+GameAssembly.dll+1F1EE4F: 8B 48 14              - mov ecx,[rax+14]
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>58</ID>
+          <Description>"Time = 0"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : NINJA GAIDEN Ragebound.exe
+  Version: 
+  Date   : 2026-08-02
+  Author : krono
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,F3 0F 58 8B B0 00 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+//  addss xmm1,[rbx+000000B0]
+  jmp return
+
+code:
+  addss xmm1,[rbx+000000B0]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 58 8B B0 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+1BEED29
+
+GameAssembly.dll+1BEECF6: 48 85 D2                 - test rdx,rdx
+GameAssembly.dll+1BEECF9: 0F 84 00 01 00 00        - je GameAssembly.dll+1BEEDFF
+GameAssembly.dll+1BEECFF: 48 8B 8B 88 00 00 00     - mov rcx,[rbx+00000088]
+GameAssembly.dll+1BEED06: 48 85 C9                 - test rcx,rcx
+GameAssembly.dll+1BEED09: 0F 84 F0 00 00 00        - je GameAssembly.dll+1BEEDFF
+GameAssembly.dll+1BEED0F: 48 8B 92 D0 00 00 00     - mov rdx,[rdx+000000D0]
+GameAssembly.dll+1BEED16: 45 33 C0                 - xor r8d,r8d
+GameAssembly.dll+1BEED19: E8 B2 12 02 00           - call TGK.Game.Managers.TimeManager.GetDeltaTime
+GameAssembly.dll+1BEED1E: F3 0F 10 93 C0 00 00 00  - movss xmm2,[rbx+000000C0]
+GameAssembly.dll+1BEED26: 0F 28 C8                 - movaps xmm1,xmm0
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+1BEED29: F3 0F 58 8B B0 00 00 00  - addss xmm1,[rbx+000000B0]
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+1BEED31: 0F 57 DB                 - xorps xmm3,xmm3
+GameAssembly.dll+1BEED34: 0F 2F D3                 - comiss xmm2,xmm3
+GameAssembly.dll+1BEED37: F3 0F 11 8B B0 00 00 00  - movss [rbx+000000B0],xmm1
+GameAssembly.dll+1BEED3F: 0F 86 B4 00 00 00        - jbe GameAssembly.dll+1BEEDF9
+GameAssembly.dll+1BEED45: 48 8B 83 80 00 00 00     - mov rax,[rbx+00000080]
+GameAssembly.dll+1BEED4C: 0F 28 CA                 - movaps xmm1,xmm2
+GameAssembly.dll+1BEED4F: F3 0F 5C C8              - subss xmm1,xmm0
+GameAssembly.dll+1BEED53: F3 0F 11 8B C0 00 00 00  - movss [rbx+000000C0],xmm1
+GameAssembly.dll+1BEED5B: 48 85 C0                 - test rax,rax
+GameAssembly.dll+1BEED5E: 0F 84 9B 00 00 00        - je GameAssembly.dll+1BEEDFF
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>70</ID>
+          <Description>"Enery"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : NINJA GAIDEN Ragebound.exe
+  Version: 
+  Date   : 2026-08-02
+  Author : krono
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscan(INJECT,89 58 18 31 D2 E9 29) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov ebx,[rax+14]
+  mov [rax+18],ebx
+  xor edx,edx
+  jmp return
+
+code:
+  mov [rax+18],ebx
+  xor edx,edx
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 58 18 31 D2
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 7FFE8CBD002E
+
+7FFE8CBD000A: 8B 58 14           - mov ebx,[rax+14]
+7FFE8CBD000D: 89 58 18           - mov [rax+18],ebx
+7FFE8CBD0010: 31 D2              - xor edx,edx
+7FFE8CBD0012: E9 4A EE 8F FE     - jmp GameAssembly.dll+1F1EE61
+7FFE8CBD0017: 83 78 14 4B        - cmp dword ptr [rax+14],4B
+7FFE8CBD001B: 0F 85 0D 00 00 00  - jne 7FFE8CBD002E
+7FFE8CBD0021: 8B 58 14           - mov ebx,[rax+14]
+7FFE8CBD0024: 89 58 18           - mov [rax+18],ebx
+7FFE8CBD0027: 31 D2              - xor edx,edx
+7FFE8CBD0029: E9 33 EE 8F FE     - jmp GameAssembly.dll+1F1EE61
+// ---------- INJECTING HERE ----------
+7FFE8CBD002E: 89 58 18           - mov [rax+18],ebx
+// ---------- DONE INJECTING  ----------
+7FFE8CBD0031: 31 D2              - xor edx,edx
+7FFE8CBD0033: E9 29 EE 8F FE     - jmp GameAssembly.dll+1F1EE61
+7FFE8CBD0038: 00 00              - add [rax],al
+7FFE8CBD003A: 00 00              - add [rax],al
+7FFE8CBD003C: 00 00              - add [rax],al
+7FFE8CBD003E: 00 00              - add [rax],al
+7FFE8CBD0040: 00 00              - add [rax],al
+7FFE8CBD0042: 00 00              - add [rax],al
+7FFE8CBD0044: 00 00              - add [rax],al
+7FFE8CBD0046: 00 00              - add [rax],al
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>65</ID>
+      <Description>"temp"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>64</ID>
+          <Description>"HP"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : NINJA GAIDEN Ragebound.exe
+  Version: 
+  Date   : 2026-08-02
+  Author : krono
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,89 58 18 33 D2) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  ucomiss xmm2,xmm14
+  jnz code
+  mov ebx,[rax+14]
+  mov [rax+18],ebx
+  xor edx,edx
+  jmp return
+
+
+code:
+  mov [rax+18],ebx
+  xor edx,edx
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 58 18 33 D2
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+1F1EE5C
+
+GameAssembly.dll+1F1EE45: 8B 48 10              - mov ecx,[rax+10]
+GameAssembly.dll+1F1EE48: 8B 70 18              - mov esi,[rax+18]
+GameAssembly.dll+1F1EE4B: 3B D9                 - cmp ebx,ecx
+GameAssembly.dll+1F1EE4D: 7C 07                 - jl GameAssembly.dll+1F1EE56
+GameAssembly.dll+1F1EE4F: 8B 48 14              - mov ecx,[rax+14]
+GameAssembly.dll+1F1EE52: 3B D9                 - cmp ebx,ecx
+GameAssembly.dll+1F1EE54: 7E 02                 - jle GameAssembly.dll+1F1EE58
+GameAssembly.dll+1F1EE56: 8B D9                 - mov ebx,ecx
+GameAssembly.dll+1F1EE58: 3B F3                 - cmp esi,ebx
+GameAssembly.dll+1F1EE5A: 74 4B                 - je GameAssembly.dll+1F1EEA7
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+1F1EE5C: 89 58 18              - mov [rax+18],ebx
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+1F1EE5F: 33 D2                 - xor edx,edx
+GameAssembly.dll+1F1EE61: 48 8B 6D 30           - mov rbp,[rbp+30]
+GameAssembly.dll+1F1EE65: 48 8B CF              - mov rcx,rdi
+GameAssembly.dll+1F1EE68: E8 43 2B BD FF        - call TGK.Game.Components.Attack.Data.AttackPowerTypeID.GetID
+GameAssembly.dll+1F1EE6D: 48 85 ED              - test rbp,rbp
+GameAssembly.dll+1F1EE70: 74 42                 - je GameAssembly.dll+1F1EEB4
+GameAssembly.dll+1F1EE72: 4C 8B 0D F7 73 F1 00  - mov r9,[GameAssembly.dll+2E36270]
+GameAssembly.dll+1F1EE79: 4C 8D 44 24 48        - lea r8,[rsp+48]
+GameAssembly.dll+1F1EE7E: 8B D0                 - mov edx,eax
+GameAssembly.dll+1F1EE80: 48 8B CD              - mov rcx,rbp
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>HP 代码 :mov esi,[rax+18]</Description>
+      <AddressString>GameAssembly.dll+1F1EE48</AddressString>
+      <Before>
+        <Byte>74</Byte>
+        <Byte>6F</Byte>
+        <Byte>8B</Byte>
+        <Byte>48</Byte>
+        <Byte>10</Byte>
+      </Before>
+      <Actual>
+        <Byte>8B</Byte>
+        <Byte>70</Byte>
+        <Byte>18</Byte>
+      </Actual>
+      <After>
+        <Byte>3B</Byte>
+        <Byte>D9</Byte>
+        <Byte>7C</Byte>
+        <Byte>07</Byte>
+        <Byte>8B</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>血斩1 代码 :mov [rbx+34],00000001</Description>
+      <AddressString>GameAssembly.dll+1F441CF</AddressString>
+      <Before>
+        <Byte>49</Byte>
+        <Byte>03</Byte>
+        <Byte>C2</Byte>
+        <Byte>EB</Byte>
+        <Byte>B6</Byte>
+      </Before>
+      <Actual>
+        <Byte>C7</Byte>
+        <Byte>43</Byte>
+        <Byte>34</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>E9</Byte>
+        <Byte>A9</Byte>
+        <Byte>FE</Byte>
+        <Byte>FF</Byte>
+        <Byte>FF</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>血斩2 代码 :mov [rbx+34],00000000</Description>
+      <AddressString>GameAssembly.dll+92E572</AddressString>
+      <Before>
+        <Byte>03</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>FF</Byte>
+        <Byte>D0</Byte>
+      </Before>
+      <Actual>
+        <Byte>C7</Byte>
+        <Byte>43</Byte>
+        <Byte>34</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>83</Byte>
+        <Byte>C4</Byte>
+        <Byte>20</Byte>
+        <Byte>5B</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>time 代码 :movss [rbx+000000B0],xmm1</Description>
+      <AddressString>GameAssembly.dll+1BEED37</AddressString>
+      <Before>
+        <Byte>57</Byte>
+        <Byte>DB</Byte>
+        <Byte>0F</Byte>
+        <Byte>2F</Byte>
+        <Byte>D3</Byte>
+      </Before>
+      <Actual>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>11</Byte>
+        <Byte>8B</Byte>
+        <Byte>B0</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>0F</Byte>
+        <Byte>86</Byte>
+        <Byte>B4</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>HP view代码 :mov eax,[rax+18]</Description>
+      <AddressString>GameAssembly.dll+1F1E381</AddressString>
+      <Before>
+        <Byte>48</Byte>
+        <Byte>85</Byte>
+        <Byte>C0</Byte>
+        <Byte>74</Byte>
+        <Byte>0E</Byte>
+      </Before>
+      <Actual>
+        <Byte>8B</Byte>
+        <Byte>40</Byte>
+        <Byte>18</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>5C</Byte>
+        <Byte>24</Byte>
+        <Byte>38</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>enery 代码 :mov [rax+18],ebx</Description>
+      <AddressString>7FFE8CBD002E</AddressString>
+      <Before>
+        <Byte>E9</Byte>
+        <Byte>33</Byte>
+        <Byte>EE</Byte>
+        <Byte>8F</Byte>
+        <Byte>FE</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>58</Byte>
+        <Byte>18</Byte>
+      </Actual>
+      <After>
+        <Byte>31</Byte>
+        <Byte>D2</Byte>
+        <Byte>E9</Byte>
+        <Byte>29</Byte>
+        <Byte>EE</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+  <Structures StructVersion="2">
+    <Structure Name="StatEntry" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="16" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000010" Description="minValue" DisplayMethod="unsigned integer"/>
+        <Element Offset="20" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000014" Description="maxValue" DisplayMethod="unsigned integer"/>
+        <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="current" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="StatEntry" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="16" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000010" Description="minValue" DisplayMethod="unsigned integer"/>
+        <Element Offset="20" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000014" Description="maxValue" DisplayMethod="unsigned integer"/>
+        <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="current" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="StatEntry" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="16" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000010" Description="minValue" DisplayMethod="unsigned integer"/>
+        <Element Offset="20" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000014" Description="maxValue" DisplayMethod="unsigned integer"/>
+        <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="current" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="StatEntry" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="16" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000010" Description="minValue" DisplayMethod="unsigned integer"/>
+        <Element Offset="20" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000014" Description="maxValue" DisplayMethod="unsigned integer"/>
+        <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="current" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="StatEntry" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="16" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000010" Description="minValue" DisplayMethod="unsigned integer"/>
+        <Element Offset="20" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000014" Description="maxValue" DisplayMethod="unsigned integer"/>
+        <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="current" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="StatEntry" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="16" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000010" Description="minValue" DisplayMethod="unsigned integer"/>
+        <Element Offset="20" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000014" Description="maxValue" DisplayMethod="unsigned integer"/>
+        <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="current" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+  </Structures>
+</CheatTable>

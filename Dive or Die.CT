@@ -3,12 +3,11 @@
   <CheatEntries>
     <CheatEntry>
       <ID>7</ID>
-      <Description>"Activate Mono"</Description>
+      <Description>"Activate Mono V1.0.4.858.st"</Description>
       <Options moHideChildren="1"/>
       <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
-      <AssemblerScript>
-{$lua}
+      <AssemblerScript>{$lua}
 [ENABLE]
 LaunchMonoDataCollector();
 
@@ -18,7 +17,7 @@ LaunchMonoDataCollector();
         <CheatEntry>
           <ID>6</ID>
           <Description>"HP SAN Oxy"</Description>
-          <LastState Activated="1"/>
+          <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : Dive or Die.exe
   Version: 
@@ -96,7 +95,7 @@ ED.Basics.Attribute:SetValue+72: 48 8B 75 E0                    - mov rsi,[rbp-2
         <CheatEntry>
           <ID>11</ID>
           <Description>"Item use = 85"</Description>
-          <LastState Activated="1"/>
+          <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : Dive or Die.exe
   Version: 
@@ -248,7 +247,7 @@ InventoryState:AddItem+a0: 48 8B C8                       - mov rcx,rax
         <CheatEntry>
           <ID>20</ID>
           <Description>"营养 = 255"</Description>
-          <LastState Activated="1"/>
+          <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : Dive or Die.exe
   Version: 
@@ -322,7 +321,7 @@ CampState:ChangeNutritionValue+29b: 48 8B C8                       - mov rcx,rax
         <CheatEntry>
           <ID>21</ID>
           <Description>"士气  = 255"</Description>
-          <LastState Activated="1"/>
+          <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : Dive or Die.exe
   Version: 
