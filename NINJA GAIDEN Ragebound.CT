@@ -16,8 +16,8 @@ LaunchMonoDataCollector();
       <CheatEntries>
         <CheatEntry>
           <ID>9</ID>
-          <Description>"HP+KI"</Description>
-          <LastState Activated="1"/>
+          <Description>"UltraHP+UltraKI"</Description>
+          <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : NINJA GAIDEN Ragebound.exe
   Version: 
@@ -108,9 +108,9 @@ GameAssembly.dll+1F1EE80: 48 8B CD              - mov rcx,rbp
 </AssemblerScript>
         </CheatEntry>
         <CheatEntry>
-          <ID>66</ID>
-          <Description>"无碰撞"</Description>
-          <LastState/>
+          <ID>85</ID>
+          <Description>"GOD MODE"</Description>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : NINJA GAIDEN Ragebound.exe
   Version: 
@@ -123,20 +123,40 @@ GameAssembly.dll+1F1EE80: 48 8B CD              - mov rcx,rbp
 
 [ENABLE]
 
-aobscanmodule(INJECT,GameAssembly.dll,E8 A9 21 AC FE) // should be unique
+aobscanmodule(INJECT,GameAssembly.dll,89 58 18 33 D2) // should be unique
 alloc(newmem,$1000,INJECT)
 
 label(code)
 label(return)
 
 newmem:
-  ucomiss xmm2,xmm14
-  jnz code
-//  call GameAssembly.dll+9E0FE0
+  cmp [rax+14],#70
+  jne @f
+  mov ebx,[rax+14]
+  mov [rax+18],ebx
+  xor edx,edx
+  jmp return
+
+@@:
+  cmp [rax+14],#75
+  jne @f
+  mov ebx,[rax+14]
+  mov [rax+18],ebx
+  xor edx,edx
+  jmp return
+
+@@:
+  cmp [rax+14],#12500
+  jne code
+  mov ebx,[rax+14]
+  mov [rax+18],ebx
+  xor edx,edx
   jmp return
 
 code:
-  call GameAssembly.dll+9E0FE0
+  mov [rax+18],0
+
+  xor edx,edx
   jmp return
 
 INJECT:
@@ -147,37 +167,37 @@ registersymbol(INJECT)
 [DISABLE]
 
 INJECT:
-  db E8 A9 21 AC FE
+  db 89 58 18 33 D2
 
 unregistersymbol(INJECT)
 dealloc(newmem)
 
 {
-// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+1F1EE32
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+1F1EE5C
 
-GameAssembly.dll+1F1EE0A: 48 8B 75 20           - mov rsi,[rbp+20]
-GameAssembly.dll+1F1EE0E: 33 D2                 - xor edx,edx
-GameAssembly.dll+1F1EE10: 48 8B CF              - mov rcx,rdi
-GameAssembly.dll+1F1EE13: E8 98 2B BD FF        - call TGK.Game.Components.Attack.Data.AttackPowerTypeID.GetID
-GameAssembly.dll+1F1EE18: 48 85 F6              - test rsi,rsi
-GameAssembly.dll+1F1EE1B: 0F 84 93 00 00 00     - je GameAssembly.dll+1F1EEB4
-GameAssembly.dll+1F1EE21: 4C 8B 0D 30 20 F3 00  - mov r9,[GameAssembly.dll+2E50E58]
-GameAssembly.dll+1F1EE28: 4C 8D 44 24 40        - lea r8,[rsp+40]
-GameAssembly.dll+1F1EE2D: 8B D0                 - mov edx,eax
-GameAssembly.dll+1F1EE2F: 48 8B CE              - mov rcx,rsi
-// ---------- INJECTING HERE ----------
-GameAssembly.dll+1F1EE32: E8 A9 21 AC FE        - call GameAssembly.dll+9E0FE0
-// ---------- DONE INJECTING  ----------
-GameAssembly.dll+1F1EE37: 84 C0                 - test al,al
-GameAssembly.dll+1F1EE39: 74 6C                 - je GameAssembly.dll+1F1EEA7
-GameAssembly.dll+1F1EE3B: 48 8B 44 24 40        - mov rax,[rsp+40]
-GameAssembly.dll+1F1EE40: 48 85 C0              - test rax,rax
-GameAssembly.dll+1F1EE43: 74 6F                 - je GameAssembly.dll+1F1EEB4
 GameAssembly.dll+1F1EE45: 8B 48 10              - mov ecx,[rax+10]
 GameAssembly.dll+1F1EE48: 8B 70 18              - mov esi,[rax+18]
 GameAssembly.dll+1F1EE4B: 3B D9                 - cmp ebx,ecx
 GameAssembly.dll+1F1EE4D: 7C 07                 - jl GameAssembly.dll+1F1EE56
 GameAssembly.dll+1F1EE4F: 8B 48 14              - mov ecx,[rax+14]
+GameAssembly.dll+1F1EE52: 3B D9                 - cmp ebx,ecx
+GameAssembly.dll+1F1EE54: 7E 02                 - jle GameAssembly.dll+1F1EE58
+GameAssembly.dll+1F1EE56: 8B D9                 - mov ebx,ecx
+GameAssembly.dll+1F1EE58: 3B F3                 - cmp esi,ebx
+GameAssembly.dll+1F1EE5A: 74 4B                 - je GameAssembly.dll+1F1EEA7
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+1F1EE5C: 89 58 18              - mov [rax+18],ebx
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+1F1EE5F: 33 D2                 - xor edx,edx
+GameAssembly.dll+1F1EE61: 48 8B 6D 30           - mov rbp,[rbp+30]
+GameAssembly.dll+1F1EE65: 48 8B CF              - mov rcx,rdi
+GameAssembly.dll+1F1EE68: E8 43 2B BD FF        - call TGK.Game.Components.Attack.Data.AttackPowerTypeID.GetID
+GameAssembly.dll+1F1EE6D: 48 85 ED              - test rbp,rbp
+GameAssembly.dll+1F1EE70: 74 42                 - je GameAssembly.dll+1F1EEB4
+GameAssembly.dll+1F1EE72: 4C 8B 0D F7 73 F1 00  - mov r9,[GameAssembly.dll+2E36270]
+GameAssembly.dll+1F1EE79: 4C 8D 44 24 48        - lea r8,[rsp+48]
+GameAssembly.dll+1F1EE7E: 8B D0                 - mov edx,eax
+GameAssembly.dll+1F1EE80: 48 8B CD              - mov rcx,rbp
 }
 </AssemblerScript>
         </CheatEntry>
@@ -255,8 +275,83 @@ GameAssembly.dll+1BEED5E: 0F 84 9B 00 00 00        - je GameAssembly.dll+1BEEDFF
 </AssemblerScript>
         </CheatEntry>
         <CheatEntry>
-          <ID>70</ID>
+          <ID>73</ID>
           <Description>"Enery"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : NINJA GAIDEN Ragebound.exe
+  Version: 
+  Date   : 2026-08-03
+  Author : krono
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,8B 70 18 3B D9) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov esi,[rax+14]
+//  mov esi,[rax+18]
+  cmp ebx,ecx
+  jmp return
+
+code:
+  mov esi,[rax+18]
+  cmp ebx,ecx
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 8B 70 18 3B D9
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+1F1EE48
+
+GameAssembly.dll+1F1EE28: 4C 8D 44 24 40  - lea r8,[rsp+40]
+GameAssembly.dll+1F1EE2D: 8B D0           - mov edx,eax
+GameAssembly.dll+1F1EE2F: 48 8B CE        - mov rcx,rsi
+GameAssembly.dll+1F1EE32: E8 A9 21 AC FE  - call GameAssembly.dll+9E0FE0
+GameAssembly.dll+1F1EE37: 84 C0           - test al,al
+GameAssembly.dll+1F1EE39: 74 6C           - je GameAssembly.dll+1F1EEA7
+GameAssembly.dll+1F1EE3B: 48 8B 44 24 40  - mov rax,[rsp+40]
+GameAssembly.dll+1F1EE40: 48 85 C0        - test rax,rax
+GameAssembly.dll+1F1EE43: 74 6F           - je GameAssembly.dll+1F1EEB4
+GameAssembly.dll+1F1EE45: 8B 48 10        - mov ecx,[rax+10]
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+1F1EE48: 8B 70 18        - mov esi,[rax+18]
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+1F1EE4B: 3B D9           - cmp ebx,ecx
+GameAssembly.dll+1F1EE4D: 7C 07           - jl GameAssembly.dll+1F1EE56
+GameAssembly.dll+1F1EE4F: 8B 48 14        - mov ecx,[rax+14]
+GameAssembly.dll+1F1EE52: 3B D9           - cmp ebx,ecx
+GameAssembly.dll+1F1EE54: 7E 02           - jle GameAssembly.dll+1F1EE58
+GameAssembly.dll+1F1EE56: 8B D9           - mov ebx,ecx
+GameAssembly.dll+1F1EE58: 3B F3           - cmp esi,ebx
+GameAssembly.dll+1F1EE5A: 74 4B           - je GameAssembly.dll+1F1EEA7
+INJECT: E9 9F 11 70 01  - jmp 7FFDDB390000
+GameAssembly.dll+1F1EE61: 48 8B 6D 30     - mov rbp,[rbp+30]
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>66</ID>
+          <Description>"无碰撞（遇到bug读取记忆点重来）"</Description>
           <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : NINJA GAIDEN Ragebound.exe
@@ -270,90 +365,7 @@ GameAssembly.dll+1BEED5E: 0F 84 9B 00 00 00        - je GameAssembly.dll+1BEEDFF
 
 [ENABLE]
 
-aobscan(INJECT,89 58 18 31 D2 E9 29) // should be unique
-alloc(newmem,$1000,INJECT)
-
-label(code)
-label(return)
-
-newmem:
-  mov ebx,[rax+14]
-  mov [rax+18],ebx
-  xor edx,edx
-  jmp return
-
-code:
-  mov [rax+18],ebx
-  xor edx,edx
-  jmp return
-
-INJECT:
-  jmp newmem
-return:
-registersymbol(INJECT)
-
-[DISABLE]
-
-INJECT:
-  db 89 58 18 31 D2
-
-unregistersymbol(INJECT)
-dealloc(newmem)
-
-{
-// ORIGINAL CODE - INJECTION POINT: 7FFE8CBD002E
-
-7FFE8CBD000A: 8B 58 14           - mov ebx,[rax+14]
-7FFE8CBD000D: 89 58 18           - mov [rax+18],ebx
-7FFE8CBD0010: 31 D2              - xor edx,edx
-7FFE8CBD0012: E9 4A EE 8F FE     - jmp GameAssembly.dll+1F1EE61
-7FFE8CBD0017: 83 78 14 4B        - cmp dword ptr [rax+14],4B
-7FFE8CBD001B: 0F 85 0D 00 00 00  - jne 7FFE8CBD002E
-7FFE8CBD0021: 8B 58 14           - mov ebx,[rax+14]
-7FFE8CBD0024: 89 58 18           - mov [rax+18],ebx
-7FFE8CBD0027: 31 D2              - xor edx,edx
-7FFE8CBD0029: E9 33 EE 8F FE     - jmp GameAssembly.dll+1F1EE61
-// ---------- INJECTING HERE ----------
-7FFE8CBD002E: 89 58 18           - mov [rax+18],ebx
-// ---------- DONE INJECTING  ----------
-7FFE8CBD0031: 31 D2              - xor edx,edx
-7FFE8CBD0033: E9 29 EE 8F FE     - jmp GameAssembly.dll+1F1EE61
-7FFE8CBD0038: 00 00              - add [rax],al
-7FFE8CBD003A: 00 00              - add [rax],al
-7FFE8CBD003C: 00 00              - add [rax],al
-7FFE8CBD003E: 00 00              - add [rax],al
-7FFE8CBD0040: 00 00              - add [rax],al
-7FFE8CBD0042: 00 00              - add [rax],al
-7FFE8CBD0044: 00 00              - add [rax],al
-7FFE8CBD0046: 00 00              - add [rax],al
-}
-</AssemblerScript>
-        </CheatEntry>
-      </CheatEntries>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>65</ID>
-      <Description>"temp"</Description>
-      <LastState Value="" RealAddress="00000000"/>
-      <GroupHeader>1</GroupHeader>
-      <CheatEntries>
-        <CheatEntry>
-          <ID>64</ID>
-          <Description>"HP"</Description>
-          <LastState/>
-          <VariableType>Auto Assembler Script</VariableType>
-          <AssemblerScript>{ Game   : NINJA GAIDEN Ragebound.exe
-  Version: 
-  Date   : 2026-08-02
-  Author : krono
-  描述 : 
-
-  &lt;Optional info&gt;
-}
-
-[ENABLE]
-
-aobscanmodule(INJECT,GameAssembly.dll,89 58 18 33 D2) // should be unique
+aobscanmodule(INJECT,GameAssembly.dll,E8 A9 21 AC FE) // should be unique
 alloc(newmem,$1000,INJECT)
 
 label(code)
@@ -362,15 +374,11 @@ label(return)
 newmem:
   ucomiss xmm2,xmm14
   jnz code
-  mov ebx,[rax+14]
-  mov [rax+18],ebx
-  xor edx,edx
+//  call GameAssembly.dll+9E0FE0
   jmp return
 
-
 code:
-  mov [rax+18],ebx
-  xor edx,edx
+  call GameAssembly.dll+9E0FE0
   jmp return
 
 INJECT:
@@ -381,37 +389,37 @@ registersymbol(INJECT)
 [DISABLE]
 
 INJECT:
-  db 89 58 18 33 D2
+  db E8 A9 21 AC FE
 
 unregistersymbol(INJECT)
 dealloc(newmem)
 
 {
-// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+1F1EE5C
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+1F1EE32
 
+GameAssembly.dll+1F1EE0A: 48 8B 75 20           - mov rsi,[rbp+20]
+GameAssembly.dll+1F1EE0E: 33 D2                 - xor edx,edx
+GameAssembly.dll+1F1EE10: 48 8B CF              - mov rcx,rdi
+GameAssembly.dll+1F1EE13: E8 98 2B BD FF        - call TGK.Game.Components.Attack.Data.AttackPowerTypeID.GetID
+GameAssembly.dll+1F1EE18: 48 85 F6              - test rsi,rsi
+GameAssembly.dll+1F1EE1B: 0F 84 93 00 00 00     - je GameAssembly.dll+1F1EEB4
+GameAssembly.dll+1F1EE21: 4C 8B 0D 30 20 F3 00  - mov r9,[GameAssembly.dll+2E50E58]
+GameAssembly.dll+1F1EE28: 4C 8D 44 24 40        - lea r8,[rsp+40]
+GameAssembly.dll+1F1EE2D: 8B D0                 - mov edx,eax
+GameAssembly.dll+1F1EE2F: 48 8B CE              - mov rcx,rsi
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+1F1EE32: E8 A9 21 AC FE        - call GameAssembly.dll+9E0FE0
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+1F1EE37: 84 C0                 - test al,al
+GameAssembly.dll+1F1EE39: 74 6C                 - je GameAssembly.dll+1F1EEA7
+GameAssembly.dll+1F1EE3B: 48 8B 44 24 40        - mov rax,[rsp+40]
+GameAssembly.dll+1F1EE40: 48 85 C0              - test rax,rax
+GameAssembly.dll+1F1EE43: 74 6F                 - je GameAssembly.dll+1F1EEB4
 GameAssembly.dll+1F1EE45: 8B 48 10              - mov ecx,[rax+10]
 GameAssembly.dll+1F1EE48: 8B 70 18              - mov esi,[rax+18]
 GameAssembly.dll+1F1EE4B: 3B D9                 - cmp ebx,ecx
 GameAssembly.dll+1F1EE4D: 7C 07                 - jl GameAssembly.dll+1F1EE56
 GameAssembly.dll+1F1EE4F: 8B 48 14              - mov ecx,[rax+14]
-GameAssembly.dll+1F1EE52: 3B D9                 - cmp ebx,ecx
-GameAssembly.dll+1F1EE54: 7E 02                 - jle GameAssembly.dll+1F1EE58
-GameAssembly.dll+1F1EE56: 8B D9                 - mov ebx,ecx
-GameAssembly.dll+1F1EE58: 3B F3                 - cmp esi,ebx
-GameAssembly.dll+1F1EE5A: 74 4B                 - je GameAssembly.dll+1F1EEA7
-// ---------- INJECTING HERE ----------
-GameAssembly.dll+1F1EE5C: 89 58 18              - mov [rax+18],ebx
-// ---------- DONE INJECTING  ----------
-GameAssembly.dll+1F1EE5F: 33 D2                 - xor edx,edx
-GameAssembly.dll+1F1EE61: 48 8B 6D 30           - mov rbp,[rbp+30]
-GameAssembly.dll+1F1EE65: 48 8B CF              - mov rcx,rdi
-GameAssembly.dll+1F1EE68: E8 43 2B BD FF        - call TGK.Game.Components.Attack.Data.AttackPowerTypeID.GetID
-GameAssembly.dll+1F1EE6D: 48 85 ED              - test rbp,rbp
-GameAssembly.dll+1F1EE70: 74 42                 - je GameAssembly.dll+1F1EEB4
-GameAssembly.dll+1F1EE72: 4C 8B 0D F7 73 F1 00  - mov r9,[GameAssembly.dll+2E36270]
-GameAssembly.dll+1F1EE79: 4C 8D 44 24 48        - lea r8,[rsp+48]
-GameAssembly.dll+1F1EE7E: 8B D0                 - mov edx,eax
-GameAssembly.dll+1F1EE80: 48 8B CD              - mov rcx,rbp
 }
 </AssemblerScript>
         </CheatEntry>
@@ -545,29 +553,6 @@ GameAssembly.dll+1F1EE80: 48 8B CD              - mov rcx,rbp
         <Byte>5C</Byte>
         <Byte>24</Byte>
         <Byte>38</Byte>
-      </After>
-    </CodeEntry>
-    <CodeEntry>
-      <Description>enery 代码 :mov [rax+18],ebx</Description>
-      <AddressString>7FFE8CBD002E</AddressString>
-      <Before>
-        <Byte>E9</Byte>
-        <Byte>33</Byte>
-        <Byte>EE</Byte>
-        <Byte>8F</Byte>
-        <Byte>FE</Byte>
-      </Before>
-      <Actual>
-        <Byte>89</Byte>
-        <Byte>58</Byte>
-        <Byte>18</Byte>
-      </Actual>
-      <After>
-        <Byte>31</Byte>
-        <Byte>D2</Byte>
-        <Byte>E9</Byte>
-        <Byte>29</Byte>
-        <Byte>EE</Byte>
       </After>
     </CodeEntry>
   </CheatCodes>
