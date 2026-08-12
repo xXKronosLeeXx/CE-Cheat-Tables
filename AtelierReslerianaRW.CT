@@ -16,8 +16,8 @@ LaunchMonoDataCollector();
       <CheatEntries>
         <CheatEntry>
           <ID>1</ID>
-          <Description>"SP = 855"</Description>
-          <LastState Activated="1"/>
+          <Description>"SP = 228855"</Description>
+          <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : AtelierReslerianaRW.exe
   Version: 
@@ -37,7 +37,7 @@ label(code)
 label(return)
 
 newmem:
-  mov [rbx+10],#855
+  mov [rbx+10],#228855
   mov rax,rbx
   jmp return
 
@@ -173,7 +173,7 @@ GameAssembly.dll+1F7E2E9: 5F                       - pop rdi
 </AssemblerScript>
             </CheatEntry>
             <CheatEntry>
-              <ID>18</ID>
+              <ID>38</ID>
               <Description>"HP"</Description>
               <LastState/>
               <VariableType>Auto Assembler Script</VariableType>
@@ -407,6 +407,81 @@ GameAssembly.dll+252AB81: E8 6A F9 E1 FD        - call GameAssembly.dll+34A4F0
 }
 </AssemblerScript>
             </CheatEntry>
+            <CheatEntry>
+              <ID>120</ID>
+              <Description>"爆发"</Description>
+              <LastState Activated="1"/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : AtelierReslerianaRW.exe
+  Version: 
+  Date   : 2026-08-10
+  Author : krono
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,89 43 2C 48 8B 5C 24 30 48 83 C4 20 5F C3 CC) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rbx+2C],#400
+  mov rbx,[rsp+30]
+  jmp return
+
+code:
+  mov [rbx+2C],eax
+  mov rbx,[rsp+30]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 43 2C 48 8B 5C 24 30
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+28FDB3E
+
+GameAssembly.dll+28FDB15: 48 8B 0D AC 98 40 03  - mov rcx,[GameAssembly.dll+5D073C8]
+GameAssembly.dll+28FDB1C: 8B 7B 30              - mov edi,[rbx+30]
+GameAssembly.dll+28FDB1F: 83 B9 E0 00 00 00 00  - cmp dword ptr [rcx+000000E0],00
+GameAssembly.dll+28FDB26: 75 05                 - jne GameAssembly.dll+28FDB2D
+GameAssembly.dll+28FDB28: E8 43 4D 9C FD        - call GameAssembly.dll+2C2870
+GameAssembly.dll+28FDB2D: 44 8B C7              - mov r8d,edi
+GameAssembly.dll+28FDB30: 33 D2                 - xor edx,edx
+GameAssembly.dll+28FDB32: 8B CE                 - mov ecx,esi
+GameAssembly.dll+28FDB34: E8 E7 67 15 FE        - call GameAssembly.dll+A54320
+GameAssembly.dll+28FDB39: 48 8B 74 24 38        - mov rsi,[rsp+38]
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+28FDB3E: 89 43 2C              - mov [rbx+2C],eax
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+28FDB41: 48 8B 5C 24 30        - mov rbx,[rsp+30]
+GameAssembly.dll+28FDB46: 48 83 C4 20           - add rsp,20
+GameAssembly.dll+28FDB4A: 5F                    - pop rdi
+GameAssembly.dll+28FDB4B: C3                    - ret 
+GameAssembly.dll+28FDB4C: CC                    - int 3 
+GameAssembly.dll+28FDB4D: CC                    - int 3 
+GameAssembly.dll+28FDB4E: CC                    - int 3 
+GameAssembly.dll+28FDB4F: CC                    - int 3 
+BroomBattleUnite.AELENJCFJMF: 40 53                 - push rbx
+GameAssembly.dll+28FDB52: 48 83 EC 20           - sub rsp,20
+}
+</AssemblerScript>
+            </CheatEntry>
           </CheatEntries>
         </CheatEntry>
         <CheatEntry>
@@ -480,6 +555,81 @@ GameAssembly.dll+1F42355: 7D 19                 - jnl GameAssembly.dll+1F42370
 GameAssembly.dll+1F42357: 0F 83 E5 00 00 00     - jae GameAssembly.dll+1F42442
 GameAssembly.dll+1F4235D: 8B C1                 - mov eax,ecx
 GameAssembly.dll+1F4235F: 41 03 54 81 20        - add edx,[r9+rax*4+20]
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>37</ID>
+          <Description>"Store EXP + 65535"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : AtelierReslerianaRW.exe
+  Version: 
+  Date   : 2026-08-09
+  Author : krono
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,01 51 10 48 8B D9) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [rcx+10],ffff
+  mov rbx,rcx
+  jmp return
+
+code:
+  add [rcx+10],edx
+  mov rbx,rcx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 01 51 10 48 8B D9
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+14DE41A
+
+GameAssembly.dll+14DE402: 48 8B 74 24 50        - mov rsi,[rsp+50]
+GameAssembly.dll+14DE407: 48 83 C4 30           - add rsp,30
+GameAssembly.dll+14DE40B: 5F                    - pop rdi
+GameAssembly.dll+14DE40C: C3                    - ret 
+GameAssembly.dll+14DE40D: CC                    - int 3 
+GameAssembly.dll+14DE40E: CC                    - int 3 
+GameAssembly.dll+14DE40F: CC                    - int 3 
+SaveDataPlayerShop.KIHOKGCJLBO: 48 89 5C 24 08        - mov [rsp+08],rbx
+GameAssembly.dll+14DE415: 57                    - push rdi
+GameAssembly.dll+14DE416: 48 83 EC 20           - sub rsp,20
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+14DE41A: 01 51 10              - add [rcx+10],edx
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+14DE41D: 48 8B D9              - mov rbx,rcx
+GameAssembly.dll+14DE420: 80 3D E7 CA B2 04 00  - cmp byte ptr [GameAssembly.dll+600AF0E],00
+GameAssembly.dll+14DE427: 8B 79 10              - mov edi,[rcx+10]
+GameAssembly.dll+14DE42A: 75 18                 - jne GameAssembly.dll+14DE444
+GameAssembly.dll+14DE42C: 48 8D 0D 35 AB 7E 04  - lea rcx,[GameAssembly.dll+5CC8F68]
+GameAssembly.dll+14DE433: E8 B8 C0 E6 FE        - call GameAssembly.dll+34A4F0
+GameAssembly.dll+14DE438: F0 83 0C 24 00        - lock or dword ptr [rsp],00
+GameAssembly.dll+14DE43D: C6 05 CA CA B2 04 01  - mov byte ptr [GameAssembly.dll+600AF0E],01
+GameAssembly.dll+14DE444: 48 8B 0D 1D AB 7E 04  - mov rcx,[GameAssembly.dll+5CC8F68]
+GameAssembly.dll+14DE44B: 83 B9 E0 00 00 00 00  - cmp dword ptr [rcx+000000E0],00
 }
 </AssemblerScript>
         </CheatEntry>
@@ -623,6 +773,29 @@ GameAssembly.dll+1F4235F: 41 03 54 81 20        - add edx,[r9+rax*4+20]
         <Byte>D9</Byte>
         <Byte>80</Byte>
         <Byte>3D</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>爆发 代码 :mov [rbx+2C],eax</Description>
+      <AddressString>GameAssembly.dll+28FDB3E</AddressString>
+      <Before>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>74</Byte>
+        <Byte>24</Byte>
+        <Byte>38</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>43</Byte>
+        <Byte>2C</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>5C</Byte>
+        <Byte>24</Byte>
+        <Byte>30</Byte>
       </After>
     </CodeEntry>
   </CheatCodes>
