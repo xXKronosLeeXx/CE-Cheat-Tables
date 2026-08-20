@@ -4,20 +4,17 @@
     <CheatEntry>
       <ID>24</ID>
       <Description>"V 1.09"</Description>
-      <LastState Value="" RealAddress="00000000"/>
       <GroupHeader>1</GroupHeader>
     </CheatEntry>
     <CheatEntry>
       <ID>16</ID>
       <Description>"Money"</Description>
-      <LastState Value="8478217" RealAddress="7FF6129EFFEC"/>
       <VariableType>4 Bytes</VariableType>
       <Address>NSUNS4.exe+161FFEC</Address>
     </CheatEntry>
     <CheatEntry>
       <ID>18</ID>
       <Description>"忍宝=888"</Description>
-      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : NSUNS4.exe
   Version: 
@@ -93,13 +90,11 @@ NSUNS4.exe+1F0EAC: C7 41 28 01 00 00 00  - mov [rcx+28],00000001
     <CheatEntry>
       <ID>23</ID>
       <Description>"Battle"</Description>
-      <LastState Value="" RealAddress="00000000"/>
       <GroupHeader>1</GroupHeader>
       <CheatEntries>
         <CheatEntry>
           <ID>10</ID>
-          <Description>"HP"</Description>
-          <LastState/>
+          <Description>"无限HP+攻击力x5"</Description>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : NSUNS4.exe
   Version: 
@@ -127,8 +122,8 @@ label(return)
 
 newmem:
   mov rdx,RBX
-  and rdx,0xFFFFF
-  cmp rdx,0x05848
+  and rdx,0xFFFF
+  cmp rdx,0x5848
   jne code
   movss xmm0,[rax+10+4]
   movss [rax+10],xmm0
@@ -188,7 +183,6 @@ NSUNS4.exe+74B520: E8 47 FE FF FF  - call NSUNS4.exe+74B36C
         <CheatEntry>
           <ID>9</ID>
           <Description>"查克拉"</Description>
-          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : NSUNS4.exe
   Version: 
@@ -266,7 +260,6 @@ NSUNS4.exe+74B4A0: E8 C7 FE FF FF  - call NSUNS4.exe+74B36C
         <CheatEntry>
           <ID>14</ID>
           <Description>"替身"</Description>
-          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : NSUNS4.exe
   Version: 
@@ -335,14 +328,84 @@ NSUNS4.exe+74B844: E8 23 FB FF FF  - call NSUNS4.exe+74B36C
 }
 </AssemblerScript>
         </CheatEntry>
+        <CheatEntry>
+          <ID>28</ID>
+          <Description>"风暴"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : NSUNS4.exe
+  Version: 
+  Date   : 2026-08-20
+  Author : lixiang
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,NSUNS4.exe,F3 0F 11 41 34 76) // should be unique
+alloc(newmem,$1000,INJECT)
+alloc(strom,$2,INJECT)
+
+label(code)
+label(return)
+
+strom:
+      dq (float)100
+
+newmem:
+  movss xmm0,[strom]
+  movss [rcx+34],xmm0
+  jmp return
+
+code:
+  movss [rcx+34],xmm0
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 41 34
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: NSUNS4.exe+74B711
+
+NSUNS4.exe+74B6ED: 0F 28 74 24 20           - movaps xmm6,[rsp+20]
+NSUNS4.exe+74B6F2: 48 83 C4 38              - add rsp,38
+NSUNS4.exe+74B6F6: C3                       - ret 
+NSUNS4.exe+74B6F7: CC                       - int 3 
+NSUNS4.exe+74B6F8: F3 0F 10 41 34           - movss xmm0,[rcx+34]
+NSUNS4.exe+74B6FD: F3 0F 10 15 4B CD 79 00  - movss xmm2,[NSUNS4.exe+EE8450]
+NSUNS4.exe+74B705: 0F 2F C2                 - comiss xmm0,xmm2
+NSUNS4.exe+74B708: 73 15                    - jae NSUNS4.exe+74B71F
+NSUNS4.exe+74B70A: F3 0F 58 C1              - addss xmm0,xmm1
+NSUNS4.exe+74B70E: 0F 2F C2                 - comiss xmm0,xmm2
+// ---------- INJECTING HERE ----------
+NSUNS4.exe+74B711: F3 0F 11 41 34           - movss [rcx+34],xmm0
+// ---------- DONE INJECTING  ----------
+NSUNS4.exe+74B716: 76 07                    - jna NSUNS4.exe+74B71F
+NSUNS4.exe+74B718: C7 41 34 00 00 C8 42     - mov [rcx+34],42C80000
+NSUNS4.exe+74B71F: C3                       - ret 
+NSUNS4.exe+74B720: 48 83 EC 38              - sub rsp,38
+NSUNS4.exe+74B724: 0F 29 74 24 20           - movaps [rsp+20],xmm6
+NSUNS4.exe+74B729: 0F 28 F2                 - movaps xmm6,xmm2
+NSUNS4.exe+74B72C: E8 3B FC FF FF           - call NSUNS4.exe+74B36C
+NSUNS4.exe+74B731: 48 85 C0                 - test rax,rax
+NSUNS4.exe+74B734: 74 05                    - je NSUNS4.exe+74B73B
+NSUNS4.exe+74B736: F3 0F 11 70 30           - movss [rax+30],xmm6
+}
+</AssemblerScript>
+        </CheatEntry>
       </CheatEntries>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>25</ID>
-      <Description>"无描述"</Description>
-      <LastState Value="93.48236847" RealAddress="1D85C99BAF8"/>
-      <VariableType>Float</VariableType>
-      <Address>1D85C99BAF8</Address>
     </CheatEntry>
   </CheatEntries>
   <CheatCodes>
@@ -419,6 +482,31 @@ NSUNS4.exe+74B844: E8 23 FB FF FF  - call NSUNS4.exe+74B36C
         <Byte>74</Byte>
         <Byte>24</Byte>
         <Byte>20</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>风暴 代码 :movss [rcx+34],xmm0</Description>
+      <AddressString>NSUNS4.exe+74B711</AddressString>
+      <Before>
+        <Byte>58</Byte>
+        <Byte>C1</Byte>
+        <Byte>0F</Byte>
+        <Byte>2F</Byte>
+        <Byte>C2</Byte>
+      </Before>
+      <Actual>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>11</Byte>
+        <Byte>41</Byte>
+        <Byte>34</Byte>
+      </Actual>
+      <After>
+        <Byte>76</Byte>
+        <Byte>07</Byte>
+        <Byte>C7</Byte>
+        <Byte>41</Byte>
+        <Byte>34</Byte>
       </After>
     </CodeEntry>
   </CheatCodes>
