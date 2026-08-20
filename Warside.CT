@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="51">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>21</ID>
+      <Description>"Money"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>14</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"Warside.exe"+049180E0</Address>
+          <Offsets>
+            <Offset>30</Offset>
+            <Offset>50</Offset>
+            <Offset>8</Offset>
+            <Offset>50</Offset>
+            <Offset>8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>15</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"Warside.exe"+049180E0</Address>
+          <Offsets>
+            <Offset>30</Offset>
+            <Offset>60</Offset>
+            <Offset>0</Offset>
+            <Offset>50</Offset>
+            <Offset>8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>17</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"Warside.exe"+04950878</Address>
+          <Offsets>
+            <Offset>30</Offset>
+            <Offset>50</Offset>
+            <Offset>8</Offset>
+            <Offset>50</Offset>
+            <Offset>30</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>18</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"Warside.exe"+04950878</Address>
+          <Offsets>
+            <Offset>30</Offset>
+            <Offset>60</Offset>
+            <Offset>0</Offset>
+            <Offset>50</Offset>
+            <Offset>30</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>22</ID>
+      <Description>"自动汇编脚本"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Warside.exe
+  Version: 
+  Date   : 2026-08-18
+  Author : krono
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanfunction(INJECT,Wars.Core.State.Player::set_Funds+1C, "E8 EF A4 C1 5D 48 8B 45 10 48 8B 45 10 48 8B 4D 18 48 89 48 30 90")  // should be unique in this function
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  call coreclr.dll+274450
+  mov rax,[rbp+10]
+  mov rcx,[rbp+18]
+  mov [rax+30],#899999
+
+code:
+  call coreclr.dll+274450
+  mov rax,[rbp+10]
+  mov rcx,[rbp+18]
+  mov [rax+30],rcx
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db E8 EF A4 C1 5D
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Wars.Core.State.Player::set_Funds+1C
+
+7FFB40209F3D: 7F 00                 - jg 7FFB40209F3F
+7FFB40209F3F: 00 55 57              - add [rbp+57],dl
+Wars.Core.State.Player::set_Funds+2: 48 83 EC 28           - sub rsp,28
+Wars.Core.State.Player::set_Funds+6: 48 8D 6C 24 30        - lea rbp,[rsp+30]
+Wars.Core.State.Player::set_Funds+B: 48 89 4D 10           - mov [rbp+10],rcx
+Wars.Core.State.Player::set_Funds+F: 48 89 55 18           - mov [rbp+18],rdx
+Wars.Core.State.Player::set_Funds+13: 83 3D 36 CE 39 FE 00  - cmp dword ptr [7FFB3E5A6D90],00
+Wars.Core.State.Player::set_Funds+1A: 74 05                 - je Wars.Core.State.Player::set_Funds+21
+Wars.Core.State.Player::set_Funds+1C: E8 EF A4 C1 5D        - call coreclr.dll+274450
+Wars.Core.State.Player::set_Funds+21: 48 8B 45 10           - mov rax,[rbp+10]
+// ---------- INJECTING HERE ----------
+Wars.Core.State.Player::set_Funds+25: 48 8B 4D 18           - mov rcx,[rbp+18]
+// ---------- DONE INJECTING  ----------
+Wars.Core.State.Player::set_Funds+29: 48 89 48 30           - mov [rax+30],rcx
+Wars.Core.State.Player::set_Funds+2D: 90                    - nop 
+Wars.Core.State.Player::set_Funds+2E: 48 83 C4 28           - add rsp,28
+Wars.Core.State.Player::set_Funds+32: 5F                    - pop rdi
+Wars.Core.State.Player::set_Funds+33: 5D                    - pop rbp
+Wars.Core.State.Player::set_Funds+34: C3                    - ret 
+7FFB40209F75: 00 00                 - add [rax],al
+7FFB40209F77: 00 19                 - add [rcx],bl
+7FFB40209F79: 06                    - push es
+7FFB40209F7A: 03 00                 - add eax,[rax]
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>Money 代码 :mov [rax+30],rcx</Description>
+      <AddressString>7FF85B23A179</AddressString>
+      <Before>
+        <Byte>10</Byte>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>4D</Byte>
+        <Byte>18</Byte>
+      </Before>
+      <Actual>
+        <Byte>48</Byte>
+        <Byte>89</Byte>
+        <Byte>48</Byte>
+        <Byte>30</Byte>
+      </Actual>
+      <After>
+        <Byte>90</Byte>
+        <Byte>48</Byte>
+        <Byte>83</Byte>
+        <Byte>C4</Byte>
+        <Byte>28</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>

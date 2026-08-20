@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="51">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"HP"</Description>
+      <LastState Value="64" Activated="1" RealAddress="7FF6615AD0DA"/>
+      <VariableType>2 Bytes</VariableType>
+      <Address>Zexion.exe+3ED0DA</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>7</ID>
+      <Description>"Rocket"</Description>
+      <LastState Value="2" Activated="1" RealAddress="7FF6615AD0AC"/>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>2 Bytes</VariableType>
+      <Address>Zexion.exe+3ED0DA-30+2</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"无描述"</Description>
+      <LastState Value="2" RealAddress="7FF6615AD0AC"/>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>2 Bytes</VariableType>
+      <Address>7FF6615AD0AC</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>HP  sub 代码 :sub [rdi+00000CEA],cx</Description>
+      <AddressString>Zexion.exe+1EC81</AddressString>
+      <Before>
+        <Byte>00</Byte>
+        <Byte>F2</Byte>
+        <Byte>0F</Byte>
+        <Byte>2C</Byte>
+        <Byte>C8</Byte>
+      </Before>
+      <Actual>
+        <Byte>66</Byte>
+        <Byte>29</Byte>
+        <Byte>8F</Byte>
+        <Byte>EA</Byte>
+        <Byte>0C</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>C7</Byte>
+        <Byte>87</Byte>
+        <Byte>1A</Byte>
+        <Byte>0D</Byte>
+        <Byte>00</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>
