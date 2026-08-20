@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="51">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>9</ID>
+      <Description>"Activate Mono"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{$lua}
+[ENABLE]
+LaunchMonoDataCollector();
+
+[DISABLE]
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>4</ID>
+          <Description>"Money"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : KillTheShadow.exe
+  Version: 
+  Date   : 2026-08-19
+  Author : lixiang
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanfunction(INJECT,ItemMgr:ReduceItem,89 48 1C 48 8B 45 90)  // should be unique in this function
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rax+1C],#13899
+  mov rax,[rbp-70]
+  jmp return
+
+code:
+  mov [rax+1C],ecx
+  mov rax,[rbp-70]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 48 1C 48 8B 45 90
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: ItemMgr:ReduceItem+f0
+
+ItemMgr:ReduceItem+c8: 41 FF D3                       - call r11
+ItemMgr:ReduceItem+cb: 48 8B C8                       - mov rcx,rax
+ItemMgr:ReduceItem+ce: 49 BB 0B 9F 62 5C CA 01 00 00  - mov r11,000001CA5C629F0B
+ItemMgr:ReduceItem+d8: 41 FF D3                       - call r11
+ItemMgr:ReduceItem+db: 48 8B 45 90                    - mov rax,[rbp-70]
+ItemMgr:ReduceItem+df: 48 63 70 1C                    - movsxd  rsi,dword ptr [rax+1C]
+ItemMgr:ReduceItem+e3: 48 8B 45 90                    - mov rax,[rbp-70]
+ItemMgr:ReduceItem+e7: 48 8B D0                       - mov rdx,rax
+ItemMgr:ReduceItem+ea: 48 63 48 1C                    - movsxd  rcx,dword ptr [rax+1C]
+ItemMgr:ReduceItem+ee: 2B CE                          - sub ecx,esi
+// ---------- INJECTING HERE ----------
+ItemMgr:ReduceItem+f0: 89 48 1C                       - mov [rax+1C],ecx
+// ---------- DONE INJECTING  ----------
+ItemMgr:ReduceItem+f3: 48 8B 45 90                    - mov rax,[rbp-70]
+ItemMgr:ReduceItem+f7: 48 89 45 88                    - mov [rbp-78],rax
+ItemMgr:ReduceItem+fb: 66 66 90                       - nop 3
+ItemMgr:ReduceItem+fe: 49 BB B0 61 BB CD C7 01 00 00  - mov r11,System.DateTime:get_Now
+ItemMgr:ReduceItem+108: 41 FF D3                       - call r11
+ItemMgr:ReduceItem+10b: 48 8B C8                       - mov rcx,rax
+ItemMgr:ReduceItem+10e: 48 8B 45 88                    - mov rax,[rbp-78]
+ItemMgr:ReduceItem+112: 48 89 4D 98                    - mov [rbp-68],rcx
+ItemMgr:ReduceItem+116: 48 85 C0                       - test rax,rax
+ItemMgr:ReduceItem+119: 0F 84 F4 00 00 00              - je ItemMgr:ReduceItem+213
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>Brain 代码 :mov [rax+0C],ecx</Description>
+      <AddressString>23769A3C822</AddressString>
+      <Before>
+        <Byte>8D</Byte>
+        <Byte>58</Byte>
+        <Byte>FF</Byte>
+        <Byte>FF</Byte>
+        <Byte>FF</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>48</Byte>
+        <Byte>0C</Byte>
+      </Actual>
+      <After>
+        <Byte>B8</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Money 代码 :mov [rax+1C],ecx</Description>
+      <AddressString>1CA93157DE0</AddressString>
+      <Before>
+        <Byte>63</Byte>
+        <Byte>48</Byte>
+        <Byte>1C</Byte>
+        <Byte>2B</Byte>
+        <Byte>CE</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>48</Byte>
+        <Byte>1C</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>45</Byte>
+        <Byte>90</Byte>
+        <Byte>48</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>add item 代码 :mov [rax+1C],ecx</Description>
+      <AddressString>1CA931534B1</AddressString>
+      <Before>
+        <Byte>63</Byte>
+        <Byte>48</Byte>
+        <Byte>1C</Byte>
+        <Byte>03</Byte>
+        <Byte>CE</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>48</Byte>
+        <Byte>1C</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>45</Byte>
+        <Byte>88</Byte>
+        <Byte>48</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>
