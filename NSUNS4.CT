@@ -90,10 +90,95 @@ NSUNS4.exe+1F0EAC: C7 41 28 01 00 00 00  - mov [rcx+28],00000001
     <CheatEntry>
       <ID>23</ID>
       <Description>"Battle"</Description>
+      <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
       <GroupHeader>1</GroupHeader>
       <CheatEntries>
         <CheatEntry>
           <ID>10</ID>
+          <Description>"无限HP"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : NSUNS4.exe
+  Version: 
+  Date   : 2026-08-19
+  Author : lixiang
+
+  This script does blah blah blah
+}
+
+define(address,"NSUNS4.exe"+74B4FE)
+define(bytes,F3 0F 11 40 10 73 04 83 60 10 00)
+
+[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+// Player RBX 0000027E00305848   RCX 0000027E00305848
+// enemy  RBX 0000027E003058B0   RCX 0000027E003058B0
+
+ 
+ 
+assert(address,bytes)
+alloc(newmem,$1000,"NSUNS4.exe"+74B4FE)
+
+label(code)
+label(return)
+
+newmem:
+  mov rdx,RBX
+  and rdx,0xFFFF
+  cmp rdx,0x5848
+  jne code
+  movss xmm0,[rax+10+4]
+  movss [rax+10],xmm0
+  mov rdx,0
+  jmp return
+
+code:
+  subss xmm0,xmm6
+  movss [rax+10],xmm0
+  jmp return
+
+address:
+  jmp newmem
+return:
+
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+address:
+  db bytes
+  // movss [rax+10],xmm0
+
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: NSUNS4.exe+74B4FE
+
+NSUNS4.exe+74B4DD: 0F 28 F2        - movaps xmm6,xmm2
+NSUNS4.exe+74B4E0: E8 37 FE FF FF  - call NSUNS4.exe+74B31C
+NSUNS4.exe+74B4E5: 48 85 C0        - test rax,rax
+NSUNS4.exe+74B4E8: 74 1F           - je NSUNS4.exe+74B509
+NSUNS4.exe+74B4EA: F3 0F 10 40 10  - movss xmm0,[rax+10]
+NSUNS4.exe+74B4EF: 0F 57 C9        - xorps xmm1,xmm1
+NSUNS4.exe+74B4F2: 0F 2F C1        - comiss xmm0,xmm1
+NSUNS4.exe+74B4F5: 76 12           - jna NSUNS4.exe+74B509
+NSUNS4.exe+74B4F7: F3 0F 5C C6     - subss xmm0,xmm6
+NSUNS4.exe+74B4FB: 0F 2F C1        - comiss xmm0,xmm1
+// ---------- INJECTING HERE ----------
+NSUNS4.exe+74B4FE: F3 0F 11 40 10  - movss [rax+10],xmm0
+// ---------- DONE INJECTING  ----------
+NSUNS4.exe+74B503: 73 04           - jae NSUNS4.exe+74B509
+NSUNS4.exe+74B505: 83 60 10 00     - and dword ptr [rax+10],00
+NSUNS4.exe+74B509: 0F 28 74 24 20  - movaps xmm6,[rsp+20]
+NSUNS4.exe+74B50E: 48 83 C4 38     - add rsp,38
+NSUNS4.exe+74B512: C3              - ret 
+NSUNS4.exe+74B513: CC              - int 3 
+NSUNS4.exe+74B514: 48 83 EC 38     - sub rsp,38
+NSUNS4.exe+74B518: 0F 29 74 24 20  - movaps [rsp+20],xmm6
+NSUNS4.exe+74B51D: 0F 28 F2        - movaps xmm6,xmm2
+NSUNS4.exe+74B520: E8 47 FE FF FF  - call NSUNS4.exe+74B36C
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>29</ID>
           <Description>"无限HP+攻击力x5"</Description>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : NSUNS4.exe
