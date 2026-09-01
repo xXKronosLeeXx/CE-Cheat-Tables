@@ -3,9 +3,8 @@
   <CheatEntries>
     <CheatEntry>
       <ID>0</ID>
-      <Description>"Activate Mono"</Description>
+      <Description>"Activate Mono V1.19.0"</Description>
       <Options moHideChildren="1"/>
-      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{$lua}
 [ENABLE]
@@ -18,7 +17,6 @@ LaunchMonoDataCollector();
         <CheatEntry>
           <ID>4</ID>
           <Description>"Ultra HP"</Description>
-          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : Echo Generation.exe
   Version: 
@@ -96,7 +94,6 @@ GameAssembly.dll+4CEE03: C3              - ret
         <CheatEntry>
           <ID>12</ID>
           <Description>"EXP+65535"</Description>
-          <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : Echo Generation.exe
   Version: 
@@ -171,7 +168,6 @@ GameAssembly.dll+4C4B00: 83 B9 E4 00 00 00 00  - cmp dword ptr [rcx+000000E4],00
         <CheatEntry>
           <ID>15</ID>
           <Description>"Money Add"</Description>
-          <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : Echo Generation.exe
   Version: 
