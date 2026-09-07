@@ -2,23 +2,29 @@
 <CheatTable CheatEngineTableVersion="51">
   <CheatEntries>
     <CheatEntry>
+      <ID>10</ID>
+      <Description>"V1.09"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+    </CheatEntry>
+    <CheatEntry>
       <ID>0</ID>
       <Description>"SCORE"</Description>
-      <LastState Value="125920" RealAddress="02B6F94C"/>
+      <LastState Value="52070" Activated="1" RealAddress="02DEF94C"/>
       <VariableType>4 Bytes</VariableType>
       <Address>xiizeal.exe+209F94C</Address>
     </CheatEntry>
     <CheatEntry>
       <ID>1</ID>
       <Description>"BOOM"</Description>
-      <LastState Value="5" Activated="1" RealAddress="00C76BC8"/>
+      <LastState Value="2" Activated="1" RealAddress="00EF6BC8"/>
       <VariableType>4 Bytes</VariableType>
       <Address>xiizeal.exe+1A6BC8</Address>
     </CheatEntry>
     <CheatEntry>
       <ID>4</ID>
       <Description>"LIFE"</Description>
-      <LastState Value="3" Activated="1" RealAddress="00C76B84"/>
+      <LastState Value="2" Activated="1" RealAddress="00EF6B84"/>
       <ShowAsSigned>0</ShowAsSigned>
       <VariableType>4 Bytes</VariableType>
       <Address>xiizeal.exe+1A6BC8-44</Address>
@@ -35,7 +41,7 @@
           <Description>"Lv1"</Description>
           <DropDownList ReadOnly="1" DisplayValueAsItem="1">1:Lv1
 </DropDownList>
-          <LastState Value="1" Activated="1" RealAddress="00C76BB4"/>
+          <LastState Value="1" Activated="1" RealAddress="00EF6BB4"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>xiizeal.exe+1A6BC8-14</Address>
@@ -45,7 +51,7 @@
           <Description>"Lv2"</Description>
           <DropDownList ReadOnly="1" DisplayValueAsItem="1">1:Lv2
 </DropDownList>
-          <LastState Value="1" Activated="1" RealAddress="00C76BB0"/>
+          <LastState Value="1" Activated="1" RealAddress="00EF6BB0"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>xiizeal.exe+1A6BC8-14-4</Address>
@@ -55,7 +61,7 @@
           <Description>"Lv3"</Description>
           <DropDownList ReadOnly="1" DisplayValueAsItem="1">1:Lv3
 </DropDownList>
-          <LastState Value="1" Activated="1" RealAddress="00C76BAC"/>
+          <LastState Value="1" Activated="1" RealAddress="00EF6BAC"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>xiizeal.exe+1A6BC8-14-4-4</Address>
@@ -65,7 +71,7 @@
           <Description>"Lv4"</Description>
           <DropDownList ReadOnly="1" DisplayValueAsItem="1">1:Lv4
 </DropDownList>
-          <LastState Value="1" Activated="1" RealAddress="00C76BA8"/>
+          <LastState Value="1" Activated="1" RealAddress="00EF6BA8"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>xiizeal.exe+1A6BC8-14-4-4-4</Address>
