@@ -89,28 +89,87 @@ GameAssembly.dll+DA03F1: FF 40 0C              - inc [rax+0C]
 }
 </AssemblerScript>
         </CheatEntry>
-      </CheatEntries>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>4</ID>
-      <Description>"无描述"</Description>
-      <LastState Value="0" RealAddress="1ED4352E968"/>
-      <VariableType>4 Bytes</VariableType>
-      <Address>1ED4352E968</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>5</ID>
-      <Description>"无描述"</Description>
-      <LastState Value="71" RealAddress="1ED5BF28CB8"/>
-      <VariableType>4 Bytes</VariableType>
-      <Address>1ED5BF28CB8</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>6</ID>
-      <Description>"自动汇编脚本"</Description>
-      <LastState/>
-      <VariableType>Auto Assembler Script</VariableType>
-      <AssemblerScript>{ Game   : SIGNALIS.exe
+        <CheatEntry>
+          <ID>15</ID>
+          <Description>"HP"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : SIGNALIS.exe
+  Version: 
+  Date   : 2026-09-03
+  Author : lixiang
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,89 42 08 BA 04 00 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+//  mov [rdx+08],eax
+  mov edx,00000004
+  jmp return
+
+code:
+  mov [rdx+08],eax
+  mov edx,00000004
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 42 08 BA 04 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+6FEE77
+
+GameAssembly.dll+6FEE48: 48 8B 0D 71 ED 9A 01  - mov rcx,[GameAssembly.dll+20ADBC0]
+GameAssembly.dll+6FEE4F: 48 8B 81 B8 00 00 00  - mov rax,[rcx+000000B8]
+GameAssembly.dll+6FEE56: 45 33 C9              - xor r9d,r9d
+GameAssembly.dll+6FEE59: 33 D2                 - xor edx,edx
+GameAssembly.dll+6FEE5B: 8B 48 08              - mov ecx,[rax+08]
+GameAssembly.dll+6FEE5E: 45 8D 41 64           - lea r8d,[r9+64]
+GameAssembly.dll+6FEE62: 2B CF                 - sub ecx,edi
+GameAssembly.dll+6FEE64: E8 27 88 81 00        - call UnityEngine.Mathf.Clamp
+GameAssembly.dll+6FEE69: 48 8B 0D 50 ED 9A 01  - mov rcx,[GameAssembly.dll+20ADBC0]
+GameAssembly.dll+6FEE70: 48 8B 91 B8 00 00 00  - mov rdx,[rcx+000000B8]
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+6FEE77: 89 42 08              - mov [rdx+08],eax
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+6FEE7A: BA 04 00 00 00        - mov edx,00000004
+GameAssembly.dll+6FEE7F: 48 8B 0D B2 F7 95 01  - mov rcx,[GameAssembly.dll+205E638]
+GameAssembly.dll+6FEE86: E8 D5 A2 B3 FF        - call GameAssembly.dll+239160
+GameAssembly.dll+6FEE8B: 48 8B 0D 06 C4 99 01  - mov rcx,[GameAssembly.dll+209B298]
+GameAssembly.dll+6FEE92: 48 8D 54 24 68        - lea rdx,[rsp+68]
+GameAssembly.dll+6FEE97: 48 8B D8              - mov rbx,rax
+GameAssembly.dll+6FEE9A: 89 7C 24 68           - mov [rsp+68],edi
+GameAssembly.dll+6FEE9E: E8 1D 01 AC FF        - call GameAssembly.il2cpp_value_box
+GameAssembly.dll+6FEEA3: 48 8B F8              - mov rdi,rax
+GameAssembly.dll+6FEEA6: 48 85 DB              - test rbx,rbx
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>6</ID>
+          <Description>"medicine = 85"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : SIGNALIS.exe
   Version: 
   Date   : 2026-09-02
   Author : lixiang
@@ -133,9 +192,11 @@ label(code)
 label(return)
 
 newmem:
-  cmp rax,42c
+  cmp RDI,2
   jne code
-  mov [rcx+rax*8+30],8
+//  mov [rcx+rax*8+30],edx
+  mov edx,55
+  mov [rcx+rax*8+30],edx
   inc [rbx+24]
   jmp return
 
@@ -186,6 +247,8 @@ GameAssembly.dll+17A7AA7: 48 8D 0C 7F           - lea rcx,[rdi+rdi*2]
 GameAssembly.dll+17A7AAB: 8B 44 CA 24           - mov eax,[rdx+rcx*8+24]
 }
 </AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
     </CheatEntry>
   </CheatEntries>
   <CheatCodes>
@@ -234,6 +297,29 @@ GameAssembly.dll+17A7AAB: 8B 44 CA 24           - mov eax,[rdx+rcx*8+24]
         <Byte>24</Byte>
         <Byte>B0</Byte>
         <Byte>01</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>HP - 代码 :mov [rdx+08],eax</Description>
+      <AddressString>GameAssembly.dll+6FEE77</AddressString>
+      <Before>
+        <Byte>91</Byte>
+        <Byte>B8</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>42</Byte>
+        <Byte>08</Byte>
+      </Actual>
+      <After>
+        <Byte>BA</Byte>
+        <Byte>04</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
       </After>
     </CodeEntry>
   </CheatCodes>
@@ -936,6 +1022,21 @@ GameAssembly.dll+17A7AAB: 8B 44 CA 24           - mov eax,[rdx+rcx*8+24]
         <Element Offset="4076" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000FEC" DisplayMethod="unsigned integer"/>
         <Element Offset="4088" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000FF8" DisplayMethod="hexadecimal"/>
         <Element Offset="4092" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000FFC" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="Entry[]" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="Count" DisplayMethod="unsigned integer"/>
+        <Element Offset="32" Vartype="Pointer" Bytesize="8" OffsetHex="00000020" Description="[0]Entry" DisplayMethod="unsigned integer"/>
+        <Element Offset="56" Vartype="Pointer" Bytesize="8" OffsetHex="00000038" Description="[1]Entry" DisplayMethod="unsigned integer"/>
+        <Element Offset="80" Vartype="Pointer" Bytesize="8" OffsetHex="00000050" Description="[2]Entry" DisplayMethod="unsigned integer"/>
+        <Element Offset="104" Vartype="Pointer" Bytesize="8" OffsetHex="00000068" Description="[3]Entry" DisplayMethod="unsigned integer"/>
+        <Element Offset="128" Vartype="Pointer" Bytesize="8" OffsetHex="00000080" Description="[4]Entry" DisplayMethod="unsigned integer"/>
+        <Element Offset="152" Vartype="Pointer" Bytesize="8" OffsetHex="00000098" Description="[5]Entry" DisplayMethod="unsigned integer"/>
+        <Element Offset="176" Vartype="Pointer" Bytesize="8" OffsetHex="000000B0" Description="[6]Entry" DisplayMethod="unsigned integer"/>
+        <Element Offset="200" Vartype="Pointer" Bytesize="8" OffsetHex="000000C8" Description="[7]Entry" DisplayMethod="unsigned integer"/>
+        <Element Offset="224" Vartype="Pointer" Bytesize="8" OffsetHex="000000E0" Description="[8]Entry" DisplayMethod="unsigned integer"/>
+        <Element Offset="248" Vartype="Pointer" Bytesize="8" OffsetHex="000000F8" Description="[9]Entry" DisplayMethod="unsigned integer"/>
       </Elements>
     </Structure>
   </Structures>
