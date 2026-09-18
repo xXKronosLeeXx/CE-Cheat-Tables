@@ -4,6 +4,7 @@
     <CheatEntry>
       <ID>24</ID>
       <Description>"HP"</Description>
+      <Options moManualExpandCollapse="1"/>
       <LastState Value="" RealAddress="00000000"/>
       <GroupHeader>1</GroupHeader>
       <CheatEntries>
@@ -154,7 +155,8 @@
     </CheatEntry>
     <CheatEntry>
       <ID>136</ID>
-      <Description>"ENERY"</Description>
+      <Description>"WEAPON ENERGY"</Description>
+      <Options moManualExpandCollapse="1"/>
       <LastState Value="" RealAddress="00000000"/>
       <GroupHeader>1</GroupHeader>
       <CheatEntries>
@@ -214,269 +216,457 @@
     </CheatEntry>
     <CheatEntry>
       <ID>150</ID>
-      <Description>"MP"</Description>
+      <Description>"GHOST ENERGY"</Description>
+      <Options moManualExpandCollapse="1"/>
       <LastState Value="" RealAddress="00000000"/>
       <GroupHeader>1</GroupHeader>
       <CheatEntries>
         <CheatEntry>
-          <ID>159</ID>
+          <ID>205</ID>
           <Description>"指针扫描结果"</Description>
-          <VariableType>4 Bytes</VariableType>
-          <Address>"OnimushaWotS.exe"+0CBA3EA0</Address>
+          <VariableType>Float</VariableType>
+          <Address>"OnimushaWotS.exe"+0CBDE710</Address>
           <Offsets>
-            <Offset>38</Offset>
-            <Offset>28</Offset>
-            <Offset>78</Offset>
-            <Offset>B8</Offset>
-            <Offset>50</Offset>
-          </Offsets>
-        </CheatEntry>
-        <CheatEntry>
-          <ID>160</ID>
-          <Description>"指针扫描结果"</Description>
-          <VariableType>4 Bytes</VariableType>
-          <Address>"OnimushaWotS.exe"+0CBA3EA0</Address>
-          <Offsets>
-            <Offset>318</Offset>
-            <Offset>18</Offset>
-            <Offset>570</Offset>
-            <Offset>B8</Offset>
-            <Offset>50</Offset>
-          </Offsets>
-        </CheatEntry>
-        <CheatEntry>
-          <ID>161</ID>
-          <Description>"指针扫描结果"</Description>
-          <VariableType>4 Bytes</VariableType>
-          <Address>"OnimushaWotS.exe"+0CBA3EA0</Address>
-          <Offsets>
-            <Offset>278</Offset>
-            <Offset>20</Offset>
-            <Offset>570</Offset>
-            <Offset>B8</Offset>
-            <Offset>50</Offset>
-          </Offsets>
-        </CheatEntry>
-        <CheatEntry>
-          <ID>162</ID>
-          <Description>"指针扫描结果"</Description>
-          <VariableType>4 Bytes</VariableType>
-          <Address>"OnimushaWotS.exe"+0CBA3EA0</Address>
-          <Offsets>
-            <Offset>318</Offset>
-            <Offset>68</Offset>
-            <Offset>568</Offset>
-            <Offset>B8</Offset>
-            <Offset>50</Offset>
-          </Offsets>
-        </CheatEntry>
-        <CheatEntry>
-          <ID>163</ID>
-          <Description>"指针扫描结果"</Description>
-          <VariableType>4 Bytes</VariableType>
-          <Address>"OnimushaWotS.exe"+0CBA3EA0</Address>
-          <Offsets>
-            <Offset>118</Offset>
+            <Offset>D0</Offset>
+            <Offset>58</Offset>
+            <Offset>F8</Offset>
             <Offset>80</Offset>
-            <Offset>568</Offset>
-            <Offset>B8</Offset>
-            <Offset>50</Offset>
+            <Offset>40</Offset>
           </Offsets>
         </CheatEntry>
         <CheatEntry>
-          <ID>164</ID>
+          <ID>206</ID>
           <Description>"指针扫描结果"</Description>
-          <VariableType>4 Bytes</VariableType>
-          <Address>"OnimushaWotS.exe"+0CBA3EA0</Address>
+          <VariableType>Float</VariableType>
+          <Address>"OnimushaWotS.exe"+0CB9BDD8</Address>
           <Offsets>
-            <Offset>2D8</Offset>
+            <Offset>D0</Offset>
+            <Offset>58</Offset>
+            <Offset>F8</Offset>
+            <Offset>E8</Offset>
+            <Offset>208</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>207</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>Float</VariableType>
+          <Address>"OnimushaWotS.exe"+0CBA7A30</Address>
+          <Offsets>
+            <Offset>D0</Offset>
+            <Offset>58</Offset>
+            <Offset>28</Offset>
             <Offset>10</Offset>
-            <Offset>18</Offset>
-            <Offset>B8</Offset>
-            <Offset>50</Offset>
+            <Offset>60</Offset>
           </Offsets>
         </CheatEntry>
         <CheatEntry>
-          <ID>165</ID>
+          <ID>208</ID>
           <Description>"指针扫描结果"</Description>
-          <VariableType>4 Bytes</VariableType>
-          <Address>"OnimushaWotS.exe"+0CBA3EA0</Address>
+          <VariableType>Float</VariableType>
+          <Address>"OnimushaWotS.exe"+0CBBCFB8</Address>
           <Offsets>
-            <Offset>118</Offset>
-            <Offset>30</Offset>
-            <Offset>570</Offset>
-            <Offset>B8</Offset>
+            <Offset>D0</Offset>
+            <Offset>58</Offset>
+            <Offset>360</Offset>
             <Offset>50</Offset>
+            <Offset>C0</Offset>
           </Offsets>
         </CheatEntry>
         <CheatEntry>
-          <ID>166</ID>
+          <ID>209</ID>
           <Description>"指针扫描结果"</Description>
-          <VariableType>4 Bytes</VariableType>
-          <Address>"OnimushaWotS.exe"+0CBA3EA0</Address>
+          <VariableType>Float</VariableType>
+          <Address>"OnimushaWotS.exe"+0CBDE710</Address>
           <Offsets>
-            <Offset>238</Offset>
-            <Offset>78</Offset>
-            <Offset>568</Offset>
-            <Offset>B8</Offset>
-            <Offset>50</Offset>
+            <Offset>D0</Offset>
+            <Offset>B0</Offset>
+            <Offset>F8</Offset>
+            <Offset>F0</Offset>
+            <Offset>40</Offset>
           </Offsets>
         </CheatEntry>
         <CheatEntry>
-          <ID>167</ID>
+          <ID>210</ID>
           <Description>"指针扫描结果"</Description>
-          <VariableType>4 Bytes</VariableType>
-          <Address>"OnimushaWotS.exe"+0CBA3EA0</Address>
+          <VariableType>Float</VariableType>
+          <Address>"OnimushaWotS.exe"+0CBA7A30</Address>
           <Offsets>
-            <Offset>238</Offset>
+            <Offset>D0</Offset>
+            <Offset>B0</Offset>
             <Offset>28</Offset>
-            <Offset>570</Offset>
-            <Offset>B8</Offset>
-            <Offset>50</Offset>
-          </Offsets>
-        </CheatEntry>
-        <CheatEntry>
-          <ID>168</ID>
-          <Description>"指针扫描结果"</Description>
-          <VariableType>4 Bytes</VariableType>
-          <Address>"OnimushaWotS.exe"+0CBA3EA0</Address>
-          <Offsets>
-            <Offset>278</Offset>
-            <Offset>70</Offset>
-            <Offset>568</Offset>
-            <Offset>B8</Offset>
-            <Offset>50</Offset>
-          </Offsets>
-        </CheatEntry>
-        <CheatEntry>
-          <ID>169</ID>
-          <Description>"指针扫描结果"</Description>
-          <VariableType>4 Bytes</VariableType>
-          <Address>"OnimushaWotS.exe"+0CBA3EA0</Address>
-          <Offsets>
-            <Offset>278</Offset>
-            <Offset>70</Offset>
-            <Offset>568</Offset>
-            <Offset>B8</Offset>
-            <Offset>50</Offset>
-          </Offsets>
-        </CheatEntry>
-        <CheatEntry>
-          <ID>170</ID>
-          <Description>"指针扫描结果"</Description>
-          <VariableType>4 Bytes</VariableType>
-          <Address>"OnimushaWotS.exe"+0CBA3EA0</Address>
-          <Offsets>
-            <Offset>238</Offset>
-            <Offset>28</Offset>
-            <Offset>570</Offset>
-            <Offset>B8</Offset>
-            <Offset>50</Offset>
-          </Offsets>
-        </CheatEntry>
-        <CheatEntry>
-          <ID>171</ID>
-          <Description>"指针扫描结果"</Description>
-          <VariableType>4 Bytes</VariableType>
-          <Address>"OnimushaWotS.exe"+0CBA3EA0</Address>
-          <Offsets>
-            <Offset>238</Offset>
-            <Offset>78</Offset>
-            <Offset>568</Offset>
-            <Offset>B8</Offset>
-            <Offset>50</Offset>
-          </Offsets>
-        </CheatEntry>
-        <CheatEntry>
-          <ID>172</ID>
-          <Description>"指针扫描结果"</Description>
-          <VariableType>4 Bytes</VariableType>
-          <Address>"OnimushaWotS.exe"+0CBA3EA0</Address>
-          <Offsets>
-            <Offset>118</Offset>
-            <Offset>30</Offset>
-            <Offset>570</Offset>
-            <Offset>B8</Offset>
-            <Offset>50</Offset>
-          </Offsets>
-        </CheatEntry>
-        <CheatEntry>
-          <ID>173</ID>
-          <Description>"指针扫描结果"</Description>
-          <VariableType>4 Bytes</VariableType>
-          <Address>"OnimushaWotS.exe"+0CBA3EA0</Address>
-          <Offsets>
-            <Offset>2D8</Offset>
             <Offset>10</Offset>
-            <Offset>18</Offset>
-            <Offset>B8</Offset>
-            <Offset>50</Offset>
+            <Offset>60</Offset>
           </Offsets>
         </CheatEntry>
         <CheatEntry>
-          <ID>174</ID>
+          <ID>211</ID>
           <Description>"指针扫描结果"</Description>
-          <VariableType>4 Bytes</VariableType>
-          <Address>"OnimushaWotS.exe"+0CBA3EA0</Address>
+          <VariableType>Float</VariableType>
+          <Address>"OnimushaWotS.exe"+0CBD6528</Address>
           <Offsets>
-            <Offset>118</Offset>
-            <Offset>80</Offset>
-            <Offset>568</Offset>
-            <Offset>B8</Offset>
-            <Offset>50</Offset>
+            <Offset>D0</Offset>
+            <Offset>58</Offset>
+            <Offset>48</Offset>
+            <Offset>C8</Offset>
+            <Offset>60</Offset>
           </Offsets>
         </CheatEntry>
         <CheatEntry>
-          <ID>175</ID>
+          <ID>212</ID>
           <Description>"指针扫描结果"</Description>
-          <VariableType>4 Bytes</VariableType>
-          <Address>"OnimushaWotS.exe"+0CBA3EA0</Address>
+          <VariableType>Float</VariableType>
+          <Address>"OnimushaWotS.exe"+0CBA5F70</Address>
           <Offsets>
-            <Offset>318</Offset>
-            <Offset>68</Offset>
-            <Offset>568</Offset>
-            <Offset>B8</Offset>
-            <Offset>50</Offset>
+            <Offset>D0</Offset>
+            <Offset>58</Offset>
+            <Offset>48</Offset>
+            <Offset>C8</Offset>
+            <Offset>120</Offset>
           </Offsets>
         </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>186</ID>
+      <Description>"物资"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
         <CheatEntry>
-          <ID>176</ID>
-          <Description>"指针扫描结果"</Description>
-          <VariableType>4 Bytes</VariableType>
-          <Address>"OnimushaWotS.exe"+0CBA3EA0</Address>
-          <Offsets>
-            <Offset>278</Offset>
-            <Offset>20</Offset>
-            <Offset>570</Offset>
-            <Offset>B8</Offset>
-            <Offset>50</Offset>
-          </Offsets>
+          <ID>187</ID>
+          <Description>"材料 麻"</Description>
+          <Options moManualExpandCollapse="1"/>
+          <LastState Value="" RealAddress="00000000"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>184</ID>
+              <Description>"指针扫描结果"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"OnimushaWotS.exe"+0CBC16C8</Address>
+              <Offsets>
+                <Offset>18</Offset>
+                <Offset>E0</Offset>
+                <Offset>80</Offset>
+                <Offset>18</Offset>
+                <Offset>F0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>185</ID>
+              <Description>"指针扫描结果"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"OnimushaWotS.exe"+0CBC16D0</Address>
+              <Offsets>
+                <Offset>18</Offset>
+                <Offset>E0</Offset>
+                <Offset>80</Offset>
+                <Offset>18</Offset>
+                <Offset>F0</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
         </CheatEntry>
         <CheatEntry>
-          <ID>177</ID>
-          <Description>"指针扫描结果"</Description>
-          <VariableType>4 Bytes</VariableType>
-          <Address>"OnimushaWotS.exe"+0CBA3EA0</Address>
-          <Offsets>
-            <Offset>318</Offset>
-            <Offset>18</Offset>
-            <Offset>570</Offset>
-            <Offset>B8</Offset>
-            <Offset>50</Offset>
-          </Offsets>
+          <ID>189</ID>
+          <Description>"道具 小药丸"</Description>
+          <Options moManualExpandCollapse="1"/>
+          <LastState Value="" RealAddress="00000000"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>190</ID>
+              <Description>"指针扫描结果"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"OnimushaWotS.exe"+0CBC16C8</Address>
+              <Offsets>
+                <Offset>1C</Offset>
+                <Offset>40</Offset>
+                <Offset>10</Offset>
+                <Offset>18</Offset>
+                <Offset>F0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>191</ID>
+              <Description>"指针扫描结果"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"OnimushaWotS.exe"+0CBC16D0</Address>
+              <Offsets>
+                <Offset>1C</Offset>
+                <Offset>40</Offset>
+                <Offset>10</Offset>
+                <Offset>18</Offset>
+                <Offset>F0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>192</ID>
+              <Description>"指针扫描结果"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"OnimushaWotS.exe"+0CBC16C8</Address>
+              <Offsets>
+                <Offset>1C</Offset>
+                <Offset>40</Offset>
+                <Offset>30</Offset>
+                <Offset>E8</Offset>
+                <Offset>F0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>193</ID>
+              <Description>"指针扫描结果"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"OnimushaWotS.exe"+0CBC16D0</Address>
+              <Offsets>
+                <Offset>1C</Offset>
+                <Offset>40</Offset>
+                <Offset>30</Offset>
+                <Offset>E8</Offset>
+                <Offset>F0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>194</ID>
+              <Description>"指针扫描结果"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"OnimushaWotS.exe"+0CBC16C8</Address>
+              <Offsets>
+                <Offset>1C</Offset>
+                <Offset>20</Offset>
+                <Offset>18</Offset>
+                <Offset>18</Offset>
+                <Offset>F0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>195</ID>
+              <Description>"指针扫描结果"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"OnimushaWotS.exe"+0CBC16D0</Address>
+              <Offsets>
+                <Offset>1C</Offset>
+                <Offset>20</Offset>
+                <Offset>18</Offset>
+                <Offset>18</Offset>
+                <Offset>F0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>196</ID>
+              <Description>"指针扫描结果"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"OnimushaWotS.exe"+0CBC16C8</Address>
+              <Offsets>
+                <Offset>1C</Offset>
+                <Offset>20</Offset>
+                <Offset>38</Offset>
+                <Offset>E8</Offset>
+                <Offset>F0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>197</ID>
+              <Description>"指针扫描结果"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"OnimushaWotS.exe"+0CBC16D0</Address>
+              <Offsets>
+                <Offset>1C</Offset>
+                <Offset>20</Offset>
+                <Offset>38</Offset>
+                <Offset>E8</Offset>
+                <Offset>F0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>198</ID>
+              <Description>"指针扫描结果"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"OnimushaWotS.exe"+0CBC16C8</Address>
+              <Offsets>
+                <Offset>1C</Offset>
+                <Offset>30</Offset>
+                <Offset>80</Offset>
+                <Offset>18</Offset>
+                <Offset>F0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>199</ID>
+              <Description>"指针扫描结果"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"OnimushaWotS.exe"+0CBC16D0</Address>
+              <Offsets>
+                <Offset>1C</Offset>
+                <Offset>30</Offset>
+                <Offset>80</Offset>
+                <Offset>18</Offset>
+                <Offset>F0</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
         </CheatEntry>
         <CheatEntry>
-          <ID>178</ID>
-          <Description>"指针扫描结果"</Description>
-          <VariableType>4 Bytes</VariableType>
-          <Address>"OnimushaWotS.exe"+0CBA3EA0</Address>
-          <Offsets>
-            <Offset>38</Offset>
-            <Offset>28</Offset>
-            <Offset>78</Offset>
-            <Offset>B8</Offset>
-            <Offset>50</Offset>
-          </Offsets>
+          <ID>201</ID>
+          <Description>"大石块"</Description>
+          <Options moManualExpandCollapse="1"/>
+          <LastState Value="" RealAddress="00000000"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>203</ID>
+              <Description>"指针扫描结果"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"OnimushaWotS.exe"+0CBC16C8</Address>
+              <Offsets>
+                <Offset>1C</Offset>
+                <Offset>58</Offset>
+                <Offset>10</Offset>
+                <Offset>18</Offset>
+                <Offset>F0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>204</ID>
+              <Description>"指针扫描结果"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"OnimushaWotS.exe"+0CBC16D0</Address>
+              <Offsets>
+                <Offset>1C</Offset>
+                <Offset>58</Offset>
+                <Offset>10</Offset>
+                <Offset>18</Offset>
+                <Offset>F0</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>214</ID>
+          <Description>"砥石"</Description>
+          <Options moManualExpandCollapse="1"/>
+          <LastState Value="" RealAddress="00000000"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>215</ID>
+              <Description>"指针扫描结果"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"OnimushaWotS.exe"+0E709728</Address>
+              <Offsets>
+                <Offset>3D8</Offset>
+                <Offset>E0</Offset>
+                <Offset>10</Offset>
+                <Offset>110</Offset>
+                <Offset>3D8</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>216</ID>
+              <Description>"指针扫描结果"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"OnimushaWotS.exe"+0E709728</Address>
+              <Offsets>
+                <Offset>3D8</Offset>
+                <Offset>E0</Offset>
+                <Offset>10</Offset>
+                <Offset>D0</Offset>
+                <Offset>648</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>217</ID>
+              <Description>"指针扫描结果"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"OnimushaWotS.exe"+0E709728</Address>
+              <Offsets>
+                <Offset>6A8</Offset>
+                <Offset>68</Offset>
+                <Offset>10</Offset>
+                <Offset>170</Offset>
+                <Offset>108</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>218</ID>
+              <Description>"指针扫描结果"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"OnimushaWotS.exe"+0CBC16D0</Address>
+              <Offsets>
+                <Offset>78</Offset>
+                <Offset>170</Offset>
+                <Offset>80</Offset>
+                <Offset>18</Offset>
+                <Offset>F0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>219</ID>
+              <Description>"指针扫描结果"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"OnimushaWotS.exe"+0E709728</Address>
+              <Offsets>
+                <Offset>78</Offset>
+                <Offset>170</Offset>
+                <Offset>10</Offset>
+                <Offset>A0</Offset>
+                <Offset>168</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>220</ID>
+              <Description>"指针扫描结果"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"OnimushaWotS.exe"+0E709728</Address>
+              <Offsets>
+                <Offset>1F8</Offset>
+                <Offset>130</Offset>
+                <Offset>10</Offset>
+                <Offset>C0</Offset>
+                <Offset>3D8</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>221</ID>
+              <Description>"指针扫描结果"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"OnimushaWotS.exe"+0E709728</Address>
+              <Offsets>
+                <Offset>4C8</Offset>
+                <Offset>B0</Offset>
+                <Offset>10</Offset>
+                <Offset>100</Offset>
+                <Offset>138</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>222</ID>
+              <Description>"指针扫描结果"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"OnimushaWotS.exe"+0E709728</Address>
+              <Offsets>
+                <Offset>18</Offset>
+                <Offset>180</Offset>
+                <Offset>10</Offset>
+                <Offset>160</Offset>
+                <Offset>4F8</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>223</ID>
+              <Description>"指针扫描结果"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"OnimushaWotS.exe"+0E709728</Address>
+              <Offsets>
+                <Offset>408</Offset>
+                <Offset>D0</Offset>
+                <Offset>10</Offset>
+                <Offset>D0</Offset>
+                <Offset>588</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
         </CheatEntry>
       </CheatEntries>
     </CheatEntry>
@@ -618,9 +808,59 @@
         <Byte>75</Byte>
       </After>
     </CodeEntry>
+    <CodeEntry>
+      <Description>item 代码 :mov [r14],eax</Description>
+      <AddressString>OnimushaWotS.exe+504AC32</AddressString>
+      <Before>
+        <Byte>83</Byte>
+        <Byte>C6</Byte>
+        <Byte>1C</Byte>
+        <Byte>29</Byte>
+        <Byte>D8</Byte>
+      </Before>
+      <Actual>
+        <Byte>41</Byte>
+        <Byte>89</Byte>
+        <Byte>06</Byte>
+      </Actual>
+      <After>
+        <Byte>31</Byte>
+        <Byte>ED</Byte>
+        <Byte>80</Byte>
+        <Byte>7C</Byte>
+        <Byte>24</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>view item 代码 :mov ebx,[r13+18]</Description>
+      <AddressString>OnimushaWotS.exe+4A55310</AddressString>
+      <Before>
+        <Byte>39</Byte>
+        <Byte>6D</Byte>
+        <Byte>10</Byte>
+        <Byte>75</Byte>
+        <Byte>E0</Byte>
+      </Before>
+      <Actual>
+        <Byte>41</Byte>
+        <Byte>8B</Byte>
+        <Byte>5D</Byte>
+        <Byte>18</Byte>
+      </Actual>
+      <After>
+        <Byte>80</Byte>
+        <Byte>7C</Byte>
+        <Byte>24</Byte>
+        <Byte>2F</Byte>
+        <Byte>00</Byte>
+      </After>
+    </CodeEntry>
   </CheatCodes>
   <UserdefinedSymbols/>
-  <Comments>-30 力石
+  <Comments>-30 top
+-30 
+-30 
+-30 力石
  00麻基址
 +30 绢织物
 +30 砥石
