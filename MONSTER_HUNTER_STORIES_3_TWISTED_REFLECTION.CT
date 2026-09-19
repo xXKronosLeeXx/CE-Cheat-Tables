@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="51">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"V1.1.01"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"无描述"</Description>
+      <LastState Value="3221225475" RealAddress="17F42451C"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>17F42451C</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"自动汇编脚本"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe
+  Version: 
+  Date   : 2026-09-18
+  Author : krono
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe,41 01 DE 45 39 EE) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add r14d,ffff
+  cmp r14d,r13d
+  jmp return
+
+code:
+  add r14d,ebx
+  cmp r14d,r13d
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 41 01 DE 45 39 EE
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8B2
+
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF88B: 83 F8 02              - cmp eax,02
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF88E: 0F 94 C1              - sete cl
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF891: 01 C9                 - add ecx,ecx
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF893: 83 FD 02              - cmp ebp,02
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF896: B8 01 00 00 00        - mov eax,00000001
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF89B: 0F 43 C1              - cmovae eax,ecx
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF89E: 41 89 44 24 2C        - mov [r12+2C],eax
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8A3: 48 8B 05 96 A8 30 0B  - mov rax,[MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BC0A140]
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8AA: 48 8B 40 78           - mov rax,[rax+78]
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8AE: 48 8B 40 10           - mov rax,[rax+10]
+// ---------- INJECTING HERE ----------
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8B2: 41 01 DE              - add r14d,ebx
+// ---------- DONE INJECTING  ----------
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8B5: 45 39 EE              - cmp r14d,r13d
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8B8: 45 0F 42 EE           - cmovb r13d,r14d
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8BC: 48 8B 40 20           - mov rax,[rax+20]
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8C0: 41 39 FE              - cmp r14d,edi
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8C3: 44 0F 42 EF           - cmovb r13d,edi
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8C7: 44 89 68 4C           - mov [rax+4C],r13d
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8CB: 41 8B 44 24 18        - mov eax,[r12+18]
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8D0: 41 3B 44 24 1C        - cmp eax,[r12+1C]
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8D5: 72 1F                 - jb MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8F6
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8D7: 48 8B 4C 24 50        - mov rcx,[rsp+50]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"自动汇编脚本"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe
+  Version: 
+  Date   : 2026-09-18
+  Author : krono
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe,44 89 68 4C 41 8B 44 24 18) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add r13d,ffff
+  mov [rax+4C],r13d
+  mov eax,[r12+18]
+  jmp return
+
+code:
+  mov [rax+4C],r13d
+  mov eax,[r12+18]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 4
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 44 89 68 4C 41 8B 44 24 18
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8C7
+
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF89E: 41 89 44 24 2C        - mov [r12+2C],eax
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8A3: 48 8B 05 96 A8 30 0B  - mov rax,[MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BC0A140]
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8AA: 48 8B 40 78           - mov rax,[rax+78]
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8AE: 48 8B 40 10           - mov rax,[rax+10]
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8B2: 41 01 DE              - add r14d,ebx
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8B5: 45 39 EE              - cmp r14d,r13d
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8B8: 45 0F 42 EE           - cmovb r13d,r14d
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8BC: 48 8B 40 20           - mov rax,[rax+20]
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8C0: 41 39 FE              - cmp r14d,edi
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8C3: 44 0F 42 EF           - cmovb r13d,edi
+// ---------- INJECTING HERE ----------
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8C7: 44 89 68 4C           - mov [rax+4C],r13d
+// ---------- DONE INJECTING  ----------
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8CB: 41 8B 44 24 18        - mov eax,[r12+18]
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8D0: 41 3B 44 24 1C        - cmp eax,[r12+1C]
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8D5: 72 1F                 - jb MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8F6
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8D7: 48 8B 4C 24 50        - mov rcx,[rsp+50]
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8DC: 48 31 E1              - xor rcx,rsp
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8DF: E8 4C 75 03 04        - call MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.AK::SoundEngine::GetIDFromString+10B0
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8E4: 90                    - nop 
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8E5: 48 83 C4 58           - add rsp,58
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8E9: 5B                    - pop rbx
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8EA: 5D                    - pop rbp
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>EXP 代码 :mov [rax+4C],r13d</Description>
+      <AddressString>MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8C7</AddressString>
+      <Before>
+        <Byte>FE</Byte>
+        <Byte>44</Byte>
+        <Byte>0F</Byte>
+        <Byte>42</Byte>
+        <Byte>EF</Byte>
+      </Before>
+      <Actual>
+        <Byte>44</Byte>
+        <Byte>89</Byte>
+        <Byte>68</Byte>
+        <Byte>4C</Byte>
+      </Actual>
+      <After>
+        <Byte>41</Byte>
+        <Byte>8B</Byte>
+        <Byte>44</Byte>
+        <Byte>24</Byte>
+        <Byte>18</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>
