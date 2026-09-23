@@ -4,7 +4,6 @@
     <CheatEntry>
       <ID>11</ID>
       <Description>"Buttle"</Description>
-      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : SDGundamBA-Win64-Shipping.exe
   Version: 
@@ -79,7 +78,6 @@ dealloc(newmem)
     <CheatEntry>
       <ID>15</ID>
       <Description>"HP"</Description>
-      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : SDGundamBA-Win64-Shipping.exe
   Version: 
@@ -179,7 +177,6 @@ dealloc(damage)
     <CheatEntry>
       <ID>16</ID>
       <Description>"ENERGY"</Description>
-      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : SDGundamBA-Win64-Shipping.exe
   Version: 
@@ -254,7 +251,6 @@ dealloc(newmem)
     <CheatEntry>
       <ID>20</ID>
       <Description>"CD"</Description>
-      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : SDGundamBA-Win64-Shipping.exe
   Version: 
@@ -331,8 +327,7 @@ dealloc(cooldown)
     </CheatEntry>
     <CheatEntry>
       <ID>31</ID>
-      <Description>"shot 28888"</Description>
-      <LastState Activated="1"/>
+      <Description>"shot 45888"</Description>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : SDGundamBA-Win64-Shipping.exe
   Version: 
@@ -353,7 +348,7 @@ label(code)
 label(return)
 
 damage:
-  dd (float)28888.0
+  dd (float)45888.0
 
 newmem:
   cmp [rcx+000001F4],4
@@ -414,7 +409,6 @@ dealloc(damage)
     <CheatEntry>
       <ID>32</ID>
       <Description>"fight 99999"</Description>
-      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : SDGundamBA-Win64-Shipping.exe
   Version: 
@@ -494,8 +488,7 @@ dealloc(damage)
     </CheatEntry>
     <CheatEntry>
       <ID>7</ID>
-      <Description>"Money"</Description>
-      <LastState/>
+      <Description>"Use Money = 899999999"</Description>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : SDGundamBA-Win64-Shipping.exe
   Version: 
@@ -569,7 +562,6 @@ dealloc(newmem)
     <CheatEntry>
       <ID>25</ID>
       <Description>"USE Item+KEY=FF"</Description>
-      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : SDGundamBA-Win64-Shipping.exe
   Version: 
@@ -640,18 +632,6 @@ dealloc(newmem)
 "SDGundamBA-Win64-Shipping.exe"+F47196: CC              - int 3 
 }
 </AssemblerScript>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>33</ID>
-      <Description>"无描述"</Description>
-      <VariableType>4 Bytes</VariableType>
-      <Address>11690061814</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>34</ID>
-      <Description>"无描述"</Description>
-      <VariableType>4 Bytes</VariableType>
-      <Address>116900614CC</Address>
     </CheatEntry>
   </CheatEntries>
   <CheatCodes>
