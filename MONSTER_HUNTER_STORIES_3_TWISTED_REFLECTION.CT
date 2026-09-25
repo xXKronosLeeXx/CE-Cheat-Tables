@@ -3,25 +3,18 @@
   <CheatEntries>
     <CheatEntry>
       <ID>0</ID>
-      <Description>"V1.1.01"</Description>
+      <Description>"V1.1.01（脚本用时打开，及时关闭）"</Description>
       <LastState Value="" RealAddress="00000000"/>
       <GroupHeader>1</GroupHeader>
     </CheatEntry>
     <CheatEntry>
-      <ID>1</ID>
-      <Description>"无描述"</Description>
-      <LastState Value="3221225475" RealAddress="17F42451C"/>
-      <VariableType>4 Bytes</VariableType>
-      <Address>17F42451C</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>2</ID>
-      <Description>"自动汇编脚本"</Description>
+      <ID>27</ID>
+      <Description>"SP"</Description>
       <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe
   Version: 
-  Date   : 2026-09-18
+  Date   : 2026-09-25
   Author : krono
   描述 : 
 
@@ -30,73 +23,72 @@
 
 [ENABLE]
 
-aobscanmodule(INJECT,MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe,41 01 DE 45 39 EE) // should be unique
+aobscanmodule(INJECT,MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe,89 42 40 85 C0) // should be unique
 alloc(newmem,$1000,INJECT)
 
 label(code)
 label(return)
 
 newmem:
-  add r14d,ffff
-  cmp r14d,r13d
+//  mov [rdx+40],eax
+  test eax,eax
   jmp return
 
 code:
-  add r14d,ebx
-  cmp r14d,r13d
+  mov [rdx+40],eax
+  test eax,eax
   jmp return
 
 INJECT:
   jmp newmem
-  nop
 return:
 registersymbol(INJECT)
 
 [DISABLE]
 
 INJECT:
-  db 41 01 DE 45 39 EE
+  db 89 42 40 85 C0
 
 unregistersymbol(INJECT)
 dealloc(newmem)
 
 {
-// ORIGINAL CODE - INJECTION POINT: MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8B2
+// ORIGINAL CODE - INJECTION POINT: MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+88807A
 
-MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF88B: 83 F8 02              - cmp eax,02
-MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF88E: 0F 94 C1              - sete cl
-MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF891: 01 C9                 - add ecx,ecx
-MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF893: 83 FD 02              - cmp ebp,02
-MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF896: B8 01 00 00 00        - mov eax,00000001
-MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF89B: 0F 43 C1              - cmovae eax,ecx
-MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF89E: 41 89 44 24 2C        - mov [r12+2C],eax
-MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8A3: 48 8B 05 96 A8 30 0B  - mov rax,[MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BC0A140]
-MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8AA: 48 8B 40 78           - mov rax,[rax+78]
-MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8AE: 48 8B 40 10           - mov rax,[rax+10]
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+88805F: CC                    - int 3 
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+888060: 8B 4A 48              - mov ecx,[rdx+48]
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+888063: 41 39 C8              - cmp r8d,ecx
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+888066: 41 0F 4C C8           - cmovl ecx,r8d
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+88806A: 31 C0                 - xor eax,eax
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+88806C: 45 85 C0              - test r8d,r8d
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+88806F: 0F 49 C1              - cmovns eax,ecx
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+888072: 89 42 3C              - mov [rdx+3C],eax
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+888075: 45 84 C9              - test r9b,r9b
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+888078: 74 03                 - je MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+88807D
 // ---------- INJECTING HERE ----------
-MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8B2: 41 01 DE              - add r14d,ebx
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+88807A: 89 42 40              - mov [rdx+40],eax
 // ---------- DONE INJECTING  ----------
-MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8B5: 45 39 EE              - cmp r14d,r13d
-MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8B8: 45 0F 42 EE           - cmovb r13d,r14d
-MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8BC: 48 8B 40 20           - mov rax,[rax+20]
-MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8C0: 41 39 FE              - cmp r14d,edi
-MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8C3: 44 0F 42 EF           - cmovb r13d,edi
-MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8C7: 44 89 68 4C           - mov [rax+4C],r13d
-MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8CB: 41 8B 44 24 18        - mov eax,[r12+18]
-MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8D0: 41 3B 44 24 1C        - cmp eax,[r12+1C]
-MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8D5: 72 1F                 - jb MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8F6
-MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8D7: 48 8B 4C 24 50        - mov rcx,[rsp+50]
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+88807D: 85 C0                 - test eax,eax
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+88807F: 74 01                 - je MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+888082
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+888081: C3                    - ret 
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+888082: 8B 42 4C              - mov eax,[rdx+4C]
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+888085: 8B 4A 50              - mov ecx,[rdx+50]
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+888088: 44 8D 40 FF           - lea r8d,[rax-01]
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+88808C: 44 8B 0D CD EB 36 0B  - mov r9d,[MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BBF6C60]
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+888093: 41 39 C8              - cmp r8d,ecx
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+888096: 41 0F 4C C8           - cmovl ecx,r8d
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+88809A: 41 39 C1              - cmp r9d,eax
 }
 </AssemblerScript>
     </CheatEntry>
     <CheatEntry>
-      <ID>3</ID>
-      <Description>"自动汇编脚本"</Description>
-      <LastState Activated="1"/>
+      <ID>8</ID>
+      <Description>"角色EXP+19300000"</Description>
+      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe
   Version: 
-  Date   : 2026-09-18
+  Date   : 2026-09-25
   Author : krono
   描述 : 
 
@@ -112,7 +104,7 @@ label(code)
 label(return)
 
 newmem:
-  add r13d,ffff
+  add r13d,#19300000
   mov [rax+4C],r13d
   mov eax,[r12+18]
   jmp return
@@ -165,10 +157,831 @@ MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8EA: 5D                    - 
 }
 </AssemblerScript>
     </CheatEntry>
+    <CheatEntry>
+      <ID>14</ID>
+      <Description>"Monster EXP+19300000"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe
+  Version: 
+  Date   : 2026-09-25
+  Author : krono
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe,89 43 74 48 89 F9) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add eax,#19300000
+  mov [rbx+74],eax
+  mov rcx,rdi
+  jmp return
+
+code:
+  mov [rbx+74],eax
+  mov rcx,rdi
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 43 74 48 89 F9
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+9004BE
+
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+90049C: 0F 84 C1 00 00 00  - je MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+900563
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+9004A2: 48 8B 40 10        - mov rax,[rax+10]
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+9004A6: 49 63 CE           - movsxd  rcx,r14d
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+9004A9: 8B 44 88 20        - mov eax,[rax+rcx*4+20]
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+9004AD: FF C8              - dec eax
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+9004AF: 03 6B 74           - add ebp,[rbx+74]
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+9004B2: 39 C5              - cmp ebp,eax
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+9004B4: 0F 42 C5           - cmovb eax,ebp
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+9004B7: 44 39 ED           - cmp ebp,r13d
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+9004BA: 41 0F 42 C5        - cmovb eax,r13d
+// ---------- INJECTING HERE ----------
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+9004BE: 89 43 74           - mov [rbx+74],eax
+// ---------- DONE INJECTING  ----------
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+9004C1: 48 89 F9           - mov rcx,rdi
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+9004C4: 48 89 DA           - mov rdx,rbx
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+9004C7: E8 D4 01 00 00     - call MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+9006A0
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+9004CC: 48 89 C7           - mov rdi,rax
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+9004CF: 48 85 F6           - test rsi,rsi
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+9004D2: 0F 88 95 00 00 00  - js MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+90056D
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+9004D8: 48 89 3E           - mov [rsi],rdi
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+9004DB: 48 8B 4C 24 30     - mov rcx,[rsp+30]
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+9004E0: 48 31 E1           - xor rcx,rsp
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+9004E3: E8 48 69 03 04     - call MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.AK::SoundEngine::GetIDFromString+10B0
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>38</ID>
+      <Description>"Item add =433"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe
+  Version: 
+  Date   : 2026-09-25
+  Author : krono
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe,41 01 6D 10 48 8B 05 A5 78 2E 0B 48 8B 08) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  add [r13+10],ebp
+  mov [r13+10],#433
+  //Original code:mov rax,[MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BBE7438]
+  mov rax,MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BBE7438
+  mov rax,[rax]
+  mov rcx,[rax]
+  jmp return
+
+code:
+  add [r13+10],ebp
+  //Original code:mov rax,[MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BBE7438]
+  mov rax,MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BBE7438
+  mov rax,[rax]
+  mov rcx,[rax]
+  jmp return
+
+INJECT:
+  jmp far newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 41 01 6D 10 48 8B 05 A5 78 2E 0B 48 8B 08
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FFB88
+
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FFB67: 74 1F                 - je MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FFB88
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FFB69: 41 39 7F 18           - cmp [r15+18],edi
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FFB6D: 7E 19                 - jle MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FFB88
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FFB6F: 49 8B 47 10           - mov rax,[r15+10]
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FFB73: 89 FA                 - mov edx,edi
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FFB75: 41 B8 01 00 00 00     - mov r8d,00000001
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FFB7B: 89 F9                 - mov ecx,edi
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FFB7D: 41 D3 E0              - shl r8d,cl
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FFB80: C1 EA 05              - shr edx,05
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FFB83: 44 09 44 90 20        - or [rax+rdx*4+20],r8d
+// ---------- INJECTING HERE ----------
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FFB88: 41 01 6D 10           - add [r13+10],ebp
+// ---------- DONE INJECTING  ----------
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FFB8C: 48 8B 05 A5 78 2E 0B  - mov rax,[MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BBE7438]
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FFB93: 48 8B 08              - mov rcx,[rax]
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FFB96: 48 8B 09              - mov rcx,[rcx]
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FFB99: 45 31 FF              - xor r15d,r15d
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FFB9C: 48 3B 0D ED 2B 2A 0B  - cmp rcx,[MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BBA2790]
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FFBA3: 49 0F 45 C7           - cmovne rax,r15
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FFBA7: 48 8B 90 D8 00 00 00  - mov rdx,[rax+000000D8]
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FFBAE: 48 89 F1              - mov rcx,rsi
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FFBB1: 41 89 F8              - mov r8d,edi
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FFBB4: E8 57 02 09 00        - call MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+98FE10
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>46</ID>
+      <Description>"Item sub =433"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe
+  Version: 
+  Date   : 2026-09-25
+  Author : krono
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe,29 E9 73 2E 31 DB) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+//  add ecx,ebp
+  mov ecx,#433
+  jae MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BC134C
+  xor ebx,ebx
+  jmp return
+
+code:
+  sub ecx,ebp
+  jae MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BC134C
+  xor ebx,ebx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 29 E9 73 2E 31 DB
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BC131A
+
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BC12FB: 48 8B 40 10     - mov rax,[rax+10]
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BC12FF: 48 85 C0        - test rax,rax
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BC1302: 74 1C           - je MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BC1320
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BC1304: 44 39 70 1C     - cmp [rax+1C],r14d
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BC1308: 7E 14           - jle MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BC131E
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BC130A: 44 89 F1        - mov ecx,r14d
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BC130D: 48 8B 44 C8 20  - mov rax,[rax+rcx*8+20]
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BC1312: 48 85 C0        - test rax,rax
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BC1315: 74 07           - je MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BC131E
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BC1317: 8B 48 10        - mov ecx,[rax+10]
+// ---------- INJECTING HERE ----------
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BC131A: 29 E9           - sub ecx,ebp
+// ---------- DONE INJECTING  ----------
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BC131C: 73 2E           - jae MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BC134C
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BC131E: 31 DB           - xor ebx,ebx
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BC1320: 80 7C 24 27 00  - cmp byte ptr [rsp+27],00
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BC1325: 74 0B           - je MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BC1332
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BC1327: 48 89 F1        - mov rcx,rsi
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BC132A: 48 89 FA        - mov rdx,rdi
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BC132D: E8 CE B9 A4 03  - call MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+460CD00
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BC1332: 48 8B 4C 24 28  - mov rcx,[rsp+28]
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BC1337: 48 31 E1        - xor rcx,rsp
+MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BC133A: E8 F1 5A D7 03  - call MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.AK::SoundEngine::GetIDFromString+10B0
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>18</ID>
+      <Description>"EXP"</Description>
+      <Options moManualExpandCollapse="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>15</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC0A140</Address>
+          <Offsets>
+            <Offset>5CC</Offset>
+            <Offset>108</Offset>
+            <Offset>10</Offset>
+            <Offset>48</Offset>
+            <Offset>78</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>16</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC0A140</Address>
+          <Offsets>
+            <Offset>68C</Offset>
+            <Offset>138</Offset>
+            <Offset>10</Offset>
+            <Offset>48</Offset>
+            <Offset>78</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>17</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC0A140</Address>
+          <Offsets>
+            <Offset>66C</Offset>
+            <Offset>130</Offset>
+            <Offset>10</Offset>
+            <Offset>48</Offset>
+            <Offset>78</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>24</ID>
+      <Description>"MoneyBrozen+4=slive+4=Gold"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>20</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC0A140</Address>
+          <Offsets>
+            <Offset>360</Offset>
+            <Offset>38</Offset>
+            <Offset>18</Offset>
+            <Offset>60</Offset>
+            <Offset>78</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>22</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC0A148</Address>
+          <Offsets>
+            <Offset>F0</Offset>
+            <Offset>28</Offset>
+            <Offset>60</Offset>
+            <Offset>78</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>23</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC0A148</Address>
+          <Offsets>
+            <Offset>440</Offset>
+            <Offset>48</Offset>
+            <Offset>18</Offset>
+            <Offset>60</Offset>
+            <Offset>78</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>35</ID>
+      <Description>"药草"</Description>
+      <Options moManualExpandCollapse="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>47</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC0A148</Address>
+          <Offsets>
+            <Offset>250</Offset>
+            <Offset>B8</Offset>
+            <Offset>10</Offset>
+            <Offset>48</Offset>
+            <Offset>78</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>48</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC0A148</Address>
+          <Offsets>
+            <Offset>130</Offset>
+            <Offset>70</Offset>
+            <Offset>10</Offset>
+            <Offset>48</Offset>
+            <Offset>78</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>49</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC0A148</Address>
+          <Offsets>
+            <Offset>190</Offset>
+            <Offset>88</Offset>
+            <Offset>10</Offset>
+            <Offset>48</Offset>
+            <Offset>78</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>50</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC0A140</Address>
+          <Offsets>
+            <Offset>270</Offset>
+            <Offset>C0</Offset>
+            <Offset>10</Offset>
+            <Offset>48</Offset>
+            <Offset>78</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>33</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC0A148</Address>
+          <Offsets>
+            <Offset>150</Offset>
+            <Offset>78</Offset>
+            <Offset>10</Offset>
+            <Offset>48</Offset>
+            <Offset>78</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>44</ID>
+      <Description>"雌火龙 棘"</Description>
+      <Options moManualExpandCollapse="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>40</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC0A140</Address>
+          <Offsets>
+            <Offset>470</Offset>
+            <Offset>528</Offset>
+            <Offset>10</Offset>
+            <Offset>48</Offset>
+            <Offset>78</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>51</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC0A140</Address>
+          <Offsets>
+            <Offset>570</Offset>
+            <Offset>568</Offset>
+            <Offset>10</Offset>
+            <Offset>48</Offset>
+            <Offset>78</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>52</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC0A148</Address>
+          <Offsets>
+            <Offset>330</Offset>
+            <Offset>4D8</Offset>
+            <Offset>10</Offset>
+            <Offset>48</Offset>
+            <Offset>78</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>53</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC0A148</Address>
+          <Offsets>
+            <Offset>210</Offset>
+            <Offset>4A8</Offset>
+            <Offset>10</Offset>
+            <Offset>48</Offset>
+            <Offset>78</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>54</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC0A140</Address>
+          <Offsets>
+            <Offset>F0</Offset>
+            <Offset>460</Offset>
+            <Offset>10</Offset>
+            <Offset>48</Offset>
+            <Offset>78</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>55</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC0A148</Address>
+          <Offsets>
+            <Offset>590</Offset>
+            <Offset>570</Offset>
+            <Offset>10</Offset>
+            <Offset>48</Offset>
+            <Offset>78</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>56</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC0A148</Address>
+          <Offsets>
+            <Offset>470</Offset>
+            <Offset>528</Offset>
+            <Offset>10</Offset>
+            <Offset>48</Offset>
+            <Offset>78</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>71</ID>
+      <Description>"EN"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>95</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC258A0</Address>
+          <Offsets>
+            <Offset>29C</Offset>
+            <Offset>20</Offset>
+            <Offset>20</Offset>
+            <Offset>10</Offset>
+            <Offset>60</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>96</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC258A8</Address>
+          <Offsets>
+            <Offset>29C</Offset>
+            <Offset>20</Offset>
+            <Offset>20</Offset>
+            <Offset>10</Offset>
+            <Offset>60</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>97</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC04858</Address>
+          <Offsets>
+            <Offset>29C</Offset>
+            <Offset>20</Offset>
+            <Offset>20</Offset>
+            <Offset>10</Offset>
+            <Offset>E0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>98</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC04860</Address>
+          <Offsets>
+            <Offset>29C</Offset>
+            <Offset>20</Offset>
+            <Offset>20</Offset>
+            <Offset>10</Offset>
+            <Offset>E0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>99</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC258A0</Address>
+          <Offsets>
+            <Offset>29C</Offset>
+            <Offset>20</Offset>
+            <Offset>40</Offset>
+            <Offset>60</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>100</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC258A8</Address>
+          <Offsets>
+            <Offset>29C</Offset>
+            <Offset>20</Offset>
+            <Offset>40</Offset>
+            <Offset>60</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>101</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC04858</Address>
+          <Offsets>
+            <Offset>29C</Offset>
+            <Offset>20</Offset>
+            <Offset>40</Offset>
+            <Offset>60</Offset>
+            <Offset>18</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>102</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC04860</Address>
+          <Offsets>
+            <Offset>29C</Offset>
+            <Offset>20</Offset>
+            <Offset>40</Offset>
+            <Offset>60</Offset>
+            <Offset>18</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>103</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC04858</Address>
+          <Offsets>
+            <Offset>29C</Offset>
+            <Offset>20</Offset>
+            <Offset>40</Offset>
+            <Offset>60</Offset>
+            <Offset>28</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>104</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC04860</Address>
+          <Offsets>
+            <Offset>29C</Offset>
+            <Offset>20</Offset>
+            <Offset>40</Offset>
+            <Offset>60</Offset>
+            <Offset>28</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>105</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC0A6D8</Address>
+          <Offsets>
+            <Offset>29C</Offset>
+            <Offset>20</Offset>
+            <Offset>40</Offset>
+            <Offset>60</Offset>
+            <Offset>20</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>106</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC0A6E0</Address>
+          <Offsets>
+            <Offset>29C</Offset>
+            <Offset>20</Offset>
+            <Offset>40</Offset>
+            <Offset>60</Offset>
+            <Offset>20</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>107</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC04858</Address>
+          <Offsets>
+            <Offset>29C</Offset>
+            <Offset>20</Offset>
+            <Offset>40</Offset>
+            <Offset>E0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>108</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC04860</Address>
+          <Offsets>
+            <Offset>29C</Offset>
+            <Offset>20</Offset>
+            <Offset>40</Offset>
+            <Offset>E0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>109</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BBFCF50</Address>
+          <Offsets>
+            <Offset>29C</Offset>
+            <Offset>20</Offset>
+            <Offset>40</Offset>
+            <Offset>E0</Offset>
+            <Offset>18</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>110</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BBFCF58</Address>
+          <Offsets>
+            <Offset>29C</Offset>
+            <Offset>20</Offset>
+            <Offset>40</Offset>
+            <Offset>E0</Offset>
+            <Offset>18</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>111</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BBFCF50</Address>
+          <Offsets>
+            <Offset>29C</Offset>
+            <Offset>20</Offset>
+            <Offset>40</Offset>
+            <Offset>E0</Offset>
+            <Offset>28</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>112</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BBFCF58</Address>
+          <Offsets>
+            <Offset>29C</Offset>
+            <Offset>20</Offset>
+            <Offset>40</Offset>
+            <Offset>E0</Offset>
+            <Offset>28</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>113</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC258A0</Address>
+          <Offsets>
+            <Offset>29C</Offset>
+            <Offset>20</Offset>
+            <Offset>40</Offset>
+            <Offset>E0</Offset>
+            <Offset>20</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>114</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC258A8</Address>
+          <Offsets>
+            <Offset>29C</Offset>
+            <Offset>20</Offset>
+            <Offset>40</Offset>
+            <Offset>E0</Offset>
+            <Offset>20</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>115</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC04858</Address>
+          <Offsets>
+            <Offset>29C</Offset>
+            <Offset>20</Offset>
+            <Offset>40</Offset>
+            <Offset>E0</Offset>
+            <Offset>A0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>117</ID>
+          <Description>"指针扫描结果"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC04858</Address>
+          <Offsets>
+            <Offset>29C</Offset>
+            <Offset>20</Offset>
+            <Offset>40</Offset>
+            <Offset>E0</Offset>
+            <Offset>A0</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>81</ID>
+      <Description>"HP=EN+30"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC04858</Address>
+      <Offsets>
+        <Offset>29C+30</Offset>
+        <Offset>20</Offset>
+        <Offset>40</Offset>
+        <Offset>60</Offset>
+        <Offset>28</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>116</ID>
+      <Description>"DAMAGE=EN+58"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe"+0BC04860</Address>
+      <Offsets>
+        <Offset>29C+58</Offset>
+        <Offset>20</Offset>
+        <Offset>40</Offset>
+        <Offset>E0</Offset>
+        <Offset>A0</Offset>
+      </Offsets>
+    </CheatEntry>
   </CheatEntries>
   <CheatCodes>
     <CodeEntry>
-      <Description>EXP 代码 :mov [rax+4C],r13d</Description>
+      <Description>角色 EXP 代码 :mov [rax+4C],r13d</Description>
       <AddressString>MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8C7</AddressString>
       <Before>
         <Byte>FE</Byte>
@@ -189,6 +1002,145 @@ MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FF8EA: 5D                    - 
         <Byte>44</Byte>
         <Byte>24</Byte>
         <Byte>18</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Monster EXP 代码 :mov [rbx+74],eax</Description>
+      <AddressString>MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+9004BE</AddressString>
+      <Before>
+        <Byte>ED</Byte>
+        <Byte>41</Byte>
+        <Byte>0F</Byte>
+        <Byte>42</Byte>
+        <Byte>C5</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>43</Byte>
+        <Byte>74</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>89</Byte>
+        <Byte>F9</Byte>
+        <Byte>48</Byte>
+        <Byte>89</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>SP 代码 :mov [rdx+40],eax</Description>
+      <AddressString>MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+88807A</AddressString>
+      <Before>
+        <Byte>45</Byte>
+        <Byte>84</Byte>
+        <Byte>C9</Byte>
+        <Byte>74</Byte>
+        <Byte>03</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>42</Byte>
+        <Byte>40</Byte>
+      </Actual>
+      <After>
+        <Byte>85</Byte>
+        <Byte>C0</Byte>
+        <Byte>74</Byte>
+        <Byte>01</Byte>
+        <Byte>C3</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>view item 代码 :mov ebp,[rax+10]</Description>
+      <AddressString>MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+6B71E67</AddressString>
+      <Before>
+        <Byte>49</Byte>
+        <Byte>8B</Byte>
+        <Byte>44</Byte>
+        <Byte>DF</Byte>
+        <Byte>20</Byte>
+      </Before>
+      <Actual>
+        <Byte>8B</Byte>
+        <Byte>68</Byte>
+        <Byte>10</Byte>
+      </Actual>
+      <After>
+        <Byte>85</Byte>
+        <Byte>ED</Byte>
+        <Byte>74</Byte>
+        <Byte>46</Byte>
+        <Byte>48</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Item ++ 代码 :add [r13+10],ebp</Description>
+      <AddressString>MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+8FFB88</AddressString>
+      <Before>
+        <Byte>44</Byte>
+        <Byte>09</Byte>
+        <Byte>44</Byte>
+        <Byte>90</Byte>
+        <Byte>20</Byte>
+      </Before>
+      <Actual>
+        <Byte>41</Byte>
+        <Byte>01</Byte>
+        <Byte>6D</Byte>
+        <Byte>10</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>05</Byte>
+        <Byte>A5</Byte>
+        <Byte>78</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>View item 代码 :mov eax,[rcx+10]</Description>
+      <AddressString>MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+7EDE66</AddressString>
+      <Before>
+        <Byte>48</Byte>
+        <Byte>85</Byte>
+        <Byte>C9</Byte>
+        <Byte>74</Byte>
+        <Byte>03</Byte>
+      </Before>
+      <Actual>
+        <Byte>8B</Byte>
+        <Byte>41</Byte>
+        <Byte>10</Byte>
+      </Actual>
+      <After>
+        <Byte>C3</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+        <Byte>CC</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>素材减少 代码 :mov [rax+10],ecx</Description>
+      <AddressString>MONSTER_HUNTER_STORIES_3_TWISTED_REFLECTION.exe+BC134C</AddressString>
+      <Before>
+        <Byte>5F</Byte>
+        <Byte>5E</Byte>
+        <Byte>41</Byte>
+        <Byte>5E</Byte>
+        <Byte>C3</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>48</Byte>
+        <Byte>10</Byte>
+      </Actual>
+      <After>
+        <Byte>B3</Byte>
+        <Byte>01</Byte>
+        <Byte>EB</Byte>
+        <Byte>CD</Byte>
+        <Byte>CC</Byte>
       </After>
     </CodeEntry>
   </CheatCodes>

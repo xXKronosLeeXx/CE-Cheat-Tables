@@ -4,6 +4,7 @@
     <CheatEntry>
       <ID>11</ID>
       <Description>"Buttle"</Description>
+      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : SDGundamBA-Win64-Shipping.exe
   Version: 
@@ -78,6 +79,7 @@ dealloc(newmem)
     <CheatEntry>
       <ID>15</ID>
       <Description>"HP"</Description>
+      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : SDGundamBA-Win64-Shipping.exe
   Version: 
@@ -177,6 +179,7 @@ dealloc(damage)
     <CheatEntry>
       <ID>16</ID>
       <Description>"ENERGY"</Description>
+      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : SDGundamBA-Win64-Shipping.exe
   Version: 
@@ -251,6 +254,7 @@ dealloc(newmem)
     <CheatEntry>
       <ID>20</ID>
       <Description>"CD"</Description>
+      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : SDGundamBA-Win64-Shipping.exe
   Version: 
@@ -328,6 +332,7 @@ dealloc(cooldown)
     <CheatEntry>
       <ID>31</ID>
       <Description>"shot 45888"</Description>
+      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : SDGundamBA-Win64-Shipping.exe
   Version: 
@@ -409,6 +414,7 @@ dealloc(damage)
     <CheatEntry>
       <ID>32</ID>
       <Description>"fight 99999"</Description>
+      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : SDGundamBA-Win64-Shipping.exe
   Version: 
@@ -489,6 +495,7 @@ dealloc(damage)
     <CheatEntry>
       <ID>7</ID>
       <Description>"Use Money = 899999999"</Description>
+      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : SDGundamBA-Win64-Shipping.exe
   Version: 
@@ -562,6 +569,7 @@ dealloc(newmem)
     <CheatEntry>
       <ID>25</ID>
       <Description>"USE Item+KEY=FF"</Description>
+      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : SDGundamBA-Win64-Shipping.exe
   Version: 
