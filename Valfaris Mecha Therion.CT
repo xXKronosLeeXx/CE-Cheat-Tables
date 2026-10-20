@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="51">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>28</ID>
+      <Description>"Steam V.1.1"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>//mono功能打开**  Activate Mono
+{$lua}
+[ENABLE]
+LaunchMonoDataCollector();
+
+[DISABLE]
+
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>29</ID>
+      <Description>"HP"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Valfaris Mecha Therion.exe
+  Version: 
+  Date   : 2026-10-20
+  Author : krono
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanfunction(INJECT,Player:set_HP,89 B7 00 01 00 00 48 B8)  // should be unique in this function
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov esi,3
+  mov [rdi+00000100],esi
+  jmp return
+
+code:
+  mov [rdi+00000100],esi
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 B7 00 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Player:set_HP+c9
+
+Player:set_HP+97: 48 8D AD 00 00 00 00           - lea rbp,[rbp+00000000]
+Player:set_HP+9e: 49 BB 80 35 3C 27 92 01 00 00  - mov r11,PlayerModuleManager:get_BaseHP
+Player:set_HP+a8: 41 FF D3                       - call r11
+Player:set_HP+ab: 48 8B D0                       - mov rdx,rax
+Player:set_HP+ae: 48 8B CE                       - mov rcx,rsi
+Player:set_HP+b1: 4C 8B C6                       - mov r8,rsi
+Player:set_HP+b4: 66 90                          - nop 2
+Player:set_HP+b6: 49 BB 30 4B 9A 1F 92 01 00 00  - mov r11,UnityEngine.Mathf:Clamp
+Player:set_HP+c0: 41 FF D3                       - call r11
+Player:set_HP+c3: 89 87 FC 00 00 00              - mov [rdi+000000FC],eax
+// ---------- INJECTING HERE ----------
+Player:set_HP+c9: 89 B7 00 01 00 00              - mov [rdi+00000100],esi
+// ---------- DONE INJECTING  ----------
+Player:set_HP+cf: 48 B8 40 CE F1 86 90 01 00 00  - mov rax,0000019086F1CE40
+Player:set_HP+d9: 48 63 00                       - movsxd  rax,dword ptr [rax]
+Player:set_HP+dc: 85 C0                          - test eax,eax
+Player:set_HP+de: 0F 85 47 00 00 00              - jne Player:set_HP+12b
+Player:set_HP+e4: 48 8B 47 18                    - mov rax,[rdi+18]
+Player:set_HP+e8: 48 8B C8                       - mov rcx,rax
+Player:set_HP+eb: 83 39 00                       - cmp dword ptr [rcx],00
+Player:set_HP+ee: 48 8B 40 48                    - mov rax,[rax+48]
+Player:set_HP+f2: 48 8B C8                       - mov rcx,rax
+Player:set_HP+f5: 48 8B D6                       - mov rdx,rsi
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>18</ID>
+      <Description>"Bullet"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Valfaris Mecha Therion.exe
+  Version: 
+  Date   : 2026-10-20
+  Author : krono
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanfunction(INJECT,Player:set_Energy,89 B7 50 03 00 00 48 8B)  // should be unique in this function
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov esi,[rdi+00000350+4]
+  mov [rdi+00000350],esi
+  jmp return
+
+code:
+  mov [rdi+00000350],esi
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 B7 50 03 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Player:set_Energy+b4
+
+Player:set_Energy+81: B8 01 00 00 00           - mov eax,00000001
+Player:set_Energy+86: 4C 0F B6 F8              - movzx r15,al
+Player:set_Energy+8a: F3 0F 10 05 6E 00 00 00  - movss xmm0,[Player:set_Energy+100]
+Player:set_Energy+92: F3 0F 5A C0              - cvtss2sd xmm0,xmm0
+Player:set_Energy+96: F2 0F 5A E8              - cvtsd2ss xmm5,xmm0
+Player:set_Energy+9a: F3 0F 11 6D E4           - movss [rbp-1C],xmm5
+Player:set_Energy+9f: F3 0F 10 45 E4           - movss xmm0,[rbp-1C]
+Player:set_Energy+a4: F3 0F 5A C0              - cvtss2sd xmm0,xmm0
+Player:set_Energy+a8: F2 0F 5A E8              - cvtsd2ss xmm5,xmm0
+Player:set_Energy+ac: F3 0F 11 AF 5C 03 00 00  - movss [rdi+0000035C],xmm5
+// ---------- INJECTING HERE ----------
+Player:set_Energy+b4: 89 B7 50 03 00 00        - mov [rdi+00000350],esi
+// ---------- DONE INJECTING  ----------
+Player:set_Energy+ba: 48 8B 47 18              - mov rax,[rdi+18]
+Player:set_Energy+be: 48 8B C8                 - mov rcx,rax
+Player:set_Energy+c1: 83 39 00                 - cmp dword ptr [rcx],00
+Player:set_Energy+c4: 48 8B 40 48              - mov rax,[rax+48]
+Player:set_Energy+c8: 4C 63 87 54 03 00 00     - movsxd  r8,dword ptr [rdi+00000354]
+Player:set_Energy+cf: 48 8B C8                 - mov rcx,rax
+Player:set_Energy+d2: 48 8B D6                 - mov rdx,rsi
+Player:set_Energy+d5: 4D 8B CF                 - mov r9,r15
+Player:set_Energy+d8: 83 38 00                 - cmp dword ptr [rax],00
+Player:set_Energy+db: 66 66 90                 - nop 3
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>20</ID>
+      <Description>"Rush"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Valfaris Mecha Therion.exe
+  Version: 
+  Date   : 2026-10-20
+  Author : krono
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanfunction(INJECT,Player:set_Fuel,89 87 58 03 00 00 48 B8)  // should be unique in this function
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov eax,#1000
+  mov [rdi+00000358],eax
+  jmp return
+
+code:
+  mov [rdi+00000358],eax
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 87 58 03 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Player:set_Fuel+33
+
+Player:set_Fuel+8: 48 89 7D F8                    - mov [rbp-08],rdi
+Player:set_Fuel+c: 48 8B F9                       - mov rdi,rcx
+Player:set_Fuel+f: 48 89 55 E8                    - mov [rbp-18],rdx
+Player:set_Fuel+13: 4C 63 87 64 03 00 00           - movsxd  r8,dword ptr [rdi+00000364]
+Player:set_Fuel+1a: 48 63 4D E8                    - movsxd  rcx,dword ptr [rbp-18]
+Player:set_Fuel+1e: 33 D2                          - xor edx,edx
+Player:set_Fuel+20: 48 8D 64 24 00                 - lea rsp,[rsp+00]
+Player:set_Fuel+25: 90                             - nop 
+Player:set_Fuel+26: 49 BB 30 4B 9A 1F 92 01 00 00  - mov r11,UnityEngine.Mathf:Clamp
+Player:set_Fuel+30: 41 FF D3                       - call r11
+// ---------- INJECTING HERE ----------
+Player:set_Fuel+33: 89 87 58 03 00 00              - mov [rdi+00000358],eax
+// ---------- DONE INJECTING  ----------
+Player:set_Fuel+39: 48 B8 48 CE F1 86 90 01 00 00  - mov rax,0000019086F1CE48
+Player:set_Fuel+43: 0F B6 00                       - movzx eax,byte ptr [rax]
+Player:set_Fuel+46: 85 C0                          - test eax,eax
+Player:set_Fuel+48: 74 0D                          - je Player:set_Fuel+57
+Player:set_Fuel+4a: 48 63 87 64 03 00 00           - movsxd  rax,dword ptr [rdi+00000364]
+Player:set_Fuel+51: 89 87 58 03 00 00              - mov [rdi+00000358],eax
+Player:set_Fuel+57: 48 63 87 58 03 00 00           - movsxd  rax,dword ptr [rdi+00000358]
+Player:set_Fuel+5e: 48 63 8F 64 03 00 00           - movsxd  rcx,dword ptr [rdi+00000364]
+Player:set_Fuel+65: 3B C1                          - cmp eax,ecx
+Player:set_Fuel+67: 75 17                          - jne Player:set_Fuel+80
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>23</ID>
+      <Description>"Metal Blood = 99"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Valfaris Mecha Therion.exe
+  Version: 
+  Date   : 2026-10-20
+  Author : krono
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanfunction(INJECT,CurrentGameData:set_BloodMetal,89 88 54 01 00 00 48 8B 8F)  // should be unique in this function
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov ecx,#99
+  mov [rax+00000154],ecx
+  jmp return
+
+code:
+  mov [rax+00000154],ecx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 88 54 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: CurrentGameData:set_BloodMetal+77
+
+CurrentGameData:set_BloodMetal+4b: F3 0F 5A C9                    - cvtss2sd xmm1,xmm1
+CurrentGameData:set_BloodMetal+4f: F2 0F 59 C1                    - mulsd xmm0,xmm1
+CurrentGameData:set_BloodMetal+53: F2 0F 5A E8                    - cvtsd2ss xmm5,xmm0
+CurrentGameData:set_BloodMetal+57: F3 0F 11 6D F4                 - movss [rbp-0C],xmm5
+CurrentGameData:set_BloodMetal+5c: F3 0F 10 45 F4                 - movss xmm0,[rbp-0C]
+CurrentGameData:set_BloodMetal+61: F3 0F 5A C0                    - cvtss2sd xmm0,xmm0
+CurrentGameData:set_BloodMetal+65: F2 0F 10 C0                    - movsd xmm0,xmm0
+CurrentGameData:set_BloodMetal+69: 66 0F 3A 09 C0 01              - roundpd xmm0,xmm0,01
+CurrentGameData:set_BloodMetal+6f: F2 0F 10 C0                    - movsd xmm0,xmm0
+CurrentGameData:set_BloodMetal+73: F2 0F 2C C8                    - cvttsd2si ecx,xmm0
+// ---------- INJECTING HERE ----------
+CurrentGameData:set_BloodMetal+77: 89 88 54 01 00 00              - mov [rax+00000154],ecx
+// ---------- DONE INJECTING  ----------
+CurrentGameData:set_BloodMetal+7d: 48 8B 8F C0 00 00 00           - mov rcx,[rdi+000000C0]
+CurrentGameData:set_BloodMetal+84: 33 D2                          - xor edx,edx
+CurrentGameData:set_BloodMetal+86: 49 BB 30 B9 78 C8 90 01 00 00  - mov r11,UnityEngine.Object:op_Inequality
+CurrentGameData:set_BloodMetal+90: 41 FF D3                       - call r11
+CurrentGameData:set_BloodMetal+93: 85 C0                          - test eax,eax
+CurrentGameData:set_BloodMetal+95: 0F 84 58 00 00 00              - je CurrentGameData:set_BloodMetal+f3
+CurrentGameData:set_BloodMetal+9b: 48 8B 87 C0 00 00 00           - mov rax,[rdi+000000C0]
+CurrentGameData:set_BloodMetal+a2: 48 8B C8                       - mov rcx,rax
+CurrentGameData:set_BloodMetal+a5: 83 39 00                       - cmp dword ptr [rcx],00
+CurrentGameData:set_BloodMetal+a8: 48 8B 48 48                    - mov rcx,[rax+48]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>26</ID>
+      <Description>"Valfaris Blood = 99"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Valfaris Mecha Therion.exe
+  Version: 
+  Date   : 2026-10-20
+  Author : krono
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanfunction(INJECT,UpgradeSequence:Go,89 88 88 01 00 00 83)  // should be unique in this function
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov ecx,#99
+  mov [rax+00000188],ecx
+  jmp return
+
+code:
+  mov [rax+00000188],ecx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 88 88 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: UpgradeSequence:Go+142
+
+UpgradeSequence:Go+113: 41 83 3F 00                    - cmp dword ptr [r15],00
+UpgradeSequence:Go+117: 48 8D AD 00 00 00 00           - lea rbp,[rbp+00000000]
+UpgradeSequence:Go+11e: 49 BB 30 88 F6 D2 91 01 00 00  - mov r11,Stage:get_CurrentGameData
+UpgradeSequence:Go+128: 41 FF D3                       - call r11
+UpgradeSequence:Go+12b: 48 8B D0                       - mov rdx,rax
+UpgradeSequence:Go+12e: 83 38 00                       - cmp dword ptr [rax],00
+UpgradeSequence:Go+131: 48 63 88 88 01 00 00           - movsxd  rcx,dword ptr [rax+00000188]
+UpgradeSequence:Go+138: 4C 63 45 CC                    - movsxd  r8,dword ptr [rbp-34]
+UpgradeSequence:Go+13c: 41 2B C8                       - sub ecx,r8d
+UpgradeSequence:Go+13f: 83 3A 00                       - cmp dword ptr [rdx],00
+// ---------- INJECTING HERE ----------
+UpgradeSequence:Go+142: 89 88 88 01 00 00              - mov [rax+00000188],ecx
+// ---------- DONE INJECTING  ----------
+UpgradeSequence:Go+148: 83 45 B8 01                    - add dword ptr [rbp-48],01
+UpgradeSequence:Go+14c: 48 8B 4D C0                    - mov rcx,[rbp-40]
+UpgradeSequence:Go+150: 48 63 41 18                    - movsxd  rax,dword ptr [rcx+18]
+UpgradeSequence:Go+154: 39 45 B8                       - cmp [rbp-48],eax
+UpgradeSequence:Go+157: 0F 8C 1B FF FF FF              - jl UpgradeSequence:Go+78
+UpgradeSequence:Go+15d: 83 3E 00                       - cmp dword ptr [rsi],00
+UpgradeSequence:Go+160: 48 63 56 40                    - movsxd  rdx,dword ptr [rsi+40]
+UpgradeSequence:Go+164: 89 55 B8                       - mov [rbp-48],edx
+UpgradeSequence:Go+167: FF C2                          - inc edx
+UpgradeSequence:Go+169: 48 8B CE                       - mov rcx,rsi
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>Buttle 代码 :mov [rdi+00000350],esi</Description>
+      <AddressString>192273CFC94</AddressString>
+      <Before>
+        <Byte>AF</Byte>
+        <Byte>5C</Byte>
+        <Byte>03</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>B7</Byte>
+        <Byte>50</Byte>
+        <Byte>03</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>47</Byte>
+        <Byte>18</Byte>
+        <Byte>48</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>rush 代码 :mov [rdi+00000358],eax</Description>
+      <AddressString>192273D0673</AddressString>
+      <Before>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>41</Byte>
+        <Byte>FF</Byte>
+        <Byte>D3</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>87</Byte>
+        <Byte>58</Byte>
+        <Byte>03</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>B8</Byte>
+        <Byte>48</Byte>
+        <Byte>CE</Byte>
+        <Byte>F1</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Metal blood 代码 :mov [rax+00000154],ecx</Description>
+      <AddressString>1922738C357</AddressString>
+      <Before>
+        <Byte>C0</Byte>
+        <Byte>F2</Byte>
+        <Byte>0F</Byte>
+        <Byte>2C</Byte>
+        <Byte>C8</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>88</Byte>
+        <Byte>54</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>8F</Byte>
+        <Byte>C0</Byte>
+        <Byte>00</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Valfaris Blood 代码 :mov [rax+00000188],ecx</Description>
+      <AddressString>19173ED3302</AddressString>
+      <Before>
+        <Byte>2B</Byte>
+        <Byte>C8</Byte>
+        <Byte>83</Byte>
+        <Byte>3A</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>88</Byte>
+        <Byte>88</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>83</Byte>
+        <Byte>45</Byte>
+        <Byte>B8</Byte>
+        <Byte>01</Byte>
+        <Byte>48</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>HP 代码 :mov [rdi+00000100],esi</Description>
+      <AddressString>192273C31C9</AddressString>
+      <Before>
+        <Byte>87</Byte>
+        <Byte>FC</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>B7</Byte>
+        <Byte>00</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>B8</Byte>
+        <Byte>40</Byte>
+        <Byte>CE</Byte>
+        <Byte>F1</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>
