@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="51">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"Activate Mono"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{$lua}
+[ENABLE]
+LaunchMonoDataCollector();
+
+[DISABLE]
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>6</ID>
+          <Description>"Money -- = 99"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Carpenter.exe
+  Version: 
+  Date   : 2026-10-25
+  Author : krono
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,29 BB 00 01 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov edi,63
+  mov [rbx+00000100],edi
+  jmp return
+
+code:
+  sub [rbx+00000100],edi
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 29 BB 00 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+6E79BB
+
+GameAssembly.dll+6E7991: 8B FA                 - mov edi,edx
+GameAssembly.dll+6E7993: 48 8B D9              - mov rbx,rcx
+GameAssembly.dll+6E7996: 75 1F                 - jne GameAssembly.dll+6E79B7
+GameAssembly.dll+6E7998: 48 8D 0D C1 F6 D6 03  - lea rcx,[GameAssembly.dll+4457060]
+GameAssembly.dll+6E799F: E8 7C 62 DC FF        - call GameAssembly.il2cpp_get_exception_argument_null+3F0
+GameAssembly.dll+6E79A4: 48 8D 0D 85 43 DB 03  - lea rcx,[GameAssembly.dll+449BD30]
+GameAssembly.dll+6E79AB: E8 70 62 DC FF        - call GameAssembly.il2cpp_get_exception_argument_null+3F0
+GameAssembly.dll+6E79B0: C6 05 A5 71 03 04 01  - mov byte ptr [GameAssembly.dll+471EB5C],01
+GameAssembly.dll+6E79B7: 85 FF                 - test edi,edi
+GameAssembly.dll+6E79B9: 7E 51                 - jle GameAssembly.dll+6E7A0C
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+6E79BB: 29 BB 00 01 00 00     - sub [rbx+00000100],edi
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+6E79C1: 48 8B 0D 68 43 DB 03  - mov rcx,[GameAssembly.dll+449BD30]
+GameAssembly.dll+6E79C8: 48 8B BB 18 01 00 00  - mov rdi,[rbx+00000118]
+GameAssembly.dll+6E79CF: 83 B9 E4 00 00 00 00  - cmp dword ptr [rcx+000000E4],00
+GameAssembly.dll+6E79D6: 75 05                 - jne GameAssembly.dll+6E79DD
+GameAssembly.dll+6E79D8: E8 83 65 DC FF        - call GameAssembly.il2cpp_runtime_class_init
+GameAssembly.dll+6E79DD: 45 33 C0              - xor r8d,r8d
+GameAssembly.dll+6E79E0: 33 D2                 - xor edx,edx
+GameAssembly.dll+6E79E2: 48 8B CF              - mov rcx,rdi
+GameAssembly.dll+6E79E5: E8 06 24 9F 02        - call UnityEngine.Object.op_Inequality
+GameAssembly.dll+6E79EA: 84 C0                 - test al,al
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>9</ID>
+          <Description>"Bullet"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Carpenter.exe
+  Version: 
+  Date   : 2026-10-25
+  Author : krono
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,89 41 60 48 8B 89 88 00 00 00 48 85 C9 74 0E) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov eax,[rcx+60]
+  mov [rcx+60],eax
+  mov rcx,[rcx+00000088]
+  jmp return
+
+code:
+  mov [rcx+60],eax
+  mov rcx,[rcx+00000088]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 5
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 41 60 48 8B 89 88 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+6EA473
+
+GameAssembly.dll+6EA45D: CC                    - int 3 
+GameAssembly.dll+6EA45E: CC                    - int 3 
+GameAssembly.dll+6EA45F: CC                    - int 3 
+ProjectileWeaponItemInstance.Fire: 40 53                 - push rbx
+GameAssembly.dll+6EA462: 48 83 EC 20           - sub rsp,20
+GameAssembly.dll+6EA466: 8B 41 60              - mov eax,[rcx+60]
+GameAssembly.dll+6EA469: 48 8B D9              - mov rbx,rcx
+GameAssembly.dll+6EA46C: FF C8                 - dec eax
+GameAssembly.dll+6EA46E: 39 41 60              - cmp [rcx+60],eax
+GameAssembly.dll+6EA471: 74 1D                 - je GameAssembly.dll+6EA490
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+6EA473: 89 41 60              - mov [rcx+60],eax
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+6EA476: 48 8B 89 88 00 00 00  - mov rcx,[rcx+00000088]
+GameAssembly.dll+6EA47D: 48 85 C9              - test rcx,rcx
+GameAssembly.dll+6EA480: 74 0E                 - je GameAssembly.dll+6EA490
+GameAssembly.dll+6EA482: 48 8B 41 18           - mov rax,[rcx+18]
+GameAssembly.dll+6EA486: 48 8B 51 28           - mov rdx,[rcx+28]
+GameAssembly.dll+6EA48A: 48 8B 49 40           - mov rcx,[rcx+40]
+GameAssembly.dll+6EA48E: FF D0                 - call rax
+GameAssembly.dll+6EA490: FF 43 64              - inc [rbx+64]
+GameAssembly.dll+6EA493: 33 D2                 - xor edx,edx
+GameAssembly.dll+6EA495: 48 8B CB              - mov rcx,rbx
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>7</ID>
+          <Description>"HP(Change Scene)"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Carpenter.exe
+  Version: 
+  Date   : 2026-10-25
+  Author : krono
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,EE 56 FF 84 C0 75 1B 4C 8B 03 8B D7 89 7B 18 48 8B CB) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov edi,[rbx+18]
+  mov [rbx+18],edi
+  mov rcx,rbx
+  jmp return
+
+code:
+  mov [rbx+18],edi
+  mov rcx,rbx
+  jmp return
+
+INJECT+0C:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+0C:
+  db 89 7B 18 48 8B CB
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+1484D80
+
+GameAssembly.dll+1484D5E: 48 8B D9              - mov rbx,rcx
+GameAssembly.dll+1484D61: 48 83 C1 18           - add rcx,18
+GameAssembly.dll+1484D65: 8B FA                 - mov edi,edx
+GameAssembly.dll+1484D67: 4C 8B 80 C0 00 00 00  - mov r8,[rax+000000C0]
+GameAssembly.dll+1484D6E: 4D 8B 40 18           - mov r8,[r8+18]
+GameAssembly.dll+1484D72: E8 39 EE 56 FF        - call System.Int32.Equals
+GameAssembly.dll+1484D77: 84 C0                 - test al,al
+GameAssembly.dll+1484D79: 75 1B                 - jne GameAssembly.dll+1484D96
+GameAssembly.dll+1484D7B: 4C 8B 03              - mov r8,[rbx]
+GameAssembly.dll+1484D7E: 8B D7                 - mov edx,edi
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+1484D80: 89 7B 18              - mov [rbx+18],edi
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+1484D83: 48 8B CB              - mov rcx,rbx
+GameAssembly.dll+1484D86: 49 8B 80 78 01 00 00  - mov rax,[r8+00000178]
+GameAssembly.dll+1484D8D: 4D 8B 80 80 01 00 00  - mov r8,[r8+00000180]
+GameAssembly.dll+1484D94: FF D0                 - call rax
+GameAssembly.dll+1484D96: 48 8B 5C 24 30        - mov rbx,[rsp+30]
+GameAssembly.dll+1484D9B: 48 83 C4 20           - add rsp,20
+GameAssembly.dll+1484D9F: 5F                    - pop rdi
+GameAssembly.dll+1484DA0: C3                    - ret 
+GameAssembly.dll+1484DA1: CC                    - int 3 
+GameAssembly.dll+1484DA2: CC                    - int 3 
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>14</ID>
+          <Description>"Charge"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Carpenter.exe
+  Version: 
+  Date   : 2026-10-25
+  Author : krono
+  描述 : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,F3 0F 11 73 60 0F 28 74 24 30 48) // should be unique
+alloc(newmem,$1000,INJECT)
+alloc(charge,$2,INJECT)
+
+label(code)
+label(return)
+
+charge:
+  dd (float)100
+newmem:
+  movss xmm6,[charge]
+  movss [rbx+60],xmm6
+  jmp return
+
+code:
+  movss [rbx+60],xmm6
+  jmp return
+
+INJECT:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 73 60
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+dealloc(charge)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+6E9AF4
+
+GameAssembly.dll+6E9AD3: 74 2F                    - je GameAssembly.dll+6E9B04
+GameAssembly.dll+6E9AD5: 0F 2F FE                 - comiss xmm7,xmm6
+GameAssembly.dll+6E9AD8: 77 12                    - ja GameAssembly.dll+6E9AEC
+GameAssembly.dll+6E9ADA: F3 0F 10 80 28 01 00 00  - movss xmm0,[rax+00000128]
+GameAssembly.dll+6E9AE2: 0F 2F F0                 - comiss xmm6,xmm0
+GameAssembly.dll+6E9AE5: 76 08                    - jna GameAssembly.dll+6E9AEF
+GameAssembly.dll+6E9AE7: 0F 28 F0                 - movaps xmm6,xmm0
+GameAssembly.dll+6E9AEA: EB 03                    - jmp GameAssembly.dll+6E9AEF
+GameAssembly.dll+6E9AEC: 0F 28 F7                 - movaps xmm6,xmm7
+GameAssembly.dll+6E9AEF: 0F 28 7C 24 20           - movaps xmm7,[rsp+20]
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+6E9AF4: F3 0F 11 73 60           - movss [rbx+60],xmm6
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+6E9AF9: 0F 28 74 24 30           - movaps xmm6,[rsp+30]
+GameAssembly.dll+6E9AFE: 48 83 C4 40              - add rsp,40
+GameAssembly.dll+6E9B02: 5B                       - pop rbx
+GameAssembly.dll+6E9B03: C3                       - ret 
+GameAssembly.dll+6E9B04: E8 C7 43 DC FF           - call GameAssembly.il2cpp_method_get_class+B0
+GameAssembly.dll+6E9B09: CC                       - int 3 
+GameAssembly.dll+6E9B0A: CC                       - int 3 
+GameAssembly.dll+6E9B0B: CC                       - int 3 
+GameAssembly.dll+6E9B0C: CC                       - int 3 
+GameAssembly.dll+6E9B0D: CC                       - int 3 
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>money sub 代码 :sub [rbx+00000100],edi</Description>
+      <AddressString>GameAssembly.dll+6E79BB</AddressString>
+      <Before>
+        <Byte>01</Byte>
+        <Byte>85</Byte>
+        <Byte>FF</Byte>
+        <Byte>7E</Byte>
+        <Byte>51</Byte>
+      </Before>
+      <Actual>
+        <Byte>29</Byte>
+        <Byte>BB</Byte>
+        <Byte>00</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>0D</Byte>
+        <Byte>68</Byte>
+        <Byte>43</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>money add代码 :add [rbx+00000100],edi</Description>
+      <AddressString>GameAssembly.dll+6E16BB</AddressString>
+      <Before>
+        <Byte>01</Byte>
+        <Byte>85</Byte>
+        <Byte>FF</Byte>
+        <Byte>7E</Byte>
+        <Byte>51</Byte>
+      </Before>
+      <Actual>
+        <Byte>01</Byte>
+        <Byte>BB</Byte>
+        <Byte>00</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>0D</Byte>
+        <Byte>68</Byte>
+        <Byte>A6</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>HP  代码 :mov [rbx+18],edi</Description>
+      <AddressString>GameAssembly.dll+1484D80</AddressString>
+      <Before>
+        <Byte>4C</Byte>
+        <Byte>8B</Byte>
+        <Byte>03</Byte>
+        <Byte>8B</Byte>
+        <Byte>D7</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>7B</Byte>
+        <Byte>18</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>CB</Byte>
+        <Byte>49</Byte>
+        <Byte>8B</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>bullet 代码 :mov [rcx+60],eax</Description>
+      <AddressString>GameAssembly.dll+6EA473</AddressString>
+      <Before>
+        <Byte>39</Byte>
+        <Byte>41</Byte>
+        <Byte>60</Byte>
+        <Byte>74</Byte>
+        <Byte>1D</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>41</Byte>
+        <Byte>60</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>89</Byte>
+        <Byte>88</Byte>
+        <Byte>00</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Charge 代码 :movss [rbx+60],xmm6</Description>
+      <AddressString>GameAssembly.dll+6E9AF4</AddressString>
+      <Before>
+        <Byte>0F</Byte>
+        <Byte>28</Byte>
+        <Byte>7C</Byte>
+        <Byte>24</Byte>
+        <Byte>20</Byte>
+      </Before>
+      <Actual>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>11</Byte>
+        <Byte>73</Byte>
+        <Byte>60</Byte>
+      </Actual>
+      <After>
+        <Byte>0F</Byte>
+        <Byte>28</Byte>
+        <Byte>74</Byte>
+        <Byte>24</Byte>
+        <Byte>30</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+  <Structures StructVersion="2">
+    <Structure Name="DangerIntensityVariable" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="16" Vartype="Pointer" Bytesize="8" OffsetHex="00000010" Description="m_CachedPtr" DisplayMethod="unsigned integer">
+          <Structure Name="System.IntPtr" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+            <Elements>
+              <Element Offset="16" Vartype="Pointer" Bytesize="8" OffsetHex="00000010" Description="m_value" DisplayMethod="unsigned integer"/>
+            </Elements>
+          </Structure>
+        </Element>
+        <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="m_value" DisplayMethod="unsigned integer"/>
+        <Element Offset="32" Vartype="Pointer" Bytesize="8" OffsetHex="00000020" Description="m_resetValue" DisplayMethod="unsigned integer">
+          <Structure Name="BaseReference`1" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+            <Elements>
+              <Element Offset="0" Vartype="Pointer" Bytesize="8" OffsetHex="00000000" Description="m_variable" DisplayMethod="unsigned integer"/>
+              <Element Offset="0" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000000" Description="m_constantValue" DisplayMethod="unsigned integer"/>
+              <Element Offset="0" Vartype="Byte" Bytesize="1" OffsetHex="00000000" Description="m_useConstant" DisplayMethod="unsigned integer"/>
+            </Elements>
+          </Structure>
+        </Element>
+        <Element Offset="40" Vartype="Pointer" Bytesize="8" OffsetHex="00000028" Description="m_onValueChanged" DisplayMethod="unsigned integer">
+          <Structure Name="UnityEngine.Events.UnityAction`1" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+            <Elements>
+              <Element Offset="16" Vartype="Pointer" Bytesize="8" OffsetHex="00000010" Description="method_ptr" DisplayMethod="unsigned integer"/>
+              <Element Offset="24" Vartype="Pointer" Bytesize="8" OffsetHex="00000018" Description="invoke_impl" DisplayMethod="unsigned integer"/>
+              <Element Offset="32" Vartype="Pointer" Bytesize="8" OffsetHex="00000020" Description="m_target" DisplayMethod="unsigned integer"/>
+              <Element Offset="40" Vartype="Pointer" Bytesize="8" OffsetHex="00000028" Description="method" DisplayMethod="unsigned integer"/>
+              <Element Offset="48" Vartype="Pointer" Bytesize="8" OffsetHex="00000030" Description="delegate_trampoline" DisplayMethod="unsigned integer"/>
+              <Element Offset="56" Vartype="Pointer" Bytesize="8" OffsetHex="00000038" Description="extra_arg" DisplayMethod="unsigned integer"/>
+              <Element Offset="64" Vartype="Pointer" Bytesize="8" OffsetHex="00000040" Description="method_code" DisplayMethod="unsigned integer"/>
+              <Element Offset="72" Vartype="Pointer" Bytesize="8" OffsetHex="00000048" Description="interp_method" DisplayMethod="unsigned integer"/>
+              <Element Offset="80" Vartype="Pointer" Bytesize="8" OffsetHex="00000050" Description="interp_invoke_impl" DisplayMethod="unsigned integer"/>
+              <Element Offset="88" Vartype="Pointer" Bytesize="8" OffsetHex="00000058" Description="method_info" DisplayMethod="unsigned integer"/>
+              <Element Offset="96" Vartype="Pointer" Bytesize="8" OffsetHex="00000060" Description="original_method_info" DisplayMethod="unsigned integer"/>
+              <Element Offset="104" Vartype="Pointer" Bytesize="8" OffsetHex="00000068" Description="data" DisplayMethod="unsigned integer"/>
+              <Element Offset="112" Vartype="Byte" Bytesize="1" OffsetHex="00000070" Description="method_is_virtual" DisplayMethod="unsigned integer"/>
+              <Element Offset="120" Vartype="Pointer" Bytesize="8" OffsetHex="00000078" Description="delegates" DisplayMethod="unsigned integer"/>
+            </Elements>
+          </Structure>
+        </Element>
+      </Elements>
+    </Structure>
+    <Structure Name="DangerIntensityVariable" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="16" Vartype="Pointer" Bytesize="8" OffsetHex="00000010" Description="m_CachedPtr" DisplayMethod="unsigned integer"/>
+        <Element Offset="24" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000018" Description="m_value" DisplayMethod="unsigned integer"/>
+        <Element Offset="32" Vartype="Pointer" Bytesize="8" OffsetHex="00000020" Description="m_resetValue" DisplayMethod="unsigned integer"/>
+        <Element Offset="40" Vartype="Pointer" Bytesize="8" OffsetHex="00000028" Description="m_onValueChanged" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+  </Structures>
+  <Comments>bone 15
+soul 7
+body 3
+Evil 10</Comments>
+</CheatTable>

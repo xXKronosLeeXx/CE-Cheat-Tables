@@ -4,7 +4,8 @@
     <CheatEntry>
       <ID>28</ID>
       <Description>"Steam V.1.1"</Description>
-      <LastState/>
+      <Options moHideChildren="1"/>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>//mono功能打开**  Activate Mono
 {$lua}
@@ -14,13 +15,13 @@ LaunchMonoDataCollector();
 [DISABLE]
 
 </AssemblerScript>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>29</ID>
-      <Description>"HP"</Description>
-      <LastState/>
-      <VariableType>Auto Assembler Script</VariableType>
-      <AssemblerScript>{ Game   : Valfaris Mecha Therion.exe
+      <CheatEntries>
+        <CheatEntry>
+          <ID>29</ID>
+          <Description>"HP"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Valfaris Mecha Therion.exe
   Version: 
   Date   : 2026-10-20
   Author : krono
@@ -88,13 +89,13 @@ Player:set_HP+f2: 48 8B C8                       - mov rcx,rax
 Player:set_HP+f5: 48 8B D6                       - mov rdx,rsi
 }
 </AssemblerScript>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>18</ID>
-      <Description>"Bullet"</Description>
-      <LastState Activated="1"/>
-      <VariableType>Auto Assembler Script</VariableType>
-      <AssemblerScript>{ Game   : Valfaris Mecha Therion.exe
+        </CheatEntry>
+        <CheatEntry>
+          <ID>18</ID>
+          <Description>"Bullet"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Valfaris Mecha Therion.exe
   Version: 
   Date   : 2026-10-20
   Author : krono
@@ -162,13 +163,13 @@ Player:set_Energy+d8: 83 38 00                 - cmp dword ptr [rax],00
 Player:set_Energy+db: 66 66 90                 - nop 3
 }
 </AssemblerScript>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>20</ID>
-      <Description>"Rush"</Description>
-      <LastState Activated="1"/>
-      <VariableType>Auto Assembler Script</VariableType>
-      <AssemblerScript>{ Game   : Valfaris Mecha Therion.exe
+        </CheatEntry>
+        <CheatEntry>
+          <ID>20</ID>
+          <Description>"Rush"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Valfaris Mecha Therion.exe
   Version: 
   Date   : 2026-10-20
   Author : krono
@@ -236,13 +237,13 @@ Player:set_Fuel+65: 3B C1                          - cmp eax,ecx
 Player:set_Fuel+67: 75 17                          - jne Player:set_Fuel+80
 }
 </AssemblerScript>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>23</ID>
-      <Description>"Metal Blood = 99"</Description>
-      <LastState Activated="1"/>
-      <VariableType>Auto Assembler Script</VariableType>
-      <AssemblerScript>{ Game   : Valfaris Mecha Therion.exe
+        </CheatEntry>
+        <CheatEntry>
+          <ID>23</ID>
+          <Description>"Metal Blood = 99"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Valfaris Mecha Therion.exe
   Version: 
   Date   : 2026-10-20
   Author : krono
@@ -310,13 +311,13 @@ CurrentGameData:set_BloodMetal+a5: 83 39 00                       - cmp dword pt
 CurrentGameData:set_BloodMetal+a8: 48 8B 48 48                    - mov rcx,[rax+48]
 }
 </AssemblerScript>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>26</ID>
-      <Description>"Valfaris Blood = 99"</Description>
-      <LastState Activated="1"/>
-      <VariableType>Auto Assembler Script</VariableType>
-      <AssemblerScript>{ Game   : Valfaris Mecha Therion.exe
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26</ID>
+          <Description>"Valfaris Blood = 99"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Valfaris Mecha Therion.exe
   Version: 
   Date   : 2026-10-20
   Author : krono
@@ -384,6 +385,8 @@ UpgradeSequence:Go+167: FF C2                          - inc edx
 UpgradeSequence:Go+169: 48 8B CE                       - mov rcx,rsi
 }
 </AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
     </CheatEntry>
   </CheatEntries>
   <CheatCodes>
