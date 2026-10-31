@@ -166,7 +166,7 @@ GameAssembly.dll+6EA495: 48 8B CB              - mov rcx,rbx
         </CheatEntry>
         <CheatEntry>
           <ID>7</ID>
-          <Description>"HP(Change Scene)"</Description>
+          <Description>"HP(Change Scene &amp; began)"</Description>
           <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : Carpenter.exe
@@ -500,5 +500,6 @@ GameAssembly.dll+6E9B0D: CC                       - int 3
   <Comments>bone 15
 soul 7
 body 3
-Evil 10</Comments>
+Evil 10
+</Comments>
 </CheatTable>
